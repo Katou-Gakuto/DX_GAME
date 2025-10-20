@@ -4,7 +4,8 @@
 
 #include "../Header/Master.h"
 
-#include "../Header/GamaManager.h"
+#include "../Header/EndManager.h"
+#include "../Header/GameManager.h"
 #include "../Header/LoadingManager.h"
 #include "../Header/SceneManager.h"
 
@@ -19,14 +20,18 @@ LoadingManager::~LoadingManager()
 //ローディング
 void LoadingManager::Loading()
 {
-	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE))
+	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
 		SetUseASyncLoadFlag(TRUE);
 
 		Master::mpGameManager->GetSceneManager()->NextScene();
 
-		while (GetASyncLoadNum() != 0)
+		while ((GetASyncLoadNum() != 0) && !Master::mpEndManager->EndFlag())
 		{
+		}
+		if (GetASyncLoadNum() != 0)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::LOADING_FLAG);
 		}
 
 		SetUseASyncLoadFlag(FALSE);

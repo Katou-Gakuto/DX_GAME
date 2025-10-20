@@ -6,7 +6,7 @@
 // シーン
 enum class SCENE
 {
-	NONE = -1,
+	NONE = -1,	// 無し
 	START = 0,	// スタート
 	TITLE,		// タイトル
 	TOWN,		// 町

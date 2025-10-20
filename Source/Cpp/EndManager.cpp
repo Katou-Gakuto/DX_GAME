@@ -25,7 +25,7 @@ void EndManager::Init()
 }
 
 // 終了フラグ
-bool EndManager::EndFlag()
+bool EndManager::EndFlag() const
 {
 	bool endFlag = false;
 
@@ -39,10 +39,4 @@ bool EndManager::EndFlag()
 	}
 
 	return endFlag;
-}
-
-// 終了フラグ設定
-void EndManager::SetEndFlag(bool flag, END_FLAG_NUMBER number)
-{
-	mullEndFlag.SetFlag(flag, number);
 }

@@ -203,9 +203,6 @@ protected:
     // ステータス
     STATUS mstStatus;
 
-    // 移動フラグ
-    BIT_FLAG<unsigned int> munMoveflags;
-
     //fsm
 
     // モデルベース
@@ -214,6 +211,9 @@ protected:
 
     // 攻撃オブジェクト
     AttackBase* mpAttack;
+
+    // 移動フラグ
+    BIT_FLAG<unsigned int> munMoveflags;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -439,8 +439,13 @@ protected:
     // 選択変更の間隔
     int mnSetChangeIntervalFrame;
 
+    // 画像ハンドル達
+    int* mnGraphHandles;
+    // 画像ハンドル数
+    int mnGraphCount;
+
 public:
-    UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, bool decreaseFlag);
+    UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
     ~UIBase();
 
     /*初期化*/

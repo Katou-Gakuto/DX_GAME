@@ -1,7 +1,8 @@
 #include "../Header/Master.h"
 
+#include "../Header/DataManager.h"
 #include "../Header/EndManager.h"
-#include "../Header/GamaManager.h"
+#include "../Header/GameManager.h"
 #include "../Header/KeyState.h"
 #include "../Header/LoadingManager.h"
 #include "../Header/ResourceManager.h"
@@ -13,8 +14,9 @@ void Master::AllDelete()
 	// I—¹ˆ—
 	mpGameManager->Finailize();
 	mpResourceManager->Finailize();
-
+	
 	// íœ
+	delete mpDataManager;
 	delete mpEndManager;
 	delete mpGameManager;
 	delete mpKeyState;

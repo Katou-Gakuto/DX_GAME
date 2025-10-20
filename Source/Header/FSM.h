@@ -57,3 +57,13 @@ private:
 	/*ステートを変換する*/
 	IStateScene* GetState(StateBase* state);
 };
+
+/*--------------------*/
+/*【UI有限状態マシン】*/
+/*--------------------*/
+class FSMUI : public FSMBase
+{
+private:
+	/*ステートを変換する*/
+	IStateScene* GetState(StateBase* state);
+};

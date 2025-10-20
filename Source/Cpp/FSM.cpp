@@ -3,8 +3,10 @@
 #include "../Header/Master.h"
 
 #include "../Header/EndManager.h"
+#include "../Header/GameManager.h"
 #include "../Header/FSM.h"
 #include "../Header/LoadingManager.h"
+#include "../Header/ObjectManager.h"
 #include "../Header/SceneManager.h"
 #include "../Header/StateBase.h"
 #include "../Header/StateScene.h"
@@ -69,6 +71,7 @@ void FSMScene::Update(SceneManager* sceneManager)
 	{
 		Master::mpLoadingManager->SetLoadingFlag(LOADING_NUMBER::SCENE);
 		stateScene->OnExit(sceneManager);
+		Master::mpGameManager->GetObjectManager()->DeleteSetScene((SCENE)mnCurrentState);
 		mnCurrentState = ret;
 	}
 }
@@ -88,7 +91,7 @@ IStateScene* FSMScene::GetState(StateBase* state)
 		return sceneState;
 	}
 
-	sceneState = new DeleteStateScene();
+	sceneState = new DeleteSceneState();
 	Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::FSM_FLAG);
 	Master::mpEndManager->SetDeleteObject((void*)sceneState);
 	return sceneState;

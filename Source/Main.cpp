@@ -4,8 +4,9 @@
 
 #include "Header/Master.h"
 
+#include "Header/DataManager.h"
 #include "Header/EndManager.h"
-#include "Header/GamaManager.h"
+#include "Header/GameManager.h"
 #include "Header/KeyState.h"
 #include "Header/LoadingManager.h"
 #include "Header/ResourceManager.h"
@@ -20,6 +21,7 @@
 * @note リファレンス https://dxlib.xsrv.jp/dxfunc.html
 */
 
+DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
 GameManager* Master::mpGameManager = new GameManager();
 KeyState* Master::mpKeyState = new KeyState();

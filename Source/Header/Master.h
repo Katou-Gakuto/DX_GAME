@@ -1,5 +1,6 @@
 #pragma once
 
+class DataManager;
 class EndManager;
 class GameManager;
 class KeyState;
@@ -10,6 +11,7 @@ class TimeManager;
 class Master
 {
 public:
+	static DataManager* mpDataManager;	// データマネージャー
 	static EndManager* mpEndManager;	// エンドマネージャー
 	static GameManager* mpGameManager;	// ゲームマネージャー
 	static KeyState* mpKeyState;	// キーステート

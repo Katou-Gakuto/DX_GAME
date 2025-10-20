@@ -4,11 +4,11 @@
 【シングルトンクラス形式】
 Master
 {
+	DataManager
 	EndManager
 	GameManager
 	{
 		CameraManager
-		DataManager
 		MapManager
 		ObjectManager
 		SceneManager
@@ -116,6 +116,7 @@ Master
 
 	例外
 	template<typename T> struct → テンプレートTの型に準拠
+	Windows API の型 → mw
 }
 
 【インクルードの順番】

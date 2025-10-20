@@ -32,6 +32,8 @@
     <ClInclude Include="Source\Header\EndManager.h" />
     <ClInclude Include="Source\Header\FSM.h" />
     <ClInclude Include="Source\Header\GamaManager.h" />
+    <ClInclude Include="Source\Header\GameDatas.h" />
+    <ClInclude Include="Source\Header\GameManager.h" />
     <ClInclude Include="Source\Header\KeyState.h" />
     <ClInclude Include="Source\Header\LoadingManager.h" />
     <ClInclude Include="Source\Header\MapManager.h" />
@@ -45,6 +47,7 @@
     <ClInclude Include="Source\Header\ShotCharacter.h" />
     <ClInclude Include="Source\Header\StateBase.h" />
     <ClInclude Include="Source\Header\StateScene.h" />
+    <ClInclude Include="Source\Header\StateTitleUI.h" />
     <ClInclude Include="Source\Header\Status.h" />
     <ClInclude Include="Source\Header\TimeManager.h" />
     <ClInclude Include="Source\Header\TitleUI.h" />
@@ -54,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Cpp\CameraManager.cpp" />
+    <ClCompile Include="Source\Cpp\Check.cpp" />
     <ClCompile Include="Source\Cpp\CollisionData.cpp" />
     <ClCompile Include="Source\Cpp\DataManager.cpp" />
+    <ClCompile Include="Source\Cpp\DebugUI.cpp" />
     <ClCompile Include="Source\Cpp\EndManager.cpp" />
     <ClCompile Include="Source\Cpp\FSM.cpp" />
     <ClCompile Include="Source\Cpp\GamaManager.cpp" />
@@ -66,10 +71,17 @@
     <ClCompile Include="Source\Cpp\ObjectBases.cpp" />
     <ClCompile Include="Source\Cpp\ObjectManager.cpp" />
     <ClCompile Include="Source\Cpp\ResourceManager.cpp" />
+    <ClCompile Include="Source\Cpp\ResultUI.cpp" />
     <ClCompile Include="Source\Cpp\SceneManager.cpp" />
+    <ClCompile Include="Source\Cpp\ShotAttack.cpp" />
+    <ClCompile Include="Source\Cpp\ShotCharacter.cpp" />
+    <ClCompile Include="Source\Cpp\StateBase.cpp" />
     <ClCompile Include="Source\Cpp\StateScene.cpp" />
+    <ClCompile Include="Source\Cpp\StateTitleUI.cpp" />
     <ClCompile Include="Source\Cpp\TimeManager.cpp" />
+    <ClCompile Include="Source\Cpp\TitleUI.cpp" />
     <ClCompile Include="Source\Cpp\UtilFactorys.cpp" />
+    <ClCompile Include="Source\Cpp\Wall.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

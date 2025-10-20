@@ -62,13 +62,13 @@ public:
     /// <summary>
     /// ゲーム停止フラグ取得
     /// </summary>
-    /// <returns>フラグ</returns>
+    /// <returns>停止しているなら「true」</returns>
     bool GetStopFlag() const { return mbStopFlag; }
 
     /// <summary>
     /// ゲーム停止フラグ設定
     /// </summary>
-    /// <param name="flag">停止するかどうか trueで止まる</param>
+    /// <param name="flag">停止するかどうか「true」で止まる</param>
     void SetStopFlag(bool flag) { mbStopFlag = flag; }
 
     /// <summary>

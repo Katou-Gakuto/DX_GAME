@@ -1,6 +1,6 @@
 #include "../Header/Master.h"
 
-#include "../Header/GamaManager.h"
+#include "../Header/GameManager.h"
 #include "../Header/ObjectManager.h"
 #include "../Header/SceneManager.h"
 #include "../Header/TimeManager.h"

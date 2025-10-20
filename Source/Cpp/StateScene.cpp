@@ -2,21 +2,7 @@
 #include "../Header/SceneManager.h"
 #include "../Header/StateBase.h"
 #include "../Header/StateScene.h"
-
-/*------------------------*/
-/*【継承用シーンステート】*/
-/*------------------------*/
-// 更新
-int IStateScene::Update(SceneManager* sceneManager)
-{
-	if ((int)sceneManager->GetNextScene() != sceneManager->GetFSMScene()->GetCurrentState())
-	{
-		return (int)sceneManager->GetNextScene();
-	}
-
-	return sceneManager->GetFSMScene()->GetCurrentState();
-}
-
+#include "../Header/TitleUI.h"
 
 /*--------------------------*/
 /*【スタートシーンステート】*/
@@ -31,5 +17,87 @@ void StartScene::OnEnter(SceneManager* sceneManager)
 	sceneManager->SetNextScene(SCENE::TITLE);
 }
 void StartScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*--------------------------*/
+/*【タイトルシーンステート】*/
+/*--------------------------*/
+TitleScene::TitleScene()
+{
+	mnStateNumber = (int)SCENE::TITLE;
+}
+
+void TitleScene::OnEnter(SceneManager* sceneManager)
+{
+	TitleUI* title = new TitleUI();
+	title->Initilize();
+}
+void TitleScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*--------------------------*/
+/*【町シーンステート】*/
+/*--------------------------*/
+TownScene::TownScene()
+{
+	mnStateNumber = (int)SCENE::TOWN;
+}
+
+void TownScene::OnEnter(SceneManager* sceneManager)
+{
+}
+void TownScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*----------------------------*/
+/*【ダンジョンシーンステート】*/
+/*----------------------------*/
+DungeonScene::DungeonScene()
+{
+	mnStateNumber = (int)SCENE::DUNGEON;
+}
+
+void DungeonScene::OnEnter(SceneManager* sceneManager)
+{
+}
+void DungeonScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*--------------------------*/
+/*【バトルシーンステート】*/
+/*--------------------------*/
+BattleScene::BattleScene()
+{
+	mnStateNumber = (int)SCENE::BATTLE;
+}
+
+void BattleScene::OnEnter(SceneManager* sceneManager)
+{
+}
+void BattleScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*--------------------------*/
+/*【リザルトシーンステート】*/
+/*--------------------------*/
+ResultScene::ResultScene()
+{
+	mnStateNumber = (int)SCENE::RESULT;
+}
+
+void ResultScene::OnEnter(SceneManager* sceneManager)
+{
+}
+void ResultScene::OnExit(SceneManager* sceneManager)
 {
 }

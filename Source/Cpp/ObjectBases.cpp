@@ -1,6 +1,6 @@
 #include "../Header/Master.h"
 
-#include "../Header/GamaManager.h"
+#include "../Header/GameManager.h"
 #include "../Header/ObjectBases.h"
 #include "../Header/ObjectManager.h"
 #include "../Header/SceneManager.h"
@@ -73,7 +73,10 @@ void CharacterBase::Finalize()
 // 更新
 void CharacterBase::Update()
 {
-	CharacterUpdate();
+	if (!Master::mpTimeManager->GetStopFlag())
+	{
+		CharacterUpdate();
+	}
 }
 
 // 最終更新
@@ -202,6 +205,8 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnSetChangeIntervalFrame(15)
 , mnUINumber(0)
 , mpTimeManager(nullptr)
+, mnGraphHandles(nullptr)
+, mnGraphCount(0)
 {
 	mbTimeStopFlag = timeStopFlag;
 
@@ -377,7 +382,7 @@ void UIBase::DefaultDecision()
 // デフォルト終了確認処理
 void UIBase::DefaultCloce()
 {
-	if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ESC) ||
+	if ((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::B, false))
 	{
 		CloceProcess();

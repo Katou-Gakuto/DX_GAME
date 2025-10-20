@@ -1,0 +1,24 @@
+Data
+Map
+Camera
+Key
+Loading // 詳細後回し
+resource	// 便利系とサウンド後回し
+Object
+scene	// それぞれのシーン作るのと気づかなかった事を追加
+
+GamaMAnager → カメラ、データ、マップ、オブジェクト	
+↑
+TarGet情報入れる
+UIManagerも入れる
+
+UIBase キーボード 反応したら実行する奴で長押しは反応しない
+
+
+
+作るもの優先事項
+fsm
+モデルベース
+アニメションベース
+
+esc使えない コントロールZ　UIを戻るときに使う

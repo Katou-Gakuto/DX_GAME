@@ -1,0 +1,68 @@
+#pragma once
+class ObjectManager;
+class SceneManager;
+
+class GameManager
+{
+private:
+	//ターゲット
+
+	//カメラ
+	//データ
+	//マップ
+	// オブジェクトマネージャー
+	ObjectManager* mpObjectManager;
+
+	// シーンマネージャー
+	SceneManager* mpSceneManager;
+
+	// UIナンバー
+	int mnUINumber;
+
+public:
+	GameManager();
+	~GameManager();
+
+	// 初期化
+	void Initilize();
+	// 終了
+	void Finailize();
+
+	// 更新
+	void Update();
+	// 必要であれば削除する
+	void DeleteAllIfNeeded();
+	// 描画
+	void Draw();
+
+	/*------*/
+	/*【UI】*/
+	/*------*/
+
+	/*UIナンバー増加*/
+	int IncreaseUINumber();	
+	/*UIナンバー減少*/
+	void DecreaseUINumber();
+
+	/// <summary>
+	/// UIナンバー取得
+	/// </summary>
+	/// <returns>現在処理するUIナンバー</returns>
+	inline int GetNowUINumber() const { return mnUINumber; }
+
+	/*--------------------*/
+	/*【マネージャー取得】*/
+	/*--------------------*/
+	
+	/// <summary>
+	/// オブジェクトマネージャー取得
+	/// </summary>
+	/// <returns>オブジェクトマネージャー</returns>
+	inline ObjectManager* GetObjectManager() { return mpObjectManager; }
+
+	/// <summary>
+	/// シーンマネージャー取得
+	/// </summary>
+	/// <returns>シーンマネージャー</returns>
+	inline SceneManager* GetSceneManager() { return mpSceneManager; }
+};

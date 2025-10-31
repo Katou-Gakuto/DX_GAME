@@ -23,82 +23,79 @@
     <Text Include="Text\Memo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Header\AttackManager.h" />
-    <ClInclude Include="Source\Header\BitFlag.h" />
-    <ClInclude Include="Source\Header\CameraData.h" />
-    <ClInclude Include="Source\Header\CameraManager.h" />
-    <ClInclude Include="Source\Header\CharacterEnum.h" />
-    <ClInclude Include="Source\Header\CheckUI.h" />
-    <ClInclude Include="Source\Header\CollisionData.h" />
-    <ClInclude Include="Source\Header\DataManager.h" />
-    <ClInclude Include="Source\Header\DebugUI.h" />
-    <ClInclude Include="Source\Header\EndManager.h" />
-    <ClInclude Include="Source\Header\FSM.h" />
-    <ClInclude Include="Source\Header\GamaManager.h" />
-    <ClInclude Include="Source\Header\GameDatas.h" />
-    <ClInclude Include="Source\Header\GameManager.h" />
-    <ClInclude Include="Source\Header\KeyState.h" />
-    <ClInclude Include="Source\Header\LoadingManager.h" />
-    <ClInclude Include="Source\Header\MapManager.h" />
-    <ClInclude Include="Source\Header\Master.h" />
-    <ClInclude Include="Source\Header\ObjectBases.h" />
-    <ClInclude Include="Source\Header\ObjectManager.h" />
-    <ClInclude Include="Source\Header\ResourceManager.h" />
-    <ClInclude Include="Source\Header\ResultUI.h" />
-    <ClInclude Include="Source\Header\SceneEnum.h" />
-    <ClInclude Include="Source\Header\SceneManager.h" />
-    <ClInclude Include="Source\Header\ShotAttack.h" />
-    <ClInclude Include="Source\Header\ShotCharacter.h" />
-    <ClInclude Include="Source\Header\StateBase.h" />
-    <ClInclude Include="Source\Header\StateCamera.h" />
-    <ClInclude Include="Source\Header\StateDungeonPlayer.h" />
-    <ClInclude Include="Source\Header\StateEnemy.h" />
-    <ClInclude Include="Source\Header\StatePlayer.h" />
-    <ClInclude Include="Source\Header\StateScene.h" />
-    <ClInclude Include="Source\Header\StateTitleUI.h" />
-    <ClInclude Include="Source\Header\StateTownPlayer.h" />
-    <ClInclude Include="Source\Header\Status.h" />
-    <ClInclude Include="Source\Header\TimeManager.h" />
-    <ClInclude Include="Source\Header\TitleUI.h" />
-    <ClInclude Include="Source\Header\UtilCalc.h" />
-    <ClInclude Include="Source\Header\UtilChange.h" />
-    <ClInclude Include="Source\Header\UtilFactorys.h" />
-    <ClInclude Include="Source\Header\Wall.h" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Object\Attack\AttackManager.cpp" />
+    <ClCompile Include="Source\Object\Attack\ShotAttack.cpp" />
+    <ClCompile Include="Source\Object\Building\Wall.cpp" />
+    <ClCompile Include="Source\Object\Character\ShotCharacter.cpp" />
+    <ClCompile Include="Source\Object\ObjectBases.cpp" />
+    <ClCompile Include="Source\Object\UI\CheckUI.cpp" />
+    <ClCompile Include="Source\Object\UI\DebugUI.cpp" />
+    <ClCompile Include="Source\Object\UI\ResultUI.cpp" />
+    <ClCompile Include="Source\Object\UI\TitleUI.cpp" />
+    <ClCompile Include="Source\Singleton\CameraManager.cpp" />
+    <ClCompile Include="Source\Singleton\DataManager.cpp" />
+    <ClCompile Include="Source\Singleton\EndManager.cpp" />
+    <ClCompile Include="Source\Singleton\GamaManager.cpp" />
+    <ClCompile Include="Source\Singleton\KeyState.cpp" />
+    <ClCompile Include="Source\Singleton\LoadingManager.cpp" />
+    <ClCompile Include="Source\Singleton\MapManager.cpp" />
+    <ClCompile Include="Source\Singleton\Master.cpp" />
+    <ClCompile Include="Source\Singleton\ObjectManager.cpp" />
+    <ClCompile Include="Source\Singleton\ResourceManager.cpp" />
+    <ClCompile Include="Source\Singleton\SceneManager.cpp" />
+    <ClCompile Include="Source\Singleton\TimeManager.cpp" />
+    <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
+    <ClCompile Include="Source\State\FSM.cpp" />
+    <ClCompile Include="Source\State\StateBase.cpp" />
+    <ClCompile Include="Source\State\StateCamera.cpp" />
+    <ClCompile Include="Source\State\StateScene.cpp" />
+    <ClCompile Include="Source\State\UI\StateTitleUI.cpp" />
+    <ClCompile Include="Source\Struct\CameraData.cpp" />
+    <ClCompile Include="Source\Struct\CollisionData.cpp" />
+    <ClCompile Include="Source\Util\UtilCalc.cpp" />
+    <ClCompile Include="Source\Util\UtilChange.cpp" />
+    <ClCompile Include="Source\Util\UtilFactorys.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Cpp\AttackManager.cpp" />
-    <ClCompile Include="Source\Cpp\CameraData.cpp" />
-    <ClCompile Include="Source\Cpp\CameraManager.cpp" />
-    <ClCompile Include="Source\Cpp\Check.cpp" />
-    <ClCompile Include="Source\Cpp\CollisionData.cpp" />
-    <ClCompile Include="Source\Cpp\DataManager.cpp" />
-    <ClCompile Include="Source\Cpp\DebugUI.cpp" />
-    <ClCompile Include="Source\Cpp\EndManager.cpp" />
-    <ClCompile Include="Source\Cpp\FSM.cpp" />
-    <ClCompile Include="Source\Cpp\GamaManager.cpp" />
-    <ClCompile Include="Source\Cpp\KeyState.cpp" />
-    <ClCompile Include="Source\Cpp\LoadingManager.cpp" />
-    <ClCompile Include="Source\Cpp\MapManager.cpp" />
-    <ClCompile Include="Source\Cpp\Master.cpp" />
-    <ClCompile Include="Source\Cpp\ObjectBases.cpp" />
-    <ClCompile Include="Source\Cpp\ObjectManager.cpp" />
-    <ClCompile Include="Source\Cpp\ResourceManager.cpp" />
-    <ClCompile Include="Source\Cpp\ResultUI.cpp" />
-    <ClCompile Include="Source\Cpp\SceneManager.cpp" />
-    <ClCompile Include="Source\Cpp\ShotAttack.cpp" />
-    <ClCompile Include="Source\Cpp\ShotCharacter.cpp" />
-    <ClCompile Include="Source\Cpp\StateBase.cpp" />
-    <ClCompile Include="Source\Cpp\StateCamera.cpp" />
-    <ClCompile Include="Source\Cpp\StatePlayer.cpp" />
-    <ClCompile Include="Source\Cpp\StateScene.cpp" />
-    <ClCompile Include="Source\Cpp\StateTitleUI.cpp" />
-    <ClCompile Include="Source\Cpp\TimeManager.cpp" />
-    <ClCompile Include="Source\Cpp\TitleUI.cpp" />
-    <ClCompile Include="Source\Cpp\UtilCalc.cpp" />
-    <ClCompile Include="Source\Cpp\UtilChange.cpp" />
-    <ClCompile Include="Source\Cpp\UtilFactorys.cpp" />
-    <ClCompile Include="Source\Cpp\Wall.cpp" />
-    <ClCompile Include="Source\Main.cpp" />
+    <ClInclude Include="Source\Enum\CharacterEnum.h" />
+    <ClInclude Include="Source\Enum\SceneEnum.h" />
+    <ClInclude Include="Source\Object\Attack\AttackManager.h" />
+    <ClInclude Include="Source\Object\Attack\ShotAttack.h" />
+    <ClInclude Include="Source\Object\Building\Wall.h" />
+    <ClInclude Include="Source\Object\Character\ShotCharacter.h" />
+    <ClInclude Include="Source\Object\ObjectBases.h" />
+    <ClInclude Include="Source\Object\UI\CheckUI.h" />
+    <ClInclude Include="Source\Object\UI\DebugUI.h" />
+    <ClInclude Include="Source\Object\UI\ResultUI.h" />
+    <ClInclude Include="Source\Object\UI\TitleUI.h" />
+    <ClInclude Include="Source\Singleton\CameraManager.h" />
+    <ClInclude Include="Source\Singleton\DataManager.h" />
+    <ClInclude Include="Source\Singleton\EndManager.h" />
+    <ClInclude Include="Source\Singleton\GameManager.h" />
+    <ClInclude Include="Source\Singleton\KeyState.h" />
+    <ClInclude Include="Source\Singleton\LoadingManager.h" />
+    <ClInclude Include="Source\Singleton\MapManager.h" />
+    <ClInclude Include="Source\Singleton\Master.h" />
+    <ClInclude Include="Source\Singleton\ObjectManager.h" />
+    <ClInclude Include="Source\Singleton\ResourceManager.h" />
+    <ClInclude Include="Source\Singleton\SceneManager.h" />
+    <ClInclude Include="Source\Singleton\TimeManager.h" />
+    <ClInclude Include="Source\State\Character\StateEnemy.h" />
+    <ClInclude Include="Source\State\Character\StatePlayer.h" />
+    <ClInclude Include="Source\State\FSM.h" />
+    <ClInclude Include="Source\State\StateBase.h" />
+    <ClInclude Include="Source\State\StateCamera.h" />
+    <ClInclude Include="Source\State\StateScene.h" />
+    <ClInclude Include="Source\State\UI\StateTitleUI.h" />
+    <ClInclude Include="Source\Struct\BitFlag.h" />
+    <ClInclude Include="Source\Struct\CameraData.h" />
+    <ClInclude Include="Source\Struct\CollisionData.h" />
+    <ClInclude Include="Source\Struct\GameDatas.h" />
+    <ClInclude Include="Source\Struct\Status.h" />
+    <ClInclude Include="Source\Util\UtilCalc.h" />
+    <ClInclude Include="Source\Util\UtilChange.h" />
+    <ClInclude Include="Source\Util\UtilFactorys.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -188,13 +185,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)\Source\Enum;$(ProjectDir)\Source\Object;$(ProjectDir)\Source\Object\Attack;$(ProjectDir)\Source\Object\Building;$(ProjectDir)\Source\Object\Character;$(ProjectDir)\Source\Object\UI;$(ProjectDir)\Source\Singleton;$(ProjectDir)\Source\State;$(ProjectDir)\Source\State\Character;$(ProjectDir)\Source\State\UI;$(ProjectDir)\Source\Struct;$(ProjectDir)\Source\Util</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\プロジェクトに追加すべきファイル_VC用;$(ProjectDir)\Source\Enum;$(ProjectDir)\Source\Object;$(ProjectDir)\Source\Object\Attack;$(ProjectDir)\Source\Object\Building;$(ProjectDir)\Source\Object\Character;$(ProjectDir)\Source\Object\UI;$(ProjectDir)\Source\Singleton;$(ProjectDir)\Source\State;$(ProjectDir)\Source\State\Character;$(ProjectDir)\Source\State\UI;$(ProjectDir)\Source\Struct;$(ProjectDir)\Source\Util</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

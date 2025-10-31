@@ -2,15 +2,15 @@
 
 #include "DxLib.h"
 
-#include "Header/Master.h"
+#include "Master.h"
 
-#include "Header/DataManager.h"
-#include "Header/EndManager.h"
-#include "Header/GameManager.h"
-#include "Header/KeyState.h"
-#include "Header/LoadingManager.h"
-#include "Header/ResourceManager.h"
-#include "Header/TimeManager.h"
+#include "DataManager.h"
+#include "EndManager.h"
+#include "GameManager.h"
+#include "KeyState.h"
+#include "LoadingManager.h"
+#include "ResourceManager.h"
+#include "TimeManager.h"
 
 /**
 * @file 

@@ -13,6 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Util">
+      <UniqueIdentifier>{981d3fef-e604-4455-9a4d-f0bb8a5f41a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Enum">
+      <UniqueIdentifier>{61aae566-a506-4566-bafe-fd772fa7c46f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object">
+      <UniqueIdentifier>{b259f6a4-e251-4e3b-9dab-8a172d3b43af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Singleton">
+      <UniqueIdentifier>{f48a05a7-a7e3-433a-9ec6-0dad43eadbe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State">
+      <UniqueIdentifier>{8db402b5-2ec5-4202-af3f-216adf407833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Struct">
+      <UniqueIdentifier>{adb2ae64-17a2-4a41-8780-26549a1e0bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\Attack">
+      <UniqueIdentifier>{1df20642-935f-4915-8b3a-3a1ea105265f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\Building">
+      <UniqueIdentifier>{3681710e-3ffc-45e7-8994-3e9f71aded35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\Character">
+      <UniqueIdentifier>{4a6d94c8-4ea9-4bce-8f4b-e9955bf3a35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\UI">
+      <UniqueIdentifier>{996abffb-4007-48e6-af44-c4ba023b623d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\Character">
+      <UniqueIdentifier>{7adf5626-5c45-4c51-b9f1-04fef31fa944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\UI">
+      <UniqueIdentifier>{e409f977-3698-4e1b-a15d-43e9dcd50ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Util">
+      <UniqueIdentifier>{248ca4d4-0aa9-4069-80fc-246986341a02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{dd3b8582-50d9-4d57-a2fc-0778183d9545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Attack">
+      <UniqueIdentifier>{06f0873a-2cd4-46d7-9a52-ecdab57fc8da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Building">
+      <UniqueIdentifier>{f7ad1684-75b7-4696-bcf8-ca08f50f9953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Character">
+      <UniqueIdentifier>{031481f3-2481-4059-b63c-fe1dc3bb082e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\UI">
+      <UniqueIdentifier>{017a4ceb-6201-49a5-b074-91e9d03722cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Singleton">
+      <UniqueIdentifier>{5ac681c7-1c90-4cdb-97ce-32a7c4fc4ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State">
+      <UniqueIdentifier>{576c06a4-fe12-4916-9c3c-458333a09f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\UI">
+      <UniqueIdentifier>{f7e055fc-9721-48ce-ad47-726d7f937364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\Character">
+      <UniqueIdentifier>{b1b0802d-07f5-4772-8d6a-d7dae019353d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Struct">
+      <UniqueIdentifier>{638428cc-24bb-41e0-ad2f-98991a149446}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text\Constraint.txt">
@@ -23,229 +92,220 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Header\AttackManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\BitFlag.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\CameraData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\CameraManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\CharacterEnum.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\CheckUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\CollisionData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\DataManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\DebugUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\EndManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\FSM.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\GamaManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\GameDatas.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\GameManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\KeyState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\LoadingManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\MapManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\Master.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ObjectBases.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ObjectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ResourceManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ResultUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\SceneEnum.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\SceneManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ShotAttack.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\ShotCharacter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateDungeonPlayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateEnemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StatePlayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateTitleUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\StateTownPlayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\Status.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\TimeManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\TitleUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\UtilCalc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\UtilChange.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\UtilFactorys.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Header\Wall.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\AttackManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Util\UtilFactorys.cpp">
+      <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\CameraData.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Util\UtilChange.cpp">
+      <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\CameraManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Util\UtilCalc.cpp">
+      <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\Check.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Struct\CollisionData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\CollisionData.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Struct\CameraData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\DataManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\StateScene.cpp">
+      <Filter>ソース ファイル\State</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\DebugUI.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\StateCamera.cpp">
+      <Filter>ソース ファイル\State</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\EndManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\StateBase.cpp">
+      <Filter>ソース ファイル\State</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\FSM.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\FSM.cpp">
+      <Filter>ソース ファイル\State</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\GamaManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\UI\StateTitleUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\KeyState.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\State\Character\StatePlayer.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\LoadingManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\TimeManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\MapManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\SceneManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\Master.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\ResourceManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ObjectBases.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\ObjectManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ObjectManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\Master.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ResourceManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\MapManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ResultUI.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\LoadingManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\SceneManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\KeyState.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ShotAttack.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\GamaManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\ShotCharacter.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\EndManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\StateBase.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\DataManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\StateCamera.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Singleton\CameraManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\StatePlayer.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\ObjectBases.cpp">
+      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\StateScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\UI\TitleUI.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\StateTitleUI.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\UI\ResultUI.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\TimeManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\UI\DebugUI.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\TitleUI.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\UI\CheckUI.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\UtilCalc.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\Character\ShotCharacter.cpp">
+      <Filter>ソース ファイル\Object\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\UtilChange.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\Building\Wall.cpp">
+      <Filter>ソース ファイル\Object\Building</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\UtilFactorys.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\Attack\ShotAttack.cpp">
+      <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cpp\Wall.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Source\Object\Attack\AttackManager.cpp">
+      <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Util\UtilFactorys.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\UtilChange.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\UtilCalc.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\CollisionData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\GameDatas.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\Status.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\CameraData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\BitFlag.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateScene.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateCamera.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\FSM.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateTitleUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StatePlayer.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateEnemy.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TimeManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\SceneManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ObjectManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\Master.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\MapManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\LoadingManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\KeyState.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\GameManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\EndManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\DataManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\CameraManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\CharacterEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\SceneEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\ObjectBases.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UI\TitleUI.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UI\ResultUI.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UI\DebugUI.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UI\CheckUI.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Character\ShotCharacter.h">
+      <Filter>ヘッダー ファイル\Object\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Building\Wall.h">
+      <Filter>ヘッダー ファイル\Object\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Attack\ShotAttack.h">
+      <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Attack\AttackManager.h">
+      <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

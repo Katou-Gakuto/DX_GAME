@@ -23,8 +23,11 @@
     <Text Include="Text\Memo.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Header\AttackManager.h" />
     <ClInclude Include="Source\Header\BitFlag.h" />
+    <ClInclude Include="Source\Header\CameraData.h" />
     <ClInclude Include="Source\Header\CameraManager.h" />
+    <ClInclude Include="Source\Header\CharacterEnum.h" />
     <ClInclude Include="Source\Header\CheckUI.h" />
     <ClInclude Include="Source\Header\CollisionData.h" />
     <ClInclude Include="Source\Header\DataManager.h" />
@@ -42,20 +45,29 @@
     <ClInclude Include="Source\Header\ObjectManager.h" />
     <ClInclude Include="Source\Header\ResourceManager.h" />
     <ClInclude Include="Source\Header\ResultUI.h" />
+    <ClInclude Include="Source\Header\SceneEnum.h" />
     <ClInclude Include="Source\Header\SceneManager.h" />
     <ClInclude Include="Source\Header\ShotAttack.h" />
     <ClInclude Include="Source\Header\ShotCharacter.h" />
     <ClInclude Include="Source\Header\StateBase.h" />
+    <ClInclude Include="Source\Header\StateCamera.h" />
+    <ClInclude Include="Source\Header\StateDungeonPlayer.h" />
+    <ClInclude Include="Source\Header\StateEnemy.h" />
+    <ClInclude Include="Source\Header\StatePlayer.h" />
     <ClInclude Include="Source\Header\StateScene.h" />
     <ClInclude Include="Source\Header\StateTitleUI.h" />
+    <ClInclude Include="Source\Header\StateTownPlayer.h" />
     <ClInclude Include="Source\Header\Status.h" />
     <ClInclude Include="Source\Header\TimeManager.h" />
     <ClInclude Include="Source\Header\TitleUI.h" />
     <ClInclude Include="Source\Header\UtilCalc.h" />
+    <ClInclude Include="Source\Header\UtilChange.h" />
     <ClInclude Include="Source\Header\UtilFactorys.h" />
     <ClInclude Include="Source\Header\Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Cpp\AttackManager.cpp" />
+    <ClCompile Include="Source\Cpp\CameraData.cpp" />
     <ClCompile Include="Source\Cpp\CameraManager.cpp" />
     <ClCompile Include="Source\Cpp\Check.cpp" />
     <ClCompile Include="Source\Cpp\CollisionData.cpp" />
@@ -76,10 +88,14 @@
     <ClCompile Include="Source\Cpp\ShotAttack.cpp" />
     <ClCompile Include="Source\Cpp\ShotCharacter.cpp" />
     <ClCompile Include="Source\Cpp\StateBase.cpp" />
+    <ClCompile Include="Source\Cpp\StateCamera.cpp" />
+    <ClCompile Include="Source\Cpp\StatePlayer.cpp" />
     <ClCompile Include="Source\Cpp\StateScene.cpp" />
     <ClCompile Include="Source\Cpp\StateTitleUI.cpp" />
     <ClCompile Include="Source\Cpp\TimeManager.cpp" />
     <ClCompile Include="Source\Cpp\TitleUI.cpp" />
+    <ClCompile Include="Source\Cpp\UtilCalc.cpp" />
+    <ClCompile Include="Source\Cpp\UtilChange.cpp" />
     <ClCompile Include="Source\Cpp\UtilFactorys.cpp" />
     <ClCompile Include="Source\Cpp\Wall.cpp" />
     <ClCompile Include="Source\Main.cpp" />

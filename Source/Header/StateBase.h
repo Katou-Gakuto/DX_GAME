@@ -1,31 +1,87 @@
 #pragma once
+#include "CameraData.h"
 
+enum class CAMERA_MODE;
+enum class SCENE;
+
+class CameraManager;
+class CharacterBase;
 class SceneManager;
 class UIBase;
 
-/*----------------------------*/
-/*     【ステートベース】     */
-/*----------------------------*/
+/*------------------*/
+/*【ステートベース】*/
+/*------------------*/
+template<typename number>
 class StateBase
 {
 protected:
-	int mnStateNumber = -1;
+	// ステートナンバー
+	number mStateNumber = (number) - 1;
 public:
 	StateBase() = default;
 	virtual ~StateBase() = default;
 
-	int GetStateNumber() const { return mnStateNumber; }
+	inline number GetStateNumber() const { return mStateNumber; }
 };
 
+/*------------------------*/
+/*【カメラステートベース】*/
+/*------------------------*/
+class IStateCamera : public StateBase<CAMERA_MODE>
+{
+public:
+	IStateCamera() = default;
+	virtual ~IStateCamera() = default;
 
-/*----------------------------------*/
-/*     【シーンステートベース】     */
-/*----------------------------------*/
+	/*この状態に入った時の処理*/
+	virtual void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) = 0;
+	/*この状態を出る時の処理*/
+	virtual void OnExit(CameraManager* cameraManager, CameraData cameraData) = 0;
+
+	/*初期化*/
+	virtual void Initilize(CameraManager* cameraManager, CameraData cameraData) = 0;
+
+	/*更新*/
+	virtual void Update(CameraManager* cameraManager, CameraData cameraData) = 0;
+
+	/*描画*/
+	virtual void Draw(CameraManager* cameraManager, CameraData cameraData) = 0;
+
+protected:
+	/*カメラの共通設定をする*/
+	void CommonSetCamera(CameraData cameraData, int& preThreeDFlag);
+};
+
+/*------------------------------*/
+/*【キャラクターステートベース】*/
+/*------------------------------*/
+class IStateCharacter : public StateBase<int>
+{
+public:
+	IStateCharacter() = default;
+	virtual ~IStateCharacter() = default;
+
+	/*この状態に入った時の処理*/
+	virtual void OnEnter(CharacterBase* character) = 0;
+	/*この状態を出る時の処理*/
+	virtual void OnExit(CharacterBase* character) = 0;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) = 0;
+	/*更新*/
+	virtual void Update(CharacterBase* character) = 0;
+	/*最終更新*/
+	virtual void LastUpdate(CharacterBase* character) = 0;
+
+	/*描画*/
+	virtual void Draw(CharacterBase* character) = 0;
+};
 
 /*------------------------*/
-/*【継承用シーンステート】*/
+/*【シーンステートベース】*/
 /*------------------------*/
-class IStateScene : public StateBase
+class IStateScene : public StateBase<SCENE>
 {
 public:
 	IStateScene() = default;
@@ -37,22 +93,13 @@ public:
 	virtual void OnExit(SceneManager* sceneManager) = 0;
 
 	/*更新*/
-	int Update(SceneManager* sceneManager);
+	SCENE Update(SceneManager* sceneManager);
 };
-/*------------------------*/
-/*【削除用シーンステート】*/
-/*------------------------*/
-class DeleteSceneState : public IStateScene { public: DeleteSceneState() = default; ~DeleteSceneState() = default; void OnEnter(SceneManager* sceneManager) override {} void OnExit(SceneManager* sceneManager) override {} };
-
-
-/*----------------------------*/
-/*     【UIステートベース】     */
-/*----------------------------*/
 
 /*--------------------*/
-/*【継承用UIステート】*/
+/*【UIステートベース】*/
 /*--------------------*/
-class IStateUI : public StateBase
+class IStateUI : public StateBase<int>
 {
 public:
 	IStateUI() = default;
@@ -64,23 +111,22 @@ public:
 	virtual void OnExit(UIBase* ui) = 0;
 
 	/*更新*/
-	virtual int Update(UIBase* ui) { return mnStateNumber; }
+	virtual int Update(UIBase* ui) { return mStateNumber; }
 
 	/*決定*/
-	virtual int Decision(UIBase* ui) { return mnStateNumber; }
+	virtual int Decision(UIBase* ui) { return mStateNumber; }
 	/*終了*/
 	virtual void Cloce(UIBase* ui) {}
 
 	/*マウス*/
-	virtual int Mouse() { return mnStateNumber; }
+	virtual int Mouse(UIBase* ui) { return mStateNumber; }
 	/*キーボード*/
-	virtual int Keyboard() { return mnStateNumber; }
+	virtual int Keyboard(UIBase* ui) { return mStateNumber; }
 	/*コントローラー*/
-	virtual int Controller() { return mnStateNumber; }
+	virtual int Controller(UIBase* ui) { return mStateNumber; }
 	/*キーボードとコントローラー*/
-	virtual int Keyboard_Controller() { return mnStateNumber; }
+	virtual int Keyboard_Controller(UIBase* ui) { return mStateNumber; }
+
+	/*描画*/
+	virtual void Draw(UIBase* ui) = 0;
 };
-/*--------------------*/
-/*【削除用UIステート】*/
-/*--------------------*/
-class DeleteUIState : public IStateUI { public: DeleteUIState() = default; ~DeleteUIState() = default; void OnEnter(UIBase* ui) override {} void OnExit(UIBase* ui) override {} };

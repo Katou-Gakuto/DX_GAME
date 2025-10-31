@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <string>
 
 #include "BitFlag.h"
 #include "CollisionData.h"
@@ -13,7 +14,9 @@
 
 enum class SCENE;
 
-class AttackBase;
+class AttackManager;
+class FSMCharacter;
+class FSMUI;
 
 /*--------------------------------------------------------*/
 /*               【オブジェクトベース関連】               */
@@ -36,6 +39,7 @@ enum class OBJECT_TYPE
 /*------------------------------------------*/
 /*          【オブジェクトベース】          */
 /*------------------------------------------*/
+
 class ObjectBase
 {
 private:
@@ -58,7 +62,7 @@ private:
     bool mbNextSceneDeleteFlag;
 
     // 識別タグ
-    int mnTag;
+    std::string mnTag;
     // チーム
     int mnTeam;
     // 個別ナンバー
@@ -103,22 +107,22 @@ public:
     inline void SetNextObject(ObjectBase* object, bool allBaseFlag = true) { if (allBaseFlag) { mpNextObject = object; } else { mpInheritClassNextObject = object; } }
 
     /*削除フラグ設定*/
-    inline void SetDeleteFlag(bool flag) { mbIsDeleteFlag = flag; }
+    inline void SetDeleteFlag(const bool flag) { mbIsDeleteFlag = flag; }
     /*削除フラグ取得*/
     inline bool IsDeleteFlag() const { return mbIsDeleteFlag; }
 
     /*有効フラグ設定*/
-    inline void SetActiveFlag(bool flag) { mbIsActiveFlag = flag; }
+    inline void SetActiveFlag(const bool flag) { mbIsActiveFlag = flag; }
     /*有効フラグ取得*/
     inline bool IsActiveFlag() const { return mbIsActiveFlag; }
 
     /*タグ設定*/
-    inline void SetTag(int tag) { mnTag = tag; }
+    inline void SetTag(const std::string& tag) { mnTag = tag; }
     /*タグ取得*/
-    inline int GetTag() const { return mnTag; }
+    inline std::string GetTag() const { return mnTag; }
 
     /*チーム設定*/
-    inline void SetTeam(int team) { mnTeam = team; }
+    inline void SetTeam(const int team) { mnTeam = team; }
     /*チーム取得*/
     inline int GetTeam() const { return mnTeam; }
 
@@ -142,7 +146,7 @@ public:
     /*【継承処理キャスト省略用】*/
     /*--------------------------*/
     /*当たり判定*/
-    virtual CollisionData HitCheck(CollisionData collisionData) { return collisionData; };
+    virtual CollisionData HitCheck(const CollisionData collisionData) { return collisionData; };
 };
 
 /*--------------------------------------------------------*/
@@ -152,41 +156,74 @@ public:
 /*------------------------------------------------*/
 /*          【キャラクターベース用enum】          */
 /*------------------------------------------------*/
+
 // 行動フラグ
-enum class MOVE_FLAG
+enum class ACTION_FLAG
 {
     // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
 
     /*上下移動*/
-    UP_OR_DOWN_MOVE    = 0b0'000'000'001u,
+    UP_OR_DOWN_ACTION =    0b0'000'000'001u,
     /*上移動*/
-    UP_MOVE            = 0b0'000'000'011u,
+    UP_ACTION =            0b0'000'000'011u,
     /*下移動*/
-    DOWN_MOVE          = 0b0'000'000'101u,
+    DOWN_ACTION =          0b0'000'000'101u,
 
     /*右左移動*/
-    LEFT_OR_RIGHT_MOVE = 0b0'000'001'000u,
+    LEFT_OR_RIGHT_ACTION = 0b0'000'001'000u,
     /*右移動*/
-    RIGHT_MOVE         = 0b0'000'011'000u,
+    RIGHT_ACTION =         0b0'000'011'000u,
     /*左移動*/
-    LEFT_MOVE          = 0b0'000'101'000u,
+    LEFT_ACTION =          0b0'000'101'000u,
 
     /*前後移動*/
-    FRONT_OR_BACK_MOVE = 0b0'001'000'000u,
+    FRONT_OR_BACK_ACTION = 0b0'001'000'000u,
     /*前移動*/
-    FRONT_MOVE         = 0b0'011'000'000u,
+    FRONT_ACTION =         0b0'011'000'000u,
     /*後ろ移動*/
-    BACK_MOVE          = 0b0'101'000'000u,
+    BACK_ACTION =          0b0'101'000'000u,
 
     /*攻撃*/
-    ATTACK_MOVE        = 0b1'000'000'000u,
+    ATTACK_ACTION =        0b1'000'000'000u,
+};
+
+// 確認用行動フラグ
+enum class CHECK_ACTION_FLAG
+{
+    // MAX 31
+
+    /*上下移動*/
+    UP_OR_DOWN_ACTION = 0,
+    /*上移動*/
+    UP_ACTION,
+    /*下移動*/
+    DOWN_ACTION,
+
+    /*右左移動*/
+    LEFT_OR_RIGHT_ACTION,
+    /*右移動*/
+    RIGHT_ACTION,
+    /*左移動*/
+    LEFT_ACTION,
+
+    /*前後移動*/
+    FRONT_OR_BACK_ACTION,
+    /*前移動*/
+    FRONT_ACTION,
+    /*後ろ移動*/
+    BACK_ACTION,
+
+    /*攻撃*/
+    ATTACK_ACTION,
 };
 
 /*------------------------------------------*/
 /*          【キャラクターベース】          */
 /*------------------------------------------*/
+
 class CharacterBase : public ObjectBase
 {
+
 protected:
     // 前のポジション
     VECTOR mvOldPosition;
@@ -197,23 +234,27 @@ protected:
     // 移動方向
     VECTOR mvVec;
 
+    // 移動速度
+    float mfSpeed;
+
     // モデル向き
     VECTOR mvAngle;
 
     // ステータス
     STATUS mstStatus;
 
-    //fsm
+    // キャラクター有限状態マシン
+    FSMCharacter* mpFsm;
 
     // モデルベース
 
     // アニメションベース
 
     // 攻撃オブジェクト
-    AttackBase* mpAttack;
+    AttackManager* mpAttack;
 
-    // 移動フラグ
-    BIT_FLAG<unsigned int> munMoveflags;
+    // 行動フラグ
+    BIT_FLAG<unsigned int> munActionflags;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -230,14 +271,14 @@ public:
     /*描画*/
     void Draw() override final;
 
-public:
+    /*当たり判定*/
+    CollisionData HitCheck(const CollisionData collisionData) override final { return CharacterCheck(collisionData); }
+
     /*----------------------*/
     /*     【独自処理】     */
     /*----------------------*/
 
-    /*当たり判定用(継承用)*/
-    virtual CollisionData CharacterCheck(CollisionData collisionData) = 0;
-
+public:
     /*攻撃リセット*/
     virtual void StopAttack();
 
@@ -255,11 +296,17 @@ protected:
     /*キャラクター描画*/
     virtual void CharacterDraw() = 0;
 
-    ///*移動処理*/
-    //virtual void MoveProcess() { TemplateMoveProcess(); }
+    /*行動処理*/
+    virtual void ActionProcess() { TemplateActionProcess(); }
 
-    ///*定型移動処理*/
-    //void TemplateMoveProcess();
+    /*定型行動処理*/
+    void TemplateActionProcess();
+
+    /*移動処理*/
+    virtual void MoveProcess();
+
+    /*当たり判定用(継承用)*/
+    virtual CollisionData CharacterCheck(const CollisionData& collisionData) = 0;
 
 public:
 
@@ -268,24 +315,57 @@ public:
     /*--------*/
 
     /*ステータス取得*/
-    inline STATUS& GetStatus() { return mstStatus; }
+    inline STATUS GetStatus() const { return mstStatus; }
+
+    /*ポジション取得*/
+    inline VECTOR GetPos() const { return mvPosition; }
+
+    /*前のポジション取得*/
+    inline VECTOR GetOldPos() const { return mvOldPosition; }
+
+    /*移動方向取得*/
+    inline VECTOR GetVec() const { return mvVec; }
+
+    /*移動速度取得*/
+    inline float GetSpeed() const { return mfSpeed; }
+
+    /*方向取得*/
+    inline VECTOR GetAngle() const { return mvAngle; }
 
     /*--------*/
     /*【設定】*/
     /*--------*/
 
-    /*上移動設定*/
-    inline void SetUpMove() { munMoveflags ^= (unsigned int)MOVE_FLAG::UP_MOVE; }
-    /*下移動設定*/
-    inline void SetDownMove() { munMoveflags ^= (unsigned int)MOVE_FLAG::DOWN_MOVE; }
+    /*fsm設定*/
+    void SetFSM(FSMCharacter* fsm);
 
-    /*右移動設定*/
-    inline void SetRightMove() { munMoveflags ^= (unsigned int)MOVE_FLAG::RIGHT_MOVE; }
-    /*左移動設定*/
-    inline void SetLeftMove() { munMoveflags ^= (unsigned int)MOVE_FLAG::LEFT_MOVE; }
+    /*ポジション設定*/
+    inline void SetPos(const VECTOR& pos) { mvPosition = pos; }
+    /*方向設定*/
+    inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
+    /*移動速度設定*/
+    inline void SetSpeed(const float& speed) { mfSpeed = speed; }
 
     /*攻撃設定*/
-    inline void SetAttack() { munMoveflags ^= (unsigned int)MOVE_FLAG::ATTACK_MOVE; }
+    void SetAttack(AttackManager* attack);
+
+    /*上移動設定*/
+    inline void SetUpMove() { munActionflags ^= (unsigned int)ACTION_FLAG::UP_ACTION; }
+    /*下移動設定*/
+    inline void SetDownMove() { munActionflags ^= (unsigned int)ACTION_FLAG::DOWN_ACTION; }
+
+    /*右移動設定*/
+    inline void SetRightMove() { munActionflags ^= (unsigned int)ACTION_FLAG::RIGHT_ACTION; }
+    /*左移動設定*/
+    inline void SetLeftMove() { munActionflags ^= (unsigned int)ACTION_FLAG::LEFT_ACTION; }
+
+    /*前移動設定*/
+    inline void SetFrontMove() { munActionflags ^= (unsigned int)ACTION_FLAG::FRONT_ACTION; }
+    /*後ろ移動設定*/
+    inline void SetBackMove() { munActionflags ^= (unsigned int)ACTION_FLAG::BACK_ACTION; }
+
+    /*攻撃設定*/
+    inline void SetAttack() { munActionflags ^= (unsigned int)ACTION_FLAG::ATTACK_ACTION; }
 };
 
 /*--------------------------------------------------------*/
@@ -295,6 +375,7 @@ public:
 /*------------------------------------------*/
 /*          【ビルディングベース】          */
 /*------------------------------------------*/
+
 class BuildingBase : public ObjectBase
 {
 protected:
@@ -347,6 +428,7 @@ protected:
 /*--------------------------------------*/
 /*          【アタックベース】          */
 /*--------------------------------------*/
+
 class AttackBase : public ObjectBase
 {
 protected:
@@ -405,6 +487,7 @@ protected:
 /*--------------------------------*/
 /*          【UIベース】          */
 /*--------------------------------*/
+
 class UIBase : public ObjectBase
 {
 private:
@@ -444,6 +527,9 @@ protected:
     // 画像ハンドル数
     int mnGraphCount;
 
+    // 有限状態マシン
+    FSMUI* mpFsm;
+
 public:
     UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
     ~UIBase();
@@ -462,6 +548,32 @@ public:
     /*----------------------*/
     /*     【独自処理】     */
     /*----------------------*/
+
+    /*--------*/
+    /*【設定】*/
+    /*--------*/
+
+public:
+    /*fsm設定*/
+    void SetFsm(FSMUI* fsm);
+
+    /*選択数設定*/
+    inline void SetSelectNumber(const int number) { mnSelectNumber = number; }
+    /*選択最大数設定*/
+    inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
+
+    /*--------*/
+    /*【取得】*/
+    /*--------*/
+
+public:
+    /*選択数取得*/
+    inline int GetSelectNumber() const { return mnSelectNumber; }
+
+    /*------------------------*/
+    /*【継承オブジェクト処理】*/
+    /*------------------------*/
+
 protected:
     /*UI初期化*/
     virtual void UIInitilize() = 0;
@@ -498,13 +610,13 @@ public:
 
 protected:
     /*マウスが反応した時に実行する*/
-    virtual void MouseProcess() {}
+    virtual void MouseProcess();
     /*キーボードが反応した時に実行する*/
-    virtual void KeyboardProcess() {}
+    virtual void KeyboardProcess();
     /*コントローラーが反応した時に実行する*/
-    virtual void ControllerProcess() {}
+    virtual void ControllerProcess();
     /*キーボードかコントローラーが反応した時に実行する*/
-    virtual void Keyboard_ControllerProcess() {}
+    virtual void Keyboard_ControllerProcess();
 
     /*----------------*/
     /*【テンプレート】*/
@@ -517,6 +629,18 @@ public:
     void DefaultDecrease();
     /*デフォルト選択ナンバー増加処理*/
     void DefaultIncrease();
+
+    /*左右選択処理*/
+    void LeftRightSelectProcess();
+    /*左選択ナンバー減少処理*/
+    void LeftDecrease();
+    /*右選択ナンバー増加処理*/
+    void RightIncrease();
+
+    /*選択ナンバー減少処理*/
+    void SelectNumberDecrease();
+    /*選択ナンバー増加処理*/
+    void SelectNumberIncrease();
 
     /*デフォルト選択決定処理*/
     void DefaultDecision();

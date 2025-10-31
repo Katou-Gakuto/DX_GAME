@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <string>
 #include <vector>
 
 enum class SCENE;
@@ -40,7 +41,7 @@ public:
     /*更新*/
     void Update();
     /*最終更新*/
-    void Lastpdate();
+    void LastUpdate();
     /*描画*/
     void Draw();
 
@@ -73,11 +74,11 @@ public:
     /*--------*/
 
     /*タグからオブジェクトを取得*/
-    ObjectBase* FindByTag(int tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
+    ObjectBase* FindByTag(std::string tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
     /*タグから複数オブジェクトを取得(vector)*/
-    std::vector<ObjectBase*> FindsByTag_vector(int tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
+    std::vector<ObjectBase*> FindsByTag_vector(std::string tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
     /*タグから複数オブジェクトを取得(list)*/
-    std::list<ObjectBase*> FindsByTag_list(int tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
+    std::list<ObjectBase*> FindsByTag_list(std::string tag, int typeNumber = 0, bool inactiveFlag = false, bool deleteGetFlag = false);
 
     /*----------*/
     /*【タイプ】*/
@@ -110,7 +111,7 @@ public:
     /*--------*/
 
     /*指定タグのオブジェクト削除フラグを有効化*/
-    void DeleteSetTag(int tag);
+    void DeleteSetTag(std::string tag);
     /*指定チームのオブジェクト削除フラグを有効化*/
     void DeleteSetTeam(int team);
     /*指定シーンで生成されたオブジェクトの削除フラグ有効化*/
@@ -121,7 +122,7 @@ public:
     /*----------*/
 
     /*指定タグのオブジェクトを非有効化*/
-    void InactiveSetTag(int tag);
+    void InactiveSetTag(std::string tag);
     /*指定チームのオブジェクト削除フラグを非有効化*/
     void InactiveSetTeam(int team);
     /*指定シーンで生成されたオブジェクトを非有効化する*/

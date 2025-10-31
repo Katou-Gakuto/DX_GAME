@@ -1,4 +1,5 @@
 #pragma once
+class CameraManager;
 class ObjectManager;
 class SceneManager;
 
@@ -7,8 +8,9 @@ class GameManager
 private:
 	//ターゲット
 
-	//カメラ
-	//データ
+	//カメラマネージャー
+	CameraManager* mpCameraManager;
+
 	//マップ
 	// オブジェクトマネージャー
 	ObjectManager* mpObjectManager;
@@ -54,6 +56,12 @@ public:
 	/*【マネージャー取得】*/
 	/*--------------------*/
 	
+	/// <summary>
+	/// カメラマネージャー取得
+	/// </summary>
+	/// <returns>カメラマネージャー</returns>
+	inline CameraManager* GetCameraManager() { return mpCameraManager; }
+
 	/// <summary>
 	/// オブジェクトマネージャー取得
 	/// </summary>

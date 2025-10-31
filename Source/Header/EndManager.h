@@ -4,7 +4,7 @@
 // 終了フラグナンバー
 enum class END_FLAG_NUMBER
 {
-	FSM_FLAG = 0,
+	START_SCENE_FLAG = 0,
 	RESOURCE_FLAG,
 	LOADING_FLAG,
 };

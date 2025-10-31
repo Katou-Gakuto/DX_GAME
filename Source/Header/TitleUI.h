@@ -4,6 +4,13 @@
 class TitleUI : public UIBase
 {
 private:
+    // ラインサイズ
+    float mnLineAeraSize;
+    // ライン数
+    int mnLineNum;
+
+    // カメラID
+    int mnCameraID;
 
 public:
     TitleUI();
@@ -11,16 +18,16 @@ public:
 
 private:
     /*UI初期化*/
-    void UIInitilize();
+    void UIInitilize() override;
     /*UI終了*/
-    void UIFinalize();
+    void UIFinalize() override;
     /*UI更新*/
-    void UIUpdate();
+    void UIUpdate() override;
     /*UI最終更新*/
-    void UILastUpdate();
+    void UILastUpdate() override;
     /*UI描画*/
-    void UIDraw();
+    void UIDraw() override;
 
     /*選択決定時処理*/
-    void DecisionProcess();
+    void DecisionProcess() override;
 };

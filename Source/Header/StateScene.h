@@ -7,6 +7,9 @@
 /*--------------------------*/
 class StartScene : public IStateScene
 {
+private:
+	bool mbStartFlag;
+
 public:
 	StartScene();
 	~StartScene() = default;
@@ -32,9 +35,9 @@ public:
 	void OnExit(SceneManager* sceneManager) override;
 };
 
-/*--------------------------*/
+/*--------------------*/
 /*【町シーンステート】*/
-/*--------------------------*/
+/*--------------------*/
 class TownScene : public IStateScene
 {
 public:
@@ -47,9 +50,9 @@ public:
 	void OnExit(SceneManager* sceneManager) override;
 };
 
-/*--------------------------*/
+/*----------------------------*/
 /*【ダンジョンシーンステート】*/
-/*--------------------------*/
+/*----------------------------*/
 class DungeonScene : public IStateScene
 {
 public:
@@ -62,9 +65,9 @@ public:
 	void OnExit(SceneManager* sceneManager) override;
 };
 
-/*--------------------------*/
+/*------------------------*/
 /*【バトルシーンステート】*/
-/*--------------------------*/
+/*------------------------*/
 class BattleScene : public IStateScene
 {
 public:

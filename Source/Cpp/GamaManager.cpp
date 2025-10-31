@@ -1,15 +1,20 @@
+#include "DxLib.h"
+
 #include "../Header/Master.h"
 
+#include "../Header/CameraManager.h"
 #include "../Header/GameManager.h"
+#include "../Header/KeyState.h"
 #include "../Header/ObjectManager.h"
 #include "../Header/SceneManager.h"
 #include "../Header/TimeManager.h"
 
 // コンストラクタ
 GameManager::GameManager()
-: mnUINumber(0)
-, mpSceneManager(nullptr)
+: mpCameraManager(nullptr)
 , mpObjectManager(nullptr)
+, mpSceneManager(nullptr)
+, mnUINumber(0)
 {
 }
 // デストラクタ
@@ -20,11 +25,15 @@ GameManager::~GameManager()
 // 初期化
 void GameManager::Initilize()
 {
+    mpCameraManager = new CameraManager();
+
     mpSceneManager = new SceneManager();
 	mpSceneManager->Initilize();
 
     mpObjectManager = new ObjectManager();
     mpObjectManager->Initilize();
+
+    SetDrawScreen(DX_SCREEN_BACK);
 }
 
 // 終了処理
@@ -32,6 +41,7 @@ void GameManager::Finailize()
 {
     mpObjectManager->Finalize();
 
+    delete mpCameraManager;
     delete mpObjectManager;
     delete mpSceneManager;
 }
@@ -39,9 +49,13 @@ void GameManager::Finailize()
 // 更新
 void GameManager::Update()
 {
-    mpObjectManager->Update();
+    Master::mpKeyState->Update();
+
+    mpCameraManager->Update();
 
     mpObjectManager->Update();
+
+    mpObjectManager->LastUpdate();
 
 	mpSceneManager->Update();
 }
@@ -55,7 +69,13 @@ void GameManager::DeleteAllIfNeeded()
 // 描画
 void GameManager::Draw()
 {
+    ClearDrawScreen();
+
+    mpCameraManager->Draw();
+
     mpObjectManager->Draw();
+
+    ScreenFlip();
 }
 
 /*----------*/

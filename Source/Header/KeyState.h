@@ -213,7 +213,7 @@ namespace KEY_BOARD_SET_NUMBER
 		ARROW_LEFT,					// 左移動
 		ARROW_UP,					// 上移動
 		ARROW_RIGHT,				// 右移動
-		ARROW_DOEN,					// 下移動
+		ARROW_DOWN,					// 下移動
 
 		/*------------*/
 		/*【特殊キー】*/
@@ -391,7 +391,7 @@ enum class KEY_BOARD_WORD
 	ARROW_LEFT,				// 左移動
 	ARROW_UP,				// 上移動
 	ARROW_RIGHT,			// 右移動
-	ARROW_DOEN,				// 下移動
+	ARROW_DOWN,				// 下移動
 };
 
 // キーボード 特殊
@@ -729,15 +729,7 @@ private:
 	// トグル状態
 	BIT_FLAG<unsigned char> mucToggleFlag;
 
-	// キーボードを取得するフラグ
-	unsigned int munKeyBoardFlag;
-
 public:
-	/// <summary>
-	/// キーボード状態を取得するかを設定する
-	/// </summary>
-	/// <param name="flag">キーボードを取得するなら「true」にする</param>
-	void SetKeyBoardFlag(bool flag);
 
 
 	/// <summary>

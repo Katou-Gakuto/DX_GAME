@@ -1,3 +1,5 @@
+#include <string>
+
 #include "../Header/ObjectBases.h"
 #include "../Header/ObjectManager.h"
 
@@ -53,7 +55,7 @@ void ObjectManager::Update()
 }
 
 // 最終更新
-void ObjectManager::Lastpdate()
+void ObjectManager::LastUpdate()
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -407,7 +409,7 @@ ObjectBase* ObjectManager::FindByID(int id, bool deleteGetFlag)
 /*【タグ】*/
 /*--------*/
 // タグからオブジェクトを取得
-ObjectBase* ObjectManager::FindByTag(int tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+ObjectBase* ObjectManager::FindByTag(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	// 種類別に調べる
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -439,7 +441,7 @@ ObjectBase* ObjectManager::FindByTag(int tag, int typeNumber, bool inactiveFlag,
 }
 
 // タグから複数オブジェクトを取得(vector)
-std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(int tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
@@ -473,7 +475,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(int tag, int typeNumbe
 }
 
 // タグから複数オブジェクトを取得(list)
-std::list<ObjectBase*> ObjectManager::FindsByTag_list(int tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
@@ -707,7 +709,7 @@ std::list<ObjectBase*> ObjectManager::FindsByTeam_list(int team, int typeNumber,
 /*【削除】*/
 /*--------*/
 // 指定タグのオブジェクト削除フラグを有効化
-void ObjectManager::DeleteSetTag(int tag)
+void ObjectManager::DeleteSetTag(std::string tag)
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -775,7 +777,7 @@ void ObjectManager::DeleteSetScene(SCENE targetScene)
 /*【非有効】*/
 /*----------*/
 // 指定タグのオブジェクトを非有効化
-void ObjectManager::InactiveSetTag(int tag)
+void ObjectManager::InactiveSetTag(std::string tag)
 {
 	if (mpObjectBase == nullptr)
 	{

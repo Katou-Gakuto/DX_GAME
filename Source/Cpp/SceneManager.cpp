@@ -15,7 +15,7 @@ SceneManager::~SceneManager()
 // ‰Šú‰»
 void SceneManager::Initilize()
 {
-	mpFSMScene = UtilFactorys::Scenefactory(this);
+	mpFSMScene = UtilFactorys::FSMSceneFactory(this);
 }
 
 // XV

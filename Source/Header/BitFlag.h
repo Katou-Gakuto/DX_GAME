@@ -1,12 +1,14 @@
 #pragma once
+#include <iostream>
+//#include <type_traits>
 
 // ビットフラグ用構造体
 template<typename T>
+//template<typename T, typename = typename std::enable_if<std::is_integral<T>::value&& std::is_unsigned<T>::value>::type>
 struct BIT_FLAG
 {
 public:
-	// フラグ
-	T flags;
+	T flags;// フラグ
 
 	BIT_FLAG() : flags((T)0) {}
 	BIT_FLAG(T flag) : flags(flag) {}
@@ -47,7 +49,7 @@ public:
 
 	/*-----【指定ビット有効化】-----*/
 	inline void EnableFlag(int number){
-		if (CheckNumber<int>(number)){
+		if (CheckNumber(number)){
 			flags |= ((T)1 << number);
 		}
 	}
@@ -59,7 +61,7 @@ public:
 
 	/*-----【指定ビット無効化】-----*/
 	inline void DisableFlag(int number){
-		if (CheckNumber<int>(number)){
+		if (CheckNumber(number)){
 			flags &= ~((T)1 << number);
 		}
 	}
@@ -71,7 +73,7 @@ public:
 
 	/*-----【指定ビット反転】-----*/
 	inline void InvertFlag(int number){
-		if (CheckNumber<int>(number)){
+		if (CheckNumber(number)){
 			flags ^= ((T)1 << number);
 		}
 	}
@@ -83,7 +85,7 @@ public:
 
 	/*-----【指定ビット取得】-----*/
 	inline bool GetFlag(int number) const {
-		if (CheckNumber<int>(number)){
+		if (CheckNumber(number)){
 			return ((flags & ((T)1 << number)) != 0);
 		}
 		return false;
@@ -95,9 +97,10 @@ public:
 
 
 	/*Tのビット数を超えてないかを確認する(超えていれば「false」を返す)*/
-	template<typename NUMBER>
-	static inline bool CheckNumber(NUMBER number){
-		if ((sizeof(T) * 4) < number){
+	static inline bool CheckNumber(int number){
+
+		int test = sizeof(T) * 8;
+		if ((sizeof(T) * 8) > number){
 			return true;
 		}
 		return false;

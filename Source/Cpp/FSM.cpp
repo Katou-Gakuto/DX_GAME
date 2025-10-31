@@ -2,49 +2,108 @@
 
 #include "../Header/Master.h"
 
-#include "../Header/EndManager.h"
+#include "../Header/CameraManager.h"
 #include "../Header/GameManager.h"
 #include "../Header/FSM.h"
 #include "../Header/LoadingManager.h"
+#include "../Header/ObjectBases.h"
 #include "../Header/ObjectManager.h"
 #include "../Header/SceneManager.h"
 #include "../Header/StateBase.h"
 #include "../Header/StateScene.h"
+#include "../Header/UtilChange.h"
 
 /*------------------------*/
 /*【継承用有限状態マシン】*/
 /*------------------------*/
 
-FSMBase::FSMBase()
+template<typename subscript, typename state>
+FSMBase<subscript, state>::FSMBase()
 {
 	mmStateMap.clear();
-	mnCurrentState = 0;
-	mnNextState = 0;
-}
-FSMBase::~FSMBase()
-{
-	//mapコンテナの解放
-	for (const auto& pair : mmStateMap)
-		delete (pair.second);//登録されたStateのインスタンスを削除する
-
-	mmStateMap.clear();
+	mnCurrentState = (subscript) - 1;
+	mnNextState = (subscript)0;
 }
 
-// ステート登録
-void FSMBase::RegisterState(const int id, StateBase* state)
+/*------------------------*/
+/*【カメラ有限状態マシン】*/
+/*------------------------*/
+
+FSMCamera::FSMCamera()
+: FSMBase()
 {
-	mmStateMap[id] = state;
 }
-// ステート登録
-void FSMBase::RegisterState(StateBase* state)
+
+// 実行中状態をセットする
+void FSMCamera::SetCurrentState(CameraManager* cameraManager, int& preThreeDFlag)
 {
-	mmStateMap[state->GetStateNumber()] = state;
+	if (mnCurrentState != CAMERA_MODE::NONE)
+	{
+		mmStateMap[mnCurrentState]->OnExit(cameraManager, cameraManager->GetCameraData());
+	}
+
+	mnCurrentState = cameraManager->GetCameraData().cameraMode;
+	mmStateMap[mnCurrentState]->OnEnter(cameraManager, cameraManager->GetCameraData(), preThreeDFlag);
 }
 
 // 初期化
-void FSMBase::Init()
+void FSMCamera::Initilize(CameraManager* cameraManager, int id)
 {
-	mnCurrentState = mnNextState;
+	mmStateMap[cameraManager->GetCameraData(id).cameraMode]->Initilize(cameraManager, cameraManager->GetCameraData());
+}
+
+// 更新
+void FSMCamera::Update(CameraManager* cameraManager)
+{
+	mmStateMap[mnCurrentState]->Update(cameraManager, cameraManager->GetCameraData());
+}
+
+// 描画
+void FSMCamera::Draw(CameraManager* cameraManager)
+{
+	mmStateMap[mnCurrentState]->Draw(cameraManager, cameraManager->GetCameraData());
+}
+
+/*------------------------------*/
+/*【キャラクター有限状態マシン】*/
+/*------------------------------*/
+
+FSMCharacter::FSMCharacter()
+: FSMBase()
+{
+}
+
+// 実行中状態をセットする
+void FSMCharacter::SetCurrentState(int id, CharacterBase* character)
+{
+	mnCurrentState = id;
+	mmStateMap[mnCurrentState]->OnEnter(character);
+}
+
+// 更新
+void FSMCharacter::Update(CharacterBase* character)
+{
+	int nextState = mmStateMap[mnCurrentState]->StateCheck(character);
+	if (mnCurrentState != nextState)
+	{
+		mmStateMap[mnCurrentState]->OnExit(character);//現在のStateの終了処理
+		mmStateMap[nextState]->OnEnter(character);//新しいStateの開始処理
+		mnCurrentState = nextState;//新しいStateを設定
+	}
+
+	mmStateMap[mnCurrentState]->Update(character);
+}
+
+// 最終更新
+void FSMCharacter::LastUpdate(CharacterBase* character)
+{
+	mmStateMap[mnCurrentState]->LastUpdate(character);
+}
+
+// 描画
+void FSMCharacter::Draw(CharacterBase* character)
+{
+	mmStateMap[mnCurrentState]->Draw(character);
 }
 
 /*------------------------*/
@@ -52,21 +111,22 @@ void FSMBase::Init()
 /*------------------------*/
 
 FSMScene::FSMScene()
+: FSMBase()
 {
 }
 
 // 実行中状態をセットする
-void FSMScene::SetCurrentState(int id, SceneManager* sceneManager)
+void FSMScene::SetCurrentState(SCENE id, SceneManager* sceneManager)
 {
 	mnCurrentState = id;
-	GetState(mmStateMap[mnCurrentState])->OnEnter(sceneManager);
+	mmStateMap[UtilChange::SceneState(mnCurrentState)]->OnEnter(sceneManager);
 }
 
 // 更新
 void FSMScene::Update(SceneManager* sceneManager)
 {
-	IStateScene* stateScene = GetState(mmStateMap[mnCurrentState]);
-	int ret = stateScene->Update(sceneManager);
+	IStateScene* stateScene = mmStateMap[UtilChange::SceneState(mnCurrentState)];
+	SCENE ret = stateScene->Update(sceneManager);
 	if (mnCurrentState != ret)
 	{
 		Master::mpLoadingManager->SetLoadingFlag(LOADING_NUMBER::SCENE);
@@ -79,20 +139,105 @@ void FSMScene::Update(SceneManager* sceneManager)
 // 次のシーンへ移動する
 void FSMScene::NextScene(SceneManager* sceneManager)
 {
-	GetState(mmStateMap[mnCurrentState])->OnEnter(sceneManager);
+	mmStateMap[UtilChange::SceneState(mnCurrentState)]->OnEnter(sceneManager);
 }
 
-// ステートを変換する
-IStateScene* FSMScene::GetState(StateBase* state)
+/*--------------------*/
+/*【UI有限状態マシン】*/
+/*--------------------*/
+
+FSMUI::FSMUI()
+: FSMBase()
 {
-	IStateScene* sceneState = dynamic_cast<IStateScene*>(state);
-	if (sceneState != nullptr)
+}
+
+// 実行中状態をセットする
+void FSMUI::SetCurrentState(int id, UIBase* ui)
+{
+	mnCurrentState = id;
+	mmStateMap[mnCurrentState]->OnEnter(ui);
+}
+
+// 更新
+void FSMUI::Update(UIBase* ui)
+{
+	Init();
+
+	if (mnCurrentState == mnNextState)
 	{
-		return sceneState;
+		SetState(mmStateMap[mnCurrentState]->Update(ui), ui);
 	}
 
-	sceneState = new DeleteSceneState();
-	Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::FSM_FLAG);
-	Master::mpEndManager->SetDeleteObject((void*)sceneState);
-	return sceneState;
+	ui->CheckMouse();
+	ui->CheckKeyboard();
+	ui->CheckController();
+	ui->CheckKeyboard_Controller();
+}
+
+// 決定
+void FSMUI::Decision(UIBase* ui)
+{
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Decision(ui), ui);
+	}
+}
+
+// 終了
+void FSMUI::Cloce(UIBase* ui)
+{
+	mmStateMap[mnCurrentState]->Cloce(ui);
+}
+
+// マウス
+void FSMUI::Mouse(UIBase* ui)
+{
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Mouse(ui), ui);
+	}
+}
+
+// キーボード
+void FSMUI::Keyboard(UIBase* ui)
+{
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Keyboard(ui), ui);
+	}
+}
+
+// コントローラー
+void FSMUI::Controller(UIBase* ui)
+{
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Controller(ui), ui);
+	}
+}
+
+// キーボードとコントローラー
+void FSMUI::Keyboard_Controller(UIBase* ui)
+{
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Keyboard_Controller(ui), ui);
+	}
+}
+
+// 描画
+void FSMUI::Draw(UIBase* ui)
+{
+	mmStateMap[mnCurrentState]->Draw(ui);
+}
+
+// 次のステートが現在のステートと違うならステート変更処理をする
+void FSMUI::SetState(int nextState, UIBase* ui)
+{
+	if (mnCurrentState != nextState)
+	{
+		mmStateMap[mnCurrentState]->OnExit(ui);//現在のStateの終了処理
+		mmStateMap[nextState]->OnEnter(ui);//新しいStateの開始処理
+		mnNextState = nextState;//新しいStateを設定
+	}
 }

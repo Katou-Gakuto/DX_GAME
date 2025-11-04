@@ -1,8 +1,10 @@
 #pragma once
 class AttackManager;
 class CameraManager;
+class CollisionManager;
 class ObjectManager;
 class SceneManager;
+class TargetManager;
 
 class GameManager
 {
@@ -10,17 +12,22 @@ private:
 	// アタックマネージャー
 	AttackManager* mpAttackManager;
 
-	//ターゲット
-
 	//カメラマネージャー
 	CameraManager* mpCameraManager;
 
-	//マップ
+	// コリジョンマネージャー
+	CollisionManager* mpCollisionManager;
+
+	// マップ
+	
 	// オブジェクトマネージャー
 	ObjectManager* mpObjectManager;
 
 	// シーンマネージャー
 	SceneManager* mpSceneManager;
+
+	//ターゲットマネージャー
+	TargetManager* mpTargetManager;
 
 	// UIナンバー
 	int mnUINumber;
@@ -73,6 +80,12 @@ public:
 	inline CameraManager* GetCameraManager() { return mpCameraManager; }
 
 	/// <summary>
+	/// コリジョンマネージャー取得
+	/// </summary>
+	/// <returns>コリジョンマネージャー</returns>
+	inline CollisionManager* GetCollisionManager() { return mpCollisionManager; }
+
+	/// <summary>
 	/// オブジェクトマネージャー取得
 	/// </summary>
 	/// <returns>オブジェクトマネージャー</returns>
@@ -83,4 +96,10 @@ public:
 	/// </summary>
 	/// <returns>シーンマネージャー</returns>
 	inline SceneManager* GetSceneManager() { return mpSceneManager; }
+
+	/// <summary>
+	/// ターゲットマネージャー取得
+	/// </summary>
+	/// <returns>ターゲットマネージャー</returns>
+	inline TargetManager* GetTargetManager() { return mpTargetManager; }
 };

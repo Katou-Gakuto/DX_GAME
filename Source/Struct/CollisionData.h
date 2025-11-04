@@ -3,6 +3,5 @@
 
 struct CollisionData
 {
-public:
 	CollisionData();
 };

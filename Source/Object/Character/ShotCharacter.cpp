@@ -64,5 +64,6 @@ void ShotCharacter::CharacterDraw()
 // “–‚½‚è”»’è—p
 CollisionData ShotCharacter::CharacterCheck(const CollisionData& collisionData)
 {
+
 	return collisionData;
 }

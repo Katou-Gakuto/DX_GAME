@@ -191,6 +191,12 @@
     <ClCompile Include="Source\Singleton\AttackManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Singleton\CollisionManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\TargetManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\UtilFactorys.h">
@@ -309,6 +315,12 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\AttackData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\CollisionManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TargetManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

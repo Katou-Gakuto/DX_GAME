@@ -5,17 +5,21 @@
 #include "AttackManager.h"
 #include "CameraManager.h"
 #include "GameManager.h"
+#include "CollisionManager.h"
 #include "KeyState.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
+#include "TargetManager.h"
 #include "TimeManager.h"
 
 // コンストラクタ
 GameManager::GameManager()
 : mpAttackManager(nullptr)
 , mpCameraManager(nullptr)
+, mpCollisionManager(nullptr)
 , mpObjectManager(nullptr)
 , mpSceneManager(nullptr)
+, mpTargetManager(nullptr)
 , mnUINumber(0)
 {
 }
@@ -36,6 +40,8 @@ void GameManager::Initilize()
     mpObjectManager->Initilize();
 
     mpAttackManager = new AttackManager();
+    mpCollisionManager = new CollisionManager();
+    mpTargetManager = new TargetManager();
 
     SetDrawScreen(DX_SCREEN_BACK);
 }
@@ -58,6 +64,7 @@ void GameManager::Update()
     mpCameraManager->Update();
 
     mpObjectManager->Update();
+
 
     mpObjectManager->LastUpdate();
 

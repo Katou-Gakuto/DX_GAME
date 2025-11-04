@@ -12,9 +12,11 @@ Master
 	{
 		AttackManager
 		CameraManager
+		CollisionManager
 		MapManager
 		ObjectManager
 		SceneManager
+		TargetManager
 	};
 	KeyState
 	LoadingManager

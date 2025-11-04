@@ -10,6 +10,7 @@ Master
 	EndManager
 	GameManager
 	{
+		AttackManager
 		CameraManager
 		MapManager
 		ObjectManager
@@ -38,7 +39,7 @@ Master
 		カメラ更新
 		オブジェクト更新
 
-		当たり判定反映
+		当たり判定反映(時間が停止しているなら判定しない)
 		
 		オブジェクトラストアップデート
 		シーン更新
@@ -129,7 +130,7 @@ Master
 }
 
 【インクルードの順番】
-標準ライブラリ
+標準ライブラリ(STL)
 
 enum
 構造体

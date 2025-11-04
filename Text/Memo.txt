@@ -61,4 +61,8 @@ esc使えない コントロールZ　UIを戻るときに使う
 
 
 キャラクター構造メモ
-Update　
+Initilize語 FSMなど設定
+Update		// 場所移動情報等設定
+LastUpdate	// 移動位置確定後
+
+攻撃時間を後で設定

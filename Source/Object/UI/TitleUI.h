@@ -9,9 +9,6 @@ private:
     // ƒ‰ƒCƒ“”
     int mnLineNum;
 
-    // ƒJƒƒ‰ID
-    int mnCameraID;
-
 public:
     TitleUI();
     ~TitleUI();

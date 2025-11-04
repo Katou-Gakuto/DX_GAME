@@ -1,8 +1,14 @@
+#include "CharacterEnum.h"
+#include "CameraData.h"
+
 #include "Master.h"
 
+#include "CameraManager.h"
 #include "DataManager.h"
 #include "EndManager.h"
 #include "FSM.h"
+#include "GameManager.h"
+#include "ObjectBases.h"
 #include "SceneManager.h"
 #include "ShotCharacter.h"
 #include "StateBase.h"
@@ -44,9 +50,24 @@ void TitleScene::OnEnter(SceneManager* sceneManager)
 	TitleUI* title = new TitleUI();
 	title->Initilize();
 	title->SetFsm(UtilFactorys::FSMUIFactory(title, UI_FACTORY_NUMBER::TITLE));
+
+	// カメラ作成
+	{
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::FIXED;
+		cameraData.position = VGet(0.0f, 180.0f, -180.0f);
+		cameraData.targetPosition = VGet(0.0f, 180.0f, 0.0f);
+		cameraData.threeDFlag = true;
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
 }
 void TitleScene::OnExit(SceneManager* sceneManager)
 {
+	// カメラ削除
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
+	mnSceneCameraID = -1;
 }
 
 
@@ -61,8 +82,23 @@ TownScene::TownScene()
 void TownScene::OnEnter(SceneManager* sceneManager)
 {
 	mStateNumber = sceneManager->GetNowScene();
-	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status);
+	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
+	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
+
+	// カメラ作成
+	{
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::PLAYER;
+		cameraData.plusPosition = VGet(0.0f, 180.0f, 0.0f);
+		cameraData.cameraDistance = 550.0f;
+		cameraData.targetCharacter = player;
+		cameraData.threeDFlag = true;
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::TOWN:
@@ -77,6 +113,9 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 }
 void TownScene::OnExit(SceneManager* sceneManager)
 {
+	// カメラ削除
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
+	mnSceneCameraID = -1;
 }
 
 
@@ -91,8 +130,23 @@ DungeonScene::DungeonScene()
 void DungeonScene::OnEnter(SceneManager* sceneManager)
 {
 	mStateNumber = sceneManager->GetNowScene();
-	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status);
+	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
+	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
+
+	// カメラ作成
+	{
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::PLAYER;
+		cameraData.plusPosition = VGet(0.0f, 180.0f, 0.0f);
+		cameraData.cameraDistance = 550.0f;
+		cameraData.targetCharacter = player;
+		cameraData.threeDFlag = true;
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::DUNGEON:
@@ -107,6 +161,9 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 }
 void DungeonScene::OnExit(SceneManager* sceneManager)
 {
+	// カメラ削除
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
+	mnSceneCameraID = -1;
 }
 
 
@@ -121,8 +178,30 @@ BattleScene::BattleScene()
 void BattleScene::OnEnter(SceneManager* sceneManager)
 {
 	mStateNumber = sceneManager->GetNowScene();
-	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status);
-	player->Initilize();
+
+	CharacterBase* player = nullptr;
+	switch (Master::mpDataManager->GetPlayPlayerData().status.characterType)
+	{
+	case CHARACTER_TYPE::ROBOT:
+		player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		player->Initilize();
+		break;
+	}
+	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
+
+	// カメラ作成
+	{
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::PLAYER;
+		cameraData.plusPosition = VGet(0.0f, 180.0f, 0.0f);
+		cameraData.cameraDistance = 550.0f;
+		cameraData.targetCharacter = player;
+		cameraData.threeDFlag = true;
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::BATTLE :
@@ -137,6 +216,9 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {
+	// カメラ削除
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
+	mnSceneCameraID = -1;
 }
 
 

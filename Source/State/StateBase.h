@@ -83,6 +83,10 @@ public:
 /*------------------------*/
 class IStateScene : public StateBase<SCENE>
 {
+protected:
+	// シーンカメラID
+	int mnSceneCameraID = -1;
+
 public:
 	IStateScene() = default;
 	virtual ~IStateScene() = default;
@@ -94,6 +98,9 @@ public:
 
 	/*更新*/
 	SCENE Update(SceneManager* sceneManager);
+
+	/*シーンカメラID*/
+	inline int GetSceneCameraID() { return mnSceneCameraID; }
 };
 
 /*--------------------*/

@@ -188,8 +188,8 @@
     <ClCompile Include="Source\Object\Attack\ShotAttack.cpp">
       <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\Attack\AttackManager.cpp">
-      <Filter>ソース ファイル\Object\Attack</Filter>
+    <ClCompile Include="Source\Singleton\AttackManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,8 +304,11 @@
     <ClInclude Include="Source\Object\Attack\ShotAttack.h">
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\Attack\AttackManager.h">
-      <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    <ClInclude Include="Source\Singleton\AttackManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\AttackData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

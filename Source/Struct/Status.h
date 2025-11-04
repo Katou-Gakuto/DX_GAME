@@ -5,14 +5,14 @@ enum class CHARACTER_TYPE;
 // ステータス
 struct STATUS
 {
-	int hp;
-	int maxHp;
+	int hp;		// ヒットポイント
+	int maxHp;	// 最大ヒットポイント
 
-	int level;
+	int level;	// レベル
 
-	int attckPower;
-	int speed;
-	CHARACTER_TYPE characterType;
+	int attckPower;	// 攻撃力
+	int speed;	// 速度
+	CHARACTER_TYPE characterType;	// キャラクター種類
 
 	STATUS operator *(float number) const
 	{

@@ -1,4 +1,5 @@
 #pragma once
+class AttackManager;
 class CameraManager;
 class ObjectManager;
 class SceneManager;
@@ -6,6 +7,9 @@ class SceneManager;
 class GameManager
 {
 private:
+	// アタックマネージャー
+	AttackManager* mpAttackManager;
+
 	//ターゲット
 
 	//カメラマネージャー
@@ -56,6 +60,12 @@ public:
 	/*【マネージャー取得】*/
 	/*--------------------*/
 	
+	/// <summary>
+	/// 攻撃マネジャー取得
+	/// </summary>
+	/// <returns>攻撃マネジャー</returns>
+	inline AttackManager* GetAttackManager() { return mpAttackManager; }
+
 	/// <summary>
 	/// カメラマネージャー取得
 	/// </summary>

@@ -1,14 +1,15 @@
 #pragma once
 #include "ObjectBases.h"
 
+enum class SHOT_TYPE
+{
+    DEFAULT = 0,
+};
+
 class ShotCharacter : public CharacterBase
 {
-private:
-    // カメラID
-    int mnCameraID;
-
 public:
-    ShotCharacter(bool nextSceneDeleteFlag, STATUS status);
+    ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType);
     ~ShotCharacter();
 
     /*攻撃リセット*/

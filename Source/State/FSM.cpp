@@ -142,6 +142,12 @@ void FSMScene::NextScene(SceneManager* sceneManager)
 	mmStateMap[UtilChange::SceneState(mnCurrentState)]->OnEnter(sceneManager);
 }
 
+// カメラID取得
+int FSMScene::GetSceneCameraID()
+{
+	return mmStateMap[UtilChange::SceneState(mnCurrentState)]->GetSceneCameraID();
+}
+
 /*--------------------*/
 /*【UI有限状態マシン】*/
 /*--------------------*/

@@ -67,4 +67,7 @@ public:
 
 	/*カメラが設定されていないフラグ取得*/
 	inline bool GetNotSetCameraFlag() const { return mbNotSetCameraFlag; }
+
+	/*カメラの全データ取得*/
+	inline std::map<int, CameraData> GetAllCameraData() { return mmCameraDatas; }
 };

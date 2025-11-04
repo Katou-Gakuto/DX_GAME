@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "StateCamera.h"
+#include "StatePlayer.h"
 #include "StateScene.h"
 #include "StateTitleUI.h"
 #include "UtilFactorys.h"
@@ -18,6 +19,39 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 	fsnCamera->RegisterState(new StatePlayerCamera());
 
 	return fsnCamera;
+}
+
+// キャラクター有限状態マシン作成
+FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number)
+{
+	FSMCharacter* fsmCharacter = new FSMCharacter();
+
+	switch (number)
+	{
+	case CHARACTER_FACTORY_NUMBER::TOWN_PLAYER:
+		fsmCharacter->RegisterState(new IdlePlayerState());
+		fsmCharacter->RegisterState(new MovePlayerState());
+
+		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
+		fsmCharacter->RegisterState(new IdlePlayerState());
+		fsmCharacter->RegisterState(new MovePlayerState());
+
+		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
+		fsmCharacter->RegisterState(new IdleBattlePlayerState());
+		fsmCharacter->RegisterState(new MoveBattlePlayerState());
+		fsmCharacter->RegisterState(new AttackPlayerState());
+
+		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+		break;
+	}
+
+	return fsmCharacter;
 }
 
 // シーン有限状態マシン作成

@@ -1,8 +1,13 @@
 #include "Master.h"
 
 #include "KeyState.h"
+#include "ObjectBases.h"
 #include "StatePlayer.h"
+#include "TimeManager.h"
 
+/*------------------*/
+/*     【共通】     */
+/*------------------*/
 
 /*------------------------*/
 /*【プレイヤー共通処理用】*/
@@ -15,19 +20,19 @@ PlayerProcess::PlayerProcess()
 // 移動共通処理
 void PlayerProcess::SetPlayerMove(CharacterBase* character)
 {
-	if (mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::W))
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::W))
 	{
-		character->SetUpMove();
+		character->SetFrontMove();
 	}
-	if (mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::S))
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::S))
 	{
-		character->SetDownMove();
+		character->SetBackMove();
 	}
-	if (mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::A))
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::A))
 	{
 		character->SetLeftMove();
 	}
-	if (mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::D))
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::D))
 	{
 		character->SetRightMove();
 	}
@@ -36,11 +41,48 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 // 移動キーを押していれば「true」
 bool PlayerProcess::GetPlayerMoveFlag()
 {
-	return mpKeyState->GetDownWordKeyFlags_Board() & (unsigned long long)((1 << (int)KEY_BOARD_WORD::W) |
-																		  (1 << (int)KEY_BOARD_WORD::A) |
-																		  (1 << (int)KEY_BOARD_WORD::S) |
-																		  (1 << (int)KEY_BOARD_WORD::D));
+	return mpKeyState->GetNowWordKeyFlags_Board() & (((unsigned long long)1 << (int)KEY_BOARD_WORD::W) |
+													 ((unsigned long long)1 << (int)KEY_BOARD_WORD::A) |
+													 ((unsigned long long)1 << (int)KEY_BOARD_WORD::S) |
+													 ((unsigned long long)1 << (int)KEY_BOARD_WORD::D));
 }
+
+// 攻撃キーを押していれば「true」
+bool PlayerProcess::GetPlayerAttackFlag()
+{
+	return mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::L);
+}
+
+// 描画
+void PlayerProcess::PlayerProcessDraw()
+{
+	VECTOR pos1;
+	VECTOR pos2;
+
+	SetUseZBufferFlag(true);
+
+	pos1 = VGet(-10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
+	pos2 = VGet(-10000.0f / 2.0f, 0.0f, 10000.0f / 2.0f);
+	for (int i = 0; i < 50; i++)
+	{
+		DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
+		pos1.x += 10000.0f / 50;
+		pos2.x += 10000.0f / 50;
+	}
+
+	pos1 = VGet(-10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
+	pos2 = VGet(10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
+	for (int i = 0; i < 50; i++)
+	{
+		DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
+		pos1.z += 10000.0f / 50;
+		pos2.z += 10000.0f / 50;
+	}
+}
+
+/*--------------------------*/
+/*     【基本ステート】     */
+/*--------------------------*/
 
 /*--------------------------*/
 /*【Idleプレイヤーステート】*/
@@ -85,6 +127,7 @@ void IdlePlayerState::LastUpdate(CharacterBase* character)
 // 描画
 void IdlePlayerState::Draw(CharacterBase* character)
 {
+	PlayerProcessDraw();
 }
 
 /*--------------------------*/
@@ -120,6 +163,7 @@ int MovePlayerState::StateCheck(CharacterBase* character)
 // 更新
 void MovePlayerState::Update(CharacterBase* character)
 {
+	SetPlayerMove(character);
 }
 
 // 最終更新
@@ -130,4 +174,112 @@ void MovePlayerState::LastUpdate(CharacterBase* character)
 // 描画
 void MovePlayerState::Draw(CharacterBase* character)
 {
+	PlayerProcessDraw();
+}
+
+/*--------------------------*/
+/*【移動プレイヤーステート】*/
+/*--------------------------*/
+AttackPlayerState::AttackPlayerState()
+: PlayerProcess()
+, mnAttackTime(0)
+{
+	mStateNumber = (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+}
+
+// この状態に入った時の処理
+void AttackPlayerState::OnEnter(CharacterBase* character)
+{
+	mnAttackTime = (character->StartAttck() + Master::mpTimeManager->GetGameTime());
+}
+
+// この状態を出る時の処理
+void AttackPlayerState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int AttackPlayerState::StateCheck(CharacterBase* character)
+{
+	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	{
+		if (GetPlayerMoveFlag())
+		{
+			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		}
+
+		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+	}
+
+	return mStateNumber;
+}
+
+// 更新
+void AttackPlayerState::Update(CharacterBase* character)
+{
+}
+
+// 最終更新
+void AttackPlayerState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void AttackPlayerState::Draw(CharacterBase* character)
+{
+	PlayerProcessDraw();
+}
+
+/*----------------------------*/
+/*     【バトルステート】     */
+/*----------------------------*/
+
+/*--------------------------------*/
+/*【Idleバトルプレイヤーステート】*/
+/*--------------------------------*/
+IdleBattlePlayerState::IdleBattlePlayerState()
+: IdlePlayerState()
+{
+
+}
+
+// ステート変更確認
+int IdleBattlePlayerState::StateCheck(CharacterBase* character)
+{
+	if (GetPlayerAttackFlag())
+	{
+		return (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+	}
+
+	if (GetPlayerMoveFlag())
+	{
+		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+	}
+
+	return mStateNumber;
+}
+
+/*--------------------------------*/
+/*【移動バトルプレイヤーステート】*/
+/*--------------------------------*/
+MoveBattlePlayerState::MoveBattlePlayerState()
+: MovePlayerState()
+{
+
+}
+
+// ステート変更確認
+int MoveBattlePlayerState::StateCheck(CharacterBase* character)
+{
+	if (GetPlayerAttackFlag())
+	{
+		return (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+	}
+
+	if (!GetPlayerMoveFlag())
+	{
+		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+	}
+
+	return mStateNumber;
 }

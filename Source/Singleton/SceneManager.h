@@ -28,15 +28,19 @@ public:
 	* 【設定】
 	*/
 	/*次のシーンを設定*/
-	void SetNextScene(SCENE nextScene) { meNextScene = nextScene; }
+	inline void SetNextScene(SCENE nextScene) { meNextScene = nextScene; }
 	
 	/*--------------------------------------------------
 	* 【取得】
 	*/
-	SCENE GetNowScene() const { return (SCENE)mpFSMScene->GetCurrentState(); }
+	/*今のシーンを取得*/
+	inline SCENE GetNowScene() const { return mpFSMScene->GetCurrentState(); }
 	/*次のシーンを取得*/
-	SCENE GetNextScene() const { return meNextScene; }
+	inline SCENE GetNextScene() const { return meNextScene; }
 
 	/*有限状態マシン取得*/
-	FSMScene* GetFSMScene() const { return mpFSMScene; }
+	inline FSMScene* GetFSMScene() const { return mpFSMScene; }
+
+	/*シーンカメラID取得*/
+	inline int GetSceneCameraID() const { return mpFSMScene->GetSceneCameraID(); }
 };

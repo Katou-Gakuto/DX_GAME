@@ -2,17 +2,13 @@
 
 #include "Master.h"
 
-#include "CameraManager.h"
-#include "DataManager.h"
-#include "GameManager.h"
-#include "SceneManager.h"
+#include "FSM.h"
 #include "TitleUI.h"
 
 TitleUI::TitleUI()
 : UIBase(true, 1)
 , mnLineAeraSize(10000.0f)
 , mnLineNum(50)
-, mnCameraID(-1)
 {
 }
 
@@ -23,20 +19,11 @@ TitleUI::~TitleUI()
 // UI‰Šú‰»
 void TitleUI::UIInitilize()
 {
-    CameraData cameraData = CameraData();
-    cameraData.cameraMode = CAMERA_MODE::FIXED;
-    cameraData.position = VGet(0.0f, 180.0f, -180.0f);
-    cameraData.targetPosition = VGet(0.0f, 180.0f, 0.0f);
-    cameraData.threeDFlag = true;
-    cameraData.SetColor(F4Get(128, 128, 128, 0));
-    mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
-    Master::mpGameManager->GetCameraManager()->SetCameraMode(mnCameraID);
 }
 
 // UII—¹
 void TitleUI::UIFinalize()
 {
-    Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnCameraID);
 }
 
 // UIXV

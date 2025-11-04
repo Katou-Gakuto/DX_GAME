@@ -24,7 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Object\Attack\AttackManager.cpp" />
     <ClCompile Include="Source\Object\Attack\ShotAttack.cpp" />
     <ClCompile Include="Source\Object\Building\Wall.cpp" />
     <ClCompile Include="Source\Object\Character\ShotCharacter.cpp" />
@@ -33,6 +32,7 @@
     <ClCompile Include="Source\Object\UI\DebugUI.cpp" />
     <ClCompile Include="Source\Object\UI\ResultUI.cpp" />
     <ClCompile Include="Source\Object\UI\TitleUI.cpp" />
+    <ClCompile Include="Source\Singleton\AttackManager.cpp" />
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
     <ClCompile Include="Source\Singleton\DataManager.cpp" />
     <ClCompile Include="Source\Singleton\EndManager.cpp" />
@@ -60,7 +60,6 @@
   <ItemGroup>
     <ClInclude Include="Source\Enum\CharacterEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
-    <ClInclude Include="Source\Object\Attack\AttackManager.h" />
     <ClInclude Include="Source\Object\Attack\ShotAttack.h" />
     <ClInclude Include="Source\Object\Building\Wall.h" />
     <ClInclude Include="Source\Object\Character\ShotCharacter.h" />
@@ -69,6 +68,7 @@
     <ClInclude Include="Source\Object\UI\DebugUI.h" />
     <ClInclude Include="Source\Object\UI\ResultUI.h" />
     <ClInclude Include="Source\Object\UI\TitleUI.h" />
+    <ClInclude Include="Source\Singleton\AttackManager.h" />
     <ClInclude Include="Source\Singleton\CameraManager.h" />
     <ClInclude Include="Source\Singleton\DataManager.h" />
     <ClInclude Include="Source\Singleton\EndManager.h" />
@@ -88,6 +88,7 @@
     <ClInclude Include="Source\State\StateCamera.h" />
     <ClInclude Include="Source\State\StateScene.h" />
     <ClInclude Include="Source\State\UI\StateTitleUI.h" />
+    <ClInclude Include="Source\Struct\AttackData.h" />
     <ClInclude Include="Source\Struct\BitFlag.h" />
     <ClInclude Include="Source\Struct\CameraData.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />

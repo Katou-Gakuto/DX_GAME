@@ -2,6 +2,7 @@
 
 #include "Master.h"
 
+#include "AttackManager.h"
 #include "CameraManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
@@ -11,7 +12,8 @@
 
 // コンストラクタ
 GameManager::GameManager()
-: mpCameraManager(nullptr)
+: mpAttackManager(nullptr)
+, mpCameraManager(nullptr)
 , mpObjectManager(nullptr)
 , mpSceneManager(nullptr)
 , mnUINumber(0)
@@ -32,6 +34,8 @@ void GameManager::Initilize()
 
     mpObjectManager = new ObjectManager();
     mpObjectManager->Initilize();
+
+    mpAttackManager = new AttackManager();
 
     SetDrawScreen(DX_SCREEN_BACK);
 }

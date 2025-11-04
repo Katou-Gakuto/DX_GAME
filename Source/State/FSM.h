@@ -116,6 +116,9 @@ public:
 
 	/*Ÿ‚ÌƒV[ƒ“‚ÖˆÚ“®‚·‚é*/
 	void NextScene(SceneManager* sceneManager);
+
+	/*ƒJƒƒ‰IDæ“¾*/
+	int GetSceneCameraID();
 };
 
 /*--------------------*/

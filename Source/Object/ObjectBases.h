@@ -14,7 +14,6 @@
 
 enum class SCENE;
 
-class AttackManager;
 class FSMCharacter;
 class FSMUI;
 
@@ -106,7 +105,7 @@ public:
     /*次オブジェクトのポインタを設定する*/
     inline void SetNextObject(ObjectBase* object, bool allBaseFlag = true) { if (allBaseFlag) { mpNextObject = object; } else { mpInheritClassNextObject = object; } }
 
-    /*削除フラグ設定*/
+    /*削除フラグ設定(true = 削除)*/
     inline void SetDeleteFlag(const bool flag) { mbIsDeleteFlag = flag; }
     /*削除フラグ取得*/
     inline bool IsDeleteFlag() const { return mbIsDeleteFlag; }
@@ -250,11 +249,11 @@ protected:
 
     // アニメションベース
 
-    // 攻撃オブジェクト
-    AttackManager* mpAttack;
-
     // 行動フラグ
     BIT_FLAG<unsigned int> munActionflags;
+
+    // 攻撃情報ナンバー
+    int mnAttackDataNumber;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -279,7 +278,10 @@ public:
     /*----------------------*/
 
 public:
-    /*攻撃リセット*/
+    /*攻撃開始(反動時間を返す)*/
+    virtual int StartAttck();
+
+    /*攻撃停止*/
     virtual void StopAttack();
 
 protected:
@@ -345,9 +347,6 @@ public:
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
     /*移動速度設定*/
     inline void SetSpeed(const float& speed) { mfSpeed = speed; }
-
-    /*攻撃設定*/
-    void SetAttack(AttackManager* attack);
 
     /*上移動設定*/
     inline void SetUpMove() { munActionflags ^= (unsigned int)ACTION_FLAG::UP_ACTION; }
@@ -448,8 +447,17 @@ protected:
 
     //fsm
 
+    // 攻撃ナンバー
+    int mnAttackNumber;
+
+    // 攻撃反動時間
+    int mnAttackRecoilTime;
+
+    // 攻撃時間
+    int mnAttackTime;
+
 public:
-    AttackBase(bool nextSceneDeleteFlag, CharacterBase* attackCharacter);
+    AttackBase();
     ~AttackBase();
 
     /*初期化*/
@@ -478,6 +486,31 @@ protected:
     virtual void AttackLastUpdate() = 0;
     /*アタック描画*/
     virtual void AttackDraw() = 0;
+
+    /*--------*/
+    /*【設定】*/
+    /*--------*/
+
+public:
+    /*攻撃キャラクター設定*/
+    inline void SetAttackCharacter(CharacterBase* character) { mpAttackCharacter = character; }
+    
+    /*攻撃ナンバー設定*/
+    inline void SetAttackNumber(int number) { mnAttackNumber = number; }
+
+    /*攻撃時間設定*/
+    inline void SetAttackTime(int time) { mnAttackTime = time; }
+
+    /*--------*/
+    /*【取得】*/
+    /*--------*/
+
+public:
+    /*攻撃ナンバー取得*/
+    inline int GetAttackNumber() const { return mnAttackNumber; }
+
+    /*攻撃反動時間取得*/
+    inline int GetAttackRecoilTime() const { return mnAttackRecoilTime; }
 };
 
 /*----------------------------------------------*/

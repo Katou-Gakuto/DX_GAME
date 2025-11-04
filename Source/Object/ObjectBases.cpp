@@ -51,10 +51,11 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mvAngle(UtilCalc::VZero())
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
-, mpAttack(nullptr)
 , mpFsm(nullptr)
+, mnAttackDataNumber(-1)
 {
 }
+
 CharacterBase::~CharacterBase()
 {
 }
@@ -68,11 +69,6 @@ void CharacterBase::Initilize()
 // 終了
 void CharacterBase::Finalize()
 {
-	if (mpAttack != nullptr)
-	{
-		mpAttack->SetDelete();
-		delete mpAttack;
-	}
 	CharacterFinalize();
 }
 
@@ -118,12 +114,23 @@ void CharacterBase::Draw()
 /*     【独自処理】     */
 /*----------------------*/
 
+// 攻撃開始
+int CharacterBase::StartAttck()
+{
+	if (mnAttackDataNumber != -1)
+	{
+		return Master::mpGameManager->GetAttackManager()->StartAttack(mnAttackDataNumber);
+	}
+
+	return 0;
+}
+
 // 攻撃リセット
 void CharacterBase::StopAttack()
 {
-	if (mpAttack != nullptr)
+	if (mnAttackDataNumber != -1)
 	{
-		mpAttack->SetActive(false);
+		Master::mpGameManager->GetAttackManager()->StopAttack(mnAttackDataNumber);
 	}
 }
 
@@ -198,12 +205,6 @@ void CharacterBase::SetFSM(FSMCharacter* fsm)
 	mpFsm = fsm;
 }
 
-// 攻撃設定
-void CharacterBase::SetAttack(AttackManager* attack)
-{
-	mpAttack = attack;
-}
-
 /*------------------------------------------*/
 /*          【ビルディングベース】          */
 /*------------------------------------------*/
@@ -257,11 +258,12 @@ void BuildingBase::Draw()
 /*          【アタックベース】          */
 /*--------------------------------------*/
 
-AttackBase::AttackBase(bool nextSceneDeleteFlag, CharacterBase* attackCharacter)
-: ObjectBase(OBJECT_TYPE::ATTACK_BASE, false, nextSceneDeleteFlag)
+AttackBase::AttackBase()
+: ObjectBase(OBJECT_TYPE::ATTACK_BASE, false, false)
 , mvPosition(UtilCalc::VZero())
 , mnPower(0)
-, mpAttackCharacter(attackCharacter)
+, mpAttackCharacter(nullptr)
+, mnAttackNumber(-1)
 {
 	mpHiCharacter.clear();
 }

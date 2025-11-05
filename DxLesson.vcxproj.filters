@@ -197,6 +197,9 @@
     <ClCompile Include="Source\Singleton\TargetManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\Character\StateEnemy.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\UtilFactorys.h">

@@ -15,6 +15,9 @@ private:
 	// 攻撃オブジェクト
 	std::map<ATTACK_TYPE, std::vector<AttackBase*>> mmAttacks;
 
+	// 全攻撃オブジェクト
+	std::vector<AttackBase*> mstAllAttack;
+
 	// 攻撃情報
 	std::vector<AttackData> mstAttackDatas;
 

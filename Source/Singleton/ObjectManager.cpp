@@ -93,7 +93,7 @@ void ObjectManager::Draw()
 }
 
 // リストにオブジェクトを追加する
-int ObjectManager::Add(ObjectBase* object, int typeNumber)
+int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 {
 	munSetID += 1;
 
@@ -184,7 +184,7 @@ int ObjectManager::Add(ObjectBase* object, int typeNumber)
 }
 
 // リストからオブジェクトを除外する
-void ObjectManager::Delete(unsigned int id, int typeNumber)
+void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -192,7 +192,7 @@ void ObjectManager::Delete(unsigned int id, int typeNumber)
 	}
 
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		checkObject = nullptr;
 	}
@@ -409,7 +409,7 @@ ObjectBase* ObjectManager::FindByID(int id, bool deleteGetFlag)
 /*【タグ】*/
 /*--------*/
 // タグからオブジェクトを取得
-ObjectBase* ObjectManager::FindByTag(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+ObjectBase* ObjectManager::FindByTag(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	// 種類別に調べる
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -441,11 +441,11 @@ ObjectBase* ObjectManager::FindByTag(std::string tag, int typeNumber, bool inact
 }
 
 // タグから複数オブジェクトを取得(vector)
-std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -475,11 +475,11 @@ std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, int t
 }
 
 // タグから複数オブジェクトを取得(list)
-std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -512,9 +512,9 @@ std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, int typeN
 /*【タイプ】*/
 /*----------*/
 // 指定タイプリストの先頭オブジェクトを取得
-ObjectBase* ObjectManager::GetTypeObject(int typeNumber)
+ObjectBase* ObjectManager::GetTypeObject(OBJECT_TYPE typeNumber)
 {
-	switch ((OBJECT_TYPE)typeNumber)
+	switch (typeNumber)
 	{
 	case OBJECT_TYPE::BASE:
 		return mpObjectBase;
@@ -536,11 +536,11 @@ ObjectBase* ObjectManager::GetTypeObject(int typeNumber)
 }
 
 // 指定タイプを全取得(vector)
-std::vector<ObjectBase*> ObjectManager::FindsByType_vector(int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::vector<ObjectBase*> ObjectManager::FindsByType_vector(OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -567,11 +567,11 @@ std::vector<ObjectBase*> ObjectManager::FindsByType_vector(int typeNumber, bool 
 }
 
 // 指定タイプを全取得(list)
-std::list<ObjectBase*> ObjectManager::FindsByType_list(int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::list<ObjectBase*> ObjectManager::FindsByType_list(OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -601,12 +601,12 @@ std::list<ObjectBase*> ObjectManager::FindsByType_list(int typeNumber, bool inac
 /*【チーム】*/
 /*----------*/
 // チームからオブジェクトを取得
-ObjectBase* ObjectManager::FindByTeam(int team, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+ObjectBase* ObjectManager::FindByTeam(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	// 種類別に調べる
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -633,11 +633,11 @@ ObjectBase* ObjectManager::FindByTeam(int team, int typeNumber, bool inactiveFla
 }
 
 // チームから複数オブジェクト取得(vector)
-std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -667,11 +667,11 @@ std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, int typeNum
 }
 
 // チームから複数オブジェクト取得(list)
-std::list<ObjectBase*> ObjectManager::FindsByTeam_list(int team, int typeNumber, bool inactiveFlag, bool deleteGetFlag)
+std::list<ObjectBase*> ObjectManager::FindsByTeam_list(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
-	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
+	if (typeNumber == OBJECT_TYPE::BASE)
 	{
 		allBaseFlag = true;
 	}
@@ -845,9 +845,9 @@ void ObjectManager::InactiveSetScene(SCENE targetScene)
 /*【オブジェクト】*/
 /*----------------*/
 // リストの先頭オブジェクトを設定
-void ObjectManager::SetTypeObject(int typeNumber, ObjectBase* setObject)
+void ObjectManager::SetTypeObject(OBJECT_TYPE typeNumber, ObjectBase* setObject)
 {
-	switch ((OBJECT_TYPE)typeNumber)
+	switch (typeNumber)
 	{
 	case OBJECT_TYPE::BASE:
 		mpObjectBase = setObject;

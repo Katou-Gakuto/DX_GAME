@@ -65,6 +65,7 @@ void GameManager::Update()
 
     mpObjectManager->Update();
 
+    mpCollisionManager->CollisionProcess();
 
     mpObjectManager->LastUpdate();
 

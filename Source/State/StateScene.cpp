@@ -13,6 +13,7 @@
 #include "ShotCharacter.h"
 #include "StateBase.h"
 #include "StateScene.h"
+#include "TargetManager.h"
 #include "TitleUI.h"
 #include "UtilFactorys.h"
 
@@ -85,6 +86,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
+	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// ƒJƒƒ‰ì¬
 	{
@@ -133,6 +135,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
+	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// ƒJƒƒ‰ì¬
 	{
@@ -185,9 +188,11 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	case CHARACTER_TYPE::ROBOT:
 		player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 		player->Initilize();
+		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
 		break;
 	}
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
+	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// ƒJƒƒ‰ì¬
 	{
@@ -200,6 +205,12 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
+
+	{// “G
+		ShotCharacter* enemy = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		enemy->Initilize();
+		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
 	}
 
 	switch (sceneManager->GetNowScene())

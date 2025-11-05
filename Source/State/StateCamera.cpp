@@ -82,7 +82,7 @@ void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraD
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
 	SetCameraPositionAndTarget_UpVecY(
-		VAdd(VScale(UtilCalc::VSignInversion(cameraData.targetCharacter->GetVec()), cameraData.cameraDistance), cameraData.targetCharacter->GetPos()), 
+		VAdd(VAdd(VScale(UtilCalc::VSignInversion(cameraData.targetCharacter->GetVec()), cameraData.cameraDistance), cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
 		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
 	);
 }

@@ -3,6 +3,7 @@
 #include "ObjectBases.h"
 #include "StateBase.h"
 
+class CameraManager;
 class KeyState;
 
 /*------------------*/
@@ -29,6 +30,9 @@ protected:
 	// キーステート
 	KeyState* mpKeyState;
 
+	// カメラ
+	CameraManager* mpCameraManager;
+
 protected:
 	PlayerProcess();
 	~PlayerProcess() = default;
@@ -41,6 +45,9 @@ protected:
 
 	/*攻撃キーを押していれば「true」*/
 	bool GetPlayerAttackFlag();
+
+	/*カメラに合わせて移動方向を設定*/
+	void SetMoveDir_Camera(CharacterBase* character);
 
 	/*描画*/
 	void PlayerProcessDraw();

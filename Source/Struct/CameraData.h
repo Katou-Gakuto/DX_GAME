@@ -42,4 +42,7 @@ public:
 	int cameraID;	// ƒJƒƒ‰ID
 
 	bool threeDFlag;	// 3D•`‰æƒtƒ‰ƒO
+
+	/*•ûŒüæ“¾*/
+	VECTOR GetDirection();
 };

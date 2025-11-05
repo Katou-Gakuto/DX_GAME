@@ -1,5 +1,10 @@
 #pragma once
 
+#include "ObjectBases.h"
+#include "StateBase.h"
+
+class TargetManager;
+
 /*------------------*/
 /*     【共通】     */
 /*------------------*/
@@ -21,6 +26,50 @@ enum class ENEMY_STATE
 class EnemyProcess
 {
 protected:
+	// ターゲットマネージャー
+	TargetManager* mpTargetManager;
+
+protected:
 	EnemyProcess();
 	~EnemyProcess() = default;
+
+	/*一定範囲内にプレイヤーターゲットがいるなら「true」*/
+	bool PlayerTargetCheck(CharacterBase* character, float range);
+
+	/*プレイヤー方向を向いて移動する*/
+	void PlayerTargetMove(CharacterBase* character);
+
+	/*プレイヤーターゲットに向かって攻撃*/
+	void PlayerTargetAttack(CharacterBase* character);
+};
+
+/*--------------------------*/
+/*     【基本ステート】     */
+/*--------------------------*/
+
+/*----------------------*/
+/*【Idleエネミーテート】*/
+/*----------------------*/
+class IdleEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	IdleEnemyState();
+	~IdleEnemyState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
 };

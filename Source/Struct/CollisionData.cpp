@@ -5,5 +5,10 @@
 #include "UtilCalc.h"
 
 CollisionData::CollisionData()
+: position(UtilCalc::VZero())
+, vec(UtilCalc::VZero())
+, speed(0.0f)
+, size(0.0f)
+, collisionFlag(false)
 {
 }

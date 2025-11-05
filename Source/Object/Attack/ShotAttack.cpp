@@ -32,7 +32,7 @@ void ShotAttack::AttackFinalize()
 // アタック更新
 void ShotAttack::AttackUpdate()
 {
-	mvPosition = VAdd(VGet(1.0f, 0.0f, 1.0f), mvPosition);
+	mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
 
 	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
 	{

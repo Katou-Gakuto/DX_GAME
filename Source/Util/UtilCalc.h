@@ -22,4 +22,11 @@ namespace UtilCalc
 
 	/*‹…–ÊˆÚ“®‚µ‚½êŠ(ƒ‰ƒWƒAƒ“)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);
+
+	/*--------------*/
+	/*y“–‚½‚è”»’èz*/
+	/*--------------*/
+
+	/*‹…“¯m‚Ì“–‚½‚è”»’è*/
+	bool SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius);
 };

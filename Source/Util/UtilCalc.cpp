@@ -56,3 +56,21 @@ VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
 
     return pos;
 }
+
+/*--------------*/
+/*y“–‚½‚è”»’èz*/
+/*--------------*/
+
+/*‹…“¯m‚Ì“–‚½‚è”»’è*/
+bool UtilCalc::SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius)
+{
+    //‰~‚Ì“–‚½‚è”»’è‚ğs‚¤
+    VECTOR diff = VSub(dstPos, srcPos);
+    float distance = VSize(diff);
+
+    if (distance < (srcRadius + dstRadius))
+    {
+        return true;
+    }
+    return false;
+}

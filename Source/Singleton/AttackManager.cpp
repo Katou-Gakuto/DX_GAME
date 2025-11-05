@@ -1,15 +1,21 @@
 #include <map>
 #include <vector>
 
+#include "CollisionData.h"
+
 #include "Master.h"
 
 #include "AttackManager.h"
+#include "GameManager.h"
+#include "ObjectBases.h"
+#include "ObjectManager.h"
 #include "ShotAttack.h"
 #include "TimeManager.h"
 
 AttackManager::AttackManager()
 {
 	mmAttacks.clear();
+	mstAllAttack.clear();
 	mstAttackDatas.clear();
 }
 
@@ -25,9 +31,11 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 	case ATTACK_TYPE::SHOT:
 		const int setSize = 10;
 		mmAttacks[attackType].reserve(setSize);
+		mstAllAttack.reserve(setSize);
 		for (int i = 0; i < setSize; i++)
 		{
-			mmAttacks[attackType].push_back(new ShotAttack());
+			mstAllAttack.push_back(new ShotAttack());
+			mmAttacks[attackType].push_back(mstAllAttack.back());
 		}
 		break;
 	}
@@ -52,6 +60,7 @@ int AttackManager::StartAttack(int attackDataNumber)
 			{
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime());
+				attack->SetMoveDir(mstAttackDatas[attackDataNumber].attackCharacter->GetVec());
 
 				attack->SetAttackNumber(attackDataNumber);
 

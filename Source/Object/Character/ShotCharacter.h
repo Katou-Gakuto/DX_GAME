@@ -30,5 +30,5 @@ private:
     void CharacterDraw() override;
 
     /*“–‚½‚è”»’è—p*/
-    CollisionData CharacterCheck(const CollisionData& collisionData) override;
+    CollisionData& HitCheck(CollisionData& collisionData) override;
 };

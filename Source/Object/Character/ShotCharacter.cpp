@@ -8,6 +8,7 @@
 #include "GameManager.h"
 #include "ObjectBases.h"
 #include "ShotCharacter.h"
+#include "UtilCalc.h"
 
 ShotCharacter::ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType)
 : CharacterBase(nextSceneDeleteFlag, status)
@@ -62,8 +63,21 @@ void ShotCharacter::CharacterDraw()
 }
 
 // 当たり判定用
-CollisionData ShotCharacter::CharacterCheck(const CollisionData& collisionData)
+CollisionData& ShotCharacter::HitCheck(CollisionData& collisionData)
 {
+	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
+	{
+		collisionData.collisionFlag = true;
+
+		//移動方向を修正
+		VECTOR normalWall = VSub(collisionData.position, mvPosition);
+		normalWall = VNorm(normalWall); // 正規化して方向を取得
+		if (VDot(normalWall, collisionData.vec) < 0.0f)
+		{
+			VECTOR tempV = VScale(normalWall, VDot(collisionData.vec, normalWall));
+			collisionData.vec = VSub(collisionData.vec, tempV); // プレイヤーの方向を修正
+		}
+	}
 
 	return collisionData;
 }

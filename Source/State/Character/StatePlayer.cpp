@@ -1,9 +1,12 @@
 #include "Master.h"
 
+#include "CameraManager.h"
+#include "GameManager.h"
 #include "KeyState.h"
 #include "ObjectBases.h"
 #include "StatePlayer.h"
 #include "TimeManager.h"
+#include "UtilCalc.h"
 
 /*------------------*/
 /*     【共通】     */
@@ -13,8 +16,9 @@
 /*【プレイヤー共通処理用】*/
 /*------------------------*/
 PlayerProcess::PlayerProcess()
+: mpKeyState(Master::mpKeyState)
+, mpCameraManager(Master::mpGameManager->GetCameraManager())
 {
-	mpKeyState = Master::mpKeyState;
 }
 
 // 移動共通処理
@@ -36,6 +40,16 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	{
 		character->SetRightMove();
 	}
+
+
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Q))
+	{
+		character->SetUpMove();
+	}
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::R))
+	{
+		character->SetDownMove();
+	}
 }
 
 // 移動キーを押していれば「true」
@@ -51,6 +65,12 @@ bool PlayerProcess::GetPlayerMoveFlag()
 bool PlayerProcess::GetPlayerAttackFlag()
 {
 	return mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::L);
+}
+
+// カメラに合わせて移動方向を設定
+void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
+{
+	character->SetMoveDir(mpCameraManager->GetCameraData().GetDirection());
 }
 
 // 描画
@@ -163,6 +183,8 @@ int MovePlayerState::StateCheck(CharacterBase* character)
 // 更新
 void MovePlayerState::Update(CharacterBase* character)
 {
+	SetMoveDir_Camera(character);
+
 	SetPlayerMove(character);
 }
 

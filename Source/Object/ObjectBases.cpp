@@ -28,7 +28,7 @@ ObjectBase::ObjectBase(OBJECT_TYPE objectType, bool isActiveFlag, bool nextScene
 
 	mllFlags.Init();
 
-	munID = Master::mpGameManager->GetObjectManager()->Add(this, (int)objectType);
+	munID = Master::mpGameManager->GetObjectManager()->Add(this, objectType);
 
 	meObjectScene = (SCENE)Master::mpGameManager->GetSceneManager()->GetFSMScene()->GetCurrentState();
 }
@@ -46,9 +46,10 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 : ObjectBase(OBJECT_TYPE::CHARACTER_BASE, true, nextSceneDeleteFlag)
 , mvOldPosition(UtilCalc::VZero())
 , mvPosition(UtilCalc::VZero())
+, mvMoveDir(UtilCalc::VZero())
 , mvVec(UtilCalc::VZero())
-, mfSpeed(0.0f)
 , mvAngle(UtilCalc::VZero())
+, mfSpeed(0.0f)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
@@ -137,20 +138,30 @@ void CharacterBase::StopAttack()
 // 定型行動処理
 void CharacterBase::TemplateActionProcess()
 {
+	/*アングルから前と右の移動量を取得*/
+    float denominator = std::fabs(mvMoveDir.x) + std::fabs(mvMoveDir.z);
+	VECTOR frontVec = VGet(mvMoveDir.x / denominator, 0.0f, mvMoveDir.z / denominator);
+
+	VECTOR rightVec = VGet(frontVec.z, 0.0f, -frontVec.x);
+
+	/**********************************/
+
 	mvVec = UtilCalc::VZero();
 	if (munActionflags.Bool())
 	{
+		bool moveFlag = false;
 		// 前後
 		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
 		{
 			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_ACTION))
 			{
-				mvVec.z += 1.0f;
+				mvVec = VAdd(mvVec, frontVec);
 			}
 			else
 			{
-				mvVec.z -= 1.0f;
+				mvVec = VSub(mvVec, frontVec);
 			}
+			moveFlag = true;
 		}
 
 		// 左右
@@ -158,12 +169,13 @@ void CharacterBase::TemplateActionProcess()
 		{
 			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::RIGHT_ACTION))
 			{
-				mvVec.x += 1.0f;
+				mvVec = VAdd(mvVec, rightVec);
 			}
 			else
 			{
-				mvVec.x -= 1.0f;
+				mvVec = VSub(mvVec, rightVec);
 			}
+			moveFlag = true;
 		}
 
 		// 上下
@@ -177,12 +189,12 @@ void CharacterBase::TemplateActionProcess()
 			{
 				mvVec.y -= 1.0f;
 			}
+			moveFlag = true;
 		}
 
-		// 攻撃
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::ATTACK_ACTION))
+		if (moveFlag)
 		{
-
+			mvVec = VNorm(mvVec);
 		}
 
 		munActionflags.Init();
@@ -264,6 +276,9 @@ AttackBase::AttackBase()
 , mnPower(0)
 , mpAttackCharacter(nullptr)
 , mnAttackNumber(-1)
+, mnAttackRecoilTime(0)
+, mnAttackTime(0)
+, mvMoveDir(UtilCalc::VZero())
 {
 	mpHiCharacter.clear();
 }

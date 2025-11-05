@@ -134,7 +134,7 @@ public:
     inline bool GetNextSceneDeleteFlag() const { return mbNextSceneDeleteFlag; }
 
     /*オブジェクト種類(ナンバー)取得*/
-    inline int GetObjectTypeNumber() const { return (int)meObjectType; }
+    inline OBJECT_TYPE GetObjectTypeNumber() const { return meObjectType; }
 
     /*オブジェクトのシーンを取得*/
     inline SCENE GetObjectScene() const { return meObjectScene; }
@@ -145,7 +145,7 @@ public:
     /*【継承処理キャスト省略用】*/
     /*--------------------------*/
     /*当たり判定*/
-    virtual CollisionData HitCheck(const CollisionData collisionData) { return collisionData; };
+    virtual CollisionData& HitCheck(CollisionData& collisionData) { return collisionData; };
 };
 
 /*--------------------------------------------------------*/
@@ -181,9 +181,6 @@ enum class ACTION_FLAG
     FRONT_ACTION =         0b0'011'000'000u,
     /*後ろ移動*/
     BACK_ACTION =          0b0'101'000'000u,
-
-    /*攻撃*/
-    ATTACK_ACTION =        0b1'000'000'000u,
 };
 
 // 確認用行動フラグ
@@ -211,9 +208,6 @@ enum class CHECK_ACTION_FLAG
     FRONT_ACTION,
     /*後ろ移動*/
     BACK_ACTION,
-
-    /*攻撃*/
-    ATTACK_ACTION,
 };
 
 /*------------------------------------------*/
@@ -231,13 +225,16 @@ protected:
     VECTOR mvPosition;
 
     // 移動方向
-    VECTOR mvVec;
+    VECTOR mvMoveDir;
 
-    // 移動速度
-    float mfSpeed;
+    // 移動量
+    VECTOR mvVec;
 
     // モデル向き
     VECTOR mvAngle;
+
+    // 移動速度
+    float mfSpeed;
 
     // ステータス
     STATUS mstStatus;
@@ -271,7 +268,7 @@ public:
     void Draw() override final;
 
     /*当たり判定*/
-    CollisionData HitCheck(const CollisionData collisionData) override final { return CharacterCheck(collisionData); }
+    CollisionData& HitCheck(CollisionData& collisionData) override = 0;
 
     /*----------------------*/
     /*     【独自処理】     */
@@ -307,9 +304,6 @@ protected:
     /*移動処理*/
     virtual void MoveProcess();
 
-    /*当たり判定用(継承用)*/
-    virtual CollisionData CharacterCheck(const CollisionData& collisionData) = 0;
-
 public:
 
     /*--------*/
@@ -326,6 +320,9 @@ public:
     inline VECTOR GetOldPos() const { return mvOldPosition; }
 
     /*移動方向取得*/
+    inline VECTOR GetMoveDir() const { return mvMoveDir; }
+
+    /*移動量取得*/
     inline VECTOR GetVec() const { return mvVec; }
 
     /*移動速度取得*/
@@ -343,6 +340,10 @@ public:
 
     /*ポジション設定*/
     inline void SetPos(const VECTOR& pos) { mvPosition = pos; }
+    /*移動方向設定*/
+    inline void SetMoveDir(const VECTOR& moveDir) { mvMoveDir = moveDir; }
+    /*移動量設定*/
+    inline void SetVec(const VECTOR& vec) { mvVec = vec; }
     /*方向設定*/
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
     /*移動速度設定*/
@@ -362,9 +363,6 @@ public:
     inline void SetFrontMove() { munActionflags ^= (unsigned int)ACTION_FLAG::FRONT_ACTION; }
     /*後ろ移動設定*/
     inline void SetBackMove() { munActionflags ^= (unsigned int)ACTION_FLAG::BACK_ACTION; }
-
-    /*攻撃設定*/
-    inline void SetAttack() { munActionflags ^= (unsigned int)ACTION_FLAG::ATTACK_ACTION; }
 };
 
 /*--------------------------------------------------------*/
@@ -443,6 +441,9 @@ protected:
     // 当たったキャラクター
     std::list<CharacterBase*> mpHiCharacter;
 
+    // 移動方向
+    VECTOR mvMoveDir;
+
     // モデルベース
 
     //fsm
@@ -500,6 +501,9 @@ public:
 
     /*攻撃時間設定*/
     inline void SetAttackTime(int time) { mnAttackTime = time; }
+
+    /*移動方向設定*/
+    inline void SetMoveDir(VECTOR moveDir) { mvMoveDir = moveDir; }
 
     /*--------*/
     /*【取得】*/

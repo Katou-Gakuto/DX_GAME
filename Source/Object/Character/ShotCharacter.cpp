@@ -13,10 +13,11 @@
 ShotCharacter::ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType)
 : CharacterBase(nextSceneDeleteFlag, status)
 {
-	AttackData setData;
+	AttackData setData = AttackData();
 	setData.attackType = ATTACK_TYPE::SHOT;
 	setData.attackCharacter = this;
 	setData.attackTime = 5000;
+	setData.attackPower = status.attckPower;
 
 	switch (shotType)
 	{
@@ -63,7 +64,7 @@ void ShotCharacter::CharacterDraw()
 }
 
 // 当たり判定用
-CollisionData& ShotCharacter::HitCheck(CollisionData& collisionData)
+void ShotCharacter::HitCheck(CollisionData& collisionData)
 {
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
 	{
@@ -78,6 +79,4 @@ CollisionData& ShotCharacter::HitCheck(CollisionData& collisionData)
 			collisionData.vec = VSub(collisionData.vec, tempV); // プレイヤーの方向を修正
 		}
 	}
-
-	return collisionData;
 }

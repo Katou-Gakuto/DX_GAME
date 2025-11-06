@@ -106,6 +106,12 @@ void FSMCharacter::Draw(CharacterBase* character)
 	mmStateMap[mnCurrentState]->Draw(character);
 }
 
+// 死亡
+void FSMCharacter::Death(CharacterBase* character)
+{
+	mmStateMap[mnCurrentState]->Death(character);
+}
+
 /*------------------------*/
 /*【シーン有限状態マシン】*/
 /*------------------------*/

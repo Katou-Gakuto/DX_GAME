@@ -76,6 +76,9 @@ public:
 
 	/*•`‰æ*/
 	virtual void Draw(CharacterBase* character) = 0;
+
+	/*€–S*/
+	virtual void Death(CharacterBase* character) = 0;
 };
 
 /*------------------------*/
@@ -100,7 +103,7 @@ public:
 	SCENE Update(SceneManager* sceneManager);
 
 	/*ƒV[ƒ“ƒJƒƒ‰ID*/
-	inline int GetSceneCameraID() { return mnSceneCameraID; }
+	inline int GetSceneCameraID() const { return mnSceneCameraID; }
 };
 
 /*--------------------*/

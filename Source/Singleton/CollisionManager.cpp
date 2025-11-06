@@ -15,36 +15,57 @@ void CollisionManager::CollisionProcess()
 {
 	if (!Master::mpTimeManager->GetStopFlag())
 	{
-		std::vector<ObjectBase*> characterObject = Master::mpGameManager->GetObjectManager()->FindsByType_vector(OBJECT_TYPE::CHARACTER_BASE);
-		std::vector<ObjectBase*> buildingObject = Master::mpGameManager->GetObjectManager()->FindsByType_vector(OBJECT_TYPE::BUILDING_BASE);
+		std::vector<CharacterBase*> characterObject = Master::mpGameManager->GetObjectManager()->FindsByType_Character();
+		std::vector<BuildingBase*> buildingObject = Master::mpGameManager->GetObjectManager()->FindsByType_Building();
+		std::vector<AttackBase*> attackObject = Master::mpGameManager->GetObjectManager()->FindsByType_Attack();
 
 		// 全キャラクター分調べる
 		for (int i = 0; i < characterObject.size(); i++)
 		{
-			CharacterBase* character = static_cast<CharacterBase*>(characterObject[i]);
+			// データ入力
+			CharacterBase* checkCharacter = characterObject[i];
 			CollisionData setData;
-			setData.position = character->GetPos();
-			setData.vec = character->GetVec();
-			setData.speed = character->GetSpeed();
+			setData.position = checkCharacter->GetPos();
+			setData.vec = checkCharacter->GetVec();
+			setData.speed = checkCharacter->GetSpeed();
+			setData.objID = checkCharacter->GetID();
 			setData.size = 180.0f;
+			setData.collisionFlag = false;
 
 			// キャラクターとの当たり判定
 			for (int j = 0; j < characterObject.size(); j++)
 			{
 				if (i != j)
 				{
-					setData = characterObject[j]->HitCheck(setData);
+					characterObject[j]->HitCheck(setData);
 				}
 			}
+			setData.collisionFlag = false;
 
 			// 建物との当たり判定
 			for (int j = 0; j < buildingObject.size(); j++)
 			{
-				setData = buildingObject[j]->HitCheck(setData);
+				buildingObject[j]->HitCheck(setData);
 			}
+			setData.collisionFlag = false;
+
+			// 攻撃との当たり判定
+			for (int j = 0; j < attackObject.size(); j++)
+			{
+				attackObject[j]->HitCheck(setData);
+
+				if (setData.collisionFlag)
+				{
+					attackObject[j]->HitCheck(setData);
+					checkCharacter->Damage(attackObject[j]->GetAttackPower());
+
+					setData.collisionFlag = false;
+				}
+			}
+			setData.collisionFlag = false;
 
 			// 移動方向設定
-			character->SetVec(setData.vec);
+			checkCharacter->SetVec(setData.vec);
 		}
 	}
 }

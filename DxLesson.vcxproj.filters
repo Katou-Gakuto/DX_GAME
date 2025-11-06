@@ -200,6 +200,12 @@
     <ClCompile Include="Source\State\Character\StateEnemy.cpp">
       <Filter>ソース ファイル\State\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\UI\StateResultUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\Character\MapCharacter.cpp">
+      <Filter>ソース ファイル\Object\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\UtilFactorys.h">
@@ -324,6 +330,12 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\TargetManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateResultUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Character\MapCharacter.h">
+      <Filter>ヘッダー ファイル\Object\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

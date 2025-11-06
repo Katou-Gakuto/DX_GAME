@@ -23,4 +23,6 @@ enum class SCENE
 	BATTLE_3,
 
 	RESULT,		// ƒŠƒUƒ‹ƒg
+	DUNGEON_RESULT,
+	BATTLR_RESULT,
 };

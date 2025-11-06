@@ -597,6 +597,79 @@ std::list<ObjectBase*> ObjectManager::FindsByType_list(OBJECT_TYPE typeNumber, b
 	return result;
 }
 
+// 全キャラクターベース取得
+std::vector<CharacterBase*> ObjectManager::FindsByType_Character(bool inactiveFlag, bool deleteGetFlag)
+{
+	std::vector<CharacterBase*> result;
+	result.clear();
+
+	if (mpCharacterBase == nullptr)
+	{
+		return result;
+	}
+
+	ObjectBase* workObject = mpCharacterBase;
+	do
+	{
+		if ((!workObject->IsDeleteFlag() || deleteGetFlag) && (workObject->IsActiveFlag() || inactiveFlag))
+		{
+			result.push_back(static_cast<CharacterBase*>(workObject));
+		}
+		workObject = workObject->GetNextObject(false);
+	} while (workObject != nullptr);
+
+	return result;
+}
+
+// 全ビルディングベース取得
+std::vector<BuildingBase*> ObjectManager::FindsByType_Building(bool inactiveFlag, bool deleteGetFlag)
+{
+	std::vector<BuildingBase*> result;
+	result.clear();
+
+	if (mpBuildingBase == nullptr)
+	{
+		return result;
+	}
+
+	ObjectBase* workObject = mpBuildingBase;
+	do
+	{
+		if ((!workObject->IsDeleteFlag() || deleteGetFlag) && (workObject->IsActiveFlag() || inactiveFlag))
+		{
+			result.push_back(static_cast<BuildingBase*>(workObject));
+		}
+		workObject = workObject->GetNextObject(false);
+	} while (workObject != nullptr);
+
+	return result;
+}
+
+// 全アタックベース取得
+std::vector<AttackBase*> ObjectManager::FindsByType_Attack(bool inactiveFlag, bool deleteGetFlag)
+{
+	std::vector<AttackBase*> result;
+	result.clear();
+
+	if (mpAttackBase == nullptr)
+	{
+		return result;
+	}
+
+	ObjectBase* workObject = mpAttackBase;
+	do
+	{
+		if ((!workObject->IsDeleteFlag() || deleteGetFlag) && (workObject->IsActiveFlag() || inactiveFlag))
+		{
+			result.push_back(static_cast<AttackBase*>(workObject));
+		}
+		workObject = workObject->GetNextObject(false);
+	} while (workObject != nullptr);
+
+	return result;
+}
+
+
 /*----------*/
 /*【チーム】*/
 /*----------*/

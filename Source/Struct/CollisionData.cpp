@@ -10,5 +10,7 @@ CollisionData::CollisionData()
 , speed(0.0f)
 , size(0.0f)
 , collisionFlag(false)
+, objID(-1)
+, collisionType(COLLISION_TYPE::NONE)
 {
 }

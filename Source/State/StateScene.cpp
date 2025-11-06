@@ -1,5 +1,6 @@
 #include "CharacterEnum.h"
 #include "CameraData.h"
+#include "GameDatas.h"
 
 #include "Master.h"
 
@@ -9,11 +10,11 @@
 #include "FSM.h"
 #include "GameManager.h"
 #include "ObjectBases.h"
+#include "ResultUI.h"
 #include "SceneManager.h"
 #include "ShotCharacter.h"
 #include "StateBase.h"
 #include "StateScene.h"
-#include "TargetManager.h"
 #include "TitleUI.h"
 #include "UtilFactorys.h"
 
@@ -82,11 +83,16 @@ TownScene::TownScene()
 
 void TownScene::OnEnter(SceneManager* sceneManager)
 {
+	{// 町を記録
+		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+		playerData.townType = mStateNumber;
+		Master::mpDataManager->SetPlayPlayerData(playerData);
+	}
+
 	mStateNumber = sceneManager->GetNowScene();
 	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
-	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// カメラ作成
 	{
@@ -113,8 +119,14 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		break;
 	}
 }
+
 void TownScene::OnExit(SceneManager* sceneManager)
 {
+	// 前居たマップを記録
+	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+	playerData.preMap = mStateNumber;
+	Master::mpDataManager->SetPlayPlayerData(playerData);
+
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
@@ -131,11 +143,16 @@ DungeonScene::DungeonScene()
 
 void DungeonScene::OnEnter(SceneManager* sceneManager)
 {
+	{// ダンジョンを記録
+		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+		playerData.dungeonType = mStateNumber;
+		Master::mpDataManager->SetPlayPlayerData(playerData);
+	}
+
 	mStateNumber = sceneManager->GetNowScene();
 	ShotCharacter* player = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 	player->Initilize();
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
-	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// カメラ作成
 	{
@@ -164,6 +181,11 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 }
 void DungeonScene::OnExit(SceneManager* sceneManager)
 {
+	// 前居たマップを記録
+	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+	playerData.preMap = mStateNumber;
+	Master::mpDataManager->SetPlayPlayerData(playerData);
+
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
@@ -192,7 +214,6 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		break;
 	}
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
-	Master::mpGameManager->GetTargetManager()->SetTarget(player, TARGET_NUMBER::PLAYER);
 
 	// カメラ作成
 	{
@@ -211,6 +232,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		ShotCharacter* enemy = new ShotCharacter(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 		enemy->Initilize();
 		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
 	}
 
 	switch (sceneManager->GetNowScene())
@@ -227,6 +249,11 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {
+	// 前居たマップを記録
+	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+	playerData.preMap = mStateNumber;
+	Master::mpDataManager->SetPlayPlayerData(playerData);
+
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
@@ -243,13 +270,22 @@ ResultScene::ResultScene()
 
 void ResultScene::OnEnter(SceneManager* sceneManager)
 {
+	ResultUI* result = new ResultUI();
+	result->Initilize();
+	result->SetFsm(UtilFactorys::FSMUIFactory(result, UI_FACTORY_NUMBER::RESULT));
+
 	mStateNumber = sceneManager->GetNowScene();
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::RESULT:
 		break;
+	case SCENE::DUNGEON_RESULT:
+		break;
+	case SCENE::BATTLR_RESULT:
+		break;
 	}
 }
+
 void ResultScene::OnExit(SceneManager* sceneManager)
 {
 }

@@ -62,7 +62,7 @@ public:
     /*------------------*/
     /*     【取得】     */
     /*------------------*/
-    
+
     /*------*/
     /*【ID】*/
     /*------*/
@@ -91,6 +91,13 @@ public:
     std::vector<ObjectBase*> FindsByType_vector(OBJECT_TYPE typeNumber, bool inactiveFlag = false, bool deleteGetFlag = false);
     /*指定タイプを全取得(list)*/
     std::list<ObjectBase*> FindsByType_list(OBJECT_TYPE typeNumber, bool inactiveFlag = false, bool deleteGetFlag = false);
+    
+    /*全キャラクターベース取得*/
+    std::vector <CharacterBase*> FindsByType_Character(bool inactiveFlag = false, bool deleteGetFlag = false);
+    /*全ビルディングベース取得*/
+    std::vector <BuildingBase*> FindsByType_Building(bool inactiveFlag = false, bool deleteGetFlag = false);
+    /*全アタックベース取得*/
+    std::vector <AttackBase*> FindsByType_Attack(bool inactiveFlag = false, bool deleteGetFlag = false);
 
     /*----------*/
     /*【チーム】*/

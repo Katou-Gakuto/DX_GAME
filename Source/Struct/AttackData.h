@@ -15,4 +15,6 @@ struct AttackData
 	ATTACK_TYPE attackType;	// UŒ‚í—Ş
 
 	int attackTime;	// UŒ‚ŠÔ
+
+	int attackPower; // UŒ‚—Í
 };

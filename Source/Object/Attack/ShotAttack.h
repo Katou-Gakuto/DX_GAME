@@ -19,4 +19,7 @@ private:
     void AttackLastUpdate() override;
     /*アタック描画*/
     void AttackDraw() override;
+
+    /*当たり判定*/
+    void HitCheck(CollisionData& collisionData) override;
 };

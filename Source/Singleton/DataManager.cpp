@@ -20,6 +20,7 @@
 DataManager::DataManager()
 : mnPlayPlayerNumber(-1)
 , mpEndManger(nullptr)
+, mnDungeonDeleteCharacterID(-1)
 {
 	mwMsg = {};
 
@@ -41,6 +42,7 @@ DataManager::DataManager()
 		PLAYER_DATA setPlayer = PLAYER_DATA();
 		setPlayer.mapType = SCENE::BATTLE_1;
 		setPlayer.townType = SCENE::TOWN_1;
+		setPlayer.dungeonType = SCENE::DUNGEON_1;
 		setPlayer.preMap = SCENE::NONE;
 		setPlayer.position = UtilCalc::VZero();
 		setPlayer.angle = UtilCalc::VZero();
@@ -53,6 +55,7 @@ DataManager::DataManager()
 
 		setPlayer.mapType = SCENE::BATTLE_2;
 		setPlayer.townType = SCENE::TOWN_2;
+		setPlayer.dungeonType = SCENE::DUNGEON_2;
 		setPlayer.name = "アボカド2";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
 
@@ -60,6 +63,7 @@ DataManager::DataManager()
 
 		setPlayer.mapType = SCENE::BATTLE_3;
 		setPlayer.townType = SCENE::TOWN_3;
+		setPlayer.dungeonType = SCENE::DUNGEON_3;
 		setPlayer.name = "アボカド3";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
 

@@ -15,12 +15,15 @@ enum class CHARACTER_FACTORY_NUMBER
 	TOWN_PLAYER = 0,
 	DUNGEON_PLAYER,
 	BATTLE_PLAYER,
+
+	ENEMY,
 };
 
 // UIçÏê¨ÉiÉìÉoÅ[
 enum class UI_FACTORY_NUMBER
 {
 	TITLE = 0,
+	RESULT,
 };
 
 namespace UtilFactorys

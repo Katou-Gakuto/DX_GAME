@@ -3,6 +3,7 @@
 #include "ObjectBases.h"
 #include "ShotAttack.h"
 #include "TimeManager.h"
+#include "UtilCalc.h"
 
 ShotAttack::ShotAttack()
 : AttackBase()
@@ -17,7 +18,7 @@ ShotAttack::~ShotAttack()
 // アタック初期化
 void ShotAttack::AttackInitilize()
 {
-	mpHiCharacter.clear();
+	mnHiObjID.clear();
 
 	mvPosition = mpAttackCharacter->GetPos();
 
@@ -49,4 +50,26 @@ void ShotAttack::AttackLastUpdate()
 void ShotAttack::AttackDraw()
 {
 	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
+}
+
+// 当たり判定
+void ShotAttack::HitCheck(CollisionData& collisionData)
+{
+	if (mpAttackCharacter->GetID() == collisionData.objID)
+	{
+		return;
+	}
+	for (int i = 0; mnHiObjID.size(); i++)
+	{
+		if (mnHiObjID[i] == collisionData.objID)
+		{
+			return;
+		}
+	}
+
+	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 100.0f))
+	{
+		mnHiObjID.push_back(collisionData.objID);
+		collisionData.collisionFlag = true;
+	}
 }

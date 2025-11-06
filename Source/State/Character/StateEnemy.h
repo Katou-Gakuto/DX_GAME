@@ -41,6 +41,9 @@ protected:
 
 	/*ƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ÉŒü‚©‚Á‚ÄUŒ‚*/
 	void PlayerTargetAttack(CharacterBase* character);
+
+	/*€–S*/
+	void EnemyDeath(CharacterBase* character);
 };
 
 /*--------------------------*/
@@ -72,4 +75,7 @@ public:
 
 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
+
+	/*€–S*/
+	void Death(CharacterBase* character) override;
 };

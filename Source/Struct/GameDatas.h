@@ -95,6 +95,7 @@ typedef struct PlayerData : public CHARACTER_DATA
 	std::string playerFolderName;	// プレイヤー情報があるフォルダー名
 
 	SCENE townType;	// 町
+	SCENE dungeonType;	// ダンジョン
 	SCENE preMap;	// 前居たマップ
 	
 	bool dataFlag;	// データが存在するかどうか
@@ -143,7 +144,7 @@ typedef struct LevelData
 
 }LEVEL_DATA;
 
-// 情報の集まり
+// 情報の集まり ここら辺修正予定
 union DATAS
 {
 	/*---* データ *---*/

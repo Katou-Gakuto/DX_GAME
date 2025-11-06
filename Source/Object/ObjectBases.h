@@ -145,7 +145,7 @@ public:
     /*【継承処理キャスト省略用】*/
     /*--------------------------*/
     /*当たり判定*/
-    virtual CollisionData& HitCheck(CollisionData& collisionData) { return collisionData; };
+    virtual void HitCheck(CollisionData& collisionData) {};
 };
 
 /*--------------------------------------------------------*/
@@ -162,25 +162,28 @@ enum class ACTION_FLAG
     // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
 
     /*上下移動*/
-    UP_OR_DOWN_ACTION =    0b0'000'000'001u,
+    //UP_OR_DOWN_ACTION =  0b0'000'000'001u,
     /*上移動*/
     UP_ACTION =            0b0'000'000'011u,
     /*下移動*/
     DOWN_ACTION =          0b0'000'000'101u,
 
     /*右左移動*/
-    LEFT_OR_RIGHT_ACTION = 0b0'000'001'000u,
+    //LEFT_OR_RIGHT_ACTION=0b0'000'001'000u,
     /*右移動*/
     RIGHT_ACTION =         0b0'000'011'000u,
     /*左移動*/
     LEFT_ACTION =          0b0'000'101'000u,
 
     /*前後移動*/
-    FRONT_OR_BACK_ACTION = 0b0'001'000'000u,
+    //FRONT_OR_BACK_ACTION=0b0'001'000'000u,
     /*前移動*/
     FRONT_ACTION =         0b0'011'000'000u,
     /*後ろ移動*/
     BACK_ACTION =          0b0'101'000'000u,
+
+    /*HPが0以下*/
+    HP_ZERO =              0b1'000'000'000u,
 };
 
 // 確認用行動フラグ
@@ -208,6 +211,9 @@ enum class CHECK_ACTION_FLAG
     FRONT_ACTION,
     /*後ろ移動*/
     BACK_ACTION,
+
+    /*HPが0以下*/
+    HP_ZERO,
 };
 
 /*------------------------------------------*/
@@ -268,7 +274,7 @@ public:
     void Draw() override final;
 
     /*当たり判定*/
-    CollisionData& HitCheck(CollisionData& collisionData) override = 0;
+    void HitCheck(CollisionData& collisionData) override = 0;
 
     /*----------------------*/
     /*     【独自処理】     */
@@ -280,6 +286,9 @@ public:
 
     /*攻撃停止*/
     virtual void StopAttack();
+
+    /*ダメージ*/
+    virtual void Damage(int damage);
 
 protected:
     /*キャラクター初期化*/
@@ -303,6 +312,9 @@ protected:
 
     /*移動処理*/
     virtual void MoveProcess();
+
+    /*死亡処理*/
+    virtual void DeathProcess();
 
 public:
 
@@ -363,6 +375,9 @@ public:
     inline void SetFrontMove() { munActionflags ^= (unsigned int)ACTION_FLAG::FRONT_ACTION; }
     /*後ろ移動設定*/
     inline void SetBackMove() { munActionflags ^= (unsigned int)ACTION_FLAG::BACK_ACTION; }
+
+    /*HPが0以下のフラグを設定*/
+    inline void SetHPZero() { munActionflags ^= (unsigned int)ACTION_FLAG::HP_ZERO; }
 };
 
 /*--------------------------------------------------------*/
@@ -439,7 +454,7 @@ protected:
     CharacterBase* mpAttackCharacter;
 
     // 当たったキャラクター
-    std::list<CharacterBase*> mpHiCharacter;
+    std::vector<int> mnHiObjID;
 
     // 移動方向
     VECTOR mvMoveDir;
@@ -471,6 +486,9 @@ public:
     void LastUpdate() override final;
     /*描画*/
     void Draw() override final;
+
+    /*当たり判定*/
+    void HitCheck(CollisionData& collisionData) override = 0;
 
     /*----------------------*/
     /*     【独自処理】     */
@@ -505,6 +523,9 @@ public:
     /*移動方向設定*/
     inline void SetMoveDir(VECTOR moveDir) { mvMoveDir = moveDir; }
 
+    /*攻撃力設定*/
+    inline void SetAttackPower(int power) { mnPower = power; }
+
     /*--------*/
     /*【取得】*/
     /*--------*/
@@ -515,6 +536,9 @@ public:
 
     /*攻撃反動時間取得*/
     inline int GetAttackRecoilTime() const { return mnAttackRecoilTime; }
+
+    /*パワー取得*/
+    inline int GetAttackPower()const { return mnPower; }
 };
 
 /*----------------------------------------------*/

@@ -5,6 +5,7 @@
 #include "KeyState.h"
 #include "ObjectBases.h"
 #include "StatePlayer.h"
+#include "TargetManager.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
 
@@ -100,6 +101,12 @@ void PlayerProcess::PlayerProcessDraw()
 	}
 }
 
+// €–S
+void PlayerProcess::PlayerDeath(CharacterBase* character)
+{
+	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_NUMBER::PLAYER);
+}
+
 /*--------------------------*/
 /*     yŠî–{ƒXƒe[ƒgz     */
 /*--------------------------*/
@@ -150,6 +157,12 @@ void IdlePlayerState::Draw(CharacterBase* character)
 	PlayerProcessDraw();
 }
 
+// €–S
+void IdlePlayerState::Death(CharacterBase* character)
+{
+	PlayerDeath(character);
+}
+
 /*--------------------------*/
 /*yˆÚ“®ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------*/
@@ -197,6 +210,12 @@ void MovePlayerState::LastUpdate(CharacterBase* character)
 void MovePlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw();
+}
+
+// €–S
+void MovePlayerState::Death(CharacterBase* character)
+{
+	PlayerDeath(character);
 }
 
 /*--------------------------*/
@@ -250,6 +269,12 @@ void AttackPlayerState::LastUpdate(CharacterBase* character)
 void AttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw();
+}
+
+// €–S
+void AttackPlayerState::Death(CharacterBase* character)
+{
+	PlayerDeath(character);
 }
 
 /*----------------------------*/

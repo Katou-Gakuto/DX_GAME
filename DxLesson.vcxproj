@@ -26,6 +26,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Object\Attack\ShotAttack.cpp" />
     <ClCompile Include="Source\Object\Building\Wall.cpp" />
+    <ClCompile Include="Source\Object\Character\MapCharacter.cpp" />
     <ClCompile Include="Source\Object\Character\ShotCharacter.cpp" />
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
     <ClCompile Include="Source\Object\UI\CheckUI.cpp" />
@@ -53,6 +54,7 @@
     <ClCompile Include="Source\State\StateBase.cpp" />
     <ClCompile Include="Source\State\StateCamera.cpp" />
     <ClCompile Include="Source\State\StateScene.cpp" />
+    <ClCompile Include="Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="Source\State\UI\StateTitleUI.cpp" />
     <ClCompile Include="Source\Struct\CameraData.cpp" />
     <ClCompile Include="Source\Struct\CollisionData.cpp" />
@@ -65,6 +67,7 @@
     <ClInclude Include="Source\Enum\SceneEnum.h" />
     <ClInclude Include="Source\Object\Attack\ShotAttack.h" />
     <ClInclude Include="Source\Object\Building\Wall.h" />
+    <ClInclude Include="Source\Object\Character\MapCharacter.h" />
     <ClInclude Include="Source\Object\Character\ShotCharacter.h" />
     <ClInclude Include="Source\Object\ObjectBases.h" />
     <ClInclude Include="Source\Object\UI\CheckUI.h" />
@@ -92,6 +95,7 @@
     <ClInclude Include="Source\State\StateBase.h" />
     <ClInclude Include="Source\State\StateCamera.h" />
     <ClInclude Include="Source\State\StateScene.h" />
+    <ClInclude Include="Source\State\UI\StateResultUI.h" />
     <ClInclude Include="Source\State\UI\StateTitleUI.h" />
     <ClInclude Include="Source\Struct\AttackData.h" />
     <ClInclude Include="Source\Struct\BitFlag.h" />

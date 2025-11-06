@@ -1,12 +1,18 @@
+#include "Master.h"
+
 #include "CameraManager.h"
 #include "FSM.h"
+#include "GameManager.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "StateCamera.h"
+#include "StateEnemy.h"
 #include "StatePlayer.h"
+#include "StateResultUI.h"
 #include "StateScene.h"
 #include "StateTitleUI.h"
+#include "TargetManager.h"
 #include "UtilFactorys.h"
 
 /*カメラ有限状態マシン作成*/
@@ -33,6 +39,8 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new MovePlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
@@ -40,6 +48,8 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new MovePlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
@@ -48,6 +58,16 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new AttackPlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::ENEMY:
+		fsmCharacter->RegisterState(new IdleEnemyState());
+
+		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::ENEMY);
 		break;
 	}
 
@@ -87,6 +107,12 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new SettingTitleUIState());
 
 		fsmUI->SetCurrentState((int)TITLE_UI_STATE::START_TITLE_UI_STATE, ui);
+		break;
+
+	case UI_FACTORY_NUMBER::RESULT:
+		fsmUI->RegisterState(new StartResultUIState());
+
+		fsmUI->SetCurrentState((int)RESULT_UI_STATE::START_RESULT_UI_STATE, ui);
 		break;
 	}
 

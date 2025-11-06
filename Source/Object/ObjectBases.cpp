@@ -135,6 +135,16 @@ void CharacterBase::StopAttack()
 	}
 }
 
+// É_ÉÅÅ[ÉW
+void CharacterBase::Damage(int damage)
+{
+	mstStatus.hp -= damage;
+	if (mstStatus.hp <= 0)
+	{
+		SetHPZero();
+	}
+}
+
 // íËå^çsìÆèàóù
 void CharacterBase::TemplateActionProcess()
 {
@@ -197,6 +207,11 @@ void CharacterBase::TemplateActionProcess()
 			mvVec = VNorm(mvVec);
 		}
 
+		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::HP_ZERO))
+		{
+			DeathProcess();
+		}
+
 		munActionflags.Init();
 	}
 }
@@ -206,6 +221,18 @@ void CharacterBase::MoveProcess()
 {
 	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.speed));
 }
+
+// éÄñSèàóù
+void CharacterBase::DeathProcess()
+{
+	if (mpFsm != nullptr)
+	{
+		mpFsm->Death(this);
+	}
+
+	SetDeleteFlag(true);
+}
+
 
 /*--------*/
 /*Åyê›íËÅz*/
@@ -280,7 +307,7 @@ AttackBase::AttackBase()
 , mnAttackTime(0)
 , mvMoveDir(UtilCalc::VZero())
 {
-	mpHiCharacter.clear();
+	mnHiObjID.clear();
 }
 
 AttackBase::~AttackBase()

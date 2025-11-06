@@ -61,6 +61,9 @@ private:
 
 	// アイテム作成後// 削除予定アイテム名
 
+	// ダンジョンの削除キャラクターID
+	int mnDungeonDeleteCharacterID;
+
 public:
 
 	/*--------*/
@@ -92,7 +95,10 @@ public:
 	void SetPlayPlayer(int playerNumber);
 
 	/*プレイプレイヤーデータ設定*/
-	inline void SetPlayPlayerData(PLAYER_DATA data) { mstPlayPlayerData.playerData = data; }
+	inline void SetPlayPlayerData(const PLAYER_DATA& data) { mstPlayPlayerData.playerData = data; }
+
+	/*ダンジョンの削除キャラクターID取得*/
+	inline void SetDungeonDeleteCharacterID(int dungeonDeleteCharacterID) { mnDungeonDeleteCharacterID = dungeonDeleteCharacterID; }
 
 	/*--------*/
 	/*【取得】*/
@@ -114,6 +120,8 @@ public:
 	/*全データを取得*/
 	inline std::vector<ONE_DATA> GetAllData(bool baseFlag = false) const { return (baseFlag ? mstBaseData.oneDatas : mstPlayPlayerData.oneDatas); }
 
+	/*ダンジョンの削除キャラクターID取得*/
+	inline int GetDungeonDeleteCharacterID() const { return mnDungeonDeleteCharacterID; }
 
 private:
 	/// <summary>

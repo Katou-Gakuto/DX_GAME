@@ -51,6 +51,9 @@ protected:
 
 	/*•`‰æ*/
 	void PlayerProcessDraw();
+
+	/*Ž€–S*/
+	void PlayerDeath(CharacterBase* character);
 };
 
 /*--------------------------*/
@@ -82,6 +85,9 @@ public:
 
 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
+
+	/*Ž€–S*/
+	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
@@ -109,6 +115,9 @@ public:
 
 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
+
+	/*Ž€–S*/
+	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
@@ -140,6 +149,9 @@ public:
 
 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
+
+	/*Ž€–S*/
+	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/

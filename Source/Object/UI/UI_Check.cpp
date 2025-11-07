@@ -1,10 +1,10 @@
 #include <string>
 
-#include "CheckUI.h"
 #include "ObjectBases.h"
+#include "UI_Check.h"
 
 template<typename T>
-CheckUI<T>::CheckUI(void* yesArgument, void* noArgument, void(T::* yesExecuteMemberFunction)(void*), void(T::* noExecuteMemberFunction)(void*), T* yesFunctionPointer, T* noFunctionPointer, std::string messageWord, std::string yesWord, std::string noWord)
+UI_Check<T>::UI_Check(void* yesArgument, void* noArgument, void(T::* yesExecuteMemberFunction)(void*), void(T::* noExecuteMemberFunction)(void*), T* yesFunctionPointer, T* noFunctionPointer, std::string messageWord, std::string yesWord, std::string noWord)
 : UIBase(true, 2, true)
 , mpYesArgument(yesArgument)
 , mpNoArgument(noArgument)
@@ -19,45 +19,45 @@ CheckUI<T>::CheckUI(void* yesArgument, void* noArgument, void(T::* yesExecuteMem
 }
 
 template<typename T>
-CheckUI<T>::~CheckUI()
+UI_Check<T>::~UI_Check()
 {
 }
 
 
 // UI初期化
 template<typename T>
-void CheckUI<T>::UIInitilize()
+void UI_Check<T>::UIInitilize()
 {
 }
 
 // UI終了
 template<typename T>
-void CheckUI<T>::UIFinalize()
+void UI_Check<T>::UIFinalize()
 {
 }
 
 // UI更新
 template<typename T>
-void CheckUI<T>::UIUpdate()
+void UI_Check<T>::UIUpdate()
 {
 	LeftRightSelectProcess();
 }
 
 // UI最終更新
 template<typename T>
-void CheckUI<T>::UILastUpdate()
+void UI_Check<T>::UILastUpdate()
 {
 }
 
 // UI描画
 template<typename T>
-void CheckUI<T>::UIDraw()
+void UI_Check<T>::UIDraw()
 {
 }
 
 // 選択決定時処理
 template<typename T>
-void CheckUI<T>::DecisionProcess()
+void UI_Check<T>::DecisionProcess()
 {
 	switch (mnSelectNumber)
 	{

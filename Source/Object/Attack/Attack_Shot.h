@@ -1,11 +1,11 @@
 #pragma once
 #include "ObjectBases.h"
 
-class ShotAttack : public AttackBase
+class Attack_Shot : public AttackBase
 {
 public:
-	ShotAttack();
-	~ShotAttack();
+    Attack_Shot();
+	~Attack_Shot();
 
 
 private:

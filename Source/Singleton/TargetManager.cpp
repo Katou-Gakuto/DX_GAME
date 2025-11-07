@@ -1,3 +1,5 @@
+#include "BitFlag.h"
+
 #include "ObjectBases.h"
 #include "TargetManager.h"
 
@@ -10,14 +12,14 @@ TargetManager::TargetManager()
 /*【初期化】*/
 /*----------*/
 
-/*全初期化*/
+// 全初期化
 void TargetManager::Init()
 {
 	mpPlayer = nullptr;
 	mpEnemys.clear();
 }
 
-/*指定ターゲット初期化*/
+// 指定ターゲット初期化
 void TargetManager::TargetInit(TARGET_NUMBER targetNumber)
 {
 	switch (targetNumber)
@@ -32,12 +34,25 @@ void TargetManager::TargetInit(TARGET_NUMBER targetNumber)
 	}
 }
 
+// 指定ターゲット初期化
+void TargetManager::TargetInit(BIT_FLAG<unsigned int> targetNumber)
+{
+	if (targetNumber.BIT_GET((int)TARGET_NUMBER::PLAYER))
+	{
+		mpPlayer = nullptr;
+	}
+	if (targetNumber.BIT_GET((int)TARGET_NUMBER::ENEMY))
+	{
+		mpEnemys.clear();
+	}
+}
+
 
 /*--------*/
 /*【削除】*/
 /*--------*/
 
-/*削除*/
+// 削除
 void TargetManager::Delete(CharacterBase* character, TARGET_NUMBER targetNumber)
 {
 	switch (targetNumber)

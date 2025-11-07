@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <fstream>
 
 #include <map>
 #include <Windows.h>
@@ -8,6 +9,7 @@
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
 #include "GameDatas.h"
+#include "TileData.h"
 
 #include "DxLib.h"
 
@@ -40,7 +42,7 @@ DataManager::DataManager()
 		mstPlayerDatas.clear();
 
 		PLAYER_DATA setPlayer = PLAYER_DATA();
-		setPlayer.mapType = SCENE::BATTLE_1;
+		setPlayer.mapType = SCENE::DUNGEON_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::DUNGEON_1;
 		setPlayer.preMap = SCENE::NONE;
@@ -53,7 +55,7 @@ DataManager::DataManager()
 
 		mstPlayerDatas.push_back(setPlayer);
 
-		setPlayer.mapType = SCENE::BATTLE_2;
+		setPlayer.mapType = SCENE::DUNGEON_2;
 		setPlayer.townType = SCENE::TOWN_2;
 		setPlayer.dungeonType = SCENE::DUNGEON_2;
 		setPlayer.name = "アボカド2";
@@ -61,7 +63,7 @@ DataManager::DataManager()
 
 		mstPlayerDatas.push_back(setPlayer);
 
-		setPlayer.mapType = SCENE::BATTLE_3;
+		setPlayer.mapType = SCENE::DUNGEON_3;
 		setPlayer.townType = SCENE::TOWN_3;
 		setPlayer.dungeonType = SCENE::DUNGEON_3;
 		setPlayer.name = "アボカド3";
@@ -408,4 +410,37 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		mmGetFilePosNumbers[sceneName] = setGetFilePosNumbers;*/
 		return resultData;
 	}
+}
+
+
+// マップデータ取得
+std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
+{
+	std::vector<std::vector<TileData>> mapData;
+	mapData.clear();
+
+
+	/*std::ifstream csv_file(file_path); // ファイルを開く
+
+if (!csv_file.is_open()) {
+std::cerr << "ファイルが開けませんでした: " << file_path << std::endl;
+return 1;
+}
+
+std::string line; // 1行分のデータ
+while (std::getline(csv_file, line)) {
+std::istringstream line_stream(line);
+std::string cell;
+
+// カンマ区切りでデータを取得
+while (std::getline(line_stream, cell, ',')) {
+std::cout << cell << " "; // 各セルのデータを出力
+}
+std::cout << std::endl; // 行ごとに改行
+}
+
+csv_file.close(); // ファイルを閉じる
+return 0;*/
+
+	return mapData;
 }

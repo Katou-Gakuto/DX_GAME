@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+
+#include "BitFlag.h"
 
 class CharacterBase;
 
@@ -30,6 +33,8 @@ public:
 	/*指定ターゲット初期化*/
 	void TargetInit(TARGET_NUMBER targetNumber);
 
+	/*指定ターゲット初期化*/
+	void TargetInit(BIT_FLAG<unsigned int> targetNumber);
 
 	/*--------*/
 	/*【削除】*/

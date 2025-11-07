@@ -5,12 +5,12 @@
 #include "Master.h"
 
 #include "AttackManager.h"
+#include "Character_Shot.h"
 #include "GameManager.h"
 #include "ObjectBases.h"
-#include "ShotCharacter.h"
 #include "UtilCalc.h"
 
-ShotCharacter::ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType)
+Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType)
 : CharacterBase(nextSceneDeleteFlag, status)
 {
 	AttackData setData = AttackData();
@@ -28,43 +28,43 @@ ShotCharacter::ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE 
 	}
 }
 
-ShotCharacter::~ShotCharacter()
+Character_Shot::~Character_Shot()
 {
 }
 
 // 攻撃リセット
-void ShotCharacter::StopAttack()
+void Character_Shot::StopAttack()
 {
 }
 
 // キャラクター初期化
-void ShotCharacter::CharacterInitilize()
+void Character_Shot::CharacterInitilize()
 {
 }
 
 // キャラクター終了
-void ShotCharacter::CharacterFinalize()
+void Character_Shot::CharacterFinalize()
 {
 }
 
 // キャラクター更新
-void ShotCharacter::CharacterUpdate()
+void Character_Shot::CharacterUpdate()
 {
 }
 
 // キャラクター最終更新
-void ShotCharacter::CharacterLastUpdate()
+void Character_Shot::CharacterLastUpdate()
 {
 }
 
 // キャラクター描画
-void ShotCharacter::CharacterDraw()
+void Character_Shot::CharacterDraw()
 {
 	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
 }
 
 // 当たり判定用
-void ShotCharacter::HitCheck(CollisionData& collisionData)
+void Character_Shot::HitCheck(CollisionData& collisionData)
 {
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
 	{

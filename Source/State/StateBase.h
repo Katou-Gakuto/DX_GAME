@@ -7,6 +7,7 @@ enum class SCENE;
 class CameraManager;
 class CharacterBase;
 class SceneManager;
+class TargetManager;
 class UIBase;
 
 /*------------------*/
@@ -87,17 +88,23 @@ public:
 class IStateScene : public StateBase<SCENE>
 {
 protected:
+	// ターゲットマネージャー
+	TargetManager* mpTargetManager;
+	
 	// シーンカメラID
-	int mnSceneCameraID = -1;
+	int mnSceneCameraID;
 
 public:
-	IStateScene() = default;
+	IStateScene();
 	virtual ~IStateScene() = default;
 
 	/*この状態に入った時の処理*/
 	virtual void OnEnter(SceneManager* sceneManager) = 0;
 	/*この状態を出る時の処理*/
 	virtual void OnExit(SceneManager* sceneManager) = 0;
+
+	/*ステージ状態に入った時の共通処理*/
+	void StageOnEnter(SceneManager* sceneManager);
 
 	/*更新*/
 	SCENE Update(SceneManager* sceneManager);

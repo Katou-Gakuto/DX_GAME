@@ -8,6 +8,7 @@
 #include "StateBase.h"
 #include "StateCamera.h"
 #include "StateEnemy.h"
+#include "StateMapEnemy.h"
 #include "StatePlayer.h"
 #include "StateResultUI.h"
 #include "StateScene.h"
@@ -60,6 +61,15 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
 		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::MAP_ENEMY:
+		fsmCharacter->RegisterState(new IdleMapEnemyState());
+		fsmCharacter->RegisterState(new TelopMapEnemyState());
+
+		fsmCharacter->SetCurrentState((int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::ENEMY);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::ENEMY:

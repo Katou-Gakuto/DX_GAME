@@ -6,10 +6,10 @@
 #include "Master.h"
 
 #include "AttackManager.h"
+#include "Attack_Shot.h"
 #include "GameManager.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
-#include "ShotAttack.h"
 #include "TimeManager.h"
 
 AttackManager::AttackManager()
@@ -34,7 +34,7 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 		mstAllAttack.reserve(setSize);
 		for (int i = 0; i < setSize; i++)
 		{
-			mstAllAttack.push_back(new ShotAttack());
+			mstAllAttack.push_back(new Attack_Shot());
 			mmAttacks[attackType].push_back(mstAllAttack.back());
 		}
 		break;

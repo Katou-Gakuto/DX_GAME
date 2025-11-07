@@ -3,41 +3,41 @@
 #include "Master.h"
 
 #include "FSM.h"
-#include "ResultUI.h"
+#include "UI_Result.h"
 
-ResultUI::ResultUI()
+UI_Result::UI_Result()
 : UIBase(true, 1)
 , mnLineAeraSize(10000.0f)
 , mnLineNum(50)
 {
 }
 
-ResultUI::~ResultUI()
+UI_Result::~UI_Result()
 {
 }
 
 // UI初期化
-void ResultUI::UIInitilize()
+void UI_Result::UIInitilize()
 {
 }
 
 // UI終了
-void ResultUI::UIFinalize()
+void UI_Result::UIFinalize()
 {
 }
 
 // UI更新
-void ResultUI::UIUpdate()
+void UI_Result::UIUpdate()
 {
 }
 
 // UI最終更新
-void ResultUI::UILastUpdate()
+void UI_Result::UILastUpdate()
 {
 }
 
 // UI描画
-void ResultUI::UIDraw()
+void UI_Result::UIDraw()
 {
 
     VECTOR pos1;
@@ -66,7 +66,7 @@ void ResultUI::UIDraw()
 
 
 // 選択決定時処理
-void ResultUI::DecisionProcess()
+void UI_Result::DecisionProcess()
 {
     mpFsm->Decision(this);
 }

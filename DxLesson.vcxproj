@@ -24,15 +24,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Object\Attack\ShotAttack.cpp" />
-    <ClCompile Include="Source\Object\Building\Wall.cpp" />
-    <ClCompile Include="Source\Object\Character\MapCharacter.cpp" />
-    <ClCompile Include="Source\Object\Character\ShotCharacter.cpp" />
+    <ClCompile Include="Source\Object\Attack\Attack_Shot.cpp" />
+    <ClCompile Include="Source\Object\Building\Building_Wall.cpp" />
+    <ClCompile Include="Source\Object\Character\Character_Map.cpp" />
+    <ClCompile Include="Source\Object\Character\Character_Shot.cpp" />
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
-    <ClCompile Include="Source\Object\UI\CheckUI.cpp" />
-    <ClCompile Include="Source\Object\UI\DebugUI.cpp" />
-    <ClCompile Include="Source\Object\UI\ResultUI.cpp" />
-    <ClCompile Include="Source\Object\UI\TitleUI.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_Check.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_Debug.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
     <ClCompile Include="Source\Singleton\AttackManager.cpp" />
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
@@ -49,6 +49,7 @@
     <ClCompile Include="Source\Singleton\TargetManager.cpp" />
     <ClCompile Include="Source\Singleton\TimeManager.cpp" />
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
+    <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
     <ClCompile Include="Source\State\FSM.cpp" />
     <ClCompile Include="Source\State\StateBase.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="Source\State\UI\StateTitleUI.cpp" />
     <ClCompile Include="Source\Struct\CameraData.cpp" />
     <ClCompile Include="Source\Struct\CollisionData.cpp" />
+    <ClCompile Include="Source\Struct\TileData.cpp" />
     <ClCompile Include="Source\Util\UtilCalc.cpp" />
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
@@ -65,15 +67,15 @@
   <ItemGroup>
     <ClInclude Include="Source\Enum\CharacterEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
-    <ClInclude Include="Source\Object\Attack\ShotAttack.h" />
-    <ClInclude Include="Source\Object\Building\Wall.h" />
-    <ClInclude Include="Source\Object\Character\MapCharacter.h" />
-    <ClInclude Include="Source\Object\Character\ShotCharacter.h" />
+    <ClInclude Include="Source\Object\Attack\Attack_Shot.h" />
+    <ClInclude Include="Source\Object\Building\Building_Wall.h" />
+    <ClInclude Include="Source\Object\Character\Character_Map.h" />
+    <ClInclude Include="Source\Object\Character\Character_Shot.h" />
     <ClInclude Include="Source\Object\ObjectBases.h" />
-    <ClInclude Include="Source\Object\UI\CheckUI.h" />
-    <ClInclude Include="Source\Object\UI\DebugUI.h" />
-    <ClInclude Include="Source\Object\UI\ResultUI.h" />
-    <ClInclude Include="Source\Object\UI\TitleUI.h" />
+    <ClInclude Include="Source\Object\UI\UI_Check.h" />
+    <ClInclude Include="Source\Object\UI\UI_Debug.h" />
+    <ClInclude Include="Source\Object\UI\UI_Result.h" />
+    <ClInclude Include="Source\Object\UI\UI_Title.h" />
     <ClInclude Include="Source\Singleton\AttackManager.h" />
     <ClInclude Include="Source\Singleton\CameraManager.h" />
     <ClInclude Include="Source\Singleton\CollisionManager.h" />
@@ -90,6 +92,7 @@
     <ClInclude Include="Source\Singleton\TargetManager.h" />
     <ClInclude Include="Source\Singleton\TimeManager.h" />
     <ClInclude Include="Source\State\Character\StateEnemy.h" />
+    <ClInclude Include="Source\State\Character\StateMapEnemy.h" />
     <ClInclude Include="Source\State\Character\StatePlayer.h" />
     <ClInclude Include="Source\State\FSM.h" />
     <ClInclude Include="Source\State\StateBase.h" />
@@ -102,6 +105,7 @@
     <ClInclude Include="Source\Struct\CameraData.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
+    <ClInclude Include="Source\Struct\TileData.h" />
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Util\UtilCalc.h" />
     <ClInclude Include="Source\Util\UtilChange.h" />

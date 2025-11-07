@@ -1,22 +1,22 @@
 #include "Master.h"
 
+#include "Attack_Shot.h"
 #include "ObjectBases.h"
-#include "ShotAttack.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
 
-ShotAttack::ShotAttack()
+Attack_Shot::Attack_Shot()
 : AttackBase()
 {
 	mnAttackRecoilTime = 500;
 }
 
-ShotAttack::~ShotAttack()
+Attack_Shot::~Attack_Shot()
 {
 }
 
 // アタック初期化
-void ShotAttack::AttackInitilize()
+void Attack_Shot::AttackInitilize()
 {
 	mnHiObjID.clear();
 
@@ -26,12 +26,12 @@ void ShotAttack::AttackInitilize()
 }
 
 // アタック終了
-void ShotAttack::AttackFinalize()
+void Attack_Shot::AttackFinalize()
 {
 }
 
 // アタック更新
-void ShotAttack::AttackUpdate()
+void Attack_Shot::AttackUpdate()
 {
 	mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
 
@@ -42,18 +42,18 @@ void ShotAttack::AttackUpdate()
 }
 
 // アタック最終更新
-void ShotAttack::AttackLastUpdate()
+void Attack_Shot::AttackLastUpdate()
 {
 }
 
 // アタック描画
-void ShotAttack::AttackDraw()
+void Attack_Shot::AttackDraw()
 {
 	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 }
 
 // 当たり判定
-void ShotAttack::HitCheck(CollisionData& collisionData)
+void Attack_Shot::HitCheck(CollisionData& collisionData)
 {
 	if (mpAttackCharacter->GetID() == collisionData.objID)
 	{

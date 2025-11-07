@@ -7,6 +7,9 @@
 #include "SceneEnum.h"
 #include "GameDatas.h"
 
+enum class MapType;
+struct TileData;
+
 class EndManager;
 
 class DataManager
@@ -122,6 +125,10 @@ public:
 
 	/*ダンジョンの削除キャラクターID取得*/
 	inline int GetDungeonDeleteCharacterID() const { return mnDungeonDeleteCharacterID; }
+
+
+	/*マップデータ取得*/
+	std::vector<std::vector<TileData>> GetMapData(MapType tileType);
 
 private:
 	/// <summary>

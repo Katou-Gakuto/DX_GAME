@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
-//#include <type_traits>
+#include <type_traits>
 
 // ビットフラグ用構造体
-template<typename T>
-//template<typename T, typename = typename std::enable_if<std::is_integral<T>::value&& std::is_unsigned<T>::value>::type>
+template<typename T, typename = typename std::enable_if<std::is_integral<T>::value&& std::is_unsigned<T>::value>::type>
 struct BIT_FLAG
 {
 public:

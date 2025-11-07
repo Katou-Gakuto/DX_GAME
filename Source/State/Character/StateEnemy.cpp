@@ -4,6 +4,7 @@
 #include "StateEnemy.h"
 #include "SceneManager.h"
 #include "TargetManager.h"
+#include "UtilCalc.h"
 
 /*------------------*/
 /*     【共通】     */
@@ -20,7 +21,7 @@ EnemyProcess::EnemyProcess()
 // 一定範囲内にプレイヤーターゲットがいるなら「true」
 bool EnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 {
-	return false;
+    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_NUMBER::PLAYER)->GetPos(), 180.0f);
 }
 
 // プレイヤー方向を向いて移動する

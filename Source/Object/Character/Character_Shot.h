@@ -6,11 +6,11 @@ enum class SHOT_TYPE
     DEFAULT = 0,
 };
 
-class ShotCharacter : public CharacterBase
+class Character_Shot : public CharacterBase
 {
 public:
-    ShotCharacter(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType);
-    ~ShotCharacter();
+    Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType);
+    ~Character_Shot();
 
     /*çUåÇÉäÉZÉbÉg*/
     void StopAttack() override;

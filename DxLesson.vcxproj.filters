@@ -167,25 +167,25 @@
     <ClCompile Include="Source\Object\ObjectBases.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\TitleUI.cpp">
+    <ClCompile Include="Source\Object\UI\UI_Title.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\ResultUI.cpp">
+    <ClCompile Include="Source\Object\UI\UI_Result.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\DebugUI.cpp">
+    <ClCompile Include="Source\Object\UI\UI_Debug.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\CheckUI.cpp">
+    <ClCompile Include="Source\Object\UI\UI_Check.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\Character\ShotCharacter.cpp">
+    <ClCompile Include="Source\Object\Character\Character_Shot.cpp">
       <Filter>ソース ファイル\Object\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\Building\Wall.cpp">
+    <ClCompile Include="Source\Object\Building\Building_Wall.cpp">
       <Filter>ソース ファイル\Object\Building</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\Attack\ShotAttack.cpp">
+    <ClCompile Include="Source\Object\Attack\Attack_Shot.cpp">
       <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\AttackManager.cpp">
@@ -203,8 +203,14 @@
     <ClCompile Include="Source\State\UI\StateResultUI.cpp">
       <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\Character\MapCharacter.cpp">
+    <ClCompile Include="Source\Object\Character\Character_Map.cpp">
       <Filter>ソース ファイル\Object\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\StateMapEnemy.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Struct\TileData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,25 +304,25 @@
     <ClInclude Include="Source\Object\ObjectBases.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UI\TitleUI.h">
+    <ClInclude Include="Source\Object\UI\UI_Title.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UI\ResultUI.h">
+    <ClInclude Include="Source\Object\UI\UI_Result.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UI\DebugUI.h">
+    <ClInclude Include="Source\Object\UI\UI_Debug.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UI\CheckUI.h">
+    <ClInclude Include="Source\Object\UI\UI_Check.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\Character\ShotCharacter.h">
+    <ClInclude Include="Source\Object\Character\Character_Shot.h">
       <Filter>ヘッダー ファイル\Object\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\Building\Wall.h">
+    <ClInclude Include="Source\Object\Building\Building_Wall.h">
       <Filter>ヘッダー ファイル\Object\Building</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\Attack\ShotAttack.h">
+    <ClInclude Include="Source\Object\Attack\Attack_Shot.h">
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton\AttackManager.h">
@@ -334,8 +340,14 @@
     <ClInclude Include="Source\State\UI\StateResultUI.h">
       <Filter>ヘッダー ファイル\State\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\Character\MapCharacter.h">
+    <ClInclude Include="Source\Object\Character\Character_Map.h">
       <Filter>ヘッダー ファイル\Object\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateMapEnemy.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\TileData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

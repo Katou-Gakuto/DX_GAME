@@ -1,8 +1,12 @@
 #include "CameraData.h"
 
+#include "Master.h"
+
 #include "CameraManager.h"
+#include "GameManager.h"
 #include "SceneManager.h"
 #include "StateBase.h"
+#include "TargetManager.h"
 #include "UtilCalc.h"
 
 /*------------------------*/
@@ -51,6 +55,21 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 /*------------------------*/
 /*【シーンステートベース】*/
 /*------------------------*/
+IStateScene::IStateScene()
+: mpTargetManager(nullptr)
+, mnSceneCameraID(-1)
+{
+}
+
+// 状態に入った時の共通処理
+void IStateScene::StageOnEnter(SceneManager* sceneManager)
+{
+	if (mpTargetManager == nullptr)
+	{
+		mpTargetManager = Master::mpGameManager->GetTargetManager();
+	}
+	mpTargetManager->TargetInit((unsigned int)((1 << (int)TARGET_NUMBER::PLAYER) | (1 << (int)TARGET_NUMBER::ENEMY)));
+}
 
 // 更新
 SCENE IStateScene::Update(SceneManager* sceneManager)

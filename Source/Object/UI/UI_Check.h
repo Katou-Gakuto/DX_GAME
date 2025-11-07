@@ -4,7 +4,7 @@
 #include "ObjectBases.h"
 
 template<typename T>
-class CheckUI : public UIBase
+class UI_Check : public UIBase
 {
 private:
     // yes‚ÌÀsŠÖ”‚É“n‚·ˆø”
@@ -29,8 +29,8 @@ private:
     std::string msNoWord;
 
 public:
-    CheckUI(void* yesArgument, void* noArgument, void(T::*yesExecuteMemberFunction)(void*), void(T::*noExecuteMemberFunction)(void*), T* yesFunctionPointer, T* noFunctionPointer, std::string messageWord, std::string yesWord = "YES", std::string noWord = "NO");
-    ~CheckUI();
+    UI_Check(void* yesArgument, void* noArgument, void(T::*yesExecuteMemberFunction)(void*), void(T::*noExecuteMemberFunction)(void*), T* yesFunctionPointer, T* noFunctionPointer, std::string messageWord, std::string yesWord = "YES", std::string noWord = "NO");
+    ~UI_Check();
 
 private:
     /*UI‰Šú‰»*/

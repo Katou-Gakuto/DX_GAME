@@ -1,7 +1,8 @@
 #pragma once
+
 #include "ObjectBases.h"
 
-class TitleUI : public UIBase
+class UI_Result : public UIBase
 {
 private:
     // ラインサイズ
@@ -10,8 +11,8 @@ private:
     int mnLineNum;
 
 public:
-    TitleUI();
-    ~TitleUI();
+    UI_Result();
+    ~UI_Result();
 
 private:
     /*UI初期化*/

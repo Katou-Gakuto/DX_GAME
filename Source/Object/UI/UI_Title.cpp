@@ -3,41 +3,41 @@
 #include "Master.h"
 
 #include "FSM.h"
-#include "TitleUI.h"
+#include "UI_Title.h"
 
-TitleUI::TitleUI()
+UI_Title::UI_Title()
 : UIBase(true, 1)
 , mnLineAeraSize(10000.0f)
 , mnLineNum(50)
 {
 }
 
-TitleUI::~TitleUI()
+UI_Title::~UI_Title()
 {
 }
 
 // UI初期化
-void TitleUI::UIInitilize()
+void UI_Title::UIInitilize()
 {
 }
 
 // UI終了
-void TitleUI::UIFinalize()
+void UI_Title::UIFinalize()
 {
 }
 
 // UI更新
-void TitleUI::UIUpdate()
+void UI_Title::UIUpdate()
 {
 }
 
 // UI最終更新
-void TitleUI::UILastUpdate()
+void UI_Title::UILastUpdate()
 {
 }
 
 // UI描画
-void TitleUI::UIDraw()
+void UI_Title::UIDraw()
 {
 
     VECTOR pos1;
@@ -66,7 +66,7 @@ void TitleUI::UIDraw()
 
 
 // 選択決定時処理
-void TitleUI::DecisionProcess()
+void UI_Title::DecisionProcess()
 {
 	mpFsm->Decision(this);
 }

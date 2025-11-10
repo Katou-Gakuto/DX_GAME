@@ -10,7 +10,15 @@
 // タイルデータ
 TileData::TileData()
 : tileType(TileType::None)
-, tilePos(UtilCalc::VZero())
+, tileDisplacedPos(UtilCalc::VZero())
+, tileFlag(BIT_FLAG<unsigned long long>(0))
+{
+	adjacentData.clear();
+}
+// タイルデータ
+TileData::TileData(bool flag)
+: tileType(TileType::Ground)
+, tileDisplacedPos(UtilCalc::VZero())
 , tileFlag(BIT_FLAG<unsigned long long>(0))
 {
 	adjacentData.clear();

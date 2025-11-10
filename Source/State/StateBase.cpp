@@ -56,7 +56,8 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 /*【シーンステートベース】*/
 /*------------------------*/
 IStateScene::IStateScene()
-: mpTargetManager(nullptr)
+: mpMapManager(nullptr)
+, mpTargetManager(nullptr)
 , mnSceneCameraID(-1)
 {
 }

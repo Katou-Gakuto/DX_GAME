@@ -11,6 +11,7 @@
 #include "EndManager.h"
 #include "FSM.h"
 #include "GameManager.h"
+#include "MapManager.h"
 #include "ObjectBases.h"
 #include "UI_Result.h"
 #include "SceneManager.h"
@@ -53,6 +54,13 @@ TitleScene::TitleScene()
 
 void TitleScene::OnEnter(SceneManager* sceneManager)
 {
+	// マップ処理
+	if (mpMapManager == nullptr)
+	{
+		mpMapManager = Master::mpGameManager->GetMapManager();
+	}
+	mpMapManager->SetMapData(MapType::None);
+
 	UI_Title* title = new UI_Title();
 	title->Initilize();
 	title->SetFsm(UtilFactorys::FSMUIFactory(title, UI_FACTORY_NUMBER::TITLE));
@@ -88,6 +96,13 @@ TownScene::TownScene()
 
 void TownScene::OnEnter(SceneManager* sceneManager)
 {
+	// マップ処理
+	if (mpMapManager == nullptr)
+	{
+		mpMapManager = Master::mpGameManager->GetMapManager();
+	}
+	mpMapManager->SetMapData(MapType::Normal);
+
 	StageOnEnter(sceneManager);
 
 	{// 町を記録
@@ -151,6 +166,13 @@ DungeonScene::DungeonScene()
 
 void DungeonScene::OnEnter(SceneManager* sceneManager)
 {
+	// マップ処理
+	if (mpMapManager == nullptr)
+	{
+		mpMapManager = Master::mpGameManager->GetMapManager();
+	}
+	mpMapManager->SetMapData(MapType::Normal);
+
 	StageOnEnter(sceneManager);
 
 	{// ダンジョンを記録
@@ -220,6 +242,13 @@ BattleScene::BattleScene()
 
 void BattleScene::OnEnter(SceneManager* sceneManager)
 {
+	// マップ処理
+	if (mpMapManager == nullptr)
+	{
+		mpMapManager = Master::mpGameManager->GetMapManager();
+	}
+	mpMapManager->SetMapData(MapType::Battle);
+
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();

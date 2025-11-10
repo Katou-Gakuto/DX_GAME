@@ -6,6 +6,7 @@ enum class SCENE;
 
 class CameraManager;
 class CharacterBase;
+class MapManager;
 class SceneManager;
 class TargetManager;
 class UIBase;
@@ -91,6 +92,9 @@ protected:
 	// ターゲットマネージャー
 	TargetManager* mpTargetManager;
 	
+	// マップマネージャー
+	MapManager* mpMapManager;
+
 	// シーンカメラID
 	int mnSceneCameraID;
 

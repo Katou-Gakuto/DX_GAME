@@ -4,9 +4,10 @@
 
 #include "AttackManager.h"
 #include "CameraManager.h"
-#include "GameManager.h"
 #include "CollisionManager.h"
+#include "GameManager.h"
 #include "KeyState.h"
+#include "MapManager.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
 #include "TargetManager.h"
@@ -17,6 +18,7 @@ GameManager::GameManager()
 : mpAttackManager(nullptr)
 , mpCameraManager(nullptr)
 , mpCollisionManager(nullptr)
+, mpMapManager(nullptr)
 , mpObjectManager(nullptr)
 , mpSceneManager(nullptr)
 , mpTargetManager(nullptr)
@@ -41,6 +43,7 @@ void GameManager::Initilize()
 
     mpAttackManager = new AttackManager();
     mpCollisionManager = new CollisionManager();
+    mpMapManager = new MapManager();
     mpTargetManager = new TargetManager();
 
     SetDrawScreen(DX_SCREEN_BACK);
@@ -86,6 +89,8 @@ void GameManager::Draw()
     mpCameraManager->Draw();
 
     mpObjectManager->Draw();
+
+    mpMapManager->Draw();
 
     ScreenFlip();
 }

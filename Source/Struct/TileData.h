@@ -31,12 +31,13 @@ struct TileData
 {
 public:
 	TileData();
+	TileData(bool flag);
 
 	std::vector<TilePos> adjacentData; // 隣接タイル情報
 
-	BIT_FLAG<unsigned long long> tileFlag;	// このマスのフラグデータ
+	BIT_FLAG<unsigned long long> tileFlag;	// このタイルのフラグデータ
 
 	TileType tileType;	// タイルの種類
 
-	VECTOR tilePos;	// このマスのデータ
+	VECTOR tileDisplacedPos;	// このタイルのずれたベクトル
 };

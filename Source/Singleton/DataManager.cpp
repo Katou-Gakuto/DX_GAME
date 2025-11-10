@@ -1,7 +1,8 @@
+#include <fstream>
+#include <iostream>
+#include <list>
 #include <string>
 #include <vector>
-#include <list>
-#include <fstream>
 
 #include <map>
 #include <Windows.h>
@@ -419,6 +420,49 @@ std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
 	std::vector<std::vector<TileData>> mapData;
 	mapData.clear();
 
+	std::ifstream csvFile;
+	csvFile.open("MapData/Map" + std::to_string((int)tileType) + ".csv");
+
+	if (csvFile.is_open())
+	{
+		// ファイルの行数と列数を数える
+		std::string line;
+		int rowCount = 0;
+		int colCount = 0;
+		while (std::getline(csvFile, line))
+		{
+			rowCount++;
+			if (rowCount == 1)
+			{
+				std::string cell;
+				while (std::getline(csvFile, cell, ','))
+				{
+					colCount++;
+				}
+			}
+		}
+		// ファイルの先頭に戻る
+		csvFile.clear();
+		csvFile.seekg(0, std::ios::beg);
+		// マップデータの2次元ベクトルを初期化
+		mapData.resize(rowCount, std::vector<TileData>(colCount));
+		// マップデータを読み込む
+		int currentRow = 0;
+		while (std::getline(csvFile, line))
+		{
+			std::string cell;
+			int currentCol = 0;
+			while (std::getline(csvFile, cell, ','))
+			{
+				int tileValue = std::stoi(cell);
+				TileData& tileData = mapData[currentRow][currentCol];
+				tileData.tileType = static_cast<TileType>(tileValue);
+				tileData.tileDisplacedPos = VGet(static_cast<float>(currentCol), static_cast<float>(currentRow), 0.0f);
+				currentCol++;
+			}
+			currentRow++;
+		}
+	}
 
 	/*std::ifstream csv_file(file_path); // ファイルを開く
 
@@ -442,5 +486,6 @@ std::cout << std::endl; // 行ごとに改行
 csv_file.close(); // ファイルを閉じる
 return 0;*/
 
+	csvFile.close();
 	return mapData;
 }

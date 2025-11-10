@@ -2,6 +2,7 @@
 class AttackManager;
 class CameraManager;
 class CollisionManager;
+class MapManager;
 class ObjectManager;
 class SceneManager;
 class TargetManager;
@@ -18,7 +19,8 @@ private:
 	// コリジョンマネージャー
 	CollisionManager* mpCollisionManager;
 
-	// マップ
+	// マップマネージャー
+	MapManager* mpMapManager;
 	
 	// オブジェクトマネージャー
 	ObjectManager* mpObjectManager;
@@ -84,6 +86,12 @@ public:
 	/// </summary>
 	/// <returns>コリジョンマネージャー</returns>
 	inline CollisionManager* GetCollisionManager() { return mpCollisionManager; }
+
+	/// <summary>
+	/// マップマネージャー取得
+	/// </summary>
+	/// <returns>マップマネージャー</returns>
+	inline MapManager* GetMapManager() { return mpMapManager; }
 
 	/// <summary>
 	/// オブジェクトマネージャー取得

@@ -28,14 +28,14 @@ MapEnemyProcess::MapEnemyProcess()
 // 一定範囲内にプレイヤーターゲットがいるなら「true」
 bool MapEnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 {
-    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_NUMBER::PLAYER)->GetPos(), 180.0f);
+    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
 }
 
 // 死亡
 void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
 {
-    mpTargetManager->Delete(character, TARGET_NUMBER::ENEMY);
-    if ((UtilChange::SceneState(mpSceneManager->GetNowScene()) != SCENE::TOWN) && (mpTargetManager->GetTargets(TARGET_NUMBER::ENEMY).size() <= 0))
+    mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
+    if ((UtilChange::SceneState(mpSceneManager->GetNowScene()) != SCENE::TOWN) && (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0))
     {
         mpSceneManager->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
     }

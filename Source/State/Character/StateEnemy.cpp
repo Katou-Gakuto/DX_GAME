@@ -21,7 +21,7 @@ EnemyProcess::EnemyProcess()
 // 一定範囲内にプレイヤーターゲットがいるなら「true」
 bool EnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 {
-    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_NUMBER::PLAYER)->GetPos(), 180.0f);
+    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
 }
 
 // プレイヤー方向を向いて移動する
@@ -37,8 +37,8 @@ void EnemyProcess::PlayerTargetAttack(CharacterBase* character)
 // 死亡
 void EnemyProcess::EnemyDeath(CharacterBase* character)
 {
-	mpTargetManager->Delete(character, TARGET_NUMBER::ENEMY);
-	if (mpTargetManager->GetTargets(TARGET_NUMBER::ENEMY).size() <= 0)
+	mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
+	if (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0)
 	{
 		Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::BATTLR_RESULT);
 	}

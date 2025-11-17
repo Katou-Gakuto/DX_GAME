@@ -1,10 +1,12 @@
 #include "BitFlag.h"
 
 #include "ObjectBases.h"
+#include "TargetData.h"
 #include "TargetManager.h"
 
+
 TargetManager::TargetManager()
-: mpPlayer(nullptr)
+: mstPlayer()
 {
 }
 
@@ -15,21 +17,21 @@ TargetManager::TargetManager()
 // 全初期化
 void TargetManager::Init()
 {
-	mpPlayer = nullptr;
-	mpEnemys.clear();
+	mstPlayer = nullptr;
+	mstEnemys.clear();
 }
 
 // 指定ターゲット初期化
-void TargetManager::TargetInit(TARGET_NUMBER targetNumber)
+void TargetManager::TargetInit(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
-	case TARGET_NUMBER::PLAYER:
-		mpPlayer = nullptr;
+	case TARGET_TYPE::PLAYER:
+		mstPlayer = nullptr;
 		break;
 
-	case TARGET_NUMBER::ENEMY:
-		mpEnemys.clear();
+	case TARGET_TYPE::ENEMY:
+		mstEnemys.clear();
 		break;
 	}
 }
@@ -37,13 +39,13 @@ void TargetManager::TargetInit(TARGET_NUMBER targetNumber)
 // 指定ターゲット初期化
 void TargetManager::TargetInit(BIT_FLAG<unsigned int> targetNumber)
 {
-	if (targetNumber.BIT_GET((int)TARGET_NUMBER::PLAYER))
+	if (targetNumber.BIT_GET((int)TARGET_TYPE::PLAYER))
 	{
-		mpPlayer = nullptr;
+		mstPlayer = CharacterTargetData();
 	}
-	if (targetNumber.BIT_GET((int)TARGET_NUMBER::ENEMY))
+	if (targetNumber.BIT_GET((int)TARGET_TYPE::ENEMY))
 	{
-		mpEnemys.clear();
+		mstEnemys.clear();
 	}
 }
 
@@ -53,16 +55,16 @@ void TargetManager::TargetInit(BIT_FLAG<unsigned int> targetNumber)
 /*--------*/
 
 // 削除
-void TargetManager::Delete(CharacterBase* character, TARGET_NUMBER targetNumber)
+void TargetManager::Delete(CharacterBase* character, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
-	case TARGET_NUMBER::ENEMY:
-		for (int i = 0; i < mpEnemys.size(); i++)
+	case TARGET_TYPE::ENEMY:
+		for (int i = 0; i < mstEnemys.size(); i++)
 		{
-			if (mpEnemys[i]->GetID() == character->GetID())
+			if (mstEnemys[i].target->GetID() == character->GetID())
 			{
-				mpEnemys.erase(mpEnemys.begin() + i);
+				mstEnemys.erase(mstEnemys.begin() + i);
 			}
 		}
 		break;
@@ -75,16 +77,34 @@ void TargetManager::Delete(CharacterBase* character, TARGET_NUMBER targetNumber)
 /*--------*/
 
 // ターゲット設定
-void TargetManager::SetTarget(CharacterBase* target, TARGET_NUMBER targetNumber)
+void TargetManager::SetTarget(CharacterBase* target, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
-	case TARGET_NUMBER::PLAYER:
-		mpPlayer = target;
+	case TARGET_TYPE::PLAYER:
+		mstPlayer = target;
 		break;
 
-	case TARGET_NUMBER::ENEMY:
-		mpEnemys.push_back(target);
+	case TARGET_TYPE::ENEMY:
+		mstEnemys.push_back(target);
+		break;
+	}
+}
+
+// ターゲット設定
+void TargetManager::SetTarget(std::vector<CharacterTargetData> target, TARGET_TYPE targetNumber)
+{
+	switch (targetNumber)
+	{
+	case TARGET_TYPE::PLAYER:
+		if (target.size() > 0)
+		{
+			mstPlayer = target[0];
+		}
+		break;
+
+	case TARGET_TYPE::ENEMY:
+		mstEnemys = target;
 		break;
 	}
 }
@@ -95,36 +115,36 @@ void TargetManager::SetTarget(CharacterBase* target, TARGET_NUMBER targetNumber)
 /*--------*/
 
 // ターゲット取得
-CharacterBase* TargetManager::GetTarget(TARGET_NUMBER targetNumber)
+CharacterTargetData TargetManager::GetTarget(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
-	case TARGET_NUMBER::PLAYER:
-		return mpPlayer;
-	case TARGET_NUMBER::ENEMY:
-		if (mpEnemys.size() <= 0)
+	case TARGET_TYPE::PLAYER:
+		return mstPlayer;
+	case TARGET_TYPE::ENEMY:
+		if (mstEnemys.size() <= 0)
 		{
 			return nullptr;
 		}
-		return mpEnemys[0];
+		return mstEnemys[0];
 	}
 
 	return nullptr;
 }
 
 // ターゲット取得
-std::vector<CharacterBase*> TargetManager::GetTargets(TARGET_NUMBER targetNumber)
+std::vector<CharacterTargetData> TargetManager::GetTargets(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
-	case TARGET_NUMBER::PLAYER:
+	case TARGET_TYPE::PLAYER:
 	{
-		std::vector<CharacterBase*> player = { mpPlayer };
+		std::vector<CharacterTargetData> player = { mstPlayer };
 
 		return player;
 	}
 
-	case TARGET_NUMBER::ENEMY:
-		return mpEnemys;
+	case TARGET_TYPE::ENEMY:
+		return mstEnemys;
 	}
 }

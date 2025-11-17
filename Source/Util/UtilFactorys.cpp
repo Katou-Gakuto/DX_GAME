@@ -41,7 +41,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
@@ -50,7 +50,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
@@ -60,7 +60,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::PLAYER);
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::MAP_ENEMY:
@@ -69,7 +69,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		fsmCharacter->SetCurrentState((int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, character);
 
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::ENEMY);
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::ENEMY:
@@ -77,7 +77,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_NUMBER::ENEMY);
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
 		break;
 	}
 

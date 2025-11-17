@@ -8,12 +8,12 @@ CameraData::CameraData()
 
 	targetCharacter = nullptr;
 
-	targetPosition = UtilCalc::VZero();
-	position = UtilCalc::VZero();
-	plusPosition = UtilCalc::VZero();
-	angle = UtilCalc::VZero();
+	targetPosition = UtilCalc::VZero;
+	position = UtilCalc::VZero;
+	plusPosition = UtilCalc::VZero;
+	angle = UtilCalc::VZero;
 
-	twoDPosition = UtilCalc::VZero();
+	twoDPosition = UtilCalc::VZero;
 
 	cameraMode = CAMERA_MODE::NONE;
 
@@ -32,7 +32,7 @@ CameraData::CameraData()
 // •ûŒüŽæ“¾
 VECTOR CameraData::GetDirection()
 {
-	VECTOR direction = UtilCalc::VZero();
+	VECTOR direction = UtilCalc::VZero;
 
 	switch (cameraMode)
 	{

@@ -104,7 +104,7 @@ void PlayerProcess::PlayerProcessDraw()
 // Ž€–S
 void PlayerProcess::PlayerDeath(CharacterBase* character)
 {
-	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_NUMBER::PLAYER);
+	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_TYPE::PLAYER);
 }
 
 /*--------------------------*/

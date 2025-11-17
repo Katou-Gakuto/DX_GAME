@@ -212,6 +212,9 @@
     <ClCompile Include="Source\Struct\TileData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Struct\TargetData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\UtilFactorys.h">
@@ -347,6 +350,9 @@
       <Filter>ヘッダー ファイル\State\Character</Filter>
     </ClInclude>
     <ClInclude Include="Source\Struct\TileData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\TargetData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,9 @@
 
 #include "DxLib.h"
 
+class CharacterBase;
+class MapManager;
+
 enum class MapType
 {
 	None = 0,			// 何もない
@@ -23,7 +26,27 @@ struct TilePos
 {
 public:
 	int x;
-	int y;
+	int z;
+	
+	BIT_FLAG<unsigned long long>* tileFlag;
+
+	TilePos() = default;
+	TilePos(int X, int Z)
+	{
+		x = X;
+		z = Z;
+
+		tileFlag = nullptr;
+	}
+
+	bool operator ==(TilePos src)
+	{
+		return ((src.x == this->x) && (src.z == this->z));
+	}
+	bool operator !=(TilePos src)
+	{
+		return ((src.x != this->x) || (src.z != this->z));
+	}
 };
 
 // タイルデータ
@@ -40,4 +63,9 @@ public:
 	TileType tileType;	// タイルの種類
 
 	VECTOR tileDisplacedPos;	// このタイルのずれたベクトル
+
+	TilePos tilePos;	// タイルポジション
+
+	/*タイル処理*/
+	virtual TilePos TileProcess(CharacterBase* character, MapManager* mapManager);
 };

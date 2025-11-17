@@ -44,17 +44,18 @@ ObjectBase::~ObjectBase()
 
 CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 : ObjectBase(OBJECT_TYPE::CHARACTER_BASE, true, nextSceneDeleteFlag)
-, mvOldPosition(UtilCalc::VZero())
-, mvPosition(UtilCalc::VZero())
-, mvMoveDir(UtilCalc::VZero())
-, mvVec(UtilCalc::VZero())
-, mvAngle(UtilCalc::VZero())
+, mvOldPosition(UtilCalc::VZero)
+, mvPosition(UtilCalc::VZero)
+, mvMoveDir(UtilCalc::VZero)
+, mvVec(UtilCalc::VZero)
+, mvAngle(UtilCalc::VZero)
 , mfSpeed(0.0f)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
 , mnAttackDataNumber(-1)
 {
+	mvSize = VGet(180.0f, 180.0f, 180.0f);
 }
 
 CharacterBase::~CharacterBase()
@@ -156,7 +157,7 @@ void CharacterBase::TemplateActionProcess()
 
 	/**********************************/
 
-	mvVec = UtilCalc::VZero();
+	mvVec = UtilCalc::VZero;
 	if (munActionflags.Bool())
 	{
 		bool moveFlag = false;
@@ -250,7 +251,7 @@ void CharacterBase::SetFSM(FSMCharacter* fsm)
 
 BuildingBase::BuildingBase(bool nextSceneDeleteFlag)
 : ObjectBase(OBJECT_TYPE::BUILDING_BASE, true, nextSceneDeleteFlag)
-, mvPosition(UtilCalc::VZero())
+, mvPosition(UtilCalc::VZero)
 {
 }
 BuildingBase::~BuildingBase()
@@ -299,13 +300,13 @@ void BuildingBase::Draw()
 
 AttackBase::AttackBase()
 : ObjectBase(OBJECT_TYPE::ATTACK_BASE, false, false)
-, mvPosition(UtilCalc::VZero())
+, mvPosition(UtilCalc::VZero)
 , mnPower(0)
 , mpAttackCharacter(nullptr)
 , mnAttackNumber(-1)
 , mnAttackRecoilTime(0)
 , mnAttackTime(0)
-, mvMoveDir(UtilCalc::VZero())
+, mvMoveDir(UtilCalc::VZero)
 {
 	mnHiObjID.clear();
 }

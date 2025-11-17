@@ -7,6 +7,7 @@ enum class END_FLAG_NUMBER
 	START_SCENE_FLAG = 0,
 	RESOURCE_FLAG,
 	LOADING_FLAG,
+	MAP_FLAG,
 };
 
 class EndManager

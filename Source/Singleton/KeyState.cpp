@@ -38,7 +38,7 @@ KeyState::KeyState()
 
 	for (int i = 0; i < (int)CURSOR_POSITION_TYPE::MAX; i++)
 	{
-		mvCursorPos[i] = UtilCalc::VZero();
+		mvCursorPos[i] = UtilCalc::VZero;
 	}
 }
 

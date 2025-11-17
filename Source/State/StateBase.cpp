@@ -69,7 +69,7 @@ void IStateScene::StageOnEnter(SceneManager* sceneManager)
 	{
 		mpTargetManager = Master::mpGameManager->GetTargetManager();
 	}
-	mpTargetManager->TargetInit((unsigned int)((1 << (int)TARGET_NUMBER::PLAYER) | (1 << (int)TARGET_NUMBER::ENEMY)));
+	mpTargetManager->TargetInit((unsigned int)((1 << (int)TARGET_TYPE::PLAYER) | (1 << (int)TARGET_TYPE::ENEMY)));
 }
 
 // XV

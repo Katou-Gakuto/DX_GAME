@@ -6,6 +6,7 @@
 
 #include "CollisionManager.h"
 #include "GameManager.h"
+#include "MapManager.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "TimeManager.h"
@@ -67,5 +68,7 @@ void CollisionManager::CollisionProcess()
 			// ˆÚ“®•ûŒüÝ’è
 			checkCharacter->SetVec(setData.vec);
 		}
+
+		Master::mpGameManager->GetMapManager()->MapCollision();
 	}
 }

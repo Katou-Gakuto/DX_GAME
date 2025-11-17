@@ -61,7 +61,7 @@ VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
 /*y“–‚½‚è”»’èz*/
 /*--------------*/
 
-/*‹…“¯m‚Ì“–‚½‚è”»’è*/
+// ‹…“¯m‚Ì“–‚½‚è”»’è
 bool UtilCalc::SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius)
 {
     //‰~‚Ì“–‚½‚è”»’è‚ğs‚¤
@@ -74,3 +74,16 @@ bool UtilCalc::SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, fl
     }
     return false;
 }
+
+//// lŠp“¯m‚Ì“–‚½‚è”»’è
+//bool UtilCalc::BoxCollision(VECTOR srcTopRight, VECTOR srcBottomLeft, VECTOR dstTopRight, VECTOR dstBottomLeft)
+//{
+//    if ()
+//    {
+//
+//    }
+//    ele
+//    {
+//
+//    }
+//}

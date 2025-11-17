@@ -47,8 +47,8 @@ DataManager::DataManager()
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::DUNGEON_1;
 		setPlayer.preMap = SCENE::NONE;
-		setPlayer.position = UtilCalc::VZero();
-		setPlayer.angle = UtilCalc::VZero();
+		setPlayer.position = UtilCalc::VZero;
+		setPlayer.angle = UtilCalc::VZero;
 		setPlayer.dataFlag = true;
 		setPlayer.survivalFlag = 1;
 		setPlayer.name = "アボカド";

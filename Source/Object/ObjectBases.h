@@ -249,6 +249,7 @@ protected:
     FSMCharacter* mpFsm;
 
     // モデルベース
+    VECTOR mvSize;
 
     // アニメションベース
 
@@ -328,6 +329,9 @@ public:
     /*ポジション取得*/
     inline VECTOR GetPos() const { return mvPosition; }
 
+    /*移動予定地点*/
+    inline VECTOR GetMovePos() const { return VAdd(mvPosition, VScale(mvVec, (float)mstStatus.speed)); }
+
     /*前のポジション取得*/
     inline VECTOR GetOldPos() const { return mvOldPosition; }
 
@@ -342,6 +346,9 @@ public:
 
     /*方向取得*/
     inline VECTOR GetAngle() const { return mvAngle; }
+
+    /*サイズ取得*/
+    inline VECTOR GetSize() const { return mvSize; }
 
     /*--------*/
     /*【設定】*/

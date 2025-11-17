@@ -4,7 +4,9 @@
 namespace UtilCalc
 {
 	/*ƒ[ƒ*/
-	inline const VECTOR VZero() { return VGet(0.0f, 0.0f, 0.0f); }
+	const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
+	/*ƒ[ƒ*/
+	const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
 
 	/*•„†”½“]*/
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }
@@ -29,4 +31,7 @@ namespace UtilCalc
 
 	/*‹…“¯m‚Ì“–‚½‚è”»’è*/
 	bool SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius);
+
+	///*lŠp“¯m‚Ì“–‚½‚è”»’è*/
+	//bool BoxCollision(VECTOR srcTopLeft, VECTOR srcBottomRight, VECTOR dstTopLeft, VECTOR dstBottomRight);
 };

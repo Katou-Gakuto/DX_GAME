@@ -64,6 +64,21 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 		}
 	}
 
+	for (int i = 0; i < this->adjacentData.size(); i++)
+	{
+		for (int j = 0; j < characterPos.size(); j++)
+		{
+			if (this->adjacentData[i] == characterPos[j])
+			{
+				switch (*(this->adjacentData[i].tileFlag) & 0xffff'ffff'ffff'ffffull)
+				{
+
+				}
+				characterPos.erase(characterPos.begin() + j);
+			}
+		}
+	}
+
 	mapManager->GetMapPos(pos.x, pos.z, VGet(character->GetMovePos().x, 0, character->GetMovePos().z));
 	if (pos != this->tilePos)
 	{
@@ -84,7 +99,7 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 		// 進行ベクトルと、壁の法線ベクトルの内情の逆を係数aとしておく
 		float a = -VDot(character->GetVec(), norm);
 
-		character->SetVec(VAdd(VAdd(character->GetVec(), VScale(norm, a)), VScale(norm, 0.01f)));
+		character->SetVec(VAdd(VAdd(character->GetVec(), VScale(norm, a)), VScale(norm, 0.001f)));
 	}
 	return this->tilePos;
 }

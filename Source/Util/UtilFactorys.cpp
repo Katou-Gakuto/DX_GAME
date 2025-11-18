@@ -3,6 +3,9 @@
 #include "CameraManager.h"
 #include "FSM.h"
 #include "GameManager.h"
+#include "ModelBase.h"
+#include "ModelMV1.h"
+#include "ModelPolygonIndexed.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StateBase.h"
@@ -127,4 +130,25 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	}
 
 	return fsmUI;
+}
+
+// ƒ‚ƒfƒ‹ì¬
+ModelBase* UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER number)
+{
+	ModelBase* model = nullptr;
+
+	switch (number)
+	{
+	case MODEL_FACTORY_NUMBER::POLYGON_INDEXED:
+		model = new ModelPolygonIndexed();
+		model->Initilize();
+		break;
+
+	case MODEL_FACTORY_NUMBER::MV1:
+		model = new ModelMV1();
+		model->Initilize();
+		break;
+	}
+
+	return model;
 }

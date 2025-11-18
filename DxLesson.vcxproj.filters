@@ -82,6 +82,12 @@
     <Filter Include="ソース ファイル\Struct">
       <UniqueIdentifier>{638428cc-24bb-41e0-ad2f-98991a149446}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Model">
+      <UniqueIdentifier>{c23f9652-58e0-4c6a-990e-f05cfdfdc202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Model">
+      <UniqueIdentifier>{1e8e0e09-68eb-4646-918b-be7bb3e19a83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text\Constraint.txt">
@@ -214,6 +220,15 @@
     </ClCompile>
     <ClCompile Include="Source\Struct\TargetData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\ModelBase.cpp">
+      <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\ModelPolygonIndexed.cpp">
+      <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\ModelMV1.cpp">
+      <Filter>ソース ファイル\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +369,15 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\TargetData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\ModelBase.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\ModelPolygonIndexed.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\ModelMV1.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

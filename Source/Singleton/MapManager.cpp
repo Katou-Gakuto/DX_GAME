@@ -19,8 +19,8 @@
 #include "UtilCalc.h"
 
 MapManager::MapManager()
-    : mfTileHalfSize(250.0f)
-    , mvMapMinPos(VGet(-250.0f, 0.0f, -250.0f))
+: mfTileHalfSize(250.0f)
+, mvMapMinPos(VGet(-250.0f, 0.0f, -250.0f))
 {
     mstMapData.clear();
 }

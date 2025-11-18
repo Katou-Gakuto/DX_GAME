@@ -128,7 +128,7 @@ Master
 
 	例外
 	template<typename T> struct → テンプレートTの型に準拠
-	Windows API の型 → mw
+	Windows API の型 → w
 }
 
 【インクルードの順番】
@@ -144,3 +144,11 @@ Master
 その他
 
 それぞれアルファベット順
+
+【アノテーションコメント(修正箇所)】
+TODO:		後で実装・修正する必要がある箇所
+FIXME:		バグや不具合がある箇所
+NOTE:		注意点や補足情報
+HACK:		一時的・回避的な実装
+UNDONE:		元に戻す箇所
+OPTIMIZE:	パフォーマンス改善が必要な箇所

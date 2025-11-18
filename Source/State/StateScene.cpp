@@ -202,7 +202,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	{// “G
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
-		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
+		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY));
 	}
 

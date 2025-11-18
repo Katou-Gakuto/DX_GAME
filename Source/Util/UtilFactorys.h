@@ -6,6 +6,7 @@ class FSMCamera;
 class FSMCharacter;
 class FSMScene;
 class FSMUI;
+class ModelBase;
 class SceneManager;
 class UIBase;
 
@@ -27,6 +28,14 @@ enum class UI_FACTORY_NUMBER
 	RESULT,
 };
 
+// TODO: 情報の種類から処理の種類に変更
+// モデル作成ナンバー
+enum class MODEL_FACTORY_NUMBER
+{
+	POLYGON_INDEXED = 0,
+	MV1,
+};
+
 namespace UtilFactorys
 {
 	/*カメラ有限状態マシン作成*/
@@ -40,4 +49,7 @@ namespace UtilFactorys
 
 	/*UI有限状態マシン作成*/
 	FSMUI* FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number);
+
+	/*モデル作成*/
+	ModelBase* ModelFactory(MODEL_FACTORY_NUMBER number);
 };

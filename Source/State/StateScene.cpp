@@ -129,6 +129,13 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
 
+	{// “G
+		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+		enemy->Initilize();
+		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY));
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::TOWN:
@@ -205,6 +212,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY));
 	}
+
 
 	switch (sceneManager->GetNowScene())
 	{
@@ -293,6 +301,12 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	case SCENE::BATTLE_2:
 		break;
 	case SCENE::BATTLE_3:
+	{// ƒ{ƒX
+		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		enemy->Initilize();
+		enemy->SetPos(VGet(200.0f, 0.0f, 500.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));
+	}
 		break;
 	}
 }

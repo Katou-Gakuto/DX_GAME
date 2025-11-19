@@ -47,7 +47,7 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	{
 		character->SetUpMove();
 	}
-	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::R))
+	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::E))
 	{
 		character->SetDownMove();
 	}

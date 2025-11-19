@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Model\ModelBase.cpp" />
+    <ClCompile Include="Source\Model\ModelMap.cpp" />
     <ClCompile Include="Source\Model\ModelMV1.cpp" />
     <ClCompile Include="Source\Model\ModelPolygonIndexed.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_Shot.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="Source\Enum\CharacterEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
     <ClInclude Include="Source\Model\ModelBase.h" />
+    <ClInclude Include="Source\Model\ModelMap.h" />
     <ClInclude Include="Source\Model\ModelMV1.h" />
     <ClInclude Include="Source\Model\ModelPolygonIndexed.h" />
     <ClInclude Include="Source\Object\Attack\Attack_Shot.h" />

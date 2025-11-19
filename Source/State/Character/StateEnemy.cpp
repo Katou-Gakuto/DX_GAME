@@ -1,5 +1,6 @@
 #include "Master.h"
 
+#include "DataManager.h"
 #include "GameManager.h"
 #include "StateEnemy.h"
 #include "SceneManager.h"
@@ -92,4 +93,25 @@ void IdleEnemyState::Draw(CharacterBase* character)
 void IdleEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
+}
+
+/*--------------------------*/
+/*     【派生ステート】     */
+/*--------------------------*/
+
+/*----------------------------*/
+/*【Idleボスエネミーステート】*/
+/*----------------------------*/
+
+IdleBossEnemyState::IdleBossEnemyState()
+{
+	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
+}
+
+// 死亡処理
+void IdleBossEnemyState::EnemyDeath(CharacterBase* character)
+{
+	// エネミー初期化
+	mpTargetManager->TargetInit(TARGET_TYPE::ENEMY);
+	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
 }

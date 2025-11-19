@@ -59,7 +59,7 @@ void Attack_Shot::HitCheck(CollisionData& collisionData)
 	{
 		return;
 	}
-	for (int i = 0; mnHiObjID.size(); i++)
+	for (int i = 0; i < mnHiObjID.size(); i++)
 	{
 		if (mnHiObjID[i] == collisionData.objID)
 		{

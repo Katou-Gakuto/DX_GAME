@@ -42,8 +42,8 @@ protected:
 	/*プレイヤーターゲットに向かって攻撃*/
 	void PlayerTargetAttack(CharacterBase* character);
 
-	/*死亡*/
-	void EnemyDeath(CharacterBase* character);
+	/*死亡処理*/
+	virtual void EnemyDeath(CharacterBase* character);
 };
 
 /*--------------------------*/
@@ -78,4 +78,23 @@ public:
 
 	/*死亡*/
 	void Death(CharacterBase* character) override;
+};
+
+
+/*--------------------------*/
+/*     【派生ステート】     */
+/*--------------------------*/
+
+/*----------------------------*/
+/*【Idleボスエネミーステート】*/
+/*----------------------------*/
+class IdleBossEnemyState : public IdleEnemyState
+{
+private:
+public:
+	IdleBossEnemyState();
+	~IdleBossEnemyState() = default;
+
+	/*死亡処理*/
+	void EnemyDeath(CharacterBase* character) override;
 };

@@ -43,9 +43,9 @@ DataManager::DataManager()
 		mstPlayerDatas.clear();
 
 		PLAYER_DATA setPlayer = PLAYER_DATA();
-		setPlayer.mapType = SCENE::DUNGEON_1;
+		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
-		setPlayer.dungeonType = SCENE::DUNGEON_1;
+		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.preMap = SCENE::NONE;
 		setPlayer.position = UtilCalc::VZero;
 		setPlayer.angle = UtilCalc::VZero;
@@ -56,9 +56,9 @@ DataManager::DataManager()
 
 		mstPlayerDatas.push_back(setPlayer);
 
-		setPlayer.mapType = SCENE::DUNGEON_2;
+		setPlayer.mapType = SCENE::TOWN_2;
 		setPlayer.townType = SCENE::TOWN_2;
-		setPlayer.dungeonType = SCENE::DUNGEON_2;
+		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド2";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
 
@@ -66,7 +66,7 @@ DataManager::DataManager()
 
 		setPlayer.mapType = SCENE::DUNGEON_3;
 		setPlayer.townType = SCENE::TOWN_3;
-		setPlayer.dungeonType = SCENE::DUNGEON_3;
+		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド3";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
 

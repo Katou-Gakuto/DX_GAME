@@ -149,6 +149,7 @@ void TelopMapEnemyState::Update(CharacterBase* character)
 {
     if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
     {
+        // TODO: スイッチ文を無くしてこのクラスが持つシーンに移動するようにする
         switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
         {
             case SCENE::TOWN:

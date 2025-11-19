@@ -230,6 +230,9 @@
     <ClCompile Include="Source\Model\ModelMV1.cpp">
       <Filter>ソース ファイル\Model</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Model\ModelMap.cpp">
+      <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Util\UtilFactorys.h">
@@ -377,6 +380,9 @@
       <Filter>ヘッダー ファイル\Model</Filter>
     </ClInclude>
     <ClInclude Include="Source\Model\ModelMV1.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\ModelMap.h">
       <Filter>ヘッダー ファイル\Model</Filter>
     </ClInclude>
   </ItemGroup>

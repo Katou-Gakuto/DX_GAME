@@ -19,6 +19,7 @@ enum class CHARACTER_FACTORY_NUMBER
 
 	MAP_ENEMY,
 	ENEMY,
+	BOSS_ENEMY,
 };
 
 // UIì¬ƒiƒ“ƒo[

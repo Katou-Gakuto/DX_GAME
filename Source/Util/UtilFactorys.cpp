@@ -82,6 +82,14 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
 		break;
+
+	case CHARACTER_FACTORY_NUMBER::BOSS_ENEMY:
+		fsmCharacter->RegisterState(new IdleBossEnemyState());
+
+		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
+		break;
 	}
 
 	return fsmCharacter;

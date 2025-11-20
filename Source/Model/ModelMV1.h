@@ -7,7 +7,7 @@
 class ModelMV1 : public ModelBase
 {
 private:
-    int mModelHandle; // モデルハンドル
+    int mnModelHandle; // モデルハンドル
 public:
     ModelMV1();
     ~ModelMV1();
@@ -23,7 +23,7 @@ public:
     virtual void ModelDraw() override;
 
     /*モデルハンドル設定*/
-    inline void SetModelHandle(int handle) { mModelHandle = handle; }
+    inline void SetModelHandle(int handle) { mnModelHandle = handle; }
     /*モデルハンドル設定*/
     void SetModelHandle(const char* filePath);
 };

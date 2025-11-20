@@ -41,17 +41,27 @@ void MapManager::SetMapData(MapType mapType)
 
     case MapType::Normal:
         mstMapData = {
-            { TileData(true), TileData(), TileData() },
-            { TileData(true), TileData(true), TileData() },
-            { TileData(), TileData(), TileData(true) }
+            { TileData(true), TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
         };
         break;
 
     case MapType::Battle:
         mstMapData = {
-            { TileData(true), TileData(), TileData() },
-            { TileData(true), TileData(true), TileData() },
-            { TileData(), TileData(), TileData(true) }
+            { TileData(true), TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(), TileData(), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
         };
         break;
     }

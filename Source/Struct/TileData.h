@@ -8,6 +8,7 @@
 class CharacterBase;
 class MapManager;
 
+// TODO: マップ名に変える　(ファイルから最終的に取得する)
 enum class MapType
 {
 	None = 0,			// 何もない

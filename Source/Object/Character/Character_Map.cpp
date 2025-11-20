@@ -51,6 +51,12 @@ void Character_Map::CharacterLastUpdate()
 // キャラクター描画
 void Character_Map::CharacterDraw()
 {
+	// HACK: モデルで何を描画してるか分ける
+	if (mvPosition.z > 3400.0f)
+	{
+		DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), TRUE);
+		return;
+	}
 	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 255), GetColor(255, 255, 255), TRUE);
 }
 

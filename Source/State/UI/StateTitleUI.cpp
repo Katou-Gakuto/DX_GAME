@@ -1,11 +1,15 @@
 #include <vector>
 
+#include "DxLib.h"
+
 #include "Master.h"
 
 #include "DataManager.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"
+
+// TODO: このファイルの文字描画消して画面作成
 
 /*--------------------------------*/
 /*     【タイトルUIステート】     */
@@ -23,6 +27,7 @@ StartTitleUIState::StartTitleUIState()
 // この状態に入った時の処理
 void StartTitleUIState::OnEnter(UIBase* ui)
 {
+	printfDx("テロップ：開始　Enter\n");
 }
 
 // この状態を出る時の処理
@@ -63,6 +68,8 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(4);
+
+	printfDx("テロップ：選択　Enter\n");
 }
 
 // この状態を出る時の処理
@@ -164,6 +171,8 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber((const int)Master::mpDataManager->GetPlayerData().size());
+
+	printfDx("テロップ：情報選択　Enter\n");
 }
 
 // この状態を出る時の処理

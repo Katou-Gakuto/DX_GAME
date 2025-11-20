@@ -21,6 +21,8 @@
 #include "UI_Title.h"
 #include "UtilFactorys.h"
 
+// TODO: 町、ダンジョン記録を関数化、プレイヤー、エネミー、カメラ生成ファクトリーに移す エネミー移動先データマネージャーから受け取るようにする
+
 /*--------------------------*/
 /*【スタートシーンステート】*/
 /*--------------------------*/
@@ -132,8 +134,8 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
-		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY));
+		enemy->SetPos(VGet(-150.0f, 0.0f, 500.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
 	}
 
 	switch (sceneManager->GetNowScene())
@@ -210,9 +212,26 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
 		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 	}
-
+	{// 敵
+		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+		enemy->Initilize();
+		enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
+	}
+	{// 敵
+		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+		enemy->Initilize();
+		enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+	}
+	{// 敵
+		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+		enemy->Initilize();
+		enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
+		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+	}
 
 	switch (sceneManager->GetNowScene())
 	{
@@ -304,11 +323,14 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	{// ボス
 		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
 		enemy->Initilize();
-		enemy->SetPos(VGet(200.0f, 0.0f, 500.0f));
+		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));
 	}
 		break;
 	}
+	
+	// UNDONE: 削除
+	printfDx("テロップ：動きながらLで攻撃 仮実装\n");
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {

@@ -32,7 +32,7 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 }
 
 // キャラクター有限状態マシン作成
-FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number)
+FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene)
 {
 	FSMCharacter* fsmCharacter = new FSMCharacter();
 
@@ -67,8 +67,8 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::MAP_ENEMY:
-		fsmCharacter->RegisterState(new IdleMapEnemyState());
-		fsmCharacter->RegisterState(new TelopMapEnemyState());
+		fsmCharacter->RegisterState(new IdleMapEnemyState(mapScene));
+		fsmCharacter->RegisterState(new TelopMapEnemyState(mapScene));
 
 		fsmCharacter->SetCurrentState((int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, character);
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SceneEnum.h"
+
 class CameraManager;
 class CharacterBase;
 class FSMCamera;
@@ -43,7 +45,7 @@ namespace UtilFactorys
 	FSMCamera* FSMCameraFactory();
 
 	/*キャラクター有限状態マシン作成*/
-	FSMCharacter* FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number);
+	FSMCharacter* FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene = SCENE::NONE);
 
 	/*シーン有限状態マシン作成*/
 	FSMScene* FSMSceneFactory(SceneManager* sceneManager);

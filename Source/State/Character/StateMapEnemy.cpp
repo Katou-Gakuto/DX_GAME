@@ -18,10 +18,11 @@
 /*----------------------------*/
 /*【マップエネミー共通処理用】*/
 /*----------------------------*/
-MapEnemyProcess::MapEnemyProcess()
+MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
 : mpKeyState(Master::mpKeyState)
 , mpSceneManager(Master::mpGameManager->GetSceneManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
+, meMapScene(mapScene)
 {
 }
 
@@ -41,6 +42,12 @@ void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
     }
 }
 
+// マップシーン移動開始する
+void MapEnemyProcess::SetMapScene()
+{
+    mpSceneManager->SetNextScene(meMapScene);
+}
+
 /*--------------------------*/
 /*     【基本ステート】     */ 
 /*--------------------------*/
@@ -48,7 +55,9 @@ void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
 /*----------------------------*/
 /*【Idleマップエネミーテート】*/
 /*----------------------------*/
-IdleMapEnemyState::IdleMapEnemyState()
+IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene)
+: IStateCharacter()
+, MapEnemyProcess(mapScene)
 {
     mStateNumber = (int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE;
 }
@@ -108,7 +117,9 @@ void IdleMapEnemyState::Death(CharacterBase* character)
 /*--------------------------------*/
 /*【テロップマップエネミーテート】*/
 /*--------------------------------*/
-TelopMapEnemyState::TelopMapEnemyState()
+TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene)
+: IStateCharacter()
+, MapEnemyProcess(mapScene)
 {
     mStateNumber = (int)MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE;
 }
@@ -149,17 +160,7 @@ void TelopMapEnemyState::Update(CharacterBase* character)
 {
     if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
     {
-        // TODO: スイッチ文を無くしてこのクラスが持つシーンに移動するようにする
-        switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
-        {
-            case SCENE::TOWN:
-            mpSceneManager->SetNextScene(SCENE::DUNGEON_3);
-            break;
-
-            case SCENE::DUNGEON:
-            mpSceneManager->SetNextScene(SCENE::BATTLE_3);
-            break;
-        }
+        SetMapScene();
         clsDx();
     }
 }

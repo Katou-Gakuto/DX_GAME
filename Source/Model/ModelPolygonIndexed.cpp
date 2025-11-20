@@ -38,12 +38,5 @@ void ModelPolygonIndexed::ModelFinalize()
 // ƒ‚ƒfƒ‹•`‰æ
 void ModelPolygonIndexed::ModelDraw()
 {
-    for (int i = 0; i < mstModelVertex.size(); i++)
-    {
-        DrawPolygonIndexed3D(mstModelVertex[i].vertex.data(), (int)mstModelVertex[i].vertex.size(),
-                            &mstModelVertex[i].index[0].v1,   (int)mstModelVertex[i].index.size(),
-            mstModelVertex[i].textureHandle,
-            mstModelVertex[i].transFlag
-        );
-    }
+    ModelDraw_Indexed(mstModelVertex);
 }

@@ -60,6 +60,7 @@ int AttackManager::StartAttack(int attackDataNumber)
 			{
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime());
+				// HACK: ˆÚ“®•ûŒü‚Å‚â‚Á‚Ä‚¢‚éŒ»ó‚ðƒ‚ƒfƒ‹‚Ì•ûŒü‚É•ÏX
 				attack->SetMoveDir(mstAttackDatas[attackDataNumber].attackCharacter->GetVec());
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 

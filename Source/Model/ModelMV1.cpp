@@ -7,7 +7,7 @@
 #include "ResourceManager.h"
 
 ModelMV1::ModelMV1()
-: mModelHandle(-1)
+: mnModelHandle(-1)
 {
 }
 ModelMV1::~ModelMV1()
@@ -22,28 +22,25 @@ void ModelMV1::ModelInitilize()
 // モデル終了
 void ModelMV1::ModelFinalize()
 {
-    if (mModelHandle != -1)
+    if (mnModelHandle != -1)
     {
-        Master::mpResourceManager->ReduceModelHandle(mModelHandle);
+        Master::mpResourceManager->ReduceModelHandle(mnModelHandle);
     }
 }
 
 // モデル描画
 void ModelMV1::ModelDraw()
 {
-    if (mModelHandle != -1)
-    {
-        MV1DrawModel(mModelHandle);
-    }
+    ModelDraw_Handle(mnModelHandle);
 }
 
 // モデルハンドル設定
 void ModelMV1::SetModelHandle(const char* filePath)
 {
-    if (mModelHandle != -1)
+    if (mnModelHandle != -1)
     {
-        Master::mpResourceManager->ReduceModelHandle(mModelHandle);
+        Master::mpResourceManager->ReduceModelHandle(mnModelHandle);
     }
 
-    mModelHandle = Master::mpResourceManager->GetModelHandle(filePath);
+    mnModelHandle = Master::mpResourceManager->GetModelHandle(filePath);
 }

@@ -36,8 +36,11 @@ protected:
 	// ターゲットマネージャー
 	TargetManager* mpTargetManager;
 
+	// マップシーン
+	SCENE meMapScene;
+
 protected:
-	MapEnemyProcess();
+	MapEnemyProcess(SCENE mapScene);
 	~MapEnemyProcess() = default;
 
 	/*一定範囲内にプレイヤーターゲットがいるなら「true」*/
@@ -45,6 +48,9 @@ protected:
 
 	/*死亡*/
 	void MapEnemyDeath(CharacterBase* character);
+
+	/*マップシーンに移動開始する*/
+	void SetMapScene();
 };
 
 /*--------------------------*/
@@ -57,7 +63,7 @@ protected:
 class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	IdleMapEnemyState();
+	IdleMapEnemyState(SCENE mapScene);
 	~IdleMapEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -87,7 +93,7 @@ public:
 class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	TelopMapEnemyState();
+	TelopMapEnemyState(SCENE mapScene);
 	~TelopMapEnemyState() = default;
 
 	/*この状態に入った時の処理*/

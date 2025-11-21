@@ -1,3 +1,5 @@
+#include <string>
+
 #include "Master.h"
 
 #include "CameraManager.h"
@@ -75,8 +77,10 @@ void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
 }
 
 // •`‰æ
-void PlayerProcess::PlayerProcessDraw()
+void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
+	// HACK: ƒ‚ƒfƒ‹‚ªo—ˆ‚½‚çÁ‚·
+
 	VECTOR pos1;
 	VECTOR pos2;
 
@@ -99,6 +103,8 @@ void PlayerProcess::PlayerProcessDraw()
 		pos1.z += 10000.0f / 50;
 		pos2.z += 10000.0f / 50;
 	}
+
+	DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
 }
 
 // Ž€–S
@@ -154,7 +160,7 @@ void IdlePlayerState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void IdlePlayerState::Draw(CharacterBase* character)
 {
-	PlayerProcessDraw();
+	PlayerProcessDraw(character);
 }
 
 // Ž€–S
@@ -209,7 +215,7 @@ void MovePlayerState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void MovePlayerState::Draw(CharacterBase* character)
 {
-	PlayerProcessDraw();
+	PlayerProcessDraw(character);
 }
 
 // Ž€–S
@@ -268,7 +274,7 @@ void AttackPlayerState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void AttackPlayerState::Draw(CharacterBase* character)
 {
-	PlayerProcessDraw();
+	PlayerProcessDraw(character);
 }
 
 // Ž€–S

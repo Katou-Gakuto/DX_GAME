@@ -50,7 +50,7 @@ protected:
 	void SetMoveDir_Camera(CharacterBase* character);
 
 	/*•`‰æ*/
-	void PlayerProcessDraw();
+	void PlayerProcessDraw(CharacterBase* character);
 
 	/*Ž€–S*/
 	void PlayerDeath(CharacterBase* character);

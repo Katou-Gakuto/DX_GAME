@@ -209,13 +209,13 @@ void MapManager::Draw()
                 // ç∂âú
                 DrawTriangle3D(VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
                     VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
+                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
                     GetColor(0, 0, 255),
                     TRUE);
 
                 // âEéËëO
                 DrawTriangle3D(VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
+                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
                     VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
                     GetColor(0, 0, 255),
                     TRUE);

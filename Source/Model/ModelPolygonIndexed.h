@@ -7,9 +7,7 @@
 
 #include "ModelBase.h"
 
-/*---------------------------------*/
-/*【ポリゴンインデックスモデルクラス】*/
-/*---------------------------------*/
+// ポリゴンインデックスモデルクラス
 class ModelPolygonIndexed : public ModelBase
 {
 private:

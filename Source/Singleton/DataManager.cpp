@@ -489,3 +489,9 @@ return 0;*/
 	csvFile.close();
 	return mapData;
 }
+
+// マップリソースファイル名取得
+std::string DataManager::GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber)
+{
+	return "Resource/3D/Floor/Ceiling_Closed.mv1";
+}

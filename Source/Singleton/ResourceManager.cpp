@@ -1,5 +1,6 @@
 #include <map>
 #include <string>
+#include <vector>
 
 #include "DxLib.h"
 
@@ -79,7 +80,7 @@ int ResourceManager::GetModelHandle(std::string fileName)
 	int handle = -1;
 	if (mmModelHandle.find(fileName) != mmModelHandle.end())
 	{
-		handle = mmModelHandle[fileName];
+		handle = mmModelHandle[fileName][0];
 		mmModelCount[handle] += 1;
 		return MV1DuplicateModel(handle);
 	}
@@ -90,30 +91,44 @@ int ResourceManager::GetModelHandle(std::string fileName)
 		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
 		return -1;
 	}
-	mmModelHandle[fileName] = handle;
+	std::vector<int> setHandle;
+	setHandle.clear();
+	setHandle.reserve(2);
+	setHandle.push_back(handle);
+	setHandle.push_back(MV1DuplicateModel(handle));
+	mmModelHandle[fileName] = setHandle;
 	mmModelCount[handle] = 1;
 
-	return handle;
+	return setHandle[1];
 }
 
 // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹íœ
 void ResourceManager::ReduceModelHandle(int handle)
 {
+	std::string fileName = "NULL";
+	for (std::pair<std::string, std::vector<int>> modelHandle : mmModelHandle)
+	{
+		for (int i = 0; i < modelHandle.second.size(); i++)
+		{
+			if (modelHandle.second[i] == handle)
+			{
+				fileName = modelHandle.first;
+				handle = modelHandle.second[0];
+				break;
+			}
+		}
+		
+		if (fileName != "NULL")
+		{
+			break;
+		}
+	}
+
 	mmModelCount[handle] -= 1;
 	if (mmModelCount[handle] <= 0)
 	{
 		MV1DeleteModel(handle);
 		mmModelCount.erase(handle);
-
-		std::string fileName;
-		for (std::pair<std::string, int> modelHandle : mmModelHandle)
-		{
-			if (modelHandle.second == handle)
-			{
-				fileName = modelHandle.first;
-				break;
-			}
-		}
 		mmModelHandle.erase(fileName);
 	}
 }

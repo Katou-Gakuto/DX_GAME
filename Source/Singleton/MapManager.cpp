@@ -15,6 +15,7 @@
 #include "EndManager.h"
 #include "GameManager.h"
 #include "MapManager.h"
+#include "ModelMap.h"
 #include "TargetManager.h"
 #include "UtilCalc.h"
 
@@ -22,6 +23,9 @@ MapManager::MapManager()
 : mfTileHalfSize(250.0f)
 , mvMapMinPos(VGet(-250.0f, 0.0f, -250.0f))
 {
+    mpModelMap = new ModelMap();
+    mpModelMap->Initilize();
+
     mstMapData.clear();
 }
 MapManager::~MapManager()
@@ -32,7 +36,10 @@ MapManager::~MapManager()
 // マップ情報設定
 void MapManager::SetMapData(MapType mapType)
 {
+    // モデルデータ解放
+    mpModelMap->ReleaseMapModel();
     mstMapData.clear();
+
     //mstMapData = Master::mpDataManager->GetMapData(mapType);
     switch (mapType)
     {
@@ -88,6 +95,9 @@ void MapManager::SetMapData(MapType mapType)
             }
         }
     }
+
+    // マップデータをモデルに読み込ませる
+    mpModelMap->LoadMapData(mstMapData);
 }
 
 // マップ情報設定
@@ -197,6 +207,7 @@ void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
 // 描画
 void MapManager::Draw()
 {
+    mpModelMap->ModelDraw();
     for (int z = 0; z < mstMapData.size(); z++)
     {
         for (int x = 0; x < mstMapData[z].size(); x++)

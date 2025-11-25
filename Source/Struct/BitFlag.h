@@ -98,7 +98,7 @@ public:
 	inline void SetNumber(T setNumber, T numberZone, int number)
 	{
 		if (CheckNumber(number)){
-			flags &= (setNumber << number) | (~numberZone << number);
+			flags &= (setNumber << number) | ~(numberZone << number);
 		}
 	}
 	/*【指定ビット数から数字を設定する】*/
@@ -107,16 +107,21 @@ public:
 	/*--------------------------------------------*/
 
 	/*-----【指定ビット数から数字を取得する】-----*/
-	inline T GetNumber(T numberZone, int number)
+	inline T GetNumber(T numberZone, int number, int rightBitNumber = -1)
 	{
+		if (rightBitNumber == -1)
+		{
+			rightBitNumber = number;
+		}
+
 		if (CheckNumber(number)){
-			return flags & (numberZone << number);
+			return (flags & (numberZone << number)) >> rightBitNumber;
 		}
 		return T(0);
 	}
 	/*【指定ビット数から数字を設定する】*/
 	template<typename ENUM_T>
-	inline T GetNumber(T numberZone, ENUM_T number) const { return GetNumber(numberZone, (int)number); }
+	inline T GetNumber(T numberZone, ENUM_T number, ENUM_T rightBitNumber = (ENUM_T)-1) const { return GetNumber(numberZone, (int)number, (int)rightBitNumber); }
 	/*--------------------------------------------*/
 
 	/*Tのビット数を超えてないかを確認する(超えていれば「false」を返す)*/

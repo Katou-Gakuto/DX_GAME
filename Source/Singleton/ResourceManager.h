@@ -63,7 +63,7 @@ public:
 	/*------------*/
 private:
 	// 3Dモデルハンドル
-	std::map<std::string, int> mmModelHandle;
+	std::map<std::string, std::vector<int>> mmModelHandle;
 	// 3Dモデルカウンター
 	std::map<int, int> mmModelCount;
 

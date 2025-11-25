@@ -7,6 +7,8 @@
 
 struct CollisionData;
 struct CharacterTargetData;
+class ModelMap;
+
 // TODO: マップ右前に伸びてるのを右後ろに直す　現状Z+方向がX+方向になってX+方向がZ-方向に伸びている
 class MapManager
 {
@@ -19,6 +21,9 @@ private:
 
 	// マップ最小ポジション
 	VECTOR mvMapMinPos;
+
+	// マップモデル
+	ModelMap *mpModelMap;
 
 public:
 	MapManager();

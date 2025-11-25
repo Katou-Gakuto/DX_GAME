@@ -14,7 +14,8 @@
 // タイルモデル種類
 enum class TILE_MODEL_TYPE
 {
-    HANDLE = 0, // ハンドル
+    NONE = 0,   // 無い
+    HANDLE,     // ハンドル
     INDEXED,    // 頂点
 };
 
@@ -33,9 +34,7 @@ class ModelMap : public ModelBase
 {
 private:
     // タイルモデルデータ
-    std::map<int, TileModelData> mmTileModelDatas;
-
-	std::vector<std::vector<TileData>>* mstMapData;
+    std::vector<std::vector<TileModelData>> mstTileModelDatas;
 
 public:
     ModelMap();
@@ -51,6 +50,9 @@ public:
     /*モデル描画*/
     void ModelDraw() override;
 
-    /*マップデータ設定*/
-    inline void SetMapData(std::vector<std::vector<TileData>>* mapData){mstMapData = mapData;}
+    /*マップデータ読み込み*/
+    void LoadMapData(std::vector<std::vector<TileData>>& mapData);
+
+    /*マップモデル解放*/
+    void ReleaseMapModel();
 };

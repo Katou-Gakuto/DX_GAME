@@ -38,9 +38,9 @@ public:
 	/// </summary>
 	inline void SetMsg(MSG msg) { mwMsg = msg; }
 
-	/*----------------*/
-	/*【ゲームデータ】*/
-	/*----------------*/
+	/*--------------------------*/
+	/*     【ゲームデータ】     */
+	/*--------------------------*/
 
 private:
 	// プレイ中のプレイヤーデータ
@@ -136,4 +136,22 @@ private:
 	/// </summary>
 	/// <param name="fileName">ベースファイルのファイル名があるファイル</param>
 	void SetBaseFile(std::string fileName);
+
+
+	/*--------------------------*/
+	/*     【マップデータ】     */
+	/*--------------------------*/
+
+	// TODO: ファイルから受け取れるようにする
+private:
+	// マップリソースファイル名保存用変数
+
+public:
+	 enum class MAP_RESOURCE_FILE_NUMBWER
+	{
+		GRTOUND,
+	};
+
+	/*マップリリソースファイル名取得*/
+	 std::string GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber);
 };

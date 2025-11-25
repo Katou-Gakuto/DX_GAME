@@ -211,6 +211,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Source\Enum;$(ProjectDir)Source\Model;$(ProjectDir)Source\Object;$(ProjectDir)Source\Object\Attack;$(ProjectDir)Source\Object\Building;$(ProjectDir)Source\Object\Character;$(ProjectDir)Source\Object\UI;$(ProjectDir)Source\Singleton;$(ProjectDir)Source\State;$(ProjectDir)Source\State\Character;$(ProjectDir)Source\State\UI;$(ProjectDir)Source\Struct;$(ProjectDir)Source\Util</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

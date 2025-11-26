@@ -17,7 +17,7 @@ private:
 	std::vector<std::vector<TileData>> mstMapData;
 
 	// タイルのサイズ
-	float mfTileHalfSize;
+	VECTOR mvTileHalfSize;
 
 	// マップ最小ポジション
 	VECTOR mvMapMinPos;
@@ -50,5 +50,5 @@ public:
 	void Draw();
 
 	/*タイルサイズ取得*/
-	inline float GetTileSize() const { return mfTileHalfSize + mfTileHalfSize; }
+	inline VECTOR GetTileSize() const { return VAdd(mvTileHalfSize, mvTileHalfSize); }
 };

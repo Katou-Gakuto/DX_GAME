@@ -158,7 +158,7 @@
     <ClCompile Include="Source\Singleton\KeyState.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Singleton\GamaManager.cpp">
+    <ClCompile Include="Source\Singleton\GameManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\EndManager.cpp">

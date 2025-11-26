@@ -51,7 +51,7 @@ public:
     void ModelDraw() override;
 
     /*マップデータ読み込み*/
-    void LoadMapData(std::vector<std::vector<TileData>>& mapData);
+    void LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR mapMinPos, VECTOR tileHalfSize);
 
     /*マップモデル解放*/
     void ReleaseMapModel();

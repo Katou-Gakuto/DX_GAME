@@ -1,19 +1,27 @@
 #include "DxLib.h"
 
-#include "../Header/Master.h"
+#include "Master.h"
 
-#include "../Header/CameraManager.h"
-#include "../Header/GameManager.h"
-#include "../Header/KeyState.h"
-#include "../Header/ObjectManager.h"
-#include "../Header/SceneManager.h"
-#include "../Header/TimeManager.h"
+#include "AttackManager.h"
+#include "CameraManager.h"
+#include "CollisionManager.h"
+#include "GameManager.h"
+#include "KeyState.h"
+#include "MapManager.h"
+#include "ObjectManager.h"
+#include "SceneManager.h"
+#include "TargetManager.h"
+#include "TimeManager.h"
 
 // コンストラクタ
 GameManager::GameManager()
-: mpCameraManager(nullptr)
+: mpAttackManager(nullptr)
+, mpCameraManager(nullptr)
+, mpCollisionManager(nullptr)
+, mpMapManager(nullptr)
 , mpObjectManager(nullptr)
 , mpSceneManager(nullptr)
+, mpTargetManager(nullptr)
 , mnUINumber(0)
 {
 }
@@ -33,6 +41,11 @@ void GameManager::Initilize()
     mpObjectManager = new ObjectManager();
     mpObjectManager->Initilize();
 
+    mpAttackManager = new AttackManager();
+    mpCollisionManager = new CollisionManager();
+    mpMapManager = new MapManager();
+    mpTargetManager = new TargetManager();
+
     SetDrawScreen(DX_SCREEN_BACK);
 }
 
@@ -44,6 +57,10 @@ void GameManager::Finailize()
     delete mpCameraManager;
     delete mpObjectManager;
     delete mpSceneManager;
+    delete mpAttackManager;
+    delete mpCollisionManager;
+    delete mpMapManager;
+    delete mpTargetManager;
 }
 
 // 更新
@@ -54,6 +71,8 @@ void GameManager::Update()
     mpCameraManager->Update();
 
     mpObjectManager->Update();
+
+    mpCollisionManager->CollisionProcess();
 
     mpObjectManager->LastUpdate();
 
@@ -74,6 +93,8 @@ void GameManager::Draw()
     mpCameraManager->Draw();
 
     mpObjectManager->Draw();
+
+    mpMapManager->Draw();
 
     ScreenFlip();
 }

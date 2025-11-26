@@ -66,6 +66,7 @@ int AttackManager::StartAttack(int attackDataNumber)
 
 				attack->SetAttackNumber(attackDataNumber);
 
+				// FIXME: なぜかヌルポインターが出た　
 				attack->Initilize();
 				attack->SetActiveFlag(true);
 
@@ -100,14 +101,12 @@ void AttackManager::StopAttack(int stopAttackNumber)
 // 削除設定
 void AttackManager::SetDelete()
 {
-	for (auto& attacks : mmAttacks)
+	for (int i = 0; i < mstAllAttack.size(); i++)
 	{
-		for (int i = 0; i < attacks.second.size(); i++)
-		{
-			attacks.second[i]->SetDeleteFlag(true);
-		}
+		mstAllAttack[i]->SetDeleteFlag(true);
 	}
 
+	mstAllAttack.clear();
 	mmAttacks.clear();
 	mstAttackDatas.clear();
 }

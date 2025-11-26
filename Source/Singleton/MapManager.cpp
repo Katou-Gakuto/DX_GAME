@@ -20,8 +20,8 @@
 #include "UtilCalc.h"
 
 MapManager::MapManager()
-: mfTileHalfSize(250.0f)
-, mvMapMinPos(VGet(-250.0f, 0.0f, -250.0f))
+: mvTileHalfSize(VGet(250.0f, 0.0f, 250.0f))
+, mvMapMinPos(VGet(250.0f, 0.0f, 250.0f))
 {
     mpModelMap = new ModelMap();
     mpModelMap->Initilize();
@@ -97,7 +97,7 @@ void MapManager::SetMapData(MapType mapType)
     }
 
     // マップデータをモデルに読み込ませる
-    mpModelMap->LoadMapData(mstMapData);
+    mpModelMap->LoadMapData(mstMapData, mvMapMinPos, mvTileHalfSize);
 }
 
 // マップ情報設定
@@ -191,14 +191,14 @@ std::vector<CharacterTargetData> MapManager::CharacterCollision(std::vector<Char
 // マップポジション取得
 void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
 {
-    setPosX = (int)((pos.x - mvMapMinPos.x) / GetTileSize());
-    setPosZ = (int)((pos.z - mvMapMinPos.z) / GetTileSize());
+    setPosX = (int)((pos.x + mvMapMinPos.x) / GetTileSize().x);
+    setPosZ = (int)((pos.z + mvMapMinPos.z) / GetTileSize().z);
 
-    if ((pos.x - mvMapMinPos.x) < 0.0f)
+    if ((pos.x + mvMapMinPos.x) < 0.0f)
     {
         setPosX -= 1;
     }
-    if ((pos.z - mvMapMinPos.z) < 0.0f)
+    if ((pos.z + mvMapMinPos.z) < 0.0f)
     {
         setPosZ -= 1;
     }
@@ -213,21 +213,22 @@ void MapManager::Draw()
         for (int x = 0; x < mstMapData[z].size(); x++)
         {
             TileData& tile = mstMapData[z][x];
+            VECTOR drawPos = VGet(tile.tileDisplacedPos.x + (x * GetTileSize().x), tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize().z));
 
             switch (tile.tileType)
             {
             case TileType::Ground:
                 // 左奥
-                DrawTriangle3D(VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
+                DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
                     GetColor(0, 0, 255),
                     TRUE);
 
                 // 右手前
-                DrawTriangle3D(VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) + mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) + mfTileHalfSize),
-                    VGet(tile.tileDisplacedPos.x + (x * GetTileSize()) - mfTileHalfSize, tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize()) - mfTileHalfSize),
+                DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
+                    VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
                     GetColor(0, 0, 255),
                     TRUE);
                 break;

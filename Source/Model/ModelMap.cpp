@@ -47,9 +47,9 @@ void ModelMap::ModelDraw()
 }
 
 // マップデータ読み込み
-void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData)
+void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR mapMinPos, VECTOR tileHalfSize)
 {
-
+    // TODO: ハンドルしか制作してないし分ける情報も変えたほうが良いと思う
     for (int z = 0; z < mapData.size(); z++)
     {
         std::vector<TileModelData> setTileModelLine;
@@ -62,7 +62,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData)
                 case TileType::Ground:
                     setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
-                    MV1SetPosition(setTileModel.modelHandle, VGet(0.0f + (500.0f * x), 150.0f, 0.0f + (500.0f * z)));
+                    MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
                 break;
             }
             setTileModelLine.push_back(setTileModel);

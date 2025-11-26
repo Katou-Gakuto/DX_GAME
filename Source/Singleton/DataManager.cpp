@@ -45,7 +45,9 @@ DataManager::DataManager()
 		PLAYER_DATA setPlayer = PLAYER_DATA();
 		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
+		setPlayer.townPos = UtilCalc::VZero;
 		setPlayer.dungeonType = SCENE::NONE;
+		setPlayer.dungeonPos = UtilCalc::VZero;
 		setPlayer.preMap = SCENE::NONE;
 		setPlayer.position = UtilCalc::VZero;
 		setPlayer.angle = UtilCalc::VZero;

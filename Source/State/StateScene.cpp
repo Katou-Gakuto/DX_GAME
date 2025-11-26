@@ -4,6 +4,7 @@
 
 #include "Master.h"
 
+#include "AttackManager.h"
 #include "CameraManager.h"
 #include "Character_Map.h"
 #include "Character_Shot.h"
@@ -19,6 +20,7 @@
 #include "StateScene.h"
 #include "TargetManager.h"
 #include "UI_Title.h"
+#include "UtilCalc.h"
 #include "UtilFactorys.h"
 
 // TODO: 町、ダンジョン記録を関数化、プレイヤー、エネミー、カメラ生成ファクトリーに移す エネミー移動先データマネージャーから受け取るようにする
@@ -116,6 +118,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	mStateNumber = sceneManager->GetNowScene();
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
+	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
 
 	// カメラ作成
@@ -156,6 +159,8 @@ void TownScene::OnExit(SceneManager* sceneManager)
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
+	playerData.townPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+	playerData.dungeonPos = UtilCalc::VZero;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
 	// カメラ削除
@@ -193,6 +198,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	mStateNumber = sceneManager->GetNowScene();
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
+	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
 
 	// カメラ作成
@@ -250,6 +256,7 @@ void DungeonScene::OnExit(SceneManager* sceneManager)
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
+	playerData.dungeonPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
 	// カメラ削除
@@ -342,6 +349,9 @@ void BattleScene::OnExit(SceneManager* sceneManager)
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
+
+	// 攻撃削除
+	Master::mpGameManager->GetAttackManager()->SetDelete();
 }
 
 

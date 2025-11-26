@@ -42,7 +42,7 @@
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
     <ClCompile Include="Source\Singleton\DataManager.cpp" />
     <ClCompile Include="Source\Singleton\EndManager.cpp" />
-    <ClCompile Include="Source\Singleton\GamaManager.cpp" />
+    <ClCompile Include="Source\Singleton\GameManager.cpp" />
     <ClCompile Include="Source\Singleton\KeyState.cpp" />
     <ClCompile Include="Source\Singleton\LoadingManager.cpp" />
     <ClCompile Include="Source\Singleton\MapManager.cpp" />

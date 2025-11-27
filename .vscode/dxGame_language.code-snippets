@@ -12,8 +12,7 @@
     "Function Template h": {
         "prefix": "@func_h",
         "body": [
-            "/*${1:コメント}*/",
-			"${2:型} ${3:関数名}(${4:引数})${5:};",
+			"${1:型} ${2:関数名}(${3:引数})${4:};",
         ],
         "description": "関数テンプレート h"
     },
@@ -106,5 +105,26 @@
 			"/*------------------------*/",
 		],
 		"description": "大分類コメント"
+	},
+	"Comment_Summary": {
+		"prefix": "@commSummary",
+		"body": [
+			"/// <summary>${1:説明}</summary>",
+		],
+		"description": "説明コメント"
+	},
+	"Comment_ParamName": {
+		"prefix": "@commParamName",
+		"body": [
+			"/// <param name = ${1:変数名}>${2:説明}</param>",
+		],
+		"description": "引数説明コメント"
+	},
+	"Comment_Returns": {
+		"prefix": "@commReturns",
+		"body": [
+			"/// <returns>${1:説明}</returns>",
+		],
+		"description": "返り値説明コメント"
 	},
 }

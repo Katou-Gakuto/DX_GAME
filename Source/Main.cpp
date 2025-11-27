@@ -36,6 +36,23 @@ TimeManager* Master::mpTimeManager = new TimeManager();
 * @return int 0 正常終了／-1 エラー
 * @details Main関数
 */
+
+
+
+
+
+
+
+
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="hInstance"></param>
+/// <param name="hPrevInstance"></param>
+/// <param name="lpCmdLine"></param>
+/// <param name="nCmdShow"></param>
+/// <returns></returns>
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {

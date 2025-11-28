@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1231
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxLesson", "DxLesson.vcxproj", "{BDFC8402-337B-4CEB-AFEE-070D71436F48}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX_GAME", "DxLesson.vcxproj", "{BDFC8402-337B-4CEB-AFEE-070D71436F48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XmlTest", "XmlTest\XmlTest.vcxproj", "{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{BDFC8402-337B-4CEB-AFEE-070D71436F48}.Release|x64.Build.0 = Release|x64
 		{BDFC8402-337B-4CEB-AFEE-070D71436F48}.Release|x86.ActiveCfg = Release|Win32
 		{BDFC8402-337B-4CEB-AFEE-070D71436F48}.Release|x86.Build.0 = Release|Win32
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Debug|x64.ActiveCfg = Debug|x64
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Debug|x64.Build.0 = Debug|x64
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Debug|x86.ActiveCfg = Debug|Win32
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Debug|x86.Build.0 = Debug|Win32
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x64.ActiveCfg = Release|x64
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x64.Build.0 = Release|x64
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x86.ActiveCfg = Release|Win32
+		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

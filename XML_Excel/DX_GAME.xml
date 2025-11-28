@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "DX_GAME"
+    </assembly>
+
+      <Title>
+        XML入門
+      </Title>
+        <tItle>
+          XML入門
+        </tItle>
+          <tiTle>
+            XML入門
+          </tiTle>
+            <titLe>
+              XML入門
+            </titLe>
+              <titlE>
+                XML入門
+              </titlE>
+                <title>
+                  XML入門
+                </title>
+    <members>
+        <member name="M:WinMain(HINSTANCE__*,HINSTANCE__*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)">
+@fn WinMain
+@brief Main関数
+@param[in] HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
+@return int 0 正常終了／-1 エラー
+@details Main関数
+
+<summary /><param name="hInstance" /><param name="hPrevInstance" /><param name="lpCmdLine" /><param name="nCmdShow" /><returns /></member>
+        <member name="M:LoadingManager.GetLoadingFlag">
+            <summary>
+ローディングフラグ取得
+</summary>
+            <returns>0なら「false」 0以外なら「true」</returns>
+        </member>
+        <member name="M:LoadingManager.SetLoadingFlag(LOADING_NUMBER)">
+            <summary>
+ローディングフラグ設定
+</summary>
+            <param name="number">フラグのビット数</param>
+        </member>
+        <member name="M:EndManager.GetBitEndflag">
+            <summary>
+ビットのエンドフラグ取得
+</summary>
+            <returns>ビットフラグ</returns>
+        </member>
+        <member name="M:EndManager.SetDeleteObject(System.Void*)">
+            <summary>
+削除オブジェクト設定
+</summary>
+            <param name="deleteObject">終了時に削除するオブジェクト</param>
+        </member>
+        <member name="M:EndManager.SetEndFlag(System.Boolean,END_FLAG_NUMBER)">
+            <summary>
+終了フラグ設定
+</summary>
+            <param name="flag">設定フラグ</param>
+            <param name="number">設定する終了フラグのビット数</param>
+        </member>
+        <member name="M:EndManager.EndFlag">
+            <summary>
+終了フラグ
+</summary>
+            <returns>どれかの終了フラグが有効なら「true」</returns>
+        </member>
+        <member name="M:TimeManager.SetNewSceneTimeFlag(System.Boolean)">
+            <summary>
+シーン変更中に経ったゲーム時間を一定化するフラグを設定
+</summary>
+            <param name="flag">新しいシーン移動中かどうか</param>
+        </member>
+        <member name="M:TimeManager.SetOneFrame(System.Int32)">
+            <summary>
+1フレームの秒数設定(ミリ秒)
+</summary>
+            <param name="time">1フレームの秒数(ミリ秒)</param>
+        </member>
+        <member name="M:TimeManager.GetOneFrame">
+            <summary>
+1フレームの秒数取得(ミリ秒)
+</summary>
+            <returns>1フレームの秒数(ミリ秒)</returns>
+        </member>
+        <member name="M:TimeManager.SetStopFlag(System.Boolean)">
+            <summary>
+ゲーム停止フラグ設定
+</summary>
+            <param name="flag">停止するかどうか「true」で止まる</param>
+        </member>
+        <member name="M:TimeManager.GetStopFlag">
+            <summary>
+ゲーム停止フラグ取得
+</summary>
+            <returns>停止しているなら「true」</returns>
+        </member>
+        <member name="M:TimeManager.GetPreviousTime">
+            <summary>
+一つ前の更新時間
+</summary>
+            <returns>更新時間</returns>
+        </member>
+        <member name="M:TimeManager.GetTime">
+            <summary>
+スタートからの経過時間
+</summary>
+            <returns>経過時間</returns>
+        </member>
+        <member name="M:TimeManager.GetGameTime">
+            <summary>
+ゲーム時間取得
+</summary>
+            <returns>ゲームの経過時間</returns>
+        </member>
+        <member name="M:TimeManager.GetFrame">
+            <summary>
+フレーム数取得
+</summary>
+            <returns>経過フレーム数</returns>
+        </member>
+        <member name="M:KeyState.GetAllToggleState">
+            <summary>
+トグル状態全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetUpNumpadKeyFlags_Board">
+            <summary>
+離したテンキーキーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetNowNumpadKeyFlags_Board">
+            <summary>
+押しているテンキーキーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetDownNumpadKeyFlags_Board">
+            <summary>
+押し始めたテンキーキーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetUpSpecialKeyFlags_Board">
+            <summary>
+離した特殊キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetNowSpecialKeyFlags_Board">
+            <summary>
+押している特殊キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetDownSpecialKeyFlags_Board">
+            <summary>
+押し始めた特殊キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetUpWordKeyFlags_Board">
+            <summary>
+離した文字操作系キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetNowWordKeyFlags_Board">
+            <summary>
+押している文字操作系キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetDownWordKeyFlags_Board">
+            <summary>
+押し始めた文字操作系キーフラグを全取得(キーボード)
+</summary>
+        </member>
+        <member name="M:KeyState.GetAllUpKeyFlags_Controller(System.Boolean)">
+            <summary>
+全コントローラー分の離したキーフラグを全取得(コントローラー)
+</summary>
+            <param name="keyBoardFlag">キーボード分も取得するなら「true」にする</param>
+            <returns>全コントローラーの離したすべてのキーフラグ</returns>
+        </member>
+        <member name="M:KeyState.GetAllNowKeyFlags_Controller(System.Boolean)">
+            <summary>
+全コントローラー分の押しているキーフラグを全取得(コントローラー)
+</summary>
+            <param name="keyBoardFlag">キーボード分も取得するなら「true」にする</param>
+            <returns>全コントローラーの押しているすべてのキーフラグ</returns>
+        </member>
+        <member name="M:KeyState.GetAllDownKeyFlags_Controller(System.Boolean)">
+            <summary>
+全コントローラー分の押し始めたキーフラグを全取得(コントローラー)
+</summary>
+            <param name="keyBoardFlag">キーボード分も取得するなら「true」にする</param>
+            <returns>全コントローラーの押し始めたすべてのキーフラグ</returns>
+        </member>
+        <member name="M:GameManager.GetTargetManager">
+            <summary>
+ターゲットマネージャー取得
+</summary>
+            <returns>ターゲットマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetSceneManager">
+            <summary>
+シーンマネージャー取得
+</summary>
+            <returns>シーンマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetObjectManager">
+            <summary>
+オブジェクトマネージャー取得
+</summary>
+            <returns>オブジェクトマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetMapManager">
+            <summary>
+マップマネージャー取得
+</summary>
+            <returns>マップマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetCollisionManager">
+            <summary>
+コリジョンマネージャー取得
+</summary>
+            <returns>コリジョンマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetCameraManager">
+            <summary>
+カメラマネージャー取得
+</summary>
+            <returns>カメラマネージャー</returns>
+        </member>
+        <member name="M:GameManager.GetAttackManager">
+            <summary>
+攻撃マネジャー取得
+</summary>
+            <returns>攻撃マネジャー</returns>
+        </member>
+        <member name="M:GameManager.GetNowUINumber">
+            <summary>
+UIナンバー取得
+</summary>
+            <returns>現在処理するUIナンバー</returns>
+        </member>
+        <member name="M:DataManager.SetBaseFile(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;)">
+            <summary>
+ベースファイル設定
+</summary>
+            <param name="fileName">ベースファイルのファイル名があるファイル</param>
+        </member>
+        <member name="M:DataManager.SetMsg(tagMSG)">
+            <summary>
+ウィンドウメッセージ設定
+</summary>
+        </member>
+        <member name="M:DataManager.GetMsg">
+            <summary>
+ウィンドウメッセージ取得
+</summary>
+        </member>
+    </members>
+</doc>

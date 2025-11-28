@@ -68,6 +68,7 @@
     <ClCompile Include="Source\Util\UtilCalc.cpp" />
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
+    <ClCompile Include="XML_Excel\XmlArrange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Enum\CharacterEnum.h" />
@@ -120,6 +121,7 @@
     <ClInclude Include="Source\Util\UtilCalc.h" />
     <ClInclude Include="Source\Util\UtilChange.h" />
     <ClInclude Include="Source\Util\UtilFactorys.h" />
+    <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -209,14 +211,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Source\Enum;$(ProjectDir)Source\Model;$(ProjectDir)Source\Object;$(ProjectDir)Source\Object\Attack;$(ProjectDir)Source\Object\Building;$(ProjectDir)Source\Object\Character;$(ProjectDir)Source\Object\UI;$(ProjectDir)Source\Singleton;$(ProjectDir)Source\State;$(ProjectDir)Source\State\Character;$(ProjectDir)Source\State\UI;$(ProjectDir)Source\Struct;$(ProjectDir)Source\Util</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Source\Enum;$(ProjectDir)Source\Model;$(ProjectDir)Source\Object;$(ProjectDir)Source\Object\Attack;$(ProjectDir)Source\Object\Building;$(ProjectDir)Source\Object\Character;$(ProjectDir)Source\Object\UI;$(ProjectDir)Source\Singleton;$(ProjectDir)Source\State;$(ProjectDir)Source\State\Character;$(ProjectDir)Source\State\UI;$(ProjectDir)Source\Struct;$(ProjectDir)Source\Util;$(ProjectDir)XML_Excel</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Source\Enum;$(ProjectDir)Source\Model;$(ProjectDir)Source\Object;$(ProjectDir)Source\Object\Attack;$(ProjectDir)Source\Object\Building;$(ProjectDir)Source\Object\Character;$(ProjectDir)Source\Object\UI;$(ProjectDir)Source\Singleton;$(ProjectDir)Source\State;$(ProjectDir)Source\State\Character;$(ProjectDir)Source\State\UI;$(ProjectDir)Source\Struct;$(ProjectDir)Source\Util</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)プロジェクトに追加すべきファイル_VC用;$(ProjectDir)Source\Enum;$(ProjectDir)Source\Model;$(ProjectDir)Source\Object;$(ProjectDir)Source\Object\Attack;$(ProjectDir)Source\Object\Building;$(ProjectDir)Source\Object\Character;$(ProjectDir)Source\Object\UI;$(ProjectDir)Source\Singleton;$(ProjectDir)Source\State;$(ProjectDir)Source\State\Character;$(ProjectDir)Source\State\UI;$(ProjectDir)Source\Struct;$(ProjectDir)Source\Util;$(ProjectDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

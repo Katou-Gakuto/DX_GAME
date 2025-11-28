@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "XmlTest"
+    </assembly>
+    <member name="M:LoadingManager.GetLoadingFlag">
+    <summary>ローディングフラグ取得</summary>
+    <returns>0なら「false」 0以外なら「true」</returns>
+    <membersl>asd</membersl>
+    <memberslll>dsa</memberslll>
+    <membersllll>ad</membersllll>
+    <memberslllll>asf</memberslllll>
+    <membersllllll>gaf</membersllllll>
+    <memberslllllll>gsh</memberslllllll>
+    </member>
+    <member name="M:te.ta">
+    <summary>tgsbフラグ取得</summary>
+    <returns>0なら「false」 0fdgsなら「true」</returns>
+    <membersl>:i</membersl>
+    <memberslll>yl</memberslll>
+    <membersllll>,t</membersllll>
+    <memberslllll>rk</memberslllll>
+    <membersllllll>jtfhjf</membersllllll>
+    <memberslllllll>eytj</memberslllllll>
+    </member>
+     <member name="M:trr.yyyy">
+    <summary>ローディングyyyyyyy取得</summary>
+    <returns>0なら「false」 0yyjjyyjなら「true」</returns>
+    <membersl>pppp</membersl>
+    <memberslll>jjj</memberslll>
+    <membersllll>mmm</membersllll>
+    <memberslllll>tttt</memberslllll>
+    <membersllllll>rrrr</membersllllll>
+    <memberslllllll>eeee</memberslllllll>
+    </member>
+    <member name="M:qg.GetLoadiregrewgrgngFlag">
+    <summary>ローディングgeawrre取得</summary>
+    <returns>0なら「false」 0gggg以外なら「true」</returns>
+    <membersl>asd</membersl>
+    <memberslll>dsa</memberslll>
+    <membersllll>ad</membersllll>
+    <memberslllll>asf</memberslllll>
+    <membersllllll>gaf</membersllllll>
+    <memberslllllll>gsh</memberslllllll>
+    </member>
+    <member name="M:LoadingMagggnager.GetLoadingFlag">
+    <summary>ローディングフラグggg取得</summary>
+    <returns>0なら「false」 0以外gggなら「true」</returns>
+    <membersl>:i</membersl>
+    <memberslll>yl</memberslll>
+    <membersllll>,t</membersllll>
+    <memberslllll>rk</memberslllll>
+    <membersllllll>jtfhjf</membersllllll>
+    <memberslllllll>eytj</memberslllllll>
+    </member>
+    <member name="M:LoadingManager.GetLoadingFlag">
+    <summary>ローディングフラグ取得</summary>
+    <returns>0なら「false」 0以外なら「true」</returns>
+    <membersl>pppp</membersl>
+    <memberslll>jjj</memberslll>
+    <membersllll>mmm</membersllll>
+    <memberslllll>tttt</memberslllll>
+    <membersllllll>rrrr</membersllllll>
+    <memberslllllll>eeee</memberslllllll>
+    </member>
+</doc>

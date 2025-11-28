@@ -88,6 +88,12 @@
     <Filter Include="ヘッダー ファイル\Model">
       <UniqueIdentifier>{1e8e0e09-68eb-4646-918b-be7bb3e19a83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\XML">
+      <UniqueIdentifier>{00f83d07-3d70-49a0-a8ce-93598f474ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\XML">
+      <UniqueIdentifier>{b1c35202-75c8-42bf-8933-5224db2753d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text\Terms.txt">
@@ -232,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Source\Model\ModelMap.cpp">
       <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="XML_Excel\XmlArrange.cpp">
+      <Filter>ソース ファイル\XML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +393,9 @@
     </ClInclude>
     <ClInclude Include="Source\Model\ModelMap.h">
       <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="XML_Excel\XmlArrange.h">
+      <Filter>ヘッダー ファイル\XML</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+    XmlTest
+    </assembly>
+   <member className="XmlArrange">
+   <functionName>DataToExcelXmlFile</functionName>
+   <explanations>
+TEWT
+   </explanations>
+   <variable0>FDASF</variable0>
+   <returnExplanation>
+QERQEFEFGTR
+   </returnExplanation>
+   </member>
+   <member className="XmlArrange">
+   <functionName>XmlToData</functionName>
+   <explanations>
+TEWT
+t
+   </explanations>
+   <variable0>FgDASF</variable0>
+   <returnExplanation>
+QERQEFEFGTRg
+   </returnExplanation>
+   </member>
+</doc>

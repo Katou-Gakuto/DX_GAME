@@ -11,16 +11,9 @@
 #include "LoadingManager.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
+#include "XmlArrange.h"
 
-/**
-* @file 
-* @author 
-* @date 
-*
-* @details 
-* @note リファレンス https://dxlib.xsrv.jp/dxfunc.html
-*/
-
+// マスター静的メンバ変数初期化
 DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
 GameManager* Master::mpGameManager = new GameManager();
@@ -29,33 +22,15 @@ LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
-/**
-* @fn WinMain
-* @brief Main関数
-* @param[in] HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
-* @return int 0 正常終了／-1 エラー
-* @details Main関数
-*/
-
-
-
-
-
-
-
-
-
-/// <summary>
-/// 
-/// </summary>
-/// <param name="hInstance"></param>
-/// <param name="hPrevInstance"></param>
-/// <param name="lpCmdLine"></param>
-/// <param name="nCmdShow"></param>
-/// <returns></returns>
+// メイン
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	// Excel用XMLファイルを生成
+	XmlArrange* pXmlArrange = new XmlArrange();
+	pXmlArrange->Arrange();
+	delete pXmlArrange;
+
 	// ウインドウモードで起動
 	ChangeWindowMode(true);
 

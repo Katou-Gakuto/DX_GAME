@@ -60,7 +60,7 @@ public:
     ~XmlArrange();
 
     // xmlファイルを読み込み用に整理する
-    void Arrange(std::string fileName = "");
+    void Arrange();
 private:
     // 指定の拡張子のファイルを取得
     std::string FileRxtension_Search(std::string folderPath, std::string fileRxtension);
@@ -94,23 +94,8 @@ private:
     void RegisterReturnExplanation(std::ifstream& xmlFile, std::string line);
 
     // XMLをデータ化する
-
-    /// <summary>
-    /// TEWT
-    /// t
-    /// </summary>
-    /// <param name="fileName">FgDASF</param>
-    /// <returns>QERQEFEFGTRg</returns>
     void XmlToData(std::string fileName);
 
     // データをExcel用のXmlファイルに変換する
-
-
-
-    /// <summary>
-    /// TEWT
-    /// </summary>
-    /// <param name="fileName">FDASF</param>
-    /// <returns>QERQEFEFGTR</returns>
     void DataToExcelXmlFile(std::string fileName);
 };

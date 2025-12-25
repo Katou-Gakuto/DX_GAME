@@ -1,27 +1,310 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-    XmlTest
+    Robot_Battle
     </assembly>
-   <member className="XmlArrange">
-   <functionName>DataToExcelXmlFile</functionName>
+   <member className="LoadingManager">
+   <functionName>GetLoadingFlag</functionName>
    <explanations>
-TEWT
+ローディングフラグ取得
    </explanations>
-   <variable0>FDASF</variable0>
    <returnExplanation>
-QERQEFEFGTR
+0なら「false」 0以外なら「true」
    </returnExplanation>
    </member>
-   <member className="XmlArrange">
-   <functionName>XmlToData</functionName>
+   <member className="LoadingManager">
+   <functionName>SetLoadingFlag</functionName>
    <explanations>
-TEWT
-t
+ローディングフラグ設定
    </explanations>
-   <variable0>FgDASF</variable0>
+   <variable0>フラグのビット数</variable0>
+   </member>
+   <member className="EndManager">
+   <functionName>GetBitEndflag</functionName>
+   <explanations>
+ビットのエンドフラグ取得
+   </explanations>
    <returnExplanation>
-QERQEFEFGTRg
+ビットフラグ
+   </returnExplanation>
+   </member>
+   <member className="EndManager">
+   <functionName>SetDeleteObject</functionName>
+   <explanations>
+削除オブジェクト設定
+   </explanations>
+   <variable0>終了時に削除するオブジェクト</variable0>
+   </member>
+   <member className="EndManager">
+   <functionName>SetEndFlag</functionName>
+   <explanations>
+終了フラグ設定
+   </explanations>
+   <variable0>設定する終了フラグのビット数</variable0>
+   </member>
+   <member className="EndManager">
+   <functionName>EndFlag</functionName>
+   <explanations>
+終了フラグ
+   </explanations>
+   <returnExplanation>
+どれかの終了フラグが有効なら「true」
+   </returnExplanation>
+   </member>
+   <member className="DataManager">
+   <functionName>SetBaseFile</functionName>
+   <explanations>
+ベースファイル設定
+   </explanations>
+   <variable0>ベースファイルのファイル名があるファイル</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ取得
+   </explanations>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetNewSceneTimeFlag</functionName>
+   <explanations>
+シーン変更中に経ったゲーム時間を一定化するフラグを設定
+   </explanations>
+   <variable0>新しいシーン移動中かどうか</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetOneFrame</functionName>
+   <explanations>
+1フレームの秒数設定(ミリ秒)
+   </explanations>
+   <variable0>1フレームの秒数(ミリ秒)</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetOneFrame</functionName>
+   <explanations>
+1フレームの秒数取得(ミリ秒)
+   </explanations>
+   <returnExplanation>
+1フレームの秒数(ミリ秒)
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetStopFlag</functionName>
+   <explanations>
+ゲーム停止フラグ設定
+   </explanations>
+   <variable0>停止するかどうか「true」で止まる</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetStopFlag</functionName>
+   <explanations>
+ゲーム停止フラグ取得
+   </explanations>
+   <returnExplanation>
+停止しているなら「true」
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetPreviousTime</functionName>
+   <explanations>
+一つ前の更新時間
+   </explanations>
+   <returnExplanation>
+更新時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetTime</functionName>
+   <explanations>
+スタートからの経過時間
+   </explanations>
+   <returnExplanation>
+経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetGameTime</functionName>
+   <explanations>
+ゲーム時間取得
+   </explanations>
+   <returnExplanation>
+ゲームの経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetFrame</functionName>
+   <explanations>
+フレーム数取得
+   </explanations>
+   <returnExplanation>
+経過フレーム数
+   </returnExplanation>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllToggleState</functionName>
+   <explanations>
+トグル状態全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpNumpadKeyFlags_Board</functionName>
+   <explanations>
+離したテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowNumpadKeyFlags_Board</functionName>
+   <explanations>
+押しているテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownNumpadKeyFlags_Board</functionName>
+   <explanations>
+押し始めたテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpSpecialKeyFlags_Board</functionName>
+   <explanations>
+離した特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowSpecialKeyFlags_Board</functionName>
+   <explanations>
+押している特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownSpecialKeyFlags_Board</functionName>
+   <explanations>
+押し始めた特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpWordKeyFlags_Board</functionName>
+   <explanations>
+離した文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowWordKeyFlags_Board</functionName>
+   <explanations>
+押している文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownWordKeyFlags_Board</functionName>
+   <explanations>
+押し始めた文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllUpKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の離したキーフラグを全取得(コントローラー)
+   </explanations>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   <returnExplanation>
+全コントローラーの離したすべてのキーフラグ
+   </returnExplanation>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllNowKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の押しているキーフラグを全取得(コントローラー)
+   </explanations>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   <returnExplanation>
+全コントローラーの押しているすべてのキーフラグ
+   </returnExplanation>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllDownKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の押し始めたキーフラグを全取得(コントローラー)
+   </explanations>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   <returnExplanation>
+全コントローラーの押し始めたすべてのキーフラグ
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetTargetManager</functionName>
+   <explanations>
+ターゲットマネージャー取得
+   </explanations>
+   <returnExplanation>
+ターゲットマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetSceneManager</functionName>
+   <explanations>
+シーンマネージャー取得
+   </explanations>
+   <returnExplanation>
+シーンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetObjectManager</functionName>
+   <explanations>
+オブジェクトマネージャー取得
+   </explanations>
+   <returnExplanation>
+オブジェクトマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetMapManager</functionName>
+   <explanations>
+マップマネージャー取得
+   </explanations>
+   <returnExplanation>
+マップマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCollisionManager</functionName>
+   <explanations>
+コリジョンマネージャー取得
+   </explanations>
+   <returnExplanation>
+コリジョンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCameraManager</functionName>
+   <explanations>
+カメラマネージャー取得
+   </explanations>
+   <returnExplanation>
+カメラマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetAttackManager</functionName>
+   <explanations>
+攻撃マネジャー取得
+   </explanations>
+   <returnExplanation>
+攻撃マネジャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetNowUINumber</functionName>
+   <explanations>
+UIナンバー取得
+   </explanations>
+   <returnExplanation>
+現在処理するUIナンバー
    </returnExplanation>
    </member>
 </doc>

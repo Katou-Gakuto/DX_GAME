@@ -1,5 +1,5 @@
-@startuml
-title テスト用クラス図
+@startuml name DX_GAME_Class_Diagram
+title DX_GAMEクラス図
 skinparam dpi 150
 
 ' クラスAの定義

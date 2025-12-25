@@ -34,34 +34,31 @@ XmlArrange::~XmlArrange()
 }
 
 // xmlファイルを読み込み用に整理する
-void XmlArrange::Arrange(std::string fileName)
+void XmlArrange::Arrange()
 {
-    if (fileName == "")
+    std::string folderPath = "./"; // 取得したいフォルダパス    
+    std::string projectName = "";// 取得したプロジェクトファイル名
+
+    // プロジェクト名取得
+    projectName = FileRxtension_Search(folderPath, ".vcxproj.filters");
+    projectName = projectName.substr(0, projectName.size() - 16);
+
+    int max = 10;
+    for (int count = 0; count < max; count++)
     {
-        std::string folderPath = "./"; // 取得したいフォルダパス    
-        std::string projectName = "";// 取得したプロジェクトファイル名
-    
-        // プロジェクト名取得
-        projectName = FileRxtension_Search(folderPath, ".vcxproj.filters");
-        projectName = projectName.substr(0, projectName.size() - 16);
-
-        int max = 10;
-        for (int count = 0; count < max; count++)
+        if (FileRxtension_Search(folderPath, ".sln") != "")
         {
-            if (FileRxtension_Search(folderPath, ".sln") != "")
-            {
-                break;
-            }
-            else if ((count + 1) >= max)
-            {
-                return;
-            }
-            folderPath = folderPath + "../";
+            break;
         }
-
-        XmlToData(folderPath + "x64/Debug/" + FileRxtension_Search(folderPath + "x64/Debug/", projectName + ".xml"));
-        DataToExcelXmlFile(folderPath + "XML_Excel/_Excel.xml");
+        else if ((count + 1) >= max)
+        {
+            return;
+        }
+        folderPath = folderPath + "../";
     }
+
+    XmlToData(folderPath + "x64/Debug/" + FileRxtension_Search(folderPath + "x64/Debug/", projectName + ".xml"));
+    DataToExcelXmlFile(folderPath + "XML_Excel/_Excel.xml");
 }
 
 // 指定の拡張子のファイルを取得
@@ -254,6 +251,10 @@ void XmlArrange::RegisterClassFunction(std::string line)
     while (line.size() > functionNameCount)
     {
         if (line.substr(functionNameCount, 1) == "(")
+        {
+            break;
+        }
+        else if ((line.size() > (functionNameCount + 1)) && (line.substr(functionNameCount, 2) == "\">"))
         {
             break;
         }

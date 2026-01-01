@@ -7,7 +7,7 @@ class A {
   +string field1
   +void method1()
 }
-note right of A {
+note right of A::method1 {
   ‚±‚ê‚ªŠî–{‚ÌƒNƒ‰ƒX
 }
 

@@ -30,7 +30,7 @@ public:
 	~MapManager();
 
 	/*マップ情報設定*/
-	void SetMapData(MapType maptype);
+	void SetMapData(MapType mapType);
 	/*マップ情報設定*/
 	void SetMapData(std::vector<std::vector<TileData>> mapData);
 

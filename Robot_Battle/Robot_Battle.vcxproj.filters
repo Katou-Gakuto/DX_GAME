@@ -94,6 +94,18 @@
     <Filter Include="ソース ファイル\XML">
       <UniqueIdentifier>{e2f3e4e1-7bfe-44ce-84c9-c69a177e2247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Model\ModelsController">
+      <UniqueIdentifier>{a1194845-f095-4da9-9526-1744cfd5761c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Model\ModelsController">
+      <UniqueIdentifier>{7946ba2b-4bf0-41f8-87a5-343394a2b3c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{43c643ca-9012-4392-b9d8-0bb854e00d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Animation">
+      <UniqueIdentifier>{86878003-b208-4604-b2c2-65a13e32d1f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Text\Terms.txt">
@@ -257,6 +269,18 @@
     <ClInclude Include="..\Source\Enum\SceneEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Model\ModelsController\ModelsControllerBase.h">
+      <Filter>ヘッダー ファイル\Model\ModelsController</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Animation\AnimationBase.h">
+      <Filter>ヘッダー ファイル\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Struct\AnimationData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Enum\AnimationEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">
@@ -396,6 +420,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\Main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Model\ModelsController\ModelsControllerBase.cpp">
+      <Filter>ソース ファイル\Model\ModelsController</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Animation\AnimationBase.cpp">
+      <Filter>ソース ファイル\Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

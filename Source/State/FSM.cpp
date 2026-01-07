@@ -112,6 +112,49 @@ void FSMCharacter::Death(CharacterBase* character)
 	mmStateMap[mnCurrentState]->Death(character);
 }
 
+/*----------*/
+/*【モデルコントローラー有限状態マシン】
+/*----------*/
+FSMModelsController::FSMModelsController()
+: FSMBase()
+{
+	mmSubStateMap.clear();
+}
+
+// 実行中状態をセットする
+void FSMModelsController::SetCurrentState(ANIMATION_MODEL_TYPE id, ModelsControllerBase* modelsController)
+{
+	mnCurrentState = modelsController->GetSubStateIndex();
+	mmStateMap[mnCurrentState][id]->OnEnter(modelsController, modelsController->GetAnimationData());	
+}
+
+// サブ状態マップのサイズを増やす
+void FSMModelsController::IncreaseSubStateMapSize(int size)
+{
+	mmSubStateMap.resize(size);
+}
+
+// サブ状態マップに情報を設定
+void FSMModelsController::SetSubStateMap(int subStateIndex, ANIMATION_MODEL_TYPE stateType, IStateModelsController* state)
+{
+	mmSubStateMap[subStateIndex][stateType] = state;
+}
+
+// サブ状態マップに情報を設定
+void FSMModelsController::SetSubStateMap(int subStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateModelsController*> subStateMap)
+{
+	mmSubStateMap[subStateIndex] = subStateMap;
+}
+
+// 更新
+void FSMModelsController::Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas)
+{
+	mmSubStateMap[mnCurrentState][modelsController->GetAnimationModelType()]->Update(modelsController, animationDatas);
+}
+
+// 描画
+void FSMModelsController::Draw(ModelsControllerBase* modelsController)
+
 /*------------------------*/
 /*【シーン有限状態マシン】*/
 /*------------------------*/

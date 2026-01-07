@@ -1,6 +1,7 @@
 #pragma once
 #include "CameraData.h"
 
+enum class ANIMATION_MODEL_TYPE;
 enum class CAMERA_MODE;
 enum class SCENE;
 
@@ -81,6 +82,18 @@ public:
 
 	/*死亡*/
 	virtual void Death(CharacterBase* character) = 0;
+};
+
+/*----------*/
+/*【モデルコントローラーステートベース】
+/*----------*/
+class IStateModelsController : public StateBase<ANIMATION_MODEL_TYPE>
+{
+public:
+	IStateModelsController() = default;
+	virtual ~IStateModelsController() = default;
+
+	
 };
 
 /*------------------------*/

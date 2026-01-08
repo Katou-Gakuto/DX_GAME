@@ -18,7 +18,15 @@ ModelsControllerBase::~ModelsControllerBase()
 // ‰Šú‰»
 void ModelsControllerBase::Initilize()
 {
-    mpModelList[0]->Initilize();
+    // ƒ‚ƒfƒ‹‰Šú‰»
+    for (int i = 0; i < mpModelList.size(); i++)
+    {
+        mpModelList[i]->Initilize();
+    }
+
+    // FSMİ’è
+    mpFsm = new FSMModelsController();
+    mpFsm->IncreaseSubStateMapSize(mpModelList.size() - 1);
 }
 
 // ƒ‚ƒfƒ‹’Ç‰Á

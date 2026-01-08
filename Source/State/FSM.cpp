@@ -112,6 +112,7 @@ void FSMCharacter::Death(CharacterBase* character)
 	mmStateMap[mnCurrentState]->Death(character);
 }
 
+// INPROGRESS: 作業中
 /*----------*/
 /*【モデルコントローラー有限状態マシン】
 /*----------*/
@@ -124,8 +125,8 @@ FSMModelsController::FSMModelsController()
 // 実行中状態をセットする
 void FSMModelsController::SetCurrentState(ANIMATION_MODEL_TYPE id, ModelsControllerBase* modelsController)
 {
-	mnCurrentState = modelsController->GetSubStateIndex();
-	mmStateMap[mnCurrentState][id]->OnEnter(modelsController, modelsController->GetAnimationData());	
+//	mnCurrentState = modelsController->GetSubStateIndex();
+//	mmStateMap[mnCurrentState][id]->OnEnter(modelsController, modelsController->GetAnimationData());	
 }
 
 // サブ状態マップのサイズを増やす
@@ -149,11 +150,13 @@ void FSMModelsController::SetSubStateMap(int subStateIndex, std::map<ANIMATION_M
 // 更新
 void FSMModelsController::Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas)
 {
-	mmSubStateMap[mnCurrentState][modelsController->GetAnimationModelType()]->Update(modelsController, animationDatas);
+	//mmSubStateMap[mnCurrentState][modelsController->GetAnimationModelType()]->Update(modelsController, animationDatas);
 }
 
 // 描画
 void FSMModelsController::Draw(ModelsControllerBase* modelsController)
+{
+}
 
 /*------------------------*/
 /*【シーン有限状態マシン】*/

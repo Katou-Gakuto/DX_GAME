@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 #include "SceneEnum.h"
 
@@ -54,5 +55,5 @@ namespace UtilFactorys
 	FSMUI* FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number);
 
 	/*ÉÇÉfÉãçÏê¨*/
-	ModelBase* ModelFactory(MODEL_FACTORY_NUMBER number);
+	ModelBase* ModelFactory(MODEL_FACTORY_NUMBER number, std::string modelPath = "");
 };

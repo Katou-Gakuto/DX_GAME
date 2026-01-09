@@ -19,6 +19,9 @@ protected:
     virtual void ModelFinalize() override;
 
 public:
+    /*ポジション更新*/
+    void PositionUpdate() override;
+
     /*モデル描画*/
     virtual void ModelDraw() override;
 

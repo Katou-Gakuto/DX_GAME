@@ -3,6 +3,38 @@
     <assembly>
     Robot_Battle
     </assembly>
+   <member className="WinMain(HINSTANCE__*,HINSTANCE__*,System">
+   <functionName>SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)</functionName>
+   <explanations>
+メイン
+   </explanations>
+   <returnExplanation>
+int
+   </returnExplanation>
+   <variable0>HINSTANCE</variable0>
+   <variable1>HINSTANCE</variable1>
+   <variable2>LPSTR</variable2>
+   <variable3>int</variable3>
+   </member>
+   <member className="DataManager">
+   <functionName>SetBaseFile</functionName>
+   <explanations>
+ベースファイル設定
+   </explanations>
+   <variable0>ベースファイルのファイル名があるファイル</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ取得
+   </explanations>
+   </member>
    <member className="LoadingManager">
    <functionName>GetLoadingFlag</functionName>
    <explanations>
@@ -18,6 +50,78 @@
 ローディングフラグ設定
    </explanations>
    <variable0>フラグのビット数</variable0>
+   </member>
+   <member className="GameManager">
+   <functionName>GetTargetManager</functionName>
+   <explanations>
+ターゲットマネージャー取得
+   </explanations>
+   <returnExplanation>
+ターゲットマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetSceneManager</functionName>
+   <explanations>
+シーンマネージャー取得
+   </explanations>
+   <returnExplanation>
+シーンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetObjectManager</functionName>
+   <explanations>
+オブジェクトマネージャー取得
+   </explanations>
+   <returnExplanation>
+オブジェクトマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetMapManager</functionName>
+   <explanations>
+マップマネージャー取得
+   </explanations>
+   <returnExplanation>
+マップマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCollisionManager</functionName>
+   <explanations>
+コリジョンマネージャー取得
+   </explanations>
+   <returnExplanation>
+コリジョンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCameraManager</functionName>
+   <explanations>
+カメラマネージャー取得
+   </explanations>
+   <returnExplanation>
+カメラマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetAttackManager</functionName>
+   <explanations>
+攻撃マネジャー取得
+   </explanations>
+   <returnExplanation>
+攻撃マネジャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetNowUINumber</functionName>
+   <explanations>
+UIナンバー取得
+   </explanations>
+   <returnExplanation>
+現在処理するUIナンバー
+   </returnExplanation>
    </member>
    <member className="EndManager">
    <functionName>GetBitEndflag</functionName>
@@ -40,7 +144,8 @@
    <explanations>
 終了フラグ設定
    </explanations>
-   <variable0>設定する終了フラグのビット数</variable0>
+   <variable0>設定フラグ</variable0>
+   <variable1>設定する終了フラグのビット数</variable1>
    </member>
    <member className="EndManager">
    <functionName>EndFlag</functionName>
@@ -51,24 +156,14 @@
 どれかの終了フラグが有効なら「true」
    </returnExplanation>
    </member>
-   <member className="DataManager">
-   <functionName>SetBaseFile</functionName>
+   <member className="CharacterBase">
+   <functionName>GetModelsController</functionName>
    <explanations>
-ベースファイル設定
+モデルコントローラー取得
    </explanations>
-   <variable0>ベースファイルのファイル名があるファイル</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>SetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ取得
-   </explanations>
+   <returnExplanation>
+モデルコントローラー
+   </returnExplanation>
    </member>
    <member className="TimeManager">
    <functionName>SetNewSceneTimeFlag</functionName>
@@ -210,101 +305,161 @@
    <explanations>
 全コントローラー分の離したキーフラグを全取得(コントローラー)
    </explanations>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
    <returnExplanation>
 全コントローラーの離したすべてのキーフラグ
    </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
    </member>
    <member className="KeyState">
    <functionName>GetAllNowKeyFlags_Controller</functionName>
    <explanations>
 全コントローラー分の押しているキーフラグを全取得(コントローラー)
    </explanations>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
    <returnExplanation>
 全コントローラーの押しているすべてのキーフラグ
    </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
    </member>
    <member className="KeyState">
    <functionName>GetAllDownKeyFlags_Controller</functionName>
    <explanations>
 全コントローラー分の押し始めたキーフラグを全取得(コントローラー)
    </explanations>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
    <returnExplanation>
 全コントローラーの押し始めたすべてのキーフラグ
    </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
    </member>
-   <member className="GameManager">
-   <functionName>GetTargetManager</functionName>
+   <member className="AnimationBase">
+   <functionName>Finalize</functionName>
    <explanations>
-ターゲットマネージャー取得
+終了
    </explanations>
-   <returnExplanation>
-ターゲットマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetSceneManager</functionName>
+   <member className="AnimationBase">
+   <functionName>Initilize</functionName>
    <explanations>
-シーンマネージャー取得
+初期化
    </explanations>
-   <returnExplanation>
-シーンマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetObjectManager</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>GetFsm</functionName>
    <explanations>
-オブジェクトマネージャー取得
+有限状態マシン取得
    </explanations>
-   <returnExplanation>
-オブジェクトマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetMapManager</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelList</functionName>
    <explanations>
-マップマネージャー取得
+モデルリスト取得
    </explanations>
-   <returnExplanation>
-マップマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetCollisionManager</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelSize</functionName>
    <explanations>
-コリジョンマネージャー取得
+モデルサイズ設定
    </explanations>
-   <returnExplanation>
-コリジョンマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetCameraManager</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelSize</functionName>
    <explanations>
-カメラマネージャー取得
+モデルサイズ取得
    </explanations>
-   <returnExplanation>
-カメラマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetAttackManager</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelAngle</functionName>
    <explanations>
-攻撃マネジャー取得
+モデル角度設定
    </explanations>
-   <returnExplanation>
-攻撃マネジャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetNowUINumber</functionName>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelAngle</functionName>
    <explanations>
-UIナンバー取得
+モデル角度取得
    </explanations>
-   <returnExplanation>
-現在処理するUIナンバー
-   </returnExplanation>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelPosition</functionName>
+   <explanations>
+モデルポジション設定
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelPosition</functionName>
+   <explanations>
+モデルポジション取得
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>DrawModels</functionName>
+   <explanations>
+モデル描画
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>UpdateModels</functionName>
+   <explanations>
+モデル更新
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>ModelsPositionSetting</functionName>
+   <explanations>
+モデル位置設定
+   </explanations>
+   <variable0>設定を使うかどうか</variable0>
+   <variable1>ポジション</variable1>
+   <variable2>角度</variable2>
+   <variable3>大きさ</variable3>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>AnimationToModel</functionName>
+   <explanations>
+アニメーションをモデルに反映
+   </explanations>
+   <variable0>アニメーション情報</variable0>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>AddModel</functionName>
+   <explanations>
+モデル追加
+   </explanations>
+   <variable0>追加するモデル</variable0>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="ModelBase">
+   <functionName>PositionUpdate</functionName>
+   <explanations>
+ポジション更新
+   </explanations>
+   </member>
+   <member className="IStateModelsController">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="IStateModelsController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="IStateModelsController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
    </member>
 </doc>

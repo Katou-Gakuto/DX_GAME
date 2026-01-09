@@ -8,7 +8,9 @@
 
 #include "DxLib.h"
 
+#include "AnimationBase.h"
 #include "KeyState.h"
+#include "ModelsControllerBase.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
 
@@ -249,9 +251,10 @@ protected:
     FSMCharacter* mpFsm;
 
     // モデルベース
-    VECTOR mvSize;
+    ModelsControllerBase* mpModelController;
 
     // アニメションベース
+    AnimationBase* mpAnimation;
 
     // 行動フラグ
     BIT_FLAG<unsigned int> munActionflags;
@@ -348,7 +351,11 @@ public:
     inline VECTOR GetAngle() const { return mvAngle; }
 
     /*サイズ取得*/
-    inline VECTOR GetSize() const { return mvSize; }
+    inline VECTOR GetSize() const { return mpModelController->GetModelSize(); }
+
+    /// <summary>モデルコントローラー取得</summary>
+    /// <returns>モデルコントローラー</returns>
+    inline ModelsControllerBase* GetModelsController() { return mpModelController; }
 
     /*--------*/
     /*【設定】*/

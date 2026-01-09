@@ -288,7 +288,9 @@ void XmlArrange::RegisterVariableExplanation(std::ifstream& xmlFile, std::string
         }
         variableExplanationStart++;
     }
-    mstXmlData.xmlClassDatas[mstXmlData.classDataEnd()].xmlFunctionDatas[mstXmlData.functionDataEnd()].variableExplanations = ExtractExplanation_StringAndFile(line, xmlFile, line.substr(0, variableExplanationStart), "</param>");
+    // 変数説明文取得
+    std::vector<std::string> variableExplanations = ExtractExplanation_StringAndFile(line, xmlFile, line.substr(0, variableExplanationStart), "</param>");
+    mstXmlData.xmlClassDatas[mstXmlData.classDataEnd()].xmlFunctionDatas[mstXmlData.functionDataEnd()].variableExplanations.insert(mstXmlData.xmlClassDatas[mstXmlData.classDataEnd()].xmlFunctionDatas[mstXmlData.functionDataEnd()].variableExplanations.end(), variableExplanations.begin(), variableExplanations.end());
 }
 
 // 戻り値説明文を登録
@@ -394,12 +396,6 @@ void XmlArrange::DataToExcelXmlFile(std::string fileName)
                 }
                 excelXmlFile << "   </explanations>" << std::endl;
 
-                // 変数説明
-                for (int variableNumber = 0; variableNumber < mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].variableExplanations.size(); variableNumber++)
-                {
-                    excelXmlFile << "   <variable" << variableNumber << ">" << mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].variableExplanations[variableNumber] << "</variable" << variableNumber << ">" << std::endl;
-                }
-
                 // 返り値
                 if (mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].returnExplanation.size() > 0)
                 {
@@ -409,6 +405,12 @@ void XmlArrange::DataToExcelXmlFile(std::string fileName)
                         excelXmlFile << mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].returnExplanation[returnExplanationNumber] << std::endl;
                     }
                     excelXmlFile << "   </returnExplanation>" << std::endl;
+                }
+
+                // 変数説明
+                for (int variableNumber = 0; variableNumber < mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].variableExplanations.size(); variableNumber++)
+                {
+                    excelXmlFile << "   <variable" << variableNumber << ">" << mstXmlData.xmlClassDatas[classNumber].xmlFunctionDatas[functionNumber].variableExplanations[variableNumber] << "</variable" << variableNumber << ">" << std::endl;
                 }
 
                 // クラス名閉じる

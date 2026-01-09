@@ -113,32 +113,32 @@ public:
 class FSMModelsController : public FSMBase<ANIMATION_MODEL_TYPE, IStateModelsController>
 {
 private:
-	// サブ状態マップ
-	std::vector<std::map<ANIMATION_MODEL_TYPE, IStateModelsController*>> mmSubStateMap;
+	// モデル状態達
+	std::vector<std::map<ANIMATION_MODEL_TYPE, IStateModelsController*>> mmModelStates;
 
-
+	// モデルのアニメーションモデル種類達
+	std::vector<ANIMATION_MODEL_TYPE> meAnimationModelTypes;
 public:
 	FSMModelsController();
 
-	/// <summary>実行中状態をセットする</summary>
-	/// <param name = id>アニメーションのモデル種類</param>
-	/// <param name = modelsController>モデルのコントローラー</param>
-	void SetCurrentState(ANIMATION_MODEL_TYPE id, ModelsControllerBase* modelsController);
+	/*モデル状態達のサイズを増やす*/
+	void IncreaseModelStateSize(int size);
 
-	/*サブ状態マップのサイズを増やす*/
-	void IncreaseSubStateMapSize(int size);
+	/*モデル状態の種類を設定*/
+	void SetModelStateType(int modelStateIndex, ANIMATION_MODEL_TYPE stateType);
 
-	/*サブ状態マップに情報を設定*/
-	void SetSubStateMap(int subStateIndex, ANIMATION_MODEL_TYPE stateType, IStateModelsController* state);
-
-	/*サブ状態マップに情報を設定*/
-	void SetSubStateMap(int subStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateModelsController*> subStateMap);
+	/*モデル状態達情報を設定*/
+	void SetModelState(int modelStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateModelsController*> modelStateMap);
 
 	/*更新*/
 	void Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas);
 
 	/*描画*/
 	void Draw(ModelsControllerBase* modelsController);
+
+private:
+	/*次のステートが現在のステートと違うならステート変更処理をする*/
+	void ChangeState(ModelsControllerBase* modelsController, int modelStateIndex, AnimationData& animationDatas, ModelBase* model);
 };
 
 /*------------------------*/

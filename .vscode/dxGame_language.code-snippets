@@ -116,7 +116,7 @@
 	"Comment_ParamName": {
 		"prefix": "@commParamName",
 		"body": [
-			"/// <param name = ${1:変数名}>${2:説明}</param>",
+			"/// <param name="${1:変数名}">${2:説明}</param>",
 		],
 		"description": "引数説明コメント"
 	},

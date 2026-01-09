@@ -13,6 +13,7 @@
 #include "FSM.h"
 #include "GameManager.h"
 #include "MapManager.h"
+#include "ModelsControllerBase.h"
 #include "ObjectBases.h"
 #include "UI_Result.h"
 #include "SceneManager.h"
@@ -116,10 +117,14 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	}
 
 	mStateNumber = sceneManager->GetNowScene();
+
+	// プレイヤー作成
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
+	ModelsControllerBase* playerModels = player->GetModelsController();
+	playerModels->AddModel(UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER::MV1, "../Resource/3D/Human/Hero.x"));
 
 	// カメラ作成
 	{

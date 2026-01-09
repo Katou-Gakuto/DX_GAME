@@ -1,8 +1,10 @@
 #include "Master.h"
 
+#include "AnimationBase.h"
 #include "AttackManager.h"
 #include "FSM.h"
 #include "GameManager.h"
+#include "ModelsControllerBase.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
@@ -54,8 +56,9 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
 , mnAttackDataNumber(-1)
+, mpModelController(nullptr)
+, mpAnimation(nullptr)
 {
-	mvSize = VGet(180.0f, 180.0f, 180.0f);
 }
 
 CharacterBase::~CharacterBase()
@@ -65,6 +68,15 @@ CharacterBase::~CharacterBase()
 // 初期化
 void CharacterBase::Initilize()
 {
+	// モデルコントローラー初期化
+	mpModelController = new ModelsControllerBase();
+	mpModelController->Initilize();
+
+	// アニメーション初期化
+	mpAnimation = new AnimationBase();
+	mpAnimation->Initilize();
+	mpAnimation->SetModelsController(mpModelController);
+
 	CharacterInitilize();
 }
 
@@ -72,6 +84,16 @@ void CharacterBase::Initilize()
 void CharacterBase::Finalize()
 {
 	CharacterFinalize();
+	
+	// モデルコントローラー終了
+	mpModelController->Finalize();
+	delete mpModelController;
+	mpModelController = nullptr;
+
+	// アニメーション終了
+	mpAnimation->Finalize();
+	delete mpAnimation;
+	mpAnimation = nullptr;
 }
 
 // 更新
@@ -99,6 +121,17 @@ void CharacterBase::LastUpdate()
 			mpFsm->LastUpdate(this);
 		}
 		MoveProcess();
+
+		// モデル位置・角度更新
+		mpModelController->SetModelPosition(mvPosition);
+		mpModelController->SetModelAngle(mvAngle);
+		mpModelController->ModelsPositionSetting();
+		
+		// TODO: アニメーション出来たら
+		// アニメーション更新
+
+		// モデルに反映
+		mpModelController->UpdateModels();
 	}
 }
 
@@ -110,6 +143,9 @@ void CharacterBase::Draw()
 	{
 		mpFsm->Draw(this);
 	}
+	
+	// モデル描画
+	mpModelController->DrawModels();
 }
 
 /*----------------------*/

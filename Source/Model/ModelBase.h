@@ -35,9 +35,15 @@ struct IndexedData
 
 class ModelBase
 {
-private:
+protected:
 	// サイズ
 	VECTOR mvSize;
+
+	// ポジション
+	VECTOR mvPosition;
+
+	// 角度
+	VECTOR mvAngle;
 
 public:
 	ModelBase();
@@ -48,12 +54,19 @@ public:
 	/*終了*/
 	void Finalize();
 
+	/// <summary>ポジション更新</summary>
+	virtual void PositionUpdate() {}
+
 	/*--------*/
 	/*【取得】*/
 	/*--------*/
 
 	/*サイズ取得*/
 	inline VECTOR GetSize() const { return mvSize; }
+	/*ポジション取得*/
+	inline VECTOR GetPosition() const { return mvPosition; }
+	/*角度取得*/
+	inline VECTOR GetAngle() const { return mvAngle; }
 
 	/*--------*/
 	/*【設定】*/
@@ -61,6 +74,10 @@ public:
 
 	/*サイズ設定*/
 	inline void SetSize(VECTOR size) { mvSize = size; }
+	/*ポジション設定*/
+	inline void SetPosition(VECTOR position) { mvPosition = position; }
+	/*角度設定*/
+	inline void SetAngle(VECTOR angle) { mvAngle = angle; }
 
 	/*----------------*/
 	/*【継承モデル用】*/

@@ -141,22 +141,25 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 }
 
 // ƒ‚ƒfƒ‹ì¬
-ModelBase* UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER number)
+ModelBase* UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER number, std::string modelPath)
 {
-	ModelBase* model = nullptr;
-
 	switch (number)
 	{
 	case MODEL_FACTORY_NUMBER::POLYGON_INDEXED:
-		model = new ModelPolygonIndexed();
+	{
+		ModelPolygonIndexed* model = new ModelPolygonIndexed();
 		model->Initilize();
-		break;
-
-	case MODEL_FACTORY_NUMBER::MV1:
-		model = new ModelMV1();
-		model->Initilize();
-		break;
+		return model;
 	}
 
-	return model;
+	case MODEL_FACTORY_NUMBER::MV1:
+	{
+		ModelMV1* model = new ModelMV1();
+		model->Initilize();
+		model->SetModelHandle(modelPath.c_str());
+		return model;
+	}
+	}
+
+	return nullptr;
 }

@@ -22,7 +22,14 @@ LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
-// メイン
+/// <summary>
+/// メイン
+/// </summary>
+/// <param name="hInstance">HINSTANCE</param>
+/// <param name="hPrevInstance">HINSTANCE</param>
+/// <param name="lpCmdLine">LPSTR</param>
+/// <param name="nCmdShow">int</param>
+/// <returns>int</returns>
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {

@@ -105,13 +105,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)EffekseerForDXLib;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)EffekseerForDXLib;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -173,6 +173,7 @@
     <ClInclude Include="..\Source\State\FSM.h" />
     <ClInclude Include="..\Source\State\StateBase.h" />
     <ClInclude Include="..\Source\State\StateCamera.h" />
+    <ClInclude Include="..\Source\State\StateModelsController.h" />
     <ClInclude Include="..\Source\State\StateScene.h" />
     <ClInclude Include="..\Source\State\UI\StateResultUI.h" />
     <ClInclude Include="..\Source\State\UI\StateTitleUI.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="..\Source\State\FSM.cpp" />
     <ClCompile Include="..\Source\State\StateBase.cpp" />
     <ClCompile Include="..\Source\State\StateCamera.cpp" />
+    <ClCompile Include="..\Source\State\StateModelsController.cpp" />
     <ClCompile Include="..\Source\State\StateScene.cpp" />
     <ClCompile Include="..\Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="..\Source\State\UI\StateTitleUI.cpp" />

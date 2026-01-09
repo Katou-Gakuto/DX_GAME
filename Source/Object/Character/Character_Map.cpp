@@ -57,7 +57,7 @@ void Character_Map::CharacterDraw()
 		DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(0, 0, 255), GetColor(255, 255, 255), TRUE);
 		return;
 	}
-	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 255), GetColor(255, 255, 255), TRUE);
+	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 255), GetColor(255, 255, 255), TRUE);
 }
 
 // “–‚½‚è”»’è—p

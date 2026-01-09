@@ -28,6 +28,15 @@ void ModelMV1::ModelFinalize()
     }
 }
 
+// ポジション更新
+void ModelMV1::PositionUpdate()
+{
+    // 位置・角度・サイズ設定
+    MV1SetPosition(mnModelHandle, mvPosition);
+    MV1SetRotationXYZ(mnModelHandle, mvAngle);
+    MV1SetScale(mnModelHandle, mvSize);
+}
+
 // モデル描画
 void ModelMV1::ModelDraw()
 {

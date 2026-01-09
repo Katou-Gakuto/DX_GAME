@@ -1,4 +1,5 @@
 #pragma once
+#include "AnimationData.h"
 #include "CameraData.h"
 
 enum class ANIMATION_MODEL_TYPE;
@@ -8,6 +9,8 @@ enum class SCENE;
 class CameraManager;
 class CharacterBase;
 class MapManager;
+class ModelBase;
+class ModelsControllerBase;
 class SceneManager;
 class TargetManager;
 class UIBase;
@@ -93,7 +96,13 @@ public:
 	IStateModelsController() = default;
 	virtual ~IStateModelsController() = default;
 
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+	virtual void OnEnter(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+	virtual void OnExit(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
 	
+	/// <summary>XV</summary>
+	virtual void Update(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
 };
 
 /*------------------------*/

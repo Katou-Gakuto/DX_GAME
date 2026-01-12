@@ -1,6 +1,7 @@
 #pragma once
 #include "ModelsControllerBase.h"
 
+// INPROGRESS: アニメーション
 class AnimationBase
 {
 private:

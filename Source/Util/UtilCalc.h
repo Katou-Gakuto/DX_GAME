@@ -16,14 +16,17 @@ namespace UtilCalc
 	/*デグリー変換(180.0f / PI)*/
 	inline const VECTOR VDegChange(VECTOR src) { return VScale(src, 57.29578f/*180.0f / PI*/); }
 
-    /*方向を2から-2になるように調整する(ラジアン)*/
+    /*方向を3.14から-3.14になるように調整する(ラジアン)*/
 	float NotExceedAngle(float angle);
 
-    /*方向を2から-2になるように調整する(3方向)(ラジアン)*/
+    /*方向を3.14から-3.14になるように調整する(3方向)(ラジアン)*/
 	VECTOR VNotExceedAngle(VECTOR angle);
 
 	/*球面移動した場所(ラジアン)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);
+
+	/// <summary>移動量をアングルに反映した値を返す(ラジアン)</summary>
+	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle = UtilCalc::VZero, float speed = 0.2f);
 
 	/*--------------*/
 	/*【当たり判定】*/

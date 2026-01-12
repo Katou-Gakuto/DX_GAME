@@ -87,15 +87,15 @@ public:
 	virtual void Death(CharacterBase* character) = 0;
 };
 
+// TODO: アニメーション様にステートのファイル名変更
 /*----------*/
 /*【モデルコントローラーステートベース】
 /*----------*/
-class IStateModelsController : public StateBase<ANIMATION_MODEL_TYPE>
+class IStateAnimation : public StateBase<ANIMATION_MODEL_TYPE>
 {
 public:
-	IStateModelsController() = default;
-	virtual ~IStateModelsController() = default;
-
+	IStateAnimation() = default;
+	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
 	virtual void OnEnter(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
 	/// <summary>この状態を出る時の処理</summary>

@@ -4,12 +4,12 @@
 #include "AnimationEnum.h"
 #include "AnimationData.h"
 
+#include "AnimationBase.h"
 #include "ModelBase.h"
-#include "ModelsControllerBase.h"
 #include "StateBase.h"
 
 // TODO: アニメーションのステートにする
-class StateMVOneModel : public IStateModelsController
+class StateMVOneModel : public IStateAnimation
 {
 protected:
     // 前のアニメーション再生タイム

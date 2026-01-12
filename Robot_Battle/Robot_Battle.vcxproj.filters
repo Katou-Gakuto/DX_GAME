@@ -281,7 +281,7 @@
     <ClInclude Include="..\Source\Enum\AnimationEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\State\StateModelsController.h">
+    <ClInclude Include="..\Source\State\StateAnimation.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
   </ItemGroup>
@@ -430,7 +430,7 @@
     <ClCompile Include="..\Source\Animation\AnimationBase.cpp">
       <Filter>ソース ファイル\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\State\StateModelsController.cpp">
+    <ClCompile Include="..\Source\State\StateAnimation.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
   </ItemGroup>

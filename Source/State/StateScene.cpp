@@ -139,11 +139,15 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
 
-	{// “G
+	for (int i = 0; i < 3; i++) {// “G
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
 		enemy->SetPos(VGet(-150.0f, 0.0f, 500.0f));
+		enemy->SetAngle(VGet(0.0f, 3.14f, 0.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
+		
+		ModelsControllerBase* enemyModels = enemy->GetModelsController();
+		enemyModels->AddModel(UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER::MV1, "../Resource/3D/Human/Hero.x"));
 	}
 
 	switch (sceneManager->GetNowScene())

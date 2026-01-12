@@ -242,6 +242,8 @@ void CharacterBase::TemplateActionProcess()
 		if (moveFlag)
 		{
 			mvVec = VNorm(mvVec);
+
+			mvAngle = UtilCalc::VMoveVecToAngle(mvVec, mvAngle);
 		}
 
 		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::HP_ZERO))

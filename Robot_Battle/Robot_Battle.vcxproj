@@ -173,7 +173,7 @@
     <ClInclude Include="..\Source\State\FSM.h" />
     <ClInclude Include="..\Source\State\StateBase.h" />
     <ClInclude Include="..\Source\State\StateCamera.h" />
-    <ClInclude Include="..\Source\State\StateModelsController.h" />
+    <ClInclude Include="..\Source\State\StateAnimation.h" />
     <ClInclude Include="..\Source\State\StateScene.h" />
     <ClInclude Include="..\Source\State\UI\StateResultUI.h" />
     <ClInclude Include="..\Source\State\UI\StateTitleUI.h" />
@@ -229,7 +229,7 @@
     <ClCompile Include="..\Source\State\FSM.cpp" />
     <ClCompile Include="..\Source\State\StateBase.cpp" />
     <ClCompile Include="..\Source\State\StateCamera.cpp" />
-    <ClCompile Include="..\Source\State\StateModelsController.cpp" />
+    <ClCompile Include="..\Source\State\StateAnimation.cpp" />
     <ClCompile Include="..\Source\State\StateScene.cpp" />
     <ClCompile Include="..\Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="..\Source\State\UI\StateTitleUI.cpp" />

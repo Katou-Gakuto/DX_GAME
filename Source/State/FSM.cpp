@@ -115,54 +115,60 @@ void FSMCharacter::Death(CharacterBase* character)
 }
 
 /*----------*/
-/*【モデルコントローラー有限状態マシン】
+/*【アニメーション有限状態マシン】
 /*----------*/
-FSMModelsController::FSMModelsController()
+FSMAnimation::FSMAnimation()
 : FSMBase()
 {
-	mmModelStates.clear();
+	mmAnimationStates.clear();
 
-	meAnimationModelTypes.clear();
+	meModelAnimationTypes.clear();
 }
 
 // サブ状態マップのサイズを増やす
-void FSMModelsController::IncreaseModelStateSize(int size)
+void FSMAnimation::IncreaseAnimationStateSize(int size)
 {
-	mmModelStates.resize(size);
-	meAnimationModelTypes.resize(size);
+	mmAnimationStates.resize(size);
+	meModelAnimationTypes.resize(size);
 	for (int i = 0; i < size; i++)
 	{
-		meAnimationModelTypes[i] = ANIMATION_MODEL_TYPE::NONE;
+		meModelAnimationTypes[i] = ANIMATION_MODEL_TYPE::NONE;
 	}
 }
 
 // サブ状態マップに情報を設定
-void FSMModelsController::SetModelStateType(int modelStateIndex, ANIMATION_MODEL_TYPE stateType)
+void FSMAnimation::SetAnimationStateType(int animationStateIndex, ANIMATION_MODEL_TYPE stateType)
 {
-	meAnimationModelTypes[modelStateIndex] = stateType;
+	meModelAnimationTypes[animationStateIndex] = stateType;
 }
 
 // サブ状態マップに情報を設定
-void FSMModelsController::SetModelState(int modelStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateModelsController*> modelStateMap)
+void FSMAnimation::SetAnimationState(int animationStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateAnimation*> animationStateMap)
 {
-	mmModelStates[modelStateIndex] = modelStateMap;
+	mmAnimationStates[animationStateIndex] = animationStateMap;
 }
 
 // 更新
-void FSMModelsController::Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas)
+void FSMAnimation::Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas)
 {
-	for (int i = 0; i < meAnimationModelTypes.size(); i++)
+	for (int i = 0; i < meModelAnimationTypes.size(); i++)
 	{
+		// NONEならスルー
+		if (meModelAnimationTypes[i] == ANIMATION_MODEL_TYPE::NONE)
+		{
+			continue;
+		}
+
 		// ステート変更確認
 		ChangeState(modelsController, i, animationDatas[i + 1], modelsController->GetModelList()[i]);
 
 		// 更新
-		mmModelStates[i][meAnimationModelTypes[i]]->Update(modelsController, animationDatas[i + 1], modelsController->GetModelList()[i]);
+		mmAnimationStates[i][meModelAnimationTypes[i]]->Update(modelsController, animationDatas[i + 1], modelsController->GetModelList()[i]);
 	}
 }
 
 // 描画
-void FSMModelsController::Draw(ModelsControllerBase* modelsController)
+void FSMAnimation::Draw(ModelsControllerBase* modelsController)
 {
 	std::vector<ModelBase*> modelList = modelsController->GetModelList();
 	for (int i = 0; i < modelList.size(); i++)
@@ -172,20 +178,20 @@ void FSMModelsController::Draw(ModelsControllerBase* modelsController)
 }
 
 // 次のステートが現在のステートと違うならステート変更処理をする
-void FSMModelsController::ChangeState(ModelsControllerBase* modelsController, int modelStateIndex, AnimationData& animationDatas, ModelBase* model)
+void FSMAnimation::ChangeState(ModelsControllerBase* modelsController, int animationStateIndex, AnimationData& animationDatas, ModelBase* model)
 {
-	if (meAnimationModelTypes[modelStateIndex] != animationDatas.preAnimationModelType)
+	if (meModelAnimationTypes[animationStateIndex] != animationDatas.preAnimationModelType)
 	{
 		ANIMATION_MODEL_TYPE nextState = animationDatas.preAnimationModelType;
 
 		// 現在のStateの終了処理
-		mmModelStates[modelStateIndex][meAnimationModelTypes[modelStateIndex]]->OnExit(modelsController, animationDatas, model);
+		mmAnimationStates[animationStateIndex][meModelAnimationTypes[animationStateIndex]]->OnExit(modelsController, animationDatas, model);
 
 		// 新しいStateの開始処理
-		mmModelStates[modelStateIndex][nextState]->OnEnter(modelsController, animationDatas, model);
+		mmAnimationStates[animationStateIndex][nextState]->OnEnter(modelsController, animationDatas, model);
 		
 		// 新しいStateを設定
-		meAnimationModelTypes[modelStateIndex] = nextState;
+		meModelAnimationTypes[animationStateIndex] = nextState;
 	}
 }
 

@@ -63,6 +63,41 @@ public:
 	inline subscript GetCurrentState() const { return mnCurrentState; }
 };
 
+// INPROGRESS: アニメーション作成中
+// TODO: 名前変更 アニメーションも渡す
+/*----------*/
+/*【アニメーション有限状態マシン】
+/*----------*/
+class FSMAnimation : public FSMBase<ANIMATION_MODEL_TYPE, IStateAnimation>
+{
+private:
+	// アニメーション状態達
+	std::vector<std::map<ANIMATION_MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
+	// モデル_アニメーション種類達
+	std::vector<ANIMATION_MODEL_TYPE> meModelAnimationTypes;
+public:
+	FSMAnimation();
+
+	/*アニメーション状態達のサイズを増やす*/
+	void IncreaseAnimationStateSize(int size);
+
+	/*アニメーション状態の種類を設定*/
+	void SetAnimationStateType(int animationStateIndex, ANIMATION_MODEL_TYPE stateType);
+
+	/*アニメーション状態達情報を設定*/
+	void SetAnimationState(int animationStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateAnimation*> animationStateMap);
+
+	/*更新*/
+	void Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas);
+
+	/*描画*/
+	void Draw(ModelsControllerBase* modelsController);
+
+private:
+	/*次のステートが現在のステートと違うならステート変更処理をする*/
+	void ChangeState(ModelsControllerBase* modelsController, int animationStateIndex, AnimationData& animationDatas, ModelBase* model);
+};
+
 /*------------------------*/
 /*【カメラ有限状態マシン】*/
 /*------------------------*/
@@ -105,40 +140,6 @@ public:
 
 	/*死亡*/
 	void Death(CharacterBase* character);
-};
-
-/*----------*/
-/*【モデルコントローラー有限状態マシン】
-/*----------*/
-class FSMModelsController : public FSMBase<ANIMATION_MODEL_TYPE, IStateModelsController>
-{
-private:
-	// モデル状態達
-	std::vector<std::map<ANIMATION_MODEL_TYPE, IStateModelsController*>> mmModelStates;
-
-	// モデルのアニメーションモデル種類達
-	std::vector<ANIMATION_MODEL_TYPE> meAnimationModelTypes;
-public:
-	FSMModelsController();
-
-	/*モデル状態達のサイズを増やす*/
-	void IncreaseModelStateSize(int size);
-
-	/*モデル状態の種類を設定*/
-	void SetModelStateType(int modelStateIndex, ANIMATION_MODEL_TYPE stateType);
-
-	/*モデル状態達情報を設定*/
-	void SetModelState(int modelStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateModelsController*> modelStateMap);
-
-	/*更新*/
-	void Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas);
-
-	/*描画*/
-	void Draw(ModelsControllerBase* modelsController);
-
-private:
-	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void ChangeState(ModelsControllerBase* modelsController, int modelStateIndex, AnimationData& animationDatas, ModelBase* model);
 };
 
 /*------------------------*/

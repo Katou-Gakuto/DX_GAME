@@ -57,9 +57,8 @@ void ModelsControllerBase::ModelsPositionSetting(bool useSetting, VECTOR positio
     for (int i = 0; i < mpModelList.size(); i++)
     {
         mpModelList[i]->SetPosition(mvModelPosition);
-        mpModelList[i]->SetAngle(mvModelAngle);
+        mpModelList[i]->SetAngle(VGet(mvModelAngle.x, mvModelAngle.y - DX_PI_F, mvModelAngle.z));
         mpModelList[i]->SetSize(mvModelSize);
-        // INPROGRESS: ì‹Æ’†‰ñ“]‚³‚¹‚é
     }
 }
 

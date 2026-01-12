@@ -57,6 +57,34 @@ VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
     return pos;
 }
 
+// à⁄ìÆó ÇÉAÉìÉOÉãÇ…îΩâfÇµÇΩílÇï‘Ç∑
+VECTOR UtilCalc::VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed)
+{
+    float targetAngle = atan2f(moveVec.x, moveVec.z);
+    float diffAngle = targetAngle - angle.y;
+    diffAngle = NotExceedAngle(diffAngle);
+
+    // äpìxÇÃç∑Ç0Ç…ãﬂÇ√ÇØÇÈ
+    if (diffAngle > 0.0f)
+    {
+        diffAngle -= speed;
+        if (diffAngle < 0.0f)
+        {
+            diffAngle = 0.0f;
+        }
+    }
+    else
+    {
+        diffAngle += speed;
+        if (diffAngle > 0.0f)
+        {
+            diffAngle = 0.0f;
+        }
+    }
+
+    return VGet(angle.x, targetAngle - diffAngle, angle.z);
+}
+
 /*--------------*/
 /*ÅyìñÇΩÇËîªíËÅz*/
 /*--------------*/

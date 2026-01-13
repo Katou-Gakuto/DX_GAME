@@ -357,6 +357,10 @@ public:
     /// <returns>モデルコントローラー</returns>
     inline ModelsControllerBase* GetModelsController() { return mpModelController; }
 
+    /// <summary>アニメションベース取得</summary>
+    /// <returns>アニメションベース</returns>
+    inline AnimationBase* GetAnimation() { return  mpAnimation; }
+
     /*--------*/
     /*【設定】*/
     /*--------*/

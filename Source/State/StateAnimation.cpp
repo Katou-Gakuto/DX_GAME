@@ -1,49 +1,164 @@
+#include <math.h>
+
 #include "DxLib.h"
 
 #include "AnimationEnum.h"
 #include "AnimationData.h"
 
+#include "AnimationBase.h"
 #include "ModelBase.h"
 #include "ModelsControllerBase.h"
+#include "StateAnimation.h"
 #include "StateBase.h"
-#include "StateModelsController.h"
 
-StateMVOneModel::StateMVOneModel()
-: IStateModelsController()
+StateMVOneAnimation::StateMVOneAnimation(int modelHandle)
+: IStateAnimation()
+, mnModelHandle(modelHandle)
+, mfAnimBlendRate(0.0f)
+, mfAnimBlendSpeed(0.1f)
+, mfAnimationSpeed(0.5f)
 {
-    mStateNumber = ANIMATION_MODEL_TYPE::MV1_MODEL;
+    mmLoopAnimationFlags.clear();
+
+    for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
+    {
+        mstMvOneAnimationDatas[i].animationCount = 0.0f;
+        mstMvOneAnimationDatas[i].animationHandle = -1;
+    }
+
+    mStateNumber = MODEL_TYPE::MV1_MODEL;
 }
 
 // この状態に入った時の処理
-void StateMVOneModel::OnEnter(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model)
+void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
 {
+    AnimationAttach(animationDatas);
 }
 
 // この状態を出る時の処理
-void StateMVOneModel::OnExit(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model)
+void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
 {
+    AnimationDetach();
+
+    // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
+    if (mStateNumber == animationStateData.animationModelType[animationDatas.animationType])
+    {
+        KeepAnimationData();
+    }
+    else
+    {
+        ClearAnimationData();
+    }
 }
 
 // 更新
-void StateMVOneModel::Update(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model)
+void StateMVOneAnimation::Update(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
 {
-    // アニメーション変更
-    ChangeAnimationModel();
-
     // アニメーション更新
-    UpdateAnimation();
+    UpdateAnimation(animationDatas.animationType);
 }
 
-// アニメーションモデル切り替え
-void StateMVOneModel::ChangeAnimationModel()
+// アニメーションをデタッチ
+void StateMVOneAnimation::AnimationDetach()
 {
-    
+    if (mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle != (-1))
+    {
+        MV1DetachAnim(mnModelHandle, mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle);
+        mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle = -1;
+    }
+}
+
+// 現在の再生状況を保持しておく
+void StateMVOneAnimation::KeepAnimationData()
+{
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE] = mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW];
+}
+
+// 現在の再生状況も含めて破棄する
+void StateMVOneAnimation::ClearAnimationData()
+{
+    for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
+    {
+        mstMvOneAnimationDatas[i].animationCount = 0.0f;
+        mstMvOneAnimationDatas[i].animationHandle = -1;
+    }
+}
+
+// アニメーションをアタッチ
+void StateMVOneAnimation::AnimationAttach(AnimationData& animationDatas)
+{
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationDatas.animationNumber[animationDatas.animationType]);
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationCount = 0.0f;
+
+    mfAnimBlendRate = ((mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle == -1) ? 1.0f : 0.0f);
 }
 
 // アニメーション更新
-void StateMVOneModel::UpdateAnimation()
+void StateMVOneAnimation::UpdateAnimation(ANIMATION_TYPE animationType)
 {
-    
+    if (mnModelHandle != -1) {
+
+        // ブレンド率を加算していく
+        if (mfAnimBlendRate < ANIMATION_BLEND_RATE_MAX)
+        {
+            mfAnimBlendRate += mfAnimBlendSpeed;
+
+            if (mfAnimBlendRate > ANIMATION_BLEND_RATE_MAX)
+            {
+                mfAnimBlendRate = ANIMATION_BLEND_RATE_MAX;
+            }
+        }
+        float animTotalTime;
+
+        // アニメーション処理
+        for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
+        {
+            if (mstMvOneAnimationDatas[i].animationHandle != -1)
+            {
+                // 総再生時間を取得
+                animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle);
+
+                // 再生時間を進める
+                mstMvOneAnimationDatas[i].animationCount += mfAnimationSpeed;
+
+                // ループさせる
+                if (mstMvOneAnimationDatas[i].animationCount >= animTotalTime )
+                {
+                    if (mmLoopAnimationFlags[animationType])
+                    {
+                        mstMvOneAnimationDatas[i].animationCount = fmodf(mstMvOneAnimationDatas[i].animationCount, animTotalTime);
+                    }
+                    else
+                    {
+                        switch (i)
+                        {
+                        case MV_ONE_ANIMATION_NUMBER::NOW:
+                            mstMvOneAnimationDatas[i].animationCount = animTotalTime;
+                            break;
+                        
+                        case MV_ONE_ANIMATION_NUMBER::PRE:
+                            mstMvOneAnimationDatas[i].animationCount -= mfAnimationSpeed;
+                            break;
+                        }
+                    }
+                }
+
+                // モデルに反映
+                MV1SetAttachAnimTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mstMvOneAnimationDatas[i].animationCount);
+
+                // アニメーション反映率を設定
+                switch (i)
+                {
+                case MV_ONE_ANIMATION_NUMBER::NOW:
+                    MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mfAnimBlendRate);
+                    break;
+                case MV_ONE_ANIMATION_NUMBER::PRE:
+                    MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
+                    break;
+                }
+            }
+        }
+    }
 }
 
 //     if (index == -1) {

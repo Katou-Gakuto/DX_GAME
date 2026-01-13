@@ -2,15 +2,17 @@
 #include "AnimationData.h"
 #include "CameraData.h"
 
-enum class ANIMATION_MODEL_TYPE;
+enum class MODEL_TYPE;
 enum class CAMERA_MODE;
 enum class SCENE;
 
+struct AnimationStateData;
+
+class AnimationBase;
 class CameraManager;
 class CharacterBase;
 class MapManager;
 class ModelBase;
-class ModelsControllerBase;
 class SceneManager;
 class TargetManager;
 class UIBase;
@@ -89,20 +91,20 @@ public:
 
 // TODO: アニメーション様にステートのファイル名変更
 /*----------*/
-/*【モデルコントローラーステートベース】
+/*【アニメーションステートベース】
 /*----------*/
-class IStateAnimation : public StateBase<ANIMATION_MODEL_TYPE>
+class IStateAnimation : public StateBase<MODEL_TYPE>
 {
 public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
+	virtual void OnEnter(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
+	virtual void OnExit(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
 	
 	/// <summary>更新</summary>
-	virtual void Update(ModelsControllerBase* modelsController, AnimationData& animationDatas, ModelBase* model) = 0;
+	virtual void Update(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
 };
 
 /*------------------------*/

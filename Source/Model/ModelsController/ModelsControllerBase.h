@@ -5,7 +5,6 @@
 
 #include "DxLib.h"
 
-#include "FSM.h"
 #include "ModelBase.h"
 
 class ModelsControllerBase
@@ -13,9 +12,6 @@ class ModelsControllerBase
 private:
     // モデルリスト
     std::vector<ModelBase*> mpModelList;
-
-    // 有限状態マシン
-    FSMModelsController* mpFsm;
 
     // モデルポジション
     VECTOR mvModelPosition;
@@ -40,12 +36,6 @@ public:
     /// <param name="model">追加するモデル</param>
     void AddModel(ModelBase* model);
 
-    // TODO: アニメーションに移動
-
-    /// <summary>アニメーションをモデルに反映</summary>
-    /// <param name="animationDatas">アニメーション情報</param>
-    inline void AnimationToModel(std::vector<AnimationData>& animationDatas) { mpFsm->Update(this, animationDatas); }
-
     /// <summary>モデル位置設定</summary>
     /// <param name="useSetting">設定を使うかどうか</param>
     /// <param name="position">ポジション</param>
@@ -56,10 +46,8 @@ public:
     /// <summary>モデル更新</summary>
     void UpdateModels();
     
-    // TODO: 関数書く
-    
     /// <summary>モデル描画</summary>
-    inline void DrawModels() { mpFsm->Draw(this); }
+    void DrawModels();
 
     /*----------*/
     /*【取得・設定】
@@ -82,7 +70,4 @@ public:
 
     /// <summary>モデルリスト取得</summary>
     inline std::vector<ModelBase*> GetModelList() const { return mpModelList; }
-
-    /// <summary>有限状態マシン取得</summary>
-    inline FSMModelsController* GetFsm() const { return mpFsm; }
 };

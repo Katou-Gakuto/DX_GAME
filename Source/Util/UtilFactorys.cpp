@@ -1,3 +1,13 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
+#include "AnimationEnum.h"
+#include "AnimationData.h"
+
+#include "DxLib.h"
+
 #include "Master.h"
 
 #include "CameraManager.h"
@@ -8,6 +18,7 @@
 #include "ModelPolygonIndexed.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
+#include "StateAnimation.h"
 #include "StateBase.h"
 #include "StateCamera.h"
 #include "StateEnemy.h"
@@ -18,6 +29,41 @@
 #include "StateTitleUI.h"
 #include "TargetManager.h"
 #include "UtilFactorys.h"
+
+// アニメション有限状態マシン作成
+FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
+{
+	FSMAnimation* fsm = new FSMAnimation();
+	fsm->IncreaseAnimationStateSize(animationDatas.size());
+
+	for (int i = 0; i < animationDatas.size(); i++)
+	{
+		std::map<ANIMATION_TYPE, MODEL_TYPE> setModelTypeMap;
+		std::map<MODEL_TYPE, IStateAnimation*> setStateMap;
+
+		for (int j = 0; j < loadAnimationData[i].size(); j++)
+		{
+			// HACK: 仮処置
+			MODEL_TYPE setModelType = MODEL_TYPE::MV1_MODEL;
+
+			setModelTypeMap[loadAnimationData[i][j].animationType] = setModelType;
+
+			switch (setModelType)
+			{
+			case MODEL_TYPE::MV1_MODEL:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					setStateMap[setModelType] = new StateMVOneAnimation();
+				}
+				break;
+			}
+		}
+
+		fsm->SetAnimationStateDatas(i, animationDatas[i].animationType, setModelTypeMap, setStateMap);
+	}
+
+	return fsm;
+}
 
 /*カメラ有限状態マシン作成*/
 FSMCamera* UtilFactorys::FSMCameraFactory()
@@ -141,18 +187,19 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 }
 
 // モデル作成
-ModelBase* UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER number, std::string modelPath)
+ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath)
 {
-	switch (number)
+	switch (type)
 	{
-	case MODEL_FACTORY_NUMBER::POLYGON_INDEXED:
+	case MODEL_TYPE::POLYGON_INDEXED:
 	{
 		ModelPolygonIndexed* model = new ModelPolygonIndexed();
 		model->Initilize();
 		return model;
 	}
 
-	case MODEL_FACTORY_NUMBER::MV1:
+	case MODEL_TYPE::MV1_MODEL:
+	case MODEL_TYPE::MV1_MODEL_ONLY:
 	{
 		ModelMV1* model = new ModelMV1();
 		model->Initilize();
@@ -162,4 +209,35 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER number, std::string m
 	}
 
 	return nullptr;
+}
+
+// アニメーションデータ作成
+AnimationData UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData)
+{
+	switch (type)
+	{
+	case MODEL_TYPE::MV1_MODEL:
+	{
+		AnimationData animationData;
+		for (int i = 0; i < loadAnimationData.size(); i++)
+		{
+			// アニメション添え字設定
+			animationData.animationNumber[loadAnimationData[i].animationType] = loadAnimationData[i].animationIndex;
+		}		
+		return animationData;
+	}
+
+	case MODEL_TYPE::MV1_MODEL_ONLY:
+	{
+		AnimationData animationData;
+		for (int i = 0; i < loadAnimationData.size(); i++)
+		{
+			// アニメション読み込み
+			animationData.animationNumber[loadAnimationData[i].animationType] = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
+		}
+		return animationData;
+	}
+	}
+
+	return AnimationData();
 }

@@ -1,7 +1,11 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 #include "SceneEnum.h"
+#include "AnimationData.h"
+
+enum class MODEL_TYPE;
 
 class CameraManager;
 class CharacterBase;
@@ -32,16 +36,14 @@ enum class UI_FACTORY_NUMBER
 	RESULT,
 };
 
-// TODO: 情報の種類から処理の種類に変更
-// モデル作成ナンバー
-enum class MODEL_FACTORY_NUMBER
-{
-	POLYGON_INDEXED = 0,
-	MV1,
-};
-
 namespace UtilFactorys
 {
+	// HACK: データマネージャーから受け取るようにするまでの簡易処置(第二引数)
+	/// <summary>アニメーション有限状態マシン作成</summary>
+	/// <param name="animationData">アニメーション情報</param>
+	/// <returns>有限状態マシン</returns>
+	FSMAnimation* FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
+
 	/*カメラ有限状態マシン作成*/
 	FSMCamera* FSMCameraFactory();
 
@@ -54,6 +56,14 @@ namespace UtilFactorys
 	/*UI有限状態マシン作成*/
 	FSMUI* FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number);
 
-	/*モデル作成*/
-	ModelBase* ModelFactory(MODEL_FACTORY_NUMBER number, std::string modelPath = "");
+	/// <summary>モデル作成</summary>
+	/// <param name="type">モデル種類</param>
+	/// <param name="modelPath">モデルファイル座標</param>
+	/// <returns>モデルベース</returns>
+	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath = "");
+
+	/// <summary>アニメーションデータ作成</summary>
+	/// <param name="type">モデル種類</param>
+	/// <returns>アニメーションデータ</returns>
+	AnimationData AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData);
 };

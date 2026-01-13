@@ -16,6 +16,56 @@ int
    <variable2>LPSTR</variable2>
    <variable3>int</variable3>
    </member>
+   <member className="UtilFactorys">
+   <functionName>AnimationDataFactory</functionName>
+   <explanations>
+アニメーションデータ作成
+   </explanations>
+   <returnExplanation>
+アニメーションデータ
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>ModelFactory</functionName>
+   <explanations>
+モデル作成
+   </explanations>
+   <returnExplanation>
+モデルベース
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   <variable1>モデルファイル座標</variable1>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>FSMAnimationFactory</functionName>
+   <explanations>
+アニメーション有限状態マシン作成
+   </explanations>
+   <returnExplanation>
+有限状態マシン
+   </returnExplanation>
+   <variable0>アニメーション情報</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetBaseFile</functionName>
+   <explanations>
+ベースファイル設定
+   </explanations>
+   <variable0>ベースファイルのファイル名があるファイル</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ取得
+   </explanations>
+   </member>
    <member className="LoadingManager">
    <functionName>GetLoadingFlag</functionName>
    <explanations>
@@ -31,6 +81,84 @@ int
 ローディングフラグ設定
    </explanations>
    <variable0>フラグのビット数</variable0>
+   </member>
+   <member className="GameManager">
+   <functionName>GetTargetManager</functionName>
+   <explanations>
+ターゲットマネージャー取得
+   </explanations>
+   <returnExplanation>
+ターゲットマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetSceneManager</functionName>
+   <explanations>
+シーンマネージャー取得
+   </explanations>
+   <returnExplanation>
+シーンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetObjectManager</functionName>
+   <explanations>
+オブジェクトマネージャー取得
+   </explanations>
+   <returnExplanation>
+オブジェクトマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetMapManager</functionName>
+   <explanations>
+マップマネージャー取得
+   </explanations>
+   <returnExplanation>
+マップマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCollisionManager</functionName>
+   <explanations>
+コリジョンマネージャー取得
+   </explanations>
+   <returnExplanation>
+コリジョンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCameraManager</functionName>
+   <explanations>
+カメラマネージャー取得
+   </explanations>
+   <returnExplanation>
+カメラマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetAttackManager</functionName>
+   <explanations>
+攻撃マネジャー取得
+   </explanations>
+   <returnExplanation>
+攻撃マネジャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetNowUINumber</functionName>
+   <explanations>
+UIナンバー取得
+   </explanations>
+   <returnExplanation>
+現在処理するUIナンバー
+   </returnExplanation>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VMoveVecToAngle</functionName>
+   <explanations>
+移動量をアングルに反映した値を返す(ラジアン)
+   </explanations>
    </member>
    <member className="EndManager">
    <functionName>GetBitEndflag</functionName>
@@ -65,24 +193,14 @@ int
 どれかの終了フラグが有効なら「true」
    </returnExplanation>
    </member>
-   <member className="DataManager">
-   <functionName>SetBaseFile</functionName>
+   <member className="CharacterBase">
+   <functionName>GetAnimation</functionName>
    <explanations>
-ベースファイル設定
+アニメションベース取得
    </explanations>
-   <variable0>ベースファイルのファイル名があるファイル</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>SetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ取得
-   </explanations>
+   <returnExplanation>
+アニメションベース
+   </returnExplanation>
    </member>
    <member className="CharacterBase">
    <functionName>GetModelsController</functionName>
@@ -167,120 +285,6 @@ int
    <returnExplanation>
 経過フレーム数
    </returnExplanation>
-   </member>
-   <member className="AnimationBase">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="AnimationBase">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>GetFsm</functionName>
-   <explanations>
-有限状態マシン取得
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>GetModelList</functionName>
-   <explanations>
-モデルリスト取得
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>SetModelSize</functionName>
-   <explanations>
-モデルサイズ設定
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>GetModelSize</functionName>
-   <explanations>
-モデルサイズ取得
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>SetModelAngle</functionName>
-   <explanations>
-モデル角度設定
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>GetModelAngle</functionName>
-   <explanations>
-モデル角度取得
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>SetModelPosition</functionName>
-   <explanations>
-モデルポジション設定
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>GetModelPosition</functionName>
-   <explanations>
-モデルポジション取得
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>DrawModels</functionName>
-   <explanations>
-モデル描画
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>UpdateModels</functionName>
-   <explanations>
-モデル更新
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>ModelsPositionSetting</functionName>
-   <explanations>
-モデル位置設定
-   </explanations>
-   <variable0>設定を使うかどうか</variable0>
-   <variable1>ポジション</variable1>
-   <variable2>角度</variable2>
-   <variable3>大きさ</variable3>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>AnimationToModel</functionName>
-   <explanations>
-アニメーションをモデルに反映
-   </explanations>
-   <variable0>アニメーション情報</variable0>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>AddModel</functionName>
-   <explanations>
-モデル追加
-   </explanations>
-   <variable0>追加するモデル</variable0>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="ModelsControllerBase">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="ModelBase">
-   <functionName>PositionUpdate</functionName>
-   <explanations>
-ポジション更新
-   </explanations>
    </member>
    <member className="KeyState">
    <functionName>GetAllToggleState</functionName>
@@ -372,100 +376,204 @@ int
    </returnExplanation>
    <variable0>キーボード分も取得するなら「true」にする</variable0>
    </member>
-   <member className="UtilCalc">
-   <functionName>VMoveVecToAngle</functionName>
+   <member className="AnimationBase">
+   <functionName>SetAnimationDatas</functionName>
    <explanations>
-移動量をアングルに反映した値を返す(ラジアン)
+アニメーションデータ設定
    </explanations>
    </member>
-   <member className="IStateModelsController">
+   <member className="AnimationBase">
+   <functionName>GetAnimationDatas</functionName>
+   <explanations>
+アニメーションデータ取得
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>SetFsm</functionName>
+   <explanations>
+アニメーション有限状態マシン設定
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>GetFsm</functionName>
+   <explanations>
+アニメーション有限状態マシン取得
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>SetModelsController</functionName>
+   <explanations>
+モデルコントローラー設定
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>GetModelsController</functionName>
+   <explanations>
+モデルコントローラー取得
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>AddAnimationData</functionName>
+   <explanations>
+アニメーションデータ追加
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>Update</functionName>
+   <explanations>
+アニメーション更新
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelList</functionName>
+   <explanations>
+モデルリスト取得
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelSize</functionName>
+   <explanations>
+モデルサイズ設定
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelSize</functionName>
+   <explanations>
+モデルサイズ取得
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelAngle</functionName>
+   <explanations>
+モデル角度設定
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelAngle</functionName>
+   <explanations>
+モデル角度取得
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>SetModelPosition</functionName>
+   <explanations>
+モデルポジション設定
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>GetModelPosition</functionName>
+   <explanations>
+モデルポジション取得
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>DrawModels</functionName>
+   <explanations>
+モデル描画
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>UpdateModels</functionName>
+   <explanations>
+モデル更新
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>ModelsPositionSetting</functionName>
+   <explanations>
+モデル位置設定
+   </explanations>
+   <variable0>設定を使うかどうか</variable0>
+   <variable1>ポジション</variable1>
+   <variable2>角度</variable2>
+   <variable3>大きさ</variable3>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>AddModel</functionName>
+   <explanations>
+モデル追加
+   </explanations>
+   <variable0>追加するモデル</variable0>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="ModelsControllerBase">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="ModelBase">
+   <functionName>PositionUpdate</functionName>
+   <explanations>
+ポジション更新
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>GetAnimationState</functionName>
+   <explanations>
+現在のステート取得
+   </explanations>
+   <returnExplanation>
+アニメションステート
+   </returnExplanation>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>GetModelType</functionName>
+   <explanations>
+現在のモデルの種類を取得
+   </explanations>
+   <returnExplanation>
+モデル種類
+   </returnExplanation>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>GetAnimationType</functionName>
+   <explanations>
+現在のアニメーションの種類取得
+   </explanations>
+   <returnExplanation>
+アニメーションの種類
+   </returnExplanation>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>SetAnimationStateDatas</functionName>
+   <explanations>
+アニメーションステート情報設定
+   </explanations>
+   </member>
+   <member className="IStateAnimation">
    <functionName>Update</functionName>
    <explanations>
 更新
    </explanations>
    </member>
-   <member className="IStateModelsController">
+   <member className="IStateAnimation">
    <functionName>OnExit</functionName>
    <explanations>
 この状態を出る時の処理
    </explanations>
    </member>
-   <member className="IStateModelsController">
+   <member className="IStateAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
 この状態に入った時の処理
    </explanations>
-   </member>
-   <member className="GameManager">
-   <functionName>GetTargetManager</functionName>
-   <explanations>
-ターゲットマネージャー取得
-   </explanations>
-   <returnExplanation>
-ターゲットマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetSceneManager</functionName>
-   <explanations>
-シーンマネージャー取得
-   </explanations>
-   <returnExplanation>
-シーンマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetObjectManager</functionName>
-   <explanations>
-オブジェクトマネージャー取得
-   </explanations>
-   <returnExplanation>
-オブジェクトマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetMapManager</functionName>
-   <explanations>
-マップマネージャー取得
-   </explanations>
-   <returnExplanation>
-マップマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetCollisionManager</functionName>
-   <explanations>
-コリジョンマネージャー取得
-   </explanations>
-   <returnExplanation>
-コリジョンマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetCameraManager</functionName>
-   <explanations>
-カメラマネージャー取得
-   </explanations>
-   <returnExplanation>
-カメラマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetAttackManager</functionName>
-   <explanations>
-攻撃マネジャー取得
-   </explanations>
-   <returnExplanation>
-攻撃マネジャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetNowUINumber</functionName>
-   <explanations>
-UIナンバー取得
-   </explanations>
-   <returnExplanation>
-現在処理するUIナンバー
-   </returnExplanation>
    </member>
 </doc>

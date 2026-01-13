@@ -127,8 +127,8 @@ void CharacterBase::LastUpdate()
 		mpModelController->SetModelAngle(mvAngle);
 		mpModelController->ModelsPositionSetting();
 		
-		// TODO: アニメーション出来たら
 		// アニメーション更新
+		mpAnimation->Update();
 
 		// モデルに反映
 		mpModelController->UpdateModels();

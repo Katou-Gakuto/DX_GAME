@@ -10,15 +10,15 @@ struct AnimationData;
 enum class CAMERA_MODE;
 enum class SCENE;
 
+class AnimationBase;
 class CameraManager;
 class CharacterBase;
-class ModelsControllerBase;
 class SceneManager;
 class UIBase;
 
-/*------------------------*/
+/*----------*/
 /*【継承用有限状態マシン】*/
-/*------------------------*/
+/*----------*/
 template<typename subscript, typename state>
 class FSMBase
 {
@@ -63,44 +63,46 @@ public:
 	inline subscript GetCurrentState() const { return mnCurrentState; }
 };
 
-// INPROGRESS: アニメーション作成中
-// TODO: 名前変更 アニメーションも渡す
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<ANIMATION_MODEL_TYPE, IStateAnimation>
+class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimation>
 {
 private:
-	// アニメーション状態達
-	std::vector<std::map<ANIMATION_MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
-	// モデル_アニメーション種類達
-	std::vector<ANIMATION_MODEL_TYPE> meModelAnimationTypes;
+	// アニメーションステートデータ
+	std::vector<AnimationStateData> mstAnimationStateDatas;
 public:
 	FSMAnimation();
 
 	/*アニメーション状態達のサイズを増やす*/
 	void IncreaseAnimationStateSize(int size);
 
-	/*アニメーション状態の種類を設定*/
-	void SetAnimationStateType(int animationStateIndex, ANIMATION_MODEL_TYPE stateType);
-
-	/*アニメーション状態達情報を設定*/
-	void SetAnimationState(int animationStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateAnimation*> animationStateMap);
+	/// <summary>アニメーションステート情報設定</summary>
+	void SetAnimationStateDatas(int animationStateIndex, ANIMATION_TYPE stateType, std::map<ANIMATION_TYPE, MODEL_TYPE> animationModelType, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
 	/*更新*/
-	void Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas);
-
-	/*描画*/
-	void Draw(ModelsControllerBase* modelsController);
+	void Update(AnimationBase* animation, std::vector<AnimationData>& animationDatas);
 
 private:
 	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void ChangeState(ModelsControllerBase* modelsController, int animationStateIndex, AnimationData& animationDatas, ModelBase* model);
+	void ChangeState(AnimationBase* animation, int animationStateIndex, AnimationData& animationDatas, ModelBase* model);
+
+	/// <summary>現在のアニメーションの種類取得</summary>
+	/// <returns>アニメーションの種類</returns>
+	inline ANIMATION_TYPE GetAnimationType(int index) { return mstAnimationStateDatas[index].animationType; }
+
+	/// <summary>現在のモデルの種類を取得</summary>
+	/// <returns>モデル種類</returns>
+	inline MODEL_TYPE GetModelType(int index) { return mstAnimationStateDatas[index].animationModelType[GetAnimationType(index)]; }
+
+	/// <summary>現在のステート取得</summary>
+	/// <returns>アニメションステート</returns>
+	inline IStateAnimation* GetAnimationState(int index) { return mstAnimationStateDatas[index].animationState[GetModelType(index)]; }
 };
 
-/*------------------------*/
+/*----------*/
 /*【カメラ有限状態マシン】*/
-/*------------------------*/
+/*----------*/
 class FSMCamera : public FSMBase<CAMERA_MODE, IStateCamera>
 {
 public:
@@ -119,9 +121,9 @@ public:
 	void Draw(CameraManager* cameraManager);
 };
 
-/*------------------------------*/
+/*----------*/
 /*【キャラクター有限状態マシン】*/
-/*------------------------------*/
+/*----------*/
 class FSMCharacter : public FSMBase<int, IStateCharacter>
 {
 public:
@@ -142,9 +144,9 @@ public:
 	void Death(CharacterBase* character);
 };
 
-/*------------------------*/
+/*----------*/
 /*【シーン有限状態マシン】*/
-/*------------------------*/
+/*----------*/
 class FSMScene : public FSMBase<SCENE, IStateScene>
 {
 public:
@@ -163,9 +165,9 @@ public:
 	int GetSceneCameraID();
 };
 
-/*--------------------*/
+/*----------*/
 /*【UI有限状態マシン】*/
-/*--------------------*/
+/*----------*/
 class FSMUI : public FSMBase<int, IStateUI>
 {
 public:

@@ -1,7 +1,11 @@
 #include <map>
 
+#include "AnimationEnum.h"
+#include "AnimationData.h"
+
 #include "Master.h"
 
+#include "AnimationBase.h"
 #include "CameraManager.h"
 #include "GameManager.h"
 #include "FSM.h"
@@ -120,78 +124,54 @@ void FSMCharacter::Death(CharacterBase* character)
 FSMAnimation::FSMAnimation()
 : FSMBase()
 {
-	mmAnimationStates.clear();
-
-	meModelAnimationTypes.clear();
+	mstAnimationStateDatas.clear();
 }
 
 // サブ状態マップのサイズを増やす
 void FSMAnimation::IncreaseAnimationStateSize(int size)
 {
-	mmAnimationStates.resize(size);
-	meModelAnimationTypes.resize(size);
+	mstAnimationStateDatas.resize(size);
 	for (int i = 0; i < size; i++)
 	{
-		meModelAnimationTypes[i] = ANIMATION_MODEL_TYPE::NONE;
+		mstAnimationStateDatas[i].animationType = ANIMATION_TYPE::NONE;
 	}
 }
 
-// サブ状態マップに情報を設定
-void FSMAnimation::SetAnimationStateType(int animationStateIndex, ANIMATION_MODEL_TYPE stateType)
+// アニメーションステート情報設定
+void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, ANIMATION_TYPE stateType, std::map<ANIMATION_TYPE, MODEL_TYPE> animationModelType, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap)
 {
-	meModelAnimationTypes[animationStateIndex] = stateType;
-}
-
-// サブ状態マップに情報を設定
-void FSMAnimation::SetAnimationState(int animationStateIndex, std::map<ANIMATION_MODEL_TYPE, IStateAnimation*> animationStateMap)
-{
-	mmAnimationStates[animationStateIndex] = animationStateMap;
+	mstAnimationStateDatas[animationStateIndex].animationType = stateType;
+	mstAnimationStateDatas[animationStateIndex].animationModelType = animationModelType;
+	mstAnimationStateDatas[animationStateIndex].animationState = animationStateMap;
 }
 
 // 更新
-void FSMAnimation::Update(ModelsControllerBase* modelsController, std::vector<AnimationData>& animationDatas)
+void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationData>& animationDatas)
 {
-	for (int i = 0; i < meModelAnimationTypes.size(); i++)
+	for (int i = 0; i < mstAnimationStateDatas.size(); i++)
 	{
-		// NONEならスルー
-		if (meModelAnimationTypes[i] == ANIMATION_MODEL_TYPE::NONE)
-		{
-			continue;
-		}
+		// モデル取得
+		ModelBase* model = animation->GetModelsController()->GetModelList()[i];
 
 		// ステート変更確認
-		ChangeState(modelsController, i, animationDatas[i + 1], modelsController->GetModelList()[i]);
+		ChangeState(animation, i, animationDatas[i], model);
 
 		// 更新
-		mmAnimationStates[i][meModelAnimationTypes[i]]->Update(modelsController, animationDatas[i + 1], modelsController->GetModelList()[i]);
-	}
-}
-
-// 描画
-void FSMAnimation::Draw(ModelsControllerBase* modelsController)
-{
-	std::vector<ModelBase*> modelList = modelsController->GetModelList();
-	for (int i = 0; i < modelList.size(); i++)
-	{
-		modelList[i]->ModelDraw();
+		GetAnimationState(i)->Update(animation, animationDatas[i], model, mstAnimationStateDatas[i]);
 	}
 }
 
 // 次のステートが現在のステートと違うならステート変更処理をする
-void FSMAnimation::ChangeState(ModelsControllerBase* modelsController, int animationStateIndex, AnimationData& animationDatas, ModelBase* model)
+void FSMAnimation::ChangeState(AnimationBase* animation, int animationStateIndex, AnimationData& animationDatas, ModelBase* model)
 {
-	if (meModelAnimationTypes[animationStateIndex] != animationDatas.preAnimationModelType)
+	if (GetAnimationType(animationStateIndex) != animationDatas.animationType)
 	{
-		ANIMATION_MODEL_TYPE nextState = animationDatas.preAnimationModelType;
-
 		// 現在のStateの終了処理
-		mmAnimationStates[animationStateIndex][meModelAnimationTypes[animationStateIndex]]->OnExit(modelsController, animationDatas, model);
+		GetAnimationState(animationStateIndex)->OnExit(animation, animationDatas, model, mstAnimationStateDatas[animationStateIndex]);
 
 		// 新しいStateの開始処理
-		mmAnimationStates[animationStateIndex][nextState]->OnEnter(modelsController, animationDatas, model);
-		
-		// 新しいStateを設定
-		meModelAnimationTypes[animationStateIndex] = nextState;
+		mstAnimationStateDatas[animationStateIndex].animationType = animationDatas.animationType;
+		GetAnimationState(animationStateIndex)->OnEnter(animation, animationDatas, model, mstAnimationStateDatas[animationStateIndex]);
 	}
 }
 

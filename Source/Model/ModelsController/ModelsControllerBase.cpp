@@ -9,8 +9,6 @@ ModelsControllerBase::ModelsControllerBase()
 , mvModelAngle{0.0f, 0.0f, 0.0f}
 ,mvModelSize{1.0f, 1.0f, 1.0f}
 {
-    mpFsm = nullptr;
-
     mpModelList.clear();
 }
 
@@ -21,10 +19,9 @@ ModelsControllerBase::~ModelsControllerBase()
 // èâä˙âª
 void ModelsControllerBase::Initilize()
 {
-    // FSMê∂ê¨
-    mpFsm = new FSMModelsController();
 }
 
+// èIóπ
 void ModelsControllerBase::Finalize()
 {
     for (int i = 0; i < mpModelList.size(); i++)
@@ -33,8 +30,6 @@ void ModelsControllerBase::Finalize()
         delete mpModelList[i];
     }
     mpModelList.clear();
-
-    delete mpFsm;
 }
 
 // ÉÇÉfÉãí«â¡
@@ -69,4 +64,13 @@ void ModelsControllerBase::UpdateModels()
     {
         mpModelList[i]->PositionUpdate();
     }
+}
+
+// ÉÇÉfÉãï`âÊ
+void ModelsControllerBase::DrawModels()
+{
+	for (int i = 0; i < mpModelList.size(); i++)
+	{
+		mpModelList[i]->ModelDraw();
+	}
 }

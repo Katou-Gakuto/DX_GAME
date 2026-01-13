@@ -1,4 +1,5 @@
 #include "CharacterEnum.h"
+#include "AnimationData.h"
 #include "CameraData.h"
 #include "GameDatas.h"
 
@@ -123,8 +124,28 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
+	// モデル設定
 	ModelsControllerBase* playerModels = player->GetModelsController();
-	playerModels->AddModel(UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER::MV1, "../Resource/3D/Human/Hero.x"));
+	playerModels->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	// アニメション設定
+	AnimationBase* playerAnimation = player->GetAnimation();
+	std::vector<LoadAnimationData> playerLoadAnimaData;
+	for (int i = 0; i < 6; i++)
+	{
+		LoadAnimationData loadAnimaData;
+		loadAnimaData.animationIndex = i;
+		playerLoadAnimaData.push_back(loadAnimaData);
+	}
+	// HACK: データマネージャーから取得できるようにする
+	playerLoadAnimaData[0].animationType = ANIMATION_TYPE::NONE;
+	playerLoadAnimaData[1].animationType = ANIMATION_TYPE::RUN;
+	playerLoadAnimaData[2].animationType = ANIMATION_TYPE::JUMP_IN;
+	playerLoadAnimaData[3].animationType = ANIMATION_TYPE::JUMP;
+	playerLoadAnimaData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
+	playerLoadAnimaData[5].animationType = ANIMATION_TYPE::ATTACK;
+	playerAnimation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, playerLoadAnimaData));
+	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;setPlayerLoadAnimationData.push_back(playerLoadAnimaData);
+	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation->GetAnimationDatas(), setPlayerLoadAnimationData));
 
 	// カメラ作成
 	{
@@ -147,7 +168,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
 		
 		ModelsControllerBase* enemyModels = enemy->GetModelsController();
-		enemyModels->AddModel(UtilFactorys::ModelFactory(MODEL_FACTORY_NUMBER::MV1, "../Resource/3D/Human/Hero.x"));
+		enemyModels->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	}
 
 	switch (sceneManager->GetNowScene())

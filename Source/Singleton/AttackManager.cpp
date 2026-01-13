@@ -58,15 +58,15 @@ int AttackManager::StartAttack(int attackDataNumber)
 		{
 			if (!attack->IsActiveFlag())
 			{
+				// 攻撃情報設定
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime());
-				// HACK: 移動方向でやっている現状をモデルの方向に変更
-				attack->SetMoveDir(mstAttackDatas[attackDataNumber].attackCharacter->GetVec());
+				attack->SetMoveDir(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle());
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
-
 				attack->SetAttackNumber(attackDataNumber);
 
 				// FIXME: なぜかヌルポインターが出た　
+				// 初期化
 				attack->Initilize();
 				attack->SetActiveFlag(true);
 

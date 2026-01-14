@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <string>
 
 #include "AnimationEnum.h"
 #include "AnimationData.h"
@@ -17,6 +18,7 @@ protected:
     {
         float animationCount;   // アニメーションカウント
         int animationHandle;    // アニメションハンドル
+        bool loopFlag;          // ループフラグ
     };
 
     // アニメーションのナンバー
@@ -28,9 +30,6 @@ protected:
     };
 
 protected:
-    // 前のアニメーション再生タイム
-    int mnPreAnimNumber = -1;//???????
-
     // モデルハンドル
     int mnModelHandle;
     
@@ -50,7 +49,7 @@ protected:
     const float ANIMATION_BLEND_RATE_MAX = 1.0f;
 
 public:
-    StateMVOneAnimation(int modelHandle);
+    StateMVOneAnimation(int modelHandle, std::string frameName);
     ~StateMVOneAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -58,18 +57,18 @@ public:
     /// <param name="animationDatas">アニメーション情報</param>
     /// <param name="model">モデル</param>
     /// <param name="animationStateData">アニメーションステート情報</param>
-    void OnEnter(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) override;
+    void OnEnter(AnimationBase* animation, AnimationDatas animationDatas) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
     /// <param name="model">モデル</param>
-    void OnExit(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) override;
+    void OnExit(AnimationBase* animation, AnimationDatas animationDatas) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
     /// <param name="model">モデル</param>
-    void Update(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) override;
+    void Update(AnimationBase* animation, AnimationDatas animationDatas) override;
 
 protected:
     // アニメーションをデタッチ
@@ -80,8 +79,8 @@ protected:
     virtual void ClearAnimationData();
 
     // アニメーションをアタッチ
-    virtual void AnimationAttach(AnimationData& animationDatas);
+    virtual void AnimationAttach(AnimationData animationData);
 
     // アニメーション更新
-    virtual void UpdateAnimation(ANIMATION_TYPE animationType);    
+    virtual void UpdateAnimation();    
 };

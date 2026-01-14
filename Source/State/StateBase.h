@@ -89,7 +89,6 @@ public:
 	virtual void Death(CharacterBase* character) = 0;
 };
 
-// TODO: アニメーション様にステートのファイル名変更
 /*----------*/
 /*【アニメーションステートベース】
 /*----------*/
@@ -99,12 +98,30 @@ public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
+	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
+	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
 	
 	/// <summary>更新</summary>
-	virtual void Update(AnimationBase* modelsController, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData) = 0;
+	virtual void Update(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
+};
+
+/*----------*/
+/*【アニメション操作ステートベース】
+/*----------*/
+class IStateAnimationContller : public StateBase<ANIMATION_TYPE>
+{
+public:
+	IStateAnimationContller() = default;
+	virtual ~IStateAnimationContller() = default;
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) = 0;
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) = 0;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) = 0;
 };
 
 /*------------------------*/

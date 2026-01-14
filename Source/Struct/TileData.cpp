@@ -70,9 +70,11 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 		{
 			if (this->adjacentData[i] == characterPos[j])
 			{
+				// TODO: ‰½‚©‘‚­
 				switch (*(this->adjacentData[i].tileFlag) & 0xffff'ffff'ffff'ff00ull)
 				{
-
+				default:
+					break;
 				}
 				characterPos.erase(characterPos.begin() + j);
 			}

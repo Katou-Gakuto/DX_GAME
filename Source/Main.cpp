@@ -11,7 +11,10 @@
 #include "LoadingManager.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
+
+#if _DEBUG
 #include "XmlArrange.h"
+#endif
 
 // マスター静的メンバ変数初期化
 DataManager* Master::mpDataManager = new DataManager();
@@ -33,10 +36,12 @@ TimeManager* Master::mpTimeManager = new TimeManager();
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+#if _DEBUG
 	// Excel用XMLファイルを生成
 	XmlArrange* pXmlArrange = new XmlArrange();
 	pXmlArrange->Arrange();
 	delete pXmlArrange;
+#endif
 
 	// ウインドウモードで起動
 	ChangeWindowMode(true);

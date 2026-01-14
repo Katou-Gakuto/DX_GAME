@@ -11,11 +11,11 @@ private:
     // モデルコントローラー
     ModelsControllerBase* mpModelsController;
 
-    // 有限状態マシン
-    FSMAnimation* mpFsm;
+    // アニメーション有限状態マシン
+    FSMAnimation* mpFsm;    
 
     // アニメーションデータ
-    std::vector<AnimationData> mstAnimationDatas;
+    std::vector<std::map<ANIMATION_TYPE, AnimationDatas>> mstAnimationDatas;
 
 public:
     AnimationBase();
@@ -30,12 +30,12 @@ public:
     void Update();
 
     /// <summary>アニメーションデータ追加</summary>
-    void AddAnimationData(const AnimationData& animationData) { mstAnimationDatas.push_back(animationData); }
+    void AddAnimationData(const std::map<ANIMATION_TYPE, AnimationDatas> animationData) { mstAnimationDatas.push_back(animationData); }
 
     /*----------*/
     /*【設定・取得】
     /*----------*/
-
+public:
     /// <summary>モデルコントローラー取得</summary>
     inline ModelsControllerBase* GetModelsController() const { return mpModelsController; }
     /// <summary>モデルコントローラー設定</summary>
@@ -47,7 +47,10 @@ public:
     inline void SetFsm(FSMAnimation* fsm) { mpFsm = fsm; }
 
     /// <summary>アニメーションデータ取得</summary>
-    inline std::vector<AnimationData>& GetAnimationDatas() { return mstAnimationDatas; }
+    inline std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& GetAnimationDatas() { return mstAnimationDatas; }
     /// <summary>アニメーションデータ設定</summary>
-    inline void SetAnimationDatas(const std::vector<AnimationData>& animationDatas) { mstAnimationDatas = animationDatas; }
+    inline void SetAnimationDatas(const std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas) { mstAnimationDatas = animationDatas; }
+
+    /// <summary>アニメーション種類設定</summary>
+    inline void SetAnimationType(ANIMATION_TYPE animationType) { mpFsm->SetNextState(animationType); }
 };

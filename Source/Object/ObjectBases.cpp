@@ -244,6 +244,8 @@ void CharacterBase::TemplateActionProcess()
 			mvVec = VNorm(mvVec);
 
 			mvAngle = UtilCalc::VMoveVecToAngle(mvVec, mvAngle);
+
+			mpAnimation->SetAnimationType(ANIMATION_TYPE::WALK);
 		}
 
 		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::HP_ZERO))

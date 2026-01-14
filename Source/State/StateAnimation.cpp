@@ -1,4 +1,6 @@
+#include <map>
 #include <math.h>
+#include <string>
 
 #include "DxLib.h"
 
@@ -11,37 +13,45 @@
 #include "StateAnimation.h"
 #include "StateBase.h"
 
-StateMVOneAnimation::StateMVOneAnimation(int modelHandle)
+StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string frameName)
 : IStateAnimation()
 , mnModelHandle(modelHandle)
 , mfAnimBlendRate(0.0f)
 , mfAnimBlendSpeed(0.1f)
 , mfAnimationSpeed(0.5f)
 {
-    mmLoopAnimationFlags.clear();
+    // アニメーションフレーム固定
+    {
+        // アニメーションで移動をしているフレームの番号を検索する
+        int moveAnimFrameIndex = MV1SearchFrame(mnModelHandle, frameName.c_str());
+
+        // アニメーションで移動しているフレームを無効にする
+        MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
+    }
 
     for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
     {
         mstMvOneAnimationDatas[i].animationCount = 0.0f;
         mstMvOneAnimationDatas[i].animationHandle = -1;
+        mstMvOneAnimationDatas[i].loopFlag = false;
     }
 
     mStateNumber = MODEL_TYPE::MV1_MODEL;
 }
 
 // この状態に入った時の処理
-void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
+void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas)
 {
     AnimationAttach(animationDatas);
 }
 
 // この状態を出る時の処理
-void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
+void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas)
 {
     AnimationDetach();
 
     // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
-    if (mStateNumber == animationStateData.animationModelType[animationDatas.animationType])
+    if (mStateNumber == animationStateData.animationTypeData[animationDatas.animationType])
     {
         KeepAnimationData();
     }
@@ -52,10 +62,10 @@ void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationData& animat
 }
 
 // 更新
-void StateMVOneAnimation::Update(AnimationBase* animation, AnimationData& animationDatas, ModelBase* model, AnimationStateData& animationStateData)
+void StateMVOneAnimation::Update(AnimationBase* animation, AnimationDatas animationDatas)
 {
     // アニメーション更新
-    UpdateAnimation(animationDatas.animationType);
+    UpdateAnimation();
 }
 
 // アニメーションをデタッチ
@@ -81,20 +91,22 @@ void StateMVOneAnimation::ClearAnimationData()
     {
         mstMvOneAnimationDatas[i].animationCount = 0.0f;
         mstMvOneAnimationDatas[i].animationHandle = -1;
+        mstMvOneAnimationDatas[i].loopFlag = false;
     }
 }
 
 // アニメーションをアタッチ
-void StateMVOneAnimation::AnimationAttach(AnimationData& animationDatas)
+void StateMVOneAnimation::AnimationAttach(AnimationData animationData)
 {
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationDatas.animationNumber[animationDatas.animationType]);
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationCount = 0.0f;
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationData.oneAnimationData[animationData.animationType]);
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationCount = 0.0f;
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = animationData.oneAnimationData[animationData.animationType].loopFlag;
 
     mfAnimBlendRate = ((mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle == -1) ? 1.0f : 0.0f);
 }
 
 // アニメーション更新
-void StateMVOneAnimation::UpdateAnimation(ANIMATION_TYPE animationType)
+void StateMVOneAnimation::UpdateAnimation()
 {
     if (mnModelHandle != -1) {
 
@@ -111,6 +123,7 @@ void StateMVOneAnimation::UpdateAnimation(ANIMATION_TYPE animationType)
         float animTotalTime;
 
         // アニメーション処理
+
         for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
         {
             if (mstMvOneAnimationDatas[i].animationHandle != -1)
@@ -124,7 +137,7 @@ void StateMVOneAnimation::UpdateAnimation(ANIMATION_TYPE animationType)
                 // ループさせる
                 if (mstMvOneAnimationDatas[i].animationCount >= animTotalTime )
                 {
-                    if (mmLoopAnimationFlags[animationType])
+                    if (mstMvOneAnimationDatas[i].loopFlag)
                     {
                         mstMvOneAnimationDatas[i].animationCount = fmodf(mstMvOneAnimationDatas[i].animationCount, animTotalTime);
                     }

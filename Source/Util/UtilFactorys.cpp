@@ -31,10 +31,10 @@
 #include "UtilFactorys.h"
 
 // アニメション有限状態マシン作成
-FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
+FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData, std::vector<ModelBase*> modelBases)
 {
 	FSMAnimation* fsm = new FSMAnimation();
-	fsm->IncreaseAnimationStateSize(animationDatas.size());
+	fsm->IncreaseAnimationStateSize((int)animationDatas.size());
 
 	for (int i = 0; i < animationDatas.size(); i++)
 	{
@@ -43,7 +43,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> anima
 
 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 		{
-			// HACK: 仮処置
+			// HACK: 仮処置 データマネージャーから受け取るようにする
 			MODEL_TYPE setModelType = MODEL_TYPE::MV1_MODEL;
 
 			setModelTypeMap[loadAnimationData[i][j].animationType] = setModelType;
@@ -53,13 +53,14 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> anima
 			case MODEL_TYPE::MV1_MODEL:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
-					setStateMap[setModelType] = new StateMVOneAnimation();
+					// HACK: 外部から固定するフレームの名前を取得できるようにする
+					setStateMap[setModelType] = new StateMVOneAnimation((dynamic_cast<ModelMV1*>(modelBases[i]))->GetHandle(), "root");
 				}
 				break;
 			}
 		}
 
-		fsm->SetAnimationStateDatas(i, animationDatas[i].animationType, setModelTypeMap, setStateMap);
+		fsm->SetAnimationStateDatas(i, setModelTypeMap, setStateMap);
 	}
 
 	return fsm;
@@ -222,7 +223,9 @@ AnimationData UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<Lo
 		for (int i = 0; i < loadAnimationData.size(); i++)
 		{
 			// アニメション添え字設定
-			animationData.animationNumber[loadAnimationData[i].animationType] = loadAnimationData[i].animationIndex;
+			animationData.oneAnimationData[loadAnimationData[i].animationType].number = loadAnimationData[i].animationIndex;
+
+			animationData.oneAnimationData[loadAnimationData[i].animationType].loopFlag = loadAnimationData[i].animationLoopFlag;
 		}		
 		return animationData;
 	}
@@ -233,7 +236,9 @@ AnimationData UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<Lo
 		for (int i = 0; i < loadAnimationData.size(); i++)
 		{
 			// アニメション読み込み
-			animationData.animationNumber[loadAnimationData[i].animationType] = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
+			animationData.oneAnimationData[loadAnimationData[i].animationType].number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
+			
+			animationData.oneAnimationData[loadAnimationData[i].animationType].loopFlag = loadAnimationData[i].animationLoopFlag;
 		}
 		return animationData;
 	}

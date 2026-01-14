@@ -147,4 +147,6 @@ std::vector<CharacterTargetData> TargetManager::GetTargets(TARGET_TYPE targetNum
 	case TARGET_TYPE::ENEMY:
 		return mstEnemys;
 	}
+	std::vector<CharacterTargetData> nullData;
+	return nullData;
 }

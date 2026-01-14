@@ -134,18 +134,20 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	{
 		LoadAnimationData loadAnimaData;
 		loadAnimaData.animationIndex = i;
+		loadAnimaData.animationLoopFlag = true;
 		playerLoadAnimaData.push_back(loadAnimaData);
 	}
 	// HACK: データマネージャーから取得できるようにする
-	playerLoadAnimaData[0].animationType = ANIMATION_TYPE::NONE;
-	playerLoadAnimaData[1].animationType = ANIMATION_TYPE::RUN;
+	playerLoadAnimaData[0].animationType = ANIMATION_TYPE::IDLE;
+	playerLoadAnimaData[1].animationType = ANIMATION_TYPE::WALK;
 	playerLoadAnimaData[2].animationType = ANIMATION_TYPE::JUMP_IN;
 	playerLoadAnimaData[3].animationType = ANIMATION_TYPE::JUMP;
 	playerLoadAnimaData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
 	playerLoadAnimaData[5].animationType = ANIMATION_TYPE::ATTACK;
 	playerAnimation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, playerLoadAnimaData));
+	playerAnimation->SetAnimationType(ANIMATION_TYPE::IDLE);
 	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;setPlayerLoadAnimationData.push_back(playerLoadAnimaData);
-	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation->GetAnimationDatas(), setPlayerLoadAnimationData));
+	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation->GetAnimationDatas(), setPlayerLoadAnimationData, playerAnimation->GetModelsController()->GetModelList()));
 
 	// カメラ作成
 	{

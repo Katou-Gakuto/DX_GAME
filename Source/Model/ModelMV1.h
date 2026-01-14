@@ -29,4 +29,8 @@ public:
     inline void SetModelHandle(int handle) { mnModelHandle = handle; }
     /*モデルハンドル設定*/
     void SetModelHandle(const char* filePath);
+
+    /// <summary>ハンドル取得</summary>
+    /// <returns>モデルハンドル</returns>
+    inline int GetHandle()  { return mnModelHandle; }
 };

@@ -4,6 +4,7 @@
 enum class ANIMATION_TYPE
 {
     NONE = 0,   // 無し
+    IDLE,       // 待機状態
     WALK,       // 歩く 
     RUN,        // 走る
     JUMP_IN,    // ジャンプ開始

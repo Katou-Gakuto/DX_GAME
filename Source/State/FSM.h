@@ -5,8 +5,6 @@
 
 #include "StateBase.h"
 
-struct AnimationData;
-
 enum class CAMERA_MODE;
 enum class SCENE;
 
@@ -66,38 +64,35 @@ public:
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimation>
+class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimationContller>
 {
 private:
-	// アニメーションステートデータ
-	std::vector<AnimationStateData> mstAnimationStateDatas;
+	// アニメーションステート達
+	std::vector<std::map<MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
 public:
 	FSMAnimation();
+
+	/// <summary>終了</summary>
+	void Finalize();
 
 	/*アニメーション状態達のサイズを増やす*/
 	void IncreaseAnimationStateSize(int size);
 
 	/// <summary>アニメーションステート情報設定</summary>
-	void SetAnimationStateDatas(int animationStateIndex, ANIMATION_TYPE stateType, std::map<ANIMATION_TYPE, MODEL_TYPE> animationModelType, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
+	void SetAnimationStateDatas(int animationStateIndex, std::map<ANIMATION_TYPE, MODEL_TYPE> animationTypeData, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
-	/*更新*/
-	void Update(AnimationBase* animation, std::vector<AnimationData>& animationDatas);
+	/// <summary>更新</summary>
+	void Update(AnimationBase* animation, std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas);
+
+	/// <summary>次のステート設定</summary>
+	inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
 private:
 	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void ChangeState(AnimationBase* animation, int animationStateIndex, AnimationData& animationDatas, ModelBase* model);
+	void ChangeState(AnimationBase* animation, int animationStateIndex, std::map<ANIMATION_TYPE, AnimationDatas>& animationDatas, ModelBase* model);
 
-	/// <summary>現在のアニメーションの種類取得</summary>
-	/// <returns>アニメーションの種類</returns>
-	inline ANIMATION_TYPE GetAnimationType(int index) { return mstAnimationStateDatas[index].animationType; }
-
-	/// <summary>現在のモデルの種類を取得</summary>
-	/// <returns>モデル種類</returns>
-	inline MODEL_TYPE GetModelType(int index) { return mstAnimationStateDatas[index].animationModelType[GetAnimationType(index)]; }
-
-	/// <summary>現在のステート取得</summary>
-	/// <returns>アニメションステート</returns>
-	inline IStateAnimation* GetAnimationState(int index) { return mstAnimationStateDatas[index].animationState[GetModelType(index)]; }
+	/*現在のステート取得*/
+	IStateAnimation* GetAnimationState(int index, AnimationBase* animation);
 };
 
 /*----------*/

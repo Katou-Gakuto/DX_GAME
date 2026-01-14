@@ -16,6 +16,34 @@ int
    <variable2>LPSTR</variable2>
    <variable3>int</variable3>
    </member>
+   <member className="StateMVOneAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   <variable2>モデル</variable2>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   <variable2>モデル</variable2>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   <variable2>モデル</variable2>
+   <variable3>アニメーションステート情報</variable3>
+   </member>
    <member className="UtilFactorys">
    <functionName>AnimationDataFactory</functionName>
    <explanations>
@@ -46,6 +74,16 @@ int
 有限状態マシン
    </returnExplanation>
    <variable0>アニメーション情報</variable0>
+   <variable1>モデルハンドル</variable1>
+   </member>
+   <member className="ModelMV1">
+   <functionName>GetHandle</functionName>
+   <explanations>
+ハンドル取得
+   </explanations>
+   <returnExplanation>
+モデルハンドル
+   </returnExplanation>
    </member>
    <member className="DataManager">
    <functionName>SetBaseFile</functionName>
@@ -375,6 +413,12 @@ UIナンバー取得
 全コントローラーの押し始めたすべてのキーフラグ
    </returnExplanation>
    <variable0>キーボード分も取得するなら「true」にする</variable0>
+   </member>
+   <member className="AnimationBase">
+   <functionName>SetAnimationType</functionName>
+   <explanations>
+アニメーション種類設定
+   </explanations>
    </member>
    <member className="AnimationBase">
    <functionName>SetAnimationDatas</functionName>

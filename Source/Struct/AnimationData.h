@@ -21,29 +21,18 @@ struct LoadAnimationData
 };
 
 /*----------*/
-/*【アニメーションデータ】
+/*【アニメーションの情報】
 /*----------*/
-struct AnimationData
-{// TODO: 変数名後で修正
-    MODEL_TYPE preAnimationModelType = MODEL_TYPE::NONE;    // アニメーションモデル種類
-
-    ANIMATION_TYPE animationType = ANIMATION_TYPE::NONE;                        // アニメーション種類
-
-    std::map<ANIMATION_TYPE, int> animationNumber;           // アニメションの数字(添え字やハンドルナンバーなど)
-};
-
-/*----------*/
-/*【シングルアニメーションタイプデータ】
-/*----------*/
-// INPROGRESS: アニメーション作成中
-
-/*----------*/
-/*【アニメーションステートデータ構造体】
-/*----------*/
-struct AnimationStateData
+struct AnimationDatas
 {
-	std::map<MODEL_TYPE, IStateAnimation*> animationState;	// アニメーション状態達
-	std::map<ANIMATION_TYPE, MODEL_TYPE> animationModelType;	// アニメーションのモデル種類
-	ANIMATION_TYPE animationType;	// 現在のアニメーション種類
-	
+    int number = 0;   // モデル種類
+
+    bool loopFlag = false;  // ループフラグ
+
+    MODEL_TYPE modelType = MODEL_TYPE::NONE;    // モデル種類
+
+    operator int&()
+    {
+        return this->number;
+    }
 };

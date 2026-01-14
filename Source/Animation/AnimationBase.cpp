@@ -12,20 +12,23 @@ AnimationBase::AnimationBase()
 // 初期化
 void AnimationBase::Initilize()
 {
-    // HACK: あとで削除
-    // FSM生成
-    mpFsm = new FSMAnimation();
 }
 
 // 終了
 void AnimationBase::Finalize()
 {
     mstAnimationDatas.clear();
-    delete mpFsm;
+    if (mpFsm != nullptr)
+    {
+        delete mpFsm;
+    }
 }
 
 // アニメーション更新
 void AnimationBase::Update()
 {
-    mpFsm->Update(this, mstAnimationDatas);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Update(this, mstAnimationDatas);
+    }
 }

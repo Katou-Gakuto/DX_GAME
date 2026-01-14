@@ -41,8 +41,9 @@ namespace UtilFactorys
 	// HACK: データマネージャーから受け取るようにするまでの簡易処置(第二引数)
 	/// <summary>アニメーション有限状態マシン作成</summary>
 	/// <param name="animationData">アニメーション情報</param>
+	/// <param name="modelBases">モデルハンドル</param>
 	/// <returns>有限状態マシン</returns>
-	FSMAnimation* FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
+	FSMAnimation* FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData, std::vector<ModelBase*> modelBases);
 
 	/*カメラ有限状態マシン作成*/
 	FSMCamera* FSMCameraFactory();

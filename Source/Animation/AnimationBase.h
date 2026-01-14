@@ -51,6 +51,8 @@ public:
     /// <summary>アニメーションデータ設定</summary>
     inline void SetAnimationDatas(const std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas) { mstAnimationDatas = animationDatas; }
 
+    /// <summary>アニメーション種類取得</summary>
+    inline ANIMATION_TYPE GetAnimationType() { return mpFsm->GetCurrentState(); }
     /// <summary>アニメーション種類設定</summary>
     inline void SetAnimationType(ANIMATION_TYPE animationType) { mpFsm->SetNextState(animationType); }
 };

@@ -40,18 +40,18 @@ StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string frameName)
 }
 
 // この状態に入った時の処理
-void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas)
+void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType)
 {
     AnimationAttach(animationDatas);
 }
 
 // この状態を出る時の処理
-void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas)
+void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType)
 {
     AnimationDetach();
 
     // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
-    if (mStateNumber == animationStateData.animationTypeData[animationDatas.animationType])
+    if (mStateNumber == oldModelType)
     {
         KeepAnimationData();
     }
@@ -96,11 +96,11 @@ void StateMVOneAnimation::ClearAnimationData()
 }
 
 // アニメーションをアタッチ
-void StateMVOneAnimation::AnimationAttach(AnimationData animationData)
+void StateMVOneAnimation::AnimationAttach(AnimationDatas animationData)
 {
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationData.oneAnimationData[animationData.animationType]);
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationData.number);
     mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationCount = 0.0f;
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = animationData.oneAnimationData[animationData.animationType].loopFlag;
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = animationData.loopFlag;
 
     mfAnimBlendRate = ((mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle == -1) ? 1.0f : 0.0f);
 }

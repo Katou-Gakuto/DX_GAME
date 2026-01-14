@@ -98,9 +98,9 @@ public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
-	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
+	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE newModelType) = 0;
 	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
-	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
+	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE oldModelType) = 0;
 	
 	/// <summary>XV</summary>
 	virtual void Update(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;

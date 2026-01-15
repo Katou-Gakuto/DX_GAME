@@ -14,6 +14,22 @@ struct Vector2
 	float x;
 	float y;
 
+	Vector2()
+	{
+		this->x = 0.0f;
+		this->y = 0.0f;
+	}
+	Vector2(Vector2& src)
+	{
+		this->x = src.x;
+		this->y = src.y;
+	}
+	Vector2(float x, float y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
 	operator Vector2_Int()
 	{
 		Vector2_Int vecInt;

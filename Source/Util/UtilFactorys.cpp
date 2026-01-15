@@ -19,6 +19,7 @@
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StateAnimation.h"
+#include "StateAnimationController.h"
 #include "StateBase.h"
 #include "StateCamera.h"
 #include "StateEnemy.h"
@@ -31,23 +32,35 @@
 #include "UtilFactorys.h"
 
 // アニメション有限状態マシン作成
-FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> animationDatas, std::vector<std::vector<LoadAnimationData>> loadAnimationData, std::vector<ModelBase*> modelBases)
+FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER number, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
 {
+	// FSM生成
 	FSMAnimation* fsm = new FSMAnimation();
+	
+	// 必要変数取得
+	std::vector<std::map<ANIMATION_TYPE, AnimationDatas>> animationDatas = animation->GetAnimationDatas();
+	std::vector<ModelBase*> modelBases = animation->GetModelsController()->GetModelList();
+
+	// サイズ設定
 	fsm->IncreaseAnimationStateSize((int)animationDatas.size());
 
-	for (int i = 0; i < animationDatas.size(); i++)
+	switch (number)
 	{
-		std::map<ANIMATION_TYPE, MODEL_TYPE> setModelTypeMap;
+	case ANIMATION_FACTORY_NUMBER::TOWN:
+		fsm->RegisterState(new StateIdleAnimationController());
+		fsm->RegisterState(new StateMoveAnimationController());
+		break;
+	}
+
+	// モデルの数分設定する
+	for (int i = 0; i < loadAnimationData.size(); i++)
+	{
 		std::map<MODEL_TYPE, IStateAnimation*> setStateMap;
 
 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 		{
-			// HACK: 仮処置 データマネージャーから受け取るようにする
-			MODEL_TYPE setModelType = MODEL_TYPE::MV1_MODEL;
-
-			setModelTypeMap[loadAnimationData[i][j].animationType] = setModelType;
-
+			MODEL_TYPE setModelType = animationDatas[i][loadAnimationData[i][j].animationType].modelType;
+			// アニメションステート生成
 			switch (setModelType)
 			{
 			case MODEL_TYPE::MV1_MODEL:
@@ -60,10 +73,90 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(std::vector<AnimationData> anima
 			}
 		}
 
-		fsm->SetAnimationStateDatas(i, setModelTypeMap, setStateMap);
+		fsm->SetAnimationStateDatas(i, setStateMap);
 	}
 
+	// 初期化
+	fsm->Initilize(animation);
+
 	return fsm;
+}
+
+// アニメーションデータ作成
+std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData)
+{
+	std::map<ANIMATION_TYPE, AnimationDatas> animationDataMap;
+	AnimationDatas animationData;
+	animationDataMap.clear();
+
+	switch (type)
+	{
+	case MODEL_TYPE::MV1_MODEL:
+	{
+		for (int i = 0; i < loadAnimationData.size(); i++)
+		{
+			// アニメション添え字設定
+			animationData.number = loadAnimationData[i].animationIndex;
+			
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			// HACK: 仮処置 データマネージャーから受け取るようにする
+			animationData.modelType = type;
+
+			// 設定
+			animationDataMap[loadAnimationData[i].animationType] = animationData;
+		}		
+		return animationDataMap;
+	}
+
+	case MODEL_TYPE::MV1_MODEL_ONLY:
+	{
+		for (int i = 0; i < loadAnimationData.size(); i++)
+		{
+			// アニメション読み込み
+			animationData.number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
+
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			// HACK: 仮処置 データマネージャーから受け取るようにする
+			animationData.modelType = type;
+
+			// 設定
+			animationDataMap[loadAnimationData[i].animationType] = animationData;
+		}
+		return animationDataMap;
+	}
+	}
+
+	return animationDataMap;
+}
+
+/*読み込み用アニメーションデータ作成*/
+std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationBase* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER number)
+{
+	std::vector<LoadAnimationData> loadAnimationData;
+	loadAnimationData.clear();
+
+	switch (number)
+	{
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+		for (int i = 0; i < 6; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = true;
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		// HACK: データマネージャーから取得できるようにする
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
+		loadAnimationData[2].animationType = ANIMATION_TYPE::JUMP_IN;
+		loadAnimationData[3].animationType = ANIMATION_TYPE::JUMP;
+		loadAnimationData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
+		loadAnimationData[5].animationType = ANIMATION_TYPE::ATTACK;
+		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, loadAnimationData));
+		break;
+	}
+
+	return loadAnimationData;
 }
 
 /*カメラ有限状態マシン作成*/
@@ -210,39 +303,4 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath)
 	}
 
 	return nullptr;
-}
-
-// アニメーションデータ作成
-AnimationData UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData)
-{
-	switch (type)
-	{
-	case MODEL_TYPE::MV1_MODEL:
-	{
-		AnimationData animationData;
-		for (int i = 0; i < loadAnimationData.size(); i++)
-		{
-			// アニメション添え字設定
-			animationData.oneAnimationData[loadAnimationData[i].animationType].number = loadAnimationData[i].animationIndex;
-
-			animationData.oneAnimationData[loadAnimationData[i].animationType].loopFlag = loadAnimationData[i].animationLoopFlag;
-		}		
-		return animationData;
-	}
-
-	case MODEL_TYPE::MV1_MODEL_ONLY:
-	{
-		AnimationData animationData;
-		for (int i = 0; i < loadAnimationData.size(); i++)
-		{
-			// アニメション読み込み
-			animationData.oneAnimationData[loadAnimationData[i].animationType].number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
-			
-			animationData.oneAnimationData[loadAnimationData[i].animationType].loopFlag = loadAnimationData[i].animationLoopFlag;
-		}
-		return animationData;
-	}
-	}
-
-	return AnimationData();
 }

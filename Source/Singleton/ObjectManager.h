@@ -6,6 +6,9 @@
 enum class OBJECT_TYPE;
 enum class SCENE;
 class ObjectBase;
+class CharacterBase;
+class BuildingBase;
+class AttackBase;
 
 class ObjectManager
 {

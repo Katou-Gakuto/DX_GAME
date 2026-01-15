@@ -64,7 +64,7 @@ public:
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimationContller>
+class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimationController>
 {
 private:
 	// アニメーションステート達
@@ -72,6 +72,8 @@ private:
 public:
 	FSMAnimation();
 
+    /// <summary>初期化</summary>
+    void Initilize(AnimationBase* animation);
 	/// <summary>終了</summary>
 	void Finalize();
 
@@ -79,7 +81,7 @@ public:
 	void IncreaseAnimationStateSize(int size);
 
 	/// <summary>アニメーションステート情報設定</summary>
-	void SetAnimationStateDatas(int animationStateIndex, std::map<ANIMATION_TYPE, MODEL_TYPE> animationTypeData, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
+	void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
 	/// <summary>更新</summary>
 	void Update(AnimationBase* animation, std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas);
@@ -88,11 +90,14 @@ public:
 	inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
 private:
+	/*新しいステートを設定する*/
+	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);
+
 	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void ChangeState(AnimationBase* animation, int animationStateIndex, std::map<ANIMATION_TYPE, AnimationDatas>& animationDatas, ModelBase* model);
+	void ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType);
 
 	/*現在のステート取得*/
-	IStateAnimation* GetAnimationState(int index, AnimationBase* animation);
+	IStateAnimation* GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType);
 };
 
 /*----------*/

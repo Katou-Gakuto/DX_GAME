@@ -50,7 +50,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -126,7 +126,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)EffekseerForDXLib;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)EffekseerForDXLib;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util</AdditionalLibraryDirectories>
     </Link>
@@ -173,6 +173,7 @@
     <ClInclude Include="..\Source\State\Character\StateMapEnemy.h" />
     <ClInclude Include="..\Source\State\Character\StatePlayer.h" />
     <ClInclude Include="..\Source\State\FSM.h" />
+    <ClInclude Include="..\Source\State\StateAnimationController.h" />
     <ClInclude Include="..\Source\State\StateBase.h" />
     <ClInclude Include="..\Source\State\StateCamera.h" />
     <ClInclude Include="..\Source\State\StateAnimation.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="..\Source\State\Character\StateMapEnemy.cpp" />
     <ClCompile Include="..\Source\State\Character\StatePlayer.cpp" />
     <ClCompile Include="..\Source\State\FSM.cpp" />
+    <ClCompile Include="..\Source\State\StateAnimationController.cpp" />
     <ClCompile Include="..\Source\State\StateBase.cpp" />
     <ClCompile Include="..\Source\State\StateCamera.cpp" />
     <ClCompile Include="..\Source\State\StateAnimation.cpp" />

@@ -23,7 +23,6 @@ int
    </explanations>
    <variable0>アニメーション</variable0>
    <variable1>アニメーション情報</variable1>
-   <variable2>モデル</variable2>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>OnExit</functionName>
@@ -32,7 +31,6 @@ int
    </explanations>
    <variable0>アニメーション</variable0>
    <variable1>アニメーション情報</variable1>
-   <variable2>モデル</variable2>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>OnEnter</functionName>
@@ -41,18 +39,6 @@ int
    </explanations>
    <variable0>アニメーション</variable0>
    <variable1>アニメーション情報</variable1>
-   <variable2>モデル</variable2>
-   <variable3>アニメーションステート情報</variable3>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>AnimationDataFactory</functionName>
-   <explanations>
-アニメーションデータ作成
-   </explanations>
-   <returnExplanation>
-アニメーションデータ
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
    </member>
    <member className="UtilFactorys">
    <functionName>ModelFactory</functionName>
@@ -66,6 +52,23 @@ int
    <variable1>モデルファイル座標</variable1>
    </member>
    <member className="UtilFactorys">
+   <functionName>LoadAnimationDataFactory</functionName>
+   <explanations>
+読み込み用アニメーションデータ作成
+   </explanations>
+   <variable0>アニメーション</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>AnimationDataFactory</functionName>
+   <explanations>
+アニメーションデータ作成
+   </explanations>
+   <returnExplanation>
+アニメーションデータ
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   </member>
+   <member className="UtilFactorys">
    <functionName>FSMAnimationFactory</functionName>
    <explanations>
 アニメーション有限状態マシン作成
@@ -74,7 +77,61 @@ int
 有限状態マシン
    </returnExplanation>
    <variable0>アニメーション情報</variable0>
-   <variable1>モデルハンドル</variable1>
+   <variable1>モデル</variable1>
+   </member>
+   <member className="StateAttackAnimationController">
+   <functionName>CheckState</functionName>
+   <explanations>
+ステート変更確認
+   </explanations>
+   </member>
+   <member className="StateAttackAnimationController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="StateAttackAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="StateMoveAnimationController">
+   <functionName>CheckState</functionName>
+   <explanations>
+ステート変更確認
+   </explanations>
+   </member>
+   <member className="StateMoveAnimationController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="StateMoveAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="StateIdleAnimationController">
+   <functionName>CheckState</functionName>
+   <explanations>
+ステート変更確認
+   </explanations>
+   </member>
+   <member className="StateIdleAnimationController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="StateIdleAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
    </member>
    <member className="ModelMV1">
    <functionName>GetHandle</functionName>
@@ -324,6 +381,36 @@ UIナンバー取得
 経過フレーム数
    </returnExplanation>
    </member>
+   <member className="ResourceManager">
+   <functionName>DrawIndexed</functionName>
+   <explanations>
+頂点情報による描画
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>DrawModelHandle</functionName>
+   <explanations>
+モデル描画
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>EndDraw</functionName>
+   <explanations>
+描画終了
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>StartDraw</functionName>
+   <explanations>
+描画開始
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
    <member className="KeyState">
    <functionName>GetAllToggleState</functionName>
    <explanations>
@@ -418,6 +505,12 @@ UIナンバー取得
    <functionName>SetAnimationType</functionName>
    <explanations>
 アニメーション種類設定
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>GetAnimationType</functionName>
+   <explanations>
+アニメーション種類取得
    </explanations>
    </member>
    <member className="AnimationBase">
@@ -570,36 +663,51 @@ UIナンバー取得
    </explanations>
    </member>
    <member className="FSMAnimation">
-   <functionName>GetAnimationState</functionName>
+   <functionName>SetNextState</functionName>
    <explanations>
-現在のステート取得
+次のステート設定
    </explanations>
-   <returnExplanation>
-アニメションステート
-   </returnExplanation>
    </member>
    <member className="FSMAnimation">
-   <functionName>GetModelType</functionName>
+   <functionName>Update</functionName>
    <explanations>
-現在のモデルの種類を取得
+更新
    </explanations>
-   <returnExplanation>
-モデル種類
-   </returnExplanation>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>GetAnimationType</functionName>
-   <explanations>
-現在のアニメーションの種類取得
-   </explanations>
-   <returnExplanation>
-アニメーションの種類
-   </returnExplanation>
    </member>
    <member className="FSMAnimation">
    <functionName>SetAnimationStateDatas</functionName>
    <explanations>
 アニメーションステート情報設定
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>CheckState</functionName>
+   <explanations>
+ステート変更確認
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="IStateAnimation">

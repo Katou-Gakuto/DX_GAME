@@ -40,18 +40,18 @@ StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string frameName)
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
-void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType)
+void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType)
 {
     AnimationAttach(animationDatas);
 }
 
 // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
-void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType)
+void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType)
 {
     AnimationDetach();
 
     // TODO: ŠÖ”‰»‚µ‚Ä“¯‚¶ˆÈŠO‚Å‚à—‚½ˆ—‚Ìê‡‘Î‰‚Å‚«‚é‚æ‚¤‚É‚µ‚½‚¢
-    if (mStateNumber == oldModelType)
+    if (mStateNumber == newModelType)
     {
         KeepAnimationData();
     }

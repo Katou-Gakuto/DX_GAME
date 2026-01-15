@@ -43,6 +43,31 @@ FSMAnimation::FSMAnimation()
 	mmAnimationStates.clear();
 }
 
+// 初期化
+void FSMAnimation::Initilize(AnimationBase* animation)
+{
+	mnCurrentState = ANIMATION_TYPE::IDLE;
+
+	// 新しいStateの開始処理
+	for (int i = 0; i < mmAnimationStates.size(); i++)
+	{
+		NewStateSetting(i, animation, MODEL_TYPE::NONE);
+	}
+}
+
+// 終了
+void FSMAnimation::Finalize()
+{
+	for (int i = 0; i < mmAnimationStates.size(); i++)
+	{
+		for (auto animationState : mmAnimationStates[i])
+		{
+			delete animationState.second;
+		}
+	}
+	mmAnimationStates.clear();
+}
+
 // サブ状態マップのサイズを増やす
 void FSMAnimation::IncreaseAnimationStateSize(int size)
 {
@@ -50,21 +75,14 @@ void FSMAnimation::IncreaseAnimationStateSize(int size)
 }
 
 // アニメーションステート情報設定
-void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<ANIMATION_TYPE, MODEL_TYPE> animationTypeData, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap)
+void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap)
 {
-	mmAnimationStates[animationStateIndex].animationTypeData = animationTypeData;
-	mmAnimationStates[animationStateIndex].animationState = animationStateMap;
+	mmAnimationStates[animationStateIndex] = animationStateMap;
 }
 
 // 更新
 void FSMAnimation::Update(AnimationBase* animation, std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas)
 {
-	// アニメーションが初期値から動いてない場合待機状態を入れる
-	if (mnCurrentState == ANIMATION_TYPE::NONE)
-	{
-		mnCurrentState = ANIMATION_TYPE::IDLE;
-	}
-
 	// 古いアニメーション種類を一時的に保存しておく
 	ANIMATION_TYPE oldAnimationState = mnCurrentState;
 
@@ -88,33 +106,36 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<std::map<ANIMATI
 		// ステート変更
 		if (mnCurrentState != oldAnimationState)
 		{
-			ChangeState(animation, i, animationDatas[i], model);
+			ChangeState(i, animation, oldAnimationState);
 		}
 
 		// 更新
-		GetAnimationState(i, animation)->Update(animation, animationDatas[i], model);
+		GetAnimationState(i, animation, mnCurrentState)->Update(animation, animationDatas[i][mnCurrentState]);
 	}
+}
+
+// 新しいステートを設定する
+void FSMAnimation::NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType)
+{
+	GetAnimationState(animationIndex, animation, mnCurrentState)->OnEnter(animation, animation->GetAnimationDatas()[animationIndex][mnCurrentState], oldModelType);
 }
 
 // 次のステートが現在のステートと違うならステート変更処理をする
-void FSMAnimation::ChangeState(AnimationBase* animation, int animationStateIndex, std::map<ANIMATION_TYPE, AnimationDatas>& animationDatas, ModelBase* model)
+void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType)
 {
-	// アニメーションが変わっているなら変更
-	if (GetAnimationType(animationStateIndex) != ANIMATION_TYPE::NONE)
-	{
-		// 現在のStateの終了処理
-		GetAnimationState(animationStateIndex)->OnExit(animation, animationDatas, model, mstAnimationStateDatas[animationStateIndex]);
-	}
+	std::map<ANIMATION_TYPE, AnimationDatas>& animationDatas = animation->GetAnimationDatas()[animationStateIndex];
 
-	// 新しいStateの開始処理
-	mstAnimationStateDatas[animationStateIndex].animationType = animationDatas.animationType;
-	GetAnimationState(animationStateIndex)->OnEnter(animation, animationDatas, model, mstAnimationStateDatas[animationStateIndex]);
+	// 現在のState終了処理
+	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, animationDatas[oldAnimationType], animationDatas[mnCurrentState].modelType);
+
+	// 新しいState設定
+	NewStateSetting(animationStateIndex, animation, animationDatas[oldAnimationType].modelType);
 }
 
 // 現在のステート取得
-IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation)
+IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType)
 {
-	return mmAnimationStates[index][animation->GetAnimationDatas()[index][mnCurrentState].modelType];
+	return mmAnimationStates[index][animation->GetAnimationDatas()[index][animationType].modelType];
 }
 
 /*------------------------*/

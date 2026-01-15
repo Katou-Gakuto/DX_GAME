@@ -125,29 +125,16 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
 	// モデル設定
-	ModelsControllerBase* playerModels = player->GetModelsController();
-	playerModels->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
-	AnimationBase* playerAnimation = player->GetAnimation();
-	std::vector<LoadAnimationData> playerLoadAnimaData;
-	for (int i = 0; i < 6; i++)
 	{
-		LoadAnimationData loadAnimaData;
-		loadAnimaData.animationIndex = i;
-		loadAnimaData.animationLoopFlag = true;
-		playerLoadAnimaData.push_back(loadAnimaData);
+		AnimationBase* playerAnimation = player->GetAnimation();
+		std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;
+		// 読み込み用アニメーションデータ設定
+		setPlayerLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(playerAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
+		// アニメーション有限状態マシン設定
+		playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setPlayerLoadAnimationData));
 	}
-	// HACK: データマネージャーから取得できるようにする
-	playerLoadAnimaData[0].animationType = ANIMATION_TYPE::IDLE;
-	playerLoadAnimaData[1].animationType = ANIMATION_TYPE::WALK;
-	playerLoadAnimaData[2].animationType = ANIMATION_TYPE::JUMP_IN;
-	playerLoadAnimaData[3].animationType = ANIMATION_TYPE::JUMP;
-	playerLoadAnimaData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
-	playerLoadAnimaData[5].animationType = ANIMATION_TYPE::ATTACK;
-	playerAnimation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, playerLoadAnimaData));
-	playerAnimation->SetAnimationType(ANIMATION_TYPE::IDLE);
-	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;setPlayerLoadAnimationData.push_back(playerLoadAnimaData);
-	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation->GetAnimationDatas(), setPlayerLoadAnimationData, playerAnimation->GetModelsController()->GetModelList()));
 
 	// カメラ作成
 	{

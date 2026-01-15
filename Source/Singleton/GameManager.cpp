@@ -9,6 +9,7 @@
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectManager.h"
+#include "ResourceManager.h"
 #include "SceneManager.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
@@ -34,6 +35,8 @@ GameManager::~GameManager()
 void GameManager::Initilize()
 {
     mpCameraManager = new CameraManager();
+
+    Master::mpResourceManager->Initilize();
 
     mpSceneManager = new SceneManager();
 	mpSceneManager->Initilize();
@@ -92,9 +95,16 @@ void GameManager::Draw()
 
     mpCameraManager->Draw();
 
+    Master::mpResourceManager->StartDraw();
+    mpObjectManager->Draw();
+    mpMapManager->Draw();
+    Master::mpResourceManager->EndDraw();
+
     mpObjectManager->Draw();
 
     mpMapManager->Draw();
+
+    Master::mpResourceManager->DrawDataRelease();
 
     ScreenFlip();
 }

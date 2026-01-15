@@ -55,8 +55,30 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
+	/// <summary>初期化</summary>
+	void Initilize();
 	/*終了*/
 	void Finailize();
+
+	/// <summary>描画開始</summary>
+	void StartDraw();
+	/// <summary>描画終了</summary>
+	void EndDraw();
+	/*描画データ解放*/
+	void DrawDataRelease();
+
+	/*----------*/
+	/*【描画】
+	/*----------*/
+private:
+	// シャドウマップハンドル
+	int mnShadowMapHandle;
+public:
+	/// <summary>モデル描画</summary>
+	void DrawModelHandle(int modelHandle);
+
+	/// <summary>頂点情報による描画</summary>
+	void DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag);
 
 	/*------------*/
 	/*【3Dモデル】*/

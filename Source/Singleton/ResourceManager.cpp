@@ -15,6 +15,9 @@
 /*--------*/
 ResourceManager::ResourceManager()
 {
+	// シャドウマップ
+	mnShadowMapHandle = -1;
+
 	// 3Dモデル
 	mmModelHandle.clear();
 	mmModelCount.clear();
@@ -29,9 +32,25 @@ ResourceManager::~ResourceManager()
 {
 }
 
+// 初期化
+void ResourceManager::Initilize()
+{
+	// シャドウマップハンドル作成
+	mnShadowMapHandle = MakeShadowMap(1024, 1024);
+	// シャドウマップが想定するライトの方向もセット
+	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
+
+	// シャドウマップに描画する範囲を設定
+	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-1000.0f, -1.0f, -1000.0f), VGet(1000.0f, 1000.0f, 1000.0f));
+}
+
 // 終了
 void ResourceManager::Finailize()
 {
+	{// シャドウマップ
+		DeleteShadowMap(mnShadowMapHandle);
+	}
+
 	{// 3Dモデル
 		MV1InitModel();
 		mmModelCount.clear();
@@ -70,6 +89,59 @@ void ResourceManager::Finailize()
 	}
 }
 
+// 描画
+void ResourceManager::StartDraw()
+{
+	// シャドウマップへの描画の準備
+	ShadowMap_DrawSetup(mnShadowMapHandle);
+}
+// 描画
+void ResourceManager::EndDraw()
+{
+	// シャドウマップへの描画を終了
+	ShadowMap_DrawEnd();
+	// 描画に使用するシャドウマップを設定
+	SetUseShadowMap( 0, mnShadowMapHandle ) ;
+	
+}
+// 描画データ解放
+void ResourceManager::DrawDataRelease()
+{
+	// 描画に使用するシャドウマップの設定を解除
+	SetUseShadowMap(0, -1);
+}
+
+// モデル描画
+void ResourceManager::DrawModelHandle(int modelHandle)
+{
+	// // シャドウマップへの描画の準備
+	// ShadowMap_DrawSetup(mnShadowMapHandle);
+
+	// // シャドウマップへの描画
+	// MV1DrawModel(modelHandle);
+	
+	// // シャドウマップへの描画を終了
+	// ShadowMap_DrawEnd();
+	
+	// 描画
+	MV1DrawModel(modelHandle);
+}
+
+// 頂点情報による描画
+void ResourceManager::DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag)
+{
+	// // シャドウマップへの描画の準備
+	// ShadowMap_DrawSetup(mnShadowMapHandle);
+
+	// // シャドウマップへの描画
+	// DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
+	
+	// // シャドウマップへの描画を終了
+	// ShadowMap_DrawEnd();
+	
+	// 描画
+	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
+}
 
 /*------------*/
 /*【3Dモデル】*/

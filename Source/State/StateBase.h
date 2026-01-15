@@ -98,9 +98,9 @@ public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE newModelType) = 0;
+	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE oldModelType) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE oldModelType) = 0;
+	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE newModelType) = 0;
 	
 	/// <summary>更新</summary>
 	virtual void Update(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
@@ -109,16 +109,16 @@ public:
 /*----------*/
 /*【アニメション操作ステートベース】
 /*----------*/
-class IStateAnimationContller : public StateBase<ANIMATION_TYPE>
+class IStateAnimationController : public StateBase<ANIMATION_TYPE>
 {
 public:
-	IStateAnimationContller() = default;
-	virtual ~IStateAnimationContller() = default;
+	IStateAnimationController() = default;
+	virtual ~IStateAnimationController() = default;
 	
 	/// <summary>この状態に入った時の処理</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) = 0;
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) = 0;
 
 	/// <summary>ステート変更確認</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) = 0;

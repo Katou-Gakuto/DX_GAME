@@ -55,11 +55,11 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    void OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType) override;
+    void OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    void OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType) override;
+    void OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>

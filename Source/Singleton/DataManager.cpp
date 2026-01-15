@@ -495,5 +495,5 @@ return 0;*/
 // マップリソースファイル名取得
 std::string DataManager::GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber)
 {
-	return "Resource/3D/Floor/Ceiling_Closed.mv1";
+	return "../Resource/3D/Floor/Ceiling_Closed.mv1";
 }

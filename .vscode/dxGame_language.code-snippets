@@ -127,4 +127,16 @@
 		],
 		"description": "返り値説明コメント"
 	},
+	"Get_Set": {
+		"prefix": "@getSet",
+		"body": [
+			"/// <summary>${1:説明}取得</summary>",
+			"/// <returns>${1: }</returns>",
+			"inline ${2:型名} Get${3:関数名}() { return ${4:メンバ変数名}; }",
+			"/// <summary>${1: }設定</summary>",
+			"/// <param name=\"${5:変数名}\">${6:変数説明}</param>",
+			"inline void Set${3: }(${2: } ${5: }) { ${4: } = ${5: }; }",
+		],
+		"description": "設定取得"
+	},
 }

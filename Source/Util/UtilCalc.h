@@ -25,6 +25,14 @@ namespace UtilCalc
 	/*球面移動した場所(ラジアン)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);
 
+	// TODO: 未完
+	/// <summary>ベクトルをアングルに変換する</summary>
+	VECTOR VVecToAngle(VECTOR vec);
+
+	// TODO: 未完
+	/// <summary>アングルをベクトルに変換する</summary>
+	VECTOR VAngleToVec(VECTOR angle);
+
 	/// <summary>移動量をアングルに反映した値を返す(ラジアン)</summary>
 	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle = UtilCalc::VZero, float speed = 0.2f);
 

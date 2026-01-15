@@ -5,6 +5,8 @@
 AnimationBase::AnimationBase()
 : mpModelsController(nullptr)
 {
+    mmAnimationTime.clear();
+    
     mstAnimationDatas.clear();
     mpFsm = nullptr;
 }

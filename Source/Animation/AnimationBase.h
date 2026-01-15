@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <vector>
 
 #include "ModelsControllerBase.h"
@@ -16,6 +17,9 @@ private:
 
     // アニメーションデータ
     std::vector<std::map<ANIMATION_TYPE, AnimationDatas>> mstAnimationDatas;
+
+    // アニメーション時間
+    std::map<ANIMATION_TYPE, int> mmAnimationTime;
 
 public:
     AnimationBase();
@@ -52,7 +56,12 @@ public:
     inline void SetAnimationDatas(const std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas) { mstAnimationDatas = animationDatas; }
 
     /// <summary>アニメーション種類取得</summary>
-    inline ANIMATION_TYPE GetAnimationType() { return mpFsm->GetCurrentState(); }
+    inline ANIMATION_TYPE GetAnimationType() { if(mpFsm!=nullptr){return mpFsm->GetCurrentState();} return ANIMATION_TYPE::NONE; }
     /// <summary>アニメーション種類設定</summary>
-    inline void SetAnimationType(ANIMATION_TYPE animationType) { mpFsm->SetNextState(animationType); }
+    inline void SetAnimationType(ANIMATION_TYPE animationType) { if(mpFsm!=nullptr){mpFsm->SetNextState(animationType);} }
+
+    /// <summary>アニメーション時間取得</summary>
+    inline int GetAnimationTime(ANIMATION_TYPE animationType) { return mmAnimationTime[animationType]; }
+    /// <summary>アニメーション時間設定</summary>
+    inline void SetAnimationTime(ANIMATION_TYPE animationType, int time) { mmAnimationTime[animationType] = time; }
 };

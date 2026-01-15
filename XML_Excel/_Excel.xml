@@ -249,10 +249,28 @@ UIナンバー取得
 現在処理するUIナンバー
    </returnExplanation>
    </member>
+   <member className="MapManager">
+   <functionName>Release</functionName>
+   <explanations>
+データ解放
+   </explanations>
+   </member>
    <member className="UtilCalc">
    <functionName>VMoveVecToAngle</functionName>
    <explanations>
 移動量をアングルに反映した値を返す(ラジアン)
+   </explanations>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VAngleToVec</functionName>
+   <explanations>
+アングルをベクトルに変換する
+   </explanations>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VVecToAngle</functionName>
+   <explanations>
+ベクトルをアングルに変換する
    </explanations>
    </member>
    <member className="EndManager">
@@ -287,6 +305,12 @@ UIナンバー取得
    <returnExplanation>
 どれかの終了フラグが有効なら「true」
    </returnExplanation>
+   </member>
+   <member className="CharacterBase">
+   <functionName>SetAnimation</functionName>
+   <explanations>
+アニメーション設定
+   </explanations>
    </member>
    <member className="CharacterBase">
    <functionName>GetAnimation</functionName>
@@ -500,6 +524,18 @@ UIナンバー取得
 全コントローラーの押し始めたすべてのキーフラグ
    </returnExplanation>
    <variable0>キーボード分も取得するなら「true」にする</variable0>
+   </member>
+   <member className="AnimationBase">
+   <functionName>SetAnimationTime</functionName>
+   <explanations>
+アニメーション時間設定
+   </explanations>
+   </member>
+   <member className="AnimationBase">
+   <functionName>GetAnimationTime</functionName>
+   <explanations>
+アニメーション時間取得
+   </explanations>
    </member>
    <member className="AnimationBase">
    <functionName>SetAnimationType</functionName>

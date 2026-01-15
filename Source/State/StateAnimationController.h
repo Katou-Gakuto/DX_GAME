@@ -51,6 +51,8 @@ public:
 /*----------*/
 class StateAttackAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
+private:
+	int mnEndTime;
 public:
     StateAttackAnimationController();
 	

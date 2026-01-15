@@ -32,13 +32,20 @@ MapManager::~MapManager()
 {
 }
 
-
-// マップ情報設定
-void MapManager::SetMapData(MapType mapType)
+// データ解放
+void MapManager::Release()
 {
     // モデルデータ解放
     mpModelMap->ReleaseMapModel();
     mstMapData.clear();
+}
+
+
+// マップ情報設定
+void MapManager::SetMapData(MapType mapType)
+{
+    // データ解放
+    Release();
 
     //mstMapData = Master::mpDataManager->GetMapData(mapType);
     switch (mapType)

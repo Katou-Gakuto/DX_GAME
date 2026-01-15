@@ -237,6 +237,7 @@ AttackPlayerState::AttackPlayerState()
 // この状態に入った時の処理
 void AttackPlayerState::OnEnter(CharacterBase* character)
 {
+	// TODO: データマネージャーから取得できるようにする
 	mnAttackTime = (character->StartAttck() + Master::mpTimeManager->GetGameTime());
 }
 

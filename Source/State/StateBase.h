@@ -98,12 +98,12 @@ public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE oldModelType) = 0;
+	virtual void OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* modelsController, AnimationDatas animationDatas, MODEL_TYPE newModelType) = 0;
+	virtual void OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType) = 0;
 	
 	/// <summary>更新</summary>
-	virtual void Update(AnimationBase* modelsController, AnimationDatas animationDatas) = 0;
+	virtual void Update(AnimationBase* animation, AnimationDatas animationDatas) = 0;
 };
 
 /*----------*/
@@ -116,12 +116,12 @@ public:
 	virtual ~IStateAnimationController() = default;
 	
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) = 0;
+	virtual void OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) = 0;
+	virtual void OnExit(AnimationBase* animation, ANIMATION_TYPE newState) = 0;
 
 	/// <summary>ステート変更確認</summary>
-	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) = 0;
+	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) = 0;
 };
 
 /*------------------------*/
@@ -166,6 +166,9 @@ class IStateUI : public StateBase<int>
 public:
 	IStateUI() = default;
 	virtual ~IStateUI() = default;
+
+	/// <summary>終了</summary>
+	virtual void Finalize() {}
 
 	/*この状態に入った時の処理*/
 	virtual void OnEnter(UIBase* ui) = 0;

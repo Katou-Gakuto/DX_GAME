@@ -50,6 +50,15 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		fsm->RegisterState(new StateIdleAnimationController());
 		fsm->RegisterState(new StateMoveAnimationController());
 		break;
+	case ANIMATION_FACTORY_NUMBER::DUNGEON:
+		fsm->RegisterState(new StateIdleAnimationController());
+		fsm->RegisterState(new StateMoveAnimationController());
+		break;
+	case ANIMATION_FACTORY_NUMBER::BATTLE:
+		fsm->RegisterState(new StateIdleAnimationController());
+		fsm->RegisterState(new StateMoveAnimationController());
+		fsm->RegisterState(new StateAttackAnimationController());
+		break;
 	}
 
 	// モデルの数分設定する
@@ -142,16 +151,28 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
-			loadAnimaData.animationLoopFlag = true;
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationLoopFlag = true;
 		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
+		loadAnimationData[1].animationLoopFlag = true;
 		loadAnimationData[2].animationType = ANIMATION_TYPE::JUMP_IN;
+		loadAnimationData[2].animationLoopFlag = false;
 		loadAnimationData[3].animationType = ANIMATION_TYPE::JUMP;
+		loadAnimationData[3].animationLoopFlag = false;
 		loadAnimationData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
+		loadAnimationData[4].animationLoopFlag = false;
 		loadAnimationData[5].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[5].animationLoopFlag = false;
+		// TODO: データマネージャーから取得できる形式にしたい
+		animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::JUMP_IN, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::JUMP, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::JUMP_OUT, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
 		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, loadAnimationData));
 		break;
 	}

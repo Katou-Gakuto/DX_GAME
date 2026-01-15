@@ -2,10 +2,24 @@
 
 #include "StateBase.h"
 
+enum class ANIMATION_FACTORY_NUMBER;
+
+class CharacterBase;
+
+/*----------*/
+/*【シーンステート共通処理用】
+/*----------*/
+class SceneStateProcess
+{
+protected:
+	/*キャラクターモデル設定*/
+	void CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber);
+};
+
 /*--------------------------*/
 /*【スタートシーンステート】*/
 /*--------------------------*/
-class StartScene : public IStateScene
+class StartScene : public IStateScene, public SceneStateProcess
 {
 private:
 	bool mbStartFlag;
@@ -23,7 +37,7 @@ public:
 /*--------------------------*/
 /*【タイトルシーンステート】*/
 /*--------------------------*/
-class TitleScene : public IStateScene
+class TitleScene : public IStateScene, public SceneStateProcess
 {
 public:
 	TitleScene();
@@ -38,7 +52,7 @@ public:
 /*--------------------*/
 /*【町シーンステート】*/
 /*--------------------*/
-class TownScene : public IStateScene
+class TownScene : public IStateScene, public SceneStateProcess
 {
 public:
 	TownScene();
@@ -53,7 +67,7 @@ public:
 /*----------------------------*/
 /*【ダンジョンシーンステート】*/
 /*----------------------------*/
-class DungeonScene : public IStateScene
+class DungeonScene : public IStateScene, public SceneStateProcess
 {
 public:
 	DungeonScene();
@@ -68,7 +82,7 @@ public:
 /*------------------------*/
 /*【バトルシーンステート】*/
 /*------------------------*/
-class BattleScene : public IStateScene
+class BattleScene : public IStateScene, public SceneStateProcess
 {
 public:
 	BattleScene();
@@ -83,7 +97,7 @@ public:
 /*--------------------------*/
 /*【リザルトシーンステート】*/
 /*--------------------------*/
-class ResultScene : public IStateScene
+class ResultScene : public IStateScene, public SceneStateProcess
 {
 public:
 	ResultScene();

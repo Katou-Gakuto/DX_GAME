@@ -276,6 +276,15 @@ FSMUI::FSMUI()
 {
 }
 
+// 終了
+void FSMUI::Finalize()
+{
+	for (auto state : mmStateMap)
+	{
+		state.second->Finalize();
+	}
+}
+
 // 実行中状態をセットする
 void FSMUI::SetCurrentState(int id, UIBase* ui)
 {

@@ -173,6 +173,9 @@ class FSMUI : public FSMBase<int, IStateUI>
 public:
 	FSMUI();
 
+	/// <summary>終了</summary>
+	void Finalize();
+
 	/*実行中状態をセットする*/
 	void SetCurrentState(int id, UIBase* ui);
 

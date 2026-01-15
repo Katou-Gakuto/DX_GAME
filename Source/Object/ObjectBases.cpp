@@ -157,6 +157,7 @@ int CharacterBase::StartAttck()
 {
 	if (mnAttackDataNumber != -1)
 	{
+		SetAnimation(ANIMATION_TYPE::ATTACK);
 		return Master::mpGameManager->GetAttackManager()->StartAttack(mnAttackDataNumber);
 	}
 
@@ -245,7 +246,7 @@ void CharacterBase::TemplateActionProcess()
 
 			mvAngle = UtilCalc::VMoveVecToAngle(mvVec, mvAngle);
 
-			mpAnimation->SetAnimationType(ANIMATION_TYPE::WALK);
+			SetAnimation(ANIMATION_TYPE::WALK);
 		}
 
 		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::HP_ZERO))
@@ -283,6 +284,12 @@ void CharacterBase::DeathProcess()
 void CharacterBase::SetFSM(FSMCharacter* fsm)
 {
 	mpFsm = fsm;
+}
+
+// アニメーション設定
+void CharacterBase::SetAnimation(ANIMATION_TYPE animationType)
+{
+	mpAnimation->SetAnimationType(animationType);
 }
 
 /*------------------------------------------*/

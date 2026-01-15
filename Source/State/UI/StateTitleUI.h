@@ -21,6 +21,19 @@ enum class TITLE_UI_STATE
 	PLAYER_NAME_TITLE_UI_STATE			// プレイヤー名設定
 };
 
+/*----------*/
+/*【タイトルUIステート共通処理用】
+/*----------*/
+class TitleUIStateProcess
+{
+public:
+	TitleUIStateProcess();
+
+protected:
+	/// <summary>土台描画</summary>
+	void BaseDraw();
+};
+
 /*----------------------*/
 /*【開始画面UIステート】*/
 /*----------------------*/

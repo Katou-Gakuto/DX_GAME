@@ -48,19 +48,38 @@ VECTOR UtilCalc::VNotExceedAngle(VECTOR angle)
 // 球面移動した場所
 VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
 {
-    VECTOR pos = VGet(0.0f, 0.0f, 0.0f);
+    VECTOR pos = VAngleToVec(angle);
+    pos.z = -pos.z;
+    // pos.x = size * cosf(NotExceedAngle(angle.x)) * sinf(NotExceedAngle(angle.y));
+    // pos.y = size * sinf(NotExceedAngle(angle.x));
+    // pos.z = -(size * cosf(NotExceedAngle(angle.x)) * cosf(NotExceedAngle(angle.y)));
+    return VScale(pos, size);
+}
 
-    pos.x = size * cosf(NotExceedAngle(angle.x)) * sinf(NotExceedAngle(angle.y));
-    pos.y = size * sinf(NotExceedAngle(angle.x));
-    pos.z = -(size * cosf(NotExceedAngle(angle.x)) * cosf(NotExceedAngle(angle.y)));
+//　ベクトルをアングルに変換する
+VECTOR UtilCalc::VVecToAngle(VECTOR vec)
+{
+    VECTOR angle;
+    angle.x = 0.0f;
+    angle.y = atan2f(vec.x, vec.z);
+    angle.z = 0.0f;
+    return angle;
+}
 
-    return pos;
+// アングルをベクトルに変換する
+VECTOR UtilCalc::VAngleToVec(VECTOR angle)
+{
+    VECTOR vec;
+    vec.x = cosf(NotExceedAngle(angle.x)) * sinf(NotExceedAngle(angle.y));
+    vec.y = sinf(NotExceedAngle(angle.x));
+    vec.z = cosf(NotExceedAngle(angle.x)) * cosf(NotExceedAngle(angle.y));
+    return VNorm(vec);
 }
 
 // 移動量をアングルに反映した値を返す
 VECTOR UtilCalc::VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed)
 {
-    float targetAngle = atan2f(moveVec.x, moveVec.z);
+    float targetAngle = VVecToAngle(moveVec).y;
     float diffAngle = targetAngle - angle.y;
     diffAngle = NotExceedAngle(diffAngle);
 

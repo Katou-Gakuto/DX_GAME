@@ -29,6 +29,9 @@ public:
 	MapManager();
 	~MapManager();
 
+	/// <summary>データ解放</summary>
+	void Release();
+
 	/*マップ情報設定*/
 	void SetMapData(MapType mapType);
 	/*マップ情報設定*/

@@ -23,6 +23,8 @@ enum class ANIMATION_FACTORY_NUMBER
 {
 	// TODO: 仮でシーン名でやっている
 	TOWN = 0,
+	DUNGEON,
+	BATTLE,
 };
 
 // 読み込み用アニメーションデータ作成ナンバー

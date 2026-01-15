@@ -368,6 +368,9 @@ public:
     /*fsm設定*/
     void SetFSM(FSMCharacter* fsm);
 
+    /// <summary>アニメーション設定</summary>
+    void SetAnimation(ANIMATION_TYPE animationType);
+
     /*ポジション設定*/
     inline void SetPos(const VECTOR& pos) { mvPosition = pos; }
     /*移動方向設定*/

@@ -11,6 +11,7 @@
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "TimeManager.h"
+#include "UtilCalc.h"
 
 AttackManager::AttackManager()
 {
@@ -61,7 +62,8 @@ int AttackManager::StartAttack(int attackDataNumber)
 				// UŒ‚î•ñİ’è
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime());
-				attack->SetMoveDir(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle());
+				// TODO: ƒxƒNƒgƒ‹‚É•ÏŠ·
+				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);
 

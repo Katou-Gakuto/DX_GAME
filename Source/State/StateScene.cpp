@@ -27,11 +27,33 @@
 
 // TODO: 町、ダンジョン記録を関数化、プレイヤー、エネミー、カメラ生成ファクトリーに移す エネミー移動先データマネージャーから受け取るようにする
 
+/*----------*/
+/*【シーンステート共通処理用】
+/*----------*/
+
+// TODO: シーンナンバーをファクトリーナンバーに変換する仕組みを作る
+// キャラクターモデル設定
+void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber)
+{
+	// モデル設定
+	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	// アニメション設定
+	{
+		AnimationBase* characterAnimation = character->GetAnimation();
+		std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+		// 読み込み用アニメーションデータ設定
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
+		// アニメーション有限状態マシン設定
+		characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, setcharacterLoadAnimationData));
+	}
+}
+
 /*--------------------------*/
 /*【スタートシーンステート】*/
 /*--------------------------*/
 StartScene::StartScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mbStartFlag = false;
 	mStateNumber = SCENE::START;
@@ -54,6 +76,7 @@ void StartScene::OnExit(SceneManager* sceneManager)
 /*--------------------------*/
 TitleScene::TitleScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mStateNumber = SCENE::TITLE;
 }
@@ -96,6 +119,7 @@ void TitleScene::OnExit(SceneManager* sceneManager)
 /*--------------------------*/
 TownScene::TownScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mStateNumber = SCENE::TOWN;
 }
@@ -124,17 +148,19 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
-	// モデル設定
-	player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
-	// アニメション設定
-	{
-		AnimationBase* playerAnimation = player->GetAnimation();
-		std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;
-		// 読み込み用アニメーションデータ設定
-		setPlayerLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(playerAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
-		// アニメーション有限状態マシン設定
-		playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setPlayerLoadAnimationData));
-	}
+	// モデルとアニメション設定
+	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::TOWN);
+	// // モデル設定
+	// player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	// // アニメション設定
+	// {
+	// 	AnimationBase* playerAnimation = player->GetAnimation();
+	// 	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;
+	// 	// 読み込み用アニメーションデータ設定
+	// 	setPlayerLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(playerAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
+	// 	// アニメーション有限状態マシン設定
+	// 	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setPlayerLoadAnimationData));
+	// }
 
 	// カメラ作成
 	{
@@ -155,9 +181,19 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(-150.0f, 0.0f, 500.0f));
 		enemy->SetAngle(VGet(0.0f, 3.14f, 0.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
-		
-		ModelsControllerBase* enemyModels = enemy->GetModelsController();
-		enemyModels->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+		// // モデル設定
+		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+		// // アニメション設定
+		// {
+		// 	AnimationBase* enemyAnimation = enemy->GetAnimation();
+		// 	std::vector<std::vector<LoadAnimationData>> setEnemyLoadAnimationData;
+		// 	// 読み込み用アニメーションデータ設定
+		// 	setEnemyLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(enemyAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
+		// 	// アニメーション有限状態マシン設定
+		// 	enemyAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(enemyAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setEnemyLoadAnimationData));
+		// }
 	}
 
 	switch (sceneManager->GetNowScene())
@@ -182,6 +218,9 @@ void TownScene::OnExit(SceneManager* sceneManager)
 	playerData.dungeonPos = UtilCalc::VZero;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
+	// マップデータ解放
+	mpMapManager->Release();
+
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
@@ -193,6 +232,7 @@ void TownScene::OnExit(SceneManager* sceneManager)
 /*----------------------------*/
 DungeonScene::DungeonScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mStateNumber = SCENE::DUNGEON;
 }
@@ -219,6 +259,8 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
+	// モデルとアニメション設定
+	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::DUNGEON);
 
 	// カメラ作成
 	{
@@ -238,24 +280,32 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->Initilize();
 		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
 		enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 		enemy->Initilize();
 		enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 
 	switch (sceneManager->GetNowScene())
@@ -278,6 +328,9 @@ void DungeonScene::OnExit(SceneManager* sceneManager)
 	playerData.dungeonPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
+	// マップデータ解放
+	mpMapManager->Release();
+
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
@@ -289,6 +342,7 @@ void DungeonScene::OnExit(SceneManager* sceneManager)
 /*------------------------*/
 BattleScene::BattleScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mStateNumber = SCENE::BATTLE;
 }
@@ -316,6 +370,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		break;
 	}
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
+	// モデルとアニメション設定
+	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::BATTLE);
 
 	// カメラ作成
 	{
@@ -335,6 +391,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		enemy->Initilize();
 		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
+		// モデルとアニメション設定
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 
 	switch (sceneManager->GetNowScene())
@@ -356,7 +414,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	}
 	
 	// UNDONE: 削除
-	printfDx("テロップ：動きながらLで攻撃 仮実装\n");
+	printfDx("テロップ：Lで攻撃 仮実装\n");
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {
@@ -364,6 +422,9 @@ void BattleScene::OnExit(SceneManager* sceneManager)
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
+
+	// マップデータ解放
+	mpMapManager->Release();
 
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
@@ -379,6 +440,7 @@ void BattleScene::OnExit(SceneManager* sceneManager)
 /*--------------------------*/
 ResultScene::ResultScene()
 : IStateScene()
+, SceneStateProcess()
 {
 	mStateNumber = SCENE::RESULT;
 }

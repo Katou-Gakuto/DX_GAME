@@ -189,6 +189,8 @@
     <ClInclude Include="..\Source\Struct\Status.h" />
     <ClInclude Include="..\Source\Struct\TargetData.h" />
     <ClInclude Include="..\Source\Struct\TileData.h" />
+    <ClInclude Include="..\Source\Struct\UIData.h" />
+    <ClInclude Include="..\Source\Struct\Vector2.h" />
     <ClInclude Include="..\Source\Util\UtilCalc.h" />
     <ClInclude Include="..\Source\Util\UtilChange.h" />
     <ClInclude Include="..\Source\Util\UtilFactorys.h" />
@@ -241,6 +243,7 @@
     <ClCompile Include="..\Source\Struct\CollisionData.cpp" />
     <ClCompile Include="..\Source\Struct\TargetData.cpp" />
     <ClCompile Include="..\Source\Struct\TileData.cpp" />
+    <ClCompile Include="..\Source\Struct\UIData.cpp" />
     <ClCompile Include="..\Source\Util\UtilCalc.cpp" />
     <ClCompile Include="..\Source\Util\UtilChange.cpp" />
     <ClCompile Include="..\Source\Util\UtilFactorys.cpp" />

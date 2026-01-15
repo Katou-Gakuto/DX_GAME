@@ -16,6 +16,12 @@ int
    <variable2>LPSTR</variable2>
    <variable3>int</variable3>
    </member>
+   <member className="TitleUIStateProcess">
+   <functionName>BaseDraw</functionName>
+   <explanations>
+土台描画
+   </explanations>
+   </member>
    <member className="StateMVOneAnimation">
    <functionName>Update</functionName>
    <explanations>
@@ -330,81 +336,6 @@ UIナンバー取得
 モデルコントローラー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>SetNewSceneTimeFlag</functionName>
-   <explanations>
-シーン変更中に経ったゲーム時間を一定化するフラグを設定
-   </explanations>
-   <variable0>新しいシーン移動中かどうか</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>SetOneFrame</functionName>
-   <explanations>
-1フレームの秒数設定(ミリ秒)
-   </explanations>
-   <variable0>1フレームの秒数(ミリ秒)</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetOneFrame</functionName>
-   <explanations>
-1フレームの秒数取得(ミリ秒)
-   </explanations>
-   <returnExplanation>
-1フレームの秒数(ミリ秒)
-   </returnExplanation>
-   </member>
-   <member className="TimeManager">
-   <functionName>SetStopFlag</functionName>
-   <explanations>
-ゲーム停止フラグ設定
-   </explanations>
-   <variable0>停止するかどうか「true」で止まる</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetStopFlag</functionName>
-   <explanations>
-ゲーム停止フラグ取得
-   </explanations>
-   <returnExplanation>
-停止しているなら「true」
-   </returnExplanation>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetPreviousTime</functionName>
-   <explanations>
-一つ前の更新時間
-   </explanations>
-   <returnExplanation>
-更新時間
-   </returnExplanation>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetTime</functionName>
-   <explanations>
-スタートからの経過時間
-   </explanations>
-   <returnExplanation>
-経過時間
-   </returnExplanation>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetGameTime</functionName>
-   <explanations>
-ゲーム時間取得
-   </explanations>
-   <returnExplanation>
-ゲームの経過時間
-   </returnExplanation>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetFrame</functionName>
-   <explanations>
-フレーム数取得
-   </explanations>
-   <returnExplanation>
-経過フレーム数
-   </returnExplanation>
-   </member>
    <member className="ResourceManager">
    <functionName>DrawIndexed</functionName>
    <explanations>
@@ -698,6 +629,12 @@ UIナンバー取得
 ポジション更新
    </explanations>
    </member>
+   <member className="FSMUI">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
    <member className="FSMAnimation">
    <functionName>SetNextState</functionName>
    <explanations>
@@ -726,6 +663,12 @@ UIナンバー取得
    <functionName>Initilize</functionName>
    <explanations>
 初期化
+   </explanations>
+   </member>
+   <member className="IStateUI">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
    </explanations>
    </member>
    <member className="IStateAnimationController">
@@ -763,5 +706,80 @@ UIナンバー取得
    <explanations>
 この状態に入った時の処理
    </explanations>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetNewSceneTimeFlag</functionName>
+   <explanations>
+シーン変更中に経ったゲーム時間を一定化するフラグを設定
+   </explanations>
+   <variable0>新しいシーン移動中かどうか</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetOneFrame</functionName>
+   <explanations>
+1フレームの秒数設定(ミリ秒)
+   </explanations>
+   <variable0>1フレームの秒数(ミリ秒)</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetOneFrame</functionName>
+   <explanations>
+1フレームの秒数取得(ミリ秒)
+   </explanations>
+   <returnExplanation>
+1フレームの秒数(ミリ秒)
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>SetStopFlag</functionName>
+   <explanations>
+ゲーム停止フラグ設定
+   </explanations>
+   <variable0>停止するかどうか「true」で止まる</variable0>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetStopFlag</functionName>
+   <explanations>
+ゲーム停止フラグ取得
+   </explanations>
+   <returnExplanation>
+停止しているなら「true」
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetPreviousTime</functionName>
+   <explanations>
+一つ前の更新時間
+   </explanations>
+   <returnExplanation>
+更新時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetTime</functionName>
+   <explanations>
+スタートからの経過時間
+   </explanations>
+   <returnExplanation>
+経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetGameTime</functionName>
+   <explanations>
+ゲーム時間取得
+   </explanations>
+   <returnExplanation>
+ゲームの経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetFrame</functionName>
+   <explanations>
+フレーム数取得
+   </explanations>
+   <returnExplanation>
+経過フレーム数
+   </returnExplanation>
    </member>
 </doc>

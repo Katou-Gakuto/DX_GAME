@@ -456,6 +456,7 @@ void UIBase::Finalize()
 
 	if (mpFsm != nullptr)
 	{
+		mpFsm->Finalize();
 		delete mpFsm;
 	}
 

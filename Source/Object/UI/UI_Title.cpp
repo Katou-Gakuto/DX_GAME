@@ -70,3 +70,12 @@ void UI_Title::DecisionProcess()
 {
 	mpFsm->Decision(this);
 }
+
+// íœˆ—
+void UI_Title::CloceProcess()
+{
+	if (mpFsm != nullptr)
+	{
+		mpFsm->Cloce(this);
+	}
+}

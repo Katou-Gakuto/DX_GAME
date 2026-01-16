@@ -181,7 +181,7 @@ public:
 	/*決定*/
 	virtual int Decision(UIBase* ui) { return mStateNumber; }
 	/*終了*/
-	virtual void Cloce(UIBase* ui) {}
+	virtual int Cloce(UIBase* ui) { return mStateNumber; }
 
 	/*マウス*/
 	virtual int Mouse(UIBase* ui) { return mStateNumber; }

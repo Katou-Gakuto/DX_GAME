@@ -2,37 +2,52 @@
 
 #include "Vector2.h"
 
-struct DisplaySize
+struct DisplaySize : Vector2
 {
 public:
-	// ディスプレイ大きさ
-	Vector2 displaySize;
+	int colorBit;
 
+	DisplaySize& operator =(Vector2 src)
+	{
+		this->x = src.x;
+		this->y = src.y;
+		return *this;
+	}
+	DisplaySize& operator =(Vector2_Int src)
+	{
+		this->x = static_cast<float>(src.x);
+		this->y = static_cast<float>(src.y);
+		return *this;
+	}
+	
 	// TODO: 画面の座標取得(割合)と別の座標から居て値割合変更した座標
 
 	/// <summary>左を起点にした割合(0～1)から縦軸の座標を取得</summary>
-	float DidplayLeft_RatioHeightPos(float ratio);
-	
+	int Left_RatioWidth(float ratio);
 	/// <summary>上を起点にした割合(0～1)から縦軸の座標を取得</summary>
-	float DidplayUp_RatioWidthPos(float ratio);
+	int Up_RatioHeight(float ratio);
+	/// <summary>右を起点にした割合(0～1)から縦軸の座標を取得</summary>
+	int Right_RatioWidth(float ratio);
+	/// <summary>下を起点にした割合(0～1)から縦軸の座標を取得</summary>
+	int Down_RatioHeight(float ratio);
 
 	/// <summary>左上を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayLeftUp_RatioPos(Vector2 ratio);
+	Vector2_Int LeftUp_Ratio(Vector2 ratio);
 	/// <summary>左上を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayLeftUp_RatioPos(float ratio) { return DidplayLeftUp_RatioPos(Vector2(ratio, ratio)); }
+	Vector2_Int LeftUp_FloatRatio(float ratio) { return LeftUp_Ratio(Vector2(ratio, ratio)); }
 
 	/// <summary>右上を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayRightUp_RatioPos(Vector2 ratio);
+	Vector2_Int RightUp_Ratio(Vector2 ratio);
 	/// <summary>右上を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayRightUp_RatioPos(float ratio) { return DidplayRightUp_RatioPos(Vector2(ratio, ratio)); }
+	Vector2_Int RightUp_FloatRatio(float ratio) { return RightUp_Ratio(Vector2(ratio, ratio)); }
 
 	/// <summary>左下を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayLeftDown_RatioPos(Vector2 ratio);
+	Vector2_Int LeftDown_Ratio(Vector2 ratio);
 	/// <summary>左下を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayLeftDown_RatioPos(float ratio) { return DidplayLeftDown_RatioPos(Vector2(ratio, ratio)); }
+	Vector2_Int LeftDown_FloatRatio(float ratio) { return LeftDown_Ratio(Vector2(ratio, ratio)); }
 	
 	/// <summary>右下を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayRightDown_RatioPos(Vector2 ratio);
+	Vector2_Int RightDown_Ratio(Vector2 ratio);
 	/// <summary>右下を起点にした割合(0～1)から座標を取得</summary>
-	Vector2_Int DidplayRightDown_RatioPos(float ratio) { return DidplayRightDown_RatioPos(Vector2(ratio, ratio)); }
+	Vector2_Int RightDown_FloatRatio(float ratio) { return RightDown_Ratio(Vector2(ratio, ratio)); }
 };

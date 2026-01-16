@@ -535,6 +535,7 @@ enum class CURSOR_POSITION_TYPE
 /*------------------------------------------*/
 /*          【キーステートクラス】          */
 /*------------------------------------------*/
+// TODO: ステートという単語が紛らわしいから帰る
 class KeyState
 {
 	/*--------*/
@@ -894,4 +895,7 @@ public:
 private:
 	/*マウスフラグを設定*/
 	inline void SetMouseFlag(bool flag, MOUSE_TYPE number) { munMouseFlags.SetFlag(flag, number); }
+
+
+	// TODO: コントローラー取得用のキーボードなども反応する仕組み作り
 };

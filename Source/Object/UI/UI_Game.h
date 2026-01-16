@@ -1,17 +1,11 @@
 #pragma once
 #include "ObjectBases.h"
 
-class UI_Title : public UIBase
+class UI_Game : public UIBase
 {
-private:
-    // ラインサイズ
-    float mnLineAeraSize;
-    // ライン数
-    int mnLineNum;
-
 public:
-    UI_Title();
-    ~UI_Title();
+    UI_Game();
+    ~UI_Game();
 
 private:
     /*UI初期化*/
@@ -27,7 +21,4 @@ private:
 
     /*選択決定時処理*/
     void DecisionProcess() override;
-
-    /*終了処理*/
-    void CloceProcess() override;
 };

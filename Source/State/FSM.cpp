@@ -320,7 +320,10 @@ void FSMUI::Decision(UIBase* ui)
 // 終了
 void FSMUI::Cloce(UIBase* ui)
 {
-	mmStateMap[mnCurrentState]->Cloce(ui);
+	if (mnCurrentState == mnNextState)
+	{
+		SetState(mmStateMap[mnCurrentState]->Cloce(ui), ui);
+	}
 }
 
 // マウス

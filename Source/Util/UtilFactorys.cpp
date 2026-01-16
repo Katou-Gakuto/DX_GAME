@@ -23,6 +23,7 @@
 #include "StateBase.h"
 #include "StateCamera.h"
 #include "StateEnemy.h"
+#include "StateGameUI.h"
 #include "StateMapEnemy.h"
 #include "StatePlayer.h"
 #include "StateResultUI.h"
@@ -283,12 +284,29 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	case UI_FACTORY_NUMBER::TITLE:
 		fsmUI->RegisterState(new StartTitleUIState());
 		fsmUI->RegisterState(new SelectTitleUIState());
+
 		fsmUI->RegisterState(new NewDataCheckTitleUIState());
 		fsmUI->RegisterState(new DataSelectTitleUIState());
 		fsmUI->RegisterState(new TutorialTitleUIState());
 		fsmUI->RegisterState(new SettingTitleUIState());
+		
+		fsmUI->RegisterState(new CharacterSelectTitleUIState());
+		fsmUI->RegisterState(new PlayerNameTitleUIState());
+		fsmUI->RegisterState(new InputCheckTitleUIState());
+		
+		fsmUI->RegisterState(new ScreenSizeTitleUIState());
+		fsmUI->RegisterState(new VolumeTitleUIState());
 
 		fsmUI->SetCurrentState((int)TITLE_UI_STATE::START_TITLE_UI_STATE, ui);
+		break;
+
+	case UI_FACTORY_NUMBER::TOWN:
+	case UI_FACTORY_NUMBER::DUNGEON:
+	case UI_FACTORY_NUMBER::BATTLE:
+		fsmUI->RegisterState(new NormalGameUIState());
+		fsmUI->RegisterState(new PauseGameUIState());
+
+		fsmUI->SetCurrentState((int)GAME_UI_STATE::NORMAL_GAME_UI_STATE, ui);
 		break;
 
 	case UI_FACTORY_NUMBER::RESULT:

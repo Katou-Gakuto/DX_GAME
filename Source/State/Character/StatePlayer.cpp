@@ -86,22 +86,24 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 
 	SetUseZBufferFlag(true);
 
-	pos1 = VGet(-10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
-	pos2 = VGet(-10000.0f / 2.0f, 0.0f, 10000.0f / 2.0f);
-	for (int i = 0; i < 50; i++)
+	float size = /*/1000000.0f;//*/ 10000.0f;
+	int number = /*/5000; //*/ 50;
+	pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
+	pos2 = VGet(-size / 2.0f, 0.0f, size / 2.0f);
+	for (int i = 0; i < number; i++)
 	{
 		DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
-		pos1.x += 10000.0f / 50;
-		pos2.x += 10000.0f / 50;
+		pos1.x += size / number;
+		pos2.x += size / number;
 	}
 
-	pos1 = VGet(-10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
-	pos2 = VGet(10000.0f / 2.0f, 0.0f, -10000.0f / 2.0f);
-	for (int i = 0; i < 50; i++)
+	pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
+	pos2 = VGet(size / 2.0f, 0.0f, -size / 2.0f);
+	for (int i = 0; i < number; i++)
 	{
 		DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
-		pos1.z += 10000.0f / 50;
-		pos2.z += 10000.0f / 50;
+		pos1.z += size / number;
+		pos2.z += size / number;
 	}
 
 	DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));

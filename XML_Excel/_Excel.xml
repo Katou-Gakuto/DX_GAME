@@ -17,9 +17,75 @@ int
    <variable3>int</variable3>
    </member>
    <member className="TitleUIStateProcess">
-   <functionName>BaseDraw</functionName>
+   <functionName>GetPreUiState</functionName>
    <explanations>
-土台描画
+構造上一つ前のステートを取得する
+   </explanations>
+   </member>
+   <member className="TitleUIStateProcess">
+   <functionName>DrawBackground</functionName>
+   <explanations>
+背景描画
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateMVOneAnimation">
@@ -148,25 +214,6 @@ int
 モデルハンドル
    </returnExplanation>
    </member>
-   <member className="DataManager">
-   <functionName>SetBaseFile</functionName>
-   <explanations>
-ベースファイル設定
-   </explanations>
-   <variable0>ベースファイルのファイル名があるファイル</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>SetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ取得
-   </explanations>
-   </member>
    <member className="LoadingManager">
    <functionName>GetLoadingFlag</functionName>
    <explanations>
@@ -255,6 +302,41 @@ UIナンバー取得
 現在処理するUIナンバー
    </returnExplanation>
    </member>
+   <member className="DataManager">
+   <functionName>SetBaseFile</functionName>
+   <explanations>
+ベースファイル設定
+   </explanations>
+   <variable0>ベースファイルのファイル名があるファイル</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetDisplaySize</functionName>
+   <explanations>
+ディスプレイサイズ設定
+   </explanations>
+   <variable0>ディスプレイの大きさ</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>GetDisplaySize</functionName>
+   <explanations>
+ディスプレイサイズ取得
+   </explanations>
+   <returnExplanation>
+ディスプレイサイズ
+   </returnExplanation>
+   </member>
+   <member className="DataManager">
+   <functionName>SetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ取得
+   </explanations>
+   </member>
    <member className="MapManager">
    <functionName>Release</functionName>
    <explanations>
@@ -311,6 +393,31 @@ UIナンバー取得
    <returnExplanation>
 どれかの終了フラグが有効なら「true」
    </returnExplanation>
+   </member>
+   <member className="UIBase">
+   <functionName>GetKey</functionName>
+   <explanations>
+キー取得
+   </explanations>
+   <returnExplanation>
+キーステート
+   </returnExplanation>
+   </member>
+   <member className="UIBase">
+   <functionName>GetDisplaySize</functionName>
+   <explanations>
+画面サイズ取得
+   </explanations>
+   <returnExplanation>
+画面サイズ
+   </returnExplanation>
+   </member>
+   <member className="UIBase">
+   <functionName>SetDisplaySize</functionName>
+   <explanations>
+画面サイズ設定
+   </explanations>
+   <variable0>ディスプレイサイズ</variable0>
    </member>
    <member className="CharacterBase">
    <functionName>SetAnimation</functionName>
@@ -627,6 +734,78 @@ UIナンバー取得
    <functionName>PositionUpdate</functionName>
    <explanations>
 ポジション更新
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>RightDown_FloatRatio</functionName>
+   <explanations>
+右下を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>RightDown_Ratio</functionName>
+   <explanations>
+右下を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>LeftDown_FloatRatio</functionName>
+   <explanations>
+左下を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>LeftDown_Ratio</functionName>
+   <explanations>
+左下を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>RightUp_FloatRatio</functionName>
+   <explanations>
+右上を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>RightUp_Ratio</functionName>
+   <explanations>
+右上を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>LeftUp_FloatRatio</functionName>
+   <explanations>
+左上を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>LeftUp_Ratio</functionName>
+   <explanations>
+左上を起点にした割合(0～1)から座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>Down_RatioHeight</functionName>
+   <explanations>
+下を起点にした割合(0～1)から縦軸の座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>Right_RatioWidth</functionName>
+   <explanations>
+右を起点にした割合(0～1)から縦軸の座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>Up_RatioHeight</functionName>
+   <explanations>
+上を起点にした割合(0～1)から縦軸の座標を取得
+   </explanations>
+   </member>
+   <member className="DisplaySize">
+   <functionName>Left_RatioWidth</functionName>
+   <explanations>
+左を起点にした割合(0～1)から縦軸の座標を取得
    </explanations>
    </member>
    <member className="FSMUI">

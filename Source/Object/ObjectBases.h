@@ -5,6 +5,7 @@
 #include "BitFlag.h"
 #include "CollisionData.h"
 #include "Status.h"
+#include "UIData.h"
 
 #include "DxLib.h"
 
@@ -569,7 +570,7 @@ public:
 /*--------------------------------*/
 /*          【UIベース】          */
 /*--------------------------------*/
-
+// TODO: Downでの変更間隔をフレーム1つにするのと長押しの間隔を調整する
 class UIBase : public ObjectBase
 {
 private:
@@ -612,6 +613,9 @@ protected:
     // 有限状態マシン
     FSMUI* mpFsm;
 
+    // ディスプレイサイズ
+    DisplaySize mstDisplaySize;
+
 public:
     UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
     ~UIBase();
@@ -634,7 +638,6 @@ public:
     /*--------*/
     /*【設定】*/
     /*--------*/
-
 public:
     /*fsm設定*/
     void SetFsm(FSMUI* fsm);
@@ -644,13 +647,24 @@ public:
     /*選択最大数設定*/
     inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
 
+    /// <summary>画面サイズ設定</summary>
+    /// <param name="displaySize">ディスプレイサイズ</param>
+    inline void SetDisplaySize(const DisplaySize displaySize) { mstDisplaySize = displaySize; }
+
     /*--------*/
     /*【取得】*/
     /*--------*/
-
 public:
     /*選択数取得*/
     inline int GetSelectNumber() const { return mnSelectNumber; }
+
+    /// <summary>画面サイズ取得</summary>
+    /// <returns>画面サイズ</returns>
+    inline DisplaySize GetDisplaySize() const { return mstDisplaySize; }
+
+    /// <summary>キー取得</summary>
+    /// <returns>キーステート</returns>
+    inline KeyState* GetKey() { return mpKeyState; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

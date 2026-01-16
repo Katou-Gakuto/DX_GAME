@@ -5,6 +5,7 @@
 #include "AttackManager.h"
 #include "CameraManager.h"
 #include "CollisionManager.h"
+#include "DataManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
@@ -34,6 +35,8 @@ GameManager::~GameManager()
 // ‰Šú‰»
 void GameManager::Initilize()
 {
+    Master::mpDataManager->Initilize();
+
     mpCameraManager = new CameraManager();
 
     Master::mpResourceManager->Initilize();

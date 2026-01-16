@@ -6,6 +6,7 @@
 
 #include "SceneEnum.h"
 #include "GameDatas.h"
+#include "UIData.h"
 
 enum class MapType;
 struct TileData;
@@ -20,6 +21,9 @@ private:
 
 	// 終了マネージャー
 	EndManager* mpEndManger;
+
+	// 画面サイズ
+	DisplaySize mstDisplaySize;
 
 public:
 	DataManager();
@@ -37,6 +41,13 @@ public:
 	/// ウィンドウメッセージ設定
 	/// </summary>
 	inline void SetMsg(MSG msg) { mwMsg = msg; }
+
+	/// <summary>ディスプレイサイズ取得</summary>
+	/// <returns>ディスプレイサイズ</returns>
+	inline DisplaySize GetDisplaySize() { return mstDisplaySize; }
+	/// <summary>ディスプレイサイズ設定</summary>
+	/// <param name="displaySize">ディスプレイの大きさ</param>
+	inline void SetDisplaySize(DisplaySize displaySize) { mstDisplaySize = displaySize; }
 
 	/*--------------------------*/
 	/*     【ゲームデータ】     */

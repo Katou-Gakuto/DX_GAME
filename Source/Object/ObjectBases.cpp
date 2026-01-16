@@ -2,6 +2,7 @@
 
 #include "AnimationBase.h"
 #include "AttackManager.h"
+#include "DataManager.h"
 #include "FSM.h"
 #include "GameManager.h"
 #include "ModelsControllerBase.h"
@@ -415,6 +416,7 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnGraphHandles(nullptr)
 , mnGraphCount(0)
 , mpFsm(nullptr)
+, mstDisplaySize(DisplaySize())
 {
 	mbTimeStopFlag = timeStopFlag;
 
@@ -443,6 +445,8 @@ void UIBase::Initilize()
 	mpKeyState = Master::mpKeyState;
 	mpResourceManager = Master::mpResourceManager;
 	mpTimeManager = Master::mpTimeManager;
+
+	mstDisplaySize = Master::mpDataManager->GetDisplaySize();
 
 	UIInitilize();
 }
@@ -521,6 +525,12 @@ void UIBase::SetUINumber()
 void UIBase::DeleteUINumber()
 {
 	Master::mpGameManager->DecreaseUINumber();
+
+	// TODO: ここら辺の処理見直し
+	if (!IsDeleteFlag())
+	{
+		mnUINumber -= 1;
+	}
 }
 
 /*----------------------*/
@@ -698,8 +708,10 @@ void UIBase::DefaultDecision()
 // デフォルト終了確認処理
 void UIBase::DefaultCloce()
 {
-	if ((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) ||
-		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, false))
+	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, false)// TODO: ここ修正すべき
+		||
+		((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) && 
+		(mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z))))
 	{
 		CloceProcess();
 	}

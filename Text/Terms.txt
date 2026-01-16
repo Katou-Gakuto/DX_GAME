@@ -65,6 +65,7 @@ Master
 ・変数
 // 説明
 
+/// TODO:変更したからここに反映する
 ・関数宣言 | 関数宣言兼定義
 /// <summary>説明</summary>
 /// <param name="引数名">引数の詳細</param>

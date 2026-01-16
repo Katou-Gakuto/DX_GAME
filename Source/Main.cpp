@@ -25,6 +25,8 @@ LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
+// HACK: exeファイルが一段上に隠れるからプロジェクトファイルの場所を変えてリソースのファイル座標を書き換える
+
 /// <summary>
 /// メイン
 /// </summary>
@@ -52,12 +54,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return -1;		// エラーが起きたら直ちに終了
 	}
 
+	// TODO: 変更できるようにする
+	//SetGraphMode(640, 480, 16);
+
 	// 初期化
 	Master::mpGameManager->Initilize();
 
 	// ループ
 	while (!Master::mpEndManager->EndFlag()) {
-		
+
 		if (Master::mpLoadingManager->GetLoadingFlag())
 		{
 			// 読み込み

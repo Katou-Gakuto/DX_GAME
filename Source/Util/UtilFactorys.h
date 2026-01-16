@@ -49,6 +49,9 @@ enum class CHARACTER_FACTORY_NUMBER
 enum class UI_FACTORY_NUMBER
 {
 	TITLE = 0,
+	TOWN,
+	DUNGEON,
+	BATTLE,
 	RESULT,
 };
 

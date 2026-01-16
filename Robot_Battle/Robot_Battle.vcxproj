@@ -152,6 +152,7 @@
     <ClInclude Include="..\Source\Object\ObjectBases.h" />
     <ClInclude Include="..\Source\Object\UI\UI_Check.h" />
     <ClInclude Include="..\Source\Object\UI\UI_Debug.h" />
+    <ClInclude Include="..\Source\Object\UI\UI_Game.h" />
     <ClInclude Include="..\Source\Object\UI\UI_Result.h" />
     <ClInclude Include="..\Source\Object\UI\UI_Title.h" />
     <ClInclude Include="..\Source\Singleton\AttackManager.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="..\Source\State\StateCamera.h" />
     <ClInclude Include="..\Source\State\StateAnimation.h" />
     <ClInclude Include="..\Source\State\StateScene.h" />
+    <ClInclude Include="..\Source\State\UI\StateGameUI.h" />
     <ClInclude Include="..\Source\State\UI\StateResultUI.h" />
     <ClInclude Include="..\Source\State\UI\StateTitleUI.h" />
     <ClInclude Include="..\Source\Struct\AnimationData.h" />
@@ -211,6 +213,7 @@
     <ClCompile Include="..\Source\Object\ObjectBases.cpp" />
     <ClCompile Include="..\Source\Object\UI\UI_Check.cpp" />
     <ClCompile Include="..\Source\Object\UI\UI_Debug.cpp" />
+    <ClCompile Include="..\Source\Object\UI\UI_Game.cpp" />
     <ClCompile Include="..\Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="..\Source\Object\UI\UI_Title.cpp" />
     <ClCompile Include="..\Source\Singleton\AttackManager.cpp" />
@@ -237,6 +240,7 @@
     <ClCompile Include="..\Source\State\StateCamera.cpp" />
     <ClCompile Include="..\Source\State\StateAnimation.cpp" />
     <ClCompile Include="..\Source\State\StateScene.cpp" />
+    <ClCompile Include="..\Source\State\UI\StateGameUI.cpp" />
     <ClCompile Include="..\Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="..\Source\State\UI\StateTitleUI.cpp" />
     <ClCompile Include="..\Source\Struct\CameraData.cpp" />

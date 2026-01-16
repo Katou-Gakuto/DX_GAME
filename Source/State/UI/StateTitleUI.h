@@ -17,8 +17,14 @@ enum class TITLE_UI_STATE
 	TUTORIAL_TITLE_UI_STATE,			// チュートリアル開始
 	SETTING_TITLE_UI_STATE,				// セッティング
 
+	/*新データ関係*/
 	CHARACTER_SELECT_TITLE_UI_STATE,	// キャラクター種類選択
-	PLAYER_NAME_TITLE_UI_STATE			// プレイヤー名設定
+	PLAYER_NAME_TITLE_UI_STATE,			// プレイヤー名設定
+	INPUT_CHECK_TITLE_UI_STATE,			// 入力情報の最終確認
+
+	/*セッティング関係*/
+	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
+	VOLUME_TITLE_UI_STATE,				// 音量
 };
 
 /*----------*/
@@ -26,18 +32,25 @@ enum class TITLE_UI_STATE
 /*----------*/
 class TitleUIStateProcess
 {
+protected:
+	TITLE_UI_STATE mePreUiState;
+
 public:
-	TitleUIStateProcess();
+	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 
 protected:
-	/// <summary>土台描画</summary>
-	void BaseDraw();
+	/// <summary>背景描画</summary>
+	void DrawBackground(UIBase* ui, std::vector<std::string> str);
+	/// <summary>構造上一つ前のステートを取得する</summary>
+	inline int GetPreUiState() { return (int)mePreUiState; }
 };
+
+
 
 /*----------------------*/
 /*【開始画面UIステート】*/
 /*----------------------*/
-class StartTitleUIState : public IStateUI
+class StartTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	StartTitleUIState();
@@ -50,18 +63,18 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
-
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
 
+
+
 /*----------------------*/
 /*【選択画面UIステート】*/
 /*----------------------*/
-class SelectTitleUIState : public IStateUI
+class SelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	SelectTitleUIState();
@@ -74,18 +87,20 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
-
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
 
+
+
 /*------------------------------------------------*/
 /*【新しいデータの入る場所があるか確認UIステート】*/
 /*------------------------------------------------*/
-class NewDataCheckTitleUIState : public IStateUI
+class NewDataCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	NewDataCheckTitleUIState();
@@ -98,18 +113,20 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
-
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
 
+
+
 /*----------------------------*/
 /*【データ選択画面UIステート】*/
 /*----------------------------*/
-class DataSelectTitleUIState : public IStateUI
+class DataSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	DataSelectTitleUIState();
@@ -122,18 +139,20 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
-
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
 
+
+
 /*----------------------------*/
 /*【チュートリアルUIステート】*/
 /*----------------------------*/
-class TutorialTitleUIState : public IStateUI
+class TutorialTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	TutorialTitleUIState();
@@ -146,18 +165,20 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
-
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
 
+
+
 /*--------------------------*/
 /*【セッティングUIステート】*/
 /*--------------------------*/
-class SettingTitleUIState : public IStateUI
+class SettingTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	SettingTitleUIState();
@@ -170,10 +191,140 @@ public:
 
 	/*更新*/
 	int Update(UIBase* ui) override;
-
 	/*決定*/
 	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
+	/*描画*/
+	void Draw(UIBase* ui) override;
+};
 
+
+
+/*----------------------*/
+/*【キャラクター種類選択UIステート】*/
+/*----------------------*/
+class CharacterSelectTitleUIState : public IStateUI, public TitleUIStateProcess
+{
+public:
+	CharacterSelectTitleUIState();
+	~CharacterSelectTitleUIState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(UIBase* ui) override;
+	/*この状態を出る時の処理*/
+	void OnExit(UIBase* ui) override;
+
+	/*更新*/
+	int Update(UIBase* ui) override;
+	/*決定*/
+	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
+	/*描画*/
+	void Draw(UIBase* ui) override;
+};
+
+
+
+/*----------------------*/
+/*【プレイヤー名設定UIステート】*/
+/*----------------------*/
+class PlayerNameTitleUIState : public IStateUI, public TitleUIStateProcess
+{
+public:
+	PlayerNameTitleUIState();
+	~PlayerNameTitleUIState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(UIBase* ui) override;
+	/*この状態を出る時の処理*/
+	void OnExit(UIBase* ui) override;
+
+	/*更新*/
+	int Update(UIBase* ui) override;
+	/*決定*/
+	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
+	/*描画*/
+	void Draw(UIBase* ui) override;
+};
+
+
+
+/*----------------------*/
+/*【入力情報の最終確認UIステート】*/
+/*----------------------*/
+class InputCheckTitleUIState : public IStateUI, public TitleUIStateProcess
+{
+public:
+	InputCheckTitleUIState();
+	~InputCheckTitleUIState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(UIBase* ui) override;
+	/*この状態を出る時の処理*/
+	void OnExit(UIBase* ui) override;
+
+	/*更新*/
+	int Update(UIBase* ui) override;
+	/*決定*/
+	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
+	/*描画*/
+	void Draw(UIBase* ui) override;
+};
+
+
+
+/*----------------------*/
+/*【画面サイズ調整UIステート】*/
+/*----------------------*/
+class ScreenSizeTitleUIState : public IStateUI, public TitleUIStateProcess
+{
+public:
+	ScreenSizeTitleUIState();
+	~ScreenSizeTitleUIState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(UIBase* ui) override;
+	/*この状態を出る時の処理*/
+	void OnExit(UIBase* ui) override;
+
+	/*更新*/
+	int Update(UIBase* ui) override;
+	/*決定*/
+	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
+	/*描画*/
+	void Draw(UIBase* ui) override;
+};
+
+
+
+/*----------------------*/
+/*【音量調整UIステート】*/
+/*----------------------*/
+class VolumeTitleUIState : public IStateUI, public TitleUIStateProcess
+{
+public:
+	VolumeTitleUIState();
+	~VolumeTitleUIState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(UIBase* ui) override;
+	/*この状態を出る時の処理*/
+	void OnExit(UIBase* ui) override;
+
+	/*更新*/
+	int Update(UIBase* ui) override;
+	/*決定*/
+	int Decision(UIBase* ui) override;
+	/*戻る*/
+	int Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };

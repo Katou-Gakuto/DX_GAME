@@ -21,6 +21,7 @@
 #include "StateBase.h"
 #include "StateScene.h"
 #include "TargetManager.h"
+#include "UI_Game.h"
 #include "UI_Title.h"
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
@@ -196,6 +197,13 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		// }
 	}
 
+	// UI生成
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::TOWN:
@@ -308,6 +316,13 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 
+	// UI生成
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
+	}
+
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::DUNGEON:
@@ -393,6 +408,13 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
 		// モデルとアニメション設定
 		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
+	}
+
+	// UI生成
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 
 	switch (sceneManager->GetNowScene())

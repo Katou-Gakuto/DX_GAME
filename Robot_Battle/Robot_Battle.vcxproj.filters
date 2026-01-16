@@ -293,6 +293,12 @@
     <ClInclude Include="..\Source\Struct\Vector2.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Object\UI\UI_Game.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\State\UI\StateGameUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">
@@ -447,6 +453,12 @@
     </ClCompile>
     <ClCompile Include="..\Source\Struct\UIData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Object\UI\UI_Game.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\State\UI\StateGameUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

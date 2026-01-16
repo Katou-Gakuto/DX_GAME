@@ -165,6 +165,8 @@ void KeyState::SetKey()
 			SetNowKey_Controller((getKey['R'] & 0x80) != 0, CONTROLLER_KEY_TYPE::R);
 
 			SetNowKey_Controller((getKey[VK_RETURN] & 0x80) != 0, CONTROLLER_KEY_TYPE::A);// エンターキー
+
+			SetNowKey_Controller((getKey['X'] & 0x80) != 0, CONTROLLER_KEY_TYPE::X);
 		}
 
 		// キーボードの状態を取得

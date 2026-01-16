@@ -48,4 +48,13 @@ int StartResultUIState::Decision(UIBase* ui)
 // 描画
 void StartResultUIState::Draw(UIBase* ui)
 {
+	// TODO: 画面全体に描画
+    // TODO: 画像ハンドルに変更
+    DisplaySize displaySize = ui->GetDisplaySize();
+    Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
+    Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
+    DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
+
+    Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
+    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "リザルト", GetColor(0, 0, 0));
 }

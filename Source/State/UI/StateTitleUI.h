@@ -43,6 +43,9 @@ protected:
 	void DrawBackground(UIBase* ui, std::vector<std::string> str);
 	/// <summary>構造上一つ前のステートを取得する</summary>
 	inline int GetPreUiState() { return (int)mePreUiState; }
+
+	/// <summary>ゲームを開始する</summary>
+	void StartGame(UIBase* ui);
 };
 
 

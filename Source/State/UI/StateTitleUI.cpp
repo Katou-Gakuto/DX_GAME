@@ -38,6 +38,16 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 	}
 }
 
+// ゲーム開始
+void TitleUIStateProcess::StartGame(UIBase* ui)
+{
+	// TODO: データ0に固定
+	ui->SetSelectNumber(0);
+
+	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());
+	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().mapType);
+}
+
 /*----------------------*/
 /*【開始画面UIステート】*/
 /*----------------------*/
@@ -255,9 +265,7 @@ int DataSelectTitleUIState::Update(UIBase* ui)
 // 決定
 int DataSelectTitleUIState::Decision(UIBase* ui)
 {
-	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());
-	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().mapType);
-
+	StartGame(ui);
 	return mStateNumber;
 }
 
@@ -307,7 +315,8 @@ int TutorialTitleUIState::Update(UIBase* ui)
 // 決定
 int TutorialTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
+	StartGame(ui);
+	return mStateNumber;
 }
 
 // 戻る
@@ -514,8 +523,8 @@ int InputCheckTitleUIState::Update(UIBase* ui)
 // 決定
 int InputCheckTitleUIState::Decision(UIBase* ui)
 {
-	// TODO: 直接ゲーム開始するように最終的にする
-	return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
+	StartGame(ui);
+	return mStateNumber;
 }
 
 // 戻る

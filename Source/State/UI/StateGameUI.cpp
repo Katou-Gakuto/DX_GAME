@@ -5,9 +5,12 @@
 
 #include "Master.h"
 
+#include "GameManager.h"
 #include "KeyState.h"
+#include "MapManager.h"
 #include "ObjectBases.h"
 #include "StateGameUI.h"
+#include "TargetManager.h"
 
 /*--------------------------------*/
 /*     【ゲームUIステート】     */
@@ -18,6 +21,8 @@
 /*----------*/
 GameUIProcess::GameUIProcess()
 {
+    mpMapManager = Master::mpGameManager->GetMapManager();
+    mpTargetManager = Master::mpGameManager->GetTargetManager();
 }
 
 // メニューキーを押したか返す
@@ -45,18 +50,24 @@ void GameUIProcess::DrawMinMap()
 {
     // INPROGRESS: 実装　あとエフェクトのエラー削除ファイルごとにやればいいらしい 2Dは影がいらないからstopマネージャーで描画処理自体を一回で済むようにする
 
-    // 取得
-    {
-
-    }
-
     // 範囲外計算
     {
+        mvPlayerPos = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+
     }
 
+
     // 描画
-    {
-    }
+
+}
+
+// ミニマップポジションに変換する
+VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
+{
+    VECTOR minMapPos;
+
+
+    return ;
 }
 
 /*----------------------*/

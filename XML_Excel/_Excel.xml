@@ -3,18 +3,50 @@
     <assembly>
     Robot_Battle
     </assembly>
-   <member className="WinMain(HINSTANCE__*,HINSTANCE__*,System">
-   <functionName>SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)</functionName>
+   <member className="MapManager">
+   <functionName>Release</functionName>
    <explanations>
-メイン
+データ解放
+   </explanations>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>ModelFactory</functionName>
+   <explanations>
+モデル作成
    </explanations>
    <returnExplanation>
-int
+モデルベース
    </returnExplanation>
-   <variable0>HINSTANCE</variable0>
-   <variable1>HINSTANCE</variable1>
-   <variable2>LPSTR</variable2>
-   <variable3>int</variable3>
+   <variable0>モデル種類</variable0>
+   <variable1>モデルファイル座標</variable1>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>LoadAnimationDataFactory</functionName>
+   <explanations>
+読み込み用アニメーションデータ作成
+   </explanations>
+   <variable0>アニメーション</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>AnimationDataFactory</functionName>
+   <explanations>
+アニメーションデータ作成
+   </explanations>
+   <returnExplanation>
+アニメーションデータ
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>FSMAnimationFactory</functionName>
+   <explanations>
+アニメーション有限状態マシン作成
+   </explanations>
+   <returnExplanation>
+有限状態マシン
+   </returnExplanation>
+   <variable0>アニメーション情報</variable0>
+   <variable1>モデル</variable1>
    </member>
    <member className="TitleUIStateProcess">
    <functionName>StartGame</functionName>
@@ -118,99 +150,6 @@ int
    <variable0>アニメーション</variable0>
    <variable1>アニメーション情報</variable1>
    </member>
-   <member className="UtilFactorys">
-   <functionName>ModelFactory</functionName>
-   <explanations>
-モデル作成
-   </explanations>
-   <returnExplanation>
-モデルベース
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
-   <variable1>モデルファイル座標</variable1>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>LoadAnimationDataFactory</functionName>
-   <explanations>
-読み込み用アニメーションデータ作成
-   </explanations>
-   <variable0>アニメーション</variable0>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>AnimationDataFactory</functionName>
-   <explanations>
-アニメーションデータ作成
-   </explanations>
-   <returnExplanation>
-アニメーションデータ
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>FSMAnimationFactory</functionName>
-   <explanations>
-アニメーション有限状態マシン作成
-   </explanations>
-   <returnExplanation>
-有限状態マシン
-   </returnExplanation>
-   <variable0>アニメーション情報</variable0>
-   <variable1>モデル</variable1>
-   </member>
-   <member className="StateAttackAnimationController">
-   <functionName>CheckState</functionName>
-   <explanations>
-ステート変更確認
-   </explanations>
-   </member>
-   <member className="StateAttackAnimationController">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="StateAttackAnimationController">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="StateMoveAnimationController">
-   <functionName>CheckState</functionName>
-   <explanations>
-ステート変更確認
-   </explanations>
-   </member>
-   <member className="StateMoveAnimationController">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="StateMoveAnimationController">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="StateIdleAnimationController">
-   <functionName>CheckState</functionName>
-   <explanations>
-ステート変更確認
-   </explanations>
-   </member>
-   <member className="StateIdleAnimationController">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="StateIdleAnimationController">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
    <member className="ModelMV1">
    <functionName>GetHandle</functionName>
    <explanations>
@@ -219,6 +158,19 @@ int
    <returnExplanation>
 モデルハンドル
    </returnExplanation>
+   </member>
+   <member className="WinMain(HINSTANCE__*,HINSTANCE__*,System">
+   <functionName>SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)</functionName>
+   <explanations>
+メイン
+   </explanations>
+   <returnExplanation>
+int
+   </returnExplanation>
+   <variable0>HINSTANCE</variable0>
+   <variable1>HINSTANCE</variable1>
+   <variable2>LPSTR</variable2>
+   <variable3>int</variable3>
    </member>
    <member className="LoadingManager">
    <functionName>GetLoadingFlag</functionName>
@@ -236,142 +188,37 @@ int
    </explanations>
    <variable0>フラグのビット数</variable0>
    </member>
-   <member className="FadeManager">
-   <functionName>GetFadeRatio</functionName>
+   <member className="EndManager">
+   <functionName>GetBitEndflag</functionName>
    <explanations>
-フェード率取得
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>GetFadeFlag</functionName>
-   <explanations>
-フェードフラグ取得
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>FadeEnd</functionName>
-   <explanations>
-フェード終了
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>FadeProcess</functionName>
-   <explanations>
-フェード処理
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>FadeIn</functionName>
-   <explanations>
-フェードイン開始
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>FadeOut</functionName>
-   <explanations>
-フェードアウト開始
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>Finailize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="FadeManager">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="StopManager">
-   <functionName>GetStopFlag</functionName>
-   <explanations>
-ストップフラグ取得
-   </explanations>
-   </member>
-   <member className="StopManager">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="GameManager">
-   <functionName>GetTargetManager</functionName>
-   <explanations>
-ターゲットマネージャー取得
+ビットのエンドフラグ取得
    </explanations>
    <returnExplanation>
-ターゲットマネージャー
+ビットフラグ
    </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetSceneManager</functionName>
+   <member className="EndManager">
+   <functionName>SetDeleteObject</functionName>
    <explanations>
-シーンマネージャー取得
+削除オブジェクト設定
    </explanations>
-   <returnExplanation>
-シーンマネージャー
-   </returnExplanation>
+   <variable0>終了時に削除するオブジェクト</variable0>
    </member>
-   <member className="GameManager">
-   <functionName>GetObjectManager</functionName>
+   <member className="EndManager">
+   <functionName>SetEndFlag</functionName>
    <explanations>
-オブジェクトマネージャー取得
+終了フラグ設定
    </explanations>
-   <returnExplanation>
-オブジェクトマネージャー
-   </returnExplanation>
+   <variable0>設定フラグ</variable0>
+   <variable1>設定する終了フラグのビット数</variable1>
    </member>
-   <member className="GameManager">
-   <functionName>GetMapManager</functionName>
+   <member className="EndManager">
+   <functionName>EndFlag</functionName>
    <explanations>
-マップマネージャー取得
+終了フラグ
    </explanations>
    <returnExplanation>
-マップマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetCollisionManager</functionName>
-   <explanations>
-コリジョンマネージャー取得
-   </explanations>
-   <returnExplanation>
-コリジョンマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetCameraManager</functionName>
-   <explanations>
-カメラマネージャー取得
-   </explanations>
-   <returnExplanation>
-カメラマネージャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetAttackManager</functionName>
-   <explanations>
-攻撃マネジャー取得
-   </explanations>
-   <returnExplanation>
-攻撃マネジャー
-   </returnExplanation>
-   </member>
-   <member className="GameManager">
-   <functionName>GetNowUINumber</functionName>
-   <explanations>
-UIナンバー取得
-   </explanations>
-   <returnExplanation>
-現在処理するUIナンバー
+どれかの終了フラグが有効なら「true」
    </returnExplanation>
    </member>
    <member className="DataManager">
@@ -409,62 +256,59 @@ UIナンバー取得
 ウィンドウメッセージ取得
    </explanations>
    </member>
-   <member className="MapManager">
-   <functionName>Release</functionName>
+   <member className="StateAttackAnimationController">
+   <functionName>CheckState</functionName>
    <explanations>
-データ解放
+ステート変更確認
    </explanations>
    </member>
-   <member className="UtilCalc">
-   <functionName>VMoveVecToAngle</functionName>
+   <member className="StateAttackAnimationController">
+   <functionName>OnExit</functionName>
    <explanations>
-移動量をアングルに反映した値を返す(ラジアン)
+この状態を出る時の処理
    </explanations>
    </member>
-   <member className="UtilCalc">
-   <functionName>VAngleToVec</functionName>
+   <member className="StateAttackAnimationController">
+   <functionName>OnEnter</functionName>
    <explanations>
-アングルをベクトルに変換する
+この状態に入った時の処理
    </explanations>
    </member>
-   <member className="UtilCalc">
-   <functionName>VVecToAngle</functionName>
+   <member className="StateMoveAnimationController">
+   <functionName>CheckState</functionName>
    <explanations>
-ベクトルをアングルに変換する
+ステート変更確認
    </explanations>
    </member>
-   <member className="EndManager">
-   <functionName>GetBitEndflag</functionName>
+   <member className="StateMoveAnimationController">
+   <functionName>OnExit</functionName>
    <explanations>
-ビットのエンドフラグ取得
+この状態を出る時の処理
    </explanations>
-   <returnExplanation>
-ビットフラグ
-   </returnExplanation>
    </member>
-   <member className="EndManager">
-   <functionName>SetDeleteObject</functionName>
+   <member className="StateMoveAnimationController">
+   <functionName>OnEnter</functionName>
    <explanations>
-削除オブジェクト設定
+この状態に入った時の処理
    </explanations>
-   <variable0>終了時に削除するオブジェクト</variable0>
    </member>
-   <member className="EndManager">
-   <functionName>SetEndFlag</functionName>
+   <member className="StateIdleAnimationController">
+   <functionName>CheckState</functionName>
    <explanations>
-終了フラグ設定
+ステート変更確認
    </explanations>
-   <variable0>設定フラグ</variable0>
-   <variable1>設定する終了フラグのビット数</variable1>
    </member>
-   <member className="EndManager">
-   <functionName>EndFlag</functionName>
+   <member className="StateIdleAnimationController">
+   <functionName>OnExit</functionName>
    <explanations>
-終了フラグ
+この状態を出る時の処理
    </explanations>
-   <returnExplanation>
-どれかの終了フラグが有効なら「true」
-   </returnExplanation>
+   </member>
+   <member className="StateIdleAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
    </member>
    <member className="UIBase">
    <functionName>GetKey</functionName>
@@ -515,47 +359,80 @@ UIナンバー取得
 モデルコントローラー
    </returnExplanation>
    </member>
-   <member className="ResourceManager">
-   <functionName>EffectDrawProcess</functionName>
+   <member className="TimeManager">
+   <functionName>SetNewSceneTimeFlag</functionName>
    <explanations>
-エフェクト描画処理
+シーン変更中に経ったゲーム時間を一定化するフラグを設定
    </explanations>
+   <variable0>新しいシーン移動中かどうか</variable0>
    </member>
-   <member className="ResourceManager">
-   <functionName>EffectFinailize</functionName>
+   <member className="TimeManager">
+   <functionName>SetOneFrame</functionName>
    <explanations>
-エフェクト終了
+1フレームの秒数設定(ミリ秒)
    </explanations>
+   <variable0>1フレームの秒数(ミリ秒)</variable0>
    </member>
-   <member className="ResourceManager">
-   <functionName>EffectInit</functionName>
+   <member className="TimeManager">
+   <functionName>GetOneFrame</functionName>
    <explanations>
-エフェクト初期化
+1フレームの秒数取得(ミリ秒)
    </explanations>
+   <returnExplanation>
+1フレームの秒数(ミリ秒)
+   </returnExplanation>
    </member>
-   <member className="ResourceManager">
-   <functionName>DrawEffect</functionName>
+   <member className="TimeManager">
+   <functionName>SetStopFlag</functionName>
    <explanations>
-エフェクト描画
+ゲーム停止フラグ設定
    </explanations>
+   <variable0>停止するかどうか「true」で止まる</variable0>
    </member>
-   <member className="ResourceManager">
-   <functionName>ReduceEffect</functionName>
+   <member className="TimeManager">
+   <functionName>GetStopFlag</functionName>
    <explanations>
-エフェクトカウントを減らす
+ゲーム停止フラグ取得
    </explanations>
+   <returnExplanation>
+停止しているなら「true」
+   </returnExplanation>
    </member>
-   <member className="ResourceManager">
-   <functionName>GetEffectHandle</functionName>
+   <member className="TimeManager">
+   <functionName>GetPreviousTime</functionName>
    <explanations>
-エフェクト取得
+一つ前の更新時間
    </explanations>
+   <returnExplanation>
+更新時間
+   </returnExplanation>
    </member>
-   <member className="ResourceManager">
-   <functionName>ShadowMapInit</functionName>
+   <member className="TimeManager">
+   <functionName>GetTime</functionName>
    <explanations>
-シャドウマップの初期化
+スタートからの経過時間
    </explanations>
+   <returnExplanation>
+経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetGameTime</functionName>
+   <explanations>
+ゲーム時間取得
+   </explanations>
+   <returnExplanation>
+ゲームの経過時間
+   </returnExplanation>
+   </member>
+   <member className="TimeManager">
+   <functionName>GetFrame</functionName>
+   <explanations>
+フレーム数取得
+   </explanations>
+   <returnExplanation>
+経過フレーム数
+   </returnExplanation>
    </member>
    <member className="ResourceManager">
    <functionName>DrawIndexed</functionName>
@@ -570,27 +447,15 @@ UIナンバー取得
    </explanations>
    </member>
    <member className="ResourceManager">
-   <functionName>DrawDataRelease</functionName>
+   <functionName>EndDraw</functionName>
    <explanations>
-描画データ解放
-   </explanations>
-   </member>
-   <member className="ResourceManager">
-   <functionName>LastDraw</functionName>
-   <explanations>
-最終描画
-   </explanations>
-   </member>
-   <member className="ResourceManager">
-   <functionName>MiddleDraw</functionName>
-   <explanations>
-中間描画
+描画終了
    </explanations>
    </member>
    <member className="ResourceManager">
    <functionName>StartDraw</functionName>
    <explanations>
-開始描画
+描画開始
    </explanations>
    </member>
    <member className="ResourceManager">
@@ -598,96 +463,6 @@ UIナンバー取得
    <explanations>
 初期化
    </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetAllToggleState</functionName>
-   <explanations>
-トグル状態全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetUpNumpadKeyFlags_Board</functionName>
-   <explanations>
-離したテンキーキーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetNowNumpadKeyFlags_Board</functionName>
-   <explanations>
-押しているテンキーキーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetDownNumpadKeyFlags_Board</functionName>
-   <explanations>
-押し始めたテンキーキーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetUpSpecialKeyFlags_Board</functionName>
-   <explanations>
-離した特殊キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetNowSpecialKeyFlags_Board</functionName>
-   <explanations>
-押している特殊キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetDownSpecialKeyFlags_Board</functionName>
-   <explanations>
-押し始めた特殊キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetUpWordKeyFlags_Board</functionName>
-   <explanations>
-離した文字操作系キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetNowWordKeyFlags_Board</functionName>
-   <explanations>
-押している文字操作系キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetDownWordKeyFlags_Board</functionName>
-   <explanations>
-押し始めた文字操作系キーフラグを全取得(キーボード)
-   </explanations>
-   </member>
-   <member className="KeyState">
-   <functionName>GetAllUpKeyFlags_Controller</functionName>
-   <explanations>
-全コントローラー分の離したキーフラグを全取得(コントローラー)
-   </explanations>
-   <returnExplanation>
-全コントローラーの離したすべてのキーフラグ
-   </returnExplanation>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
-   </member>
-   <member className="KeyState">
-   <functionName>GetAllNowKeyFlags_Controller</functionName>
-   <explanations>
-全コントローラー分の押しているキーフラグを全取得(コントローラー)
-   </explanations>
-   <returnExplanation>
-全コントローラーの押しているすべてのキーフラグ
-   </returnExplanation>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
-   </member>
-   <member className="KeyState">
-   <functionName>GetAllDownKeyFlags_Controller</functionName>
-   <explanations>
-全コントローラー分の押し始めたキーフラグを全取得(コントローラー)
-   </explanations>
-   <returnExplanation>
-全コントローラーの押し始めたすべてのキーフラグ
-   </returnExplanation>
-   <variable0>キーボード分も取得するなら「true」にする</variable0>
    </member>
    <member className="AnimationBase">
    <functionName>SetAnimationTime</functionName>
@@ -934,6 +709,114 @@ UIナンバー取得
 左を起点にした割合(0～1)から縦軸の座標を取得
    </explanations>
    </member>
+   <member className="KeyState">
+   <functionName>GetAllToggleState</functionName>
+   <explanations>
+トグル状態全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpNumpadKeyFlags_Board</functionName>
+   <explanations>
+離したテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowNumpadKeyFlags_Board</functionName>
+   <explanations>
+押しているテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownNumpadKeyFlags_Board</functionName>
+   <explanations>
+押し始めたテンキーキーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpSpecialKeyFlags_Board</functionName>
+   <explanations>
+離した特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowSpecialKeyFlags_Board</functionName>
+   <explanations>
+押している特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownSpecialKeyFlags_Board</functionName>
+   <explanations>
+押し始めた特殊キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetUpWordKeyFlags_Board</functionName>
+   <explanations>
+離した文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetNowWordKeyFlags_Board</functionName>
+   <explanations>
+押している文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetDownWordKeyFlags_Board</functionName>
+   <explanations>
+押し始めた文字操作系キーフラグを全取得(キーボード)
+   </explanations>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllUpKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の離したキーフラグを全取得(コントローラー)
+   </explanations>
+   <returnExplanation>
+全コントローラーの離したすべてのキーフラグ
+   </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllNowKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の押しているキーフラグを全取得(コントローラー)
+   </explanations>
+   <returnExplanation>
+全コントローラーの押しているすべてのキーフラグ
+   </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   </member>
+   <member className="KeyState">
+   <functionName>GetAllDownKeyFlags_Controller</functionName>
+   <explanations>
+全コントローラー分の押し始めたキーフラグを全取得(コントローラー)
+   </explanations>
+   <returnExplanation>
+全コントローラーの押し始めたすべてのキーフラグ
+   </returnExplanation>
+   <variable0>キーボード分も取得するなら「true」にする</variable0>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VMoveVecToAngle</functionName>
+   <explanations>
+移動量をアングルに反映した値を返す(ラジアン)
+   </explanations>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VAngleToVec</functionName>
+   <explanations>
+アングルをベクトルに変換する
+   </explanations>
+   </member>
+   <member className="UtilCalc">
+   <functionName>VVecToAngle</functionName>
+   <explanations>
+ベクトルをアングルに変換する
+   </explanations>
+   </member>
    <member className="FSMUI">
    <functionName>Finalize</functionName>
    <explanations>
@@ -1012,79 +895,76 @@ UIナンバー取得
 この状態に入った時の処理
    </explanations>
    </member>
-   <member className="TimeManager">
-   <functionName>SetNewSceneTimeFlag</functionName>
+   <member className="GameManager">
+   <functionName>GetTargetManager</functionName>
    <explanations>
-シーン変更中に経ったゲーム時間を一定化するフラグを設定
-   </explanations>
-   <variable0>新しいシーン移動中かどうか</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>SetOneFrame</functionName>
-   <explanations>
-1フレームの秒数設定(ミリ秒)
-   </explanations>
-   <variable0>1フレームの秒数(ミリ秒)</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetOneFrame</functionName>
-   <explanations>
-1フレームの秒数取得(ミリ秒)
+ターゲットマネージャー取得
    </explanations>
    <returnExplanation>
-1フレームの秒数(ミリ秒)
+ターゲットマネージャー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>SetStopFlag</functionName>
+   <member className="GameManager">
+   <functionName>GetSceneManager</functionName>
    <explanations>
-ゲーム停止フラグ設定
-   </explanations>
-   <variable0>停止するかどうか「true」で止まる</variable0>
-   </member>
-   <member className="TimeManager">
-   <functionName>GetStopFlag</functionName>
-   <explanations>
-ゲーム停止フラグ取得
+シーンマネージャー取得
    </explanations>
    <returnExplanation>
-停止しているなら「true」
+シーンマネージャー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>GetPreviousTime</functionName>
+   <member className="GameManager">
+   <functionName>GetObjectManager</functionName>
    <explanations>
-一つ前の更新時間
+オブジェクトマネージャー取得
    </explanations>
    <returnExplanation>
-更新時間
+オブジェクトマネージャー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>GetTime</functionName>
+   <member className="GameManager">
+   <functionName>GetMapManager</functionName>
    <explanations>
-スタートからの経過時間
+マップマネージャー取得
    </explanations>
    <returnExplanation>
-経過時間
+マップマネージャー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>GetGameTime</functionName>
+   <member className="GameManager">
+   <functionName>GetCollisionManager</functionName>
    <explanations>
-ゲーム時間取得
+コリジョンマネージャー取得
    </explanations>
    <returnExplanation>
-ゲームの経過時間
+コリジョンマネージャー
    </returnExplanation>
    </member>
-   <member className="TimeManager">
-   <functionName>GetFrame</functionName>
+   <member className="GameManager">
+   <functionName>GetCameraManager</functionName>
    <explanations>
-フレーム数取得
+カメラマネージャー取得
    </explanations>
    <returnExplanation>
-経過フレーム数
+カメラマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetAttackManager</functionName>
+   <explanations>
+攻撃マネジャー取得
+   </explanations>
+   <returnExplanation>
+攻撃マネジャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetNowUINumber</functionName>
+   <explanations>
+UIナンバー取得
+   </explanations>
+   <returnExplanation>
+現在処理するUIナンバー
    </returnExplanation>
    </member>
 </doc>

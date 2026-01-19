@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "DxLib.h"
-#include "EffekseerForDXLib.h"
+//#include "EffekseerForDXLib.h"
 
 #include "Master.h"
 

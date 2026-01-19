@@ -1,6 +1,11 @@
 #pragma once
+#include <vector>
+
 #include "ObjectBases.h"
 #include "StateBase.h"
+
+class MapManager;
+class TargetManager;
 
 /*----------------------*/
 /*【ゲームUIステート】*/
@@ -17,6 +22,16 @@ enum class GAME_UI_STATE
 /*----------*/
 class GameUIProcess
 {
+private:
+    // マップマネージャー
+    MapManager* mpMapManager;
+
+    // ターゲットマネージャー
+    TargetManager* mpTargetManager;
+
+    // プレイヤーポジション
+    VECTOR mvPlayerPos;
+
 public:
     GameUIProcess();
 
@@ -31,6 +46,9 @@ protected:
 
     /*ミニマップ表示*/
     void DrawMinMap();
+
+    /*ミニマップ座標に変換する*/
+    VECTOR PosToMinMapPos(VECTOR pos);
 };
 
 /*----------------------*/

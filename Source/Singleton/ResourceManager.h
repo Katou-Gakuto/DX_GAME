@@ -60,11 +60,14 @@ public:
 	/*終了*/
 	void Finailize();
 
-	/// <summary>描画開始</summary>
+	/// <summary>開始描画</summary>
 	void StartDraw();
-	/// <summary>描画終了</summary>
-	void EndDraw();
-	/*描画データ解放*/
+	/// <summary>中間描画</summary>
+	void MiddleDraw();
+	/// <summary>最終描画</summary>
+	void LastDraw();
+
+	/// <summary>描画データ解放</summary>
 	void DrawDataRelease();
 
 	/*----------*/
@@ -78,7 +81,10 @@ public:
 	void DrawModelHandle(int modelHandle);
 
 	/// <summary>頂点情報による描画</summary>
-	void DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag);
+	void DrawIndexed(const VERTEX3D*VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag);
+private:
+	/// <summary>シャドウマップの初期化</summary>
+	void ShadowMapInit();
 
 	/*------------*/
 	/*【3Dモデル】*/
@@ -144,4 +150,33 @@ public:
 	/*------------*/
 private:
 public:
+
+	/*----------*/
+	/*【エフェクト】
+	/*----------*/
+private:
+	// エフェクトハンドル
+	std::map<std::string, std::vector<int>> mmEffectHandle;
+	// エフェクトカウンター
+	std::map<int, int> mmEffectCount;
+
+public:
+	/// <summary>エフェクト取得</summary>
+	int GetEffectHandle(std::string fileName, float size);
+
+	/// <summary>エフェクトカウントを減らす</summary>
+	void ReduceEffect(int handle);
+
+	/// <summary>エフェクト描画</summary>
+	void DrawEffect(int handle);
+
+private:
+	/// <summary>エフェクト初期化</summary>
+	void EffectInit();
+
+	/// <summary>エフェクト終了</summary>
+	void EffectFinailize();
+
+	/// <summary>エフェクト描画処理</summary>
+	void EffectDrawProcess();
 };

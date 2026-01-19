@@ -5,6 +5,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "FadeManager.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"

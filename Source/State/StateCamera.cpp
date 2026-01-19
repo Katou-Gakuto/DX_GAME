@@ -8,7 +8,7 @@
 #include "ObjectBases.h"
 #include "StateBase.h"
 #include "StateCamera.h"
-#include "TimeManager.h"
+#include "StopManager.h"
 #include "UtilCalc.h"
 
 
@@ -115,7 +115,7 @@ void StatePlayerCamera::Initilize(CameraManager* cameraManager, CameraData camer
 // XV
 void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraData)
 {
-	if (Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
 		return;
 	}

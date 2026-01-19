@@ -43,7 +43,20 @@ void GameUIProcess::DrawMenuBackground(UIBase* ui)
 // ミニマップ表示
 void GameUIProcess::DrawMinMap()
 {
-    // TODO: 後で実装
+    // INPROGRESS: 実装　あとエフェクトのエラー削除ファイルごとにやればいいらしい 2Dは影がいらないからstopマネージャーで描画処理自体を一回で済むようにする
+
+    // 取得
+    {
+
+    }
+
+    // 範囲外計算
+    {
+    }
+
+    // 描画
+    {
+    }
 }
 
 /*----------------------*/

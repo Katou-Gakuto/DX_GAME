@@ -6,12 +6,14 @@
 #include "CameraManager.h"
 #include "CollisionManager.h"
 #include "DataManager.h"
+#include "FadeManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "StopManager.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
 
@@ -40,6 +42,9 @@ void GameManager::Initilize()
     mpCameraManager = new CameraManager();
 
     Master::mpResourceManager->Initilize();
+
+    Master::mpFadeManager->Initilize();
+    Master::mpStopManager->Initilize();
 
     mpSceneManager = new SceneManager();
 	mpSceneManager->Initilize();
@@ -101,11 +106,15 @@ void GameManager::Draw()
     Master::mpResourceManager->StartDraw();
     mpObjectManager->Draw();
     mpMapManager->Draw();
-    Master::mpResourceManager->EndDraw();
+    Master::mpResourceManager->MiddleDraw();
 
     mpObjectManager->Draw();
 
     mpMapManager->Draw();
+
+    Master::mpResourceManager->LastDraw();
+
+    Master::mpFadeManager->Draw();
 
     Master::mpResourceManager->DrawDataRelease();
 

@@ -114,6 +114,9 @@
     <Text Include="..\Text\Memo.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
+    <Text Include="..\Text\必要素材.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\XML_Excel\XmlArrange.h">
@@ -299,6 +302,15 @@
     <ClInclude Include="..\Source\State\UI\StateGameUI.h">
       <Filter>ヘッダー ファイル\State\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Singleton\FadeManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Singleton\StopManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Model\ModelEffect.h">
+      <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">
@@ -459,6 +471,15 @@
     </ClCompile>
     <ClCompile Include="..\Source\State\UI\StateGameUI.cpp">
       <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Singleton\StopManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Singleton\FadeManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Model\ModelEffect.cpp">
+      <Filter>ソース ファイル\Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

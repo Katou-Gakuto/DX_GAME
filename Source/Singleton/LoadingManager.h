@@ -3,7 +3,8 @@
 
 enum class LOADING_NUMBER
 {
-	SCENE = 0,
+	FADE = 0,
+	SCENE,
 };
 
 class LoadingManager

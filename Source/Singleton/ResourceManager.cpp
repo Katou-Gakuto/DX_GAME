@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "DxLib.h"
+#include "EffekseerForDXLib.h"
 
 #include "Master.h"
 
@@ -35,13 +36,7 @@ ResourceManager::~ResourceManager()
 // 初期化
 void ResourceManager::Initilize()
 {
-	// シャドウマップハンドル作成
-	mnShadowMapHandle = MakeShadowMap(1024, 1024);
-	// シャドウマップが想定するライトの方向もセット
-	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
-
-	// シャドウマップに描画する範囲を設定
-	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-1000.0f, -1.0f, -1000.0f), VGet(1000.0f, 1000.0f, 1000.0f));
+	ShadowMapInit();
 }
 
 // 終了
@@ -87,23 +82,34 @@ void ResourceManager::Finailize()
 
 	{// サウンド
 	}
+
+	{// エフェクト
+		EffectFinailize();
+	}
 }
 
-// 描画
+// 開始描画
 void ResourceManager::StartDraw()
 {
 	// シャドウマップへの描画の準備
 	ShadowMap_DrawSetup(mnShadowMapHandle);
 }
-// 描画
-void ResourceManager::EndDraw()
+// 中間描画
+void ResourceManager::MiddleDraw()
 {
 	// シャドウマップへの描画を終了
 	ShadowMap_DrawEnd();
 	// 描画に使用するシャドウマップを設定
-	SetUseShadowMap( 0, mnShadowMapHandle ) ;
-	
+	SetUseShadowMap(0, mnShadowMapHandle);
+
+	// エフェクト描画処理
+	EffectDrawProcess();
 }
+// 終了描画
+void ResourceManager::LastDraw()
+{
+}
+
 // 描画データ解放
 void ResourceManager::DrawDataRelease()
 {
@@ -114,33 +120,25 @@ void ResourceManager::DrawDataRelease()
 // モデル描画
 void ResourceManager::DrawModelHandle(int modelHandle)
 {
-	// // シャドウマップへの描画の準備
-	// ShadowMap_DrawSetup(mnShadowMapHandle);
-
-	// // シャドウマップへの描画
-	// MV1DrawModel(modelHandle);
-	
-	// // シャドウマップへの描画を終了
-	// ShadowMap_DrawEnd();
-	
-	// 描画
 	MV1DrawModel(modelHandle);
 }
 
 // 頂点情報による描画
 void ResourceManager::DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag)
 {
-	// // シャドウマップへの描画の準備
-	// ShadowMap_DrawSetup(mnShadowMapHandle);
-
-	// // シャドウマップへの描画
-	// DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
-	
-	// // シャドウマップへの描画を終了
-	// ShadowMap_DrawEnd();
-	
-	// 描画
 	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
+}
+
+// シャドウマップの初期化
+void ResourceManager::ShadowMapInit()
+{
+	// シャドウマップハンドル作成
+	mnShadowMapHandle = MakeShadowMap(1024, 1024);
+	// シャドウマップが想定するライトの方向もセット
+	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
+
+	// シャドウマップに描画する範囲を設定
+	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-1000.0f, -1.0f, -1000.0f), VGet(1000.0f, 1000.0f, 1000.0f));
 }
 
 /*------------*/
@@ -154,7 +152,9 @@ int ResourceManager::GetModelHandle(std::string fileName)
 	{
 		handle = mmModelHandle[fileName][0];
 		mmModelCount[handle] += 1;
-		return MV1DuplicateModel(handle);
+		int resultHandle = MV1DuplicateModel(handle);
+		mmModelHandle[fileName].push_back(resultHandle);
+		return resultHandle;
 	}
 
 	handle = MV1LoadModel(fileName.c_str());
@@ -343,3 +343,126 @@ void ResourceManager::ReduceMovie(int handle)
 /*------------*/
 /*【サウンド】*/
 /*------------*/
+
+
+
+/*----------*/
+/*【エフェクト】
+/*----------*/
+
+// エフェクト取得
+int ResourceManager::GetEffectHandle(std::string fileName, float size)
+{
+	int handle = -1;
+	if (mmEffectHandle.find(fileName) != mmEffectHandle.end())
+	{
+		handle = mmEffectHandle[fileName][0];
+		mmEffectCount[handle] += 1;
+		int resultHandle = PlayEffekseer3DEffect(handle);
+		mmEffectHandle[fileName].push_back(resultHandle);
+		return resultHandle;
+	}
+
+	handle = LoadEffekseerEffect(fileName.c_str(), size);
+	if (handle == -1)
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+		return -1;
+	}
+	std::vector<int> setHandle;
+	setHandle.clear();
+	setHandle.reserve(2);
+	setHandle.push_back(handle);
+	setHandle.push_back(PlayEffekseer3DEffect(handle));
+	mmEffectHandle[fileName] = setHandle;
+	mmEffectCount[handle] = 1;
+
+	return setHandle[1];
+
+    return -1;
+}
+
+// エフェクトカウントを減らす
+void ResourceManager::ReduceEffect(int handle)
+{
+	std::string fileName = "NULL";
+	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	{
+		for (int i = 0; i < effectHandle.second.size(); i++)
+		{
+			if (effectHandle.second[i] == handle)
+			{
+				fileName = effectHandle.first;
+				handle = effectHandle.second[0];
+				break;
+			}
+		}
+		
+		if (fileName != "NULL")
+		{
+			break;
+		}
+	}
+
+	mmEffectCount[handle] -= 1;
+	if (mmEffectCount[handle] <= 0)
+	{
+		DeleteEffekseerEffect(handle);
+		mmEffectCount.erase(handle);
+		mmEffectHandle.erase(fileName);
+	}
+}
+
+// エフェクト描画
+void ResourceManager::DrawEffect(int handle)
+{
+}
+
+// エフェクト初期化
+void ResourceManager::EffectInit()
+{
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+	// 引数には画面に表示する最大パーティクル数を設定する。
+	if (Effekseer_Init(8000) == -1)
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+		return;
+	}
+	
+	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
+	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+
+	// DXライブラリのデバイスロストした時のコールバックを設定する。
+	Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+
+	// Zバッファを有効にする。
+	SetUseZBuffer3D(TRUE);
+
+	// Zバッファへの書き込みを有効にする。
+	SetWriteZBuffer3D(TRUE);
+}
+
+// エフェクト終了
+void ResourceManager::EffectFinailize()
+{
+    for (auto &handle : mmEffectHandle)
+    {
+        DeleteEffekseerEffect(handle.second[0]);
+    }
+
+    mmEffectHandle.clear();
+    mmEffectHandle.clear();
+    Effkseer_End();
+}
+
+// エフェクト描画処理
+void ResourceManager::EffectDrawProcess()
+{
+	// DXライブラリのカメラとEffekseerのカメラを同期する。
+	Effekseer_Sync3DSetting();
+	// Effekseerにより再生中のエフェクトを更新する。
+	UpdateEffekseer3D();
+	// Effekseerにより再生中のエフェクトを描画する。
+	DrawEffekseer3D();
+}

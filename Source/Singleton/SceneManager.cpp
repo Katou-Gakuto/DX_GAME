@@ -1,3 +1,6 @@
+#include "Master.h"
+
+#include "FadeManager.h"
 #include "SceneManager.h"
 #include "UtilFactorys.h"
 
@@ -28,4 +31,11 @@ void SceneManager::Update()
 void SceneManager::NextScene()
 {
 	mpFSMScene->NextScene(this);
+}
+
+// ŽŸ‚ÌƒV[ƒ“‚ðÝ’è
+void SceneManager::SetNextScene(SCENE nextScene)
+{
+	Master::mpFadeManager->FadeOut();
+	meNextScene = nextScene;
 }

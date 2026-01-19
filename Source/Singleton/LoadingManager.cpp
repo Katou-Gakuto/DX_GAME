@@ -5,6 +5,7 @@
 #include "Master.h"
 
 #include "EndManager.h"
+#include "FadeManager.h"
 #include "GameManager.h"
 #include "LoadingManager.h"
 #include "SceneManager.h"
@@ -20,6 +21,15 @@ LoadingManager::~LoadingManager()
 //ローディング
 void LoadingManager::Loading()
 {
+	// フェード
+	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::FADE) && !Master::mpEndManager->GetBitEndflag().Bool())
+	{
+		Master::mpFadeManager->FadeEnd();
+
+		mullLoadingFlag.DisableFlag(LOADING_NUMBER::FADE);
+	}
+
+	// シーン
 	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
 		SetUseASyncLoadFlag(TRUE);
@@ -28,6 +38,7 @@ void LoadingManager::Loading()
 
 		while ((GetASyncLoadNum() != 0) && !Master::mpEndManager->EndFlag())
 		{
+			// TODO: シーン読み込み中描画
 		}
 		if (GetASyncLoadNum() != 0)
 		{
@@ -35,6 +46,8 @@ void LoadingManager::Loading()
 		}
 
 		SetUseASyncLoadFlag(FALSE);
+
+		Master::mpFadeManager->FadeIn();
 		mullLoadingFlag.DisableFlag(LOADING_NUMBER::SCENE);
 	}
 }

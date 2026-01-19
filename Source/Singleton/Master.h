@@ -2,10 +2,12 @@
 
 class DataManager;
 class EndManager;
+class FadeManager;
 class GameManager;
 class KeyState;
 class LoadingManager;
 class ResourceManager;
+class StopManager;
 class TimeManager;
 
 class Master
@@ -13,10 +15,12 @@ class Master
 public:
 	static DataManager* mpDataManager;	// データマネージャー
 	static EndManager* mpEndManager;	// エンドマネージャー
+	static FadeManager* mpFadeManager;	// フェードマネージャー
 	static GameManager* mpGameManager;	// ゲームマネージャー
 	static KeyState* mpKeyState;	// キーステート
 	static LoadingManager* mpLoadingManager;	// ローディングマネージャー
 	static ResourceManager* mpResourceManager;	// リソースマネージャー
+	static StopManager* mpStopManager;	// ストップマネージャー
 	static TimeManager* mpTimeManager;	// タイムマネージャー
 
 	/*マスター所持物全削除処理*/

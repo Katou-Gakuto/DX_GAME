@@ -6,10 +6,12 @@
 
 #include "DataManager.h"
 #include "EndManager.h"
+#include "FadeManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
+#include "StopManager.h"
 #include "TimeManager.h"
 
 #if _DEBUG
@@ -19,10 +21,12 @@
 // マスター静的メンバ変数初期化
 DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
+FadeManager* Master::mpFadeManager = new FadeManager();
 GameManager* Master::mpGameManager = new GameManager();
 KeyState* Master::mpKeyState = new KeyState();
 LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
+StopManager* Master::mpStopManager = new StopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
 // HACK: exeファイルが一段上に隠れるからプロジェクトファイルの場所を変えてリソースのファイル座標を書き換える
@@ -63,24 +67,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ループ
 	while (!Master::mpEndManager->EndFlag()) {
 
-		if (Master::mpLoadingManager->GetLoadingFlag())
+		// ローディング処理
+		if (Master::mpLoadingManager->GetLoadingFlag() && !Master::mpFadeManager->GetFadeFlag())
 		{
 			// 読み込み
 			Master::mpLoadingManager->Loading();
 		}
-		else
+
+		
+		// メイン処理
+		if (Master::mpTimeManager->GetNextUpdateFlag())
 		{
-			if (Master::mpTimeManager->GetNextUpdateFlag())
-			{
-				// 更新
-				Master::mpGameManager->Update();
+			// 更新
+			Master::mpGameManager->Update();
 
-				// 必要であれば削除する
-				Master::mpGameManager->DeleteAllIfNeeded();
+			// 必要であれば削除する
+			Master::mpGameManager->DeleteAllIfNeeded();
 
-				// 描画
-				Master::mpGameManager->Draw();
-			}
+			// 描画
+			Master::mpGameManager->Draw();
 		}
 	}
 

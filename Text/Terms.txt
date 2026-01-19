@@ -150,6 +150,7 @@ i_役割
 	関数     → fn
 	クラス   → p
 	void*    → p
+	future	 → fu
 
 	例外
 	template<typename T> struct → テンプレートTの型に準拠

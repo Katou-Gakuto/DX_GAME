@@ -28,7 +28,7 @@ public:
 	* yİ’èz
 	*/
 	/*Ÿ‚ÌƒV[ƒ“‚ğİ’è*/
-	inline void SetNextScene(SCENE nextScene) { meNextScene = nextScene; }
+	void SetNextScene(SCENE nextScene);
 	
 	/*--------------------------------------------------
 	* yæ“¾z

@@ -10,6 +10,7 @@
 #include "ObjectManager.h"
 #include "SceneManager.h"
 #include "StateBase.h"
+#include "StopManager.h"
 #include "UtilCalc.h"
 
 /*------------------------------------------*/
@@ -100,40 +101,44 @@ void CharacterBase::Finalize()
 // 更新
 void CharacterBase::Update()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		CharacterUpdate();
-		if (mpFsm != nullptr)
-		{
-			mpFsm->Update(this);
-		}
-		ActionProcess();
+		return;
 	}
+
+	CharacterUpdate();
+	if (mpFsm != nullptr)
+	{
+		mpFsm->Update(this);
+	}
+	ActionProcess();
 }
 
 // 最終更新
 void CharacterBase::LastUpdate()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		CharacterLastUpdate();
-		if (mpFsm != nullptr)
-		{
-			mpFsm->LastUpdate(this);
-		}
-		MoveProcess();
-
-		// モデル位置・角度更新
-		mpModelController->SetModelPosition(mvPosition);
-		mpModelController->SetModelAngle(mvAngle);
-		mpModelController->ModelsPositionSetting();
-		
-		// アニメーション更新
-		mpAnimation->Update();
-
-		// モデルに反映
-		mpModelController->UpdateModels();
+		return;
 	}
+
+	CharacterLastUpdate();
+	if (mpFsm != nullptr)
+	{
+		mpFsm->LastUpdate(this);
+	}
+	MoveProcess();
+
+	// モデル位置・角度更新
+	mpModelController->SetModelPosition(mvPosition);
+	mpModelController->SetModelAngle(mvAngle);
+	mpModelController->ModelsPositionSetting();
+
+	// アニメーション更新
+	mpAnimation->Update();
+
+	// モデルに反映
+	mpModelController->UpdateModels();
 }
 
 // 描画
@@ -321,19 +326,23 @@ void BuildingBase::Finalize()
 // 更新
 void BuildingBase::Update()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		CollisionUpdate();
+		return;
 	}
+
+	CollisionUpdate();
 }
 
 // 最終更新
 void BuildingBase::LastUpdate()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		CollisionLastUpdate();
+		return;
 	}
+
+	CollisionLastUpdate();
 }
 
 // 描画
@@ -378,19 +387,24 @@ void AttackBase::Finalize()
 // 更新
 void AttackBase::Update()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		AttackUpdate();
+		return;
 	}
+
+	AttackUpdate();
 }
+
 
 // 最終更新
 void AttackBase::LastUpdate()
 {
-	if (!Master::mpTimeManager->GetStopFlag())
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		AttackLastUpdate();
+		return;
 	}
+
+	AttackLastUpdate();
 }
 
 // 描画

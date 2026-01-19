@@ -30,6 +30,11 @@ public:
 		return this->flags != 0;
 	}
 
+	inline unsigned long long BitSize()
+	{
+		return sizeof(T) * 8ULL;
+	}
+
 	/*-----【指定ビット設定】-----*/
 	inline void SetFlag(bool flag, int number){
 		if (flag){
@@ -126,9 +131,7 @@ public:
 
 	/*Tのビット数を超えてないかを確認する(超えていれば「false」を返す)*/
 	static inline bool CheckNumber(int number){
-
-		int test = sizeof(T) * 8;
-		if ((sizeof(T) * 8) > number){
+		if (((sizeof(T) * 8) > number) && (number >= 0)){
 			return true;
 		}
 		return false;

@@ -9,8 +9,10 @@
 #include "ModelBase.h"
 #include "StateBase.h"
 
-
-class StateMVOneAnimation : public IStateAnimation
+/*----------*/
+/*【アニメーションステート共通処理】
+/*----------*/
+class StateAnimationProcess
 {
 protected:
     // MV1アニメション情報
@@ -21,20 +23,15 @@ protected:
         bool loopFlag;          // ループフラグ
     };
 
-    // アニメーションのナンバー
-    enum MV_ONE_ANIMATION_NUMBER
-    {
-        PRE = 0,    // 前のアニメーション
-        NOW,        // 今のアニメーション
-        MAX
-    };
-
 protected:
     // モデルハンドル
     int mnModelHandle;
     
-    // MV1のアニメーション情報
-    MVOneAnimationData mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::MAX];
+    // 一つ前のアニメーション情報
+    MVOneAnimationData mstPreAnimationData;
+
+    // アニメーション種類
+    ANIMATION_TYPE meAnimationType;
 
     // ブレンド率
     float mfAnimBlendRate;
@@ -47,36 +44,124 @@ protected:
 
     // ブレンド率最大
     const float ANIMATION_BLEND_RATE_MAX = 1.0f;
-
 public:
-    StateMVOneAnimation(int modelHandle, std::string frameName);
+    StateAnimationProcess(int handle);
+    ~StateAnimationProcess() = default;
+
+protected:
+    /*アニメーションをデタッチ*/
+    virtual void AnimationDetach();
+    /*現在の再生状況を保持しておく*/
+    virtual void KeepAnimationData(AnimationBase* animation, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
+    /*現在の再生状況も含めて破棄する*/
+    virtual void ClearAnimationData();
+
+    /*アニメーションをアタッチ*/
+    virtual void AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
+
+    /*アニメーション更新*/
+    void UpdateAnimation(AnimationDatas *nowAnimationData);    
+};
+
+
+/*----------*/
+/*【MV1モデルアニメーション】
+/*----------*/
+class StateMVOneAnimation : public IStateAnimation, public StateAnimationProcess
+{
+public:
+    StateMVOneAnimation(int modelHandle, std::string fileName);
     ~StateMVOneAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    void OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType) override;
+    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    void OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType) override;
+    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    void Update(AnimationBase* animation, AnimationDatas animationDatas) override;
+    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+};
+
+/*----------*/
+/*【MV1モデル　アニメーション無しモデル】
+/*----------*/
+class StateMVOneOnlyAnimation : public IStateAnimation, public StateAnimationProcess
+{
+public:
+    StateMVOneOnlyAnimation(int modelHandle);
+    ~StateMVOneOnlyAnimation() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>更新</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
 
 protected:
-    // アニメーションをデタッチ
-    virtual void AnimationDetach();
-    // 現在の再生状況を保持しておく
-    virtual void KeepAnimationData();
-    // 現在の再生状況も含めて破棄する
-    virtual void ClearAnimationData();
 
-    // アニメーションをアタッチ
-    virtual void AnimationAttach(AnimationDatas animationData);
+    /*モデル種類が同類なら「true」を返す*/
+    virtual bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 
-    // アニメーション更新
-    virtual void UpdateAnimation();    
+    /*アニメーションをアタッチ*/
+    virtual void AnimationAttach(AnimationBase* animation, AnimationDatas *animationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas) override;
+};
+
+
+// HACK: 一つしかできないから複数できるようにアニメーションデータでやる
+/*----------*/
+/*【MV1モデル モデル操作】
+/*----------*/
+class StateMVOneOperationAnimation : public StateMVOneOnlyAnimation
+{
+private:
+    // 変更移動量
+    VECTOR mvChangeMove;
+    // 移動量
+    VECTOR mvMove;
+
+    // 変更アングル量
+    VECTOR mvChangeAngle;
+    // アングル
+    VECTOR mvAngle;
+
+public:
+    StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle);
+    ~StateMVOneOperationAnimation() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>更新</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
+
+
+protected:
+    /*モデル種類が同類なら「true」を返す*/
+    virtual bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 };

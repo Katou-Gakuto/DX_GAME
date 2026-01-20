@@ -11,6 +11,7 @@
 #include "ObjectBases.h"
 #include "StateGameUI.h"
 #include "TargetManager.h"
+#include "UtilCalc.h"
 
 /*--------------------------------*/
 /*     yƒQ[ƒ€UIƒXƒe[ƒgz     */
@@ -53,6 +54,7 @@ void GameUIProcess::DrawMinMap()
     // ”ÍˆÍŠOŒvŽZ
     {
         mvPlayerPos = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+        mvPlayerAngle = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetAngle();
 
     }
 
@@ -67,7 +69,7 @@ VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
     VECTOR minMapPos;
 
 
-    return ;
+    return minMapPos;
 }
 
 /*----------------------*/

@@ -37,16 +37,18 @@
 void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber)
 {
 	// モデル設定
-	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1"));
+	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	character->GetModelsController()->SetModelSize(VGet(20.0f, 20.0f, 20.0f));
 	// アニメション設定
-	{
-		AnimationBase* characterAnimation = character->GetAnimation();
-		std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-		// 読み込み用アニメーションデータ設定
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
-		// アニメーション有限状態マシン設定
-		characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, setcharacterLoadAnimationData));
-	}
+	 {
+	 	AnimationBase* characterAnimation = character->GetAnimation();
+	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	 	// 読み込み用アニメーションデータ設定
+	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
+	 	// アニメーション有限状態マシン設定
+	 	characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
+	 }
 }
 
 /*--------------------------*/
@@ -183,7 +185,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetAngle(VGet(0.0f, 3.14f, 0.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
 		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
 		// // モデル設定
 		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 		// // アニメション設定
@@ -289,7 +291,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -297,7 +299,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
 		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -305,7 +307,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -313,7 +315,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 
 	// UI生成

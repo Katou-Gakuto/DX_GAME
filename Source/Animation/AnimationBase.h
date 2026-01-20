@@ -34,7 +34,10 @@ public:
     void Update();
 
     /// <summary>アニメーションデータ追加</summary>
-    void AddAnimationData(const std::map<ANIMATION_TYPE, AnimationDatas> animationData) { mstAnimationDatas.push_back(animationData); }
+    inline void AddAnimationData(const std::map<ANIMATION_TYPE, AnimationDatas> animationData) { mstAnimationDatas.push_back(animationData); }
+
+    /// <summary>アニメション種類探索</summary>
+    inline bool SearchAnimationType(ANIMATION_TYPE animationType) { return (mmAnimationTime.find(animationType) != mmAnimationTime.end()); }
 
     /*----------*/
     /*【設定・取得】

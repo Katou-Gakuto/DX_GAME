@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Robot_Battle", "Robot_Battl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample_VS2022", "EffekseerForDXLib\Sample\Sample\Sample_VS2022.vcxproj", "{35F2F15B-446C-45A8-B157-24E15BE8A7E7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxLesson", "..\DxLesson\DxLesson.vcxproj", "{BDFC8402-337B-4CEB-AFEE-070D71436F48}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxLesson", "..\DxLesson\開発環境\DxLesson.vcxproj", "{BDFC8402-337B-4CEB-AFEE-070D71436F48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

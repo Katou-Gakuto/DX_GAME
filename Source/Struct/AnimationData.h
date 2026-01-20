@@ -18,6 +18,8 @@ struct LoadAnimationData
     int animationIndex; // アニメーション添え字
 
     bool animationLoopFlag;  // アニメーションループフラグ
+
+    MODEL_TYPE modelType;   // モデル種類
 };
 
 /*----------*/
@@ -25,11 +27,17 @@ struct LoadAnimationData
 /*----------*/
 struct AnimationDatas
 {
-    int number = 0;   // モデル種類
+    ANIMATION_TYPE preAnimationType;    // 一つ前のアニメーション種類
+
+    int number = 0;   // モデルナンバー
 
     bool loopFlag = false;  // ループフラグ
 
     MODEL_TYPE modelType = MODEL_TYPE::NONE;    // モデル種類
+
+    float animationCount = 0.0f;   // アニメーションカウント
+
+    int animationHandle = 0.0f;    // アニメションハンドル
 
     operator int&()
     {

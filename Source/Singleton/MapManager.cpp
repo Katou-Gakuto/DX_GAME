@@ -215,31 +215,31 @@ void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
 void MapManager::Draw()
 {
     mpModelMap->ModelDraw();
-    for (int z = 0; z < mstMapData.size(); z++)
-    {
-        for (int x = 0; x < mstMapData[z].size(); x++)
-        {
-            TileData& tile = mstMapData[z][x];
-            VECTOR drawPos = VGet(tile.tileDisplacedPos.x + (x * GetTileSize().x), tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize().z));
+    // for (int z = 0; z < mstMapData.size(); z++)
+    // {
+    //     for (int x = 0; x < mstMapData[z].size(); x++)
+    //     {
+    //         TileData& tile = mstMapData[z][x];
+    //         VECTOR drawPos = VGet(tile.tileDisplacedPos.x + (x * GetTileSize().x), tile.tileDisplacedPos.y, tile.tileDisplacedPos.z + (z * GetTileSize().z));
 
-            switch (tile.tileType)
-            {
-            case TileType::Ground:
-                // 左奥
-                DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
-                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
-                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
-                    GetColor(0, 0, 255),
-                    TRUE);
+    //         switch (tile.tileType)
+    //         {
+    //         case TileType::Ground:
+    //             // 左奥
+    //             DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+    //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+    //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
+    //                 GetColor(0, 0, 255),
+    //                 TRUE);
 
-                // 右手前
-                DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
-                    VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
-                    VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
-                    GetColor(0, 0, 255),
-                    TRUE);
-                break;
-            }
-        }
-    }
+    //             // 右手前
+    //             DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
+    //                 VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
+    //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
+    //                 GetColor(0, 0, 255),
+    //                 TRUE);
+    //             break;
+    //         }
+    //     }
+    // }
 }

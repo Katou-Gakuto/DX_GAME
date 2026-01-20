@@ -67,6 +67,8 @@ public:
 	inline VECTOR GetPosition() const { return mvPosition; }
 	/*Šp“xæ“¾*/
 	inline VECTOR GetAngle() const { return mvAngle; }
+	/// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
+	virtual int GetHandle() const { return -1; }
 
 	/*--------*/
 	/*yİ’èz*/

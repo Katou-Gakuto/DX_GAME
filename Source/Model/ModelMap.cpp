@@ -62,7 +62,8 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
                 case TileType::Ground:
                     setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
-                    MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
+                    // HACK: ècÇ∆ÇËÇ†Ç¶Ç∏Ç¢ÇÍÇƒÇÈ
+                    MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y + 50.0f, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
                 break;
             }
             setTileModelLine.push_back(setTileModel);

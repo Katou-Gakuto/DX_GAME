@@ -10,7 +10,10 @@ enum class ANIMATION_TYPE
     JUMP_IN,    // ジャンプ開始
     JUMP,       // ジャンプ
     JUMP_OUT,   // ジャンプ終了
+    ATTACK_IN,  // 攻撃開始
     ATTACK,     // 攻撃
+    ATTACK_OUT, // 攻撃終了
+    DEATH,      // 死亡
 };
 
 // アニメーションモデル種類
@@ -18,6 +21,7 @@ enum class MODEL_TYPE
 {
     NONE = 0,   // 無し
     MV1_MODEL,  // MV1モデル
-    MV1_MODEL_ONLY, // MV1モデルのみ
+    MV1_MODEL_MOVE, // MV1モデル モデル操作
+    MV1_MODEL_ONLY, // MV1モデルのみ　アニメーション無しモデル
     POLYGON_INDEXED, // ポリゴンインデックスモデル
 };

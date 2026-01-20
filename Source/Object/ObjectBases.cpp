@@ -163,7 +163,7 @@ int CharacterBase::StartAttck()
 {
 	if (mnAttackDataNumber != -1)
 	{
-		SetAnimation(ANIMATION_TYPE::ATTACK);
+		SetAnimation(ANIMATION_TYPE::ATTACK_IN);
 		return Master::mpGameManager->GetAttackManager()->StartAttack(mnAttackDataNumber);
 	}
 

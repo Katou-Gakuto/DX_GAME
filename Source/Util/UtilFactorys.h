@@ -31,6 +31,7 @@ enum class ANIMATION_FACTORY_NUMBER
 enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER
 {
 	HUMAN = 0,
+	ROBOT,
 };
 
 // キャラクター作成ナンバー
@@ -57,17 +58,18 @@ enum class UI_FACTORY_NUMBER
 
 namespace UtilFactorys
 {
-	// HACK: データマネージャーから受け取るようにするまでの簡易処置(第二引数)
+	// TODO: 改善する
+	// HACK: 変数名変更する
 	/// <summary>アニメーション有限状態マシン作成</summary>
 	/// <param name="animationData">アニメーション情報</param>
 	/// <param name="modelBases">モデル</param>
 	/// <returns>有限状態マシン</returns>
-	FSMAnimation* FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER number, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
+	FSMAnimation* FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
 
 	/// <summary>アニメーションデータ作成</summary>
 	/// <param name="type">モデル種類</param>
 	/// <returns>アニメーションデータ</returns>
-	std::map<ANIMATION_TYPE, AnimationDatas> AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData);
+	std::map<ANIMATION_TYPE, AnimationDatas> AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData);
 	
 	/// <summary>読み込み用アニメーションデータ作成</summary>
 	/// <param name="animation">アニメーション</param>

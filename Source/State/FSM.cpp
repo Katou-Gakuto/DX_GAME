@@ -110,6 +110,7 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<std::map<ANIMATI
 		}
 
 		// 更新
+
 		GetAnimationState(i, animation, mnCurrentState)->Update(animation, animationDatas[i][mnCurrentState]);
 	}
 }
@@ -117,19 +118,19 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<std::map<ANIMATI
 // 新しいステートを設定する
 void FSMAnimation::NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType)
 {
-	GetAnimationState(animationIndex, animation, mnCurrentState)->OnEnter(animation, animation->GetAnimationDatas()[animationIndex][mnCurrentState], oldModelType);
+	GetAnimationState(animationIndex, animation, mnCurrentState)->OnEnter(animation, &animation->GetAnimationDatas()[animationIndex][mnCurrentState], &animation->GetAnimationDatas()[animationIndex], oldModelType);
 }
 
 // 次のステートが現在のステートと違うならステート変更処理をする
 void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType)
 {
-	std::map<ANIMATION_TYPE, AnimationDatas>& animationDatas = animation->GetAnimationDatas()[animationStateIndex];
+	std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas = &animation->GetAnimationDatas()[animationStateIndex];
 
 	// 現在のState終了処理
-	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, animationDatas[oldAnimationType], animationDatas[mnCurrentState].modelType);
+	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, &(*animationDatas)[oldAnimationType], animationDatas, (*animationDatas)[mnCurrentState].modelType);
 
 	// 新しいState設定
-	NewStateSetting(animationStateIndex, animation, animationDatas[oldAnimationType].modelType);
+	NewStateSetting(animationStateIndex, animation, (*animationDatas)[oldAnimationType].modelType);
 }
 
 // 現在のステート取得

@@ -12,80 +12,42 @@
 #include "ModelsControllerBase.h"
 #include "StateAnimation.h"
 #include "StateBase.h"
+#include "UtilCalc.h"
 
-StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string frameName)
-: IStateAnimation()
-, mnModelHandle(modelHandle)
+/*----------*/
+/*【アニメーションステート共通処理】
+/*----------*/
+
+StateAnimationProcess::StateAnimationProcess(int modelHandle)
+: mnModelHandle(modelHandle)
 , mfAnimBlendRate(0.0f)
 , mfAnimBlendSpeed(0.1f)
 , mfAnimationSpeed(0.5f)
+, meAnimationType(ANIMATION_TYPE::NONE)
 {
-    // アニメーションフレーム固定
-    {
-        // アニメーションで移動をしているフレームの番号を検索する
-        int moveAnimFrameIndex = MV1SearchFrame(mnModelHandle, frameName.c_str());
-
-        // アニメーションで移動しているフレームを無効にする
-        MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
-    }
-
-    for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
-    {
-        mstMvOneAnimationDatas[i].animationCount = 0.0f;
-        mstMvOneAnimationDatas[i].animationHandle = -1;
-        mstMvOneAnimationDatas[i].loopFlag = false;
-    }
-
-    mStateNumber = MODEL_TYPE::MV1_MODEL;
-}
-
-// この状態に入った時の処理
-void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE oldModelType)
-{
-    AnimationAttach(animationDatas);
-}
-
-// この状態を出る時の処理
-void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas animationDatas, MODEL_TYPE newModelType)
-{
-    AnimationDetach();
-
-    // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
-    if (mStateNumber == newModelType)
-    {
-        KeepAnimationData();
-    }
-    else
-    {
-        ClearAnimationData();
-    }
-}
-
-// 更新
-void StateMVOneAnimation::Update(AnimationBase* animation, AnimationDatas animationDatas)
-{
-    // アニメーション更新
-    UpdateAnimation();
+    mstPreAnimationData.animationCount = 0.0f;
+    mstPreAnimationData.animationHandle = -1;
+    mstPreAnimationData.loopFlag = false;
 }
 
 // アニメーションをデタッチ
-void StateMVOneAnimation::AnimationDetach()
+void StateAnimationProcess::AnimationDetach()
 {
-    if (mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle != (-1))
+    if (mstPreAnimationData.animationHandle != (-1))
     {
-        MV1DetachAnim(mnModelHandle, mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle);
-        mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle = -1;
+        MV1DetachAnim(mnModelHandle, mstPreAnimationData.animationHandle);
+        mstPreAnimationData.animationHandle = -1;
     }
 }
 
 // 現在の再生状況を保持しておく
-void StateMVOneAnimation::KeepAnimationData()
+void StateAnimationProcess::KeepAnimationData(AnimationBase* animation, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas)
 {
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE] = mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW];
+    (*animationDatas)[animation->GetAnimationType()].preAnimationType = meAnimationType;
 }
 
 // 現在の再生状況も含めて破棄する
-void StateMVOneAnimation::ClearAnimationData()
+void StateAnimationProcess::ClearAnimationData()
 {
     for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
     {
@@ -96,17 +58,17 @@ void StateMVOneAnimation::ClearAnimationData()
 }
 
 // アニメーションをアタッチ
-void StateMVOneAnimation::AnimationAttach(AnimationDatas animationData)
+void StateAnimationProcess::AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas)
 {
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, animationData.number);
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData.number);
     mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationCount = 0.0f;
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = animationData.loopFlag;
+    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = nowAnimationData.loopFlag;
 
     mfAnimBlendRate = ((mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle == -1) ? 1.0f : 0.0f);
 }
 
 // アニメーション更新
-void StateMVOneAnimation::UpdateAnimation()
+void StateAnimationProcess::UpdateAnimation(AnimationDatas *nowAnimationData)
 {
     if (mnModelHandle != -1) {
 
@@ -174,119 +136,202 @@ void StateMVOneAnimation::UpdateAnimation()
     }
 }
 
-//     if (index == -1) {
-//         return;
-//     }
-//     if (mnModelHandle != -1) {
-//         if (index != mnAnimNumber1)
-//         {
-//             // 前のアニメーションナンバーを保持
-//             mnAnimNumber2 = mnAnimNumber1;
-//             // 現在のアニメーションナンバーを保持
-//             mnAnimNumber1 = index;
+/*----------*/
+/*【MV1モデルアニメーション】
+/*----------*/
 
-//             // 再生中のアニメーション2が有効状態だったらデタッチしておく
-//             if (mnAnimation2 != (-1))
-//             {
+StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string fileName)
+: IStateAnimation()
+, StateAnimationProcess(modelHandle)
+{
+    // アニメーションフレーム固定
+    {
+        // アニメーションで移動をしているフレームの番号を検索する
+        int moveAnimFrameIndex = MV1SearchFrame(mnModelHandle, fileName.c_str());
 
-//                 MV1DetachAnim(mnModelHandle, mnAnimation2);
-//                 mnAnimation2 = -1;
-//             }
+        // アニメーションで移動しているフレームを無効にする
+        MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
+    }
 
-//             // 今まで再生されていた情報を2の方に保持しておく
-//             mnAnimation2 = mnAnimation1;
-//             mfAnimCount2 = mfAnimCount1;
-//             mbLoopFlag2 = mbLoopFlag1;
+    mStateNumber = MODEL_TYPE::MV1_MODEL;
+}
 
-//             // 新しいアニメーションアタッチして、アタッチ番号を保持しておく
-//             if (!mbNotOneAnimFlag) {
-//                 mnAnimation1 = MV1AttachAnim(mnModelHandle, index);
-//             }
-//             else {
-//                 mnAnimation1 = MV1AttachAnim(mnModelHandle, 0, mnAnimHandle[mnAnimNumber1], FALSE);/*フレーム名が違くてもアタッチするようにしてる*/
-//             }
-//             mfAnimCount1 = 0.0f;
+// この状態に入った時の処理
+void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType)
+{
+    AnimationAttach(nowAnimationData);
+}
 
-//             // 新しいアニメーションがループするかどうか
-//             mbLoopFlag1 = LoopCheck(index);
+// この状態を出る時の処理
+void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType)
+{
+    AnimationDetach();
 
-//             // ブレンド率の初期値を設定
-//             // note: アニメーション2が有効でない場合はブレンドさせないので1.0にしておく  
-//             mfAnimBlendRate = (mnAnimation2 == -1 ? 1.0f : 0.0f);
-//         }
-//     }
+    // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
+    if (mStateNumber == newModelType)
+    {
+        KeepAnimationData();
+    }
+    else if (CheckSimilarModelType(newModelType))
+    {
 
+    }
+    else
+    {
+        ClearAnimationData();
+    }
+}
 
-//     if (mnModelHandle != -1) {
+// 更新
+void StateMVOneAnimation::Update(AnimationBase* animation, AnimationDatas *nowAnimationData)
+{
+    // アニメーション更新
+    UpdateAnimation(nowAnimationData);
+}
 
-//         // ブレンド率を加算していく
-//         if (mfAnimBlendRate < 1.0f)
-//         {
-//             mfAnimBlendRate += CHARA_ANIM_BLEND_SPEED;
+// モデル種類が同類なら「true」を返す
+bool StateMVOneAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    switch (modelType)
+    {
+    case MODEL_TYPE::MV1_MODEL:
+        return true;
+    }
 
-//             if (mfAnimBlendRate > 1.0f)
-//             {
-//                 mfAnimBlendRate = 1.0f;
-//             }
-//         }
-//         float fAnimTotalTime;
-
-//         // アニメーション1の処理
-//         if (mnAnimation1 != -1)
-//         {
-//             // 総再生時間を取得
-//             fAnimTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, mnAnimation1);
-            
-//             // 再生時間を進める
-//             mfAnimCount1 += CHARA_PLAY_ANIM_SPEED;
-
-//             // ループさせる
-//             if (mfAnimCount1 >= fAnimTotalTime && mbLoopFlag1)
-//             {
-//                 ///
-//                 mfAnimCount1 = fmodf(mfAnimCount1, fAnimTotalTime);
-//                 ///
-//             }
-//             else if (mfAnimCount1 >= fAnimTotalTime && !mbLoopFlag1)
-//             {
-//                 mfAnimCount1 = fAnimTotalTime;
-//             }
-
-//             // モデルに反映
-//             MV1SetAttachAnimTime(mnModelHandle, mnAnimation1, mfAnimCount1);
-
-//             // アニメーション反映率を設定
-//             MV1SetAttachAnimBlendRate(mnModelHandle, mnAnimation1, mfAnimBlendRate);
-//         }
-
-        
-//         // アニメーション2の処理
-//         if (mnAnimation2 != -1)
-//         {
-//             // 総再生時間を取得
-//             fAnimTotalTime = MV1GetAnimTotalTime(mnModelHandle, mnAnimation2);
-
-//             // 再生時間を進める
-//             mfAnimCount2 += CHARA_PLAY_ANIM_SPEED;
-
-//             // ループさせる
-//             if (mfAnimCount2 >= fAnimTotalTime && mbLoopFlag2)
-//             {
-//                 ///
-//                 mfAnimCount2 = fmodf(mfAnimCount2, fAnimTotalTime);
-//                 ///
-//             }
-//             else if (mfAnimCount2 >= fAnimTotalTime && !mbLoopFlag2)
-//             {
-//                 mfAnimCount2 -= CHARA_PLAY_ANIM_SPEED;
-//             }
+    return false;
+}
 
 
-//             // モデルに反映
-//             MV1SetAttachAnimTime(mnModelHandle, mnAnimation2, mfAnimCount2);
+/*----------*/
+/*【MV1モデル　アニメーション無しモデル】
+/*----------*/
+StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(int modelHandle)
+: IStateAnimation()
+, StateAnimationProcess(modelHandle)
+{
+    mStateNumber = MODEL_TYPE::MV1_MODEL_ONLY;
+}
 
-//             // アニメーション反映率を設定
-//             MV1SetAttachAnimBlendRate(mnModelHandle, mnAnimation2, 1.0f - mfAnimBlendRate);
-//         }
-//     }
-// }
+// この状態に入った時の処理
+void StateMVOneOnlyAnimation::OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType)
+{
+    AnimationAttach(animation, nowAnimationData, animationDatas);
+}
+
+// この状態を出る時の処理
+void StateMVOneOnlyAnimation::OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType)
+{
+    AnimationDetach();
+
+    // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
+    if (mStateNumber == newModelType)
+    {
+        KeepAnimationData();
+    }
+    else if (CheckSimilarModelType(newModelType))
+    {
+
+    }
+    else
+    {
+        ClearAnimationData();
+    }
+}
+
+// 更新
+void StateMVOneOnlyAnimation::Update(AnimationBase* animation, AnimationDatas *nowAnimationData)
+{
+    // アニメーション更新
+    UpdateAnimation(nowAnimationData);
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateMVOneOnlyAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    switch (modelType)
+    {
+    case MODEL_TYPE::MV1_MODEL_MOVE:
+    case MODEL_TYPE::MV1_MODEL_ONLY:
+        return false;
+    }
+
+    return false;
+}
+
+// アニメーションをアタッチ
+void StateMVOneOnlyAnimation::AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas)
+{
+    nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, nowAnimationData->number, FALSE);
+    nowAnimationData->animationCount = 0.0f;
+    meAnimationType = animation->GetAnimationType();
+
+    mstPreAnimationData.animationHandle = (*animationDatas)[nowAnimationData->preAnimationType].animationHandle;
+    mstPreAnimationData.animationCount = (*animationDatas)[nowAnimationData->preAnimationType].animationCount;
+
+    mfAnimBlendRate = ((mstPreAnimationData.animationHandle == -1) ? 1.0f : 0.0f);
+}
+
+/*----------*/
+/*【MV1モデル モデル操作】
+/*----------*/
+StateMVOneOperationAnimation::StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle)
+: StateMVOneOnlyAnimation(modelHandle)
+, mvChangeMove(changeVec)
+, mvMove(UtilCalc::VZero)
+, mvChangeAngle(changeAngle)
+, mvAngle(UtilCalc::VZero)
+{
+    mStateNumber = MODEL_TYPE::MV1_MODEL_MOVE;
+}
+
+// この状態に入った時の処理
+void StateMVOneOperationAnimation::OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType)
+{
+    AnimationAttach(animation, nowAnimationData, animationDatas);
+
+    mvMove = mpModelBase->GetPosition();;
+    mvAngle = mpModelBase->GetAngle();;
+}
+
+// この状態を出る時の処理
+void StateMVOneOperationAnimation::OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType)
+{
+    AnimationDetach();
+
+    // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
+    if (mStateNumber == newModelType)
+    {
+        KeepAnimationData();
+    }
+    else if (CheckSimilarModelType(newModelType))
+    {
+
+    }
+    else
+    {
+        ClearAnimationData();
+    }
+    
+    mpModelBase->SetPosition(mvMove);
+    mpModelBase->SetAngle(mvAngle);
+}
+
+// 更新
+void StateMVOneOperationAnimation::Update(AnimationBase* animation, AnimationDatas *nowAnimationData)
+{
+    mpModelBase->SetPosition(VAdd(mpModelBase->GetPosition(), mvChangeMove));
+    mpModelBase->SetAngle(VAdd(mpModelBase->GetAngle(), mvChangeAngle));
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateMVOneOperationAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    switch (modelType)
+    {
+    case MODEL_TYPE::MV1_MODEL_MOVE:
+    case MODEL_TYPE::MV1_MODEL_ONLY:
+        return false;
+    }
+
+    return false;
+}

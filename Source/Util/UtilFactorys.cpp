@@ -33,7 +33,7 @@
 #include "UtilFactorys.h"
 
 // アニメション有限状態マシン作成
-FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER number, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
+FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
 {
 	// FSM生成
 	FSMAnimation* fsm = new FSMAnimation();
@@ -45,20 +45,47 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 	// サイズ設定
 	fsm->IncreaseAnimationStateSize((int)animationDatas.size());
 
-	switch (number)
+	switch (animationFactoryNumber)
 	{
 	case ANIMATION_FACTORY_NUMBER::TOWN:
-		fsm->RegisterState(new StateIdleAnimationController());
-		fsm->RegisterState(new StateMoveAnimationController());
+		switch (ladoAnimationDataFactorynumber)
+		{
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new StateMoveAnimationController());
+			break;
+		}
 		break;
+
 	case ANIMATION_FACTORY_NUMBER::DUNGEON:
-		fsm->RegisterState(new StateIdleAnimationController());
-		fsm->RegisterState(new StateMoveAnimationController());
+		switch (ladoAnimationDataFactorynumber)
+		{
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new StateMoveAnimationController());
+			break;
+		}
 		break;
+
 	case ANIMATION_FACTORY_NUMBER::BATTLE:
-		fsm->RegisterState(new StateIdleAnimationController());
-		fsm->RegisterState(new StateMoveAnimationController());
-		fsm->RegisterState(new StateAttackAnimationController());
+		switch (ladoAnimationDataFactorynumber)
+		{
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new StateMoveAnimationController());
+			fsm->RegisterState(new StateAttackAnimationController());
+			break;
+
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new StateMoveAnimationController());
+			fsm->RegisterState(new StateAttackInAnimationController());
+			fsm->RegisterState(new StateAttackMiddleAnimationController());
+			fsm->RegisterState(new StateAttackOutAnimationController());
+			break;
+		}
 		break;
 	}
 
@@ -77,7 +104,28 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: 外部から固定するフレームの名前を取得できるようにする
-					setStateMap[setModelType] = new StateMVOneAnimation((dynamic_cast<ModelMV1*>(modelBases[i]))->GetHandle(), "root");
+					StateMVOneAnimation* stateMVOneAnimation = new StateMVOneAnimation(modelBases[i]->GetHandle(), "root");
+					stateMVOneAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateMVOneAnimation;
+				}
+				break;
+
+			case MODEL_TYPE::MV1_MODEL_MOVE:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					// HACK: 仮設定
+					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(0.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 10.0f));
+					stateMVOneOperationAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateMVOneOperationAnimation;
+				}
+				break;
+
+			case MODEL_TYPE::MV1_MODEL_ONLY:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					StateMVOneOnlyAnimation* stateMVOneOnlyAnimation = new StateMVOneOnlyAnimation(modelBases[i]->GetHandle());
+					stateMVOneOnlyAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateMVOneOnlyAnimation;
 				}
 				break;
 			}
@@ -93,47 +141,41 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 }
 
 // アニメーションデータ作成
-std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(MODEL_TYPE type, std::vector<LoadAnimationData> loadAnimationData)
+std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData)
 {
 	std::map<ANIMATION_TYPE, AnimationDatas> animationDataMap;
 	AnimationDatas animationData;
 	animationDataMap.clear();
 
-	switch (type)
+	for (int i = 0; i < loadAnimationData.size(); i++)
 	{
-	case MODEL_TYPE::MV1_MODEL:
-	{
-		for (int i = 0; i < loadAnimationData.size(); i++)
+		switch (loadAnimationData[i].modelType)
 		{
+		case MODEL_TYPE::MV1_MODEL:
 			// アニメション添え字設定
 			animationData.number = loadAnimationData[i].animationIndex;
 			
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
-			// HACK: 仮処置 データマネージャーから受け取るようにする
-			animationData.modelType = type;
+			
+			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
 			animationDataMap[loadAnimationData[i].animationType] = animationData;
-		}		
-		return animationDataMap;
-	}
+			break;
 
-	case MODEL_TYPE::MV1_MODEL_ONLY:
-	{
-		for (int i = 0; i < loadAnimationData.size(); i++)
-		{
+		case MODEL_TYPE::MV1_MODEL_MOVE:
+		case MODEL_TYPE::MV1_MODEL_ONLY:
 			// アニメション読み込み
 			animationData.number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
 
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
-			// HACK: 仮処置 データマネージャーから受け取るようにする
-			animationData.modelType = type;
+			
+			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
 			animationDataMap[loadAnimationData[i].animationType] = animationData;
+			break;
 		}
-		return animationDataMap;
-	}
 	}
 
 	return animationDataMap;
@@ -152,6 +194,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
+			loadAnimaData.modelType = MODEL_TYPE::MV1_MODEL;
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
@@ -174,7 +217,46 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		animation->SetAnimationTime(ANIMATION_TYPE::JUMP, 0);
 		animation->SetAnimationTime(ANIMATION_TYPE::JUMP_OUT, 0);
 		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
-		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(MODEL_TYPE::MV1_MODEL, loadAnimationData));
+		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+		for (int i = 0; i < 5; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.modelType = MODEL_TYPE::MV1_MODEL_ONLY;
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		// HACK: データマネージャーから取得できるようにする
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationLoopFlag = true;
+		loadAnimationData[0].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1";
+
+		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
+		loadAnimationData[1].animationLoopFlag = true;
+		loadAnimationData[1].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1";
+
+		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[2].animationLoopFlag = false;
+		loadAnimationData[2].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1";
+
+		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[3].animationLoopFlag = false;
+		loadAnimationData[3].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
+		loadAnimationData[3].modelType = MODEL_TYPE::MV1_MODEL_MOVE;
+
+		loadAnimationData[4].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		loadAnimationData[4].animationLoopFlag = false;
+		loadAnimationData[4].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
+
+		// TODO: データマネージャーから取得できる形式にしたい
+		animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1156);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1156);
+		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		break;
 	}
 

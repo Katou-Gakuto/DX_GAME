@@ -100,11 +100,11 @@
     <Filter Include="ソース ファイル\Model\ModelsController">
       <UniqueIdentifier>{7946ba2b-4bf0-41f8-87a5-343394a2b3c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Animation">
-      <UniqueIdentifier>{43c643ca-9012-4392-b9d8-0bb854e00d8b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Animation">
       <UniqueIdentifier>{86878003-b208-4604-b2c2-65a13e32d1f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{43c643ca-9012-4392-b9d8-0bb854e00d8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

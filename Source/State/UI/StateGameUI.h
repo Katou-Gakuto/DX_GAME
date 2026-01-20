@@ -32,6 +32,9 @@ private:
     // プレイヤーポジション
     VECTOR mvPlayerPos;
 
+    // プレイヤーアングル
+    VECTOR mvPlayerAngle;
+
 public:
     GameUIProcess();
 

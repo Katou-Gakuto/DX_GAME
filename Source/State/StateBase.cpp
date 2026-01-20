@@ -4,6 +4,7 @@
 
 #include "CameraManager.h"
 #include "GameManager.h"
+#include "ModelBase.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "TargetManager.h"
@@ -52,6 +53,15 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 		SetCameraPositionAndTarget_UpVecY(cameraData.position, cameraData.targetPosition);
 	}
 }
+
+/*----------*/
+/*【アニメーションベース】
+/*----------*/
+void IStateAnimation::SetModelBase(ModelBase* modelBase)
+{
+	mpModelBase = modelBase;
+}
+
 
 /*------------------------*/
 /*【シーンステートベース】*/

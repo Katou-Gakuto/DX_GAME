@@ -32,5 +32,5 @@ public:
 
     /// <summary>ハンドル取得</summary>
     /// <returns>モデルハンドル</returns>
-    inline int GetHandle()  { return mnModelHandle; }
+    int GetHandle() const override  { return mnModelHandle; }
 };

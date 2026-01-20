@@ -45,26 +45,29 @@ void StateAnimationProcess::KeepAnimationData(AnimationBase* animation, std::map
 {
     (*animationDatas)[animation->GetAnimationType()].preAnimationType = meAnimationType;
 }
-
-// 現在の再生状況も含めて破棄する
-void StateAnimationProcess::ClearAnimationData()
-{
-    for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
-    {
-        mstMvOneAnimationDatas[i].animationCount = 0.0f;
-        mstMvOneAnimationDatas[i].animationHandle = -1;
-        mstMvOneAnimationDatas[i].loopFlag = false;
-    }
-}
+// TODO: 消す
+// // 現在の再生状況も含めて破棄する
+// void StateAnimationProcess::ClearAnimationData()
+// {
+//     for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
+//     {
+//         mstMvOneAnimationDatas[i].animationCount = 0.0f;
+//         mstMvOneAnimationDatas[i].animationHandle = -1;
+//         mstMvOneAnimationDatas[i].loopFlag = false;
+//     }
+// }
 
 // アニメーションをアタッチ
 void StateAnimationProcess::AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas)
 {
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData.number);
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].animationCount = 0.0f;
-    mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::NOW].loopFlag = nowAnimationData.loopFlag;
+    nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData->number);
+    nowAnimationData->animationCount = 0.0f;
+    meAnimationType = animation->GetAnimationType();
 
-    mfAnimBlendRate = ((mstMvOneAnimationDatas[MV_ONE_ANIMATION_NUMBER::PRE].animationHandle == -1) ? 1.0f : 0.0f);
+    mstPreAnimationData.animationHandle = (*animationDatas)[nowAnimationData->preAnimationType].animationHandle;
+    mstPreAnimationData.animationCount = (*animationDatas)[nowAnimationData->preAnimationType].animationCount;
+
+    mfAnimBlendRate = ((mstPreAnimationData.animationHandle == -1) ? 1.0f : 0.0f);
 }
 
 // アニメーション更新
@@ -72,67 +75,112 @@ void StateAnimationProcess::UpdateAnimation(AnimationDatas *nowAnimationData)
 {
     if (mnModelHandle != -1) {
 
-        // ブレンド率を加算していく
-        if (mfAnimBlendRate < ANIMATION_BLEND_RATE_MAX)
-        {
-            mfAnimBlendRate += mfAnimBlendSpeed;
+        // ブレンド率更新
+        UpdateBlend();
 
-            if (mfAnimBlendRate > ANIMATION_BLEND_RATE_MAX)
-            {
-                mfAnimBlendRate = ANIMATION_BLEND_RATE_MAX;
-            }
-        }
         float animTotalTime;
 
-        // アニメーション処理
+        // 現在のアニメーション時間を進める
+        AdvanceAnimationTime(nowAnimationData->animationHandle, &nowAnimationData->animationCount, nowAnimationData->loopFlag, mfAnimBlendRate);
 
-        for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
-        {
-            if (mstMvOneAnimationDatas[i].animationHandle != -1)
-            {
-                // 総再生時間を取得
-                animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle);
+        // 前のアニメーション時間を進める
+        AdvanceAnimationTime(mstPreAnimationData.animationHandle, &mstPreAnimationData.animationCount, mstPreAnimationData.loopFlag, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
 
-                // 再生時間を進める
-                mstMvOneAnimationDatas[i].animationCount += mfAnimationSpeed;
+        // TODO: 消す
+        // for (int i = 0; i < MV_ONE_ANIMATION_NUMBER::MAX; i++)
+        // {
+        //     if (mstMvOneAnimationDatas[i].animationHandle != -1)
+        //     {
+        //         // 総再生時間を取得
+        //         animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle);
 
-                // ループさせる
-                if (mstMvOneAnimationDatas[i].animationCount >= animTotalTime )
-                {
-                    if (mstMvOneAnimationDatas[i].loopFlag)
-                    {
-                        mstMvOneAnimationDatas[i].animationCount = fmodf(mstMvOneAnimationDatas[i].animationCount, animTotalTime);
-                    }
-                    else
-                    {
-                        switch (i)
-                        {
-                        case MV_ONE_ANIMATION_NUMBER::NOW:
-                            mstMvOneAnimationDatas[i].animationCount = animTotalTime;
-                            break;
+        //         // 再生時間を進める
+        //         mstMvOneAnimationDatas[i].animationCount += mfAnimationSpeed;
+
+        //         // ループさせる
+        //         if (mstMvOneAnimationDatas[i].animationCount >= animTotalTime )
+        //         {
+        //             if (mstMvOneAnimationDatas[i].loopFlag)
+        //             {
+        //                 mstMvOneAnimationDatas[i].animationCount = fmodf(mstMvOneAnimationDatas[i].animationCount, animTotalTime);
+        //             }
+        //             else
+        //             {
+        //                 switch (i)
+        //                 {
+        //                 case MV_ONE_ANIMATION_NUMBER::NOW:
+        //                     mstMvOneAnimationDatas[i].animationCount = animTotalTime;
+        //                     break;
                         
-                        case MV_ONE_ANIMATION_NUMBER::PRE:
-                            mstMvOneAnimationDatas[i].animationCount -= mfAnimationSpeed;
-                            break;
-                        }
-                    }
-                }
+        //                 case MV_ONE_ANIMATION_NUMBER::PRE:
+        //                     mstMvOneAnimationDatas[i].animationCount -= mfAnimationSpeed;
+        //                     break;
+        //                 }
+        //             }
+        //         }
 
-                // モデルに反映
-                MV1SetAttachAnimTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mstMvOneAnimationDatas[i].animationCount);
+        //         // モデルに反映
+        //         MV1SetAttachAnimTime(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mstMvOneAnimationDatas[i].animationCount);
 
-                // アニメーション反映率を設定
-                switch (i)
-                {
-                case MV_ONE_ANIMATION_NUMBER::NOW:
-                    MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mfAnimBlendRate);
-                    break;
-                case MV_ONE_ANIMATION_NUMBER::PRE:
-                    MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
-                    break;
-                }
+        //         // アニメーション反映率を設定
+        //         switch (i)
+        //         {
+        //         case MV_ONE_ANIMATION_NUMBER::NOW:
+        //             MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, mfAnimBlendRate);
+        //             break;
+        //         case MV_ONE_ANIMATION_NUMBER::PRE:
+        //             MV1SetAttachAnimBlendRate(mnModelHandle, mstMvOneAnimationDatas[i].animationHandle, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
+        //             break;
+        //         }
+        //     }
+        // }
+    }
+}
+
+void StateAnimationProcess::UpdateBlend()
+{
+    // ブレンド率を加算していく
+    if (mfAnimBlendRate < ANIMATION_BLEND_RATE_MAX)
+    {
+        mfAnimBlendRate += mfAnimBlendSpeed;
+
+        if (mfAnimBlendRate > ANIMATION_BLEND_RATE_MAX)
+        {
+            mfAnimBlendRate = ANIMATION_BLEND_RATE_MAX;
+        }
+    }
+}
+
+/*アニメーション時間を進める*/
+void StateAnimationProcess::AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate)
+{
+    // アニメーション処理
+    if (animationHandle != -1)
+    {
+        // 総再生時間を取得
+        float animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, animationHandle);
+
+        // 再生時間を進める
+        *animationCount += mfAnimationSpeed;
+
+        // ループさせる
+        if (*animationCount >= animTotalTime)
+        {
+            if (loopFlag)
+            {
+                *animationCount = fmodf(*animationCount, animTotalTime);
+            }
+            else
+            {
+                *animationCount = animTotalTime;
             }
         }
+
+        // モデルに反映
+        MV1SetAttachAnimTime(mnModelHandle, animationHandle, *animationCount);
+
+        // アニメーション反映率を設定
+        MV1SetAttachAnimBlendRate(mnModelHandle, animationHandle, animBlendRate);
     }
 }
 
@@ -159,7 +207,7 @@ StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string fileName)
 // この状態に入った時の処理
 void StateMVOneAnimation::OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType)
 {
-    AnimationAttach(nowAnimationData);
+    AnimationAttach(animation, nowAnimationData, animationDatas);
 }
 
 // この状態を出る時の処理
@@ -170,7 +218,7 @@ void StateMVOneAnimation::OnExit(AnimationBase* animation, AnimationDatas *nowAn
     // TODO: 関数化して同じ以外でも似た処理の場合対応できるようにしたい
     if (mStateNumber == newModelType)
     {
-        KeepAnimationData();
+        KeepAnimationData(animation, animationDatas);
     }
     else if (CheckSimilarModelType(newModelType))
     {

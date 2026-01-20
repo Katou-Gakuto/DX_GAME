@@ -51,16 +51,21 @@ public:
 protected:
     /*アニメーションをデタッチ*/
     virtual void AnimationDetach();
+    // TODO: 関数説明と関数名を変える
     /*現在の再生状況を保持しておく*/
     virtual void KeepAnimationData(AnimationBase* animation, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
-    /*現在の再生状況も含めて破棄する*/
-    virtual void ClearAnimationData();
 
     /*アニメーションをアタッチ*/
     virtual void AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
 
     /*アニメーション更新*/
-    void UpdateAnimation(AnimationDatas *nowAnimationData);    
+    void UpdateAnimation(AnimationDatas *nowAnimationData);
+
+    /*ブレンド更新*/
+    void UpdateBlend();
+
+    /*アニメーション時間を進める*/
+    void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate);
 };
 
 

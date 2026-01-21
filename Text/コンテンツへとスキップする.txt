@@ -1,0 +1,113 @@
+コンテンツへとスキップする
+あなた:
+EffekseerのDXライブラリで使用 ハンドル取得できない
+ChatGPT:
+DXライブラリで Effekseer を使ったときにエフェクトのハンドルが取得できない場合、かなり典型的な原因がいくつかあります。よくあるポイントを 原因別チェックリスト＋最小サンプルでまとめます。
+
+まず結論（原因になりやすい順）
+① EffekseerDXLib の初期化ができていない
+ハンドルが -1 になる最大の原因です。
+
+// DXライブラリ初期化後に必ず呼ぶ
+if (Effekseer_Init(8000) == -1)
+{
+    // 初期化失敗
+}
+⚠️ DxLib_Init() の前に呼ぶと失敗します
+
+② EffekseerDXLib.h をインクルードしていない
+LoadEffekseerEffect() は EffekseerDXLib.h にあります。
+
+#include <DxLib.h>
+#include <EffekseerDXLib.h>
+③ Effekseer の更新・描画処理を呼んでいない
+取得自体はできても、
+「表示されない」「PlayEffekseerEffect が失敗する」原因になります。
+
+// 毎フレーム
+Effekseer_Sync3DSetting();
+Effekseer_Update();
+Effekseer_Draw();
+④ エフェクトファイルのパスが間違っている
+LoadEffekseerEffect() が失敗すると -1 が返る。
+
+int effect = LoadEffekseerEffect("effect/sample.efkefc", 1.0f);
+チェックポイント：
+
+実行ファイルからの 相対パス
+
+.efkefc を使っているか（.efkprojではない）
+
+全角文字・日本語パスが混じっていないか
+
+⑤ DXライブラリの DirectX モード不一致
+EffekseerDXLib は DX11推奨。
+
+SetUseDirect3DVersion(DX_DIRECT3D_11);
+DxLib_Init();
+※ DX9 だと環境によって失敗します
+
+最小動作サンプル（これで動かなければ環境問題）
+#include <DxLib.h>
+#include <EffekseerDXLib.h>
+
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+    if (DxLib_Init() == -1) return -1;
+
+    if (Effekseer_Init(8000) == -1) return -1;
+
+    int effect = LoadEffekseerEffect("effect/sample.efkefc", 1.0f);
+    if (effect == -1)
+    {
+        // 読み込み失敗
+    }
+
+    PlayEffekseerEffect(effect);
+
+    while (ProcessMessage() == 0)
+    {
+        Effekseer_Sync3DSetting();
+        Effekseer_Update();
+
+        ClearDrawScreen();
+        Effekseer_Draw();
+        ScreenFlip();
+    }
+
+    Effekseer_End();
+    DxLib_End();
+    return 0;
+}
+それでもダメな場合に教えてほしい情報
+原因を特定できます👇
+
+DXライブラリのバージョン
+
+Effekseer
+
+
+
+
+添付
+
+検索
+
+学習する
+
+画像を作成する
+
+選択されていません選択されていません
+ChatGPT の回答は必ずしも正しいとは限りません。重要な情報は確認するようにしてください。cookie の設定を参照してください。
+当社では cookies を使用しています
+
+当社では Cookie を使用して、このサイトの円滑な運営、サービス利用状況の把握、マーケティング活動に役立てています。Cookie を管理でいつでも設定を変更できます。詳細については、クッキーに関するポリシーをご覧ください。
+
+
+cookies を管理
+
+必須項目以外を拒否する
+
+すべて受け入れる

@@ -21,7 +21,8 @@ ModelMV1::~ModelMV1()
 // モデル初期化
 void ModelMV1::ModelInitilize()
 {
-    test_Effect = Master::mpResourceManager->GetEffectHandle(/*"../Resource/Effect/*/"Test.efkefc", 10);
+    // INPROGRESS: エフェクトテスト中 初期化ちゃんとできてるか確認
+    test_Effect = Master::mpResourceManager->GetEffectHandle(/*"../Resource/Effect/*/"Data/Flame.efk", 10);
 }
 
 // モデル終了

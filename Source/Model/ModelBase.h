@@ -5,6 +5,8 @@
 
 #include "DxLib.h"
 
+class ModelsControllerBase;
+
 /*-------------------------------*/
 /*【ポリゴンインデックスモデル情報】*/
 /*-------------------------------*/
@@ -45,6 +47,9 @@ protected:
 	// 角度
 	VECTOR mvAngle;
 
+	// モデルコントローラー
+	ModelsControllerBase* mpModelsController;
+
 public:
 	ModelBase();
 	~ModelBase();
@@ -80,6 +85,8 @@ public:
 	inline void SetPosition(VECTOR position) { mvPosition = position; }
 	/*角度設定*/
 	inline void SetAngle(VECTOR angle) { mvAngle = angle; }
+	/// <summary>モデルコントローラー設定</summary>
+	void SetModelsController(ModelsControllerBase* ModelsController);
 
 	/*----------------*/
 	/*【継承モデル用】*/

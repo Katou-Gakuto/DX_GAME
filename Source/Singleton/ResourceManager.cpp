@@ -15,6 +15,8 @@
 /*【共通】*/
 /*--------*/
 ResourceManager::ResourceManager()
+: mbEffectDrawFlag(false)
+, mnEffectDrawPreHandle(-1)
 {
 	// シャドウマップ
 	mnShadowMapHandle = -1;
@@ -28,6 +30,10 @@ ResourceManager::ResourceManager()
 	mmGraphCount.clear();
 	mmDivGraphHandle.clear();
 	msDivGraphFileNames.clear();
+
+	// エフェクト
+	mmEffectHandle.clear();
+	mmEffectCount.clear();
 }
 ResourceManager::~ResourceManager()
 {
@@ -37,6 +43,9 @@ ResourceManager::~ResourceManager()
 void ResourceManager::Initilize()
 {
 	ShadowMapInit();
+
+	// エフェクト描画用画像取得
+	mnEffectDrawPreHandle = GetGraphHandle("../Resource/Effect/Transparent.png");
 }
 
 // 終了
@@ -115,6 +124,9 @@ void ResourceManager::DrawDataRelease()
 {
 	// 描画に使用するシャドウマップの設定を解除
 	SetUseShadowMap(0, -1);
+	
+	// エフェクト描画フラグ無効化
+	mbEffectDrawFlag = false;
 }
 
 // モデル描画
@@ -414,8 +426,15 @@ void ResourceManager::ReduceEffect(int handle)
 }
 
 // エフェクト描画
-void ResourceManager::DrawEffect(int handle)
+void ResourceManager::DrawEffect(int handle, VECTOR position)
 {
+	if (!mbEffectDrawFlag)
+	{
+		DrawGraph(0, 0, mnEffectDrawPreHandle, TRUE);
+		mbEffectDrawFlag = true;
+	}
+
+	SetPosPlayingEffekseer3DEffect(handle, position.x, position.y, position.z);
 }
 
 // エフェクト初期化

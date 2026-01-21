@@ -9,7 +9,7 @@
 /*--------------------*/
 /*     【ベースアニメーションコントローラーステート】
 /*--------------------*/
-
+// TODO: ネクストステートをメンバでそれぞれ持つようにする
 /*----------*/
 /*【アニメションコントローラーステート共通処理用】
 /*----------*/
@@ -150,7 +150,7 @@ ANIMATION_TYPE StateAttackInAnimationController::CheckState(AnimationBase* anima
 {
     if (ChackEndTime())
     {
-        return ANIMATION_TYPE::ATTACK_OUT;
+        return ANIMATION_TYPE::ATTACK;
     }
     
     return mStateNumber;

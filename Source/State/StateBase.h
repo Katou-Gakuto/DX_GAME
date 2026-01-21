@@ -102,12 +102,12 @@ public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 	/// <summary>この状態に入った時の処理</summary>
-	virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) = 0;
+	virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
 	/// <summary>この状態を出る時の処理</summary>
-	virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) = 0;
+	virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) = 0;
 	
 	/// <summary>更新</summary>
-	virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) = 0;
+	virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) = 0;
 
 	/// <summary>モデル種類が同類なら「true」を返す</summary>
 	/// <param name="modelType">モデル種類</param>

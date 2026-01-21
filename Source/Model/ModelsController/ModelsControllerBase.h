@@ -41,7 +41,9 @@ public:
     /// <param name="position">ポジション</param>
     /// <param name="angle">角度</param>
     /// <param name="size">大きさ</param>
-    void ModelsPositionSetting(bool useSetting = false, VECTOR position = VGet(0.0f, 0.0f, 0.0f), VECTOR angle = VGet(0.0f, 0.0f, 0.0f), VECTOR size = VGet(1.0f, 1.0f, 1.0f));
+    void ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size);
+    void ModelsPositionSetting(VECTOR position, VECTOR angle) { ModelsPositionSetting(position, angle, mvModelSize); }
+    void ModelsPositionSetting(VECTOR position){ ModelsPositionSetting(position, mvModelAngle, mvModelSize); }
 
     /// <summary>モデル更新</summary>
     void UpdateModels();

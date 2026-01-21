@@ -84,7 +84,7 @@ public:
 	void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
 	/// <summary>更新</summary>
-	void Update(AnimationBase* animation, std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas);
+	void Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas);
 
 	/// <summary>次のステート設定</summary>
 	inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }

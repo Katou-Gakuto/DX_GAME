@@ -8,6 +8,7 @@
 #include "AnimationBase.h"
 #include "ModelBase.h"
 #include "StateBase.h"
+#include "UtilCalc.h"
 
 /*----------*/
 /*【アニメーションステート共通処理】
@@ -50,22 +51,25 @@ public:
 
 protected:
     /*アニメーションをデタッチ*/
-    virtual void AnimationDetach();
-    // TODO: 関数説明と関数名を変える
-    /*現在の再生状況を保持しておく*/
-    virtual void KeepAnimationData(AnimationBase* animation, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
+    virtual void AnimationDetach(AnimationBase* animation, AnimationDatas* animationDatas);
 
     /*アニメーションをアタッチ*/
-    virtual void AnimationAttach(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas);
+    virtual void AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
+
+    /*一つ前のアニメーション情報を設定する*/
+    virtual void PreAnimationDataSetting(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
+
+    /*アニメーション初期化*/
+    virtual void Init(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
     /*アニメーション更新*/
-    void UpdateAnimation(AnimationDatas *nowAnimationData);
+    void UpdateAnimation(OneAnimationData *nowAnimationData);
 
     /*ブレンド更新*/
     void UpdateBlend();
 
     /*アニメーション時間を進める*/
-    void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate);
+    void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate, bool testFlag);
 };
 
 
@@ -81,16 +85,16 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
 
 private:
     /*モデル種類が同類なら「true」を返す*/
@@ -109,16 +113,16 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
 
 protected:
 
@@ -126,7 +130,7 @@ protected:
     virtual bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 
     /*アニメーションをアタッチ*/
-    virtual void AnimationAttach(AnimationBase* animation, AnimationDatas *animationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas) override;
+    virtual void AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas) override;
 };
 
 
@@ -147,23 +151,29 @@ private:
     // アングル
     VECTOR mvAngle;
 
+    
+    // 大きさ変更量
+    VECTOR mvChangeSize;
+    // 大きさ
+    VECTOR mvSize;
+
 public:
-    StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle);
+    StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
     ~StateMVOneOperationAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE oldModelType) override;
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
     /// <summary>この状態を出る時の処理</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, AnimationDatas *nowAnimationData, std::map<ANIMATION_TYPE, AnimationDatas>* animationDatas, MODEL_TYPE newModelType) override;
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
     /// <param name="animationDatas">アニメーション情報</param>
-    virtual void Update(AnimationBase* animation, AnimationDatas *nowAnimationData) override;
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
 
 
 protected:

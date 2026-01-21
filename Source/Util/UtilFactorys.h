@@ -5,6 +5,7 @@
 
 #include "SceneEnum.h"
 #include "AnimationData.h"
+#include "UtilCalc.h"
 
 enum class MODEL_TYPE;
 
@@ -69,7 +70,7 @@ namespace UtilFactorys
 	/// <summary>アニメーションデータ作成</summary>
 	/// <param name="type">モデル種類</param>
 	/// <returns>アニメーションデータ</returns>
-	std::map<ANIMATION_TYPE, AnimationDatas> AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData);
+	AnimationDatas* AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData);
 	
 	/// <summary>読み込み用アニメーションデータ作成</summary>
 	/// <param name="animation">アニメーション</param>
@@ -91,5 +92,8 @@ namespace UtilFactorys
 	/// <param name="type">モデル種類</param>
 	/// <param name="modelPath">モデルファイル座標</param>
 	/// <returns>モデルベース</returns>
-	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath = "");
+	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
+
+	/// <summary>モデル位置設定</summary>
+	void SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size);
 };

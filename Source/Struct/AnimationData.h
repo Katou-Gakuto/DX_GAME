@@ -23,11 +23,12 @@ struct LoadAnimationData
 };
 
 /*----------*/
-/*【アニメーションの情報】
+/*【アニメーション一つ分の情報】
 /*----------*/
-struct AnimationDatas
+
+struct OneAnimationData
 {
-    ANIMATION_TYPE preAnimationType;    // 一つ前のアニメーション種類
+    ANIMATION_TYPE preAnimationType = ANIMATION_TYPE::NONE;    // 一つ前のアニメーション種類
 
     int number = 0;   // モデルナンバー
 
@@ -38,9 +39,12 @@ struct AnimationDatas
     float animationCount = 0.0f;   // アニメーションカウント
 
     int animationHandle = 0.0f;    // アニメションハンドル
+};
 
-    operator int&()
-    {
-        return this->number;
-    }
+/*----------*/
+/*【アニメーションの情報】
+/*----------*/
+struct AnimationDatas
+{
+    std::map<ANIMATION_TYPE, OneAnimationData> animDatas;
 };

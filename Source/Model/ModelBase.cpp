@@ -1,11 +1,13 @@
 #include "Master.h"
 
 #include "ModelBase.h"
+#include "ModelsControllerBase.h"
 #include "ResourceManager.h"
 #include "UtilCalc.h"
 
 ModelBase::ModelBase()
 : mvSize(UtilCalc::VZero)
+, mpModelsController(nullptr)
 {
 }
 ModelBase::~ModelBase()
@@ -22,6 +24,11 @@ void ModelBase::Initilize()
 void ModelBase::Finalize()
 {
 	ModelFinalize();
+}
+
+void ModelBase::SetModelsController(ModelsControllerBase* modelsController)
+{
+    mpModelsController = modelsController;
 }
 
 // ƒ‚ƒfƒ‹•`‰æ

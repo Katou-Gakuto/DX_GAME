@@ -130,9 +130,7 @@ void CharacterBase::LastUpdate()
 	MoveProcess();
 
 	// モデル位置・角度更新
-	mpModelController->SetModelPosition(mvPosition);
-	mpModelController->SetModelAngle(mvAngle);
-	mpModelController->ModelsPositionSetting();
+	mpModelController->ModelsPositionSetting(mvPosition, mvAngle);
 
 	// アニメーション更新
 	mpAnimation->Update();

@@ -160,6 +160,12 @@ private:
 	// エフェクトカウンター
 	std::map<int, int> mmEffectCount;
 
+	// エフェクト描画フラグ
+	bool mbEffectDrawFlag;
+
+	// エフェクト描画時使用画像ハンドル
+	int mnEffectDrawPreHandle;
+
 public:
 	/// <summary>エフェクト取得</summary>
 	int GetEffectHandle(std::string fileName, float size);
@@ -168,7 +174,7 @@ public:
 	void ReduceEffect(int handle);
 
 	/// <summary>エフェクト描画</summary>
-	void DrawEffect(int handle);
+	void DrawEffect(int handle, VECTOR position);
 
 private:
 	/// <summary>エフェクト初期化</summary>

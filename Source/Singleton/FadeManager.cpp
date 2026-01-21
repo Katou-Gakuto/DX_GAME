@@ -27,6 +27,7 @@ FadeManager::FadeManager()
 , mpDataManager(nullptr)
 , mpTimeManager(nullptr)
 , mfuFadeTask()
+, mfFadeSpeed(1.5f)
 {
 }
 
@@ -74,7 +75,7 @@ void FadeManager::FadeOut()
     mbFadeOutFlag = true;
 
     /*フェードアウト開始*/
-    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, 1.5f);
+    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, mfFadeSpeed);
 }
 
 // フェードイン開始
@@ -88,7 +89,7 @@ void FadeManager::FadeIn()
     mbFadeInFlag = true;
     
     /*フェードイン開始*/
-   mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, -1.5f);
+   mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, -mfFadeSpeed);
 }
 
 void FadeManager::FadeProcess(float fadeSpeed)

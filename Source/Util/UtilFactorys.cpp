@@ -39,7 +39,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 	FSMAnimation* fsm = new FSMAnimation();
 	
 	// 必要変数取得
-	std::vector<std::map<ANIMATION_TYPE, AnimationDatas>> animationDatas = animation->GetAnimationDatas();
+	std::vector<AnimationDatas*> animationDatas = animation->GetAnimationDatas();
 	std::vector<ModelBase*> modelBases = animation->GetModelsController()->GetModelList();
 
 	// サイズ設定
@@ -96,7 +96,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 
 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 		{
-			MODEL_TYPE setModelType = animationDatas[i][loadAnimationData[i][j].animationType].modelType;
+			MODEL_TYPE setModelType = animationDatas[i]->animDatas[loadAnimationData[i][j].animationType].modelType;
 			// アニメションステート生成
 			switch (setModelType)
 			{
@@ -114,7 +114,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: 仮設定
-					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(0.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 10.0f));
+					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(10.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 0.0f));
 					stateMVOneOperationAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = stateMVOneOperationAnimation;
 				}
@@ -141,11 +141,13 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 }
 
 // アニメーションデータ作成
-std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData)
+AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData)
 {
-	std::map<ANIMATION_TYPE, AnimationDatas> animationDataMap;
-	AnimationDatas animationData;
-	animationDataMap.clear();
+	AnimationDatas* animationDataMap = new AnimationDatas();
+	OneAnimationData animationData;
+	animationData.animationHandle = -1;
+	animationData.animationCount = 0.0f;
+	animationDataMap->animDatas.clear();
 
 	for (int i = 0; i < loadAnimationData.size(); i++)
 	{
@@ -160,7 +162,7 @@ std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(std:
 			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
-			animationDataMap[loadAnimationData[i].animationType] = animationData;
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 
 		case MODEL_TYPE::MV1_MODEL_MOVE:
@@ -173,7 +175,7 @@ std::map<ANIMATION_TYPE, AnimationDatas> UtilFactorys::AnimationDataFactory(std:
 			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
-			animationDataMap[loadAnimationData[i].animationType] = animationData;
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 		}
 	}
@@ -253,9 +255,9 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		// TODO: データマネージャーから取得できる形式にしたい
 		animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 		animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1156);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1156);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
+		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		break;
 	}
@@ -402,7 +404,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 }
 
 // モデル作成
-ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath)
+ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size)
 {
 	switch (type)
 	{
@@ -410,6 +412,7 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath)
 	{
 		ModelPolygonIndexed* model = new ModelPolygonIndexed();
 		model->Initilize();
+		SetModelPosition(model, position, angle, size);
 		return model;
 	}
 
@@ -419,9 +422,18 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath)
 		ModelMV1* model = new ModelMV1();
 		model->Initilize();
 		model->SetModelHandle(modelPath.c_str());
+		SetModelPosition(model, position, angle, size);
 		return model;
 	}
 	}
 
 	return nullptr;
+}
+
+// モデル位置設定
+void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size)
+{
+	model->SetPosition(position);
+	model->SetAngle(angle);
+	model->SetSize(size);
 }

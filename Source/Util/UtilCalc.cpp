@@ -5,41 +5,41 @@
 #include "UtilCalc.h"
 
 
-// •ûŒü‚ð2‚©‚ç-2‚É‚È‚é‚æ‚¤‚É’²®‚·‚é
+// •ûŒü‚ð3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é
 float UtilCalc::NotExceedAngle(float angle)
 {
-    if (angle > DX_PI_F) {
-        angle -= DX_TWO_PI_F;
+    if (angle > Pi) {
+        angle -= PiTwo;
     }
-    else if (angle < -DX_PI_F) {
-        angle += DX_TWO_PI_F;
+    else if (angle < -Pi) {
+        angle += PiTwo;
     }
 
     return angle;
 }
 
-// •ûŒü‚ð2‚©‚ç-2‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(3•ûŒü)
+// •ûŒü‚ð3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(3•ûŒü)
 VECTOR UtilCalc::VNotExceedAngle(VECTOR angle)
 {
-    if (angle.x > DX_PI_F) {
-        angle.x -= DX_TWO_PI_F;
+    if (angle.x > Pi) {
+        angle.x -= PiTwo;
     }
-    else if (angle.x < -DX_PI_F) {
-        angle.x += DX_TWO_PI_F;
-    }
-
-    if (angle.y > DX_PI_F) {
-        angle.y -= DX_TWO_PI_F;
-    }
-    else if (angle.y < -DX_PI_F) {
-        angle.y += DX_TWO_PI_F;
+    else if (angle.x < -Pi) {
+        angle.x += PiTwo;
     }
 
-    if (angle.z > DX_PI_F) {
-        angle.z -= DX_TWO_PI_F;
+    if (angle.y > Pi) {
+        angle.y -= PiTwo;
     }
-    else if (angle.z < -DX_PI_F) {
-        angle.z += DX_TWO_PI_F;
+    else if (angle.y < -Pi) {
+        angle.y += PiTwo;
+    }
+
+    if (angle.z > Pi) {
+        angle.z -= PiTwo;
+    }
+    else if (angle.z < -Pi) {
+        angle.z += PiTwo;
     }
 
     return angle;
@@ -102,6 +102,18 @@ VECTOR UtilCalc::VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed)
     }
 
     return VGet(angle.x, targetAngle - diffAngle, angle.z);
+}
+
+// VECTOR‚Ì•½‹Ï‚ðo‚·(³‚Ì”)
+float UtilCalc::PutVectorAverage(VECTOR vector)
+{
+    return (-vector.x + vector.y + vector.z) * 0.3333333f;
+}
+
+// VECTOR‚ÌŠ|‚¯ŽZ
+VECTOR UtilCalc::VMultiply(VECTOR src, VECTOR dst)
+{
+    return VGet(src.x * dst.x, src.y * dst.y, src.z * dst.z);
 }
 
 /*--------------*/

@@ -23,6 +23,9 @@ private:
     // フェードの濃さ
     float mfFadeAlpha;
 
+    // フェードの速度
+    float mfFadeSpeed;
+
     // データマネージャー
     DataManager* mpDataManager;
 
@@ -58,8 +61,14 @@ public:
     void FadeEnd();
 
     /// <summary>フェードフラグ取得</summary>
-    bool GetFadeFlag() { return mbFadeFlag; }
+    inline bool GetFadeFlag() { return mbFadeFlag; }
 
     /// <summary>フェード率取得</summary>
-    float GetFadeRatio() { return mfFadeAlpha * 0.003921568f; }
+    inline float GetFadeRatio() { return mfFadeAlpha * 0.003921568f; }
+
+    /// <summary>フェード速度取得</summary>
+    inline float GetFadeSpeed() { return mfFadeSpeed; }
+
+    /// <summary>フェード速度設定</summary>
+    inline void SetFadeSpeed(float speed) { mfFadeSpeed = speed; }
 };

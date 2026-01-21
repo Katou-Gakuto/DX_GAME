@@ -5,8 +5,14 @@ namespace UtilCalc
 {
 	/*ゼロ*/
 	const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
-	/*ゼロ*/
+	/*イチ*/
 	const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
+	/*三分の一*/
+	const float One_Third = 0.3333333f;
+	/*3,14*/
+	const float Pi = DX_PI_F;
+	/*3,14 * 2.0f*/
+	const float PiTwo = DX_PI_F * 2.0f;
 
 	/*符号反転*/
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }
@@ -25,7 +31,7 @@ namespace UtilCalc
 	/*球面移動した場所(ラジアン)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);
 
-	// TODO: 未完
+	// TODO: 未完 Yのみ完成
 	/// <summary>ベクトルをアングルに変換する</summary>
 	VECTOR VVecToAngle(VECTOR vec);
 
@@ -35,6 +41,12 @@ namespace UtilCalc
 
 	/// <summary>移動量をアングルに反映した値を返す(ラジアン)</summary>
 	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle = UtilCalc::VZero, float speed = 0.2f);
+
+	/// <summary>VECTORの平均を出す(正の数)</summary>
+	float PutVectorAverage(VECTOR vector);
+
+	/// <summary>VECTORの掛け算</summary>
+	VECTOR VMultiply(VECTOR src, VECTOR dst);
 
 	/*--------------*/
 	/*【当たり判定】*/

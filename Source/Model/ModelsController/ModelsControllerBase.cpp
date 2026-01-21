@@ -36,25 +36,15 @@ void ModelsControllerBase::Finalize()
 void ModelsControllerBase::AddModel(ModelBase* model)
 {
     mpModelList.push_back(model);
+    model->SetModelsController(this);
 }
 
 // モデル位置設定
-void ModelsControllerBase::ModelsPositionSetting(bool useSetting, VECTOR position, VECTOR angle, VECTOR size)
+void ModelsControllerBase::ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size)
 {
-    if (useSetting)
-    {
-        mvModelPosition = position;
-        mvModelAngle = angle;
-        mvModelSize = size;
-    }
-
-    // モデルに設定
-    for (int i = 0; i < mpModelList.size(); i++)
-    {
-        mpModelList[i]->SetPosition(mvModelPosition);
-        mpModelList[i]->SetAngle(VGet(mvModelAngle.x, mvModelAngle.y - DX_PI_F, mvModelAngle.z));
-        mpModelList[i]->SetSize(mvModelSize);
-    }
+    mvModelPosition = position;
+    mvModelAngle = VGet(angle.x, angle.y - DX_PI_F, angle.z);
+    mvModelSize = size;
 }
 
 // モデル更新

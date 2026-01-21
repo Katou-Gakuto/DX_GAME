@@ -16,7 +16,7 @@ private:
     FSMAnimation* mpFsm;    
 
     // アニメーションデータ
-    std::vector<std::map<ANIMATION_TYPE, AnimationDatas>> mstAnimationDatas;
+    std::vector<AnimationDatas*> mstAnimationDatas;
 
     // アニメーション時間
     std::map<ANIMATION_TYPE, int> mmAnimationTime;
@@ -34,7 +34,7 @@ public:
     void Update();
 
     /// <summary>アニメーションデータ追加</summary>
-    inline void AddAnimationData(const std::map<ANIMATION_TYPE, AnimationDatas> animationData) { mstAnimationDatas.push_back(animationData); }
+    inline void AddAnimationData(AnimationDatas* animationData) { mstAnimationDatas.push_back(animationData); }
 
     /// <summary>アニメション種類探索</summary>
     inline bool SearchAnimationType(ANIMATION_TYPE animationType) { return (mmAnimationTime.find(animationType) != mmAnimationTime.end()); }
@@ -54,9 +54,9 @@ public:
     inline void SetFsm(FSMAnimation* fsm) { mpFsm = fsm; }
 
     /// <summary>アニメーションデータ取得</summary>
-    inline std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& GetAnimationDatas() { return mstAnimationDatas; }
+    inline std::vector<AnimationDatas*>& GetAnimationDatas() { return mstAnimationDatas; }
     /// <summary>アニメーションデータ設定</summary>
-    inline void SetAnimationDatas(const std::vector<std::map<ANIMATION_TYPE, AnimationDatas>>& animationDatas) { mstAnimationDatas = animationDatas; }
+    inline void SetAnimationDatas(const std::vector<AnimationDatas*>& animationDatas) { mstAnimationDatas = animationDatas; }
 
     /// <summary>アニメーション種類取得</summary>
     inline ANIMATION_TYPE GetAnimationType() { if(mpFsm!=nullptr){return mpFsm->GetCurrentState();} return ANIMATION_TYPE::NONE; }

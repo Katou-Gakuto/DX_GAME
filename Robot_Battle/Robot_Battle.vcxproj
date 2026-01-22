@@ -142,6 +142,7 @@
     <ClInclude Include="..\Source\Animation\AnimationBase.h" />
     <ClInclude Include="..\Source\Enum\AnimationEnum.h" />
     <ClInclude Include="..\Source\Enum\CharacterEnum.h" />
+    <ClInclude Include="..\Source\Enum\ResourceEnum.h" />
     <ClInclude Include="..\Source\Enum\SceneEnum.h" />
     <ClInclude Include="..\Source\Model\ModelBase.h" />
     <ClInclude Include="..\Source\Model\ModelEffect.h" />
@@ -194,10 +195,10 @@
     <ClInclude Include="..\Source\Struct\CameraData.h" />
     <ClInclude Include="..\Source\Struct\CollisionData.h" />
     <ClInclude Include="..\Source\Struct\GameDatas.h" />
+    <ClInclude Include="..\Source\Struct\ResourceData.h" />
     <ClInclude Include="..\Source\Struct\Status.h" />
     <ClInclude Include="..\Source\Struct\TargetData.h" />
     <ClInclude Include="..\Source\Struct\TileData.h" />
-    <ClInclude Include="..\Source\Struct\UIData.h" />
     <ClInclude Include="..\Source\Struct\Vector2.h" />
     <ClInclude Include="..\Source\Util\UtilCalc.h" />
     <ClInclude Include="..\Source\Util\UtilChange.h" />
@@ -254,9 +255,9 @@
     <ClCompile Include="..\Source\State\UI\StateTitleUI.cpp" />
     <ClCompile Include="..\Source\Struct\CameraData.cpp" />
     <ClCompile Include="..\Source\Struct\CollisionData.cpp" />
+    <ClCompile Include="..\Source\Struct\ResourceData.cpp" />
     <ClCompile Include="..\Source\Struct\TargetData.cpp" />
     <ClCompile Include="..\Source\Struct\TileData.cpp" />
-    <ClCompile Include="..\Source\Struct\UIData.cpp" />
     <ClCompile Include="..\Source\Util\UtilCalc.cpp" />
     <ClCompile Include="..\Source\Util\UtilChange.cpp" />
     <ClCompile Include="..\Source\Util\UtilFactorys.cpp" />

@@ -11,7 +11,6 @@
 #include "SceneEnum.h"
 #include "GameDatas.h"
 #include "TileData.h"
-#include "UIData.h"
 
 #include "DxLib.h"
 
@@ -25,7 +24,6 @@ DataManager::DataManager()
 : mnPlayPlayerNumber(-1)
 , mpEndManger(nullptr)
 , mnDungeonDeleteCharacterID(-1)
-, mstDisplaySize(DisplaySize())
 {
 	mwMsg = {};
 
@@ -92,11 +90,6 @@ DataManager::~DataManager()
 void DataManager::Initilize()
 {
 	mpEndManger = Master::mpEndManager;
-
-	// ディスプレイサイズ設定
-	Vector2_Int setDisplaySize;
-    GetScreenState(&setDisplaySize.x, &setDisplaySize.y, &mstDisplaySize.colorBit);
-	mstDisplaySize = setDisplaySize;
 }
 
 // ベースファイル設定

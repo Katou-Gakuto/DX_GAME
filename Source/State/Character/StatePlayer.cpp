@@ -241,6 +241,7 @@ void AttackPlayerState::OnEnter(CharacterBase* character)
 {
 	// TODO: データマネージャーから取得できるようにする
 	mnAttackTime = (character->StartAttck() + Master::mpTimeManager->GetGameTime());
+	character->SetAnimation(ANIMATION_TYPE::ATTACK_IN);
 }
 
 // この状態を出る時の処理

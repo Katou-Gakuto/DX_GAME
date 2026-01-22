@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "BitFlag.h"
-#include "UIData.h"
+#include "ResourceData.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -12,6 +12,7 @@
 #include "DataManager.h"
 #include "FadeManager.h"
 #include "LoadingManager.h"
+#include "ResourceManager.h"
 #include "TimeManager.h"
 
 /*----------------------*/
@@ -53,7 +54,7 @@ void FadeManager::Draw()
 {
     if (mbFadeDrawFlag)
     {
-        Vector2_Int displaySize = mpDataManager->GetDisplaySize();
+        Vector2_Int displaySize = ResourceManager::mstDisplaySize;
 
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)mfFadeAlpha);
         /*boxから画像ハンドルでフェードしたい

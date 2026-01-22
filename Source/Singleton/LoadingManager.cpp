@@ -32,7 +32,8 @@ void LoadingManager::Loading()
 	// シーン
 	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
-		SetUseASyncLoadFlag(TRUE);
+		// TODO: エフェクトがバグる感じがある(他にミスがないかを確認しろ)
+		//SetUseASyncLoadFlag(TRUE);
 
 		Master::mpGameManager->GetSceneManager()->NextScene();
 

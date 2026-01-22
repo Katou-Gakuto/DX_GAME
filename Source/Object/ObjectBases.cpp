@@ -161,7 +161,6 @@ int CharacterBase::StartAttck()
 {
 	if (mnAttackDataNumber != -1)
 	{
-		SetAnimation(ANIMATION_TYPE::ATTACK_IN);
 		return Master::mpGameManager->GetAttackManager()->StartAttack(mnAttackDataNumber);
 	}
 
@@ -458,7 +457,8 @@ void UIBase::Initilize()
 	mpResourceManager = Master::mpResourceManager;
 	mpTimeManager = Master::mpTimeManager;
 
-	mstDisplaySize = Master::mpDataManager->GetDisplaySize();
+	// TODO: Žg‚í‚È‚¢‚æ‚¤‚É‚·‚é
+	mstDisplaySize = ResourceManager::mstDisplaySize;
 
 	UIInitilize();
 }

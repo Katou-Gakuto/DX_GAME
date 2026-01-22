@@ -3,54 +3,22 @@
 #include <string>
 #include <vector>
 
-// DIV画像データ
-struct DIV_GRAPH_DATA
-{
-public:
-	int* handle;
+#include "ResourceEnum.h"
+#include "ResourceData.h"
 
-	int allNum;
-	
-	int xNum;
-	int yNum;
-
-	int xSize;
-	int ySize;
-
-	int number;
-	int count;
-
-	DIV_GRAPH_DATA()
-	{
-		handle = nullptr;
-		allNum = 0;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
-	}
-
-	/*初期化用(ハンドルの配列と全画像の枚数のみ設定)*/
-	DIV_GRAPH_DATA(int allNumber)
-	{
-		handle = (int *)malloc(sizeof(int) * allNumber);
-		allNum = allNumber;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
-	}
-};
 
 class ResourceManager
 {
 	/*--------*/
 	/*【共通】*/
 	/*--------*/
+
+public:
+	// リソースファイルの名前
+	static std::string msResourceFile;
+
+	static DisplaySize mstDisplaySize;
+
 public:
 	ResourceManager();
 	~ResourceManager();
@@ -85,6 +53,9 @@ public:
 private:
 	/// <summary>シャドウマップの初期化</summary>
 	void ShadowMapInit();
+
+	/// <summary>画像や動画の描画</summary>
+	void DrawGraphAndMovie(DRAW_GRAPH_DATA drawData);
 
 	/*------------*/
 	/*【3Dモデル】*/
@@ -142,6 +113,27 @@ public:
 	/*動画カウントを減らす*/
 	void ReduceMovie(int handle);
 	
+	/// <summary>動画再生</summary>
+	void PlayMovie(int handle);
+
+	/// <summary>動画停止</summary>
+	void StopMovie(int handle);
+
+	/// <summary>動画リセット</summary>
+	void MovieReset(int handle);
+
+	/// <summary>動画ループ</summary>
+	void MovieLoop(int handle);
+
+	/// <summary>動画描画</summary>
+	void DrawMovie(int handle, int x, 		 int y);
+	void DrawMovie(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
+	void DrawMovie(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
+	void DrawMovie(int handle, float xRatio, float yRatio);
+	void DrawMovie(int handle, float xRatio, float yRatio, int sizeX, 		 int sizeY);
+	void DrawMovie(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
+	void DrawMovie(DRAW_GRAPH_DATA drawData);
+
 	/*動画音の設定が必要なら作る
 	*/
 
@@ -154,6 +146,7 @@ public:
 	/*----------*/
 	/*【エフェクト】
 	/*----------*/
+	// FIXME: 別の場所で変えた設定の影響でハンドル取得時エラーが出る
 private:
 	// エフェクトハンドル
 	std::map<std::string, std::vector<int>> mmEffectHandle;
@@ -167,14 +160,23 @@ private:
 	int mnEffectDrawPreHandle;
 
 public:
-	/// <summary>エフェクト取得</summary>
-	int GetEffectHandle(std::string fileName, float size);
+	/// <summary>エフェクト情報取得</summary>
+	int GetEffectResource(std::string fileName, float size = 1.0f);
+
+	/// <summary>エフェクトハンドルを取得する</summary>
+	int GetEffectHandle(int handle, int oldHandle);
 
 	/// <summary>エフェクトカウントを減らす</summary>
+	/// <param name="handle">エフェクトハンドル エフェクトの情報のハンドルを渡すとバグる</param>
 	void ReduceEffect(int handle);
 
 	/// <summary>エフェクト描画</summary>
 	void DrawEffect(int handle, VECTOR position);
+
+	/// <summary>エフェクト停止</summary>
+	void StopEffect(int handle);
+	/// <summary>エフェクト再生</summary>
+	void PlayEffect(int handle, float speed);
 
 private:
 	/// <summary>エフェクト初期化</summary>

@@ -290,9 +290,6 @@
     <ClInclude Include="..\Source\State\StateAnimationController.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Struct\UIData.h">
-      <Filter>ヘッダー ファイル\Struct</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\Struct\Vector2.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -310,6 +307,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\Model\ModelEffect.h">
       <Filter>ヘッダー ファイル\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Struct\ResourceData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Enum\ResourceEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -463,9 +466,6 @@
     <ClCompile Include="..\Source\State\StateAnimationController.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Struct\UIData.cpp">
-      <Filter>ソース ファイル\Struct</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Object\UI\UI_Game.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
@@ -480,6 +480,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Model\ModelEffect.cpp">
       <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Struct\ResourceData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -48,6 +48,9 @@ namespace UtilCalc
 	/// <summary>VECTOR‚ÌŠ|‚¯Z</summary>
 	VECTOR VMultiply(VECTOR src, VECTOR dst);
 
+	/// <summary>â‘Î’l</summary>
+	float Abs(float src);
+
 	/*--------------*/
 	/*y“–‚½‚è”»’èz*/
 	/*--------------*/

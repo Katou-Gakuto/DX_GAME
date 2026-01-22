@@ -35,17 +35,29 @@ class TitleUIStateProcess
 protected:
 	TITLE_UI_STATE mePreUiState;
 
+	int mnBackHandle;
+
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 
 protected:
-	/// <summary>背景描画</summary>
+	/*背景描画*/
 	void DrawBackground(UIBase* ui, std::vector<std::string> str);
-	/// <summary>構造上一つ前のステートを取得する</summary>
-	inline int GetPreUiState() { return (int)mePreUiState; }
 
-	/// <summary>ゲームを開始する</summary>
+	/*この状態に入った時の処理*/
+	void ProcessOnEnter();
+
+	/*この状態を出る時の処理*/
+	void ProcessOnExit();
+
+	/*更新*/
+	void ProcessUpadate();
+
+	/*ゲームを開始する*/
 	void StartGame(UIBase* ui);
+
+	/*構造上一つ前のステートを取得する*/
+	inline int GetPreUiState() { return (int)mePreUiState; }
 };
 
 

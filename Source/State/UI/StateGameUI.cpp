@@ -1,4 +1,4 @@
-#include "UIData.h"
+#include "ResourceData.h"
 #include "Vector2.h"
 
 #include "DxLib.h"

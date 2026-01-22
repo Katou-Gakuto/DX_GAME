@@ -114,7 +114,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: ‰¼Ý’è
-					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(10.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 0.0f));
+					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(0.0f, 0.0f, 10.0f), VGet(0.0f, 0.0f, 0.0f));
 					stateMVOneOperationAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = stateMVOneOperationAnimation;
 				}

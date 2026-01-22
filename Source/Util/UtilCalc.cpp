@@ -116,6 +116,17 @@ VECTOR UtilCalc::VMultiply(VECTOR src, VECTOR dst)
     return VGet(src.x * dst.x, src.y * dst.y, src.z * dst.z);
 }
 
+// ê‚ëŒíl
+float UtilCalc::Abs(float src)
+{
+    if (src < 0.0f)
+    {
+        return -src;
+    }
+
+    return src;
+}
+
 /*--------------*/
 /*ÅyìñÇΩÇËîªíËÅz*/
 /*--------------*/

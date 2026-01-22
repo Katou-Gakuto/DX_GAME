@@ -35,11 +35,11 @@ void ModelMap::ModelDraw()
             switch (mstTileModelDatas[z][x].tileModelType)
             {
                 case TILE_MODEL_TYPE::HANDLE:
-                    ModelDraw_Handle(mstTileModelDatas[z][x].modelHandle);
+                    //ModelDraw_Handle(mstTileModelDatas[z][x].modelHandle);
                 break;
 
                 case TILE_MODEL_TYPE::INDEXED:
-                    ModelDraw_Indexed(mstTileModelDatas[z][x].modelVertex);
+                    //ModelDraw_Indexed(mstTileModelDatas[z][x].modelVertex);
                 break;
             }
         }

@@ -22,12 +22,16 @@
 TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
 {
+	mnBackHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitlrBack.mp4");
 }
 
 // 背景描画
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
-    DisplaySize displaySize = ui->GetDisplaySize();
+	Master::mpResourceManager->DrawMovie(mnBackHandle, 0, 0, 1.0f, 1.0f);
+	
+
+     DisplaySize displaySize = ui->GetDisplaySize();
     Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
     Vector2_Int rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
     DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
@@ -37,6 +41,24 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 		Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f + (0.2f * i)));
 		DrawString(stringDrawPos.x - (str[i].size() * 5), stringDrawPos.y, str[i].c_str(), GetColor(0, 0, 0));
 	}
+}
+
+// この状態に入った時の処理
+void TitleUIStateProcess::ProcessOnEnter()
+{
+	Master::mpResourceManager->PlayMovie(mnBackHandle);
+}
+
+// この状態を出る時の処理
+void TitleUIStateProcess::ProcessOnExit()
+{
+	Master::mpResourceManager->StopMovie(mnBackHandle);
+}
+
+// 更新
+void TitleUIStateProcess::ProcessUpadate()
+{
+	Master::mpResourceManager->MovieLoop(mnBackHandle);
 }
 
 // ゲーム開始
@@ -69,7 +91,6 @@ void StartTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void StartTitleUIState::OnExit(UIBase* ui)
 {
-
 }
 
 // 更新
@@ -112,6 +133,8 @@ SelectTitleUIState::SelectTitleUIState()
 // この状態に入った時の処理
 void SelectTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(4);
 
@@ -121,11 +144,14 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void SelectTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int SelectTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
 
@@ -194,17 +220,22 @@ NewDataCheckTitleUIState::NewDataCheckTitleUIState()
 // この状態に入った時の処理
 void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 	// TODO: ステートを作って機能を追加する 確認用ステートに移動
 }
 
 // この状態を出る時の処理
 void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int NewDataCheckTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -244,6 +275,8 @@ DataSelectTitleUIState::DataSelectTitleUIState()
 // この状態に入った時の処理
 void DataSelectTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber((const int)Master::mpDataManager->GetPlayerData().size());
 
@@ -253,11 +286,14 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void DataSelectTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int DataSelectTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -298,16 +334,21 @@ TutorialTitleUIState::TutorialTitleUIState()
 // この状態に入った時の処理
 void TutorialTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void TutorialTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int TutorialTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -348,6 +389,8 @@ SettingTitleUIState::SettingTitleUIState()
 // この状態に入った時の処理
 void SettingTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(2);
 }
@@ -355,11 +398,14 @@ void SettingTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void SettingTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int SettingTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -408,16 +454,21 @@ CharacterSelectTitleUIState::CharacterSelectTitleUIState()
 // この状態に入った時の処理
 void CharacterSelectTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int CharacterSelectTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -457,16 +508,21 @@ PlayerNameTitleUIState::PlayerNameTitleUIState()
 // この状態に入った時の処理
 void PlayerNameTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void PlayerNameTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int PlayerNameTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -506,16 +562,21 @@ InputCheckTitleUIState::InputCheckTitleUIState()
 // この状態に入った時の処理
 void InputCheckTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void InputCheckTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int InputCheckTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -556,16 +617,21 @@ ScreenSizeTitleUIState::ScreenSizeTitleUIState()
 // この状態に入った時の処理
 void ScreenSizeTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int ScreenSizeTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;
@@ -605,16 +671,21 @@ VolumeTitleUIState::VolumeTitleUIState()
 // この状態に入った時の処理
 void VolumeTitleUIState::OnEnter(UIBase* ui)
 {
+	ProcessOnEnter();
+
 }
 
 // この状態を出る時の処理
 void VolumeTitleUIState::OnExit(UIBase* ui)
 {
+	ProcessOnExit();
 }
 
 // 更新
 int VolumeTitleUIState::Update(UIBase* ui)
 {
+	ProcessUpadate();
+
 	ui->DefaultDecision();
 	ui->DefaultCloce();
 	return mStateNumber;

@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 
+#include "ResourceEnum.h"
+#include "ResourceData.h"
+
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
 
@@ -10,7 +13,8 @@
 #include "EndManager.h"
 #include "ResourceManager.h"
 
-
+std::string ResourceManager::msResourceFile = "../Resource/";
+DisplaySize ResourceManager::mstDisplaySize = DisplaySize();
 /*--------*/
 /*【共通】*/
 /*--------*/
@@ -42,10 +46,14 @@ ResourceManager::~ResourceManager()
 // 初期化
 void ResourceManager::Initilize()
 {
+	// ディスプレイサイズ設定
+	Vector2_Int setDisplaySize;
+    GetScreenState(&setDisplaySize.x, &setDisplaySize.y, &mstDisplaySize.colorBit);
+	mstDisplaySize = setDisplaySize;
+
 	ShadowMapInit();
 
-	// エフェクト描画用画像取得
-	mnEffectDrawPreHandle = GetGraphHandle("../Resource/Effect/Transparent.png");
+	EffectInit();
 }
 
 // 終了
@@ -111,12 +119,12 @@ void ResourceManager::MiddleDraw()
 	// 描画に使用するシャドウマップを設定
 	SetUseShadowMap(0, mnShadowMapHandle);
 
-	// エフェクト描画処理
-	EffectDrawProcess();
 }
 // 終了描画
 void ResourceManager::LastDraw()
 {
+	// エフェクト描画処理
+	EffectDrawProcess();
 }
 
 // 描画データ解放
@@ -151,6 +159,49 @@ void ResourceManager::ShadowMapInit()
 
 	// シャドウマップに描画する範囲を設定
 	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-1000.0f, -1.0f, -1000.0f), VGet(1000.0f, 1000.0f, 1000.0f));
+}
+
+// 画像や動画の描画
+void ResourceManager::DrawGraphAndMovie(DRAW_GRAPH_DATA drawData)
+{
+	switch(drawData.drawType)
+	{
+	case DRAW_GRAPH_TYPE::NORMAL:
+		DrawGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::TURN:
+		DrawTurnGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+			break;
+
+	case DRAW_GRAPH_TYPE::EXTEND:
+		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.handle, drawData.transFlag);
+			break;
+
+	case DRAW_GRAPH_TYPE::SIZE:
+		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.pos.x + drawData.size.x, drawData.pos.y + drawData.size.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA:
+		DrawRotaGraph(drawData.pos.x, drawData.pos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+			break;
+
+	case DRAW_GRAPH_TYPE::ROTA_CENTER:
+		DrawRotaGraph2(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+			break;
+
+	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:
+		DrawRotaGraph3(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.x, drawData.extRate.y, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+			break;
+
+	case DRAW_GRAPH_TYPE::FREE:
+		DrawModiGraph(drawData.upLeft.x, drawData.upLeft.y, drawData.upRight.x, drawData.upRight.y, drawData.downRight.x, drawData.downRight.y, drawData.downLeft.x, drawData.downLeft.y, drawData.handle, drawData.transFlag);
+			break;
+
+	case DRAW_GRAPH_TYPE::RECT:
+		DrawRectGraph(drawData.pos.x, drawData.pos.y,drawData.graphPos.x, drawData.graphPos.y,drawData.size.x, drawData.size.y, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+	}
 }
 
 /*------------*/
@@ -351,6 +402,130 @@ void ResourceManager::ReduceMovie(int handle)
 	}
 }
 
+// 動画再生
+void ResourceManager::PlayMovie(int handle)
+{
+	PlayMovieToGraph(handle);
+}
+
+// 動画停止
+void ResourceManager::StopMovie(int handle)
+{
+	PauseMovieToGraph(handle);
+}
+
+// 動画リセット
+void ResourceManager::MovieReset(int handle)
+{
+	SeekMovieToGraph(handle, 0);
+}
+
+// 動画ループ
+void ResourceManager::MovieLoop(int handle)
+{
+	if (GetMovieStateToGraph(handle))
+	{
+		MovieReset(handle);
+		PlayMovie(handle);
+	}
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, int x, int y)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, int x, int y, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	DrawGraphAndMovie(drawData);
+}
+
+// 動画再生
+void ResourceManager::DrawMovie(DRAW_GRAPH_DATA drawData)
+{
+	DrawGraphAndMovie(drawData);
+}
 
 /*------------*/
 /*【サウンド】*/
@@ -362,17 +537,15 @@ void ResourceManager::ReduceMovie(int handle)
 /*【エフェクト】
 /*----------*/
 
-// エフェクト取得
-int ResourceManager::GetEffectHandle(std::string fileName, float size)
+// エフェクト情報取得
+int ResourceManager::GetEffectResource(std::string fileName, float size)
 {
 	int handle = -1;
 	if (mmEffectHandle.find(fileName) != mmEffectHandle.end())
 	{
 		handle = mmEffectHandle[fileName][0];
 		mmEffectCount[handle] += 1;
-		int resultHandle = PlayEffekseer3DEffect(handle);
-		mmEffectHandle[fileName].push_back(resultHandle);
-		return resultHandle;
+		return handle;
 	}
 
 	handle = LoadEffekseerEffect(fileName.c_str(), size);
@@ -383,15 +556,47 @@ int ResourceManager::GetEffectHandle(std::string fileName, float size)
 	}
 	std::vector<int> setHandle;
 	setHandle.clear();
-	setHandle.reserve(2);
 	setHandle.push_back(handle);
-	setHandle.push_back(PlayEffekseer3DEffect(handle));
 	mmEffectHandle[fileName] = setHandle;
 	mmEffectCount[handle] = 1;
 
-	return setHandle[1];
+	return handle;
+}
 
-    return -1;
+// エフェクトハンドルを取得する
+int ResourceManager::GetEffectHandle(int handle, int oldHandle)
+{
+	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	{
+		if (effectHandle.second[0] == handle)
+		{
+			int newHandle = PlayEffekseer3DEffect(effectHandle.second[0]);
+			if (newHandle == -1)
+			{
+				Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+				return -1;
+			}
+			
+			if (oldHandle != -1)
+			{
+				for (int i = 1; i < effectHandle.second.size(); i++)
+				{
+					if (effectHandle.second[i] == oldHandle)
+					{
+						mmEffectHandle[effectHandle.first][i] = newHandle;
+					}
+				}
+			}
+			else
+			{
+				mmEffectHandle[effectHandle.first].push_back(newHandle);
+			}
+
+			return newHandle;
+		}
+	}
+
+	return -1;
 }
 
 // エフェクトカウントを減らす
@@ -437,13 +642,23 @@ void ResourceManager::DrawEffect(int handle, VECTOR position)
 	SetPosPlayingEffekseer3DEffect(handle, position.x, position.y, position.z);
 }
 
+// エフェクト停止
+void ResourceManager::StopEffect(int handle)
+{
+	SetSpeedPlayingEffekseer3DEffect(handle, 0.0f);
+}
+
+// エフェクト再生
+void ResourceManager::PlayEffect(int handle, float speed)
+{
+	SetSpeedPlayingEffekseer3DEffect(handle, speed);
+}
+
 // エフェクト初期化
 void ResourceManager::EffectInit()
 {
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
-
 	// 引数には画面に表示する最大パーティクル数を設定する。
-	if (Effekseer_Init(8000) == -1)
+	if (Effekseer_Init(20000 * 10) == -1)//8000) == -1)
 	{
 		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
 		return;
@@ -460,6 +675,9 @@ void ResourceManager::EffectInit()
 
 	// Zバッファへの書き込みを有効にする。
 	SetWriteZBuffer3D(TRUE);
+
+	// エフェクト描画用画像取得
+	mnEffectDrawPreHandle = GetGraphHandle("../Resource/Effect/Background.png");
 }
 
 // エフェクト終了

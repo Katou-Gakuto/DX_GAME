@@ -52,6 +52,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ウインドウモードで起動
 	ChangeWindowMode(true);
 
+	// DirectX11を使用するようにする
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
 	// DXライブラリ初期化処理
 	if(DxLib_Init() == -1)
 	{

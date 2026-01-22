@@ -5,7 +5,7 @@
 #include "BitFlag.h"
 #include "CollisionData.h"
 #include "Status.h"
-#include "UIData.h"
+#include "ResourceData.h"// TODO: è¡Ç∑
 
 #include "DxLib.h"
 

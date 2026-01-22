@@ -4,6 +4,7 @@
 
 #include "ResourceEnum.h"
 #include "ResourceData.h"
+#include "Vector2.h"
 
 #include "DxLib.h"
 #include "EffekseerForDXLib.h"
@@ -517,6 +518,50 @@ void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio, float si
 	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
 
 	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	DrawGraphAndMovie(drawData);
+}
+
+// ìÆâÊçƒê∂
+void ResourceManager::DrawMovie(int handle, Vector2_Int pos)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	DrawGraphAndMovie(drawData);
+}
+
+// ìÆâÊçƒê∂
+void ResourceManager::DrawMovie(int handle, Vector2_Int pos, Vector2_Int size)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	drawData.size = size;
+
+	DrawGraphAndMovie(drawData);
+}
+
+// ìÆâÊçƒê∂
+void ResourceManager::DrawMovie(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::FREE;
+	drawData.handle = handle;
+	drawData.transFlag = TRUE;
+
+	drawData.upLeft = leftUp;
+	drawData.upRight = rightUp;
+	drawData.downLeft = leftDown;
+	drawData.downRight = rightDown;
 
 	DrawGraphAndMovie(drawData);
 }

@@ -1,3 +1,5 @@
+#include "AttackEnum.h"
+
 #include "Master.h"
 
 #include "AnimationBase.h"
@@ -57,7 +59,8 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
-, mnAttackDataNumber(-1)
+, mnSpecialAttackDataNumber(-1)
+, mnNormalAttackNumber(-1)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
 {
@@ -157,22 +160,46 @@ void CharacterBase::Draw()
 /*----------------------*/
 
 // 攻撃開始
-int CharacterBase::StartAttck()
+int CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
-	if (mnAttackDataNumber != -1)
+	switch (attackMethodType)
 	{
-		return Master::mpGameManager->GetAttackManager()->StartAttack(mnAttackDataNumber);
+	case ATTACK_METHOD_TYPE::NORMAL:
+		if (mnNormalAttackNumber != -1)
+		{
+			return Master::mpGameManager->GetAttackManager()->StartAttack(mnNormalAttackNumber);
+		}
+		break;
+
+	case ATTACK_METHOD_TYPE::SPCEIAL:
+		if (mnSpecialAttackDataNumber != -1)
+		{
+			return Master::mpGameManager->GetAttackManager()->StartAttack(mnSpecialAttackDataNumber);
+		}
+		break;
 	}
 
 	return 0;
 }
 
 // 攻撃リセット
-void CharacterBase::StopAttack()
+void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
-	if (mnAttackDataNumber != -1)
+	switch (attackMethodType)
 	{
-		Master::mpGameManager->GetAttackManager()->StopAttack(mnAttackDataNumber);
+	case ATTACK_METHOD_TYPE::NORMAL:
+		if (mnNormalAttackNumber != -1)
+		{
+			return Master::mpGameManager->GetAttackManager()->StopAttack(mnNormalAttackNumber);
+		}
+		break;
+
+	case ATTACK_METHOD_TYPE::SPCEIAL:
+		if (mnSpecialAttackDataNumber != -1)
+		{
+			return Master::mpGameManager->GetAttackManager()->StopAttack(mnSpecialAttackDataNumber);
+		}
+		break;
 	}
 }
 
@@ -521,6 +548,41 @@ void UIBase::Draw()
 void UIBase::SetFsm(FSMUI* fsm)
 {
 	mpFsm = fsm;
+}
+
+// 画像ハンドル設定
+void UIBase::SetGraphHandle(int index, int handle)
+{
+	if (index < mnGraphCount)
+	{
+		mnGraphHandles[index] = handle;
+	}
+}
+
+// 画像ハンドル数変更
+void UIBase::SetGraphCount(int count)
+{
+	if (mnGraphHandles != nullptr)
+	{
+		for (int i = 0; i < mnGraphCount; i++)
+		{
+			if (mnGraphHandles[i] != -1)
+			{
+				Master::mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+			}
+		}
+
+		free(mnGraphHandles);
+	}
+
+	mnGraphCount = count;
+
+	mnGraphHandles = (int*)malloc(sizeof(int) * mnGraphCount);
+
+	for (int i = 0; i < mnGraphCount; i++)
+	{
+		mnGraphHandles[i] = -1;
+	}
 }
 
 /*------------------------*/

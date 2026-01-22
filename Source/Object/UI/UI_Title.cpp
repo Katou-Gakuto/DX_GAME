@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "CameraData.h"
 
 #include "Master.h"
@@ -19,6 +21,8 @@ UI_Title::~UI_Title()
 // UI‰Šú‰»
 void UI_Title::UIInitilize()
 {
+    SetGraphCount(1);
+    SetGraphHandle(0, mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitlrBack.png"));
 }
 
 // UII—¹

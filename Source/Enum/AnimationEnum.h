@@ -14,6 +14,10 @@ enum class ANIMATION_TYPE
     ATTACK,     // 攻撃
     ATTACK_OUT, // 攻撃終了
     DEATH,      // 死亡
+
+    NORMAL_ATTACK_IN,   // ノーマル攻撃開始
+    NORMAL_ATTACK,      // ノーマル攻撃
+    NORMAL_ATTACK_OUT,  // ノーマル攻撃終了
 };
 
 // アニメーションモデル種類

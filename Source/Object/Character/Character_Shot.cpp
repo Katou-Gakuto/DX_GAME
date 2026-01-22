@@ -1,3 +1,4 @@
+#include "AttackEnum.h"
 #include "CollisionData.h"
 
 #include "DxLib.h"
@@ -23,7 +24,7 @@ Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYP
 	{
 	case SHOT_TYPE::DEFAULT:
 		Master::mpGameManager->GetAttackManager()->CreateAttack(setData.attackType);
-		mnAttackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(setData);
+		mnNormalAttackNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(setData);
 		break;
 	}
 }
@@ -33,7 +34,7 @@ Character_Shot::~Character_Shot()
 }
 
 // UŒ‚ƒŠƒZƒbƒg
-void Character_Shot::StopAttack()
+void Character_Shot::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
 }
 

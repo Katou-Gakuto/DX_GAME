@@ -1,5 +1,7 @@
 #include <string>
 
+#include "AttackEnum.h"
+
 #include "Master.h"
 
 #include "CameraManager.h"
@@ -240,7 +242,7 @@ AttackPlayerState::AttackPlayerState()
 void AttackPlayerState::OnEnter(CharacterBase* character)
 {
 	// TODO: データマネージャーから取得できるようにする
-	mnAttackTime = (character->StartAttck() + Master::mpTimeManager->GetGameTime());
+	mnAttackTime = (character->StartAttck(ATTACK_METHOD_TYPE::SPCEIAL) + Master::mpTimeManager->GetGameTime());
 	character->SetAnimation(ANIMATION_TYPE::ATTACK_IN);
 }
 

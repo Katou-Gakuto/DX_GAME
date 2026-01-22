@@ -2,6 +2,8 @@
 
 #include "ObjectBases.h"
 
+enum class ATTACK_METHOD_TYPEs;
+
 class Character_Map : public CharacterBase
 {
 public:
@@ -9,10 +11,10 @@ public:
 	~Character_Map();
 
 	/*攻撃開始(反動時間を返す)*/
-	int StartAttck() override;
+	int StartAttck(ATTACK_METHOD_TYPE attackMethodType) override;
 
 	/*攻撃停止*/
-	void StopAttack() override;
+	void StopAttack(ATTACK_METHOD_TYPE attackMethodType) override;
 
 private:
 	/*キャラクター初期化*/

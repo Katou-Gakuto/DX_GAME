@@ -1,6 +1,8 @@
 #pragma once
 #include "ObjectBases.h"
 
+enum class ATTACK_METHOD_TYPE;
+
 enum class SHOT_TYPE
 {
     DEFAULT = 0,
@@ -13,7 +15,7 @@ public:
     ~Character_Shot();
 
     /*攻撃リセット*/
-    void StopAttack() override;
+    void StopAttack(ATTACK_METHOD_TYPE attackMethodType) override;
 
 private:
     /*キャラクター初期化*/

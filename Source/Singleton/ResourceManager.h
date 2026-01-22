@@ -5,6 +5,7 @@
 
 #include "ResourceEnum.h"
 #include "ResourceData.h"
+#include "Vector2.h"
 
 
 class ResourceManager
@@ -125,13 +126,16 @@ public:
 	/// <summary>動画ループ</summary>
 	void MovieLoop(int handle);
 
-	/// <summary>動画描画</summary>
+	/// <summary>ハンドル描画</summary>
 	void DrawMovie(int handle, int x, 		 int y);
 	void DrawMovie(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
 	void DrawMovie(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
 	void DrawMovie(int handle, float xRatio, float yRatio);
 	void DrawMovie(int handle, float xRatio, float yRatio, int sizeX, 		 int sizeY);
 	void DrawMovie(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
+	void DrawMovie(int handle, Vector2_Int pos);
+	void DrawMovie(int handle, Vector2_Int pos, Vector2_Int size);
+	void DrawMovie(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
 	void DrawMovie(DRAW_GRAPH_DATA drawData);
 
 	/*動画音の設定が必要なら作る

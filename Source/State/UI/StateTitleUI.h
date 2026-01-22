@@ -33,9 +33,11 @@ enum class TITLE_UI_STATE
 class TitleUIStateProcess
 {
 protected:
+	// 前のステート
 	TITLE_UI_STATE mePreUiState;
 
-	int mnBackHandle;
+	// バック画像表示時間
+	int mnBackGraphTime;
 
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
@@ -45,13 +47,13 @@ protected:
 	void DrawBackground(UIBase* ui, std::vector<std::string> str);
 
 	/*この状態に入った時の処理*/
-	void ProcessOnEnter();
+	void ProcessOnEnter(UIBase* ui);
 
 	/*この状態を出る時の処理*/
-	void ProcessOnExit();
+	void ProcessOnExit(UIBase* ui);
 
 	/*更新*/
-	void ProcessUpadate();
+	void ProcessUpadate(UIBase* ui);
 
 	/*ゲームを開始する*/
 	void StartGame(UIBase* ui);

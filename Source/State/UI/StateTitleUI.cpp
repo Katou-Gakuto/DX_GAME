@@ -21,19 +21,22 @@
 /*----------*/
 TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
+, mnBackGraphTime(0)
 {
-	mnBackHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitlrBack.mp4");
 }
 
 // îwåiï`âÊ
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
-	Master::mpResourceManager->DrawMovie(mnBackHandle, 0, 0, 1.0f, 1.0f);
-	
-
      DisplaySize displaySize = ui->GetDisplaySize();
     Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
     Vector2_Int rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
+
+	Master::mpResourceManager->DrawMovie(ui->GetGraphHandles()[0], 0, 0, 1.0f, 1.0f);
+	
+    leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
+    rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
+
     DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 	
 	for (int i = 0; i < str.size(); i++)
@@ -44,21 +47,25 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 }
 
 // Ç±ÇÃèÛë‘Ç…ì¸Ç¡ÇΩéûÇÃèàóù
-void TitleUIStateProcess::ProcessOnEnter()
+void TitleUIStateProcess::ProcessOnEnter(UIBase* ui)
 {
-	Master::mpResourceManager->PlayMovie(mnBackHandle);
+	mnBackGraphTime = 0;
 }
 
 // Ç±ÇÃèÛë‘ÇèoÇÈéûÇÃèàóù
-void TitleUIStateProcess::ProcessOnExit()
+void TitleUIStateProcess::ProcessOnExit(UIBase* ui)
 {
-	Master::mpResourceManager->StopMovie(mnBackHandle);
 }
 
 // çXêV
-void TitleUIStateProcess::ProcessUpadate()
+void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
-	Master::mpResourceManager->MovieLoop(mnBackHandle);
+	mnBackGraphTime += 1;
+
+	if (mnBackGraphTime > ui->GetDisplaySize().x)
+	{
+		mnBackGraphTime = 0;
+	}
 }
 
 // ÉQÅ[ÉÄäJén

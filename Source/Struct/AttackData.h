@@ -1,11 +1,7 @@
 #pragma once
-class CharacterBase;
+#include "AttackEnum.h"
 
-// UŒ‚í—Ş
-enum class ATTACK_TYPE
-{
-	SHOT = 0,
-};
+class CharacterBase;
 
 // UŒ‚î•ñİ’è—pî•ñ
 struct AttackData

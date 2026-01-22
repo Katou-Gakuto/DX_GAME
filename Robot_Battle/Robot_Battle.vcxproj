@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Animation\AnimationBase.h" />
     <ClInclude Include="..\Source\Enum\AnimationEnum.h" />
+    <ClInclude Include="..\Source\Enum\AttackEnum.h" />
     <ClInclude Include="..\Source\Enum\CharacterEnum.h" />
     <ClInclude Include="..\Source\Enum\ResourceEnum.h" />
     <ClInclude Include="..\Source\Enum\SceneEnum.h" />

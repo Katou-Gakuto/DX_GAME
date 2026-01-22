@@ -314,6 +314,9 @@
     <ClInclude Include="..\Source\Enum\ResourceEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Enum\AttackEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">

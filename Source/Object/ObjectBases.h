@@ -15,6 +15,7 @@
 #include "ResourceManager.h"
 #include "TimeManager.h"
 
+enum class ATTACK_METHOD_TYPE;
 enum class SCENE;
 
 class FSMCharacter;
@@ -260,8 +261,11 @@ protected:
     // 行動フラグ
     BIT_FLAG<unsigned int> munActionflags;
 
-    // 攻撃情報ナンバー
-    int mnAttackDataNumber;
+    // スペシャル攻撃情報ナンバー
+    int mnSpecialAttackDataNumber;
+
+    // ノーマル攻撃情報ナンバー
+    int mnNormalAttackNumber;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -287,10 +291,10 @@ public:
 
 public:
     /*攻撃開始(反動時間を返す)*/
-    virtual int StartAttck();
+    virtual int StartAttck(ATTACK_METHOD_TYPE attackMethodType);
 
     /*攻撃停止*/
-    virtual void StopAttack();
+    virtual void StopAttack(ATTACK_METHOD_TYPE attackMethodType);
 
     /*ダメージ*/
     virtual void Damage(int damage);
@@ -651,6 +655,12 @@ public:
     /// <param name="displaySize">ディスプレイサイズ</param>
     inline void SetDisplaySize(const DisplaySize displaySize) { mstDisplaySize = displaySize; }
 
+    /// <summary>画像ハンドル設定</summary>
+    void SetGraphHandle(int index, int handle);
+
+    /// <summary>画像ハンドル数変更</summary>
+    void SetGraphCount(int count);
+
     /*--------*/
     /*【取得】*/
     /*--------*/
@@ -665,6 +675,12 @@ public:
     /// <summary>キー取得</summary>
     /// <returns>キーステート</returns>
     inline KeyState* GetKey() { return mpKeyState; }
+
+    /// <summary>画像ハンドル達を取得</summary>
+    inline int* GetGraphHandles() { return mnGraphHandles; }
+
+    /// <summary>画像ハンドル数を取得</summary>
+    inline int GetGraphHandleCount() { return mnGraphCount; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

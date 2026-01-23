@@ -72,4 +72,6 @@ public:
 
     /// <summary>モデルリスト取得</summary>
     inline std::vector<ModelBase*> GetModelList() const { return mpModelList; }
+    /// <summary>モデルリスト設定</summary>
+    inline void SetModelsList(std::vector<ModelBase*> models) { mpModelList = models; }
 };

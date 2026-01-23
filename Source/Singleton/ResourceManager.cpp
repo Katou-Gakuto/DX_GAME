@@ -159,7 +159,7 @@ void ResourceManager::ShadowMapInit()
 	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
 
 	// シャドウマップに描画する範囲を設定
-	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-1000.0f, -1.0f, -1000.0f), VGet(1000.0f, 1000.0f, 1000.0f));
+	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-10000.0f, -1.0f, -10000.0f), VGet(10000.0f, 10000.0f, 10000.0f));
 }
 
 // 画像や動画の描画

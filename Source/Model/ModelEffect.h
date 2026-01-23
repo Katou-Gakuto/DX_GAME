@@ -1,17 +1,28 @@
-// #pragma once
-// #include "ModelBase.h"
+#pragma once
+#include <string>
 
-// class ModelEffect : ModelBase
-// {
-// public:
-//     ModelEffect();
-//     ~ModelEffect();
+#include "ModelBase.h"
 
-//     /// <summary>継承モデル初期化</summary>
-// 	virtual void ModelInitilize() override;
-//     /// <summary>継承モデル終了</summary>
-// 	virtual void ModelFinalize() override;
+class ModelEffect : public ModelBase
+{
+protected:
+    // エフェクトハンドル
+    int mnEffectHandle;
 
-// 	/// <summary>エフェクト描画</summary>
-// 	virtual void EffectDraw() override;
-// }
+public:
+    ModelEffect();
+    ~ModelEffect();
+
+    /// <summary>継承モデル初期化</summary>
+	virtual void ModelInitilize() override;
+    /// <summary>継承モデル終了</summary>
+	virtual void ModelFinalize() override;
+    /// <summary>ポジション更新</summary>
+    virtual void PositionUpdate() override;
+
+	/// <summary>モデル描画</summary>
+	virtual void ModelDraw() override;
+
+    /// <summary>エフェクトハンドル取得</summary>
+    int *GetHandlePointer() override { return &mnEffectHandle; }
+};

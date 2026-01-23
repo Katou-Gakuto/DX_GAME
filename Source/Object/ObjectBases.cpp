@@ -1,3 +1,5 @@
+#include <map>
+
 #include "AttackEnum.h"
 
 #include "Master.h"
@@ -59,11 +61,10 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
-, mnSpecialAttackDataNumber(-1)
-, mnNormalAttackNumber(-1)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
 {
+	mmCharacterAttackDatas.clear();
 }
 
 CharacterBase::~CharacterBase()
@@ -162,22 +163,26 @@ void CharacterBase::Draw()
 // 攻撃開始
 int CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
-	switch (attackMethodType)
+	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
 	{
-	case ATTACK_METHOD_TYPE::NORMAL:
-		if (mnNormalAttackNumber != -1)
-		{
-			return Master::mpGameManager->GetAttackManager()->StartAttack(mnNormalAttackNumber);
-		}
-		break;
-
-	case ATTACK_METHOD_TYPE::SPCEIAL:
-		if (mnSpecialAttackDataNumber != -1)
-		{
-			return Master::mpGameManager->GetAttackManager()->StartAttack(mnSpecialAttackDataNumber);
-		}
-		break;
+		return Master::mpGameManager->GetAttackManager()->StartAttack(mmCharacterAttackDatas[attackMethodType].attackDataNumber, attackMethodType);
 	}
+	// switch (attackMethodType)
+	// {
+	// case ATTACK_METHOD_TYPE::NORMAL:
+	// 	if (mnNormalAttackNumber != -1)
+	// 	{
+			
+	// 	}
+	// 	break;
+
+	// case ATTACK_METHOD_TYPE::SPCEIAL:
+	// 	if (mnSpecialAttackDataNumber != -1)
+	// 	{
+	// 		return Master::mpGameManager->GetAttackManager()->StartAttack(mnSpecialAttackDataNumber, attackMethodType);
+	// 	}
+	// 	break;
+	// }
 
 	return 0;
 }
@@ -185,22 +190,27 @@ int CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 // 攻撃リセット
 void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
-	switch (attackMethodType)
+	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
 	{
-	case ATTACK_METHOD_TYPE::NORMAL:
-		if (mnNormalAttackNumber != -1)
-		{
-			return Master::mpGameManager->GetAttackManager()->StopAttack(mnNormalAttackNumber);
-		}
-		break;
-
-	case ATTACK_METHOD_TYPE::SPCEIAL:
-		if (mnSpecialAttackDataNumber != -1)
-		{
-			return Master::mpGameManager->GetAttackManager()->StopAttack(mnSpecialAttackDataNumber);
-		}
-		break;
+		Master::mpGameManager->GetAttackManager()->StopAttack(mmCharacterAttackDatas[attackMethodType].attackDataNumber);
 	}
+
+	// switch (attackMethodType)
+	// {
+	// case ATTACK_METHOD_TYPE::NORMAL:
+	// 	if (mnNormalAttackNumber != -1)
+	// 	{
+	// 		return Master::mpGameManager->GetAttackManager()->StopAttack(mnNormalAttackNumber);
+	// 	}
+	// 	break;
+
+	// case ATTACK_METHOD_TYPE::SPCEIAL:
+	// 	if (mnSpecialAttackDataNumber != -1)
+	// 	{
+	// 		return Master::mpGameManager->GetAttackManager()->StopAttack(mnSpecialAttackDataNumber);
+	// 	}
+	// 	break;
+	// }
 }
 
 // ダメージ
@@ -388,6 +398,9 @@ AttackBase::AttackBase()
 , mnAttackRecoilTime(0)
 , mnAttackTime(0)
 , mvMoveDir(UtilCalc::VZero)
+, mpModelController(nullptr)
+, mpAnimation(nullptr)
+, mvAngle(UtilCalc::VZero)
 {
 	mnHiObjID.clear();
 }
@@ -429,12 +442,31 @@ void AttackBase::LastUpdate()
 	}
 
 	AttackLastUpdate();
+
+	if (mpModelController != nullptr)
+	{
+		// モデル位置・角度更新
+		mvAngle = UtilCalc::VMoveVecToAngle(mvMoveDir, mvAngle);
+		mpModelController->ModelsPositionSetting(mvPosition, mvAngle);
+
+		// アニメーション更新
+		mpAnimation->Update();
+
+		// モデルに反映
+		mpModelController->UpdateModels();
+	}
 }
 
 // 描画
 void AttackBase::Draw()
-{
+{	
 	AttackDraw();
+
+	if (mpModelController != nullptr)
+	{
+		// モデル描画
+		mpModelController->DrawModels();
+	}
 }
 
 /*--------------------------------*/
@@ -453,6 +485,8 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mpTimeManager(nullptr)
 , mnGraphHandles(nullptr)
 , mnGraphCount(0)
+, mnMovieHandles(nullptr)
+, mnMovieCount(0)
 , mpFsm(nullptr)
 , mstDisplaySize(DisplaySize())
 {
@@ -562,26 +596,89 @@ void UIBase::SetGraphHandle(int index, int handle)
 // 画像ハンドル数変更
 void UIBase::SetGraphCount(int count)
 {
-	if (mnGraphHandles != nullptr)
+	// if (mnGraphHandles != nullptr)
+	// {
+	// 	for (int i = 0; i < mnGraphCount; i++)
+	// 	{
+	// 		if (mnGraphHandles[i] != -1)
+	// 		{
+	// 			Master::mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+	// 		}
+	// 	}
+
+	// 	free(mnGraphHandles);
+	// }
+
+	// mnGraphCount = count;
+
+	// mnGraphHandles = (int*)malloc(sizeof(int) * mnGraphCount);
+
+	// for (int i = 0; i < mnGraphCount; i++)
+	// {
+	// 	mnGraphHandles[i] = -1;
+	// }
+	SetHandleCount(count, &mnGraphCount, &mnGraphHandles);
+}
+
+// 動画ハンドル設定
+void UIBase::SetMovieHandle(int index, int handle)
+{
+	if (index < mnMovieCount)
 	{
-		for (int i = 0; i < mnGraphCount; i++)
+		mnMovieHandles[index] = handle;
+	}
+}
+
+// 画像ハンドル数変更
+void UIBase::SetMovieCount(int count)
+{
+	// if (mnGraphHandles != nullptr)
+	// {
+	// 	for (int i = 0; i < mnGraphCount; i++)
+	// 	{
+	// 		if (mnGraphHandles[i] != -1)
+	// 		{
+	// 			Master::mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+	// 		}
+	// 	}
+
+	// 	free(mnGraphHandles);
+	// }
+
+	// mnGraphCount = count;
+
+	// mnGraphHandles = (int*)malloc(sizeof(int) * mnGraphCount);
+
+	// for (int i = 0; i < mnGraphCount; i++)
+	// {
+	// 	mnGraphHandles[i] = -1;
+	// }
+	SetHandleCount(count, &mnMovieCount, &mnMovieHandles);
+}
+
+// ハンドル数変更
+void UIBase::SetHandleCount(int count, int *handleCount, int**handle)
+{
+	if (*handle != nullptr)
+	{
+		for (int i = 0; i < (*handleCount); i++)
 		{
-			if (mnGraphHandles[i] != -1)
+			if ((*handle)[i] != -1)
 			{
-				Master::mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+				Master::mpResourceManager->ReduceGraphHandle((*handle)[i]);
 			}
 		}
 
-		free(mnGraphHandles);
+		free((*handle));
 	}
 
-	mnGraphCount = count;
+	(*handleCount) = count;
 
-	mnGraphHandles = (int*)malloc(sizeof(int) * mnGraphCount);
+	(*handle) = (int*)malloc(sizeof(int) * (*handleCount));
 
-	for (int i = 0; i < mnGraphCount; i++)
+	for (int i = 0; i < (*handleCount); i++)
 	{
-		mnGraphHandles[i] = -1;
+		(*handle)[i] = -1;
 	}
 }
 

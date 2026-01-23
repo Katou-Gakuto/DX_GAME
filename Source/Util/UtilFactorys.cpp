@@ -14,6 +14,7 @@
 #include "FSM.h"
 #include "GameManager.h"
 #include "ModelBase.h"
+#include "ModelEffect.h"
 #include "ModelMV1.h"
 #include "ModelPolygonIndexed.h"
 #include "ObjectBases.h"
@@ -30,6 +31,7 @@
 #include "StateScene.h"
 #include "StateTitleUI.h"
 #include "TargetManager.h"
+#include "UtilCalc.h"
 #include "UtilFactorys.h"
 
 // アニメション有限状態マシン作成
@@ -38,12 +40,24 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 	// FSM生成
 	FSMAnimation* fsm = new FSMAnimation();
 	
+	// HACK: 一時的にnullではじいてる
 	// 必要変数取得
-	std::vector<AnimationDatas*> animationDatas = animation->GetAnimationDatas();
-	std::vector<ModelBase*> modelBases = animation->GetModelsController()->GetModelList();
-
-	// サイズ設定
-	fsm->IncreaseAnimationStateSize((int)animationDatas.size());
+	std::vector<AnimationDatas*> animationDatas;
+	std::vector<ModelBase*> modelBases;
+	animationDatas.clear();
+	modelBases.clear();
+	if (animation != nullptr)
+	{
+		animationDatas = animation->GetAnimationDatas();
+		modelBases = animation->GetModelsController()->GetModelList();
+		
+		// サイズ設定
+		fsm->IncreaseAnimationStateSize((int)animationDatas.size());
+	}
+	else
+	{
+		fsm->IncreaseAnimationStateSize(0);
+	}
 
 	switch (animationFactoryNumber)
 	{
@@ -81,6 +95,23 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
 			fsm->RegisterState(new StateIdleAnimationController());
 			fsm->RegisterState(new StateMoveAnimationController());
+
+			fsm->RegisterState(new StateAttackInAnimationController());
+			fsm->RegisterState(new StateAttackMiddleAnimationController());
+			fsm->RegisterState(new StateAttackOutAnimationController());
+
+			fsm->RegisterState(new StateNormalAttackInAnimationController());
+			fsm->RegisterState(new StateNormalAttackOutAnimationController());
+			break;
+		}
+		break;
+
+	case ANIMATION_FACTORY_NUMBER::SHOT_ATTACK:
+		switch (ladoAnimationDataFactorynumber)
+		{
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
+			fsm->RegisterState(new StateIdleAnimationController());
+
 			fsm->RegisterState(new StateAttackInAnimationController());
 			fsm->RegisterState(new StateAttackMiddleAnimationController());
 			fsm->RegisterState(new StateAttackOutAnimationController());
@@ -100,6 +131,16 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 			// アニメションステート生成
 			switch (setModelType)
 			{
+			case MODEL_TYPE::NONE:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					// HACK: 外部から固定するフレームの名前を取得できるようにする
+					StateNoneAnimation* statenoneAnimation = new StateNoneAnimation();
+					statenoneAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = statenoneAnimation;
+				}
+				break;
+
 			case MODEL_TYPE::MV1_MODEL:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
@@ -114,7 +155,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: 仮設定
-					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(0.0f, 0.0f, 10.0f), VGet(0.0f, 0.0f, 0.0f));
+					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(10.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 0.0f));
 					stateMVOneOperationAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = stateMVOneOperationAnimation;
 				}
@@ -126,6 +167,15 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					StateMVOneOnlyAnimation* stateMVOneOnlyAnimation = new StateMVOneOnlyAnimation(modelBases[i]->GetHandle());
 					stateMVOneOnlyAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = stateMVOneOnlyAnimation;
+				}
+				break;
+			
+			case MODEL_TYPE::EFFECT:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					StateEffectAnimation* stateEffectAnimation = new StateEffectAnimation(modelBases[i]->GetHandlePointer());
+					stateEffectAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateEffectAnimation;
 				}
 				break;
 			}
@@ -153,12 +203,19 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 	{
 		switch (loadAnimationData[i].modelType)
 		{
+		case MODEL_TYPE::NONE:
+			animationData.number = -1;
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			animationData.modelType = loadAnimationData[i].modelType;
+
+			// 設定
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
+			break;
+
 		case MODEL_TYPE::MV1_MODEL:
 			// アニメション添え字設定
 			animationData.number = loadAnimationData[i].animationIndex;
-			
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
-			
 			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
@@ -169,13 +226,21 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 		case MODEL_TYPE::MV1_MODEL_ONLY:
 			// アニメション読み込み
 			animationData.number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
-
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
-			
 			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
+			break;
+
+		case MODEL_TYPE::EFFECT:
+			// エフェクトリソース取得
+			animationData.number = Master::mpResourceManager->GetEffectResource(loadAnimationData[i].animationPath);
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			animationData.modelType = loadAnimationData[i].modelType;	
+
+			// 設定
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;		
 			break;
 		}
 	}
@@ -212,18 +277,22 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[4].animationLoopFlag = false;
 		loadAnimationData[5].animationType = ANIMATION_TYPE::ATTACK;
 		loadAnimationData[5].animationLoopFlag = false;
-		// TODO: データマネージャーから取得できる形式にしたい
-		animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::JUMP_IN, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::JUMP, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::JUMP_OUT, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
-		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_IN, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
 		break;
 
 	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 7; i++)
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
@@ -252,20 +321,127 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[4].animationLoopFlag = false;
 		loadAnimationData[4].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
-		// TODO: データマネージャーから取得できる形式にしたい
-		animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
-		animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
-		animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		loadAnimationData[5].animationType = ANIMATION_TYPE::NORMAL_ATTACK_IN;
+		loadAnimationData[5].animationLoopFlag = false;
+		loadAnimationData[5].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_close.mv1";
+
+		loadAnimationData[6].animationType = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
+		loadAnimationData[6].animationLoopFlag = false;
+		loadAnimationData[6].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
+
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
+		for (int i = 0; i < 4; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		// HACK: データマネージャーから取得できるようにする
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		
+		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		
+		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[2].animationPath = "../Resource/Effect/Test.efk";
+		
+		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
 		break;
 	}
 
 	return loadAnimationData;
 }
 
-/*カメラ有限状態マシン作成*/
+// キャラクタ攻撃情報作成
+CharacterAttackData UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType)
+{// INPROGRESS: 作業中エフェクト作成待ち
+	// 初期化
+	CharacterAttackData characterAttackData;
+	characterAttackData.attackDataNumber = -1;
+	characterAttackData.modelController = new ModelsControllerBase();
+	characterAttackData.animation = new AnimationBase();
+	// 変数にポインタを渡し見やすくする
+    ModelsControllerBase* modelController = characterAttackData.modelController;
+    AnimationBase* animation = characterAttackData.animation;
+	// モデル初期化
+	modelController->Initilize();
+	// アニメーション初期化
+	animation->Initilize();
+	animation->SetModelsController(modelController);
+	
+
+	// モデル設定
+	switch (factoryNumberAttackMethod)
+	{
+	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
+		modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+		break;
+	
+	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
+		switch (factoryNumberModelType)
+		{
+		case ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+			modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+			break;
+		}
+		break;
+	}
+
+	// アニメーション設定
+ 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	switch (factoryNumberAttackMethod)
+	{
+	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
+	 	// 読み込み用アニメーションデータ設定
+	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+	 	// アニメーション有限状態マシン設定
+	 	animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK, setcharacterLoadAnimationData));
+		break;
+	
+	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
+		switch (factoryNumberModelType)
+		{
+		case ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		 	// 読み込み用アニメーションデータ設定
+			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+			// アニメーション有限状態マシン設定
+			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK, setcharacterLoadAnimationData));
+			break;
+		}
+		break;
+	}
+
+	return characterAttackData;
+}
+
+// カメラ有限状態マシン作成
 FSMCamera* UtilFactorys::FSMCameraFactory()
 {
 	FSMCamera* fsnCamera = new FSMCamera();
@@ -425,6 +601,14 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		SetModelPosition(model, position, angle, size);
 		return model;
 	}
+
+	case MODEL_TYPE::EFFECT:
+	{
+		ModelEffect* model = new ModelEffect();
+		model->Initilize();
+		SetModelPosition(model, position, angle, size);
+		return model;
+	}
 	}
 
 	return nullptr;
@@ -437,3 +621,18 @@ void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR an
 	model->SetAngle(angle);
 	model->SetSize(size);
 }
+
+/*
+	// モデル設定
+	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	// アニメション設定
+	 {
+	 	AnimationBase* characterAnimation = character->GetAnimation();
+	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	 	// 読み込み用アニメーションデータ設定
+	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
+	 	// アニメーション有限状態マシン設定
+	 	characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
+	 }
+*/

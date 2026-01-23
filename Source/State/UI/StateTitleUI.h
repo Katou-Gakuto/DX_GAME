@@ -37,7 +37,7 @@ protected:
 	TITLE_UI_STATE mePreUiState;
 
 	// バック画像表示時間
-	int mnBackGraphTime;
+	static int mnBackGraphTime;
 
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);

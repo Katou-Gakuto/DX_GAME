@@ -32,7 +32,7 @@ public:
 	int SetAttackData(AttackData attackData);
 
 	/*UŒ‚ŠJn*/
-	int StartAttack(int attackDataNumber);
+	int StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType);
 
 	/*UŒ‚’â~*/
 	void StopAttack(int stopAttackNumber);

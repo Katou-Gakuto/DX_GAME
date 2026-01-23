@@ -11,9 +11,11 @@
 #include "ObjectBases.h"
 #include "UtilCalc.h"
 
-Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType)
+Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData)
 : CharacterBase(nextSceneDeleteFlag, status)
 {
+	mmCharacterAttackDatas = characterAttackData;
+
 	AttackData setData = AttackData();
 	setData.attackType = ATTACK_TYPE::SHOT;
 	setData.attackCharacter = this;
@@ -24,7 +26,7 @@ Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYP
 	{
 	case SHOT_TYPE::DEFAULT:
 		Master::mpGameManager->GetAttackManager()->CreateAttack(setData.attackType);
-		mnNormalAttackNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(setData);
+		mmCharacterAttackDatas[ATTACK_METHOD_TYPE::NORMAL].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(setData);
 		break;
 	}
 }

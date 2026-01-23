@@ -5,6 +5,7 @@
 
 #include "SceneEnum.h"
 #include "AnimationData.h"
+#include "AttackData.h"
 #include "UtilCalc.h"
 
 enum class MODEL_TYPE;
@@ -16,6 +17,7 @@ class FSMCharacter;
 class FSMScene;
 class FSMUI;
 class ModelBase;
+class ModelsControllerBase;
 class SceneManager;
 class UIBase;
 
@@ -26,6 +28,8 @@ enum class ANIMATION_FACTORY_NUMBER
 	TOWN = 0,
 	DUNGEON,
 	BATTLE,
+
+	SHOT_ATTACK,
 };
 
 // 読み込み用アニメーションデータ作成ナンバー
@@ -33,6 +37,8 @@ enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER
 {
 	HUMAN = 0,
 	ROBOT,
+
+	SHOT_ATTACK,
 };
 
 // キャラクター作成ナンバー
@@ -57,6 +63,19 @@ enum class UI_FACTORY_NUMBER
 	RESULT,
 };
 
+// キャラクター攻撃情報作成ナンバー攻撃種類
+enum class ATTACK_DATA_FACTORY__ATTACK_METHOD
+{
+	SHOT_NORMAL = 0,
+	SHOT_SPCEIAL,
+};
+// キャラクター攻撃情報作成ナンバーモデル種類
+enum class ATTACK_DATA_FACTORY__MODEL_TYPE
+{
+	HUMAN = 0,
+	ROBOT,
+};
+
 namespace UtilFactorys
 {
 	// TODO: 改善する
@@ -75,6 +94,13 @@ namespace UtilFactorys
 	/// <summary>読み込み用アニメーションデータ作成</summary>
 	/// <param name="animation">アニメーション</param>
 	std::vector<LoadAnimationData> LoadAnimationDataFactory(AnimationBase* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER nmber);
+
+	/// <summary>キャラクタ攻撃情報作成</summary>
+	CharacterAttackData CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType);
+
+	// TODO: 作る
+	/// <summary>アニメーションとモデル設定</summary>
+	//void SettingAnimationAndModelFactory(AnimationBase* animation, ModelsControllerBase* modelsController, std::string filePath, objectType, characterType, moveType);
 
 	/*カメラ有限状態マシン作成*/
 	FSMCamera* FSMCameraFactory();

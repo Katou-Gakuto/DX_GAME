@@ -2,7 +2,7 @@
 
 #include "ObjectBases.h"
 
-enum class ATTACK_METHOD_TYPEs;
+enum class ATTACK_METHOD_TYPE;
 
 class Character_Map : public CharacterBase
 {

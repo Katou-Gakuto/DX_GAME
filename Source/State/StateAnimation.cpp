@@ -7,9 +7,12 @@
 #include "AnimationEnum.h"
 #include "AnimationData.h"
 
+#include "Master.h"
+
 #include "AnimationBase.h"
 #include "ModelBase.h"
 #include "ModelsControllerBase.h"
+#include "ResourceManager.h"
 #include "StateAnimation.h"
 #include "StateBase.h"
 #include "UtilCalc.h"
@@ -82,8 +85,6 @@ void StateAnimationProcess::UpdateAnimation(OneAnimationData *nowAnimationData)
 
         // ブレンド率更新
         UpdateBlend();
-
-        float animTotalTime;
 
         // 現在のアニメーション時間を進める
         AdvanceAnimationTime(nowAnimationData->animationHandle, &nowAnimationData->animationCount, nowAnimationData->loopFlag, mfAnimBlendRate, true);
@@ -235,7 +236,7 @@ bool StateMVOneOnlyAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
     {
     case MODEL_TYPE::MV1_MODEL_MOVE:
     case MODEL_TYPE::MV1_MODEL_ONLY:
-        return false;
+        return true;
     }
 
     return false;
@@ -305,5 +306,38 @@ bool StateMVOneOperationAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
         return false;
     }
 
+    return false;
+}
+
+/*----------*/
+/*【エフェクトアニメーション】
+/*----------*/
+
+StateEffectAnimation::StateEffectAnimation(int* effectHandle)
+: mnEffectHandle(effectHandle)
+{
+}
+
+// この状態に入った時の処理
+void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+    *mnEffectHandle = Master::mpResourceManager->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
+}
+
+// この状態を出る時の処理
+void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+    Master::mpResourceManager->ReduceEffect(*mnEffectHandle);
+    *mnEffectHandle = -1;
+}
+
+// 更新
+void StateEffectAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateEffectAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
     return false;
 }

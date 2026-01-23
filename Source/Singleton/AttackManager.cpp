@@ -51,7 +51,7 @@ int AttackManager::SetAttackData(AttackData attackData)
 }
 
 // 攻撃開始
-int AttackManager::StartAttack(int attackDataNumber)
+int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mstAttackDatas.size() > attackDataNumber)
 	{
@@ -66,6 +66,10 @@ int AttackManager::StartAttack(int attackDataNumber)
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);
+
+				// モデル設定
+				attack->SetModelController(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModelsController(attackMethodType));
+				attack->SetAnimation(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackAnimation(attackMethodType));
 
 				// FIXME: なぜかヌルポインターが出た　
 				// 初期化

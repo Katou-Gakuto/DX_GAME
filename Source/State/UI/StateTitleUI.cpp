@@ -15,41 +15,62 @@
 /*--------------------------------*/
 /*     【タイトルUIステート】     */
 /*--------------------------------*/
-
+int TitleUIStateProcess::mnBackGraphTime = 0;
 /*----------*/
 /*【タイトルUIステート共通処理用】
 /*----------*/
 TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
-, mnBackGraphTime(0)
 {
 }
 
 // 背景描画
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
-     DisplaySize displaySize = ui->GetDisplaySize();
-    Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
-    Vector2_Int rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
-
-	Master::mpResourceManager->DrawMovie(ui->GetGraphHandles()[0], 0, 0, 1.0f, 1.0f);
-	
-    leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
-    rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
-
-    DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
-	
-	for (int i = 0; i < str.size(); i++)
+	// 背景
 	{
-		Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f + (0.2f * i)));
-		DrawString(stringDrawPos.x - (str[i].size() * 5), stringDrawPos.y, str[i].c_str(), GetColor(0, 0, 0));
+		DisplaySize displaySize = ui->GetDisplaySize();
+		Vector2_Int leftUp = Vector2(displaySize.Left_RatioWidth(-2.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		Vector2_Int leftDown = Vector2(displaySize.Left_RatioWidth(-2.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+		Vector2_Int rightUp = Vector2(displaySize.Left_RatioWidth(1.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		Vector2_Int rightDown = Vector2(displaySize.Left_RatioWidth(1.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+
+		Master::mpResourceManager->DrawMovie(ui->GetGraphHandles()[0], leftUp, rightUp, leftDown, rightDown);
+		
+		leftUp = Vector2(displaySize.Left_RatioWidth(-2.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		leftDown = Vector2(displaySize.Left_RatioWidth(-2.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+		rightUp = Vector2(displaySize.Left_RatioWidth(-5.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		rightDown = Vector2(displaySize.Left_RatioWidth(-5.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+
+		Master::mpResourceManager->DrawMovie(ui->GetGraphHandles()[0], leftUp, rightUp, leftDown, rightDown);
+
+		leftUp = Vector2(displaySize.Left_RatioWidth(-8.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		leftDown = Vector2(displaySize.Left_RatioWidth(-8.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+		rightUp = Vector2(displaySize.Left_RatioWidth(-5.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-1.0f));
+		rightDown = Vector2(displaySize.Left_RatioWidth(-5.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(2.0f));
+
+		Master::mpResourceManager->DrawMovie(ui->GetGraphHandles()[0], leftUp, rightUp, leftDown, rightDown);
+	}
+		
+	// 選択
+	{
+		DisplaySize displaySize = ui->GetDisplaySize();
+		Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
+		Vector2_Int rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
+
+		DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
+		
+		for (int i = 0; i < str.size(); i++)
+		{
+			Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f + (0.2f * i)));
+			DrawString(stringDrawPos.x - (str[i].size() * 5), stringDrawPos.y, str[i].c_str(), GetColor(0, 0, 0));
+		}
 	}
 }
 
 // この状態に入った時の処理
 void TitleUIStateProcess::ProcessOnEnter(UIBase* ui)
 {
-	mnBackGraphTime = 0;
 }
 
 // この状態を出る時の処理
@@ -62,7 +83,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
 	mnBackGraphTime += 1;
 
-	if (mnBackGraphTime > ui->GetDisplaySize().x)
+	if (mnBackGraphTime > (ui->GetDisplaySize().x * 2 * 3))
 	{
 		mnBackGraphTime = 0;
 	}
@@ -140,7 +161,7 @@ SelectTitleUIState::SelectTitleUIState()
 // この状態に入った時の処理
 void SelectTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(4);
@@ -151,13 +172,13 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void SelectTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int SelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
@@ -227,7 +248,7 @@ NewDataCheckTitleUIState::NewDataCheckTitleUIState()
 // この状態に入った時の処理
 void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 	// TODO: ステートを作って機能を追加する 確認用ステートに移動
 }
@@ -235,13 +256,13 @@ void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int NewDataCheckTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -282,7 +303,7 @@ DataSelectTitleUIState::DataSelectTitleUIState()
 // この状態に入った時の処理
 void DataSelectTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber((const int)Master::mpDataManager->GetPlayerData().size());
@@ -293,13 +314,13 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void DataSelectTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int DataSelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
@@ -341,20 +362,20 @@ TutorialTitleUIState::TutorialTitleUIState()
 // この状態に入った時の処理
 void TutorialTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void TutorialTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int TutorialTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -396,7 +417,7 @@ SettingTitleUIState::SettingTitleUIState()
 // この状態に入った時の処理
 void SettingTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(2);
@@ -405,13 +426,13 @@ void SettingTitleUIState::OnEnter(UIBase* ui)
 // この状態を出る時の処理
 void SettingTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int SettingTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
@@ -461,20 +482,20 @@ CharacterSelectTitleUIState::CharacterSelectTitleUIState()
 // この状態に入った時の処理
 void CharacterSelectTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int CharacterSelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -515,20 +536,20 @@ PlayerNameTitleUIState::PlayerNameTitleUIState()
 // この状態に入った時の処理
 void PlayerNameTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void PlayerNameTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int PlayerNameTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -569,20 +590,20 @@ InputCheckTitleUIState::InputCheckTitleUIState()
 // この状態に入った時の処理
 void InputCheckTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void InputCheckTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int InputCheckTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -624,20 +645,20 @@ ScreenSizeTitleUIState::ScreenSizeTitleUIState()
 // この状態に入った時の処理
 void ScreenSizeTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int ScreenSizeTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -678,20 +699,20 @@ VolumeTitleUIState::VolumeTitleUIState()
 // この状態に入った時の処理
 void VolumeTitleUIState::OnEnter(UIBase* ui)
 {
-	ProcessOnEnter();
+	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
 void VolumeTitleUIState::OnExit(UIBase* ui)
 {
-	ProcessOnExit();
+	ProcessOnExit(ui);
 }
 
 // 更新
 int VolumeTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate();
+	ProcessUpadate(ui);
 
 	ui->DefaultDecision();
 	ui->DefaultCloce();

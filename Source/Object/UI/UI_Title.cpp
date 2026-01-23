@@ -44,28 +44,28 @@ void UI_Title::UILastUpdate()
 void UI_Title::UIDraw()
 {
 
-    VECTOR pos1;
-    VECTOR pos2;
+    // VECTOR pos1;
+    // VECTOR pos2;
 
-    SetUseZBufferFlag(true);
+    // SetUseZBufferFlag(true);
 
-    pos1 = VGet(-mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
-    pos2 = VGet(-mnLineAeraSize / 2.0f, 0.0f, mnLineAeraSize / 2.0f);
-    for (int i = 0; i < mnLineNum; i++)
-    {
-        DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
-        pos1.x += mnLineAeraSize / mnLineNum;
-        pos2.x += mnLineAeraSize / mnLineNum;
-    }
+    // pos1 = VGet(-mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
+    // pos2 = VGet(-mnLineAeraSize / 2.0f, 0.0f, mnLineAeraSize / 2.0f);
+    // for (int i = 0; i < mnLineNum; i++)
+    // {
+    //     DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
+    //     pos1.x += mnLineAeraSize / mnLineNum;
+    //     pos2.x += mnLineAeraSize / mnLineNum;
+    // }
 
-    pos1 = VGet(-mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
-    pos2 = VGet(mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
-    for (int i = 0; i < mnLineNum; i++)
-    {
-        DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
-        pos1.z += mnLineAeraSize / mnLineNum;
-        pos2.z += mnLineAeraSize / mnLineNum;
-    }
+    // pos1 = VGet(-mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
+    // pos2 = VGet(mnLineAeraSize / 2.0f, 0.0f, -mnLineAeraSize / 2.0f);
+    // for (int i = 0; i < mnLineNum; i++)
+    // {
+    //     DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
+    //     pos1.z += mnLineAeraSize / mnLineNum;
+    //     pos2.z += mnLineAeraSize / mnLineNum;
+    // }
 }
 
 

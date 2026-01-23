@@ -117,6 +117,42 @@ public:
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
+/*----------*/
+/*【通常攻撃開始アニメションコントローラーステート】
+/*----------*/
+class StateNormalAttackInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+{
+public:
+	StateNormalAttackInAnimationController();
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------*/
+/*【通常攻撃終了アニメションコントローラーステート】
+/*----------*/
+class StateNormalAttackOutAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+{
+public:
+	StateNormalAttackOutAnimationController();
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
 
 
 /*--------------------*/

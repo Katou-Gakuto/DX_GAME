@@ -28,4 +28,5 @@ enum class MODEL_TYPE
     MV1_MODEL_MOVE, // MV1モデル モデル操作
     MV1_MODEL_ONLY, // MV1モデルのみ　アニメーション無しモデル
     POLYGON_INDEXED, // ポリゴンインデックスモデル
+    EFFECT, // エフェクト
 };

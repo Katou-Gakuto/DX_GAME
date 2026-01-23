@@ -67,4 +67,6 @@ public:
     inline int GetAnimationTime(ANIMATION_TYPE animationType) { return mmAnimationTime[animationType]; }
     /// <summary>アニメーション時間設定</summary>
     inline void SetAnimationTime(ANIMATION_TYPE animationType, int time) { mmAnimationTime[animationType] = time; }
+    /// <summary>全アニメーション時間設定</summary>
+    inline void SetAllAnimationTime(std::map<ANIMATION_TYPE, int> animationTime) { mmAnimationTime = animationTime; }
 };

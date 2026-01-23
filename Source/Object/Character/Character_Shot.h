@@ -1,4 +1,8 @@
 #pragma once
+#include <map>
+
+#include "AttackEnum.h"
+
 #include "ObjectBases.h"
 
 enum class ATTACK_METHOD_TYPE;
@@ -11,7 +15,7 @@ enum class SHOT_TYPE
 class Character_Shot : public CharacterBase
 {
 public:
-    Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType);
+    Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData);
     ~Character_Shot();
 
     /*çUåÇÉäÉZÉbÉg*/

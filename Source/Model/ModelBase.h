@@ -74,6 +74,8 @@ public:
 	inline VECTOR GetAngle() const { return mvAngle; }
 	/// <summary>ハンドル取得</summary>
 	virtual int GetHandle() const { return -1; }
+	/// <summary>ハンドル取得</summary>
+	virtual int* GetHandlePointer() { return nullptr; }
 
 	/*--------*/
 	/*【設定】*/

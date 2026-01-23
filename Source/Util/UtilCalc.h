@@ -40,7 +40,7 @@ namespace UtilCalc
 	VECTOR VAngleToVec(VECTOR angle);
 
 	/// <summary>移動量をアングルに反映した値を返す(ラジアン)</summary>
-	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle = UtilCalc::VZero, float speed = 0.2f);
+	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed = 0.2f);
 
 	/// <summary>VECTORの平均を出す(正の数)</summary>
 	float PutVectorAverage(VECTOR vector);

@@ -1,7 +1,9 @@
 #pragma once
 #include <list>
 #include <string>
+#include <map>
 
+#include "AttackData.h"
 #include "BitFlag.h"
 #include "CollisionData.h"
 #include "Status.h"
@@ -18,6 +20,7 @@
 enum class ATTACK_METHOD_TYPE;
 enum class SCENE;
 
+class FSMAnimation;
 class FSMCharacter;
 class FSMUI;
 
@@ -223,7 +226,7 @@ enum class CHECK_ACTION_FLAG
 /*------------------------------------------*/
 /*          【キャラクターベース】          */
 /*------------------------------------------*/
-
+;// TODO: 消す
 class CharacterBase : public ObjectBase
 {
 
@@ -261,11 +264,8 @@ protected:
     // 行動フラグ
     BIT_FLAG<unsigned int> munActionflags;
 
-    // スペシャル攻撃情報ナンバー
-    int mnSpecialAttackDataNumber;
-
-    // ノーマル攻撃情報ナンバー
-    int mnNormalAttackNumber;
+    // 攻撃設定情報達
+    std::map<ATTACK_METHOD_TYPE, CharacterAttackData> mmCharacterAttackDatas;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -365,6 +365,15 @@ public:
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
     inline AnimationBase* GetAnimation() { return  mpAnimation; }
+
+    
+    /// <summary>モデルコントローラー取得</summary>
+    /// <returns>モデルコントローラー</returns>
+    inline ModelsControllerBase* GetAttackModelsController(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
+
+    /// <summary>アニメションベース取得</summary>
+    /// <returns>アニメションベース</returns>
+    inline AnimationBase* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { return  mmCharacterAttackDatas[attackMethodType].animation; }
 
     /*--------*/
     /*【設定】*/
@@ -485,9 +494,16 @@ protected:
     // 移動方向
     VECTOR mvMoveDir;
 
-    // モデルベース
+    // 向き
+    VECTOR mvAngle;
 
     //fsm
+
+    // モデルベース
+    ModelsControllerBase* mpModelController;
+
+    // アニメションベース
+    AnimationBase* mpAnimation;
 
     // 攻撃ナンバー
     int mnAttackNumber;
@@ -552,6 +568,12 @@ public:
     /*攻撃力設定*/
     inline void SetAttackPower(int power) { mnPower = power; }
 
+    /// <summary>モデルコントローラー設定</summary>
+    inline void SetModelController(ModelsControllerBase* modelsController) { mpModelController = modelsController; }
+
+    /// <summary>アニメション設定</summary>
+    inline void SetAnimation(AnimationBase* animation) { mpAnimation = animation; }
+
     /*--------*/
     /*【取得】*/
     /*--------*/
@@ -614,6 +636,11 @@ protected:
     // 画像ハンドル数
     int mnGraphCount;
 
+    // 動画ハンドル達
+    int* mnMovieHandles;
+    // 動画ハンドル数
+    int mnMovieCount;
+
     // 有限状態マシン
     FSMUI* mpFsm;
 
@@ -661,6 +688,15 @@ public:
     /// <summary>画像ハンドル数変更</summary>
     void SetGraphCount(int count);
 
+    /// <summary>画像ハンドル設定</summary>
+    void SetMovieHandle(int index, int handle);
+
+    /// <summary>画像ハンドル数変更</summary>
+    void SetMovieCount(int count);
+private:
+    /// <summary>ハンドル数変更</summary>
+    void SetHandleCount(int count, int *handleCount, int**handle);
+
     /*--------*/
     /*【取得】*/
     /*--------*/
@@ -681,6 +717,12 @@ public:
 
     /// <summary>画像ハンドル数を取得</summary>
     inline int GetGraphHandleCount() { return mnGraphCount; }
+
+    /// <summary>動画ハンドル達を取得</summary>
+    inline int* GetMovieHandles() { return mnMovieHandles; }
+
+    /// <summary>動画ハンドル数を取得</summary>
+    inline int GetMovieHandleCount() { return mnMovieCount; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

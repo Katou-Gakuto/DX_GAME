@@ -184,7 +184,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetAngle(VGet(0.0f, 3.14f, 0.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
 		// // モデル設定
 		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 		// // アニメション設定
@@ -290,7 +290,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -298,7 +298,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -306,7 +306,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 	{// 敵
 		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -314,7 +314,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	}
 
 	// UI生成
@@ -380,9 +380,27 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	switch (Master::mpDataManager->GetPlayPlayerData().status.characterType)
 	{
 	case CHARACTER_TYPE::ROBOT:
-		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		// TODO: アニメーションを設定してから
+	{
+		// HACK: 仮テキトウ実装
+		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
+		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		// {
+		// 	playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = CharacterAttackData();
+		// 	playerAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+			
+		//  	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	 	// 	// 読み込み用アニメーションデータ設定
+		//  	//setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(nullptr, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+
+		// 	//playerAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
+		// }
+
+		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData);
 		player->Initilize();
 		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
+	}
 		break;
 	}
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
@@ -403,12 +421,26 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	}
 
 	{// 敵
-		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		// HACK: 仮テキトウ実装
+		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
+		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		{
+			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = CharacterAttackData();
+			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+			
+		 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	 		// 読み込み用アニメーションデータ設定
+		 	//setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(nullptr, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+
+			//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
+		}
+		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData);
 		enemy->Initilize();
 		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
 		// モデルとアニメション設定
-		//CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 
 	// UI生成
@@ -428,7 +460,22 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		break;
 	case SCENE::BATTLE_3:
 	{// ボス
-		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT);
+		// HACK: 仮テキトウ実装
+		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
+		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		//{
+		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = CharacterAttackData();
+		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+		//	
+		// 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	 //		// 読み込み用アニメーションデータ設定
+		// 	//setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(nullptr, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+
+		//	//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
+		//}
+
+		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData);
 		enemy->Initilize();
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));

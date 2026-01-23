@@ -83,30 +83,30 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
 	// HACK: モデルが出来たら消す
 
-	VECTOR pos1;
-	VECTOR pos2;
+	// VECTOR pos1;
+	// VECTOR pos2;
 
-	SetUseZBufferFlag(true);
+	// SetUseZBufferFlag(true);
 
-	float size = /*/1000000.0f;//*/ 10000.0f;
-	int number = /*/5000; //*/ 50;
-	pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
-	pos2 = VGet(-size / 2.0f, 0.0f, size / 2.0f);
-	for (int i = 0; i < number; i++)
-	{
-		DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
-		pos1.x += size / number;
-		pos2.x += size / number;
-	}
+	// float size = /*/1000000.0f;//*/ 10000.0f;
+	// int number = /*/5000; //*/ 50;
+	// pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
+	// pos2 = VGet(-size / 2.0f, 0.0f, size / 2.0f);
+	// for (int i = 0; i < number; i++)
+	// {
+	// 	DrawLine3D(pos1, pos2, GetColor(0, 255, 0));
+	// 	pos1.x += size / number;
+	// 	pos2.x += size / number;
+	// }
 
-	pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
-	pos2 = VGet(size / 2.0f, 0.0f, -size / 2.0f);
-	for (int i = 0; i < number; i++)
-	{
-		DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
-		pos1.z += size / number;
-		pos2.z += size / number;
-	}
+	// pos1 = VGet(-size / 2.0f, 0.0f, -size / 2.0f);
+	// pos2 = VGet(size / 2.0f, 0.0f, -size / 2.0f);
+	// for (int i = 0; i < number; i++)
+	// {
+	// 	DrawLine3D(pos1, pos2, GetColor(255, 0, 0));
+	// 	pos1.z += size / number;
+	// 	pos2.z += size / number;
+	// }
 
 	DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
 }
@@ -229,7 +229,7 @@ void MovePlayerState::Death(CharacterBase* character)
 }
 
 /*--------------------------*/
-/*【移動プレイヤーステート】*/
+/*【攻撃プレイヤーステート】*/
 /*--------------------------*/
 AttackPlayerState::AttackPlayerState()
 : PlayerProcess()
@@ -242,8 +242,8 @@ AttackPlayerState::AttackPlayerState()
 void AttackPlayerState::OnEnter(CharacterBase* character)
 {
 	// TODO: データマネージャーから取得できるようにする
-	mnAttackTime = (character->StartAttck(ATTACK_METHOD_TYPE::SPCEIAL) + Master::mpTimeManager->GetGameTime());
-	character->SetAnimation(ANIMATION_TYPE::ATTACK_IN);
+	mnAttackTime = (character->StartAttck(ATTACK_METHOD_TYPE::NORMAL) + Master::mpTimeManager->GetGameTime());
+	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 
 // この状態を出る時の処理

@@ -1,33 +1,44 @@
-// #include "Effekseer/DxLib.h"
+#include <string>
 
-// #include "Master.h"
-// #include "ModelEffect.h"
+#include "Master.h"
 
-// ModelEffect::ModelEffect()
-// {
-// }
+#include "ModelEffect.h"
+#include "ResourceManager.h"
 
-// ModelEffect::~ModelEffect()
-// {
-// }
+ModelEffect::ModelEffect()
+: mnEffectHandle(-1)
+{
+    
+}
 
-// // 継承モデル初期化
-// void ModelEffect::ModelInitilize()
-// {
-//     // エフェクト初期化処理
-// }
+ModelEffect::~ModelEffect()
+{
+}
 
-// // 継承モデル終了
-// void ModelEffect::ModelFinalize()
-// {
-//     // エフェクトリソースを削除する。(Effekseer終了時に破棄されるので削除しなくてもいい)
-//     DeleteEffekseerEffect(effectResourceHandle);
-//     // Effekseerを終了する。
-//     Effkseer_End();
-// }
+// 継承モデル初期化
+void ModelEffect::ModelInitilize()
+{
+}
 
-// // エフェクト描画
-// void ModelEffect::EffectDraw()
-// {
-//     // エフェクト描画処理
-// }
+// 継承モデル終了
+void ModelEffect::ModelFinalize()
+{
+    if (mnEffectHandle != -1)
+    {
+        Master::mpResourceManager->ReduceEffect(mnEffectHandle);
+    }
+}
+
+// ポジション更新
+void ModelEffect::PositionUpdate()
+{
+    if (mnEffectHandle != -1)
+    {
+        Master::mpResourceManager->DrawEffect(mnEffectHandle, mvPosition);
+    }
+}
+
+// 描画
+void ModelEffect::ModelDraw()
+{
+}

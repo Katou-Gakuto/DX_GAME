@@ -72,6 +72,35 @@ protected:
     void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate, bool testFlag);
 };
 
+/*----------*/
+/*【アニメーション無し】
+/*----------*/
+class StateNoneAnimation : public IStateAnimation
+{
+public:
+    StateNoneAnimation() = default;
+    ~StateNoneAnimation() = default;
+
+    /// <summary>この状態に入った時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override {}
+    /// <summary>この状態を出る時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override {}
+
+    /// <summary>更新(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override {}
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override { return false; }
+
+};
+
 
 /*----------*/
 /*【MV1モデルアニメーション】
@@ -179,4 +208,37 @@ public:
 protected:
     /*モデル種類が同類なら「true」を返す*/
     virtual bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+};
+
+
+/*----------*/
+/*【エフェクトアニメーション】
+/*----------*/
+class StateEffectAnimation : public IStateAnimation
+{
+private:
+    int* mnEffectHandle;
+
+public:
+    StateEffectAnimation(int* effectHandle);
+    ~StateEffectAnimation() = default;
+
+    /// <summary>この状態に入った時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>更新(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+
 };

@@ -32,6 +32,9 @@ public:
     /// <summary>終了</summary>
     void Finalize();
 
+    /// <summary>ゲーム中初期化</summary>
+    void GameInit(VECTOR pos, VECTOR angle, VECTOR size);
+
     /// <summary>モデル追加</summary>
     /// <param name="model">追加するモデル</param>
     void AddModel(ModelBase* model);

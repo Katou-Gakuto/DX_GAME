@@ -61,7 +61,7 @@ int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMe
 			{
 				// 攻撃情報設定
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
-				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime());
+				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime() + (17 * 300));
 				// TODO: ベクトルに変換
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
@@ -70,6 +70,7 @@ int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMe
 				// モデル設定
 				attack->SetModelController(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModelsController(attackMethodType));
 				attack->SetAnimation(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackAnimation(attackMethodType));
+				attack->GetModelsController()->GameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
 
 				// FIXME: なぜかヌルポインターが出た　
 				// 初期化

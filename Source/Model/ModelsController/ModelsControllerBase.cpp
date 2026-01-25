@@ -32,6 +32,17 @@ void ModelsControllerBase::Finalize()
     mpModelList.clear();
 }
 
+// ƒQ[ƒ€’†‰Šú‰»
+void ModelsControllerBase::GameInit(VECTOR pos, VECTOR angle, VECTOR size)
+{
+    ModelsPositionSetting(pos, angle, size);
+
+    for (int i = 0; i < mpModelList.size(); i++)
+    {
+        mpModelList[i]->GameInit();
+    }
+}
+
 // ƒ‚ƒfƒ‹’Ç‰Á
 void ModelsControllerBase::AddModel(ModelBase* model)
 {

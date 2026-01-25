@@ -2,6 +2,7 @@
 #include <string>
 
 #include "ModelBase.h"
+#include "ModelsControllerBase.h"
 
 class ModelEffect : public ModelBase
 {
@@ -17,6 +18,10 @@ public:
 	virtual void ModelInitilize() override;
     /// <summary>継承モデル終了</summary>
 	virtual void ModelFinalize() override;
+
+    /// <summary>ゲーム中初期化</summary>
+    virtual void GameInit() override;
+    
     /// <summary>ポジション更新</summary>
     virtual void PositionUpdate() override;
 

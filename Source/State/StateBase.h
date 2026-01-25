@@ -101,6 +101,7 @@ protected:
 public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
+
 	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
 	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>

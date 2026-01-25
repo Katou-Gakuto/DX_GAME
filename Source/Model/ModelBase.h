@@ -59,6 +59,9 @@ public:
 	/*終了*/
 	void Finalize();
 
+	/// <summary>ゲーム初期化</summary>
+	virtual void GameInit(){}
+
 	/// <summary>ポジション更新</summary>
 	virtual void PositionUpdate() {}
 

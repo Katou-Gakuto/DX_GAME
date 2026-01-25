@@ -167,3 +167,10 @@ public:
 	/// <summary>ステート変更確認</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
+
+// INPROGRESS: 攻撃直通作る
+class StateAttackIdleAnimationController : public StateIdleAnimationController
+{
+protected:
+	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) override;
+};

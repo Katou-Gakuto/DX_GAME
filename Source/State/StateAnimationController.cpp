@@ -271,3 +271,14 @@ ANIMATION_TYPE StateAttackMiddleAnimationController::CheckState(AnimationBase* a
     
     return mStateNumber;
 }
+
+// ステート変更確認
+ANIMATION_TYPE StateAttackIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return ANIMATION_TYPE::ATTACK_IN;
+    }
+    
+    return mStateNumber;
+}

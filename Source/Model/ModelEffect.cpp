@@ -2,7 +2,9 @@
 
 #include "Master.h"
 
+#include "ModelBase.h"
 #include "ModelEffect.h"
+#include "ModelsControllerBase.h"
 #include "ResourceManager.h"
 
 ModelEffect::ModelEffect()
@@ -27,6 +29,12 @@ void ModelEffect::ModelFinalize()
     {
         Master::mpResourceManager->ReduceEffect(mnEffectHandle);
     }
+}
+
+// ゲーム中初期化
+void ModelEffect::GameInit()
+{
+    mvPosition = mpModelsController->GetModelPosition();
 }
 
 // ポジション更新

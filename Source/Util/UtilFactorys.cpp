@@ -110,7 +110,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		switch (ladoAnimationDataFactorynumber)
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
-			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new StateAttackIdleAnimationController());
 
 			fsm->RegisterState(new StateAttackInAnimationController());
 			fsm->RegisterState(new StateAttackMiddleAnimationController());
@@ -360,7 +360,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		
 		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
 		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
-		loadAnimationData[2].animationPath = "../Resource/Effect/Test.efk";
+		loadAnimationData[2].animationPath = "../Resource/Effect/Laser.efkefc";
 		
 		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
 		

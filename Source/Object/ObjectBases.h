@@ -587,6 +587,9 @@ public:
 
     /*パワー取得*/
     inline int GetAttackPower()const { return mnPower; }
+
+    /// <summary>モデルコントローラー取得</summary>
+    inline ModelsControllerBase* GetModelsController() { return mpModelController; }
 };
 
 /*----------------------------------------------*/

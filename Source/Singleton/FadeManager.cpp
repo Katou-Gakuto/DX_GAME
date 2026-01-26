@@ -28,7 +28,7 @@ FadeManager::FadeManager()
 , mpDataManager(nullptr)
 , mpTimeManager(nullptr)
 , mfuFadeTask()
-, mfFadeSpeed(1.5f)
+, mfFadeSpeed(3.0f)
 {
 }
 

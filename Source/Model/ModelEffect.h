@@ -10,6 +10,13 @@ protected:
     // エフェクトハンドル
     int mnEffectHandle;
 
+    // 描画設定用ポジション
+    VECTOR mvDrawPosition;
+    // 描画設定用アングル
+    VECTOR mvDrawAngle;
+    // 描画設定用サイズ
+    VECTOR mvDrawSize;
+
 public:
     ModelEffect();
     ~ModelEffect();

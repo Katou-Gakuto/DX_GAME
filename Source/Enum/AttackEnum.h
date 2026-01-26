@@ -11,4 +11,5 @@ enum class ATTACK_METHOD_TYPE
 enum class ATTACK_TYPE
 {
 	SHOT = 0,
+    UNIQUE_ROBOT,
 };

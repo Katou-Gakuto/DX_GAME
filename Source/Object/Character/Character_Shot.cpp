@@ -11,22 +11,21 @@
 #include "ObjectBases.h"
 #include "UtilCalc.h"
 
-Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData)
+Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData, std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas)
 : CharacterBase(nextSceneDeleteFlag, status)
 {
 	mmCharacterAttackDatas = characterAttackData;
 
-	AttackData setData = AttackData();
-	setData.attackType = ATTACK_TYPE::SHOT;
-	setData.attackCharacter = this;
-	setData.attackTime = 5000;
-	setData.attackPower = status.attckPower;
-
 	switch (shotType)
 	{
 	case SHOT_TYPE::DEFAULT:
-		Master::mpGameManager->GetAttackManager()->CreateAttack(setData.attackType);
-		mmCharacterAttackDatas[ATTACK_METHOD_TYPE::NORMAL].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(setData);
+		for (auto& attackData : attackDatas)
+		{
+			attackData.second.attackCharacter = this;
+
+			Master::mpGameManager->GetAttackManager()->CreateAttack(attackData.second.attackType);
+			mmCharacterAttackDatas[attackData.first].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(attackData.second);
+		}
 		break;
 	}
 }

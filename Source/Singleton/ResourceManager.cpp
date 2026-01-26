@@ -676,7 +676,7 @@ void ResourceManager::ReduceEffect(int handle)
 }
 
 // エフェクト描画
-void ResourceManager::DrawEffect(int handle, VECTOR position)
+void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECTOR size)
 {
 	if (!mbEffectDrawFlag)
 	{
@@ -685,6 +685,8 @@ void ResourceManager::DrawEffect(int handle, VECTOR position)
 	}
 
 	SetPosPlayingEffekseer3DEffect(handle, position.x, position.y, position.z);
+	SetRotationPlayingEffekseer3DEffect(handle, angle.x, angle.y, angle.z);
+	SetScalePlayingEffekseer3DEffect(handle, size.x, size.y, size.z);
 }
 
 // エフェクト停止

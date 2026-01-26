@@ -15,7 +15,7 @@ enum class SHOT_TYPE
 class Character_Shot : public CharacterBase
 {
 public:
-    Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData);
+    Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData, std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas);
     ~Character_Shot();
 
     /*çUåÇÉäÉZÉbÉg*/

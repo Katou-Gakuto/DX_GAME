@@ -35,7 +35,7 @@ void ModelsControllerBase::Finalize()
 // ƒQ[ƒ€’†‰Šú‰»
 void ModelsControllerBase::GameInit(VECTOR pos, VECTOR angle, VECTOR size)
 {
-    ModelsPositionSetting(pos, angle, size);
+    ModelsPositionSetting(pos, VGet(angle.x, angle.y - DX_PI_F, angle.z), size);
 
     for (int i = 0; i < mpModelList.size(); i++)
     {

@@ -380,7 +380,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 }
 
 // キャラクタ攻撃情報作成
-CharacterAttackData UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType)
+CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType)
 {// INPROGRESS: 作業中エフェクト作成待ち
 	// 初期化
 	CharacterAttackData characterAttackData;
@@ -400,14 +400,14 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY
 	// モデル設定
 	switch (factoryNumberAttackMethod)
 	{
-	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
-		modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
+		modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
 		break;
 	
-	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
 		switch (factoryNumberModelType)
 		{
-		case ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
 			modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 			break;
 		}
@@ -418,17 +418,17 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(ATTACK_DATA_FACTORY
  	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	switch (factoryNumberAttackMethod)
 	{
-	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
 	 	// 読み込み用アニメーションデータ設定
 	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
 	 	// アニメーション有限状態マシン設定
 	 	animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK, setcharacterLoadAnimationData));
 		break;
 	
-	case ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
 		switch (factoryNumberModelType)
 		{
-		case ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
 		 	// 読み込み用アニメーションデータ設定
 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
 			// アニメーション有限状態マシン設定
@@ -622,6 +622,35 @@ void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR an
 	model->SetSize(size);
 }
 
+// 攻撃データ作成
+std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber)
+{
+	std::map<ATTACK_METHOD_TYPE, AttackData>  attackDatas;
+	AttackData setData = AttackData();
+
+	switch (modelTypeFactoryNumber)
+	{
+	case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackCharacter = nullptr;
+		attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackCharacter = nullptr;
+
+		switch (objectAttackTypeFactoryNumber)
+		{
+		case ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT:
+			attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackMethdType = ATTACK_METHOD_TYPE::NORMAL;
+			attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackTime = 2720;
+			attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackType = ATTACK_TYPE::SHOT;
+
+			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackMethdType = ATTACK_METHOD_TYPE::SPCEIAL;
+			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackTime = 24056;
+			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackType = ATTACK_TYPE::UNIQUE_ROBOT;
+			break;
+		}
+		break;
+	}
+
+	return attackDatas;
+}
 /*
 	// モデル設定
 	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));

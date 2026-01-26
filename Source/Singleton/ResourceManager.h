@@ -6,6 +6,7 @@
 #include "ResourceEnum.h"
 #include "ResourceData.h"
 #include "Vector2.h"
+#include "UtilCalc.h"
 
 
 class ResourceManager
@@ -150,7 +151,7 @@ public:
 	/*----------*/
 	/*【エフェクト】
 	/*----------*/
-	// FIXME: 別の場所で変えた設定の影響でハンドル取得時エラーが出る
+	// FIXME: フェードで非同期している影響でハンドル取得時エラーが出る
 private:
 	// エフェクトハンドル
 	std::map<std::string, std::vector<int>> mmEffectHandle;
@@ -170,12 +171,13 @@ public:
 	/// <summary>エフェクトハンドルを取得する</summary>
 	int GetEffectHandle(int handle, int oldHandle);
 
+	// TODO: エフェクトの停止を作るのと情報カウントを減らすのを作る
 	/// <summary>エフェクトカウントを減らす</summary>
 	/// <param name="handle">エフェクトハンドル エフェクトの情報のハンドルを渡すとバグる</param>
 	void ReduceEffect(int handle);
 
 	/// <summary>エフェクト描画</summary>
-	void DrawEffect(int handle, VECTOR position);
+	void DrawEffect(int handle, VECTOR position, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
 
 	/// <summary>エフェクト停止</summary>
 	void StopEffect(int handle);

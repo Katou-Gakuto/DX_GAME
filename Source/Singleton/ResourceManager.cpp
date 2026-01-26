@@ -424,7 +424,7 @@ void ResourceManager::MovieReset(int handle)
 // “®‰æƒ‹[ƒv
 void ResourceManager::MovieLoop(int handle)
 {
-	if (GetMovieStateToGraph(handle))
+	if (GetMovieStateToGraph(handle) != 1)
 	{
 		MovieReset(handle);
 		PlayMovie(handle);

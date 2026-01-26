@@ -21,8 +21,8 @@ UI_Title::~UI_Title()
 // UIèâä˙âª
 void UI_Title::UIInitilize()
 {
-    SetGraphCount(1);
-    SetGraphHandle(0, mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitlrBack.png"));
+    SetMovieCount(1);
+    SetMovieHandle(0, mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack.mp4"));
 }
 
 // UIèIóπ

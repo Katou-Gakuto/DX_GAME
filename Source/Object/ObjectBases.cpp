@@ -537,6 +537,20 @@ void UIBase::Finalize()
 		delete mpFsm;
 	}
 
+	// ‰æ‘œíœ
+	for (int i = 0; i < mnGraphCount; i++)
+	{
+		mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+	}
+	free(mnGraphHandles);
+
+	// “®‰æíœ
+	for (int i = 0; i < mnMovieCount; i++)
+	{
+		mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
+	}
+	free(mnMovieHandles);
+
 	UIFinalize();
 }
 

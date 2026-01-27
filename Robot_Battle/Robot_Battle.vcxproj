@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="..\..\Schedule\進級制作メモ.txt" />
     <Text Include="..\Text\Memo.txt" />
     <Text Include="..\Text\Terms.txt" />
     <Text Include="..\Text\必要素材.txt" />
@@ -147,7 +148,9 @@
     <ClInclude Include="..\Source\Enum\SceneEnum.h" />
     <ClInclude Include="..\Source\Model\ModelBase.h" />
     <ClInclude Include="..\Source\Model\ModelEffect.h" />
+    <ClInclude Include="..\Source\Model\ModelGraph.h" />
     <ClInclude Include="..\Source\Model\ModelMap.h" />
+    <ClInclude Include="..\Source\Model\ModelMovie.h" />
     <ClInclude Include="..\Source\Model\ModelMV1.h" />
     <ClInclude Include="..\Source\Model\ModelPolygonIndexed.h" />
     <ClInclude Include="..\Source\Model\ModelsController\ModelsControllerBase.h" />
@@ -211,7 +214,9 @@
     <ClCompile Include="..\Source\Main.cpp" />
     <ClCompile Include="..\Source\Model\ModelBase.cpp" />
     <ClCompile Include="..\Source\Model\ModelEffect.cpp" />
+    <ClCompile Include="..\Source\Model\ModelGraph.cpp" />
     <ClCompile Include="..\Source\Model\ModelMap.cpp" />
+    <ClCompile Include="..\Source\Model\ModelMovie.cpp" />
     <ClCompile Include="..\Source\Model\ModelMV1.cpp" />
     <ClCompile Include="..\Source\Model\ModelPolygonIndexed.cpp" />
     <ClCompile Include="..\Source\Model\ModelsController\ModelsControllerBase.cpp" />

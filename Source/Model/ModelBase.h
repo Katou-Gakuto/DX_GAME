@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "BitFlag.h"
+#include "ResourceData.h"
 
 #include "DxLib.h"
 
@@ -79,6 +80,8 @@ public:
 	virtual int GetHandle() const { return -1; }
 	/// <summary>ハンドル取得</summary>
 	virtual int* GetHandlePointer() { return nullptr; }
+	/// <summary>ハンドル取得</summary>
+	virtual std::vector<DRAW_GRAPH_DATA>* GetDrawData() { return nullptr; }
 
 	/*--------*/
 	/*【設定】*/
@@ -100,10 +103,14 @@ public:
 public:
 	/*モデル描画*/
 	virtual void ModelDraw() = 0;
-	/*モデル描画*/
+	/*モデル描画(頂点)*/
 	void ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData);
-	/*モデル描画*/
+	/*モデル描画(モデルハンドル)*/
 	void ModelDraw_Handle(const int handle);
+	/*モデル描画(画像)*/
+	void ModelDraw_Graph(const DRAW_GRAPH_DATA drawData);
+	/*モデル描画(動画)*/
+	void ModelDraw_Movie(const DRAW_GRAPH_DATA drawData);
 
 protected:
 	/*継承モデル初期化*/

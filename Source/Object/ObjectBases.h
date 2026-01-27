@@ -2,6 +2,7 @@
 #include <list>
 #include <string>
 #include <map>
+#include <vector>
 
 #include "AttackData.h"
 #include "BitFlag.h"
@@ -18,6 +19,7 @@
 #include "TimeManager.h"
 
 enum class ATTACK_METHOD_TYPE;
+enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER;
 enum class SCENE;
 
 class FSMAnimation;
@@ -367,11 +369,11 @@ public:
     inline AnimationBase* GetAnimation() { return  mpAnimation; }
 
     
-    /// <summary>モデルコントローラー取得</summary>
+    /// <summary>攻撃用モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
     inline ModelsControllerBase* GetAttackModelsController(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
 
-    /// <summary>アニメションベース取得</summary>
+    /// <summary>攻撃用アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
     inline AnimationBase* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { return  mmCharacterAttackDatas[attackMethodType].animation; }
 
@@ -596,6 +598,18 @@ public:
 /*               【UIベース関係】               */
 /*----------------------------------------------*/
 
+/*------------------------------*/
+/*          【UIモデル構造体】
+/*------------------------------*/
+struct UIDrawModel// TODO: 一旦UIを表示させた後にこれに置き換える
+{
+    // モデル
+    ModelsControllerBase* mpUIModelController;
+
+    // アニメション
+    AnimationBase* mpAnimation;
+};
+
 /*--------------------------------*/
 /*          【UIベース】          */
 /*--------------------------------*/
@@ -647,8 +661,11 @@ protected:
     // 有限状態マシン
     FSMUI* mpFsm;
 
-    // ディスプレイサイズ
-    DisplaySize mstDisplaySize;
+    // モデルベース
+    ModelsControllerBase* mpUIModelController;
+
+    // アニメションベース
+    AnimationBase* mpAnimation;
 
 public:
     UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
@@ -681,10 +698,6 @@ public:
     /*選択最大数設定*/
     inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
 
-    /// <summary>画面サイズ設定</summary>
-    /// <param name="displaySize">ディスプレイサイズ</param>
-    inline void SetDisplaySize(const DisplaySize displaySize) { mstDisplaySize = displaySize; }
-
     /// <summary>画像ハンドル設定</summary>
     void SetGraphHandle(int index, int handle);
 
@@ -707,10 +720,6 @@ public:
     /*選択数取得*/
     inline int GetSelectNumber() const { return mnSelectNumber; }
 
-    /// <summary>画面サイズ取得</summary>
-    /// <returns>画面サイズ</returns>
-    inline DisplaySize GetDisplaySize() const { return mstDisplaySize; }
-
     /// <summary>キー取得</summary>
     /// <returns>キーステート</returns>
     inline KeyState* GetKey() { return mpKeyState; }
@@ -726,6 +735,14 @@ public:
 
     /// <summary>動画ハンドル数を取得</summary>
     inline int GetMovieHandleCount() { return mnMovieCount; }
+
+    /// <summary>モデルコントローラー取得</summary>
+    /// <returns>モデルコントローラー</returns>
+    inline ModelsControllerBase* GetModelsController() { return mpUIModelController; }
+
+    /// <summary>アニメションベース取得</summary>
+    /// <returns>アニメションベース</returns>
+    inline AnimationBase* GetAnimation() { return  mpAnimation; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/
@@ -747,6 +764,11 @@ protected:
     void SetUINumber();
     /*UIナンバー削除*/
     void DeleteUINumber();
+
+    /*モデル追加*/
+    void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData);
+    /*アニメーション設定*/
+    void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber);
 
     /*----------------------*/
     /*【入力キー種類別処理】*/

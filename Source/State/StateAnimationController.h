@@ -153,7 +153,23 @@ public:
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
+/*----------*/
+/*【2D移動アニメーションコントローラーステート】
+/*----------*/
+class State2DMoveAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+{
+public:
+	State2DMoveAnimationController();
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
 
 /*--------------------*/
 /*     【派生アニメーションコントローラーステート】

@@ -37,7 +37,7 @@ bool GameUIProcess::IsMenuKeyPressed()
 void GameUIProcess::DrawMenuBackground(UIBase* ui)
 {
     // TODO: ‰æ‘œƒnƒ“ƒhƒ‹‚É•ÏX
-    DisplaySize displaySize = ui->GetDisplaySize();
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
     Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
     Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
     DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);

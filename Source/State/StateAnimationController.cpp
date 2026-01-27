@@ -252,6 +252,38 @@ ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase
     return mStateNumber;
 }
 
+/*----------*/
+/*【2D移動アニメーションコントローラーステート】
+/*----------*/
+State2DMoveAnimationController::State2DMoveAnimationController()
+: IStateAnimationController()
+, StateAnimationControllerProcess()
+{
+    mStateNumber = ANIMATION_TYPE::DISPLAY_MOVE;
+}
+
+// この状態に入った時の処理
+void State2DMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
+{
+    SetEndTime(animation, mStateNumber);
+}
+
+// この状態を出る時の処理
+void State2DMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+{
+}
+
+// ステート変更確認
+ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return nextState;
+    }
+    
+    return mStateNumber;
+}
+
 
 /*--------------------*/
 /*     【派生アニメーションコントローラーステート】

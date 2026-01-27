@@ -31,7 +31,7 @@ void ModelBase::SetModelsController(ModelsControllerBase* modelsController)
     mpModelsController = modelsController;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ
+// ƒ‚ƒfƒ‹•`‰æ(’¸“_)
 void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData)
 {
     for (int i = 0; i < modelVertexData.size(); i++)
@@ -48,12 +48,23 @@ void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexDat
     }
 }
 
-// ƒ‚ƒfƒ‹•`‰æ
+// ƒ‚ƒfƒ‹•`‰æ(ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹)
 void ModelBase::ModelDraw_Handle(const int handle)
 {
     if (handle != -1)
     {
-        //MV1DrawModel(handle);
         Master::mpResourceManager->DrawModelHandle(handle);
     }
+}
+
+// ƒ‚ƒfƒ‹•`‰æ(‰æ‘œ)
+void ModelBase::ModelDraw_Graph(const DRAW_GRAPH_DATA drawData)
+{
+    Master::mpResourceManager->DrawData_Graph(drawData);
+}
+
+// ƒ‚ƒfƒ‹•`‰æ(“®‰æ)
+void ModelBase::ModelDraw_Movie(const DRAW_GRAPH_DATA drawData)
+{
+    Master::mpResourceManager->DrawData_Graph(drawData);
 }

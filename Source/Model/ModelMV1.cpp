@@ -9,7 +9,8 @@
 #include "UtilCalc.h"
 
 ModelMV1::ModelMV1()
-: mnModelHandle(-1)
+: ModelBase()
+, mnModelHandle(-1)
 {
 }
 ModelMV1::~ModelMV1()

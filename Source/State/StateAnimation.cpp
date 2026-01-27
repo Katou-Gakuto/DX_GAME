@@ -327,6 +327,7 @@ void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *n
 // この状態を出る時の処理
 void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
 {
+    // TODO: 停止に変更
     Master::mpResourceManager->ReduceEffect(*mnEffectHandle);
     *mnEffectHandle = -1;
 }
@@ -338,6 +339,64 @@ void StateEffectAnimation::Update(AnimationBase* animation, OneAnimationData *no
 
 // モデル種類が同類なら「true」を返す
 bool StateEffectAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}
+
+/*----------*/
+/*【画像アニメーション】
+/*----------*/
+StateGraphAnimation::StateGraphAnimation()
+: IStateAnimation()
+{
+}
+
+// この状態に入った時の処理
+void StateGraphAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+}
+
+// この状態を出る時の処理
+void StateGraphAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+}
+
+// 更新
+void StateGraphAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}
+
+/*----------*/
+/*【画像アニメーション】
+/*----------*/
+StateMovieAnimation::StateMovieAnimation()
+: IStateAnimation()
+{
+}
+
+// この状態に入った時の処理
+void StateMovieAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+}
+
+// この状態を出る時の処理
+void StateMovieAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+}
+
+// 更新
+void StateMovieAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateMovieAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 {
     return false;
 }

@@ -1,6 +1,7 @@
 #include <map>
 
 #include "AttackEnum.h"
+#include "ResourceData.h"
 
 #include "Master.h"
 
@@ -16,6 +17,7 @@
 #include "StateBase.h"
 #include "StopManager.h"
 #include "UtilCalc.h"
+#include "UtilFactorys.h"
 
 /*------------------------------------------*/
 /*          【オブジェクトベース】          */
@@ -488,7 +490,6 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnMovieHandles(nullptr)
 , mnMovieCount(0)
 , mpFsm(nullptr)
-, mstDisplaySize(DisplaySize())
 {
 	mbTimeStopFlag = timeStopFlag;
 
@@ -518,8 +519,14 @@ void UIBase::Initilize()
 	mpResourceManager = Master::mpResourceManager;
 	mpTimeManager = Master::mpTimeManager;
 
-	// TODO: 使わないようにする
-	mstDisplaySize = ResourceManager::mstDisplaySize;
+	// モデルコントローラー初期化
+	mpUIModelController = new ModelsControllerBase();
+	mpUIModelController->Initilize();
+
+	// アニメーション初期化
+	mpAnimation = new AnimationBase();
+	mpAnimation->Initilize();
+	mpAnimation->SetModelsController(mpUIModelController);
 
 	UIInitilize();
 }
@@ -550,6 +557,16 @@ void UIBase::Finalize()
 		mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
 	}
 	free(mnMovieHandles);
+	
+	// モデルコントローラー終了
+	mpUIModelController->Finalize();
+	delete mpUIModelController;
+	mpUIModelController = nullptr;
+
+	// アニメーション終了
+	mpAnimation->Finalize();
+	delete mpAnimation;
+	mpAnimation = nullptr;
 
 	UIFinalize();
 }
@@ -572,17 +589,31 @@ void UIBase::LastUpdate()
 	if (mnUINumber == Master::mpGameManager->GetNowUINumber()) {
 		UILastUpdate();
 	}
+
+	// モデル位置・角度更新
+	mpUIModelController->ModelsPositionSetting();
+
+	// アニメーション更新
+	mpAnimation->Update();
+
+	// モデルに反映
+	mpUIModelController->UpdateModels();
 }
 
 // 描画
 void UIBase::Draw()
 {
 	UIDraw();
+	
+	// モデル描画
+	mpUIModelController->DrawModels();
+
 	if (mpFsm != nullptr)
 	{
 		mpFsm->Draw(this);
 	}
 }
+
 
 /*----------------------*/
 /*     【独自処理】     */
@@ -716,6 +747,25 @@ void UIBase::DeleteUINumber()
 	{
 		mnUINumber -= 1;
 	}
+}
+
+// モデル追加
+void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData)
+{
+    mpUIModelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
+}
+
+// アニメーション設定
+void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber)
+{
+	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+	for (int i = 0; i < mpUIModelController->GetModelList().size(); i++)
+	{
+		// 読み込み用アニメーションデータ設定
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpAnimation, ladoAnimationDataFactorynumber));
+	}
+	// アニメーション有限状態マシン設定
+	mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
 }
 
 /*----------------------*/

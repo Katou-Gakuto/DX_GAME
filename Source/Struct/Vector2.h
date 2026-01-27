@@ -5,6 +5,17 @@ struct Vector2_Int
 {
 	int x;
 	int y;
+
+	Vector2_Int()
+	{
+		this->x = 0;
+		this->y = 0;
+	}
+	Vector2_Int(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+	}
 };
 
 

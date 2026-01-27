@@ -150,6 +150,50 @@ void ResourceManager::DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, co
 	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
 }
 
+// âÊëúÇ‚ìÆâÊÇÃï`âÊ
+void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
+{
+	int failureFlag;
+	switch (drawData.drawType)
+	{
+	case DRAW_GRAPH_TYPE::NORMAL:
+		failureFlag = DrawGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::TURN:
+		failureFlag = DrawTurnGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::EXTEND:
+		failureFlag = DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::SIZE:
+		failureFlag = DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.pos.x + drawData.size.x, drawData.pos.y + drawData.size.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA:
+		failureFlag = DrawRotaGraph(drawData.pos.x, drawData.pos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA_CENTER:
+		failureFlag = DrawRotaGraph2(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:
+		failureFlag = DrawRotaGraph3(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.x, drawData.extRate.y, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::FREE:
+		failureFlag = DrawModiGraph(drawData.upLeft.x, drawData.upLeft.y, drawData.upRight.x, drawData.upRight.y, drawData.downRight.x, drawData.downRight.y, drawData.downLeft.x, drawData.downLeft.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::RECT:
+		failureFlag = DrawRectGraph(drawData.pos.x, drawData.pos.y, drawData.graphPos.x, drawData.graphPos.y, drawData.size.x, drawData.size.y, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+	}
+}
+
 // ÉVÉÉÉhÉEÉ}ÉbÉvÇÃèâä˙âª
 void ResourceManager::ShadowMapInit()
 {
@@ -162,47 +206,166 @@ void ResourceManager::ShadowMapInit()
 	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-10000.0f, -1.0f, -10000.0f), VGet(10000.0f, 10000.0f, 10000.0f));
 }
 
-// âÊëúÇ‚ìÆâÊÇÃï`âÊ
-void ResourceManager::DrawGraphAndMovie(DRAW_GRAPH_DATA drawData)
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y)
 {
-	switch(drawData.drawType)
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
 	{
-	case DRAW_GRAPH_TYPE::NORMAL:
-		DrawGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
-		break;
-
-	case DRAW_GRAPH_TYPE::TURN:
-		DrawTurnGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
-			break;
-
-	case DRAW_GRAPH_TYPE::EXTEND:
-		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.handle, drawData.transFlag);
-			break;
-
-	case DRAW_GRAPH_TYPE::SIZE:
-		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.pos.x + drawData.size.x, drawData.pos.y + drawData.size.y, drawData.handle, drawData.transFlag);
-		break;
-
-	case DRAW_GRAPH_TYPE::ROTA:
-		DrawRotaGraph(drawData.pos.x, drawData.pos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
-			break;
-
-	case DRAW_GRAPH_TYPE::ROTA_CENTER:
-		DrawRotaGraph2(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
-			break;
-
-	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:
-		DrawRotaGraph3(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.x, drawData.extRate.y, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
-			break;
-
-	case DRAW_GRAPH_TYPE::FREE:
-		DrawModiGraph(drawData.upLeft.x, drawData.upLeft.y, drawData.upRight.x, drawData.upRight.y, drawData.downRight.x, drawData.downRight.y, drawData.downLeft.x, drawData.downLeft.y, drawData.handle, drawData.transFlag);
-			break;
-
-	case DRAW_GRAPH_TYPE::RECT:
-		DrawRectGraph(drawData.pos.x, drawData.pos.y,drawData.graphPos.x, drawData.graphPos.y,drawData.size.x, drawData.size.y, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
-		break;
+		drawData.handle = handle;
 	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
+
+	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	drawData.size = size;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::FREE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.upLeft = leftUp;
+	drawData.upRight = rightUp;
+	drawData.downLeft = leftDown;
+	drawData.downRight = rightDown;
+
+	return drawData;
 }
 
 /*------------*/
@@ -429,147 +592,6 @@ void ResourceManager::MovieLoop(int handle)
 		MovieReset(handle);
 		PlayMovie(handle);
 	}
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, int x, int y)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, int x, int y, int sizeX, int sizeY)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-
-	drawData.size.x = sizeX;
-	drawData.size.y = sizeY;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-
-	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
-
-	drawData.size.x = sizeX;
-	drawData.size.y = sizeY;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(yRatio, yRatio));
-
-	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, Vector2_Int pos)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos = pos;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, Vector2_Int pos, Vector2_Int size)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.pos = pos;
-
-	drawData.size = size;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::FREE;
-	drawData.handle = handle;
-	drawData.transFlag = TRUE;
-
-	drawData.upLeft = leftUp;
-	drawData.upRight = rightUp;
-	drawData.downLeft = leftDown;
-	drawData.downRight = rightDown;
-
-	DrawGraphAndMovie(drawData);
-}
-
-// ìÆâÊçƒê∂
-void ResourceManager::DrawMovie(DRAW_GRAPH_DATA drawData)
-{
-	DrawGraphAndMovie(drawData);
 }
 
 /*------------*/

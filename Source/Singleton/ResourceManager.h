@@ -52,12 +52,29 @@ public:
 
 	/// <summary>頂点情報による描画</summary>
 	void DrawIndexed(const VERTEX3D*VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag);
+
+	/// <summary>画像描画</summary>
+	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
+
 private:
+
 	/// <summary>シャドウマップの初期化</summary>
 	void ShadowMapInit();
 
-	/// <summary>画像や動画の描画</summary>
-	void DrawGraphAndMovie(DRAW_GRAPH_DATA drawData);
+	/*----------*/
+	/*【取得】
+	/*----------*/
+public:
+	/// <summary>描画情報取得</summary>
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, 		 int sizeY);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
 
 	/*------------*/
 	/*【3Dモデル】*/
@@ -126,18 +143,6 @@ public:
 
 	/// <summary>動画ループ</summary>
 	void MovieLoop(int handle);
-
-	/// <summary>ハンドル描画</summary>
-	void DrawMovie(int handle, int x, 		 int y);
-	void DrawMovie(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
-	void DrawMovie(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
-	void DrawMovie(int handle, float xRatio, float yRatio);
-	void DrawMovie(int handle, float xRatio, float yRatio, int sizeX, 		 int sizeY);
-	void DrawMovie(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
-	void DrawMovie(int handle, Vector2_Int pos);
-	void DrawMovie(int handle, Vector2_Int pos, Vector2_Int size);
-	void DrawMovie(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
-	void DrawMovie(DRAW_GRAPH_DATA drawData);
 
 	/*動画音の設定が必要なら作る
 	*/

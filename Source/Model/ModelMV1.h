@@ -1,7 +1,5 @@
 #pragma once
 
-#include "DxLib.h"
-
 #include "ModelBase.h"
 
 class ModelMV1 : public ModelBase

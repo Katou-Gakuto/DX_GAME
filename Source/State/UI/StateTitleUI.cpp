@@ -16,7 +16,7 @@
 /*     【タイトルUIステート】     */
 /*--------------------------------*/
 // TODO: 消す
-int TitleUIStateProcess::mnBackGraphTime = 0;
+float TitleUIStateProcess::mfBackGraphTime = 0.0f;
 const float BackSize = 1.0f;
 /*----------*/
 /*【タイトルUIステート共通処理用】
@@ -34,32 +34,32 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 	{
 		int handle = ui->GetMovieHandles()[0];
 
-		DisplaySize displaySize = ui->GetDisplaySize();
-		Vector2_Int leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		Vector2_Int leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		Vector2_Int rightUp = Vector2(displaySize.Left_RatioWidth(1.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		Vector2_Int rightDown = Vector2(displaySize.Left_RatioWidth(1.0f) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		DisplaySize displaySize = ResourceManager::mstDisplaySize;
+		Vector2_Int leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		Vector2_Int leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		Vector2_Int rightUp = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		Vector2_Int rightDown = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawMovie(handle, leftUp, rightUp, leftDown, rightDown);
+		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 		
-		leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawMovie(handle, leftUp, rightUp, leftDown, rightDown);
+		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 
-		leftUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		leftDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mnBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		leftUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		leftDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawMovie(handle, leftUp, rightUp, leftDown, rightDown);
+		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 	}
 		
 	// 選択
 	{
-		DisplaySize displaySize = ui->GetDisplaySize();
+		DisplaySize displaySize = ResourceManager::mstDisplaySize;
 		Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
 		Vector2_Int rightDown = displaySize.LeftUp_Ratio(Vector2(0.9f, 0.15f + (0.2f * ui->GetSelectNumber())));
 
@@ -86,11 +86,11 @@ void TitleUIStateProcess::ProcessOnExit(UIBase* ui)
 // 更新
 void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
-	mnBackGraphTime += 1;
+	mfBackGraphTime += 0.2f;
 
-	if (mnBackGraphTime > (ui->GetDisplaySize().x * 2 * BackSize))
+	if (mfBackGraphTime > (ResourceManager::mstDisplaySize.x * 2 * BackSize))
 	{
-		mnBackGraphTime = 0;
+		mfBackGraphTime = 0.0f;
 	}
 
 	if (ui->GetMovieHandleCount() >= 1)
@@ -153,7 +153,7 @@ int StartTitleUIState::Decision(UIBase* ui)
 void StartTitleUIState::Draw(UIBase* ui)
 {
 	// HACK: ハンドルで大きくした文字を描画する
-    DisplaySize displaySize = ui->GetDisplaySize();
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
     Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.2f));
     DrawString(stringDrawPos.x - 50, stringDrawPos.y, "タイトル", GetColor(0, 0, 0));

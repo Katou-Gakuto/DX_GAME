@@ -15,6 +15,8 @@
 #include "GameManager.h"
 #include "ModelBase.h"
 #include "ModelEffect.h"
+#include "ModelGraph.h"
+#include "ModelMovie.h"
 #include "ModelMV1.h"
 #include "ModelPolygonIndexed.h"
 #include "ObjectBases.h"
@@ -118,6 +120,26 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 			break;
 		}
 		break;
+
+	case ANIMATION_FACTORY_NUMBER::UI:
+		switch (ladoAnimationDataFactorynumber)
+		{
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new State2DMoveAnimationController());
+			break;
+
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_GAME:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new State2DMoveAnimationController());
+			break;
+
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT:
+			fsm->RegisterState(new StateIdleAnimationController());
+			fsm->RegisterState(new State2DMoveAnimationController());
+			break;
+		}
+		break;
 	}
 
 	// モデルの数分設定する
@@ -176,6 +198,24 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					StateEffectAnimation* stateEffectAnimation = new StateEffectAnimation(modelBases[i]->GetHandlePointer());
 					stateEffectAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = stateEffectAnimation;
+				}
+				break;
+			
+			case MODEL_TYPE::GRAPH:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					StateGraphAnimation* stateGraphAnimation = new StateGraphAnimation();
+					stateGraphAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateGraphAnimation;
+				}
+				break;
+			
+			case MODEL_TYPE::MOVIE:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					StateMovieAnimation* stateMovieAnimation = new StateMovieAnimation();
+					stateMovieAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateMovieAnimation;
 				}
 				break;
 			}
@@ -237,10 +277,19 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			// エフェクトリソース取得
 			animationData.number = Master::mpResourceManager->GetEffectResource(loadAnimationData[i].animationPath);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
-			animationData.modelType = loadAnimationData[i].modelType;	
+			animationData.modelType = loadAnimationData[i].modelType;
 
 			// 設定
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;		
+			break;
+
+		case MODEL_TYPE::GRAPH:
+		case MODEL_TYPE::MOVIE:
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			animationData.modelType = loadAnimationData[i].modelType;
+
+			// 設定
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;	
 			break;
 		}
 	}
@@ -371,6 +420,32 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE:
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_GAME:
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT:
+		for (int i = 0; i < 2; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::MOVIE;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		
+		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;	
+		
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -580,7 +655,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 }
 
 // モデル作成
-ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size)
+ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size, std::vector<DRAW_GRAPH_DATA>* drawData)
 {
 	switch (type)
 	{
@@ -607,6 +682,24 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		ModelEffect* model = new ModelEffect();
 		model->Initilize();
 		SetModelPosition(model, position, angle, size);
+		return model;
+	}
+
+	case MODEL_TYPE::GRAPH:
+	{
+		ModelGraph* model = new ModelGraph();
+		model->Initilize();
+		SetModelPosition(model, position, angle, size);
+		model->SetDrawDatas(*drawData);
+		return model;
+	}
+
+	case MODEL_TYPE::MOVIE:
+	{
+		ModelMovie* model = new ModelMovie();
+		model->Initilize();
+		SetModelPosition(model, position, angle, size);
+		model->SetDrawDatas(*drawData);
 		return model;
 	}
 	}

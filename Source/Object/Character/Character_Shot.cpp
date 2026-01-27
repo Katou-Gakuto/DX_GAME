@@ -22,6 +22,7 @@ Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYP
 		for (auto& attackData : attackDatas)
 		{
 			attackData.second.attackCharacter = this;
+			attackData.second.attackPower = status.attckPower;
 
 			Master::mpGameManager->GetAttackManager()->CreateAttack(attackData.second.attackType);
 			mmCharacterAttackDatas[attackData.first].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(attackData.second);

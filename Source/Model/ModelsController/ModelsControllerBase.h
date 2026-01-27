@@ -47,6 +47,7 @@ public:
     void ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size);
     void ModelsPositionSetting(VECTOR position, VECTOR angle) { ModelsPositionSetting(position, angle, mvModelSize); }
     void ModelsPositionSetting(VECTOR position){ ModelsPositionSetting(position, mvModelAngle, mvModelSize); }
+    void ModelsPositionSetting(){ ModelsPositionSetting(mvModelPosition, mvModelAngle, mvModelSize); }
 
     /// <summary>ÉÇÉfÉãçXêV</summary>
     void UpdateModels();

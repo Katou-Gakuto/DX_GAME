@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 
+#include "ResourceData.h"
+
 #include "SceneEnum.h"
 #include "AnimationData.h"
 #include "AttackData.h"
@@ -30,6 +32,8 @@ enum class ANIMATION_FACTORY_NUMBER
 	BATTLE,
 
 	SHOT_ATTACK,
+
+	UI
 };
 
 // 読み込み用アニメーションデータ作成ナンバー
@@ -39,6 +43,10 @@ enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER
 	ROBOT,
 
 	SHOT_ATTACK,
+
+	UI_TITLE,
+	UI_GAME,
+	UI_RESULT,
 };
 
 // キャラクター作成ナンバー
@@ -123,7 +131,7 @@ namespace UtilFactorys
 	/// <param name="type">モデル種類</param>
 	/// <param name="modelPath">モデルファイル座標</param>
 	/// <returns>モデルベース</returns>
-	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
+	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne, std::vector<DRAW_GRAPH_DATA>* drawData = nullptr);
 
 	/// <summary>攻撃データ作成</summary>
 	std::map<ATTACK_METHOD_TYPE, AttackData> AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber);

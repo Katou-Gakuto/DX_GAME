@@ -18,6 +18,8 @@ enum class ANIMATION_TYPE
     NORMAL_ATTACK_IN,   // ノーマル攻撃開始
     NORMAL_ATTACK,      // ノーマル攻撃
     NORMAL_ATTACK_OUT,  // ノーマル攻撃終了
+
+    DISPLAY_MOVE,
 };
 
 // アニメーションモデル種類
@@ -28,5 +30,9 @@ enum class MODEL_TYPE
     MV1_MODEL_MOVE, // MV1モデル モデル操作
     MV1_MODEL_ONLY, // MV1モデルのみ　アニメーション無しモデル
     POLYGON_INDEXED, // ポリゴンインデックスモデル
+    
     EFFECT, // エフェクト
+
+    GRAPH,  // 画像
+    MOVIE,  // 映像
 };

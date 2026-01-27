@@ -51,30 +51,30 @@ public:
 
 struct DRAW_GRAPH_DATA
 {
-	Vector2_Int pos;    // 座標
-    int handle; // ハンドル
+	Vector2_Int pos = Vector2_Int(0, 0);	// 座標
+    int handle = -1;	// ハンドル
 
-    int transFlag;  // 透過フラグ
-	Vector2_Int turnFlag;  // 反転フラグ
+    int transFlag = TRUE;	// 透過フラグ
+	Vector2_Int turnFlag = Vector2_Int(0, 0);  // 反転フラグ
 
-	Vector2_Int size;   // サイズ
+	Vector2_Int size = Vector2_Int(0, 0);   // サイズ
 
-	Vector2_Int extPos; // 拡大座標
+	Vector2_Int extPos = Vector2_Int(0, 0); // 拡大座標
 
-	Vector2_Int graphPos;  // 画像座標
+	Vector2_Int graphPos = Vector2_Int(0, 0);  // 画像座標
 
 
-	Vector2_Int upLeft;     // 左上座標
-	Vector2_Int upRight;    // 右上座標
-	Vector2_Int downRight;  // 右下座標
-	Vector2_Int downLeft;   // 左下座標
+	Vector2_Int upLeft = Vector2_Int(0, 0);     // 左上座標
+	Vector2_Int upRight = Vector2_Int(0, 0);    // 右上座標
+	Vector2_Int downRight = Vector2_Int(0, 0);  // 右下座標
+	Vector2_Int downLeft = Vector2_Int(0, 0);   // 左下座標
 
-    double angle;   // 回転角度
+    double angle = 0.0;   // 回転角度
 
-	Vector2_Int centerPos;  // 中心座標
-    VECTOR_D extRate;	// 回転拡大率
+	Vector2_Int centerPos = Vector2_Int(0, 0);  // 中心座標
+    VECTOR_D extRate = VGetD(0.0, 0.0, 0.0);	// 回転拡大率
 
-    DRAW_GRAPH_TYPE drawType;  // 描画種類
+    DRAW_GRAPH_TYPE drawType = DRAW_GRAPH_TYPE::NORMAL;  // 描画種類
 };
 
 

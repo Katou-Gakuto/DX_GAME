@@ -22,7 +22,7 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 		if (cameraData.threeDFlag)
 		{
 			// カメラのクリッピング距離を設定。(カメラが映せる上限範囲)
-			SetCameraNearFar(16.f, /*/9999999.0f);//*/3800.0f);
+			SetCameraNearFar(16.0f, /*/9999999.0f);//*/3800.0f);
 
 			// 背景の色を設定する
 			SetBackgroundColor(cameraData.red, cameraData.green, cameraData.blue, cameraData.alpha);

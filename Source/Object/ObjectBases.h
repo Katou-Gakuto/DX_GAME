@@ -20,8 +20,10 @@
 
 enum class ATTACK_METHOD_TYPE;
 enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER;
+enum class MODEL_TYPE;
 enum class SCENE;
 
+class AttackBase;
 class FSMAnimation;
 class FSMCharacter;
 class FSMUI;
@@ -269,6 +271,9 @@ protected:
     // 攻撃設定情報達
     std::map<ATTACK_METHOD_TYPE, CharacterAttackData> mmCharacterAttackDatas;
 
+    // 攻撃オブジェクト
+    AttackBase* mpAttack;
+
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
     ~CharacterBase();
@@ -293,13 +298,18 @@ public:
 
 public:
     /*攻撃開始(反動時間を返す)*/
-    virtual int StartAttck(ATTACK_METHOD_TYPE attackMethodType);
+    virtual void StartAttck(ATTACK_METHOD_TYPE attackMethodType);
 
     /*攻撃停止*/
     virtual void StopAttack(ATTACK_METHOD_TYPE attackMethodType);
+    
+    /// <summary>指定アニメーション中であるかを取得</summary>
+    /// <returns>指定のアニメーションなら「true」を返す</returns>
+    bool CheckAnimationType(ANIMATION_TYPE animationType);
 
     /*ダメージ*/
     virtual void Damage(int damage);
+
 
 protected:
     /*キャラクター初期化*/
@@ -376,6 +386,10 @@ public:
     /// <summary>攻撃用アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
     inline AnimationBase* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { return  mmCharacterAttackDatas[attackMethodType].animation; }
+
+    /// <summary>キャラクターがした攻撃取得</summary>
+    /// <returns>攻撃オブジェクト</returns>
+    AttackBase* GetAttack();
 
     /*--------*/
     /*【設定】*/
@@ -510,8 +524,8 @@ protected:
     // 攻撃ナンバー
     int mnAttackNumber;
 
-    // 攻撃反動時間
-    int mnAttackRecoilTime;
+    //// 攻撃反動時間
+    //int mnAttackRecoilTime;
 
     // 攻撃時間
     int mnAttackTime;
@@ -584,14 +598,17 @@ public:
     /*攻撃ナンバー取得*/
     inline int GetAttackNumber() const { return mnAttackNumber; }
 
-    /*攻撃反動時間取得*/
-    inline int GetAttackRecoilTime() const { return mnAttackRecoilTime; }
+    ///*攻撃反動時間取得*/
+    //inline int GetAttackRecoilTime() const { return mnAttackRecoilTime; }
 
     /*パワー取得*/
     inline int GetAttackPower()const { return mnPower; }
 
     /// <summary>モデルコントローラー取得</summary>
     inline ModelsControllerBase* GetModelsController() { return mpModelController; }
+
+    /// <summary>アニメーション取得</summary>
+    inline AnimationBase* GetAnimation() { return mpAnimation; }
 };
 
 /*----------------------------------------------*/
@@ -766,7 +783,7 @@ protected:
     void DeleteUINumber();
 
     /*モデル追加*/
-    void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData);
+    void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType);
     /*アニメーション設定*/
     void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber);
 

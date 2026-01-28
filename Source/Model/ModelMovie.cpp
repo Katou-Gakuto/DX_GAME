@@ -31,7 +31,7 @@ void ModelMovie::ModelFinalize()
     {
         if (drawData.handle != -1)
         {
-            Master::mpResourceManager->ReduceModelHandle(drawData.handle);
+            Master::mpResourceManager->ReduceMovie(drawData.handle);
         }
     }
     mstDrawDatas.clear();

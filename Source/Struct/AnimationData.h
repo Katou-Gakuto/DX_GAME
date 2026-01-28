@@ -38,7 +38,7 @@ struct OneAnimationData
 
     float animationCount = 0.0f;   // アニメーションカウント
 
-    int animationHandle = 0.0f;    // アニメションハンドル
+    int animationHandle = 0;    // アニメションハンドル
 };
 
 /*----------*/

@@ -124,6 +124,18 @@ ANIMATION_TYPE StateAttackAnimationController::CheckState(AnimationBase* animati
     return mStateNumber;
 }
 
+// 同分類の種類かを確認する
+bool StateAttackAnimationController::CheckSameType(ANIMATION_TYPE animationType)
+{
+    if ((animationType == ANIMATION_TYPE::ATTACK) ||
+        (animationType == mStateNumber))
+    {
+        return true;
+    }
+
+    return false;
+}
+
 /*----------*/
 /*【攻撃開始アニメションコントローラーステート】
 /*----------*/
@@ -154,6 +166,18 @@ ANIMATION_TYPE StateAttackInAnimationController::CheckState(AnimationBase* anima
     }
     
     return mStateNumber;
+}
+
+// 同分類の種類かを確認する
+bool StateAttackInAnimationController::CheckSameType(ANIMATION_TYPE animationType)
+{
+    if ((animationType == ANIMATION_TYPE::ATTACK) ||
+        (animationType == mStateNumber))
+    {
+        return true;
+    }
+
+    return false;
 }
 
 /*----------*/
@@ -188,68 +212,16 @@ ANIMATION_TYPE StateAttackOutAnimationController::CheckState(AnimationBase* anim
     return mStateNumber;
 }
 
-/*----------*/
-/*【通常攻撃開始アニメションコントローラーステート】
-/*----------*/
-StateNormalAttackInAnimationController::StateNormalAttackInAnimationController()
-: IStateAnimationController()
-, StateAnimationControllerProcess()
+// 同分類の種類かを確認する
+bool StateAttackOutAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 {
-    mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_IN;
-}
-
-// この状態に入った時の処理
-void StateNormalAttackInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
-{
-    SetEndTime(animation, mStateNumber);
-}
-
-// この状態を出る時の処理
-void StateNormalAttackInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
-{
-}
-
-// ステート変更確認
-ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
-{
-    if (ChackEndTime())
-    {// HACK: すぐアニメーション出るようになってる 変える
-        return ANIMATION_TYPE::NORMAL_ATTACK_OUT;
-    }
-    
-    return mStateNumber;
-}
-
-/*----------*/
-/*【通常攻撃終了アニメションコントローラーステート】
-/*----------*/
-StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController()
-: IStateAnimationController()
-, StateAnimationControllerProcess()
-{
-    mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
-}
-
-// この状態に入った時の処理
-void StateNormalAttackOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
-{
-    SetEndTime(animation, mStateNumber);
-}
-
-// この状態を出る時の処理
-void StateNormalAttackOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
-{
-}
-
-// ステート変更確認
-ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
-{
-    if (ChackEndTime())
+    if ((animationType == ANIMATION_TYPE::ATTACK) ||
+        (animationType == mStateNumber))
     {
-        return nextState;
+        return true;
     }
-    
-    return mStateNumber;
+
+    return false;
 }
 
 /*----------*/
@@ -288,6 +260,50 @@ ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animati
 /*--------------------*/
 /*     【派生アニメーションコントローラーステート】
 /*--------------------*/
+
+/*----------*/
+/*【通常攻撃開始アニメションコントローラーステート】
+/*----------*/
+StateNormalAttackInAnimationController::StateNormalAttackInAnimationController()
+: StateAttackInAnimationController()
+{
+    mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_IN;
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return ANIMATION_TYPE::NORMAL_ATTACK_OUT;
+    }
+    
+    return mStateNumber;
+}
+
+/*----------*/
+/*【通常攻撃終了アニメションコントローラーステート】
+/*----------*/
+StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController()
+: StateAttackOutAnimationController()
+{
+    mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return nextState;
+    }
+    
+    return mStateNumber;
+}
+
+/*----------*/
+/*【攻撃中アニメーションステート】
+/*----------*/
 StateAttackMiddleAnimationController::StateAttackMiddleAnimationController()
 : StateAttackAnimationController()
 {
@@ -304,6 +320,14 @@ ANIMATION_TYPE StateAttackMiddleAnimationController::CheckState(AnimationBase* a
     return mStateNumber;
 }
 
+/*----------*/
+/*【攻撃中アニメーションステート】
+/*----------*/
+StateAttackIdleAnimationController::StateAttackIdleAnimationController()
+: StateIdleAnimationController()
+{
+}
+
 // ステート変更確認
 ANIMATION_TYPE StateAttackIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
@@ -312,5 +336,18 @@ ANIMATION_TYPE StateAttackIdleAnimationController::CheckState(AnimationBase* ani
         return ANIMATION_TYPE::ATTACK_IN;
     }
     
+    return mStateNumber;
+}
+
+/*----------*/
+/*【攻撃終了アニメーションステート】
+/*----------*/
+StateAttackEndAnimationController::StateAttackEndAnimationController()
+: StateAttackOutAnimationController()
+{
+}
+
+ANIMATION_TYPE StateAttackEndAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
     return mStateNumber;
 }

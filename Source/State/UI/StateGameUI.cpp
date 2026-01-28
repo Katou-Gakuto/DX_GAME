@@ -9,6 +9,7 @@
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectBases.h"
+#include "ResourceManager.h"
 #include "StateGameUI.h"
 #include "TargetManager.h"
 #include "UtilCalc.h"

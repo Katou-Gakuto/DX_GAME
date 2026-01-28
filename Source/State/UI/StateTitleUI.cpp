@@ -32,29 +32,29 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 	// ”wŒi
 	if (ui->GetMovieHandleCount() >= 1)
 	{
-		int handle = ui->GetMovieHandles()[0];
+	// 	int handle = ui->GetMovieHandles()[0];
 
-		DisplaySize displaySize = ResourceManager::mstDisplaySize;
-		Vector2_Int leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		Vector2_Int leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		Vector2_Int rightUp = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		Vector2_Int rightDown = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	DisplaySize displaySize = ResourceManager::mstDisplaySize;
+	// 	Vector2_Int leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	Vector2_Int leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	Vector2_Int rightUp = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	Vector2_Int rightDown = Vector2(displaySize.Left_RatioWidth(1.0f) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
+	// 	Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 		
-		leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	leftUp = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	leftDown = Vector2(displaySize.Left_RatioWidth(-(BackSize - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
+	// 	Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 
-		leftUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		leftDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
-		rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
-		rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	leftUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	leftDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 3) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
+	// 	rightUp = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(-((BackSize - 1.0f) * 0.5f)));
+	// 	rightDown = Vector2(displaySize.Left_RatioWidth(-((BackSize * 2) - 1.0f)) + mfBackGraphTime, displaySize.Up_RatioHeight(((BackSize - 1.0f) * 0.5f) + 1.0f));
 
-		Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
+	// 	Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 	}
 		
 	// ‘I‘ð

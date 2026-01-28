@@ -19,9 +19,8 @@ Character_Map::~Character_Map()
 }
 
 /*UŒ‚ŠJn(”½“®ŠÔ‚ğ•Ô‚·)*/
-int Character_Map::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
+void Character_Map::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
-	return 0;
 }
 
 /*UŒ‚’â~*/

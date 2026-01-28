@@ -42,11 +42,12 @@ void UI_Game::DecisionProcess()
     {
     case 0:
         SetUINumber();
+        mpResourceManager->StopAllEfect();
         break;
 
     case 1:
         DeleteUINumber();
-        
+        mpResourceManager->PlayAllEfect();
         break;
 
     default:

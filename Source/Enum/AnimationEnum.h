@@ -19,7 +19,7 @@ enum class ANIMATION_TYPE
     NORMAL_ATTACK,      // ノーマル攻撃
     NORMAL_ATTACK_OUT,  // ノーマル攻撃終了
 
-    DISPLAY_MOVE,
+    DISPLAY_MOVE,// 数字でやる_1, _2,  _3 みたいな感じ
 };
 
 // アニメーションモデル種類

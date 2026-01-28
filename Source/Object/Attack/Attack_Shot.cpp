@@ -9,7 +9,7 @@ Attack_Shot::Attack_Shot()
 : AttackBase()
 {
 	// TODO: 後々無くすのとデータマネージャーに持たせる
-	mnAttackRecoilTime = 1156;
+	//mnAttackRecoilTime = 1156;
 }
 
 Attack_Shot::~Attack_Shot()

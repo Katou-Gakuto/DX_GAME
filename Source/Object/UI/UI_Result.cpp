@@ -23,19 +23,20 @@ UI_Result::~UI_Result()
 void UI_Result::UIInitilize()
 {
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
-    setDrawDatas.clear();
+    
     {
+        setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = Vector2_Int(0, 0);
         drawData.size = ResourceManager::mstDisplaySize.LeftUp_FloatRatio(1.0f);
-        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack.mp4");
+        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/ResultBack.mp4");
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
     }
 
     // モデル追加
-    AddModelData(setDrawDatas);
+    AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
 
     // アニメーション設定
     AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT);

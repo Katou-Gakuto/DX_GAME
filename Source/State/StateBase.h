@@ -136,6 +136,9 @@ public:
 
 	/// <summary>ステート変更確認</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) = 0;
+
+	/// <summary>同分類の種類かを確認する</summary>
+	virtual bool CheckSameType(ANIMATION_TYPE animationType) { return mStateNumber == animationType; }
 };
 
 /*------------------------*/

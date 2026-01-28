@@ -90,12 +90,14 @@ void ResourceManager::Finailize()
 	}
 
 	{// 動画
-		for (std::pair<std::string, int> moveiHandle : mmMovieHandle)
+		for (std::pair<std::string, std::vector<int>> moveiHandle : mmMovieHandle)
 		{
-			DeleteGraph(moveiHandle.second);
+			for (int i = 0; i < moveiHandle.second.size(); i++)
+			{
+				DeleteGraph(moveiHandle.second[i]);
+			}
 		}
 		mmMovieHandle.clear();
-		mmMovieCount.clear();
 	}
 
 	{// サウンド
@@ -527,8 +529,8 @@ int ResourceManager::GetMovieHandle(std::string fileName)
 	int handle = -1;
 	if (mmMovieHandle.find(fileName) != mmMovieHandle.end())
 	{
-		handle = mmMovieHandle[fileName];
-		mmMovieCount[handle] += 1;
+		handle = LoadGraph(fileName.c_str());
+		mmMovieHandle[fileName].push_back(handle);
 		return handle;
 	}
 
@@ -538,8 +540,10 @@ int ResourceManager::GetMovieHandle(std::string fileName)
 		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
 		return -1;
 	}
-	mmMovieHandle[fileName] = handle;
-	mmMovieCount[handle] = 1;
+	std::vector<int> setHandle;
+	setHandle.clear();
+	setHandle.push_back(handle);
+	mmMovieHandle[fileName] = setHandle;
 
 	return handle;
 }
@@ -547,22 +551,25 @@ int ResourceManager::GetMovieHandle(std::string fileName)
 // 動画カウントを減らす
 void ResourceManager::ReduceMovie(int handle)
 {
-	mmMovieCount[handle] -= 1;
-	if (mmMovieCount[handle] <= 0)
-	{
-		DeleteGraph(handle);
-		mmMovieCount.erase(handle);
+	DeleteGraph(handle);
 
-		std::string fileName;
-		for (std::pair<std::string, int> graphHandle : mmMovieHandle)
+	for (auto movieHandle : mmMovieHandle)
+	{
+		for (int i = 0; i < movieHandle.second.size(); i++)
 		{
-			if (graphHandle.second == handle)
+			if (movieHandle.second[i] == handle)
 			{
-				fileName = graphHandle.first;
-				break;
+				if ((movieHandle.second.size() - 1) <= 0)
+				{
+					mmMovieHandle.erase(movieHandle.first);
+				}
+				else
+				{
+					mmMovieHandle[movieHandle.first].erase(mmMovieHandle[movieHandle.first].begin() + i);
+				}
+				return;
 			}
 		}
-		mmMovieHandle.erase(fileName);
 	}
 }
 
@@ -650,6 +657,7 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 				{
 					if (effectHandle.second[i] == oldHandle)
 					{
+						StopEffekseer3DEffect(oldHandle);
 						mmEffectHandle[effectHandle.first][i] = newHandle;
 					}
 				}
@@ -666,33 +674,65 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 	return -1;
 }
 
-// エフェクトカウントを減らす
-void ResourceManager::ReduceEffect(int handle)
+// 再生中エフェクトハンドルを削除する
+void ResourceManager::DeletePlayEffectHandle(int handle)
 {
-	std::string fileName = "NULL";
+	// エフェクト削除
+	StopEffekseer3DEffect(handle);
+
 	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
 	{
-		for (int i = 0; i < effectHandle.second.size(); i++)
+		for (int i = 1; i < effectHandle.second.size(); i++)
 		{
 			if (effectHandle.second[i] == handle)
 			{
-				fileName = effectHandle.first;
-				handle = effectHandle.second[0];
-				break;
+				mmEffectHandle[effectHandle.first].erase(mmEffectHandle[effectHandle.first].begin() + i);
+				return;
 			}
 		}
-		
-		if (fileName != "NULL")
+	}
+}
+
+// エフェクトカウントを減らす
+void ResourceManager::ReduceEffectDataHandle(int handle)
+{
+	int reduceHandle = -1;
+	std::string fileName = "NULL";
+	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	{
+		if ((effectHandle.second.size() > 0) &&
+			(effectHandle.second[0] == handle))
 		{
+			fileName = effectHandle.first;
+			reduceHandle = effectHandle.second[0];
 			break;
 		}
+		// for (int i = 0; i < effectHandle.second.size(); i++)
+		// {
+		// 	if (effectHandle.second[i] == handle)
+		// 	{
+		// 		fileName = effectHandle.first;
+		// 		handle = effectHandle.second[0];
+		// 		break;
+		// 	}
+		// }
+		
+		// if (fileName != "NULL")
+		// {
+		// 	break;
+		// }
 	}
 
-	mmEffectCount[handle] -= 1;
-	if (mmEffectCount[handle] <= 0)
+	if (reduceHandle == -1)
 	{
-		DeleteEffekseerEffect(handle);
-		mmEffectCount.erase(handle);
+		return;
+	}
+
+	mmEffectCount[reduceHandle] -= 1;
+	if (mmEffectCount[reduceHandle] <= 0)
+	{
+		DeleteEffekseerEffect(reduceHandle);
+		mmEffectCount.erase(reduceHandle);
 		mmEffectHandle.erase(fileName);
 	}
 }
@@ -721,6 +761,30 @@ void ResourceManager::StopEffect(int handle)
 void ResourceManager::PlayEffect(int handle, float speed)
 {
 	SetSpeedPlayingEffekseer3DEffect(handle, speed);
+}
+
+// 全エフェクト停止
+void ResourceManager::StopAllEfect()
+{
+	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	{
+		for (int i = 1; i < effectHandle.second.size(); i++)
+		{
+			StopEffect(effectHandle.second[i]);
+		}
+	}
+}
+
+// 全エフェクト再生開始
+void ResourceManager::PlayAllEfect()
+{
+	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	{
+		for (int i = 1; i < effectHandle.second.size(); i++)
+		{
+			PlayEffect(effectHandle.second[i], 1.0f);
+		}
+	}
 }
 
 // エフェクト初期化

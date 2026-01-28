@@ -116,7 +116,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 
 			fsm->RegisterState(new StateAttackInAnimationController());
 			fsm->RegisterState(new StateAttackMiddleAnimationController());
-			fsm->RegisterState(new StateAttackOutAnimationController());
+			fsm->RegisterState(new StateAttackEndAnimationController());
 			break;
 		}
 		break;

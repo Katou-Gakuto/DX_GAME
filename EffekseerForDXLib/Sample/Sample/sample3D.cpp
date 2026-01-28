@@ -77,7 +77,7 @@ int sample3D()
 		Effekseer_Sync3DSetting();
 
 		// 定期的にエフェクトを再生する
-		if (time % 60 == 0)
+		if (time % 180 == 0)
 		{
 			// エフェクトを再生する。
 			playingEffectHandle = PlayEffekseer3DEffect(effectResourceHandle);
@@ -85,13 +85,17 @@ int sample3D()
 			// エフェクトの位置をリセットする。
 			position_x = 0.0f;
 		}
+		else if (time % 180 == 30)
+		{
+			//StopEffekseer3DEffect(playingEffectHandle);
+		}
 
 		// 何でもいいので画像を描画する。
 		// こうして描画した後でないと、Effekseerは描画できない。
 		DrawGraph(0, 0, grBackgroundHandle, TRUE);
 
 		// 再生中のエフェクトを移動する。
-		SetPosPlayingEffekseer3DEffect(playingEffectHandle, position_x, position_y, 0);
+		SetPosPlayingEffekseer3DEffect(playingEffectHandle, position_x - 30.0f, position_y, 0);
 		position_x += 0.2f;
 
 		// Effekseerにより再生中のエフェクトを更新する。

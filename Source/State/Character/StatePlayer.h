@@ -125,10 +125,6 @@ public:
 /*--------------------------*/
 class AttackPlayerState : public IStateCharacter, public PlayerProcess
 {
-private:
-	// UŒ‚ŠÔ(d’¼)
-	int mnAttackTime;
-
 public:
 	AttackPlayerState();
 	~AttackPlayerState() = default;

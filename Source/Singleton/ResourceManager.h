@@ -123,9 +123,8 @@ public:
 	/*--------*/
 private:
 	// 動画ハンドル
-	std::map<std::string, int> mmMovieHandle;
-	// 動画カウンター
-	std::map<int, int> mmMovieCount;
+	std::map<std::string, std::vector<int>> mmMovieHandle;
+	
 public:
 	/*動画ハンドル取得*/
 	int GetMovieHandle(std::string fileName);
@@ -176,10 +175,12 @@ public:
 	/// <summary>エフェクトハンドルを取得する</summary>
 	int GetEffectHandle(int handle, int oldHandle);
 
-	// TODO: エフェクトの停止を作るのと情報カウントを減らすのを作る
-	/// <summary>エフェクトカウントを減らす</summary>
-	/// <param name="handle">エフェクトハンドル エフェクトの情報のハンドルを渡すとバグる</param>
-	void ReduceEffect(int handle);
+	/// <summary>再生中エフェクトハンドルを削除する</summary>
+	void DeletePlayEffectHandle(int handle);
+
+	/// <summary>情報エフェクトハンドルのカウントを減らす</summary>
+	/// <param name="handle">エフェクト情報ハンドル</param>
+	void ReduceEffectDataHandle(int handle);
 
 	/// <summary>エフェクト描画</summary>
 	void DrawEffect(int handle, VECTOR position, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
@@ -188,6 +189,12 @@ public:
 	void StopEffect(int handle);
 	/// <summary>エフェクト再生</summary>
 	void PlayEffect(int handle, float speed);
+
+	/// <summary>全エフェクト停止</summary>
+	void StopAllEfect();
+
+	/// <summary>全エフェクト再生開始</summary>
+	void PlayAllEfect();
 
 private:
 	/// <summary>エフェクト初期化</summary>

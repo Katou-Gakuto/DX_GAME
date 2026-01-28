@@ -65,6 +65,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mpFsm(nullptr)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
+, mpAttack(nullptr)
 {
 	mmCharacterAttackDatas.clear();
 }
@@ -163,11 +164,11 @@ void CharacterBase::Draw()
 /*----------------------*/
 
 // 攻撃開始
-int CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
+void CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
 	{
-		return Master::mpGameManager->GetAttackManager()->StartAttack(mmCharacterAttackDatas[attackMethodType].attackDataNumber, attackMethodType);
+		mpAttack =  Master::mpGameManager->GetAttackManager()->StartAttack(mmCharacterAttackDatas[attackMethodType].attackDataNumber, attackMethodType);
 	}
 	// switch (attackMethodType)
 	// {
@@ -186,7 +187,7 @@ int CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 	// 	break;
 	// }
 
-	return 0;
+	//return nullptr;
 }
 
 // 攻撃リセット
@@ -195,6 +196,7 @@ void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
 	{
 		Master::mpGameManager->GetAttackManager()->StopAttack(mmCharacterAttackDatas[attackMethodType].attackDataNumber);
+		mpAttack = nullptr;
 	}
 
 	// switch (attackMethodType)
@@ -213,6 +215,17 @@ void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 	// 	}
 	// 	break;
 	// }
+}
+
+// 指定アニメーション中であるかを取得
+bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
+{
+	if (mpAnimation != nullptr)
+	{
+		return mpAnimation->GetFsm()->CheckNowStateSameType(animationType);
+	}
+
+	return false;
 }
 
 // ダメージ
@@ -319,6 +332,17 @@ void CharacterBase::DeathProcess()
 
 
 /*--------*/
+/*【取得】*/
+/*--------*/
+
+// キャラクターがした攻撃取得
+AttackBase* CharacterBase::GetAttack()
+{
+	return mpAttack;
+}
+
+
+/*--------*/
 /*【設定】*/
 /*--------*/
 
@@ -397,7 +421,7 @@ AttackBase::AttackBase()
 , mnPower(0)
 , mpAttackCharacter(nullptr)
 , mnAttackNumber(-1)
-, mnAttackRecoilTime(0)
+//, mnAttackRecoilTime(0)
 , mnAttackTime(0)
 , mvMoveDir(UtilCalc::VZero)
 , mpModelController(nullptr)
@@ -545,18 +569,24 @@ void UIBase::Finalize()
 	}
 
 	// 画像削除
-	for (int i = 0; i < mnGraphCount; i++)
+	if (mnGraphCount != 0)
 	{
-		mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+		for (int i = 0; i < mnGraphCount; i++)
+		{
+			mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+		}
+		free(mnGraphHandles);
 	}
-	free(mnGraphHandles);
 
-	// 動画削除
-	for (int i = 0; i < mnMovieCount; i++)
+	if (mnMovieCount != 0)
 	{
-		mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
+		// 動画削除
+		for (int i = 0; i < mnMovieCount; i++)
+		{
+			mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
+		}
+		free(mnMovieHandles);
 	}
-	free(mnMovieHandles);
 	
 	// モデルコントローラー終了
 	mpUIModelController->Finalize();
@@ -750,9 +780,9 @@ void UIBase::DeleteUINumber()
 }
 
 // モデル追加
-void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData)
+void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType)
 {
-    mpUIModelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
+    mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
 }
 
 // アニメーション設定
@@ -943,10 +973,11 @@ void UIBase::DefaultDecision()
 // デフォルト終了確認処理
 void UIBase::DefaultCloce()
 {
-	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, false)// TODO: ここ修正すべき
-		||
-		((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) && 
-		(mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z))))
+	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ここ修正すべき
+		// ||
+		// ((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) && 
+		// (mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z)))
+		)
 	{
 		CloceProcess();
 	}

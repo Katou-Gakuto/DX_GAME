@@ -28,19 +28,94 @@ UI_Title::~UI_Title()
 void UI_Title::UIInitilize()
 {
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
-    setDrawDatas.clear();
+    DRAW_GRAPH_DATA drawData;
+    
+    // 映像設定
     {
-        DRAW_GRAPH_DATA drawData;
+        setDrawDatas.clear();
+        
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = Vector2_Int(0, 0);
         drawData.size = ResourceManager::mstDisplaySize.LeftUp_FloatRatio(1.0f);
-        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack.mp4");
+        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
+
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
     }
 
-    // モデル追加
-    AddModelData(setDrawDatas);
+
+    // 固定画像設定
+    {
+        setDrawDatas.clear();
+        
+        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
+        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
+        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
+        setDrawDatas.push_back(drawData);
+
+        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.1f, 0.4f));
+        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.8f, 0.5f));
+        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
+        setDrawDatas.push_back(drawData);
+
+        // 文字背景
+        {
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack.png");
+
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.16f, 0.5f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            setDrawDatas.push_back(drawData);
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.16f, 0.7f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            setDrawDatas.push_back(drawData);
+            
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.53f, 0.5f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            setDrawDatas.push_back(drawData);
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.53f, 0.7f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            setDrawDatas.push_back(drawData);
+        }
+
+        // 文字
+        {
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.185f, 0.52f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/NewData_String.png");
+            setDrawDatas.push_back(drawData);
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.185f, 0.72f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/DataSelect_String.png");
+            setDrawDatas.push_back(drawData);
+            
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.555f, 0.52f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Tutorial_String.png");
+            setDrawDatas.push_back(drawData);
+            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.555f, 0.72f));
+            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Setting_String.png");
+            setDrawDatas.push_back(drawData);
+        }
+
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+    }
+
+    // 移動画像設定
+    {
+        setDrawDatas.clear();
+        
+        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.135f, 0.48f));
+        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.36f, 0.15f));
+        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/SelectString_1.png");
+        setDrawDatas.push_back(drawData);
+
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+    }
 
     // アニメーション設定
     AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE);

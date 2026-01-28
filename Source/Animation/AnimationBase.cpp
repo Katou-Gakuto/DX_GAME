@@ -14,6 +14,10 @@ AnimationBase::AnimationBase()
 // ‰Šú‰»
 void AnimationBase::Initilize()
 {
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Initilize(this);
+    }
 }
 
 // I—¹

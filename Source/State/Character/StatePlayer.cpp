@@ -233,7 +233,6 @@ void MovePlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 AttackPlayerState::AttackPlayerState()
 : PlayerProcess()
-, mnAttackTime(0)
 {
 	mStateNumber = (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
 }
@@ -242,7 +241,7 @@ AttackPlayerState::AttackPlayerState()
 void AttackPlayerState::OnEnter(CharacterBase* character)
 {
 	// TODO: データマネージャーから取得できるようにする
-	mnAttackTime = (character->StartAttck(ATTACK_METHOD_TYPE::NORMAL) + Master::mpTimeManager->GetGameTime());
+	/*(*/character->StartAttck(ATTACK_METHOD_TYPE::NORMAL)/* + Master::mpTimeManager->GetGameTime())*/;
 	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 
@@ -254,7 +253,7 @@ void AttackPlayerState::OnExit(CharacterBase* character)
 // ステート変更確認
 int AttackPlayerState::StateCheck(CharacterBase* character)
 {
-	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
 		if (GetPlayerMoveFlag())
 		{

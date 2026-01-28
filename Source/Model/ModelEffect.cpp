@@ -28,7 +28,7 @@ void ModelEffect::ModelFinalize()
 {
     if (mnEffectHandle != -1)
     {
-        Master::mpResourceManager->ReduceEffect(mnEffectHandle);
+        Master::mpResourceManager->ReduceEffectDataHandle(mnEffectHandle);
     }
 }
 

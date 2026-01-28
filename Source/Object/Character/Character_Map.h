@@ -11,7 +11,7 @@ public:
 	~Character_Map();
 
 	/*UŒ‚ŠJn(”½“®ŠÔ‚ğ•Ô‚·)*/
-	int StartAttck(ATTACK_METHOD_TYPE attackMethodType) override;
+	void StartAttck(ATTACK_METHOD_TYPE attackMethodType) override;
 
 	/*UŒ‚’â~*/
 	void StopAttack(ATTACK_METHOD_TYPE attackMethodType) override;

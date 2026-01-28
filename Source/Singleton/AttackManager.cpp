@@ -51,7 +51,7 @@ int AttackManager::SetAttackData(AttackData attackData)
 }
 
 // 攻撃開始
-int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType)
+AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mstAttackDatas.size() > attackDataNumber)
 	{
@@ -62,7 +62,6 @@ int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMe
 				// 攻撃情報設定
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime() + (17 * 300));
-				// TODO: ベクトルに変換
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);
@@ -71,6 +70,7 @@ int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMe
 				attack->SetModelController(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModelsController(attackMethodType));
 				attack->SetAnimation(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackAnimation(attackMethodType));
 				attack->GetModelsController()->GameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
+				attack->GetAnimation()->Initilize();
 
 				// FIXME: なぜかヌルポインターが出た　
 				// 初期化
@@ -78,7 +78,7 @@ int AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMe
 				attack->SetActiveFlag(true);
 
 				// 反動時間を返す
-				return attack->GetAttackRecoilTime();
+				return attack;
 			}
 		}
 	}

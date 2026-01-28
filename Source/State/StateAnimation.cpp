@@ -327,8 +327,7 @@ void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *n
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
 void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
 {
-    // TODO: ’âŽ~‚É•ÏX
-    Master::mpResourceManager->ReduceEffect(*mnEffectHandle);
+    Master::mpResourceManager->DeletePlayEffectHandle(*mnEffectHandle);
     *mnEffectHandle = -1;
 }
 

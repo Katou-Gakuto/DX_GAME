@@ -89,6 +89,9 @@ public:
 	/// <summary>次のステート設定</summary>
 	inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
+	/// <summary>現在のステートと同じ種類かを確認する</summary>
+	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mnCurrentState]->CheckSameType(animationType); }
+	
 private:
 	/*新しいステートを設定する*/
 	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);

@@ -456,7 +456,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 
 // キャラクタ攻撃情報作成
 CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType)
-{// INPROGRESS: 作業中エフェクト作成待ち
+{
 	// 初期化
 	CharacterAttackData characterAttackData;
 	characterAttackData.attackDataNumber = -1;

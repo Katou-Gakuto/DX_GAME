@@ -39,4 +39,7 @@ public:
 
 	/*íœİ’è*/
 	void SetDelete();
+
+	/// <summary>UŒ‚î•ñæ“¾</summary>
+	inline AttackData GetAttacData(int attackNumber) { return mstAttackDatas[attackNumber]; }
 };

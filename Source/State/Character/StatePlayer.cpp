@@ -240,8 +240,7 @@ AttackPlayerState::AttackPlayerState()
 // この状態に入った時の処理
 void AttackPlayerState::OnEnter(CharacterBase* character)
 {
-	// TODO: データマネージャーから取得できるようにする
-	/*(*/character->StartAttck(ATTACK_METHOD_TYPE::NORMAL)/* + Master::mpTimeManager->GetGameTime())*/;
+	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
 	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 

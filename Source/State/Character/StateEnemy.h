@@ -41,8 +41,8 @@ protected:
 	/*プレイヤー方向を向いて移動する*/
 	void PlayerTargetMove(CharacterBase* character);
 
-	/*プレイヤーターゲットに向かって攻撃*/
-	void PlayerTargetAttack(CharacterBase* character);
+	/*プレイヤーターゲットの方向に向く*/
+	void PlayerTargetAngle(CharacterBase* character);
 
 	/*死亡処理*/
 	virtual void EnemyDeath(CharacterBase* character);
@@ -81,7 +81,66 @@ public:
 	/*死亡*/
 	void Death(CharacterBase* character) override;
 };
+// INPROGRESS: 作業中　敵基本行動作成中
+/*----------*/
+/*【移動エネミーステート】
+/*----------*/
+class MoveEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	MoveEnemyState();
+	~MoveEnemyState() = default;
 
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
+
+/*----------*/
+/*【攻撃エネミーステート】
+/*----------*/
+class AttackEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	AttackEnemyState();
+	~AttackEnemyState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
 
 /*--------------------------*/
 /*     【派生ステート】     */

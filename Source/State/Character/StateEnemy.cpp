@@ -30,8 +30,8 @@ void EnemyProcess::PlayerTargetMove(CharacterBase* character)
 {
 }
 
-// プレイヤーターゲットに向かって攻撃
-void EnemyProcess::PlayerTargetAttack(CharacterBase* character)
+// プレイヤーターゲットの方に向く
+void EnemyProcess::PlayerTargetAngle(CharacterBase* character)
 {
 }
 
@@ -91,6 +91,109 @@ void IdleEnemyState::Draw(CharacterBase* character)
 
 // 死亡
 void IdleEnemyState::Death(CharacterBase* character)
+{
+	EnemyDeath(character);
+}
+
+/*----------*/
+/*【移動エネミーステート】
+/*----------*/
+MoveEnemyState::MoveEnemyState()
+{
+	mStateNumber = (int)ENEMY_STATE::MOVE_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void MoveEnemyState::OnEnter(CharacterBase* character)
+{
+}
+
+// この状態を出る時の処理
+void MoveEnemyState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int MoveEnemyState::StateCheck(CharacterBase* character)
+{
+	return mStateNumber;
+}
+
+// 更新
+void MoveEnemyState::Update(CharacterBase* character)
+{
+	PlayerTargetMove(character);
+}
+
+// 最終更新
+void MoveEnemyState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void MoveEnemyState::Draw(CharacterBase* character)
+{
+}
+
+// 死亡
+void MoveEnemyState::Death(CharacterBase* character)
+{
+	EnemyDeath(character);
+}
+
+/*----------*/
+/*【攻撃エネミーステート】
+/*----------*/
+AttackEnemyState::AttackEnemyState()
+{
+	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void AttackEnemyState::OnEnter(CharacterBase* character)
+{
+	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
+	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
+}
+
+// この状態を出る時の処理
+void AttackEnemyState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int AttackEnemyState::StateCheck(CharacterBase* character)
+{
+	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+	{
+		// if (GetPlayerMoveFlag())
+		// {
+		// 	return (int)ENEMY_STATE::MOVE_ENEMY_STATE;
+		// }
+
+		return (int)ENEMY_STATE::IDLE_ENEMY_STATE;
+	}
+
+	return mStateNumber;
+}
+
+// 更新
+void AttackEnemyState::Update(CharacterBase* character)
+{
+}
+
+// 最終更新
+void AttackEnemyState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void AttackEnemyState::Draw(CharacterBase* character)
+{
+}
+
+// 死亡
+void AttackEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }

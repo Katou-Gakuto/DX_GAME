@@ -8,8 +8,6 @@
 Attack_Shot::Attack_Shot()
 : AttackBase()
 {
-	// TODO: 後々無くすのとデータマネージャーに持たせる
-	//mnAttackRecoilTime = 1156;
 }
 
 Attack_Shot::~Attack_Shot()
@@ -56,6 +54,7 @@ void Attack_Shot::AttackDraw()
 // 当たり判定
 void Attack_Shot::HitCheck(CollisionData& collisionData)
 {
+	// TODO: 敵を作って戦いができるようになったら修正
 	if (mpAttackCharacter->GetID() == collisionData.objID)
 	{
 		return;

@@ -15,9 +15,7 @@
 /*--------------------------------*/
 /*     【タイトルUIステート】     */
 /*--------------------------------*/
-// TODO: 消す
-float TitleUIStateProcess::mfBackGraphTime = 0.0f;
-const float BackSize = 1.0f;
+
 /*----------*/
 /*【タイトルUIステート共通処理用】
 /*----------*/
@@ -86,12 +84,12 @@ void TitleUIStateProcess::ProcessOnExit(UIBase* ui)
 // 更新
 void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
-	mfBackGraphTime += 0.2f;
+	// mfBackGraphTime += 0.2f;
 
-	if (mfBackGraphTime > (ResourceManager::mstDisplaySize.x * 2 * BackSize))
-	{
-		mfBackGraphTime = 0.0f;
-	}
+	// if (mfBackGraphTime > (ResourceManager::mstDisplaySize.x * 2 * BackSize))
+	// {
+	// 	mfBackGraphTime = 0.0f;
+	// }
 
 	if (ui->GetMovieHandleCount() >= 1)
 	{
@@ -102,7 +100,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 // ゲーム開始
 void TitleUIStateProcess::StartGame(UIBase* ui)
 {
-	// TODO: データ0に固定
+	// TODO: セーブデータが出来たらデータ0に固定をなくす
 	ui->SetSelectNumber(0);
 
 	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());

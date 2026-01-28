@@ -36,9 +36,6 @@ protected:
 	// 前のステート
 	TITLE_UI_STATE mePreUiState;
 
-	// バック画像表示時間
-	static float mfBackGraphTime;
-
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 

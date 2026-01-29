@@ -28,6 +28,15 @@ enum class ENEMY_STATE
 class EnemyProcess
 {
 protected:
+	// 敵コマンドナンバー
+	enum ENEMY_COMMAND_NUMBER
+	{
+		SHORT_RANGE = 0,
+		MEDIUM_RANGE,
+		LONG_RANGE,
+	};
+
+protected:
 	// ターゲットマネージャー
 	TargetManager* mpTargetManager;
 
@@ -46,6 +55,12 @@ protected:
 
 	/*死亡処理*/
 	virtual void EnemyDeath(CharacterBase* character);
+
+	/*プレイヤーの位置によってコマンドを返す*/
+	virtual int GetPlayerDistance_Command(CharacterBase* character);
+
+	/*定型の次のステートを取得する*/
+	int TemplateNextState(CharacterBase* character, int myState);
 };
 
 /*--------------------------*/

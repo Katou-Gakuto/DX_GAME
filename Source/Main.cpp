@@ -62,7 +62,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 
 	// TODO: 変更できるようにする
-	//SetGraphMode(640, 480, 16);
+	SetGraphMode(1024, 768, 16);
 
 	// 初期化
 	Master::mpGameManager->Initilize();

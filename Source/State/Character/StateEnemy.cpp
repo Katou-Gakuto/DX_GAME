@@ -45,6 +45,32 @@ void EnemyProcess::EnemyDeath(CharacterBase* character)
 	}
 }
 
+// プレイヤーの位置によって数字を返す
+int EnemyProcess::GetPlayerDistance_Command(CharacterBase* character)
+{
+
+	return -1;
+}
+
+// 定型の次のステートを取得する
+int EnemyProcess::TemplateNextState(CharacterBase* character, int myState)
+{
+	switch (GetPlayerDistance_Command(character))
+	{
+	case ENEMY_COMMAND_NUMBER::SHORT_RANGE:
+		break;
+		
+	case ENEMY_COMMAND_NUMBER::MEDIUM_RANGE:
+		break;
+		
+	case ENEMY_COMMAND_NUMBER::LONG_RANGE:
+		break;
+	}
+
+
+	return myState;
+}
+
 
 /*--------------------------*/
 /*     【基本ステート】     */
@@ -71,7 +97,7 @@ void IdleEnemyState::OnExit(CharacterBase* character)
 // ステート変更確認
 int IdleEnemyState::StateCheck(CharacterBase* character)
 {
-	return mStateNumber;
+	return TemplateNextState(character, mStateNumber);
 }
 
 // 更新
@@ -116,7 +142,7 @@ void MoveEnemyState::OnExit(CharacterBase* character)
 // ステート変更確認
 int MoveEnemyState::StateCheck(CharacterBase* character)
 {
-	return mStateNumber;
+	return TemplateNextState(character, mStateNumber);
 }
 
 // 更新

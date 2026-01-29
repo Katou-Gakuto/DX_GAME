@@ -574,6 +574,8 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 	case CHARACTER_FACTORY_NUMBER::ENEMY:
 		fsmCharacter->RegisterState(new IdleEnemyState());
+		fsmCharacter->RegisterState(new MoveEnemyState());
+		fsmCharacter->RegisterState(new AttackEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 

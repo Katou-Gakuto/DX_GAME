@@ -39,7 +39,8 @@ int sample3D()
 
 	// エフェクトリソースを読み込む。
 	// 読み込む時に大きさを指定する。
-	int effectResourceHandle = LoadEffekseerEffect("../../../Resource/Effect/Test.efk"/*"Laser01.efkefc"*/, 1.0f);
+	//int effectResourceHandle = LoadEffekseerEffect("../../../Resource/Effect/TESTES.efk"/*"Laser01.efkefc"*/, 1.0f);
+	int effectResourceHandle = LoadEffekseerEffect("Texture/TESTES.efk", 1.0f);
 
 	// 何でもいいので画像を読み込む。
 	int grBackgroundHandle = LoadGraph(_T("Texture/Background.png"));

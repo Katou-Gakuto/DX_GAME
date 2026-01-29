@@ -44,7 +44,7 @@ DataManager::DataManager()
 		mstPlayerDatas.clear();
 
 		PLAYER_DATA setPlayer = PLAYER_DATA();
-		setPlayer.mapType = SCENE::BATTLE_1;
+		setPlayer.mapType = SCENE::DUNGEON_1;//BATTLE_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.townPos = UtilCalc::VZero;
 		setPlayer.dungeonType = SCENE::NONE;

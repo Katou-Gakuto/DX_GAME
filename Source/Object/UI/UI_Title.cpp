@@ -37,7 +37,7 @@ void UI_Title::UIInitilize()
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = Vector2_Int(0, 0);
         drawData.size = ResourceManager::mstDisplaySize.LeftUp_FloatRatio(1.0f);
-        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
+        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");// TODO: ŠÔ‘Ñ‚ÅF•ÏX
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 

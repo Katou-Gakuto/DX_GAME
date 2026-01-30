@@ -60,6 +60,11 @@ void ModelGraph::PositionUpdate()
 // グラフィック描画
 void ModelGraph::ModelDraw()
 {
+    if (!mbDrawFlag)
+    {
+        return;
+    }
+
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
         ModelDraw_Graph(mstDrawDatas[i]);

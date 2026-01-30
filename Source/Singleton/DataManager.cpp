@@ -157,6 +157,16 @@ void DataManager::PlayDataDelete(int playerNumber)
 }
 
 /*--------*/
+/*【削除】*/
+/*--------*/
+
+// エネミーデータ削除
+void DataManager::DeleteEnemyData()
+{
+	// TODO: データに連携させたら
+}
+
+/*--------*/
 /*【設定】*/
 /*--------*/
 

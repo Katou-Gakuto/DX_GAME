@@ -52,7 +52,6 @@ void ModelEffect::PositionUpdate()
 {
     if (mnEffectHandle != -1)
     {
-
         Master::mpResourceManager->DrawEffect(mnEffectHandle, mvDrawPosition, mvDrawAngle, mvDrawSize);
     }
 }

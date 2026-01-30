@@ -7,7 +7,10 @@
 
 ModelBase::ModelBase()
 : mvSize(UtilCalc::VZero)
+, mvPosition(UtilCalc::VZero)
+, mvAngle(UtilCalc::VZero)
 , mpModelsController(nullptr)
+, mbDrawFlag(true)
 {
 }
 ModelBase::~ModelBase()

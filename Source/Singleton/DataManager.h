@@ -80,6 +80,13 @@ public:
 	void PlayDataDelete(int playerNumber);
 
 	/*--------*/
+	/*【削除】*/
+	/*--------*/
+
+	/// <summary>エネミーデータ削除</summary>
+	void DeleteEnemyData();
+
+	/*--------*/
 	/*【変更】*/
 	/*--------*/
 

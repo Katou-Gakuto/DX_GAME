@@ -1,5 +1,10 @@
 #pragma once
 
+/*メモ　シーンを新しく増やす時にやること
+UtilChange::SceneStateに追加する
+ステート処理書く
+*/
+
 // シーン
 enum class SCENE
 {
@@ -25,4 +30,6 @@ enum class SCENE
 	RESULT,		// リザルト
 	DUNGEON_RESULT,
 	BATTLR_RESULT,
+
+	GAME_OVER,	// ゲームオーバー
 };

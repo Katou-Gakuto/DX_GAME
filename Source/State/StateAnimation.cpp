@@ -314,19 +314,31 @@ bool StateMVOneOperationAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*----------*/
 
 StateEffectAnimation::StateEffectAnimation(int* effectHandle)
-: mnEffectHandle(effectHandle)
+: IStateAnimation()
+, mnEffectHandle(effectHandle)
 {
+    mStateNumber = MODEL_TYPE::EFFECT;
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
 {
+    if (!mpModelBase->GetDrawFlag())
+    {
+        return;
+    }
+
     *mnEffectHandle = Master::mpResourceManager->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
 }
 
 // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
 {
+    if (*mnEffectHandle != -1)
+    {
+        return;
+    }
+
     Master::mpResourceManager->DeletePlayEffectHandle(*mnEffectHandle);
     *mnEffectHandle = -1;
 }
@@ -348,6 +360,7 @@ bool StateEffectAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 StateGraphAnimation::StateGraphAnimation()
 : IStateAnimation()
 {
+    mStateNumber = MODEL_TYPE::GRAPH;
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
@@ -377,6 +390,7 @@ bool StateGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 StateMovieAnimation::StateMovieAnimation()
 : IStateAnimation()
 {
+    mStateNumber = MODEL_TYPE::MOVIE;
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—

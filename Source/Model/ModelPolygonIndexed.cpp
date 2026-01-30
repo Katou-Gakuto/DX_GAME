@@ -38,5 +38,10 @@ void ModelPolygonIndexed::ModelFinalize()
 // ƒ‚ƒfƒ‹•`‰æ
 void ModelPolygonIndexed::ModelDraw()
 {
+    if (!mbDrawFlag)
+    {
+        return;
+    }
+    
     ModelDraw_Indexed(mstModelVertex);
 }

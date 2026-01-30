@@ -77,6 +77,11 @@ void ModelMV1::PositionUpdate()
 // ƒ‚ƒfƒ‹•`‰æ
 void ModelMV1::ModelDraw()
 {
+    if (!mbDrawFlag)
+    {
+        return;
+    }
+    
     ModelDraw_Handle(mnModelHandle);
 }
 

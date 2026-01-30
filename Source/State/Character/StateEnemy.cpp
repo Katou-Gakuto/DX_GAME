@@ -28,11 +28,15 @@ bool EnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 // プレイヤー方向を向いて移動する
 void EnemyProcess::PlayerTargetMove(CharacterBase* character)
 {
+	PlayerTargetAngle(character);
+
+	character->SetFrontMove();
 }
 
 // プレイヤーターゲットの方に向く
 void EnemyProcess::PlayerTargetAngle(CharacterBase* character)
 {
+	character->SetMoveDir(VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos()));
 }
 
 // 死亡
@@ -46,10 +50,28 @@ void EnemyProcess::EnemyDeath(CharacterBase* character)
 }
 
 // プレイヤーの位置によって数字を返す
-int EnemyProcess::GetPlayerDistance_Command(CharacterBase* character)
+ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* character)
 {
+	CharacterBase* player = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER);
 
-	return -1;
+	if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 1000.0f)
+	{
+		printfDx("short\n");
+		return ENEMY_COMMAND_NUMBER::SHORT_RANGE;
+	}
+	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 2000.0f)
+	{
+		printfDx("medium\n");
+		return ENEMY_COMMAND_NUMBER::MEDIUM_RANGE;
+	}
+	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
+	{
+		printfDx("long\n");
+		return ENEMY_COMMAND_NUMBER::LONG_RANGE;
+	}
+	
+
+	return ENEMY_COMMAND_NUMBER::NONE;
 }
 
 // 定型の次のステートを取得する
@@ -58,13 +80,13 @@ int EnemyProcess::TemplateNextState(CharacterBase* character, int myState)
 	switch (GetPlayerDistance_Command(character))
 	{
 	case ENEMY_COMMAND_NUMBER::SHORT_RANGE:
-		break;
+		return (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
 		
 	case ENEMY_COMMAND_NUMBER::MEDIUM_RANGE:
-		break;
+		return (int)ENEMY_STATE::MOVE_ENEMY_STATE;
 		
 	case ENEMY_COMMAND_NUMBER::LONG_RANGE:
-		break;
+		return (int)ENEMY_STATE::IDLE_ENEMY_STATE;
 	}
 
 
@@ -80,6 +102,8 @@ int EnemyProcess::TemplateNextState(CharacterBase* character, int myState)
 /*【Idleエネミーテート】*/
 /*----------------------*/
 IdleEnemyState::IdleEnemyState()
+: IStateCharacter()
+, EnemyProcess()
 {
 	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
 }
@@ -125,6 +149,8 @@ void IdleEnemyState::Death(CharacterBase* character)
 /*【移動エネミーステート】
 /*----------*/
 MoveEnemyState::MoveEnemyState()
+: IStateCharacter()
+, EnemyProcess()
 {
 	mStateNumber = (int)ENEMY_STATE::MOVE_ENEMY_STATE;
 }
@@ -167,10 +193,65 @@ void MoveEnemyState::Death(CharacterBase* character)
 	EnemyDeath(character);
 }
 
+/*----------------------------*/
+/*【攻撃入りエネミーステート】*/
+/*----------------------------*/
+AttackInEnemyState::AttackInEnemyState()
+: IStateCharacter()
+, EnemyProcess()
+{
+	mStateNumber = (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void AttackInEnemyState::OnEnter(CharacterBase* character)
+{
+}
+
+// この状態を出る時の処理
+void AttackInEnemyState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int AttackInEnemyState::StateCheck(CharacterBase* character)
+{
+	if (UtilCalc::AngleDiff(UtilCalc::VVecToAngle(VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos())). y, character->GetAngle().y) < 0.1f)
+	{
+		return (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
+	}
+
+	return TemplateNextState(character, mStateNumber);
+}
+
+// 更新
+void AttackInEnemyState::Update(CharacterBase* character)
+{
+	PlayerTargetMove(character);
+}
+
+// 最終更新
+void AttackInEnemyState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void AttackInEnemyState::Draw(CharacterBase* character)
+{
+}
+
+// 死亡
+void AttackInEnemyState::Death(CharacterBase* character)
+{
+	EnemyDeath(character);
+}
+
 /*----------*/
 /*【攻撃エネミーステート】
 /*----------*/
 AttackEnemyState::AttackEnemyState()
+: IStateCharacter()
+, EnemyProcess()
 {
 	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
 }
@@ -192,12 +273,7 @@ int AttackEnemyState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
-		// if (GetPlayerMoveFlag())
-		// {
-		// 	return (int)ENEMY_STATE::MOVE_ENEMY_STATE;
-		// }
-
-		return (int)ENEMY_STATE::IDLE_ENEMY_STATE;
+		return TemplateNextState(character, mStateNumber);
 	}
 
 	return mStateNumber;
@@ -233,6 +309,7 @@ void AttackEnemyState::Death(CharacterBase* character)
 /*----------------------------*/
 
 IdleBossEnemyState::IdleBossEnemyState()
+: IdleEnemyState()
 {
 	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
 }

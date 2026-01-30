@@ -51,6 +51,9 @@ protected:
 	// モデルコントローラー
 	ModelsControllerBase* mpModelsController;
 
+	// 描画フラグ
+	bool mbDrawFlag;
+
 public:
 	ModelBase();
 	~ModelBase();
@@ -83,6 +86,9 @@ public:
 	/// <summary>ハンドル取得</summary>
 	virtual std::vector<DRAW_GRAPH_DATA>* GetDrawData() { return nullptr; }
 
+	/// <summary>描画フラグ取得</summary>
+	inline bool GetDrawFlag() const { return mbDrawFlag; }
+
 	/*--------*/
 	/*【設定】*/
 	/*--------*/
@@ -95,6 +101,9 @@ public:
 	inline void SetAngle(VECTOR angle) { mvAngle = angle; }
 	/// <summary>モデルコントローラー設定</summary>
 	void SetModelsController(ModelsControllerBase* ModelsController);
+
+	/// <summary>描画フラグ設定</summary>
+	inline void SetDrawFlag(bool drawFlag) { mbDrawFlag = drawFlag; }
 
 	/*----------------*/
 	/*【継承モデル用】*/

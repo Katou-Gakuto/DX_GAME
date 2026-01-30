@@ -116,15 +116,24 @@ VECTOR UtilCalc::VMultiply(VECTOR src, VECTOR dst)
     return VGet(src.x * dst.x, src.y * dst.y, src.z * dst.z);
 }
 
-// 絶対値
-float UtilCalc::Abs(float src)
+// ベクトル同士の差を出す
+float UtilCalc::VDiff(VECTOR src, VECTOR dst)
 {
-    if (src < 0.0f)
+    VECTOR result = VSub(src, dst);
+
+    return std::abs(result.x) + std::abs(result.y) + std::abs(result.z);
+}
+
+// アングル同士の差を返す
+float UtilCalc::AngleDiff(float srcAngle, float dstAngle)
+{
+    float angleDiff = std::abs(srcAngle - dstAngle);
+    if (angleDiff > Pi)
     {
-        return -src;
+        return PiTwo - angleDiff;
     }
 
-    return src;
+    return angleDiff;
 }
 
 /*--------------*/

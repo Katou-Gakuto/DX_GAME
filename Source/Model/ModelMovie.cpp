@@ -79,6 +79,11 @@ void ModelMovie::PositionUpdate()
 // ÉÄÅ[ÉrÅ[ï`âÊ
 void ModelMovie::ModelDraw()
 {
+    if (!mbDrawFlag)
+    {
+        return;
+    }
+    
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
         ModelDraw_Movie(mstDrawDatas[i]);

@@ -405,7 +405,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		cameraData.SetColor(F4Get(0, 255, 255, 0));
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		//cameraData.SetColor(F4Get(0, 255, 255, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
@@ -427,7 +428,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		}
 		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
-		enemy->SetPos(VGet(0.0f, 0.0f, 300.0f));
+		enemy->SetPos(VGet(3000.0f, 0.0f, 3000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
 		// モデルとアニメション設定
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
@@ -524,5 +525,30 @@ void ResultScene::OnEnter(SceneManager* sceneManager)
 }
 
 void ResultScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+
+/*--------------------------------*/
+/*【ゲームオーバーシーンステート】*/
+/*--------------------------------*/
+GameOverScene::GameOverScene()
+: IStateScene()
+, SceneStateProcess()
+{
+	mStateNumber = SCENE::GAME_OVER;
+}
+
+void GameOverScene::OnEnter(SceneManager* sceneManager)
+{
+	// TODO: ゲームオーバー用のUI作成
+	// UI_Result* result = new UI_Result();
+	// result->Initilize();
+	// result->SetFsm(UtilFactorys::FSMUIFactory(result, UI_FACTORY_NUMBER::RESULT));
+
+	sceneManager->SetNextScene(SCENE::TITLE);
+}
+
+void GameOverScene::OnExit(SceneManager* sceneManager)
 {
 }

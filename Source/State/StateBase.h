@@ -118,6 +118,9 @@ public:
 	/// <summary>モデル設定</summary>
 	/// <param name="modelBase">モデル</param>
 	void SetModelBase(ModelBase* modelBase);
+
+	/// <summary>共有ナンバーを設定する</summary>
+	virtual void SetSharedNumber(int* number) {}
 };
 
 /*----------*/

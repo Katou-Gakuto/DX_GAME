@@ -72,7 +72,7 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 				attack->GetModelsController()->GameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
 				attack->GetAnimation()->Initilize();
 
-				// FIXME: なぜかヌルポインターが出た　
+				// FIXME: なぜかヌルポインターが出た　作って試していた時に出たけど最近は出てない作ってない物がある想定で作られた結果だと予測される
 				// 初期化
 				attack->Initilize();
 				attack->SetActiveFlag(true);

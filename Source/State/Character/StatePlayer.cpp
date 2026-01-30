@@ -8,6 +8,7 @@
 #include "GameManager.h"
 #include "KeyState.h"
 #include "ObjectBases.h"
+#include "SceneManager.h"
 #include "StatePlayer.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
@@ -115,6 +116,7 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 void PlayerProcess::PlayerDeath(CharacterBase* character)
 {
 	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_TYPE::PLAYER);
+	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_OVER);
 }
 
 /*--------------------------*/

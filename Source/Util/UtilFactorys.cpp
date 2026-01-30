@@ -149,6 +149,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 
 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 		{
+			// TODO: テンプレートでswitch分の中身簡単にできる気がする
 			MODEL_TYPE setModelType = animationDatas[i]->animDatas[loadAnimationData[i][j].animationType].modelType;
 			// アニメションステート生成
 			switch (setModelType)
@@ -156,7 +157,6 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 			case MODEL_TYPE::NONE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
-					// HACK: 外部から固定するフレームの名前を取得できるようにする
 					StateNoneAnimation* statenoneAnimation = new StateNoneAnimation();
 					statenoneAnimation->SetModelBase(modelBases[i]);
 					setStateMap[setModelType] = statenoneAnimation;
@@ -191,7 +191,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					setStateMap[setModelType] = stateMVOneOnlyAnimation;
 				}
 				break;
-			
+
 			case MODEL_TYPE::EFFECT:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
@@ -200,7 +200,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					setStateMap[setModelType] = stateEffectAnimation;
 				}
 				break;
-			
+
 			case MODEL_TYPE::GRAPH:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
@@ -209,7 +209,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					setStateMap[setModelType] = stateGraphAnimation;
 				}
 				break;
-			
+
 			case MODEL_TYPE::MOVIE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
@@ -438,8 +438,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		}
 		
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
-		
-		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;	
+		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
 		
 		if (animation != nullptr)
 		{
@@ -575,6 +574,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 	case CHARACTER_FACTORY_NUMBER::ENEMY:
 		fsmCharacter->RegisterState(new IdleEnemyState());
 		fsmCharacter->RegisterState(new MoveEnemyState());
+		fsmCharacter->RegisterState(new AttackInEnemyState());
 		fsmCharacter->RegisterState(new AttackEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
@@ -605,6 +605,7 @@ FSMScene* UtilFactorys::FSMSceneFactory(SceneManager* sceneManager)
 	fsmScene->RegisterState(new DungeonScene());
 	fsmScene->RegisterState(new BattleScene());
 	fsmScene->RegisterState(new ResultScene());
+	fsmScene->RegisterState(new GameOverScene());
 
 	fsmScene->SetCurrentState(SCENE::START, sceneManager);
 

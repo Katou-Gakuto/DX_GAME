@@ -28,6 +28,12 @@ void ModelMap::ModelFinalize()
 // ƒ‚ƒfƒ‹•`‰æ
 void ModelMap::ModelDraw()
 {
+    if (!mbDrawFlag)
+    {
+        return;
+    }
+
+    
     for (int z = 0; z < mstTileModelDatas.size(); z++)
     {
         for (int x = 0; x < mstTileModelDatas[z].size(); x++)

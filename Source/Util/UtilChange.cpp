@@ -36,7 +36,11 @@ SCENE UtilChange::SceneState(SCENE scene)
 	case SCENE::BATTLR_RESULT:
 	case SCENE::DUNGEON_RESULT:
 		return SCENE::RESULT;
+
+	case SCENE::GAME_OVER:
+		return SCENE::GAME_OVER;
 	}
+
 	return SCENE::NONE;
 }
 

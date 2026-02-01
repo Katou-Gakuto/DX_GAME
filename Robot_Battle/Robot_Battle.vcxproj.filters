@@ -106,6 +106,18 @@
     <Filter Include="ソース ファイル\Animation">
       <UniqueIdentifier>{43c643ca-9012-4392-b9d8-0bb854e00d8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Imgui">
+      <UniqueIdentifier>{c3924eea-a8aa-41df-a3fc-5988397b738f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Imgui">
+      <UniqueIdentifier>{4579720a-ec43-4da6-9f78-8dfe251ba949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Imgui\backends">
+      <UniqueIdentifier>{d4b78ff0-c44c-4c00-906b-7d6519d00260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Imgui\backends">
+      <UniqueIdentifier>{b218cc94-57e9-417a-a313-67c0ac80cfc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Text\Terms.txt">
@@ -326,6 +338,33 @@
     <ClInclude Include="..\Source\Model\ModelGraph.h">
       <Filter>ヘッダー ファイル\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\Imgui\imconfig.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\imgui.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\imgui_internal.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\imstb_rectpack.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\imstb_textedit.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\imstb_truetype.h">
+      <Filter>ヘッダー ファイル\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\backends\imgui_impl_dx11.h">
+      <Filter>ヘッダー ファイル\Imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Imgui\backends\imgui_impl_win32.h">
+      <Filter>ヘッダー ファイル\Imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Singleton\ImguiManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">
@@ -501,6 +540,30 @@
     </ClCompile>
     <ClCompile Include="..\Source\Model\ModelGraph.cpp">
       <Filter>ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\imgui.cpp">
+      <Filter>ソース ファイル\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\imgui_demo.cpp">
+      <Filter>ソース ファイル\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\imgui_draw.cpp">
+      <Filter>ソース ファイル\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\imgui_tables.cpp">
+      <Filter>ソース ファイル\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\imgui_widgets.cpp">
+      <Filter>ソース ファイル\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>ソース ファイル\Imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Imgui\backends\imgui_impl_win32.cpp">
+      <Filter>ソース ファイル\Imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Singleton\ImguiManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

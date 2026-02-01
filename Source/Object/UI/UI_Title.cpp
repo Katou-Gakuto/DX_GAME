@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <map>
 #include <vector>
 
 #include "CameraData.h"
@@ -9,6 +10,7 @@
 
 #include "FSM.h"
 #include "ResourceManager.h"
+#include "StateTitleUI.h"
 #include "UI_Title.h"
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
@@ -30,13 +32,17 @@ void UI_Title::UIInitilize()
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
     DRAW_GRAPH_DATA drawData;
     
+    std::vector<std::map<int, VECTOR>> setUIPosData;    // UI座標情報設定用変数
+
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    
     // 映像設定
     {
         setDrawDatas.clear();
         
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = Vector2_Int(0, 0);
-        drawData.size = ResourceManager::mstDisplaySize.LeftUp_FloatRatio(1.0f);
+        drawData.size = displaySize.LeftUp_FloatRatio(1.0f);
         drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");// TODO: 時間帯で色変更
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
@@ -50,13 +56,13 @@ void UI_Title::UIInitilize()
     {
         setDrawDatas.clear();
         
-        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
-        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
+        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
+        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
         setDrawDatas.push_back(drawData);
 
-        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.1f, 0.4f));
-        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.8f, 0.5f));
+        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.4f));
+        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.5f));
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
         setDrawDatas.push_back(drawData);
 
@@ -64,38 +70,38 @@ void UI_Title::UIInitilize()
         {
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack.png");
 
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.16f, 0.5f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.16f, 0.5f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
             setDrawDatas.push_back(drawData);
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.16f, 0.7f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.16f, 0.7f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
             setDrawDatas.push_back(drawData);
             
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.53f, 0.5f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.53f, 0.5f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
             setDrawDatas.push_back(drawData);
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.53f, 0.7f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.53f, 0.7f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
             setDrawDatas.push_back(drawData);
         }
 
         // 文字
         {
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.185f, 0.52f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.185f, 0.52f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/NewData_String.png");
             setDrawDatas.push_back(drawData);
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.185f, 0.72f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.185f, 0.72f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/DataSelect_String.png");
             setDrawDatas.push_back(drawData);
             
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.555f, 0.52f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.555f, 0.52f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Tutorial_String.png");
             setDrawDatas.push_back(drawData);
-            drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.555f, 0.72f));
-            drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.555f, 0.72f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Setting_String.png");
             setDrawDatas.push_back(drawData);
         }
@@ -108,13 +114,44 @@ void UI_Title::UIInitilize()
     {
         setDrawDatas.clear();
         
-        drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.135f, 0.48f));
-        drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(0.36f, 0.15f));
+        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.135f, 0.48f));
+        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.36f, 0.15f));
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/SelectString_1.png");
         setDrawDatas.push_back(drawData);
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+
+        setUIPosData.resize(mpUIModelController->GetModelList().size());   // モデル数分確保
+        // setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.135f, 0.48f, 0.0f);
+        // setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.135f, 0.68f, 0.0f);
+        // setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.505f, 0.48f, 0.0f);
+        // setUIPosData[mpUIModelController->GetModelList().size() - 1][3] = VGet(0.505f, 0.68f, 0.0f);
+        setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.0f, 0.0f, 0.0f);
+        setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.0f, 0.146f, 0.0f);
+        setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.37f, 0.0f, 0.0f);
+        setUIPosData[mpUIModelController->GetModelList().size() - 1][3] = VGet(0.37f, 0.146f, 0.0f);
+        std::vector<std::map<int, VECTOR>> nullUIPosData;
+        nullUIPosData.clear();
+        for (int i = 0; i < (int)TITLE_UI_STATE::MAX; i++)
+        {
+            switch ((TITLE_UI_STATE)i)
+            {
+            case TITLE_UI_STATE::SELECT_TITLE_UI_STATE:
+            case TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE:
+            case TITLE_UI_STATE::SETTING_TITLE_UI_STATE:
+            case TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE:
+            case TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE:
+            case TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE:
+            case TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE:
+            case TITLE_UI_STATE::VOLUME_TITLE_UI_STATE:
+                mmUIPositionData[i] = setUIPosData;
+                break;
+            default:
+                mmUIPositionData[i] = nullUIPosData;
+                break;
+            }
+        }
     }
 
     // アニメーション設定

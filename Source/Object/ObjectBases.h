@@ -684,6 +684,10 @@ protected:
     // アニメションベース
     AnimationBase* mpAnimation;
 
+    
+	// UI座標情報
+	std::map<int, std::vector<std::map<int, VECTOR>>> mmUIPositionData;
+
 public:
     UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
     ~UIBase();
@@ -726,6 +730,10 @@ public:
 
     /// <summary>画像ハンドル数変更</summary>
     void SetMovieCount(int count);
+
+    /// <summary>UI座標情報設定</summary>
+    void SetUIPositionData(int state, std::vector<std::map<int, VECTOR>> uiPositionData) { mmUIPositionData[state]= uiPositionData; }
+
 private:
     /// <summary>ハンドル数変更</summary>
     void SetHandleCount(int count, int *handleCount, int**handle);
@@ -734,6 +742,9 @@ private:
     /*【取得】*/
     /*--------*/
 public:
+    /// <summary>fms取得</summary>
+    inline FSMUI* GetFsm() { return mpFsm; }
+
     /*選択数取得*/
     inline int GetSelectNumber() const { return mnSelectNumber; }
 
@@ -760,6 +771,9 @@ public:
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
     inline AnimationBase* GetAnimation() { return  mpAnimation; }
+
+    /// <summary>UI座標情報設定</summary>
+    std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

@@ -515,6 +515,8 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnMovieCount(0)
 , mpFsm(nullptr)
 {
+	mmUIPositionData.clear();
+
 	mbTimeStopFlag = timeStopFlag;
 
 	if (mbTimeStopFlag)

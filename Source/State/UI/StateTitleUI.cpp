@@ -1,3 +1,4 @@
+#include <map>
 #include <vector>
 
 #include "DxLib.h"
@@ -6,6 +7,7 @@
 
 #include "DataManager.h"
 #include "FadeManager.h"
+#include "FSM.h"
 #include "GameManager.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"
@@ -21,6 +23,7 @@
 /*----------*/
 TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
+, mnPreSelectNumber(-1)
 {
 }
 
@@ -74,6 +77,7 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 // この状態に入った時の処理
 void TitleUIStateProcess::ProcessOnEnter(UIBase* ui)
 {
+	mnPreSelectNumber = -1;
 }
 
 // この状態を出る時の処理
@@ -94,6 +98,18 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 	if (ui->GetMovieHandleCount() >= 1)
 	{
 		Master::mpResourceManager->MovieLoop(ui->GetMovieHandles()[0]);
+	}
+
+	if (mnPreSelectNumber != ui->GetSelectNumber())
+	{
+		std::vector<std::map<int, VECTOR>> uiPositionData = ui->GetUIPositionData(ui->GetFsm()->GetCurrentState());
+		for (int i = 0; i < uiPositionData.size(); i++)
+		{
+			if (uiPositionData[i].find(ui->GetSelectNumber()) != uiPositionData[i].end())
+			{
+				ui->GetModelsController()->GetModelList()[i]->SetPosition(uiPositionData[i][ui->GetSelectNumber()]);
+			}
+		}
 	}
 }
 
@@ -190,10 +206,10 @@ void SelectTitleUIState::OnExit(UIBase* ui)
 // 更新
 int SelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
 
 	return mStateNumber;
 }
@@ -274,10 +290,11 @@ void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 // 更新
 int NewDataCheckTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -332,10 +349,11 @@ void DataSelectTitleUIState::OnExit(UIBase* ui)
 // 更新
 int DataSelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -387,10 +405,11 @@ void TutorialTitleUIState::OnExit(UIBase* ui)
 // 更新
 int TutorialTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -444,10 +463,11 @@ void SettingTitleUIState::OnExit(UIBase* ui)
 // 更新
 int SettingTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -507,10 +527,11 @@ void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 // 更新
 int CharacterSelectTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -561,10 +582,11 @@ void PlayerNameTitleUIState::OnExit(UIBase* ui)
 // 更新
 int PlayerNameTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -615,10 +637,11 @@ void InputCheckTitleUIState::OnExit(UIBase* ui)
 // 更新
 int InputCheckTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -670,10 +693,11 @@ void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 // 更新
 int ScreenSizeTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 
@@ -724,10 +748,11 @@ void VolumeTitleUIState::OnExit(UIBase* ui)
 // 更新
 int VolumeTitleUIState::Update(UIBase* ui)
 {
-	ProcessUpadate(ui);
-
 	ui->DefaultDecision();
 	ui->DefaultCloce();
+
+	ProcessUpadate(ui);
+
 	return mStateNumber;
 }
 

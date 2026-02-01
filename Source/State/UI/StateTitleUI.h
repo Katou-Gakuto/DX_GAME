@@ -25,6 +25,8 @@ enum class TITLE_UI_STATE
 	/*セッティング関係*/
 	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
 	VOLUME_TITLE_UI_STATE,				// 音量
+
+	MAX									// 最大
 };
 
 /*----------*/
@@ -35,6 +37,9 @@ class TitleUIStateProcess
 protected:
 	// 前のステート
 	TITLE_UI_STATE mePreUiState;
+
+	// 前の選択数
+	int mnPreSelectNumber;
 
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);

@@ -42,14 +42,20 @@ void ModelMV1::PositionUpdate()
     if (mpModelsController != nullptr)
     {
         size     = UtilCalc::VMultiply(size,     mpModelsController->GetModelSize());
-        angle    = VAdd(angle,    mpModelsController->GetModelAngle());// TODO: çsóÒÇ≈åvéZó\íË
+        angle    = VAdd(angle,    mpModelsController->GetModelAngle());
         position = VAdd(position, mpModelsController->GetModelPosition());
 
         // âÒì]ÇÃíÜêSÇè„Ç…Ç∑ÇÈ
         {
             // XâÒì]
-            VECTOR anglePos = UtilCalc::VSphericalMovePos(100.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
+            VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 100.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));
+
+        //VECTOR tempPosition2 = Calculation::GetSphericalMove(mpCharacter->GetStatus().size, (totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5), -mfAngle);
+        //tempPosition2.x = ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * sinf(Calculation::GetNotExceedAngle(-mfAngle));
+        //tempPosition2.y = ATTACK_MIDDLE_XYZ_SET * sinf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5)));
+        //tempPosition2.z = -(ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * cosf(Calculation::GetNotExceedAngle(-mfAngle)));
+
 
             // TODO: åvéZäÆê¨Ç≥ÇπÇÈ
             // ZâÒì]

@@ -1,5 +1,6 @@
 #include "AttackEnum.h"
 #include "CollisionData.h"
+#include "Status.h"
 
 #include "DxLib.h"
 
@@ -22,7 +23,7 @@ Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYP
 		for (auto& attackData : attackDatas)
 		{
 			attackData.second.attackCharacter = this;
-			attackData.second.attackPower = status.attckPower;
+			attackData.second.attackPower = status.GetNowAttckPower();// TODO: UŒ‚—Í‚ÌŽó‚¯Žæ‚èêŠ‚ð•ªŽU‚·‚é
 
 			Master::mpGameManager->GetAttackManager()->CreateAttack(attackData.second.attackType);
 			mmCharacterAttackDatas[attackData.first].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(attackData.second);

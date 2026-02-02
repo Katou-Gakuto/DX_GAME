@@ -4,6 +4,9 @@ class DataManager;
 class EndManager;
 class FadeManager;
 class GameManager;
+#if _DEBUG
+class ImguiManager;
+#endif
 class KeyState;
 class LoadingManager;
 class ResourceManager;
@@ -17,6 +20,9 @@ public:
 	static EndManager* mpEndManager;	// エンドマネージャー
 	static FadeManager* mpFadeManager;	// フェードマネージャー
 	static GameManager* mpGameManager;	// ゲームマネージャー
+#if _DEBUG
+	static ImguiManager* mpImguiManager;	// Imguiマネージャー
+#endif
 	static KeyState* mpKeyState;	// キーステート
 	static LoadingManager* mpLoadingManager;	// ローディングマネージャー
 	static ResourceManager* mpResourceManager;	// リソースマネージャー

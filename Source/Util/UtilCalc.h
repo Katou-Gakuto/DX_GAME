@@ -7,6 +7,8 @@ namespace UtilCalc
 	const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
 	/*ƒCƒ`*/
 	const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
+	/*x‚Ì‚Ý1*/
+	const VECTOR VXOne = VGet(1.0f, 0.0f, 0.0f);
 	/*ŽO•ª‚Ìˆê*/
 	const float One_Third = 0.3333333f;
 	/*3,14*/

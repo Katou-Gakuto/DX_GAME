@@ -56,10 +56,9 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 : ObjectBase(OBJECT_TYPE::CHARACTER_BASE, true, nextSceneDeleteFlag)
 , mvOldPosition(UtilCalc::VZero)
 , mvPosition(UtilCalc::VZero)
-, mvMoveDir(UtilCalc::VZero)
-, mvVec(UtilCalc::VZero)
+, mvMoveDir(UtilCalc::VXOne)
+, mvVec(UtilCalc::VXOne)
 , mvAngle(UtilCalc::VZero)
-, mfSpeed(0.0f)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
@@ -253,8 +252,15 @@ void CharacterBase::TemplateActionProcess()
 	if (munActionflags.Bool())
 	{
 		bool moveFlag = false;
+		
+		// ëñÇÈ
+		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::DASH))
+		{
+			mvVec = VAdd(mvVec, frontVec);
+			moveFlag = true;
+		}
 		// ëOå„
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
+		else if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
 		{
 			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_ACTION))
 			{
@@ -295,6 +301,7 @@ void CharacterBase::TemplateActionProcess()
 			moveFlag = true;
 		}
 
+
 		if (moveFlag)
 		{
 			mvVec = VNorm(mvVec);
@@ -316,7 +323,7 @@ void CharacterBase::TemplateActionProcess()
 // à⁄ìÆèàóù
 void CharacterBase::MoveProcess()
 {
-	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.speed));
+	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed()));
 }
 
 // éÄñSèàóù

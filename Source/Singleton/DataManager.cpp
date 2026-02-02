@@ -27,24 +27,60 @@ DataManager::DataManager()
 {
 	mwMsg = {};
 
-	// TODO: ファイルから取得できるようにする
-	mstBaseData = OnePlayerAllData();
-	mstBaseData.dataFlag = false;
-	mstBaseData.playerData.dataFlag = false;
-	mstBaseData.oneDatas.clear();
+	// ベースデータ
+	{
+		// TODO: ファイルから取得できるようにする
+		/*初期化*/
+		mstBaseData = OnePlayerAllData();
+		mstBaseData.dataFlag = false;
+		mstBaseData.playerData.dataFlag = false;
+		mstBaseData.oneDatas.clear();
 
-	mstInitPlayerDatas.clear();
+		{
+			ONE_DATA setBaseData;
+			setBaseData.dataChangeFlag = false;
+			setBaseData.typeNumber = 0;
+			setBaseData.name = "";
+			setBaseData.datas;
 
-	mstPlayPlayerData = OnePlayerAllData();
-	mstPlayPlayerData.dataFlag = false;
-	mstPlayPlayerData.playerData.dataFlag = false;
-	mstPlayPlayerData.oneDatas.clear();
+			mstBaseData.oneDatas.push_back(setBaseData);
+		}
+		mstBaseData.dataFlag = true;
+	}
 
+	// 初期プレイヤー情報
+	{
+		mstInitPlayerDatas.clear();
+		PLAYER_DATA setInitPlayer = PLAYER_DATA();
+		setInitPlayer.mapType = SCENE::TOWN_1;
+		setInitPlayer.townType = SCENE::TOWN_1;
+		setInitPlayer.townPos = UtilCalc::VZero;
+		setInitPlayer.dungeonType = SCENE::NONE;
+		setInitPlayer.dungeonPos = UtilCalc::VZero;
+		setInitPlayer.preMap = SCENE::NONE;
+		setInitPlayer.position = UtilCalc::VZero;
+		setInitPlayer.angle = UtilCalc::VZero;
+		setInitPlayer.dataFlag = true;
+		setInitPlayer.survivalFlag = 1;
+		setInitPlayer.name = "アボカド";
+		setInitPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
+		mstInitPlayerDatas.push_back(setInitPlayer);
+	}
+
+	// プレイ情報初期化
+	{
+		mstPlayPlayerData = OnePlayerAllData();
+		mstPlayPlayerData.dataFlag = false;
+		mstPlayPlayerData.playerData.dataFlag = false;
+		mstPlayPlayerData.oneDatas.clear();
+	}
+
+	// セーブデータ
 	{
 		mstPlayerDatas.clear();
 
 		PLAYER_DATA setPlayer = PLAYER_DATA();
-		setPlayer.mapType = SCENE::DUNGEON_1;//BATTLE_1;
+		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.townPos = UtilCalc::VZero;
 		setPlayer.dungeonType = SCENE::NONE;
@@ -291,6 +327,20 @@ void DataManager::SetPlayPlayer(int playerNumber)
 				setData.typeNumber = -1;
 			}
 			*/
+
+			
+			// HACK: とりあえず適当に入れてる
+			// データ設定用初期化
+			OneData setData;
+			setData.dataChangeFlag = false;
+			setData.name = mstPlayPlayerData.playerData.playerFolderName + "/FileNames_Data.txt";
+			setData.typeNumber = -1;
+			setData.datas.fileNameDatas.clear();
+			FILE_DATA fileData;
+			setData.datas.fileNameDatas.push_back();
+
+			mstPlayPlayerData.oneDatas.push_back(setData);
+
 
 			mstPlayPlayerData.dataFlag = true;
 		}

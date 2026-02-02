@@ -31,7 +31,7 @@ void CollisionManager::CollisionProcess()
 		CollisionData setData;
 		setData.position = checkCharacter->GetPos();
 		setData.vec = checkCharacter->GetVec();
-		setData.speed = checkCharacter->GetSpeed();
+		setData.speed = checkCharacter->GetStatus()->GetNowSpeed();
 		setData.objID = checkCharacter->GetID();
 		setData.size = 180.0f;
 		setData.collisionFlag = false;

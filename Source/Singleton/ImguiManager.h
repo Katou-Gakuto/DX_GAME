@@ -1,7 +1,9 @@
 #pragma once
 
+#if _DEBUG
 class ImguiManager
 {
+public:
     ImguiManager();
     ~ImguiManager();
 
@@ -15,3 +17,4 @@ class ImguiManager
     /// <summary>•`‰æ</summary>
     void Draw();
 };
+#endif

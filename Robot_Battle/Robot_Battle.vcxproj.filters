@@ -365,6 +365,9 @@
     <ClInclude Include="..\Source\Singleton\ImguiManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\Object\Attack\Attack_RobotSpceial.h">
+      <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Model\ModelBase.cpp">
@@ -564,6 +567,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Singleton\ImguiManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Object\Attack\Attack_RobotSpceial.cpp">
+      <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

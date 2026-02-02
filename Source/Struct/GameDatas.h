@@ -73,6 +73,8 @@ typedef struct CharacterData : public NAME_TYPE_DATA
 
 	VECTOR angle;	// 方向
 
+	int objectID;	// オブジェクトID
+
 
 	bool operator==(CharacterData src)
 	{

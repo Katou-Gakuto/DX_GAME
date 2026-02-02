@@ -173,28 +173,31 @@ enum class ACTION_FLAG
     // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
 
     /*上下移動*/
-    //UP_OR_DOWN_ACTION =  0b0'000'000'001u,
+    //UP_OR_DOWN_ACTION =   0b00'000'000'001u,
     /*上移動*/
-    UP_ACTION =            0b0'000'000'011u,
+    UP_ACTION =             0b00'000'000'011u,
     /*下移動*/
-    DOWN_ACTION =          0b0'000'000'101u,
+    DOWN_ACTION =           0b00'000'000'101u,
 
     /*右左移動*/
-    //LEFT_OR_RIGHT_ACTION=0b0'000'001'000u,
+    //LEFT_OR_RIGHT_ACTION= 0b00'000'001'000u,
     /*右移動*/
-    RIGHT_ACTION =         0b0'000'011'000u,
+    RIGHT_ACTION =          0b00'000'011'000u,
     /*左移動*/
-    LEFT_ACTION =          0b0'000'101'000u,
+    LEFT_ACTION =           0b00'000'101'000u,
 
     /*前後移動*/
-    //FRONT_OR_BACK_ACTION=0b0'001'000'000u,
+    //FRONT_OR_BACK_ACTION= 0b00'001'000'000u,
     /*前移動*/
-    FRONT_ACTION =         0b0'011'000'000u,
+    FRONT_ACTION =          0b00'011'000'000u,
     /*後ろ移動*/
-    BACK_ACTION =          0b0'101'000'000u,
+    BACK_ACTION =           0b00'101'000'000u,
 
     /*HPが0以下*/
-    HP_ZERO =              0b1'000'000'000u,
+    HP_ZERO =               0b01'000'000'000u,
+
+    /*ダッシュ*/
+    DASH =                  0b10'000'000'000u,
 };
 
 // 確認用行動フラグ
@@ -225,6 +228,9 @@ enum class CHECK_ACTION_FLAG
 
     /*HPが0以下*/
     HP_ZERO,
+
+    /*ダッシュ*/
+    DASH
 };
 
 /*------------------------------------------*/
@@ -249,9 +255,6 @@ protected:
 
     // モデル向き
     VECTOR mvAngle;
-
-    // 移動速度
-    float mfSpeed;
 
     // ステータス
     STATUS mstStatus;
@@ -344,13 +347,13 @@ public:
     /*--------*/
 
     /*ステータス取得*/
-    inline STATUS GetStatus() const { return mstStatus; }
+    inline STATUS* GetStatus() { return &mstStatus; }
 
     /*ポジション取得*/
     inline VECTOR GetPos() const { return mvPosition; }
 
     /*移動予定地点*/
-    inline VECTOR GetMovePos() const { return VAdd(mvPosition, VScale(mvVec, (float)mstStatus.speed)); }
+    inline VECTOR GetMovePos() const { return VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed())); }
 
     /*前のポジション取得*/
     inline VECTOR GetOldPos() const { return mvOldPosition; }
@@ -360,9 +363,6 @@ public:
 
     /*移動量取得*/
     inline VECTOR GetVec() const { return mvVec; }
-
-    /*移動速度取得*/
-    inline float GetSpeed() const { return mfSpeed; }
 
     /*方向取得*/
     inline VECTOR GetAngle() const { return mvAngle; }
@@ -409,8 +409,6 @@ public:
     inline void SetVec(const VECTOR& vec) { mvVec = vec; }
     /*方向設定*/
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
-    /*移動速度設定*/
-    inline void SetSpeed(const float& speed) { mfSpeed = speed; }
 
     /*上移動設定*/
     inline void SetUpMove() { munActionflags ^= (unsigned int)ACTION_FLAG::UP_ACTION; }
@@ -429,6 +427,9 @@ public:
 
     /*HPが0以下のフラグを設定*/
     inline void SetHPZero() { munActionflags ^= (unsigned int)ACTION_FLAG::HP_ZERO; }
+
+    /// <summary>行動フラグ設定</summary>
+    inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags ^= (unsigned int)flagBit; }
 };
 
 /*--------------------------------------------------------*/

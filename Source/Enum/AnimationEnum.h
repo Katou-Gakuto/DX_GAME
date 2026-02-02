@@ -19,6 +19,10 @@ enum class ANIMATION_TYPE
     NORMAL_ATTACK,      // ノーマル攻撃
     NORMAL_ATTACK_OUT,  // ノーマル攻撃終了
 
+    SPCEIAL_ATTACK_IN,   // スペシャル攻撃開始
+    SPCEIAL_ATTACK,      // スペシャル攻撃
+    SPCEIAL_ATTACK_OUT,  // スペシャル攻撃終了
+
     DISPLAY_MOVE,   // 画面移動
 };
 

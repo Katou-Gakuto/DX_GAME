@@ -8,6 +8,9 @@
 #include "EndManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
+#if _DEBUG
+#include "ImguiManager.h"
+#endif
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
@@ -23,6 +26,9 @@ DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
 FadeManager* Master::mpFadeManager = new FadeManager();
 GameManager* Master::mpGameManager = new GameManager();
+#if _DEBUG
+ImguiManager* Master::mpImguiManager = new ImguiManager();
+#endif
 KeyState* Master::mpKeyState = new KeyState();
 LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();

@@ -143,4 +143,11 @@
 		],
 		"description": "設定取得"
 	},
+	"TEN_HYPHEN" : {
+		"prefix": "@-",
+		"body": [
+			"----------"
+		],
+		"description": "ハイフン10個"
+	},
 }

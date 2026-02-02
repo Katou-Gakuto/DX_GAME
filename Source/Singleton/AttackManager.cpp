@@ -6,6 +6,7 @@
 #include "Master.h"
 
 #include "AttackManager.h"
+#include "Attack_RobotSpceial.h"
 #include "Attack_Shot.h"
 #include "GameManager.h"
 #include "ObjectBases.h"
@@ -30,7 +31,8 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 	switch (attackType)
 	{
 	case ATTACK_TYPE::SHOT:
-		const int setSize = 10;
+	{
+		int setSize = 10;
 		mmAttacks[attackType].reserve(setSize);
 		mstAllAttack.reserve(setSize);
 		for (int i = 0; i < setSize; i++)
@@ -38,6 +40,12 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 			mstAllAttack.push_back(new Attack_Shot());
 			mmAttacks[attackType].push_back(mstAllAttack.back());
 		}
+	}
+		break;
+
+	case ATTACK_TYPE::UNIQUE_ROBOT:
+		mstAllAttack.push_back(new Attack_RobotSpceial());
+		mmAttacks[attackType].push_back(mstAllAttack.back());
 		break;
 	}
 }
@@ -61,7 +69,7 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 			{
 				// UŒ‚î•ñÝ’è
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
-				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime() + (17 * 300));
+				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime()/*+ (17 * 300)*/);
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);

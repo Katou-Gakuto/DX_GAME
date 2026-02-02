@@ -91,16 +91,16 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
 			fsm->RegisterState(new StateIdleAnimationController());
 			fsm->RegisterState(new StateMoveAnimationController());
-			fsm->RegisterState(new StateAttackAnimationController());
+			fsm->RegisterState(new StateAttackEndAnimationController());
 			break;
 
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
 			fsm->RegisterState(new StateIdleAnimationController());
 			fsm->RegisterState(new StateMoveAnimationController());
 
-			fsm->RegisterState(new StateAttackInAnimationController());
-			fsm->RegisterState(new StateAttackMiddleAnimationController());
-			fsm->RegisterState(new StateAttackOutAnimationController());
+			fsm->RegisterState(new StateSpceialAttackInAnimationController());
+			fsm->RegisterState(new StateSpceialAttackAnimationController());
+			fsm->RegisterState(new StateSpceialAttackOutAnimationController());
 
 			fsm->RegisterState(new StateNormalAttackInAnimationController());
 			fsm->RegisterState(new StateNormalAttackOutAnimationController());
@@ -112,10 +112,11 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		switch (ladoAnimationDataFactorynumber)
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
 			fsm->RegisterState(new StateAttackIdleAnimationController());
 
 			fsm->RegisterState(new StateAttackInAnimationController());
-			fsm->RegisterState(new StateAttackMiddleAnimationController());
+			fsm->RegisterState(new StateAttackAnimationController());
 			fsm->RegisterState(new StateAttackEndAnimationController());
 			break;
 		}
@@ -357,16 +358,16 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[1].animationLoopFlag = true;
 		loadAnimationData[1].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1";
 
-		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[2].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_IN;
 		loadAnimationData[2].animationLoopFlag = false;
 		loadAnimationData[2].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1";
 
-		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[3].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK;
 		loadAnimationData[3].animationLoopFlag = false;
 		loadAnimationData[3].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
 		loadAnimationData[3].modelType = MODEL_TYPE::MV1_MODEL_MOVE;
 
-		loadAnimationData[4].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		loadAnimationData[4].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_OUT;
 		loadAnimationData[4].animationLoopFlag = false;
 		loadAnimationData[4].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
@@ -383,9 +384,12 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
+			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
+			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_IN, 2024);
+			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK, 2040);
+			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_OUT, 1632);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
@@ -420,6 +424,36 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
+		for (int i = 0; i < 4; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		// HACK: データマネージャーから取得できるようにする
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		
+		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		
+		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		
+		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 2024);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 2040);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -504,9 +538,9 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 		{
 		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
 		 	// 読み込み用アニメーションデータ設定
-			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
+			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL));
 			// アニメーション有限状態マシン設定
-			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK, setcharacterLoadAnimationData));
+			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL, setcharacterLoadAnimationData));
 			break;
 		}
 		break;
@@ -555,7 +589,8 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
 		fsmCharacter->RegisterState(new IdleBattlePlayerState());
 		fsmCharacter->RegisterState(new MoveBattlePlayerState());
-		fsmCharacter->RegisterState(new AttackPlayerState());
+		fsmCharacter->RegisterState(new NormalAttackPlayerState());
+		fsmCharacter->RegisterState(new SpceialAttackPlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
@@ -738,7 +773,7 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 			attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackType = ATTACK_TYPE::SHOT;
 
 			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackMethdType = ATTACK_METHOD_TYPE::SPCEIAL;
-			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackTime = 24056;
+			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackTime = 5696;
 			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackType = ATTACK_TYPE::UNIQUE_ROBOT;
 			break;
 		}

@@ -64,12 +64,12 @@ public:
 };
 
 /*----------*/
-/*【攻撃アニメションコントローラーステート】
+/*【攻撃開始アニメションコントローラーステート】
 /*----------*/
-class StateAttackAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+class StateAttackInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
-    StateAttackAnimationController();
+    StateAttackInAnimationController();
 	
 	/// <summary>この状態に入った時の処理</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
@@ -85,12 +85,12 @@ public:
 };
 
 /*----------*/
-/*【攻撃開始アニメションコントローラーステート】
+/*【攻撃アニメションコントローラーステート】
 /*----------*/
-class StateAttackInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+class StateAttackAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
-    StateAttackInAnimationController();
+    StateAttackAnimationController();
 	
 	/// <summary>この状態に入った時の処理</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
@@ -149,6 +149,31 @@ public:
 /*--------------------*/
 
 /*----------*/
+/*【攻撃中終了アニメーションステート】
+/*----------*/
+class StateAttackEndAnimationController : public StateAttackAnimationController
+{
+public:
+	StateAttackEndAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------*/
+/*【攻撃停止アニメーションステート】
+/*----------*/
+class StateAttackOutStopAnimationController : public StateAttackOutAnimationController
+{
+public:
+	StateAttackOutStopAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------------------------------------------------------------通常攻撃------------------------------------------------------------------*/
+/*----------*/
 /*【通常攻撃開始アニメションコントローラーステート】
 /*----------*/
 class StateNormalAttackInAnimationController : public StateAttackInAnimationController
@@ -171,19 +196,46 @@ public:
 	/// <summary>ステート変更確認</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
+/*----------------------------------------------------------------特殊攻撃------------------------------------------------------------------*/
 /*----------*/
-/*【攻撃中アニメーションステート】
+/*【特殊攻撃開始アニメションコントローラーステート】
 /*----------*/
-class StateAttackMiddleAnimationController : public StateAttackAnimationController
+class StateSpceialAttackInAnimationController : public StateAttackInAnimationController
 {
 public:
-	StateAttackMiddleAnimationController();
+	StateSpceialAttackInAnimationController();
 
 	/// <summary>ステート変更確認</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
+
+/*----------*/
+/*【特殊攻撃アニメションコントローラーステート】
+/*----------*/
+class StateSpceialAttackAnimationController : public StateAttackAnimationController
+{
+public:
+	StateSpceialAttackAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------*/
+/*【特殊攻撃終了アニメションコントローラーステート】
+/*----------*/
+class StateSpceialAttackOutAnimationController : public StateAttackOutAnimationController
+{
+public:
+	StateSpceialAttackOutAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*----------*/
 /*【攻撃専用待機アニメーションステート】
@@ -194,17 +246,4 @@ public:
 	StateAttackIdleAnimationController();
 
 	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) override;
-};
-
-
-/*----------*/
-/*【攻撃終了アニメーションステート】
-/*----------*/
-class StateAttackEndAnimationController : public StateAttackOutAnimationController
-{
-public:
-	StateAttackEndAnimationController();
-
-	/// <summary>ステート変更確認</summary>
-	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };

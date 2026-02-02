@@ -18,7 +18,8 @@ enum class PLAYER_STATE
 {
 	IDLE_PLAYER_STATE = 0,
 	MOVE_PLAYER_STATE,
-	ATTACK_PLAYER_STATE,
+	NORMAL_ATTACK_PLAYER_STATE,
+	SPCEIAL_ATTACK_PLAYER_STATE,
 };
 
 /*------------------------*/
@@ -43,8 +44,11 @@ protected:
 	/*移動キーを押していれば「true」*/
 	bool GetPlayerMoveFlag();
 
-	/*攻撃キーを押していれば「true」*/
-	bool GetPlayerAttackFlag();
+	/*通常攻撃キーを押していれば「true」*/
+	bool GetPlayerNormalAttackFlag();
+
+	/*特殊攻撃キーを押していれば「true」*/
+	bool GetPlayerSpceialAttackFlag();
 
 	/*カメラに合わせて移動方向を設定*/
 	void SetMoveDir_Camera(CharacterBase* character);
@@ -121,13 +125,43 @@ public:
 };
 
 /*--------------------------*/
-/*【攻撃プレイヤーステート】*/
+/*【ノーマル攻撃プレイヤーステート】*/
 /*--------------------------*/
-class AttackPlayerState : public IStateCharacter, public PlayerProcess
+class NormalAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	AttackPlayerState();
-	~AttackPlayerState() = default;
+	NormalAttackPlayerState();
+	~NormalAttackPlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
+
+/*------------------------------------*/
+/*【スペシャル攻撃プレイヤーステート】*/
+/*------------------------------------*/
+class SpceialAttackPlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	SpceialAttackPlayerState();
+	~SpceialAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;

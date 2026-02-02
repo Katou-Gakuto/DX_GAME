@@ -68,9 +68,15 @@ bool PlayerProcess::GetPlayerMoveFlag()
 }
 
 // 攻撃キーを押していれば「true」
-bool PlayerProcess::GetPlayerAttackFlag()
+bool PlayerProcess::GetPlayerNormalAttackFlag()
 {
-	return mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::L);
+	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::L);
+}
+
+// 特殊攻撃キーを押していれば「true」
+bool PlayerProcess::GetPlayerSpceialAttackFlag()
+{
+	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::R);
 }
 
 // カメラに合わせて移動方向を設定
@@ -231,28 +237,28 @@ void MovePlayerState::Death(CharacterBase* character)
 }
 
 /*--------------------------*/
-/*【攻撃プレイヤーステート】*/
+/*【ノーマル攻撃プレイヤーステート】*/
 /*--------------------------*/
-AttackPlayerState::AttackPlayerState()
+NormalAttackPlayerState::NormalAttackPlayerState()
 : PlayerProcess()
 {
-	mStateNumber = (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+	mStateNumber = (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
-void AttackPlayerState::OnEnter(CharacterBase* character)
+void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
 	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 
 // この状態を出る時の処理
-void AttackPlayerState::OnExit(CharacterBase* character)
+void NormalAttackPlayerState::OnExit(CharacterBase* character)
 {
 }
 
 // ステート変更確認
-int AttackPlayerState::StateCheck(CharacterBase* character)
+int NormalAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
@@ -268,23 +274,84 @@ int AttackPlayerState::StateCheck(CharacterBase* character)
 }
 
 // 更新
-void AttackPlayerState::Update(CharacterBase* character)
+void NormalAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
 // 最終更新
-void AttackPlayerState::LastUpdate(CharacterBase* character)
+void NormalAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 }
 
 // 描画
-void AttackPlayerState::Draw(CharacterBase* character)
+void NormalAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
 // 死亡
-void AttackPlayerState::Death(CharacterBase* character)
+void NormalAttackPlayerState::Death(CharacterBase* character)
+{
+	PlayerDeath(character);
+}
+
+/*------------------------------------*/
+/*【スペシャル攻撃プレイヤーステート】*/
+/*------------------------------------*/
+SpceialAttackPlayerState::SpceialAttackPlayerState()
+: PlayerProcess()
+{
+	mStateNumber = (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+}
+
+// この状態に入った時の処理
+void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
+{
+	character->SetMoveDir(UtilCalc::VAngleToVec(character->GetAngle()));
+
+	character->StartAttck(ATTACK_METHOD_TYPE::SPCEIAL);
+	character->SetAnimation(ANIMATION_TYPE::SPCEIAL_ATTACK_IN);
+}
+
+// この状態を出る時の処理
+void SpceialAttackPlayerState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int SpceialAttackPlayerState::StateCheck(CharacterBase* character)
+{
+	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+	{
+		if (GetPlayerMoveFlag())
+		{
+			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		}
+
+		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+	}
+
+	return mStateNumber;
+}
+
+// 更新
+void SpceialAttackPlayerState::Update(CharacterBase* character)
+{
+}
+
+// 最終更新
+void SpceialAttackPlayerState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void SpceialAttackPlayerState::Draw(CharacterBase* character)
+{
+	PlayerProcessDraw(character);
+}
+
+// 死亡
+void SpceialAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
@@ -305,9 +372,14 @@ IdleBattlePlayerState::IdleBattlePlayerState()
 // ステート変更確認
 int IdleBattlePlayerState::StateCheck(CharacterBase* character)
 {
-	if (GetPlayerAttackFlag())
+	if (GetPlayerNormalAttackFlag())
 	{
-		return (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+	}
+
+	if (GetPlayerSpceialAttackFlag())
+	{
+		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerMoveFlag())
@@ -330,9 +402,14 @@ MoveBattlePlayerState::MoveBattlePlayerState()
 // ステート変更確認
 int MoveBattlePlayerState::StateCheck(CharacterBase* character)
 {
-	if (GetPlayerAttackFlag())
+	if (GetPlayerNormalAttackFlag())
 	{
-		return (int)PLAYER_STATE::ATTACK_PLAYER_STATE;
+		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+	}
+
+	if (GetPlayerSpceialAttackFlag())
+	{
+		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (!GetPlayerMoveFlag())

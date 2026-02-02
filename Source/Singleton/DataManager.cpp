@@ -337,7 +337,7 @@ void DataManager::SetPlayPlayer(int playerNumber)
 			setData.typeNumber = -1;
 			setData.datas.fileNameDatas.clear();
 			FILE_DATA fileData;
-			setData.datas.fileNameDatas.push_back();
+//			setData.datas.fileNameDatas.push_back();
 
 			mstPlayPlayerData.oneDatas.push_back(setData);
 

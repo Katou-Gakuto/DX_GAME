@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XmlTest", "XmlTest\XmlTest.vcxproj", "{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Robot_Battle", "Robot_Battle\Robot_Battle.vcxproj", "{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample_VS2022", "EffekseerForDXLib\Sample\Sample\Sample_VS2022.vcxproj", "{35F2F15B-446C-45A8-B157-24E15BE8A7E7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DxLesson", "..\DxLesson\開発環境\DxLesson.vcxproj", "{BDFC8402-337B-4CEB-AFEE-070D71436F48}"
@@ -14,6 +12,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImguiTest", "ImguiTest\ImguiTest.vcxproj", "{B7A0D5ED-C6E6-4FB9-B3E1-1DA9F2D4B100}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example_win32_directx11", "imgui-master\examples\example_win32_directx11\example_win32_directx11.vcxproj", "{9F316E83-5AE5-4939-A723-305A94F48005}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Robot_Battle", "Robot_Battle.vcxproj", "{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,6 @@ Global
 		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x64.Build.0 = Release|x64
 		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x86.ActiveCfg = Release|Win32
 		{D7360007-B358-4FCE-B1B8-CA7F77B70DFE}.Release|x86.Build.0 = Release|Win32
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x64.ActiveCfg = Debug|x64
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x64.Build.0 = Debug|x64
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x86.ActiveCfg = Debug|Win32
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x86.Build.0 = Debug|Win32
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x64.ActiveCfg = Release|x64
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x64.Build.0 = Release|x64
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x86.ActiveCfg = Release|Win32
-		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x86.Build.0 = Release|Win32
 		{35F2F15B-446C-45A8-B157-24E15BE8A7E7}.Debug|x64.ActiveCfg = Debug|x64
 		{35F2F15B-446C-45A8-B157-24E15BE8A7E7}.Debug|x64.Build.0 = Debug|x64
 		{35F2F15B-446C-45A8-B157-24E15BE8A7E7}.Debug|x86.ActiveCfg = Debug|Win32
@@ -71,6 +63,14 @@ Global
 		{9F316E83-5AE5-4939-A723-305A94F48005}.Release|x64.Build.0 = Release|x64
 		{9F316E83-5AE5-4939-A723-305A94F48005}.Release|x86.ActiveCfg = Release|Win32
 		{9F316E83-5AE5-4939-A723-305A94F48005}.Release|x86.Build.0 = Release|Win32
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x64.ActiveCfg = Debug|x64
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x64.Build.0 = Debug|x64
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x86.ActiveCfg = Debug|Win32
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Debug|x86.Build.0 = Debug|Win32
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x64.ActiveCfg = Release|x64
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x64.Build.0 = Release|x64
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x86.ActiveCfg = Release|Win32
+		{F74CB818-9CFB-45F2-97C5-48AD3C61B4CE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

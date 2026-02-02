@@ -177,14 +177,23 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
 
-	for (int i = 0; i < 3; i++) {// 敵
-		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
-		enemy->Initilize();
-		enemy->SetPos(VGet(-150.0f, 0.0f, 500.0f));
-		enemy->SetAngle(VGet(0.0f, 3.14f, 0.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
-		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+	// シーン生成物生成
+	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(mStateNumber);
+	for (int i = 0; i < sceneData.size(); i++) {
+		switch (sceneData[i].typeNumber)
+		{
+		case (int)DATA_TYPE::CHARACTER:
+			for (int j = 0; j < sceneData[i].datas.characterDatas.size(); j++)
+			{
+				Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+				enemy->Initilize();
+				enemy->SetPos(sceneData[i].datas.characterDatas[j].position);
+				enemy->SetAngle(sceneData[i].datas.characterDatas[j].angle);
+				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
+				// モデルとアニメション設定
+				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+			}
+			break;
 		// // モデル設定
 		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 		// // アニメション設定
@@ -196,6 +205,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		// 	// アニメーション有限状態マシン設定
 		// 	enemyAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(enemyAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setEnemyLoadAnimationData));
 		// }
+		}
 	}
 
 	// UI生成

@@ -469,10 +469,12 @@ void DataManager::SetPlayPlayer(int playerNumber)
 			OneData setData;
 			setData.dataChangeFlag = false;
 			setData.name = mstPlayPlayerData.playerData.playerFolderName + "/FileNames_Data.txt";
-			setData.typeNumber = -1;
+			setData.typeNumber = (int)DATA_TYPE::FILE_NAME;
 			setData.datas.fileNameDatas.clear();
-			FILE_DATA fileData;
-//			setData.datas.fileNameDatas.push_back();
+			// for (int i = 0; i < mstBaseData.oneDatas[0].datas.fileNameDatas.size(); i++)
+			// {
+			// 	setData.datas.fileNameDatas.push_back(mstBaseData.oneDatas[0].datas.fileNameDatas[i]);
+			// }
 
 			mstPlayPlayerData.oneDatas.push_back(setData);
 
@@ -507,6 +509,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 	}
 
 	std::list <std::string> baseFileNames;
+	baseFileNames.clear();
 
 	// ベースファイルにいくつこのシーンの情報があるかを調べる
 	for (int i = 0; i < mstBaseData.oneDatas.size(); i++)
@@ -530,8 +533,8 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		resultData.clear();
 		resultData.reserve(baseFileNames.size() - 1);
 		// 処理の正しさを後で調べる
-		/*
-		// デート場所記録用
+		
+		// データ場所記録用
 		std::list<int> setGetFilePosNumbers;
 		setGetFilePosNumbers.clear();
 
@@ -599,14 +602,14 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 						setFileName.name = setData.name;
 						setFileName.typeNumber = setData.typeNumber;
 						// ファイルにデータを追加する
-						//mstPlayPlayerData.oneDatas[0].datas.fileNameDatas.push_back(setFileName);
+						mstPlayPlayerData.oneDatas[0].datas.fileNameDatas.push_back(setFileName);
 						break;
 					}
 				}
 			}
 		}
 
-		mmGetFilePosNumbers[sceneName] = setGetFilePosNumbers;*/
+		mmGetFilePosNumbers[sceneName] = setGetFilePosNumbers;
 		return resultData;
 	}
 }

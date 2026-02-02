@@ -21,7 +21,7 @@ enum class DATA_TYPE
 // 種類と名前のデータ
 typedef struct TypeAndNameData
 {
-	std::string name;
+	std::string name = "";
 	long long typeNumber = 0;
 
 	bool operator==(TypeAndNameData src)
@@ -150,7 +150,7 @@ typedef struct LevelData
 }LEVEL_DATA;
 
 // 情報の集まり ここら辺修正予定
-union DATAS
+struct DATAS
 {
 	/*---* データ *---*/
 	std::vector<FILE_DATA> fileNameDatas;       // ファイルネームデータズ
@@ -197,6 +197,7 @@ typedef struct OneData : public NAME_TYPE_DATA
 
 	OneData(const OneData& src)
 	{
+		*this = src;
 	}
 
 	OneData()

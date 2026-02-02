@@ -48,7 +48,7 @@ void ModelMV1::PositionUpdate()
         // 回転の中心を上にする
         {
             // X回転
-            VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 100.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
+            VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));
 
         //VECTOR tempPosition2 = Calculation::GetSphericalMove(mpCharacter->GetStatus().size, (totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5), -mfAngle);
@@ -71,7 +71,7 @@ void ModelMV1::PositionUpdate()
         }
 
         // 高さの修正
-        position.y += mpModelsController->GetModelSize().y * 100.0f;
+        position.y += mpModelsController->GetModelSize().y * 80.0f;
     }
 
     // 位置・角度・サイズ設定

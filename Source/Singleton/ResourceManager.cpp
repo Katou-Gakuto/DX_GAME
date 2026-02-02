@@ -14,7 +14,7 @@
 #include "EndManager.h"
 #include "ResourceManager.h"
 
-std::string ResourceManager::msResourceFile = "../Resource/";
+std::string ResourceManager::msResourceFile = "Resource/";
 DisplaySize ResourceManager::mstDisplaySize = DisplaySize();
 /*--------*/
 /*【共通】*/
@@ -810,7 +810,7 @@ void ResourceManager::EffectInit()
 	SetWriteZBuffer3D(TRUE);
 
 	// エフェクト描画用画像取得
-	mnEffectDrawPreHandle = GetGraphHandle("../Resource/Effect/Background.png");
+	mnEffectDrawPreHandle = GetGraphHandle(msResourceFile + "Effect/Background.png");
 }
 
 // エフェクト終了

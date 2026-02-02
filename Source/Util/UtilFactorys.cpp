@@ -352,32 +352,32 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		// HACK: データマネージャーから取得できるようにする
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
 		loadAnimationData[0].animationLoopFlag = true;
-		loadAnimationData[0].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1";
+		loadAnimationData[0].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1";
 
 		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
 		loadAnimationData[1].animationLoopFlag = true;
-		loadAnimationData[1].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1";
+		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1";
 
 		loadAnimationData[2].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_IN;
 		loadAnimationData[2].animationLoopFlag = false;
-		loadAnimationData[2].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1";
+		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1";
 
 		loadAnimationData[3].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK;
 		loadAnimationData[3].animationLoopFlag = false;
-		loadAnimationData[3].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
+		loadAnimationData[3].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
 		loadAnimationData[3].modelType = MODEL_TYPE::MV1_MODEL_MOVE;
 
 		loadAnimationData[4].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_OUT;
 		loadAnimationData[4].animationLoopFlag = false;
-		loadAnimationData[4].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
+		loadAnimationData[4].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
 		loadAnimationData[5].animationType = ANIMATION_TYPE::NORMAL_ATTACK_IN;
 		loadAnimationData[5].animationLoopFlag = false;
-		loadAnimationData[5].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_close.mv1";
+		loadAnimationData[5].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_close.mv1";
 
 		loadAnimationData[6].animationType = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
 		loadAnimationData[6].animationLoopFlag = false;
-		loadAnimationData[6].animationPath = "../Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
+		loadAnimationData[6].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
 		if (animation != nullptr)
 		{
@@ -413,7 +413,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		
 		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
 		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
-		loadAnimationData[2].animationPath = "../Resource/Effect/Laser.efkefc";
+		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
 		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
 		

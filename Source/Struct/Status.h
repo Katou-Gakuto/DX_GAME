@@ -15,6 +15,8 @@ public:
 
 	int level;	// レベル
 
+	int exp = 0;	// 経験値
+
 	int baseAttckPower;	// 攻撃力
 	int baseSpeed;	// 速度
 	CHARACTER_TYPE characterType;	// キャラクター種類
@@ -45,13 +47,14 @@ public:
 		return !(*this == src);
 	}
 
-	inline static STATUS SetStatus(int Hp, int MaxHp, int Level, int AttckPower, int Speed, CHARACTER_TYPE CharacterType)
+	inline static STATUS SetStatus(int Hp, int MaxHp, int Level, int exp, int AttckPower, int Speed, CHARACTER_TYPE CharacterType)
 	{
 		STATUS result = STATUS();
 
 		result.hp = Hp;
 		result.maxHp = MaxHp;
 		result.level = Level;
+		result.exp = exp;
 		result.baseAttckPower = AttckPower;
 		result.baseSpeed = Speed;
 		result.characterType = CharacterType;

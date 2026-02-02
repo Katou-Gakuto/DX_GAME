@@ -27,6 +27,44 @@ DataManager::DataManager()
 {
 	mwMsg = {};
 
+	/*初期化*/
+	mstBaseData = OnePlayerAllData();
+	mstBaseData.dataFlag = false;
+	mstBaseData.playerData.dataFlag = false;
+	mstBaseData.oneDatas.clear();
+
+	/*初期プレイヤーデータ*/
+	mstInitPlayerDatas.clear();
+
+
+	// プレイ情報初期化
+	{
+		mstPlayPlayerData = OnePlayerAllData();
+		mstPlayPlayerData.dataFlag = false;
+		mstPlayPlayerData.playerData.dataFlag = false;
+		mstPlayPlayerData.oneDatas.clear();
+	}
+
+	// セーブデータ
+	mstPlayerDatas.clear();
+
+	// プレイヤーファイルネーム
+	msPlayerDatasFileName.clear();
+
+	// 取得済みファイル名
+	mmGetFilePosNumbers.clear();
+}
+
+DataManager::~DataManager()
+{
+}
+
+// 初期化
+void DataManager::Initilize()
+{
+	mpEndManger = Master::mpEndManager;
+
+
 	// ベースデータ
 	{
 		// TODO: ファイルから取得できるようにする
@@ -36,14 +74,121 @@ DataManager::DataManager()
 		mstBaseData.playerData.dataFlag = false;
 		mstBaseData.oneDatas.clear();
 
+		ONE_DATA setBaseData = ONE_DATA();
+		// ファイル
 		{
-			ONE_DATA setBaseData;
 			setBaseData.dataChangeFlag = false;
 			setBaseData.typeNumber = 0;
-			setBaseData.name = "";
-			setBaseData.datas;
+			setBaseData.name = "GameData/FileNames_Data.txt";
+
+			FILE_DATA setFileData = FILE_DATA();
+			setFileData.name = "GameData/Player_Data.txt";
+			setFileData.typeNumber = 2;
+			setFileData.sceneType = (SCENE)0;
+			setBaseData.datas.fileNameDatas.push_back(setFileData);
+
+			setFileData.name = "GameData/Default_Map_Character_Data.txt";
+			setFileData.typeNumber = 1;
+			setFileData.sceneType = (SCENE)3;
+			setBaseData.datas.fileNameDatas.push_back(setFileData);
+
+			setFileData.name = "GameData/MapEnemyDatas/Map_Enemy1_Data.txt";
+			setFileData.typeNumber = 1;
+			setFileData.sceneType = (SCENE)7;
+			setBaseData.datas.fileNameDatas.push_back(setFileData);
+
+			setFileData.name = "GameData/MapEnemyDatas/Map_Enemy1_Data.txt";
+			setFileData.typeNumber = 1;
+			setFileData.sceneType = (SCENE)7;
+			setBaseData.datas.fileNameDatas.push_back(setFileData);
 
 			mstBaseData.oneDatas.push_back(setBaseData);
+
+			setBaseData.datas.fileNameDatas.clear();
+		}
+		// キャラクター1
+		{
+			setBaseData.dataChangeFlag = false;
+			setBaseData.typeNumber = 1;
+			setBaseData.name = "GameData/Default_Map_Character_Data.txt";
+
+			CHARACTER_DATA setCharacterData;
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "1";
+			setCharacterData.typeNumber = 2;
+			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)7;
+			setCharacterData.position = VGet(-150.0f, 0.0f, 500.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "ROBOT_ENEMY_2";
+			setCharacterData.typeNumber = 2;
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)7;
+			setCharacterData.position = VGet(800.0f, 0.0f, 1000.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			mstBaseData.oneDatas.push_back(setBaseData);
+			setBaseData.datas.characterDatas.clear();
+		}
+		// キャラクター2
+		{
+			setBaseData.dataChangeFlag = false;
+			setBaseData.typeNumber = 1;
+			setBaseData.name = "GameData/MapEnemyDatas/Map_Enemy1_Data.txt";
+
+			CHARACTER_DATA setCharacterData;
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "ROBOT_ENEMY1";
+			setCharacterData.typeNumber = 3;
+			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)12;
+			setCharacterData.position = VGet(-150.0f, 0.0f, 300.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "ROBOT_ENEMY2";
+			setCharacterData.typeNumber = 3;
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)12;
+			setCharacterData.position = VGet(1000.0f, 0.0f, 2000.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "ROBOT_ENEMY3";
+			setCharacterData.typeNumber = 3;
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)12;
+			setCharacterData.position = VGet(2000.0f, 0.0f, 500.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			mstBaseData.oneDatas.push_back(setBaseData);
+			setBaseData.datas.characterDatas.clear();
+		}
+		// キャラクター3(ボス)
+		{
+			setBaseData.dataChangeFlag = false;
+			setBaseData.typeNumber = 1;
+			setBaseData.name = "GameData/MapEnemyDatas/Map1_Boss_Data.txt";
+
+			CHARACTER_DATA setCharacterData;
+			setCharacterData.survivalFlag = true;
+			setCharacterData.name = "ROBOT_BOSS";
+			setCharacterData.typeNumber = 4;
+			setCharacterData.status = STATUS::SetStatus(30, 30, 1, 0, 3, 2, CHARACTER_TYPE::ROBOT);
+			setCharacterData.mapType = (SCENE)13;
+			setCharacterData.position = VGet(3000.0f, 0.0f, 3500.0f);
+			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
+			setBaseData.datas.characterDatas.push_back(setCharacterData);
+
+			mstBaseData.oneDatas.push_back(setBaseData);
+			setBaseData.datas.characterDatas.clear();
 		}
 		mstBaseData.dataFlag = true;
 	}
@@ -63,7 +208,7 @@ DataManager::DataManager()
 		setInitPlayer.dataFlag = true;
 		setInitPlayer.survivalFlag = 1;
 		setInitPlayer.name = "アボカド";
-		setInitPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
+		setInitPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 		mstInitPlayerDatas.push_back(setInitPlayer);
 	}
 
@@ -91,7 +236,7 @@ DataManager::DataManager()
 		setPlayer.dataFlag = true;
 		setPlayer.survivalFlag = 1;
 		setPlayer.name = "アボカド";
-		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
+		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 
@@ -99,7 +244,7 @@ DataManager::DataManager()
 		setPlayer.townType = SCENE::TOWN_2;
 		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド2";
-		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
+		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 
@@ -107,7 +252,7 @@ DataManager::DataManager()
 		setPlayer.townType = SCENE::TOWN_3;
 		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド3";
-		setPlayer.status = STATUS::SetStatus(100, 100, 1, 10, 10, CHARACTER_TYPE::ROBOT);
+		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 	}
@@ -116,16 +261,6 @@ DataManager::DataManager()
 	mmGetFilePosNumbers.clear();
 
 	SetBaseFile("後でファイル名入れる");
-}
-
-DataManager::~DataManager()
-{
-}
-
-// 初期化
-void DataManager::Initilize()
-{
-	mpEndManger = Master::mpEndManager;
 }
 
 // ベースファイル設定
@@ -556,5 +691,5 @@ return 0;*/
 // マップリソースファイル名取得
 std::string DataManager::GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber)
 {
-	return "../Resource/3D/Floor/Ceiling_Closed.mv1";
+	return "Resource/3D/Floor/Ceiling_Closed.mv1";
 }

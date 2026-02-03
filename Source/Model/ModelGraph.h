@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+#include "ResourceData.h"
+
 #include "ModelBase.h"
 
 class ModelGraph : public ModelBase

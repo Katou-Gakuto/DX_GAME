@@ -107,7 +107,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 		{
 			if (uiPositionData[i].find(ui->GetSelectNumber()) != uiPositionData[i].end())
 			{
-				ui->GetModelsController()->GetModelList()[i]->SetPosition(uiPositionData[i][ui->GetSelectNumber()]);
+				ui->GetModelsController(i)->SetModelPosition(uiPositionData[i][ui->GetSelectNumber()]);
 			}
 		}
 	}
@@ -193,6 +193,7 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber(4);
+	ui->SetSelectBoundaryValue(2);
 
 	printfDx("テロップ：選択　Enter\n");
 }
@@ -207,6 +208,7 @@ void SelectTitleUIState::OnExit(UIBase* ui)
 int SelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
+	ui->LeftRightSelectProcess();
 	ui->DefaultCloce();
 
 	ProcessUpadate(ui);
@@ -230,15 +232,18 @@ int SelectTitleUIState::Decision(UIBase* ui)
 	switch (ui->GetSelectNumber())
 	{
 	case 0:
+		break;
 		return (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
 									
 	case 1:							
 		return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
 		
 	case 2:
+		break;
 		return (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
 		
 	case 3:
+		break;
 		return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 	}//*/
 

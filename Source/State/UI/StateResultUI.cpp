@@ -40,7 +40,11 @@ int StartResultUIState::Update(UIBase* ui)
 // 決定
 int StartResultUIState::Decision(UIBase* ui)
 {
+    // シーン移動
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().dungeonType);
+
+    // エネミー削除
+    Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().dungeonType);
 
 	return mStateNumber;
 }

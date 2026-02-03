@@ -644,6 +644,9 @@ private:
     // 削除時減少させるフラグ
     bool mbDeleteDecreaseFlag;
 
+    // モデルコントローラーの数
+    int mnUIModelControllerCount;
+
 protected:
     // キー状態
     KeyState* mpKeyState;
@@ -659,6 +662,9 @@ protected:
 
     // 最大選択ナンバー
     int mnSelectMaxNumber;
+
+    // 選択境界値
+    int mnSelectBoundaryValue;
 
     // 前回選択変更フレーム
     int mnSelectChangeFrame;
@@ -679,11 +685,8 @@ protected:
     // 有限状態マシン
     FSMUI* mpFsm;
 
-    // モデルベース
-    ModelsControllerBase* mpUIModelController;
-
-    // アニメションベース
-    AnimationBase* mpAnimation;
+    // UI描画モデルたち
+    std::vector<UIDrawModel> mstUIDrawModels;
 
     
 	// UI座標情報
@@ -719,6 +722,8 @@ public:
     inline void SetSelectNumber(const int number) { mnSelectNumber = number; }
     /*選択最大数設定*/
     inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
+    /// <summary>選択境界値設定</summary>
+    inline void SetSelectBoundaryValue(int selectBoundaryValue) { mnSelectBoundaryValue = selectBoundaryValue; }
 
     /// <summary>画像ハンドル設定</summary>
     void SetGraphHandle(int index, int handle);
@@ -765,13 +770,16 @@ public:
     /// <summary>動画ハンドル数を取得</summary>
     inline int GetMovieHandleCount() { return mnMovieCount; }
 
+    /// <summary>モデル数取得</summary>
+    inline int GetModelCount() { return mstUIDrawModels.size(); }
+
     /// <summary>モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
-    inline ModelsControllerBase* GetModelsController() { return mpUIModelController; }
+    inline ModelsControllerBase* GetModelsController(int index) { return mstUIDrawModels[index].mpUIModelController; }
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
-    inline AnimationBase* GetAnimation() { return  mpAnimation; }
+    inline AnimationBase* GetAnimation(int index) { return  mstUIDrawModels[index].mpAnimation; }
 
     /// <summary>UI座標情報設定</summary>
     std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }
@@ -852,6 +860,11 @@ public:
     void SelectNumberDecrease();
     /*選択ナンバー増加処理*/
     void SelectNumberIncrease();
+
+    /// <summary>選択ナンバー境界値を跨いだ減少処理</summary>
+    void SelectBoundaryValueDecrease();
+    /// <summary>選択ナンバー境界値を跨いだ増加処理</summary>
+    void SelectBoundaryValueIncrease();
 
     /*デフォルト選択決定処理*/
     void DefaultDecision();

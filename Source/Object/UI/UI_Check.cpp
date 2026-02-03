@@ -42,6 +42,7 @@ template<typename T>
 void UI_Check<T>::UIUpdate()
 {
 	LeftRightSelectProcess();
+	DefaultDecision();
 }
 
 // UIÅIXV

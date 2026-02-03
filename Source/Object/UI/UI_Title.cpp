@@ -68,20 +68,22 @@ void UI_Title::UIInitilize()
 
         // 文字背景
         {
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack.png");
-
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.16f, 0.5f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack_Close.png");
             setDrawDatas.push_back(drawData);
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.16f, 0.7f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack.png");
             setDrawDatas.push_back(drawData);
             
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.53f, 0.5f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack_Close.png");
             setDrawDatas.push_back(drawData);
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.53f, 0.7f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/StringBack_Close.png");
             setDrawDatas.push_back(drawData);
         }
 
@@ -121,16 +123,18 @@ void UI_Title::UIInitilize()
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-
-        setUIPosData.resize(mpUIModelController->GetModelList().size());   // モデル数分確保
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE);
+// INPROGRESS: 作業中
+        setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // モデル数分確保
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.135f, 0.48f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.135f, 0.68f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.505f, 0.48f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][3] = VGet(0.505f, 0.68f, 0.0f);
-        setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.0f, 0.0f, 0.0f);
-        setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.0f, 0.146f, 0.0f);
-        setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.37f, 0.0f, 0.0f);
-        setUIPosData[mpUIModelController->GetModelList().size() - 1][3] = VGet(0.37f, 0.146f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][0] = VGet(0.0f, 0.0f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][1] = VGet(0.0f, 0.146f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][2] = VGet(0.37f, 0.0f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][3] = VGet(0.37f, 0.146f, 0.0f);
         std::vector<std::map<int, VECTOR>> nullUIPosData;
         nullUIPosData.clear();
         for (int i = 0; i < (int)TITLE_UI_STATE::MAX; i++)
@@ -153,9 +157,6 @@ void UI_Title::UIInitilize()
             }
         }
     }
-
-    // アニメーション設定
-    AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE);
 
 	// // モデル設定
     // mpUIModelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &setDrawDatas));

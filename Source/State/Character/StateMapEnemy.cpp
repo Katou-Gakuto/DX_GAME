@@ -43,9 +43,22 @@ void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
 }
 
 // マップシーン移動開始する
-void MapEnemyProcess::SetMapScene()
+void MapEnemyProcess::SetMapScene(CharacterBase* character)
 {
     mpSceneManager->SetNextScene(meMapScene);
+
+    // 削除情報に設定
+    DELETE_CHARACTER_DATA deleteCharacterData;
+    deleteCharacterData.sceneType = mpSceneManager->GetNowScene();
+    deleteCharacterData.characterID = character->GetID();
+    if (UtilChange::SceneState(mpSceneManager->GetNowScene()) == SCENE::DUNGEON)
+    {
+        Master::mpDataManager->SetDungeonDeleteCharacterID(deleteCharacterData);
+    }
+    else
+    {
+        Master::mpDataManager->SetTownDeleteCharacterID(deleteCharacterData);
+    }
 }
 
 /*--------------------------*/
@@ -160,7 +173,7 @@ void TelopMapEnemyState::Update(CharacterBase* character)
 {
     if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
     {
-        SetMapScene();
+        SetMapScene(character);
         clsDx();
     }
 }

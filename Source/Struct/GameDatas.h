@@ -298,3 +298,12 @@ typedef struct OnePlayerAllData
 
 	bool dataFlag;	// データが存在しているか
 }ONE_PLAYER_ALL_DATA;
+
+
+// 削除予定キャラクター情報
+typedef struct DeleteCharacterData
+{
+	SCENE sceneType;	// シーン種類
+
+	int characterID;	// キャラクターID
+}DELETE_CHARACTER_DATA;

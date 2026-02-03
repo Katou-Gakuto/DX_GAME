@@ -137,13 +137,13 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 
 	StageOnEnter(sceneManager);
 
+	mStateNumber = sceneManager->GetNowScene();
+
 	{// 町を記録
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 		playerData.townType = mStateNumber;
 		Master::mpDataManager->SetPlayPlayerData(playerData);
 	}
-
-	mStateNumber = sceneManager->GetNowScene();
 
 	// プレイヤー作成
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
@@ -178,7 +178,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	}
 
 	// シーン生成物生成
-	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(mStateNumber);
+	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(sceneManager->GetNowScene());
 	for (int i = 0; i < sceneData.size(); i++) {
 		switch (sceneData[i].typeNumber)
 		{
@@ -189,9 +189,11 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 				enemy->Initilize();
 				enemy->SetPos(sceneData[i].datas.characterDatas[j].position);
 				enemy->SetAngle(sceneData[i].datas.characterDatas[j].angle);
-				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::DUNGEON_3));
+				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, sceneData[i].datas.characterDatas[j].mapType));
 				// モデルとアニメション設定
 				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
+
+				Master::mpDataManager->SetCharacterID(enemy->GetID(), sceneData[i].name, j);
 			}
 			break;
 		// // モデル設定
@@ -267,13 +269,14 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 
 	StageOnEnter(sceneManager);
 
+	mStateNumber = sceneManager->GetNowScene();
+
 	{// ダンジョンを記録
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 		playerData.dungeonType = mStateNumber;
 		Master::mpDataManager->SetPlayPlayerData(playerData);
 	}
 
-	mStateNumber = sceneManager->GetNowScene();
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
@@ -293,39 +296,60 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
+	// シーン生成物生成
+	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(sceneManager->GetNowScene());
+	for (int i = 0; i < sceneData.size(); i++) {
+		switch (sceneData[i].typeNumber)
+		{
+		case (int)DATA_TYPE::CHARACTER:
+			for (int j = 0; j < sceneData[i].datas.characterDatas.size(); j++)
+			{
+				Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+				enemy->Initilize();
+				enemy->SetPos(sceneData[i].datas.characterDatas[j].position);
+				enemy->SetAngle(sceneData[i].datas.characterDatas[j].angle);
+				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, sceneData[i].datas.characterDatas[j].mapType));
+				// モデルとアニメション設定
+				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
 
-	{// 敵
-		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
-		enemy->Initilize();
-		enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+				Master::mpDataManager->SetCharacterID(enemy->GetID(), sceneData[i].name, j);
+			}
+			break;
+		}
 	}
-	{// 敵
-		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
-		enemy->Initilize();
-		enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
-		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
-	}
-	{// 敵
-		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
-		enemy->Initilize();
-		enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
-	}
-	{// 敵
-		Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
-		enemy->Initilize();
-		enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
-		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-		// モデルとアニメション設定
-		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
-	}
+
+	//{// 敵
+	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+	//	enemy->Initilize();
+	//	enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
+	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+	//	// モデルとアニメション設定
+	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+	//}
+	//{// 敵
+	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+	//	enemy->Initilize();
+	//	enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
+	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
+	//	// モデルとアニメション設定
+	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+	//}
+	//{// 敵
+	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+	//	enemy->Initilize();
+	//	enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
+	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+	//	// モデルとアニメション設定
+	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+	//}
+	//{// 敵
+	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
+	//	enemy->Initilize();
+	//	enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
+	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
+	//	// モデルとアニメション設定
+	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
+	//}
 
 	// UI生成
 	{
@@ -479,7 +503,10 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
+		enemy->GetModelsController()->SetModelSize(VGet(2.0f, 2.0f, 2.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));
+		// モデルとアニメション設定
+		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 		break;
 	}
@@ -521,6 +548,7 @@ void ResultScene::OnEnter(SceneManager* sceneManager)
 	UI_Result* result = new UI_Result();
 	result->Initilize();
 	result->SetFsm(UtilFactorys::FSMUIFactory(result, UI_FACTORY_NUMBER::RESULT));
+
 
 	mStateNumber = sceneManager->GetNowScene();
 	switch (sceneManager->GetNowScene())

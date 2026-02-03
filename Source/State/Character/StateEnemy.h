@@ -44,6 +44,8 @@ protected:
 	// ターゲットマネージャー
 	TargetManager* mpTargetManager;
 
+	bool mbBossFlag;
+
 protected:
 	EnemyProcess();
 	~EnemyProcess() = default;
@@ -204,7 +206,37 @@ private:
 public:
 	IdleBossEnemyState();
 	~IdleBossEnemyState() = default;
+};
 
-	/*死亡処理*/
-	void EnemyDeath(CharacterBase* character) override;
+/*----------------------------*/
+/*【移動ボスエネミーステート】*/
+/*----------------------------*/
+class MoveBossEnemyState : public MoveEnemyState
+{
+private:
+public:
+	MoveBossEnemyState();
+	~MoveBossEnemyState() = default;
+};
+
+/*--------------------------------*/
+/*【攻撃入りボスエネミーステート】*/
+/*--------------------------------*/
+class AttackInBossEnemyState : public AttackInEnemyState
+{
+private:
+public:
+	AttackInBossEnemyState();
+	~AttackInBossEnemyState() = default;
+};
+
+/*----------------------------*/
+/*【攻撃ボスエネミーステート】*/
+/*----------------------------*/
+class AttackBossEnemyState : public AttackEnemyState
+{
+private:
+public:
+	AttackBossEnemyState();
+	~AttackBossEnemyState() = default;
 };

@@ -3,6 +3,7 @@
 #include <list>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include <map>
 #include <Windows.h>
@@ -19,11 +20,13 @@
 #include "DataManager.h"
 #include "EndManager.h"
 #include "UtilCalc.h"
+#include "UtilChange.h"
 
 DataManager::DataManager()
 : mnPlayPlayerNumber(-1)
 , mpEndManger(nullptr)
-, mnDungeonDeleteCharacterID(-1)
+, mnDungeonDeleteCharacterData(DELETE_CHARACTER_DATA())
+, mnTownDeleteCharacterData(DELETE_CHARACTER_DATA())
 {
 	mwMsg = {};
 
@@ -97,7 +100,7 @@ void DataManager::Initilize()
 			setFileData.sceneType = (SCENE)7;
 			setBaseData.datas.fileNameDatas.push_back(setFileData);
 
-			setFileData.name = "GameData/MapEnemyDatas/Map_Enemy1_Data.txt";
+			setFileData.name = "GameData/MapEnemyDatas/Map1_Boss_Data.txt";
 			setFileData.typeNumber = 1;
 			setFileData.sceneType = (SCENE)7;
 			setBaseData.datas.fileNameDatas.push_back(setFileData);
@@ -332,9 +335,45 @@ void DataManager::PlayDataDelete(int playerNumber)
 /*--------*/
 
 // エネミーデータ削除
-void DataManager::DeleteEnemyData()
+void DataManager::DeleteEnemyData(SCENE deleteScene)
 {
-	// TODO: データに連携させたら
+	DELETE_CHARACTER_DATA deleteData;
+
+	if (UtilChange::SceneState(deleteScene) == SCENE::DUNGEON)
+	{
+		deleteData = mnDungeonDeleteCharacterData;
+	}
+	else if (UtilChange::SceneState(deleteScene) == SCENE::TOWN)
+	{
+		DeleteEnemyData(SCENE::DUNGEON);
+		deleteData = mnTownDeleteCharacterData;
+	}
+	std::vector<std::string> sceneFileNames = GetSceneFileNames(deleteScene, false);
+
+	for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
+	{
+		// データ種類確認
+		if (mstPlayPlayerData.oneDatas[i].typeNumber == (int)DATA_TYPE::CHARACTER)
+		{
+			// シーン確認
+			if (std::find(sceneFileNames.begin(), sceneFileNames.end(), mstPlayPlayerData.oneDatas[i].name) == sceneFileNames.end())
+			{
+				continue;
+			}
+
+			// キャラクター確認
+			for (int j = 0; j < mstPlayPlayerData.oneDatas[i].datas.characterDatas.size(); j++)
+			{
+				// IDを確認
+				if (mstPlayPlayerData.oneDatas[i].datas.characterDatas[j].objectID == deleteData.characterID)
+				{
+					// 削除
+					mstPlayPlayerData.oneDatas[i].datas.characterDatas.erase(mstPlayPlayerData.oneDatas[i].datas.characterDatas.begin() + j);
+					return;
+				}
+			}
+		}
+	}
 }
 
 /*--------*/
@@ -484,6 +523,18 @@ void DataManager::SetPlayPlayer(int playerNumber)
 	}
 }
 
+// キャラクターID設定
+void DataManager::SetCharacterID(int id, std::string fileName, int index)
+{
+	for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
+	{
+		if (mstPlayPlayerData.oneDatas[i].name == fileName)
+		{
+			mstPlayPlayerData.oneDatas[i].datas.characterDatas[index].objectID = id;
+		}
+	}
+}
+
 /*--------*/
 /*【取得】*/
 /*--------*/
@@ -531,7 +582,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		// 返すデータ
 		std::vector<OneData> resultData;
 		resultData.clear();
-		resultData.reserve(baseFileNames.size() - 1);
+		resultData.reserve(baseFileNames.size());
 		// 処理の正しさを後で調べる
 		
 		// データ場所記録用
@@ -689,6 +740,31 @@ return 0;*/
 
 	csvFile.close();
 	return mapData;
+}
+
+// シーンに合ったファイル名を取得
+std::vector<std::string> DataManager::GetSceneFileNames(SCENE scsene, bool baseFlag)
+{
+	ONE_PLAYER_ALL_DATA* onePlayerAllData = (baseFlag ? &mstBaseData : &mstPlayPlayerData);
+
+	std::vector <std::string> baseFileNames;
+	baseFileNames.clear();
+	
+	for (int i = 0; i < onePlayerAllData->oneDatas.size(); i++)
+	{
+		if (onePlayerAllData->oneDatas[i].typeNumber == (int)DATA_TYPE::FILE_NAME)
+		{
+			for (int j = 0; j < onePlayerAllData->oneDatas[i].datas.fileNameDatas.size(); j++)
+			{
+				if (onePlayerAllData->oneDatas[i].datas.fileNameDatas[j].sceneType == scsene)
+				{
+					baseFileNames.push_back(onePlayerAllData->oneDatas[i].datas.fileNameDatas[j].name);
+				}
+			}
+		}
+	}
+
+	return baseFileNames;
 }
 
 // マップリソースファイル名取得

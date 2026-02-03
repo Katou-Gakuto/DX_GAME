@@ -37,14 +37,14 @@ bool GameUIProcess::IsMenuKeyPressed()
 // メニューの背景描画
 void GameUIProcess::DrawMenuBackground(UIBase* ui)
 {
-    // TODO: 画像ハンドルに変更
-    DisplaySize displaySize = ResourceManager::mstDisplaySize;
-    Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
-    Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
-    DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
+    // // TODO: 画像ハンドルに変更
+    // DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    // Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
+    // Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
+    // DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 
-    Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
-    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "メニュー", GetColor(0, 0, 0));
+    // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "メニュー", GetColor(0, 0, 0));
 }
 
 // ミニマップ表示
@@ -86,6 +86,11 @@ NormalGameUIState::NormalGameUIState()
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
     printfDx("テロップ：通常ゲームUI\n");
+
+    for (int i = 0; i < ui->GetModelCount(); i++)
+    {
+        ui->GetModelsController(i)->SetModelDrawFlag(false);
+    }
 }
 
 // この状態を出る時の処理
@@ -132,6 +137,12 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     ui->SetSelectNumber(0);
     ui->Decision();
     printfDx("テロップ：ポーズUI\n");
+
+
+    for (int i = 0; i < ui->GetModelCount(); i++)
+    {
+        ui->GetModelsController(i)->SetModelDrawFlag(true);
+    }
 }
 
 // この状態を出る時の処理

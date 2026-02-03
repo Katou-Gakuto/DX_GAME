@@ -2,10 +2,11 @@
 #include <math.h>
 #include <string>
 
-#include "DxLib.h"
-
 #include "AnimationEnum.h"
 #include "AnimationData.h"
+#include "ResourceData.h"
+
+#include "DxLib.h"
 
 #include "Master.h"
 
@@ -385,7 +386,7 @@ bool StateGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 }
 
 /*----------*/
-/*【画像アニメーション】
+/*【動画アニメーション】
 /*----------*/
 StateMovieAnimation::StateMovieAnimation()
 : IStateAnimation()
@@ -410,6 +411,59 @@ void StateMovieAnimation::Update(AnimationBase* animation, OneAnimationData *now
 
 // モデル種類が同類なら「true」を返す
 bool StateMovieAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}
+
+
+/*------------------------------*/
+/*【フェード画像アニメーション】*/
+/*------------------------------*/
+StateFadeGraphAnimation::StateFadeGraphAnimation()
+: IStateAnimation()
+, mnBlendParameter(0)
+, mnBlendParameterShiftQuantity(0)
+{
+    mStateNumber = MODEL_TYPE::MOVIE;
+}
+
+// この状態に入った時の処理
+void StateFadeGraphAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+    mnBlendParameter = 0;
+    mnBlendParameterShiftQuantity = 1;
+}
+
+// この状態を出る時の処理
+void StateFadeGraphAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+    mpModelBase->SetDrawConfigData(DrawConfigData());
+}
+
+// 更新
+void StateFadeGraphAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+    mnBlendParameter += mnBlendParameterShiftQuantity;
+
+    if (mnBlendParameter >= 255)
+    {
+        mnBlendParameter = 255;
+        mnBlendParameterShiftQuantity = -mnBlendParameterShiftQuantity;
+    }
+    else if (mnBlendParameter <= 0)
+    {
+        return;
+    }
+
+    DrawConfigData drawConfigData;
+    drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
+    drawConfigData.blendParameter = mnBlendParameter;
+
+    mpModelBase->SetDrawConfigData(drawConfigData);
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateFadeGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 {
     return false;
 }

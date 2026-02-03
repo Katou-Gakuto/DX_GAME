@@ -105,6 +105,9 @@ public:
 	/// <summary>•`‰æƒtƒ‰ƒOİ’è</summary>
 	inline void SetDrawFlag(bool drawFlag) { mbDrawFlag = drawFlag; }
 
+	/// <summary>ƒ‚ƒfƒ‹•`‰æî•ñ‚Ìİ’è</summary>
+	inline virtual void SetDrawConfigData(DrawConfigData drawConfigData) {}
+
 	/*----------------*/
 	/*yŒp³ƒ‚ƒfƒ‹—pz*/
 	/*----------------*/

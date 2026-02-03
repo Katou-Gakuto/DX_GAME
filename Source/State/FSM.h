@@ -39,9 +39,10 @@ public:
 		mmStateMap.clear();
 	}
 
-	/*ステート登録*/
+	/*ステート登録(ステートナンバー変更される)*/
 	inline void RegisterState(const subscript id, state* state)
 	{
+		state->SetStatenumber(id);
 		mmStateMap[id] = state;
 	}
 
@@ -61,6 +62,7 @@ public:
 	inline subscript GetCurrentState() const { return mnCurrentState; }
 };
 
+// TODO: 1つのモデルに対して複数のアニメーションを後から適用できるようにする
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/

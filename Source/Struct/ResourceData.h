@@ -78,7 +78,7 @@ struct DRAW_GRAPH_DATA
 };
 
 
-struct DisplaySize : Vector2
+typedef struct DisplaySize : Vector2
 {
 public:
 	int colorBit;
@@ -126,4 +126,16 @@ public:
 	Vector2_Int RightDown_Ratio(Vector2 ratio);
 	/// <summary>右下を起点にした割合(0～1)から座標を取得</summary>
 	Vector2_Int RightDown_FloatRatio(float ratio) { return RightDown_Ratio(Vector2(ratio, ratio)); }
-};
+} DISPLAY_SIZE;
+
+typedef struct DrawConfigData
+{
+	int blendMode;	// ブレンドモード
+	int blendParameter;	// ブレンドパラメーター
+	DrawConfigData()
+	: blendMode(DX_BLENDMODE_NOBLEND)
+	, blendParameter(255)
+	{
+	}
+
+}DRAW_CONFIG_DATA;

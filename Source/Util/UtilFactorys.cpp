@@ -619,6 +619,9 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 
 	case CHARACTER_FACTORY_NUMBER::BOSS_ENEMY:
 		fsmCharacter->RegisterState(new IdleBossEnemyState());
+		fsmCharacter->RegisterState(new MoveBossEnemyState());
+		fsmCharacter->RegisterState(new AttackInBossEnemyState());
+		fsmCharacter->RegisterState(new AttackBossEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 

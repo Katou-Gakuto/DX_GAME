@@ -512,6 +512,7 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mpResourceManager(nullptr)
 , mnSelectNumber(0)
 , mnSelectMaxNumber(maxMenuSelect)
+, mnSelectBoundaryValue(-1)
 , mnSelectChangeFrame(0)
 , mnSetChangeIntervalFrame(30)
 , mnUINumber(0)
@@ -521,6 +522,7 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnMovieHandles(nullptr)
 , mnMovieCount(0)
 , mpFsm(nullptr)
+, mnUIModelControllerCount(0)
 {
 	mmUIPositionData.clear();
 
@@ -551,15 +553,6 @@ void UIBase::Initilize()
 	mpKeyState = Master::mpKeyState;
 	mpResourceManager = Master::mpResourceManager;
 	mpTimeManager = Master::mpTimeManager;
-
-	// モデルコントローラー初期化
-	mpUIModelController = new ModelsControllerBase();
-	mpUIModelController->Initilize();
-
-	// アニメーション初期化
-	mpAnimation = new AnimationBase();
-	mpAnimation->Initilize();
-	mpAnimation->SetModelsController(mpUIModelController);
 
 	UIInitilize();
 }
@@ -596,16 +589,20 @@ void UIBase::Finalize()
 		}
 		free(mnMovieHandles);
 	}
-	
-	// モデルコントローラー終了
-	mpUIModelController->Finalize();
-	delete mpUIModelController;
-	mpUIModelController = nullptr;
 
-	// アニメーション終了
-	mpAnimation->Finalize();
-	delete mpAnimation;
-	mpAnimation = nullptr;
+	for (int i = 0; i < mstUIDrawModels.size(); i++)
+	{	
+		// モデルコントローラー終了
+		mstUIDrawModels[i].mpUIModelController->Finalize();
+		delete mstUIDrawModels[i].mpUIModelController;
+		mstUIDrawModels[i].mpUIModelController = nullptr;
+
+		// アニメーション終了
+		mstUIDrawModels[i].mpAnimation->Finalize();
+		delete mstUIDrawModels[i].mpAnimation;
+		mstUIDrawModels[i].mpAnimation = nullptr;
+	}
+	mstUIDrawModels.clear();
 
 	UIFinalize();
 }
@@ -629,14 +626,18 @@ void UIBase::LastUpdate()
 		UILastUpdate();
 	}
 
-	// モデル位置・角度更新
-	mpUIModelController->ModelsPositionSetting();
+	for (int i = 0; i < mstUIDrawModels.size(); i++)
+	{	
+		// モデル位置・角度更新
+		mstUIDrawModels[i].mpUIModelController->ModelsPositionSetting();
 
-	// アニメーション更新
-	mpAnimation->Update();
+		// アニメーション更新
+		mstUIDrawModels[i].mpAnimation->Update();
+		
+		// モデルに反映
+		mstUIDrawModels[i].mpUIModelController->UpdateModels();
+	}
 
-	// モデルに反映
-	mpUIModelController->UpdateModels();
 }
 
 // 描画
@@ -644,8 +645,12 @@ void UIBase::Draw()
 {
 	UIDraw();
 	
-	// モデル描画
-	mpUIModelController->DrawModels();
+
+	for (int i = 0; i < mstUIDrawModels.size(); i++)
+	{
+		// モデル描画
+		mstUIDrawModels[i].mpUIModelController->DrawModels();
+	}
 
 	if (mpFsm != nullptr)
 	{
@@ -791,20 +796,42 @@ void UIBase::DeleteUINumber()
 // モデル追加
 void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType)
 {
-    mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
+	if (mnUIModelControllerCount == 0)
+	{
+		mnUIModelControllerCount = 1;
+	}
+
+	if (mstUIDrawModels.size() < mnUIModelControllerCount)
+	{
+		UIDrawModel uiDrawModel = UIDrawModel();
+
+		uiDrawModel.mpUIModelController = new ModelsControllerBase();
+		uiDrawModel.mpUIModelController->Initilize();
+
+		uiDrawModel.mpAnimation = new AnimationBase();
+		uiDrawModel.mpAnimation->Initilize();
+		uiDrawModel.mpAnimation->SetModelsController(uiDrawModel.mpUIModelController);
+		
+		mstUIDrawModels.push_back(uiDrawModel);
+	}
+
+    mstUIDrawModels[mnUIModelControllerCount - 1].mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
 }
 
 // アニメーション設定
 void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber)
 {
 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	for (int i = 0; i < mpUIModelController->GetModelList().size(); i++)
+	for (int i = 0; i < mstUIDrawModels[mnUIModelControllerCount - 1].mpUIModelController->GetModelList().size(); i++)
 	{
 		// 読み込み用アニメーションデータ設定
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpAnimation, ladoAnimationDataFactorynumber));
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation, ladoAnimationDataFactorynumber));
 	}
 	// アニメーション有限状態マシン設定
-	mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+	mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+
+	// アニメーション数を加算する
+	mnUIModelControllerCount++;
 }
 
 /*----------------------*/
@@ -918,11 +945,14 @@ void UIBase::DefaultIncrease()
 // 左右選択処理
 void UIBase::LeftRightSelectProcess()
 {
+	if (mnSelectBoundaryValue == (-1))
+	{
+		mnSelectBoundaryValue = 1;
+	}
+
 	LeftDecrease();
 
 	RightIncrease();
-
-	DefaultDecision();
 }
 
 // 左選択ナンバー減少処理
@@ -930,7 +960,7 @@ void UIBase::LeftDecrease()
 {
 	if (CheckLeft_Frame())
 	{
-		SelectNumberDecrease();
+		SelectBoundaryValueDecrease();
 	}
 }
 
@@ -939,7 +969,7 @@ void UIBase::RightIncrease()
 {
 	if (CheckRight_Frame())
 	{
-		SelectNumberIncrease();
+		SelectBoundaryValueIncrease();
 	}
 }
 
@@ -967,6 +997,43 @@ void UIBase::SelectNumberIncrease()
 	if (mnSelectNumber >= mnSelectMaxNumber)
 	{
 		mnSelectNumber = 0;
+	}
+}
+
+// 選択ナンバー境界値を跨いだ減少処理
+void UIBase::SelectBoundaryValueDecrease()
+{
+	if (mnSelectBoundaryValue == (-1))
+	{
+		return;
+	}
+
+	mnSelectNumber -= mnSelectBoundaryValue;
+	if (mnSelectNumber < 0)
+	{
+		if (mnSelectMaxNumber != 0)
+		{
+			mnSelectNumber += mnSelectMaxNumber;
+		}
+		else
+		{
+			mnSelectNumber = 0;
+		}
+	}
+}
+
+// 選択ナンバー境界値を跨いだ増加処理
+void UIBase::SelectBoundaryValueIncrease()
+{
+	if (mnSelectBoundaryValue == (-1))
+	{
+		return;
+	}
+
+	mnSelectNumber += mnSelectBoundaryValue;
+	if (mnSelectNumber >= mnSelectMaxNumber)
+	{
+		mnSelectNumber -= mnSelectMaxNumber;
 	}
 }
 
@@ -1005,10 +1072,11 @@ void UIBase::CloceProcess()
 // 上が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す
 bool UIBase::CheckUp_Frame()
 {
-	if ((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::UP, false) ||
+	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::UP, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_UP, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_UP)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame)))
+		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::UP, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_UP, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_UP))
 	{
 		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
@@ -1019,10 +1087,11 @@ bool UIBase::CheckUp_Frame()
 // 下が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す
 bool UIBase::CheckDown_Frame()
 {
-	if ((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::DOWN, false) ||
+	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::DOWN, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_DOWN)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame)))
+		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::DOWN, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_DOWN))
 	{
 		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
@@ -1033,10 +1102,11 @@ bool UIBase::CheckDown_Frame()
 // 右が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す
 bool UIBase::CheckRight_Frame()
 {
-	if ((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::RIGHT, false) ||
+	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::RIGHT, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_RIGHT)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame)))
+		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::RIGHT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_RIGHT))
 	{
 		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
@@ -1047,10 +1117,11 @@ bool UIBase::CheckRight_Frame()
 // 左が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す
 bool UIBase::CheckLeft_Frame()
 {
-	if ((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT, false) ||
+	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_LEFT)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame)))
+		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
 		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;

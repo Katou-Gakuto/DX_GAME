@@ -50,7 +50,7 @@ protected:
 	void MapEnemyDeath(CharacterBase* character);
 
 	/*マップシーンに移動開始する*/
-	void SetMapScene();
+	void SetMapScene(CharacterBase* character);
 };
 
 /*--------------------------*/

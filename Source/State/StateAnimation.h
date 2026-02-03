@@ -163,7 +163,6 @@ protected:
 };
 
 
-// HACK: 一つしかできないから複数できるようにアニメーションデータでやる
 /*----------*/
 /*【MV1モデル モデル操作】
 /*----------*/
@@ -301,4 +300,39 @@ private:
     /*モデル種類が同類なら「true」を返す*/
     bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 
+};
+
+/*------------------------------*/
+/*【フェード画像アニメーション】*/
+/*------------------------------*/
+class StateFadeGraphAnimation : public IStateAnimation
+{
+private:
+    // ブレンドパラメーター
+    int mnBlendParameter;
+
+    // ブレンドパラメーター偏移数
+    int mnBlendParameterShiftQuantity;
+
+public:
+    StateFadeGraphAnimation();
+    ~StateFadeGraphAnimation() = default;
+
+    /// <summary>この状態に入った時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>更新(何もしない)</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 };

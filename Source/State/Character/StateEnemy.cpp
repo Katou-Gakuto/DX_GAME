@@ -16,6 +16,7 @@
 /*----------------------*/
 EnemyProcess::EnemyProcess()
 : mpTargetManager(Master::mpGameManager->GetTargetManager())
+, mbBossFlag(false)
 {
 }
 
@@ -42,10 +43,21 @@ void EnemyProcess::PlayerTargetAngle(CharacterBase* character)
 // 死亡
 void EnemyProcess::EnemyDeath(CharacterBase* character)
 {
-	mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
-	if (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0)
+	if (mbBossFlag)
 	{
-		Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::BATTLR_RESULT);
+		// TODO: ダンジョンリザルトに移動
+		// エネミー初期化
+		mpTargetManager->TargetInit(TARGET_TYPE::ENEMY);
+		Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
+		Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().townType);
+	}
+	else
+	{
+		mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
+		if (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0)
+		{
+			Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::BATTLR_RESULT);
+		}
 	}
 }
 
@@ -307,17 +319,39 @@ void AttackEnemyState::Death(CharacterBase* character)
 /*----------------------------*/
 /*【Idleボスエネミーステート】*/
 /*----------------------------*/
-
 IdleBossEnemyState::IdleBossEnemyState()
 : IdleEnemyState()
 {
+	mbBossFlag = true;
 	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
 }
 
-// 死亡処理
-void IdleBossEnemyState::EnemyDeath(CharacterBase* character)
+/*----------------------------*/
+/*【移動ボスエネミーステート】*/
+/*----------------------------*/
+MoveBossEnemyState::MoveBossEnemyState()
+: MoveEnemyState()
 {
-	// エネミー初期化
-	mpTargetManager->TargetInit(TARGET_TYPE::ENEMY);
-	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
+	mbBossFlag = true;
+	mStateNumber = (int)ENEMY_STATE::MOVE_ENEMY_STATE;
+}
+
+/*--------------------------------*/
+/*【攻撃入りボスエネミーステート】*/
+/*--------------------------------*/
+AttackInBossEnemyState::AttackInBossEnemyState()
+: AttackInEnemyState()
+{
+	mbBossFlag = true;
+	mStateNumber = (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
+}
+
+/*----------------------------*/
+/*【攻撃ボスエネミーステート】*/
+/*----------------------------*/
+AttackBossEnemyState::AttackBossEnemyState()
+: AttackEnemyState()
+{
+	mbBossFlag = true;
+	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
 }

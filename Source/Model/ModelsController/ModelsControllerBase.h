@@ -22,6 +22,9 @@ private:
     // モデルサイズ
     VECTOR mvModelSize;
 
+    // モデル描画フラグ
+    bool mbModelDrawFlag;
+
 public:
     ModelsControllerBase();
     ~ModelsControllerBase();
@@ -78,4 +81,7 @@ public:
     inline std::vector<ModelBase*> GetModelList() const { return mpModelList; }
     /// <summary>モデルリスト設定</summary>
     inline void SetModelsList(std::vector<ModelBase*> models) { mpModelList = models; }
+
+    /// <summary>UIモデル描画フラグ設定</summary>
+    inline void SetModelDrawFlag(bool flag) { mbModelDrawFlag = flag; }
 };

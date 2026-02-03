@@ -64,8 +64,11 @@ private:
 
 	// アイテム作成後// 削除予定アイテム名
 
-	// ダンジョンの削除キャラクターID
-	int mnDungeonDeleteCharacterID;
+	// ダンジョンの削除キャラクター情報
+	DELETE_CHARACTER_DATA mnDungeonDeleteCharacterData;
+
+	// 町の削除キャラクター情報
+	DELETE_CHARACTER_DATA mnTownDeleteCharacterData;
 
 public:
 
@@ -84,7 +87,7 @@ public:
 	/*--------*/
 
 	/// <summary>エネミーデータ削除</summary>
-	void DeleteEnemyData();
+	void DeleteEnemyData(SCENE deleteScene);
 
 	/*--------*/
 	/*【変更】*/
@@ -107,8 +110,16 @@ public:
 	/*プレイプレイヤーデータ設定*/
 	inline void SetPlayPlayerData(const PLAYER_DATA& data) { mstPlayPlayerData.playerData = data; }
 
-	/*ダンジョンの削除キャラクターID取得*/
-	inline void SetDungeonDeleteCharacterID(int dungeonDeleteCharacterID) { mnDungeonDeleteCharacterID = dungeonDeleteCharacterID; }
+	/// <summary>ダンジョンの削除キャラクターID取得</summary>
+	/// <param name="dungeonDeleteCharacterData"></param>
+	inline void SetDungeonDeleteCharacterID(DELETE_CHARACTER_DATA dungeonDeleteCharacterData) { mnDungeonDeleteCharacterData = dungeonDeleteCharacterData; }
+
+	/// <summary>町の削除キャラクターID取得</summary>
+	/// <param name="townDeleteCharacterData"></param>
+	inline void SetTownDeleteCharacterID(DELETE_CHARACTER_DATA townDeleteCharacterData) { mnTownDeleteCharacterData = townDeleteCharacterData; }
+
+	/// <summary>キャラクターID設定</summary>
+	void SetCharacterID(int id, std::string fileName, int index);
 
 	/*--------*/
 	/*【取得】*/
@@ -130,9 +141,6 @@ public:
 	/*全データを取得*/
 	inline std::vector<ONE_DATA> GetAllData(bool baseFlag = false) const { return (baseFlag ? mstBaseData.oneDatas : mstPlayPlayerData.oneDatas); }
 
-	/*ダンジョンの削除キャラクターID取得*/
-	inline int GetDungeonDeleteCharacterID() const { return mnDungeonDeleteCharacterID; }
-
 
 	/*マップデータ取得*/
 	std::vector<std::vector<TileData>> GetMapData(MapType tileType);
@@ -144,6 +152,8 @@ private:
 	/// <param name="fileName">ベースファイルのファイル名があるファイル</param>
 	void SetBaseFile(std::string fileName);
 
+	/// <summary>シーンに合ったファイル名を取得</summary>
+	std::vector<std::string> GetSceneFileNames(SCENE scsene, bool baseFlag);
 
 	/*--------------------------*/
 	/*     【マップデータ】     */

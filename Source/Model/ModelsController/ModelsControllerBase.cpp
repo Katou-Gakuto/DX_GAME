@@ -8,6 +8,7 @@ ModelsControllerBase::ModelsControllerBase()
 : mvModelPosition{0.0f, 0.0f, 0.0f}
 , mvModelAngle{0.0f, 0.0f, 0.0f}
 ,mvModelSize{1.0f, 1.0f, 1.0f}
+, mbModelDrawFlag(true)
 {
     mpModelList.clear();
 }
@@ -70,6 +71,11 @@ void ModelsControllerBase::UpdateModels()
 // ƒ‚ƒfƒ‹•`‰æ
 void ModelsControllerBase::DrawModels()
 {
+    if (!mbModelDrawFlag)
+    {
+        return;
+    }
+
 	for (int i = 0; i < mpModelList.size(); i++)
 	{
 		mpModelList[i]->ModelDraw();

@@ -34,6 +34,7 @@ public:
 	virtual ~StateBase() = default;
 
 	inline number GetStateNumber() const { return mStateNumber; }
+	inline void SetStatenumber(number stateNumber) { mStateNumber = stateNumber; }
 };
 
 /*------------------------*/

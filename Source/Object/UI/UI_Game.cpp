@@ -23,9 +23,31 @@ UI_Game::~UI_Game()
 
 // UI初期化
 void UI_Game::UIInitilize()
-{// INPROGRESS: 操作キーおよびHPを作成中
+{
+    // INPROGRESS: 操作キーおよびHPを作成中 量表示用尾モデル(maxと現在地をポインタで持つモデル)作成
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
+
+    // ゲーム画面、HP
+    {
+        setDrawDatas.clear();
+        DRAW_GRAPH_DATA drawData;
+        // 操作キー
+        {
+            drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.0f, 0.1f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/White.png");
+            drawData.transFlag = TRUE;
+            setDrawDatas.push_back(drawData);
+        }
+        
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });
+    }
 
     // ゲーム開始時字幕
     {

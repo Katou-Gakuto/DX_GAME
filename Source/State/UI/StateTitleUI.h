@@ -28,7 +28,7 @@ enum class TITLE_UI_STATE
 
 	MAX									// 最大
 };
-// INPROGRESS: セーブデータ描画作成中
+
 /*----------*/
 /*【タイトルUIステート共通処理用】
 /*----------*/
@@ -62,6 +62,9 @@ protected:
 
 	/*構造上一つ前のステートを取得する*/
 	inline int GetPreUiState() { return (int)mePreUiState; }
+
+	/*セーブデータを描画*/
+	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber);
 };
 
 

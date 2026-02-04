@@ -210,13 +210,6 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		}
 	}
 
-	// UIê∂ê¨
-	{
-		UI_Game* gameUI = new UI_Game();
-		gameUI->Initilize();
-		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
-	}
-
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::TOWN:
@@ -227,6 +220,13 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		break;
 	case SCENE::TOWN_3:
 		break;
+	}
+
+	// UIê∂ê¨
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 }
 
@@ -351,13 +351,6 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	//}
 
-	// UIê∂ê¨
-	{
-		UI_Game* gameUI = new UI_Game();
-		gameUI->Initilize();
-		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
-	}
-
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::DUNGEON:
@@ -368,6 +361,13 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		break;
 	case SCENE::DUNGEON_3:
 		break;
+	}
+
+	// UIê∂ê¨
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 }
 void DungeonScene::OnExit(SceneManager* sceneManager)
@@ -468,13 +468,6 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 
-	// UIê∂ê¨
-	{
-		UI_Game* gameUI = new UI_Game();
-		gameUI->Initilize();
-		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
-	}
-
 	switch (sceneManager->GetNowScene())
 	{
 	case SCENE::BATTLE :
@@ -509,6 +502,13 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 		break;
+	}
+
+	// UIê∂ê¨
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 	
 	// UNDONE: çÌèú

@@ -1,6 +1,9 @@
 #include <map>
 #include <vector>
 
+#invlude "ResourceData.h"
+#include "Vector2.h"
+
 #include "DxLib.h"
 
 #include "Master.h"
@@ -9,6 +12,7 @@
 #include "FadeManager.h"
 #include "FSM.h"
 #include "GameManager.h"
+#include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"
 
@@ -123,6 +127,27 @@ void TitleUIStateProcess::StartGame(UIBase* ui)
 
 	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().mapType);
+}
+
+// セーブデータを描画
+void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber)
+{
+	// INPROGRESS: セーブデータ
+	Vector2_Int drawPos = Vector2_Int(0, 0);
+
+	switch (displayPos)
+	{
+	case 0:
+		drawPos = ResourceManager::mstDisplaySize;
+		break;
+	case 1:
+		drawPos = ResourceManager::mstDisplaySize;
+		break;
+	case 2:
+		drawPos = ResourceManager::mstDisplaySize;
+		break;
+	}
+
 }
 
 /*----------------------*/

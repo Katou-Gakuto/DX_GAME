@@ -375,7 +375,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int leftUp
 /*------------*/
 // モデルハンドル取得
 int ResourceManager::GetModelHandle(std::string fileName)
-{// TODO: ファイル名に"../"が必要になっているから無しでできるようにする "Resource"も
+{
 	int handle = -1;
 	if (mmModelHandle.find(fileName) != mmModelHandle.end())
 	{

@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <map>
+#include <vector>
 
 #include "AnimationEnum.h"
 #include "AnimationData.h"
@@ -95,6 +97,7 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationDatas*>
 		mnCurrentState = mnNextState;
 		mmStateMap[mnCurrentState]->OnEnter(animation, oldAnimationState);
 	}
+	// TODO: この1行なくせるようにした(UIの方になるになる)
 	mnNextState = ANIMATION_TYPE::IDLE;
 
 	// 変更処理
@@ -289,7 +292,7 @@ void FSMUI::Finalize()
 void FSMUI::SetCurrentState(int id, UIBase* ui)
 {
 	mnCurrentState = id;
-	mmStateMap[mnCurrentState]->OnEnter(ui);
+	StartNextState(mnCurrentState, ui);
 }
 
 // 更新
@@ -374,7 +377,21 @@ void FSMUI::SetState(int nextState, UIBase* ui)
 	if (mnCurrentState != nextState)
 	{
 		mmStateMap[mnCurrentState]->OnExit(ui);//現在のStateの終了処理
-		mmStateMap[nextState]->OnEnter(ui);//新しいStateの開始処理
+
+		StartNextState(nextState, ui);	// 新しいStateの開始処理
 		mnNextState = nextState;//新しいStateを設定
 	}
+}
+
+// 次のステートを設定する
+void FSMUI::StartNextState(int nextState, UIBase* ui)
+{
+	// モデルを描画フラグを設定
+	for (int i = 0; i < ui->GetModelCount(); i++)
+	{
+		std::vector<int> drawNumber = ui->GetDrawModels()[i].mnDrawNumber;
+		ui->GetModelsController(i)->SetModelDrawFlag(std::find(drawNumber.begin(), drawNumber.end(), nextState) != drawNumber.end());
+	}
+
+	mmStateMap[nextState]->OnEnter(ui);//新しいStateの開始処理
 }

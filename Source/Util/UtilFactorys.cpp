@@ -125,19 +125,19 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 	case ANIMATION_FACTORY_NUMBER::UI:
 		switch (ladoAnimationDataFactorynumber)
 		{
-		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE:
 			fsm->RegisterState(new StateIdleAnimationController());
 			fsm->RegisterState(new State2DMoveAnimationController());
+			fsm->RegisterState(new StateFadeOutAnimationController());
+			fsm->RegisterState(new StateFadeInAnimationController());
 			break;
 
-		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_GAME:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE:
 			fsm->RegisterState(new StateIdleAnimationController());
 			fsm->RegisterState(new State2DMoveAnimationController());
-			break;
-
-		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT:
-			fsm->RegisterState(new StateIdleAnimationController());
-			fsm->RegisterState(new State2DMoveAnimationController());
+			fsm->RegisterState(new StateFadeOutAnimationController());
+			fsm->RegisterState(new StateFadeInAnimationController());
 			break;
 		}
 		break;
@@ -219,6 +219,15 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 					setStateMap[setModelType] = stateMovieAnimation;
 				}
 				break;
+
+			case MODEL_TYPE::FADE:
+				if (setStateMap.find(setModelType) == setStateMap.end())
+				{
+					StateFadeGraphAnimation* stateFadeGraphAnimation = new StateFadeGraphAnimation();
+					stateFadeGraphAnimation->SetModelBase(modelBases[i]);
+					setStateMap[setModelType] = stateFadeGraphAnimation;
+				}
+				break;
 			}
 		}
 
@@ -291,6 +300,18 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 
 			// 設定
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;	
+			break;
+
+		case MODEL_TYPE::FADE:
+			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
+			animationData.modelType = loadAnimationData[i].modelType;
+
+			// ブレンド設定
+			animationData.blendMode = loadAnimationData[i].blendMode;
+			animationData.blendParameter = loadAnimationData[i].blendParameter;
+
+			// 設定
+			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 		}
 	}
@@ -458,10 +479,35 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		}
 		break;
 
-	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE:
-	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_GAME:
-	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT:
-		for (int i = 0; i < 2; i++)
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE:
+		for (int i = 0; i < 4; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::GRAPH;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
+		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
+		
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE:
+		for (int i = 0; i < 4; i++)
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
@@ -473,12 +519,49 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
 		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
+		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE:
+		for (int i = 0; i < 4; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::GRAPH;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
+		loadAnimationData[2].blendMode = DX_BLENDMODE_ALPHA;
+		loadAnimationData[2].blendParameter = 11;
+		loadAnimationData[2].modelType = MODEL_TYPE::FADE;
+		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
+		loadAnimationData[3].blendMode = DX_BLENDMODE_ALPHA;
+		loadAnimationData[3].blendParameter = -11;
+		loadAnimationData[3].modelType = MODEL_TYPE::FADE;
+		
+		if (animation != nullptr)
+		{
+			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 25 * 17);
+			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 25 * 17);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -679,10 +762,11 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	case UI_FACTORY_NUMBER::TOWN:
 	case UI_FACTORY_NUMBER::DUNGEON:
 	case UI_FACTORY_NUMBER::BATTLE:
+		fsmUI->RegisterState(new StartGameUIState());
 		fsmUI->RegisterState(new NormalGameUIState());
 		fsmUI->RegisterState(new PauseGameUIState());
 
-		fsmUI->SetCurrentState((int)GAME_UI_STATE::NORMAL_GAME_UI_STATE, ui);
+		fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
 		break;
 
 	case UI_FACTORY_NUMBER::RESULT:

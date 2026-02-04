@@ -66,5 +66,26 @@ std::string UtilChange::Name(SCENE scene)
 
 	case SCENE::RESULT:
 		return "RESUL";
+
+	case SCENE::TOWN_1:
+		return "町1";
+	case SCENE::TOWN_2:
+		return "町2";
+	case SCENE::TOWN_3:
+		return "町3";
+	
+	case SCENE::DUNGEON_1:
+		return "ダンジョン1";
+	case SCENE::DUNGEON_2:
+		return "ダンジョン2";
+	case SCENE::DUNGEON_3:
+		return "ダンジョン3";
+
+	case SCENE::BATTLE_1:
+		return "バトル1";
+	case SCENE::BATTLE_2:
+		return "バトル2";
+	case SCENE::BATTLE_3:
+		return "バトル3";
 	}
 }

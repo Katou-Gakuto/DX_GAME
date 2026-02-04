@@ -30,6 +30,7 @@ TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 // 背景描画
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
+
 	// 背景
 	if (ui->GetMovieHandleCount() >= 1)
 	{
@@ -110,6 +111,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 				ui->GetModelsController(i)->SetModelPosition(uiPositionData[i][ui->GetSelectNumber()]);
 			}
 		}
+		mnPreSelectNumber = ui->GetSelectNumber();
 	}
 }
 
@@ -191,9 +193,22 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
-	ui->SetSelectNumber(0);
+	if (Master::mpDataManager->GetPlayerData().size() == 0)
+	{
+		ui->SetSelectNumber(0);
+	}
+	else
+	{
+		ui->SetSelectNumber(1);
+	}
+	
 	ui->SetSelectMaxNumber(4);
 	ui->SetSelectBoundaryValue(2);
+
+	for(int i = 0; i < ui->GetDrawModels().size(); i++)
+	{
+		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+	}
 
 	printfDx("テロップ：選択　Enter\n");
 }
@@ -202,6 +217,11 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 void SelectTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
+
+	for(int i = 0; i < ui->GetDrawModels().size(); i++)
+	{
+		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+	}
 }
 
 // 更新

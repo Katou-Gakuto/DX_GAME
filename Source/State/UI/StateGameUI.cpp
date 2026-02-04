@@ -73,10 +73,70 @@ VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
     return minMapPos;
 }
 
+/*------------------------*/
+/*【ゲーム開始UIステート】*/
+/*------------------------*/
+StartGameUIState::StartGameUIState()
+: mnElapsedTime(0)
+, mbFadeInFlag(false)
+{
+    mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
+}
+
+// この状態に入った時の処理
+void StartGameUIState::OnEnter(UIBase* ui)
+{
+    mbFadeInFlag = false;
+    mnElapsedTime = Master::mpTimeManager->GetGameTime() + SUBTITLE_TIME;
+    
+    ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+
+    ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+}
+
+// この状態を出る時の処理
+void StartGameUIState::OnExit(UIBase* ui)
+{
+}
+
+// 更新
+int StartGameUIState::Update(UIBase* ui)
+{
+    if (mnElapsedTime < Master::mpTimeManager->GetGameTime())
+    {
+        if (!mbFadeInFlag &&
+            !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+        {
+            ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+        }
+        else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+        {
+            mbFadeInFlag = true;
+        }
+        else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+        {
+            return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+        }
+    }
+
+    return mStateNumber;
+}
+
+// 決定
+int StartGameUIState::Decision(UIBase* ui)
+{
+    return mStateNumber;
+}
+
+// 描画
+void StartGameUIState::Draw(UIBase* ui)
+{
+    DrawMinMap();
+}
+
 /*----------------------*/
 /*【通常ゲームUIステート】*/
 /*----------------------*/
-
 NormalGameUIState::NormalGameUIState()
 {
     mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
@@ -86,11 +146,12 @@ NormalGameUIState::NormalGameUIState()
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
     printfDx("テロップ：通常ゲームUI\n");
+    ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
-    for (int i = 0; i < ui->GetModelCount(); i++)
-    {
-        ui->GetModelsController(i)->SetModelDrawFlag(false);
-    }
+    // for (int i = 0; i < ui->GetModelCount(); i++)
+    // {
+    //     ui->GetModelsController(i)->SetModelDrawFlag(false);
+    // }
 }
 
 // この状態を出る時の処理
@@ -138,11 +199,12 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     ui->Decision();
     printfDx("テロップ：ポーズUI\n");
 
+    ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 
-    for (int i = 0; i < ui->GetModelCount(); i++)
-    {
-        ui->GetModelsController(i)->SetModelDrawFlag(true);
-    }
+    // for (int i = 0; i < ui->GetModelCount(); i++)
+    // {
+    //     ui->GetModelsController(i)->SetModelDrawFlag(true);
+    // }
 }
 
 // この状態を出る時の処理

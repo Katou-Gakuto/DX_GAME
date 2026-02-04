@@ -65,10 +65,14 @@ void ModelGraph::ModelDraw()
         return;
     }
 
+    SetDrawBlendMode(mstDrawConfigData.blendMode, mstDrawConfigData.blendParameter);
+
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
         ModelDraw_Graph(mstDrawDatas[i]);
     }
+
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
 
 void ModelGraph::SetDrawData(VECTOR pos, VECTOR angle, VECTOR size)

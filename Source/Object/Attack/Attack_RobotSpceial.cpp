@@ -57,7 +57,7 @@ void Attack_RobotSpceial::AttackLastUpdate()
 // アタック描画
 void Attack_RobotSpceial::AttackDraw()
 {
-	DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 200.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
+	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 200.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 }
 
 // 当たり判定

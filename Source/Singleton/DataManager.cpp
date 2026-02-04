@@ -1,9 +1,9 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 #include <map>
 #include <Windows.h>

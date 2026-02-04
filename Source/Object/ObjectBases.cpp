@@ -744,6 +744,14 @@ void UIBase::SetMovieCount(int count)
 	// }
 	SetHandleCount(count, &mnMovieCount, &mnMovieHandles);
 }
+// アニメーション設定
+void UIBase::SetAnimationType(ANIMATION_TYPE aniamtionType)
+{
+	for (int i = 0; i < mstUIDrawModels.size(); i++)
+	{
+		mstUIDrawModels[i].mpAnimation->SetAnimationType(aniamtionType);
+	}
+}
 
 // ハンドル数変更
 void UIBase::SetHandleCount(int count, int *handleCount, int**handle)
@@ -796,12 +804,7 @@ void UIBase::DeleteUINumber()
 // モデル追加
 void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType)
 {
-	if (mnUIModelControllerCount == 0)
-	{
-		mnUIModelControllerCount = 1;
-	}
-
-	if (mstUIDrawModels.size() < mnUIModelControllerCount)
+	if (mstUIDrawModels.size() <= mnUIModelControllerCount)
 	{
 		UIDrawModel uiDrawModel = UIDrawModel();
 
@@ -811,24 +814,40 @@ void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE mode
 		uiDrawModel.mpAnimation = new AnimationBase();
 		uiDrawModel.mpAnimation->Initilize();
 		uiDrawModel.mpAnimation->SetModelsController(uiDrawModel.mpUIModelController);
+
+		uiDrawModel.mnDrawNumber.clear();
 		
 		mstUIDrawModels.push_back(uiDrawModel);
 	}
 
-    mstUIDrawModels[mnUIModelControllerCount - 1].mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
+    mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
 }
 
 // アニメーション設定
-void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber)
+void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber)
 {
 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	for (int i = 0; i < mstUIDrawModels[mnUIModelControllerCount - 1].mpUIModelController->GetModelList().size(); i++)
+	for (int i = 0; i < mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList().size(); i++)
 	{
 		// 読み込み用アニメーションデータ設定
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation, ladoAnimationDataFactorynumber));
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ladoAnimationDataFactorynumber));
 	}
 	// アニメーション有限状態マシン設定
-	mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount - 1].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+	mstUIDrawModels[mnUIModelControllerCount].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+
+	// 描画するステート設定
+	if (drawNumber.size() == 0)
+	{
+		// TODO: 全ステートのステートで追加するから後でちょうどいい数字を変数で取得できるようにする
+		for (int i = 0; i < 10; i++)
+		{
+			mstUIDrawModels[mnUIModelControllerCount].mnDrawNumber.push_back(i);
+		}
+	}
+	else
+	{
+		mstUIDrawModels[mnUIModelControllerCount].mnDrawNumber = drawNumber;
+	}
 
 	// アニメーション数を加算する
 	mnUIModelControllerCount++;

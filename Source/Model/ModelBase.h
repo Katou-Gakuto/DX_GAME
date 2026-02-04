@@ -7,7 +7,8 @@
 #include "DxLib.h"
 
 class ModelsControllerBase;
-
+// TODO: 文字モデルを作る
+// TODO: 切り抜き画像モデルを作る(3D用)
 /*-------------------------------*/
 /*【ポリゴンインデックスモデル情報】*/
 /*-------------------------------*/
@@ -88,6 +89,9 @@ public:
 
 	/// <summary>描画フラグ取得</summary>
 	inline bool GetDrawFlag() const { return mbDrawFlag; }
+
+	/// <summary>モデル描画情報の取得</summary>
+	inline virtual DrawConfigData GetDrawConfigData() { return DrawConfigData(); }
 
 	/*--------*/
 	/*【設定】*/

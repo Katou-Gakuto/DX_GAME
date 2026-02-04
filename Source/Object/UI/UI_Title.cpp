@@ -49,6 +49,8 @@ void UI_Title::UIInitilize()
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
     }
 
 
@@ -56,10 +58,17 @@ void UI_Title::UIInitilize()
     {
         setDrawDatas.clear();
         
-        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
-        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
-        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
-        setDrawDatas.push_back(drawData);
+        // タイトル文字
+        {
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
+            setDrawDatas.push_back(drawData);
+            // モデル追加
+            AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+            // アニメーション設定
+            AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::START_TITLE_UI_STATE, (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+        }
 
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.4f));
         drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.5f));
@@ -110,6 +119,8 @@ void UI_Title::UIInitilize()
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
     }
 
     // 移動画像設定
@@ -124,8 +135,8 @@ void UI_Title::UIInitilize()
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
         // アニメーション設定
-        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE);
-// INPROGRESS: 作業中
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+
         setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // モデル数分確保
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.135f, 0.48f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.135f, 0.68f, 0.0f);

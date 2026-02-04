@@ -307,13 +307,6 @@ private:
 /*------------------------------*/
 class StateFadeGraphAnimation : public IStateAnimation
 {
-private:
-    // ブレンドパラメーター
-    int mnBlendParameter;
-
-    // ブレンドパラメーター偏移数
-    int mnBlendParameterShiftQuantity;
-
 public:
     StateFadeGraphAnimation();
     ~StateFadeGraphAnimation() = default;
@@ -333,6 +326,10 @@ public:
     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
 
 private:
+
+    /*フェード処理*/
+    void FadeProcess(OneAnimationData *nowAnimationData);
+
     /*モデル種類が同類なら「true」を返す*/
     bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 };

@@ -626,6 +626,9 @@ struct UIDrawModel// TODO: 一旦UIを表示させた後にこれに置き換える
 
     // アニメション
     AnimationBase* mpAnimation;
+
+    // 描画するステート
+    std::vector<int> mnDrawNumber;
 };
 
 /*--------------------------------*/
@@ -643,9 +646,6 @@ private:
 
     // 削除時減少させるフラグ
     bool mbDeleteDecreaseFlag;
-
-    // モデルコントローラーの数
-    int mnUIModelControllerCount;
 
 protected:
     // キー状態
@@ -687,6 +687,9 @@ protected:
 
     // UI描画モデルたち
     std::vector<UIDrawModel> mstUIDrawModels;
+
+    // モデルコントローラーの数
+    int mnUIModelControllerCount;
 
     
 	// UI座標情報
@@ -740,6 +743,9 @@ public:
     /// <summary>UI座標情報設定</summary>
     void SetUIPositionData(int state, std::vector<std::map<int, VECTOR>> uiPositionData) { mmUIPositionData[state]= uiPositionData; }
 
+    /// <summary>アニメーション設定</summary>
+    void SetAnimationType(ANIMATION_TYPE aniamtionType);
+
 private:
     /// <summary>ハンドル数変更</summary>
     void SetHandleCount(int count, int *handleCount, int**handle);
@@ -769,6 +775,9 @@ public:
 
     /// <summary>動画ハンドル数を取得</summary>
     inline int GetMovieHandleCount() { return mnMovieCount; }
+
+    /// <summary>描画モデル情報全取得</summary>
+    inline std::vector<UIDrawModel> GetDrawModels() { return mstUIDrawModels; }
 
     /// <summary>モデル数取得</summary>
     inline int GetModelCount() { return mstUIDrawModels.size(); }
@@ -808,7 +817,7 @@ protected:
     /*モデル追加*/
     void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType);
     /*アニメーション設定*/
-    void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber);
+    void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber);
 
     /*----------------------*/
     /*【入力キー種類別処理】*/

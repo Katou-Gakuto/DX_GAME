@@ -39,7 +39,7 @@ void UI_Result::UIInitilize()
     AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
 
     // アニメーション設定
-    AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_RESULT);
+    AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
 }
 
 // UI終了

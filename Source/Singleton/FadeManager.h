@@ -48,10 +48,10 @@ public:
     /// <summary>描画</summary>
     void Draw();
 
-    /// <summary>フェードアウト開始</summary>
+    /// <summary>フェードアウト開始(入り)</summary>
     void FadeOut();
 
-    /// <summary>フェードイン開始</summary>
+    /// <summary>フェードイン開始(出)</summary>
     void FadeIn();
 
     /// <summary>フェード処理</summary>

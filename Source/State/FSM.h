@@ -93,6 +93,8 @@ public:
 
 	/// <summary>現在のステートと同じ種類かを確認する</summary>
 	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mnCurrentState]->CheckSameType(animationType); }
+
+	/// <summary>説明</summary>
 	
 private:
 	/*新しいステートを設定する*/
@@ -207,4 +209,7 @@ public:
 private:
 	/*次のステートが現在のステートと違うならステート変更処理をする*/
 	void SetState(int nextState, UIBase* ui);
+
+	/*次のステートを開始する*/
+	void StartNextState(int nextState, UIBase* ui);
 };

@@ -20,6 +20,9 @@ protected:
     // 前のサイズ
     VECTOR mvPreSize;
 
+    // モデル描画情報
+    DrawConfigData mstDrawConfigData;
+
 public:
     ModelGraph();
     ~ModelGraph();
@@ -46,6 +49,11 @@ public:
     /// <summary>描画情報取得</summary>
     /// <returns>描画情報(複数)</returns>
     std::vector<DRAW_GRAPH_DATA>* GetDrawData() override { return &mstDrawDatas; }
+
+	/// <summary>モデル描画情報の取得</summary>
+    inline DrawConfigData GetDrawConfigData() override { return mstDrawConfigData; }
+	/// <summary>モデル描画情報の設定</summary>
+    inline void SetDrawConfigData(DrawConfigData drawConfigData) override { mstDrawConfigData = drawConfigData; }
 
 protected:
     void SetDrawData(VECTOR pos, VECTOR angle, VECTOR size);

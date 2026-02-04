@@ -421,45 +421,61 @@ bool StateMovieAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*------------------------------*/
 StateFadeGraphAnimation::StateFadeGraphAnimation()
 : IStateAnimation()
-, mnBlendParameter(0)
-, mnBlendParameterShiftQuantity(0)
 {
-    mStateNumber = MODEL_TYPE::MOVIE;
+    mStateNumber = MODEL_TYPE::FADE;
 }
 
 // この状態に入った時の処理
 void StateFadeGraphAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
 {
-    mnBlendParameter = 0;
-    mnBlendParameterShiftQuantity = 1;
+    DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
+
+    if (drawConfigData.blendMode != DX_BLENDMODE_ALPHA)
+    {
+        drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
+        if (nowAnimationData->blendParameter > 0)
+        {
+            drawConfigData.blendParameter = 0;
+        }
+        else
+        {
+            drawConfigData.blendParameter = 255;
+        }
+        mpModelBase->SetDrawConfigData(drawConfigData);
+    }
 }
 
 // この状態を出る時の処理
 void StateFadeGraphAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
 {
-    mpModelBase->SetDrawConfigData(DrawConfigData());
 }
 
 // 更新
 void StateFadeGraphAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
 {
-    mnBlendParameter += mnBlendParameterShiftQuantity;
+    FadeProcess(nowAnimationData);
+}
 
-    if (mnBlendParameter >= 255)
+// フェード処理
+void StateFadeGraphAnimation::FadeProcess(OneAnimationData *nowAnimationData)
+{
+    // 描画情報を取得し変更する
+    DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
+    drawConfigData.blendParameter += nowAnimationData->blendParameter;
+
+
+    // 描画情報が範囲外なら修正する
+    if (drawConfigData.blendParameter > 255)
     {
-        mnBlendParameter = 255;
-        mnBlendParameterShiftQuantity = -mnBlendParameterShiftQuantity;
+        drawConfigData.blendParameter = 255;  
     }
-    else if (mnBlendParameter <= 0)
+    else if (drawConfigData.blendParameter < 0)
     {
-        return;
+        drawConfigData.blendParameter = 0;    
     }
 
-    DrawConfigData drawConfigData;
-    drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
-    drawConfigData.blendParameter = mnBlendParameter;
-
-    mpModelBase->SetDrawConfigData(drawConfigData);
+    // 変更した描画情報を設定
+    mpModelBase->SetDrawConfigData(drawConfigData); 
 }
 
 // モデル種類が同類なら「true」を返す

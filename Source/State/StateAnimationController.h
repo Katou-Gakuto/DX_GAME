@@ -144,6 +144,42 @@ public:
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
+/*----------------------------------------------------*/
+/*【フェードアウトアニメーションコントローラーステート】*/
+/*----------------------------------------------------*/
+class StateFadeOutAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+{
+public:
+	StateFadeOutAnimationController();
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------------------------------------------------*/
+/*【フェードインアニメーションコントローラーステート】*/
+/*----------------------------------------------------*/
+class StateFadeInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
+{
+public:
+	StateFadeInAnimationController();
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
 /*--------------------*/
 /*     【派生アニメーションコントローラーステート】
 /*--------------------*/

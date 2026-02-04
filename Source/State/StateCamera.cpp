@@ -117,6 +117,13 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
+		// ƒJƒƒ‰‚ÌÝ’u‚¾‚¯‚â‚é
+		if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::NODE))
+		{
+			cameraData.position = UtilCalc::VSphericalMovePos(cameraData.cameraDistance, UtilCalc::VRadChange(cameraData.angle));
+			cameraManager->SetCameraData(cameraData);
+		}
+
 		return;
 	}
 

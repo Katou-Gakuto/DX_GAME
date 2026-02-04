@@ -3,6 +3,8 @@
 // アニメーション種類
 enum class ANIMATION_TYPE
 {
+    // アニメーションがどう動くかを定義する
+
     NONE = 0,   // 無し
     IDLE,       // 待機状態
     WALK,       // 歩く 
@@ -24,12 +26,16 @@ enum class ANIMATION_TYPE
     SPCEIAL_ATTACK_OUT,  // スペシャル攻撃終了
 
     DISPLAY_MOVE,   // 画面移動
+
+    FADE_OUT,   // フェードアウト
+    FADE_IN,    // フェードイン
 };
 
 // アニメーションモデル種類
-enum class MODEL_TYPE
+enum class MODEL_TYPE // TODO: モデル種類ではなくアニメーション処理種類にする
 {
     NONE = 0,   // 無し
+    // TODO: IDLE作る
     MV1_MODEL,  // MV1モデル
     MV1_MODEL_MOVE, // MV1モデル モデル操作
     MV1_MODEL_ONLY, // MV1モデルのみ　アニメーション無しモデル
@@ -39,4 +45,6 @@ enum class MODEL_TYPE
 
     GRAPH,  // 画像
     MOVIE,  // 映像
+
+    FADE,   // フェード
 };

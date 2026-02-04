@@ -258,6 +258,69 @@ ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animati
     return mStateNumber;
 }
 
+/*----------------------------------------------------*/
+/*【フェードアウトアニメーションコントローラーステート】*/
+/*----------------------------------------------------*/
+StateFadeOutAnimationController::StateFadeOutAnimationController()
+: IStateAnimationController()
+, StateAnimationControllerProcess()
+{
+    mStateNumber = ANIMATION_TYPE::FADE_OUT;
+}
+
+// この状態に入った時の処理
+void StateFadeOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
+{
+    SetEndTime(animation, mStateNumber);
+}
+
+// この状態を出る時の処理
+void StateFadeOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+{
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateFadeOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime() || (nextState == ANIMATION_TYPE::FADE_IN))
+    {
+        return nextState;
+    }
+    
+    return mStateNumber;
+}
+
+/*----------------------------------------------------*/
+/*【フェードインアニメーションコントローラーステート】*/
+/*----------------------------------------------------*/
+StateFadeInAnimationController::StateFadeInAnimationController()
+: IStateAnimationController()
+, StateAnimationControllerProcess()
+{
+    mStateNumber = ANIMATION_TYPE::FADE_IN;
+}
+
+// この状態に入った時の処理
+void StateFadeInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
+{
+    SetEndTime(animation, mStateNumber);
+}
+
+// この状態を出る時の処理
+void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+{
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime() || (nextState == ANIMATION_TYPE::ATTACK_OUT))
+    {
+        return nextState;
+    }
+    
+    return mStateNumber;
+}
 
 /*--------------------*/
 /*     【派生アニメーションコントローラーステート】

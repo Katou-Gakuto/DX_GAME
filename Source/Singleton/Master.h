@@ -11,6 +11,7 @@ class KeyState;
 class LoadingManager;
 class ResourceManager;
 class StopManager;
+class TelopManager;
 class TimeManager;
 
 class Master
@@ -27,6 +28,7 @@ public:
 	static LoadingManager* mpLoadingManager;	// ローディングマネージャー
 	static ResourceManager* mpResourceManager;	// リソースマネージャー
 	static StopManager* mpStopManager;	// ストップマネージャー
+	static TelopManager* mpTelopManager;	// テロップマネージャー
 	static TimeManager* mpTimeManager;	// タイムマネージャー
 
 	/*マスター所持物全削除処理*/

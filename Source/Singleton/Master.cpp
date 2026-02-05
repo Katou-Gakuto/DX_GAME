@@ -11,6 +11,7 @@
 #include "LoadingManager.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
+#include "TelopManager.h"
 #include "TimeManager.h"
 
 // マスター所持物全削除処理
@@ -23,6 +24,7 @@ void Master::AllDelete()
 	mpImguiManager->Finalize();
 #endif
 	mpResourceManager->Finailize();
+	mpTelopManager->Finalize();
 	
 	// 削除
 	delete mpDataManager;
@@ -36,5 +38,6 @@ void Master::AllDelete()
 	delete mpLoadingManager;
 	delete mpResourceManager;
 	delete mpStopManager;
+	delete mpTelopManager;
 	delete mpTimeManager;
 }

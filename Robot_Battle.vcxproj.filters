@@ -321,6 +321,9 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Singleton\TelopManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -556,6 +559,9 @@
     </ClInclude>
     <ClInclude Include="XML_Excel\XmlArrange.h">
       <Filter>ヘッダー ファイル\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TelopManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

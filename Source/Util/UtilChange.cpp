@@ -1,3 +1,6 @@
+#include <string>
+
+#include "CharacterEnum.h"
 #include "SceneEnum.h"
 
 #include "UtilChange.h"
@@ -87,5 +90,15 @@ std::string UtilChange::Name(SCENE scene)
 		return "バトル2";
 	case SCENE::BATTLE_3:
 		return "バトル3";
+	}
+}
+
+// キャラクターの名前に変換
+std::string UtilChange::CharacterTypeToString(CHARACTER_TYPE characterType)
+{
+	switch (characterType)
+	{
+	case CHARACTER_TYPE::ROBOT:
+		return "ロボット";
 	}
 }

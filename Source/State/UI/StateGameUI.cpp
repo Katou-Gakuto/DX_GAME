@@ -145,7 +145,7 @@ NormalGameUIState::NormalGameUIState()
 // この状態に入った時の処理
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
-    printfDx("テロップ：通常ゲームUI\n");
+    //printfDx("テロップ：通常ゲームUI\n");
     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -197,7 +197,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
 {
     ui->SetSelectNumber(0);
     ui->Decision();
-    printfDx("テロップ：ポーズUI\n");
+    //printfDx("テロップ：ポーズUI\n");
 
     ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 

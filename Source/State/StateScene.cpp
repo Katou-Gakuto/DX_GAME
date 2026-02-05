@@ -460,7 +460,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 
 			//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
 		}
-		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(20, 20, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
@@ -493,7 +493,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		//	//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
 		//}
 
-		Character_Shot* enemy = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(40, 40, 1, 0, 12, 12, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
 		enemy->GetModelsController()->SetModelSize(VGet(2.0f, 2.0f, 2.0f));
@@ -510,9 +510,6 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		gameUI->Initilize();
 		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
-	
-	// UNDONE: 削除
-	printfDx("テロップ：Lで攻撃 仮実装\n");
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {

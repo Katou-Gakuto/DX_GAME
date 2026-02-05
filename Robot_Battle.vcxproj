@@ -64,6 +64,7 @@
     <ClCompile Include="Source\Singleton\SceneManager.cpp" />
     <ClCompile Include="Source\Singleton\StopManager.cpp" />
     <ClCompile Include="Source\Singleton\TargetManager.cpp" />
+    <ClCompile Include="Source\Singleton\TelopManager.cpp" />
     <ClCompile Include="Source\Singleton\TimeManager.cpp" />
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Source\Singleton\SceneManager.h" />
     <ClInclude Include="Source\Singleton\StopManager.h" />
     <ClInclude Include="Source\Singleton\TargetManager.h" />
+    <ClInclude Include="Source\Singleton\TelopManager.h" />
     <ClInclude Include="Source\Singleton\TimeManager.h" />
     <ClInclude Include="Source\State\Character\StateEnemy.h" />
     <ClInclude Include="Source\State\Character\StateMapEnemy.h" />

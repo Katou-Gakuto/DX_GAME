@@ -81,11 +81,11 @@ void IdleMapEnemyState::OnEnter(CharacterBase* character)
     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
     {
     case SCENE::TOWN:
-        printfDx("テロップ：ダンジョンへ行けないです\n");
+        //printfDx("テロップ：ダンジョンへ行けないです\n");
         break;
 
     case SCENE::DUNGEON:
-        printfDx("テロップ：バトルへ行けないです\n");
+        //printfDx("テロップ：バトルへ行けないです\n");
         break;
     }
 }
@@ -143,11 +143,11 @@ void TelopMapEnemyState::OnEnter(CharacterBase* character)
     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
     {
     case SCENE::TOWN:
-        printfDx("テロップ：ダンジョンへ行くにはEnterキーを押してください\n");
+        //printfDx("テロップ：ダンジョンへ行くにはEnterキーを押してください\n");
         break;
 
     case SCENE::DUNGEON:
-        printfDx("テロップ：バトルへ行くにはEnterキーを押してください\n");
+        //printfDx("テロップ：バトルへ行くにはEnterキーを押してください\n");
         break;
     }
 }

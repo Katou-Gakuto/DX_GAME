@@ -1,7 +1,11 @@
 #include <map>
+#include <string>
 #include <vector>
 
-#invlude "ResourceData.h"
+#include "CharacterEnum.h"
+#include "SceneEnum.h"
+#include "ResourceData.h"
+#include "Status.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -15,6 +19,7 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"
+#include "UtilChange.h"
 
 // TODO: このファイルの文字描画消して画面作成
 
@@ -29,11 +34,22 @@ TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
 , mnPreSelectNumber(-1)
 {
+	// セーブデータ背景画像ハンドル
+	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataBase.png");
+	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
+	
+	// セーブデータ文字列描画時設定ハンドル(セーブデータ)
+	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
+	// セーブデータ文字列描画時設定ハンドル(プレイヤーネーム)
+	mnSaveDataDrawFontHandle_PlayerName = CreateFontToHandle(NULL, 22, 8);
+	// セーブデータ文字列描画時設定ハンドル(その他)
+	mnSaveDataDrawFontHandle_Other = CreateFontToHandle(NULL, 18, 8);
 }
 
 // 背景描画
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
+	return;
 
 	// 背景
 	if (ui->GetMovieHandleCount() >= 1)
@@ -122,32 +138,115 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 // ゲーム開始
 void TitleUIStateProcess::StartGame(UIBase* ui)
 {
-	// TODO: セーブデータが出来たらデータ0に固定をなくす
-	ui->SetSelectNumber(0);
-
 	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().mapType);
 }
 
 // セーブデータを描画
-void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber)
+void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType)
 {
-	// INPROGRESS: セーブデータ
-	Vector2_Int drawPos = Vector2_Int(0, 0);
+	// 必要情報宣言
+	Vector2_Int drawPos = Vector2_Int(0, 0);	// 描画ポジション
+	std::string dataNeme = "セーブ " + std::to_string(dataNumber);	// データ数表示用文字列
+	
+	std::string playerName   = "NAME : " + name;
+	std::string characterTypeName = UtilChange::CharacterTypeToString(status.characterType);	// マップ名
+	std::string hpMaxString  = "HP MAX : " + std::to_string(status.maxHp);
+	std::string hpString     = "HP     : " + std::to_string(status.hp);
+	std::string levelString  = "LEVEL  : " + std::to_string(status.level);
+	std::string expString    = "EXP    : " + std::to_string(status.exp);
+	std::string attackString = "ATTACK : " + std::to_string(status.baseAttckPower);
+	std::string speedString  = "SPEED  : " + std::to_string(status.baseSpeed);
+	
+	std::string mapName     =  "MAP    : " + UtilChange::Name(mapType);	// マップ名
+
+	// リソースマネージャー
+	ResourceManager* resourceMnaager = Master::mpResourceManager;
+
+	DisplaySize displaySize = ResourceManager::mstDisplaySize;
+	DisplaySize drawSize;
+	drawSize = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.25f));
 
 	switch (displayPos)
 	{
 	case 0:
-		drawPos = ResourceManager::mstDisplaySize;
+		drawPos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.095f));
 		break;
 	case 1:
-		drawPos = ResourceManager::mstDisplaySize;
+		drawPos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.410f));
 		break;
 	case 2:
-		drawPos = ResourceManager::mstDisplaySize;
+		drawPos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.725f));
 		break;
 	}
 
+	DRAW_GRAPH_DATA drawGraphData;
+	drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	drawGraphData.transFlag = TRUE;
+
+	// 土台描画
+	{
+		if (dataNumber != ui->GetSelectNumber())
+		{
+			drawGraphData.handle = mnSaveDataDrawBackHandle;
+		}
+		else
+		{
+			drawGraphData.handle = mnSaveDataDrawDelectBackHandle;
+		}
+		drawGraphData.pos = drawPos;
+		drawGraphData.size = drawSize;
+
+		resourceMnaager->DrawData_Graph(drawGraphData);
+		
+		drawGraphData.handle = mnSaveDataDrawBackHandle;
+		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.0f, -0.21f));
+		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.209f));
+
+		resourceMnaager->DrawData_Graph(drawGraphData);
+	}
+
+	// プレイヤー画像描画
+	{
+		drawGraphData.handle = ui->GetGraphHandles()[playerGraphNumber];
+		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.05f, 0.1f));
+		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.8f));
+
+		resourceMnaager->DrawData_Graph(drawGraphData);
+	}
+
+	// プレイヤー情報描画
+	{
+		// セーブデータ数文字
+		UIStringDraw(drawPos, drawSize, Vector2(0.025f, -0.17f), dataNeme, mnSaveDataDrawFontHandle_SaveData);
+
+		// プレイヤーネーム
+		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.1f), playerName, mnSaveDataDrawFontHandle_PlayerName);
+
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.33f), hpMaxString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.46f), hpString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.59f), levelString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.72f), expString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.65f, 0.33f), attackString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.65f, 0.46f), speedString, mnSaveDataDrawFontHandle_Other);
+		// MAX HP
+		UIStringDraw(drawPos, drawSize, Vector2(0.65f, 0.59f), mapName, mnSaveDataDrawFontHandle_Other);
+	}
+}
+// 文字描画
+void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize, Vector2 ratio, std::string drawString, int fontHndle)
+{
+	DrawStringToHandle(pos.x + displaySize.Left_RatioWidth(ratio.x),
+					   pos.y + displaySize.Up_RatioHeight(ratio.y),
+					drawString.c_str(),
+					GetColor(255, 255, 255),
+					fontHndle);
 }
 
 /*----------------------*/
@@ -164,7 +263,7 @@ StartTitleUIState::StartTitleUIState()
 // この状態に入った時の処理
 void StartTitleUIState::OnEnter(UIBase* ui)
 {
-	printfDx("テロップ：開始　Enter\n");
+	//printfDx("テロップ：開始　Enter\n");
 }
 
 // この状態を出る時の処理
@@ -235,7 +334,7 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 	}
 
-	printfDx("テロップ：選択　Enter\n");
+	//printfDx("テロップ：選択　Enter\n");
 }
 
 // この状態を出る時の処理
@@ -375,6 +474,7 @@ void NewDataCheckTitleUIState::Draw(UIBase* ui)
 DataSelectTitleUIState::DataSelectTitleUIState()
 : IStateUI()
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, mnDrawDataPos(0)
 {
 	mStateNumber = (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
 }
@@ -387,7 +487,9 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 	ui->SetSelectNumber(0);
 	ui->SetSelectMaxNumber((const int)Master::mpDataManager->GetPlayerData().size());
 
-	printfDx("テロップ：情報選択　Enter\n");
+	mnDrawDataPos = 0;
+
+	//printfDx("テロップ：情報選択　Enter\n");
 }
 
 // この状態を出る時の処理
@@ -403,6 +505,15 @@ int DataSelectTitleUIState::Update(UIBase* ui)
 	ui->DefaultCloce();
 
 	ProcessUpadate(ui);
+
+	if (ui->GetSelectNumber() > (mnDrawDataPos + 2))
+	{
+		mnDrawDataPos = ui->GetSelectNumber() - 2;
+	}
+	else if (ui->GetSelectNumber() < (mnDrawDataPos - 2))
+	{
+		mnDrawDataPos = ui->GetSelectNumber() + 2;
+	}
 
 	return mStateNumber;
 }
@@ -426,6 +537,11 @@ void DataSelectTitleUIState::Draw(UIBase* ui)
 	std::vector<std::string> str;
 	str.push_back("セーブデータ(今は一つ)");
 	DrawBackground(ui, str);
+
+	for (int i = mnDrawDataPos; (i < (mnDrawDataPos + 3)) && (i < Master::mpDataManager->GetPlayerData().size()); i++)
+	{
+		DrawSaveData(ui, i - mnDrawDataPos, 0, Master::mpDataManager->GetPlayerData()[i].name, i, Master::mpDataManager->GetPlayerData()[i].status, Master::mpDataManager->GetPlayerData()[i].mapType);
+	}
 }
 
 /*----------------------------*/

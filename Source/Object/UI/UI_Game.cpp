@@ -10,6 +10,7 @@
 #include "SceneManager.h"
 #include "StateGameUI.h"
 #include "UI_Game.h"
+#include "UtilChange.h"
 #include "UtilFactorys.h"
 
 UI_Game::UI_Game()
@@ -35,10 +36,53 @@ void UI_Game::UIInitilize()
         // 操作キー
         {
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.0f, 0.1f));
-            drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/White.png");
             drawData.transFlag = TRUE;
+            // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
+            // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+            // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_A.png");
+            // setDrawDatas.push_back(drawData);
+            
+            // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
+            // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+            // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_B.png");
+            // setDrawDatas.push_back(drawData);
+            
+            // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
+            // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+            // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_X.png");
+            // setDrawDatas.push_back(drawData);
+            
+            // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
+            // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+            // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_Y.png");
+            // setDrawDatas.push_back(drawData);
+            
+            if (UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE)
+            {
+                drawData.pos = displaySize.RightDown_Ratio(Vector2(0.26f, 0.1f));
+                drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 0.4f, displaySize.Left_RatioWidth(0.1f) * 0.4f);
+                drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_R.png");
+                setDrawDatas.push_back(drawData);
+                
+                drawData.pos = displaySize.RightDown_Ratio(Vector2(0.31f, 0.1f));
+                drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 0.4f, displaySize.Left_RatioWidth(0.1f) * 0.4f);
+                drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_L.png");
+                setDrawDatas.push_back(drawData);
+            }
+
+            drawData.pos = displaySize.RightDown_Ratio(Vector2(0.135f, 0.175f));
+            drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 1.5f, displaySize.Left_RatioWidth(0.1f) * 1.5f);
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Enter.png");
+            setDrawDatas.push_back(drawData);
+            
+            drawData.pos = displaySize.RightDown_Ratio(Vector2(0.21f, 0.1f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.105f, 0.07f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_WASD.png");
+            setDrawDatas.push_back(drawData);
+            
+            drawData.pos = displaySize.RightDown_Ratio(Vector2(0.21f, 0.18f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.105f, 0.07f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_Arrow.png");
             setDrawDatas.push_back(drawData);
         }
         
@@ -46,7 +90,7 @@ void UI_Game::UIInitilize()
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
 
         // アニメーション設定
-        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, {});
     }
 
     // ゲーム開始時字幕

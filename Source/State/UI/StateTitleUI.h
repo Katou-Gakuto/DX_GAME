@@ -1,7 +1,17 @@
 #pragma once
+#include <string>
+
+#include "Status.h"
 
 #include "ObjectBases.h"
 #include "StateBase.h"
+
+enum class CHARACTER_TYPE;
+enum class SCENE;
+
+struct DisplaySize;
+struct Vector2;
+struct Vector2_Int;
 
 /*----------------------*/
 /*【タイトルUIステート】*/
@@ -41,6 +51,20 @@ protected:
 	// 前の選択数
 	int mnPreSelectNumber;
 
+	// TODO: UIを利用する方式に変える
+	// セーブデータ背景画像ハンドル
+	int mnSaveDataDrawBackHandle;
+	// セーブデータ選択背景画像ハンドル
+	int mnSaveDataDrawDelectBackHandle;
+	
+	// TODO: 文字ハンドルのリソースマネージャーとUIベースにハンドルを持たせれるようにする
+	// セーブデータ文字列描画時設定ハンドル(セーブデータ)
+	int mnSaveDataDrawFontHandle_SaveData;
+	// セーブデータ文字列描画時設定ハンドル(プレイヤーネーム)
+	int mnSaveDataDrawFontHandle_PlayerName;
+	// セーブデータ文字列描画時設定ハンドル(その他)
+	int mnSaveDataDrawFontHandle_Other;
+
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 
@@ -64,7 +88,10 @@ protected:
 	inline int GetPreUiState() { return (int)mePreUiState; }
 
 	/*セーブデータを描画*/
-	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber);
+	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType);
+
+	/*文字描画*/
+	void UIStringDraw(Vector2_Int pos, DisplaySize displaySize, Vector2 ratio, std::string drawString, int fontHndle);
 };
 
 
@@ -150,6 +177,9 @@ public:
 /*----------------------------*/
 class DataSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
+private:
+	int mnDrawDataPos;
+
 public:
 	DataSelectTitleUIState();
 	~DataSelectTitleUIState() = default;

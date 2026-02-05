@@ -16,7 +16,7 @@ UI_Check<T>::UI_Check(void* yesArgument, void* noArgument, void(T::* yesExecuteM
 , msYesWord(yesWord)
 , msNoWord(noWord)
 {
-	printfDx("確認\n");
+	//printfDx("確認\n");
 }
 
 template<typename T>

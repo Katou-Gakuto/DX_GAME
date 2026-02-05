@@ -16,6 +16,21 @@ struct Vector2_Int
 		this->x = x;
 		this->y = y;
 	}
+	Vector2_Int(float x, float y)
+	{
+		this->x = (int)x;
+		this->y = (int)y;
+	}
+
+	Vector2_Int operator +(Vector2_Int src)
+	{
+		Vector2_Int vec;
+
+		vec.x = this->x + src.x;
+		vec.y = this->y + src.y;
+
+		return vec;
+	}
 };
 
 

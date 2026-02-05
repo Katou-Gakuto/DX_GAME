@@ -230,6 +230,7 @@ bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 // É_ÉÅÅ[ÉW
 void CharacterBase::Damage(int damage)
 {
+	//printfDx("Hit\n");
 	mstStatus.hp -= damage;
 	if (mstStatus.hp <= 0)
 	{

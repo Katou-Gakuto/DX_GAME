@@ -243,16 +243,16 @@ void DataManager::Initilize()
 
 		mstPlayerDatas.push_back(setPlayer);
 
-		setPlayer.mapType = SCENE::TOWN_2;
-		setPlayer.townType = SCENE::TOWN_2;
+		setPlayer.mapType = SCENE::TOWN_1;
+		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド2";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 
-		setPlayer.mapType = SCENE::DUNGEON_3;
-		setPlayer.townType = SCENE::TOWN_3;
+		setPlayer.mapType = SCENE::TOWN_1;
+		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.name = "アボカド3";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);

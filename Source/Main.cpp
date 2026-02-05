@@ -15,6 +15,7 @@
 #include "LoadingManager.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
+#include "TelopManager.h"
 #include "TimeManager.h"
 
 #if _DEBUG
@@ -33,9 +34,8 @@ KeyState* Master::mpKeyState = new KeyState();
 LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
 StopManager* Master::mpStopManager = new StopManager();
+TelopManager* Master::mpTelopManager = new TelopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
-
-// HACK: exeファイルが一段上に隠れるからプロジェクトファイルの場所を変えてリソースのファイル座標を書き換える
 
 /// <summary>
 /// メイン
@@ -61,14 +61,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// DirectX11を使用するようにする
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
+	// TODO: 変更できるようにする
+	SetGraphMode(800, 600, 16);
+
 	// DXライブラリ初期化処理
 	if(DxLib_Init() == -1)
 	{
 		return -1;		// エラーが起きたら直ちに終了
 	}
-
-	// TODO: 変更できるようにする
-	//SetGraphMode(1024, 768, 16);
 
 	// 初期化
 	Master::mpGameManager->Initilize();

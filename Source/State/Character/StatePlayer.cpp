@@ -48,14 +48,14 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	}
 
 
-	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Q))
-	{
-		character->SetUpMove();
-	}
-	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::E))
-	{
-		character->SetDownMove();
-	}
+	// if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Q))
+	// {
+	// 	character->SetUpMove();
+	// }
+	// if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::E))
+	// {
+	// 	character->SetDownMove();
+	// }
 }
 
 // 移動キーを押していれば「true」
@@ -115,7 +115,7 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	// 	pos2.z += size / number;
 	// }
 
-	DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
+	//DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
 }
 
 // 死亡

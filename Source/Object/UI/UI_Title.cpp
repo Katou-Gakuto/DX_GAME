@@ -179,6 +179,12 @@ void UI_Title::UIInitilize()
 	//  	// アニメーション有限状態マシン設定
 	//  	mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mpAnimation, ANIMATION_FACTORY_NUMBER::UI, LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE, setcharacterLoadAnimationData));
 	//  }
+
+    // プレイヤー画像設定
+    {
+        SetGraphCount(1);
+        SetGraphHandle(0, mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"));
+    }
 }
 
 // UI終了

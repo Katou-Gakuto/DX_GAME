@@ -68,17 +68,14 @@ ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* char
 
 	if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 1000.0f)
 	{
-		printfDx("short\n");
 		return ENEMY_COMMAND_NUMBER::SHORT_RANGE;
 	}
 	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 2000.0f)
 	{
-		printfDx("medium\n");
 		return ENEMY_COMMAND_NUMBER::MEDIUM_RANGE;
 	}
 	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
 	{
-		printfDx("long\n");
 		return ENEMY_COMMAND_NUMBER::LONG_RANGE;
 	}
 	
@@ -211,6 +208,8 @@ void MoveEnemyState::Death(CharacterBase* character)
 AttackInEnemyState::AttackInEnemyState()
 : IStateCharacter()
 , EnemyProcess()
+, mbLeftMoveFlag(false)
+, mnPreAttackTime(0)
 {
 	mStateNumber = (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
 }
@@ -228,8 +227,29 @@ void AttackInEnemyState::OnExit(CharacterBase* character)
 // ステート変更確認
 int AttackInEnemyState::StateCheck(CharacterBase* character)
 {
+	if (Master::mpTimeManager->GetGameTime() <= (mnPreAttackTime + (ESCAPE_TIME * 5)))
+	{
+		if (character->GetStatus()->hp < (int)((float)character->GetStatus()->maxHp * 0.5f))
+		{
+			return (int)ENEMY_STATE::ESCAPE_ENEMY_STATE;
+		}
+		else
+		{
+			mbLeftMoveFlag = !mbLeftMoveFlag;
+			if (mbLeftMoveFlag)
+			{
+				return (int)ENEMY_STATE::LEFT_AVOID_ENEMY_STATE;
+			}
+			else
+			{
+				return (int)ENEMY_STATE::RIGHT_AVOID_ENEMY_STATE;
+			}
+		}
+	}
+
 	if (UtilCalc::AngleDiff(UtilCalc::VVecToAngle(VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos())). y, character->GetAngle().y) < 0.1f)
 	{
+		mnPreAttackTime = Master::mpTimeManager->GetGameTime();
 		return (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
 	}
 
@@ -312,10 +332,69 @@ void AttackEnemyState::Death(CharacterBase* character)
 	EnemyDeath(character);
 }
 
+/*------------------------*/
+/*【逃げエネミーステート】*/
+/*------------------------*/
+EscapeEnemyState::EscapeEnemyState()
+: IStateCharacter()
+, EnemyProcess()
+, mnEscapeTime(0)
+{
+	mStateNumber = (int)ENEMY_STATE::ESCAPE_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void EscapeEnemyState::OnEnter(CharacterBase* character)
+{
+	VECTOR setVec = VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos());
+	character->SetMoveDir(VGet(-setVec.x, -setVec.y, -setVec.z));
+
+	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+}
+
+// この状態を出る時の処理
+void EscapeEnemyState::OnExit(CharacterBase* character)
+{
+}
+
+// ステート変更確認
+int EscapeEnemyState::StateCheck(CharacterBase* character)
+{
+	if (Master::mpTimeManager->GetGameTime() > mnEscapeTime)
+	{
+		return TemplateNextState(character, mStateNumber);
+	}
+
+	return mStateNumber;
+}
+
+// 更新
+void EscapeEnemyState::Update(CharacterBase* character)
+{
+	character->SetFrontMove();
+}
+
+// 最終更新
+void EscapeEnemyState::LastUpdate(CharacterBase* character)
+{
+}
+
+// 描画
+void EscapeEnemyState::Draw(CharacterBase* character)
+{
+}
+
+// 死亡
+void EscapeEnemyState::Death(CharacterBase* character)
+{
+	EnemyDeath(character);
+}
+
 /*--------------------------*/
 /*     【派生ステート】     */
 /*--------------------------*/
 
+/*-------------------------------------------------- ボスステート --------------------------------------------------*/
 /*----------------------------*/
 /*【Idleボスエネミーステート】*/
 /*----------------------------*/
@@ -354,4 +433,52 @@ AttackBossEnemyState::AttackBossEnemyState()
 {
 	mbBossFlag = true;
 	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------*/
+/*【左回避エネミーステート】*/
+/*--------------------------*/
+LeftAvoidEnemyState::LeftAvoidEnemyState()
+: EscapeEnemyState()
+{
+	mStateNumber = (int)ENEMY_STATE::LEFT_AVOID_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void LeftAvoidEnemyState::OnEnter(CharacterBase* character)
+{
+	PlayerTargetAngle(character);
+	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+}
+
+// 更新
+void LeftAvoidEnemyState::Update(CharacterBase* character)
+{
+	character->SetFrontMove();
+	character->SetLeftMove();
+}
+
+/*--------------------------*/
+/*【右回避エネミーステート】*/
+/*--------------------------*/
+RightAvoidEnemyState::RightAvoidEnemyState()
+: EscapeEnemyState()
+{
+	mStateNumber = (int)ENEMY_STATE::RIGHT_AVOID_ENEMY_STATE;
+}
+
+// この状態に入った時の処理
+void RightAvoidEnemyState::OnEnter(CharacterBase* character)
+{
+	PlayerTargetAngle(character);
+	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+}
+
+// 更新
+void RightAvoidEnemyState::Update(CharacterBase* character)
+{
+	character->SetFrontMove();
+	character->SetRightMove();
 }

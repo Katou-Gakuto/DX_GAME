@@ -694,6 +694,9 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new MoveEnemyState());
 		fsmCharacter->RegisterState(new AttackInEnemyState());
 		fsmCharacter->RegisterState(new AttackEnemyState());
+		fsmCharacter->RegisterState(new EscapeEnemyState());
+		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
+		fsmCharacter->RegisterState(new RightAvoidEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 
@@ -705,6 +708,9 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new MoveBossEnemyState());
 		fsmCharacter->RegisterState(new AttackInBossEnemyState());
 		fsmCharacter->RegisterState(new AttackBossEnemyState());
+		fsmCharacter->RegisterState(new EscapeEnemyState());
+		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
+		fsmCharacter->RegisterState(new RightAvoidEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 

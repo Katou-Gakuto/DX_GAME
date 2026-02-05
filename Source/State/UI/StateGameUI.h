@@ -68,7 +68,7 @@ private:
     bool mbFadeInFlag;
 
     // モデルコントローラの添え字
-    const int MODEL_CONTROLLER_INDEX = 0;
+    const int MODEL_CONTROLLER_INDEX = 1;
 
     // 字幕表示時間
     const int SUBTITLE_TIME = 17 * 230;

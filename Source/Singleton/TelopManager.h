@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include "TelopData.h"
+
 class TelopManager
 {
 private:
@@ -27,10 +29,16 @@ public:
     /// <summary>描画</summary>
     void Draw();
 
+    /// <summary>テロップ描画</summary>
+    void DrawTelop(TELOP_DATA& telopData);
+
     /// <summary>テロップ追加</summary>
     void AddTelop(std::string telop);
 
 private:
     /// <summary>テロップ削除</summary>
     void DeleteTelop();
+
+    /// <summary>3Dポジションテロップ描画</summary>
+    void DrawTelop_Position3D(TELOP_DATA& telopData);
 };

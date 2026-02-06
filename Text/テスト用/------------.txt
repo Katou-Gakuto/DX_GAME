@@ -1,0 +1,35 @@
+/*------------*/
+/*【3Dモデル】*/
+/*------------*/
+// 3Dモデルハンドル
+std::map<std::string, std::vector<int>> mmModelHandle;
+// 3Dモデルカウンター
+std::map<int, int> mmModelCount;
+
+/*--------*/
+/*【画像】*/
+/*--------*/
+// 画像ハンドル
+std::map<std::string, int> mmGraphHandle;
+// 画像カウンター
+std::map<int, int> mmGraphCount;
+
+// Div画像ハンドル
+std::map<std::string, DIV_GRAPH_DATA> mmDivGraphHandle;
+// Div画像ファイつ名
+std::vector<std::string> msDivGraphFileNames;
+
+/*--------*/
+/*【動画】*/
+/*--------*/
+// 動画ハンドル
+std::map<std::string, std::vector<int>> mmMovieHandle;
+
+/*----------*/
+/*【エフェクト】
+/*----------*/
+// FIXME: フェードで非同期している影響でハンドル取得時エラーが出る
+// エフェクトハンドル
+std::map<std::string, std::vector<int>> mmEffectHandle;
+// エフェクトカウンター
+std::map<int, int> mmEffectCount;

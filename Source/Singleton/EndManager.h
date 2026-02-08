@@ -8,6 +8,7 @@ enum class END_FLAG_NUMBER
 	RESOURCE_FLAG,
 	LOADING_FLAG,
 	MAP_FLAG,
+	HANDLE_FLAG,
 };
 
 class EndManager

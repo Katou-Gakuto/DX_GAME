@@ -87,9 +87,18 @@ void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
 	character->SetMoveDir(mpCameraManager->GetCameraData().GetDirection());
 }
 
+// HACK: ‰¼ŽÀ‘•
+#include "SceneEnum.h"
+
+#include "UtilChange.h"
 // •`‰æ
 void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
+	// HACK: ‰¼ŽÀ‘•
+	if (UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE)
+	{
+		DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", character->GetStatus()->hp);
+	}
 	// HACK: ƒ‚ƒfƒ‹‚ªo—ˆ‚½‚çÁ‚·
 
 	// VECTOR pos1;

@@ -1,8 +1,21 @@
 #pragma once
+#include "DxLib.h"
+
 #include "ObjectBases.h"
 
 class Attack_Shot : public AttackBase
 {
+private:
+    // HACK: 攻撃情報にこれらを持たせる
+    // 攻撃開始時間
+    int mnAttackStartTime;
+
+    // 設定用攻撃開始時間
+    const int ATTACK_START_TIME = 1088;
+
+    // 攻撃サイズ
+    VECTOR mvAttackSize;
+
 public:
     Attack_Shot();
 	~Attack_Shot();

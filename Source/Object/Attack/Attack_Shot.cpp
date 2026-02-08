@@ -7,7 +7,9 @@
 
 Attack_Shot::Attack_Shot()
 : AttackBase()
+, mnAttackStartTime(0)
 {
+	mvAttackSize = VGet(3000.0f, 1.0f, 3000.0f);
 }
 
 Attack_Shot::~Attack_Shot()
@@ -21,6 +23,8 @@ void Attack_Shot::AttackInitilize()
 
 	mvPosition = mpAttackCharacter->GetPos();
 
+	mnAttackStartTime = Master::mpTimeManager->GetGameTime() + ATTACK_START_TIME;
+
 	SetActiveFlag(true);
 }
 
@@ -32,7 +36,7 @@ void Attack_Shot::AttackFinalize()
 // アタック更新
 void Attack_Shot::AttackUpdate()
 {
-	mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
+	//mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
 
 	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
 	{
@@ -48,12 +52,18 @@ void Attack_Shot::AttackLastUpdate()
 // アタック描画
 void Attack_Shot::AttackDraw()
 {
+	//DrawCapsule3D(mvPosition, VAdd(mvPosition, VGet(mvMoveDir.x * mvAttackSize.x, mvMoveDir.y * mvAttackSize.y, mvMoveDir.z * mvAttackSize.z)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 }
 
 // 当たり判定
 void Attack_Shot::HitCheck(CollisionData& collisionData)
 {
+	if (Master::mpTimeManager->GetGameTime() <= mnAttackStartTime)
+	{
+		return;
+	}
+
 	// TODO: 敵を作って戦いができるようになったら修正
 	if (mpAttackCharacter->GetID() == collisionData.objID)
 	{
@@ -67,9 +77,12 @@ void Attack_Shot::HitCheck(CollisionData& collisionData)
 		}
 	}
 
-	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 100.0f))
+	// HACK: 仮実装
+	if (HitCheck_Sphere_Capsule(collisionData.position, collisionData.size, mvPosition, VAdd(mvPosition, VGet(mvMoveDir.x * mvAttackSize.x, mvMoveDir.y * mvAttackSize.y, mvMoveDir.z * mvAttackSize.z)), 100.0f))
 	{
-		mnHiObjID.push_back(collisionData.objID);
+	// if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 100.0f))
+	// {
+	 	mnHiObjID.push_back(collisionData.objID);
 		collisionData.collisionFlag = true;
 	}
 }

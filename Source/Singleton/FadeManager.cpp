@@ -109,7 +109,7 @@ void FadeManager::FadeProcess(float fadeSpeed)
             mfFadeAlpha += fadeSpeed;
         }
     }
-    
+
     mfFadeAlpha -= fadeSpeed;
     
     if (mbFadeInFlag)

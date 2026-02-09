@@ -173,7 +173,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		cameraData.angle = VAdd(Master::mpDataManager->GetPlayPlayerData().townAngle, VGet(0.0f, UtilCalc::Pi, 0.0f));
+		cameraData.angle = /*VAdd*/UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().townAngle/*, VGet(0.0f, UtilCalc::Pi, 0.0f)*/);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -295,7 +295,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		cameraData.angle = VAdd(Master::mpDataManager->GetPlayPlayerData().dungeonAngle, VGet(0.0f, UtilCalc::Pi, 0.0f));
+		cameraData.angle = /*VAdd*/UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().dungeonAngle/*, VGet(0.0f, UtilCalc::Pi, 0.0f)*/);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -418,7 +418,6 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	switch (Master::mpDataManager->GetPlayPlayerData().status.characterType)
 	{
 	case CHARACTER_TYPE::ROBOT:
-		// TODO: アニメーションを設定してから
 	{
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;

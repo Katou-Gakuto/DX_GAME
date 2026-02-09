@@ -38,26 +38,42 @@ GameManager::~GameManager()
 void GameManager::Initilize()
 {
     Master::mpDataManager->Initilize();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("データ\n");
 
     mpCameraManager = new CameraManager();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("かめら\n");
 
     Master::mpResourceManager->Initilize();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("りそ\n");
 
     Master::mpFadeManager->Initilize();
     Master::mpStopManager->Initilize();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("フェー\n");
 
     mpSceneManager = new SceneManager();
 	mpSceneManager->Initilize();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("シー\n");
 
     mpObjectManager = new ObjectManager();
     mpObjectManager->Initilize();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("おぶ\n");
 
     mpAttackManager = new AttackManager();
     mpCollisionManager = new CollisionManager();
     mpMapManager = new MapManager();
     mpTargetManager = new TargetManager();
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("あた\n");
 
     SetDrawScreen(DX_SCREEN_BACK);
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("入れ替え設定\n");
 }
 
 // 終了処理

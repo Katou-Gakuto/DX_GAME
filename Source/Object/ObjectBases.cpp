@@ -57,7 +57,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mvOldPosition(UtilCalc::VZero)
 , mvPosition(UtilCalc::VZero)
 , mvMoveDir(UtilCalc::VXOne)
-, mvVec(UtilCalc::VXOne)
+, mvVec(UtilCalc::VZero)
 , mvAngle(UtilCalc::VZero)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
@@ -123,10 +123,10 @@ void CharacterBase::Update()
 // ÅIXV
 void CharacterBase::LastUpdate()
 {
-	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
-	{
-		return;
-	}
+	// if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
+	// {
+	// 	return;
+	// }
 
 	CharacterLastUpdate();
 	if (mpFsm != nullptr)

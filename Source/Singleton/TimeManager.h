@@ -6,15 +6,15 @@ class TimeManager
 private:
 
     // フレームカウント
-    int mnFrameCount;
+    unsigned int munFrameCount;
     // スタートタイム
-    int mnStartTime;
+    unsigned int munStartTime;
     // 一つ前の時間
-    int mnPreviousTime;
+    unsigned int munPreviousTime;
     // ストップタイム
-    int mnStopTime;
+    unsigned int munStopTime;
     // 1フレームの秒数
-    int mnOneFrame;
+    unsigned int munOneFrame;
 
     // ストップフラグ
     bool mbStopFlag;
@@ -39,25 +39,25 @@ public:
     /// フレーム数取得
     /// </summary>
     /// <returns>経過フレーム数</returns>
-    int GetFrame() const { return mnFrameCount; }
+    unsigned int GetFrame() const { return munFrameCount; }
 
     /// <summary>
     /// ゲーム時間取得
     /// </summary>
     /// <returns>ゲームの経過時間</returns>
-    int GetGameTime() const { return timeGetTime() - (mnStartTime + (mbNewSceneTimeFlag ? (mnStopTime + (timeGetTime() - mnPreviousTime)) : mnStopTime)); }
+    unsigned int GetGameTime() const { return timeGetTime() - (munStartTime + (mbNewSceneTimeFlag ? (munStopTime + (timeGetTime() - munPreviousTime)) : munStopTime)); }
 
     /// <summary>
     /// スタートからの経過時間
     /// </summary>
     /// <returns>経過時間</returns>
-    int GetTime() const { return timeGetTime() - mnStartTime; }
+    unsigned int GetTime() const { return timeGetTime() - munStartTime; }
 
     /// <summary>
     /// 一つ前の更新時間
     /// </summary>
     /// <returns>更新時間</returns>
-    int GetPreviousTime() const { return mnPreviousTime; }
+    unsigned int GetPreviousTime() const { return munPreviousTime; }
 
     /// <summary>
     /// ゲーム停止フラグ取得
@@ -75,13 +75,13 @@ public:
     /// 1フレームの秒数取得(ミリ秒)
     /// </summary>
     /// <returns>1フレームの秒数(ミリ秒)</returns>
-    int GetOneFrame() const { return mnOneFrame; }
+    unsigned int GetOneFrame() const { return munOneFrame; }
 
     /// <summary>
     /// 1フレームの秒数設定(ミリ秒)
     /// </summary>
     /// <param name="time">1フレームの秒数(ミリ秒)</param>
-    void SetOneFrame(int time) { mnOneFrame = time; }
+    void SetOneFrame(int time) { munOneFrame = time; }
 
     /// <summary>
     /// シーン変更中に経ったゲーム時間を一定化するフラグを設定

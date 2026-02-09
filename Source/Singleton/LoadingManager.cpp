@@ -27,6 +27,8 @@ void LoadingManager::Loading()
 		Master::mpFadeManager->FadeEnd();
 
 		mullLoadingFlag.DisableFlag(LOADING_NUMBER::FADE);
+		// ユーザー定義メッセージをログに追加
+		ErrorLogAdd("フェードロード\n");
 	}
 
 	// シーン
@@ -40,6 +42,8 @@ void LoadingManager::Loading()
 		while ((GetASyncLoadNum() != 0) && !Master::mpEndManager->EndFlag())
 		{
 			// TODO: シーン読み込み中描画
+    // ユーザー定義メッセージをログに追加
+			ErrorLogAdd("シーン読み込み\n");
 		}
 		if (GetASyncLoadNum() != 0)
 		{
@@ -51,4 +55,6 @@ void LoadingManager::Loading()
 		Master::mpFadeManager->FadeIn();
 		mullLoadingFlag.DisableFlag(LOADING_NUMBER::SCENE);
 	}
+
+	ErrorLogFmtAdd("現在のスコア: %lld", mullLoadingFlag);
 }

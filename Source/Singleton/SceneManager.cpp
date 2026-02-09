@@ -36,6 +36,6 @@ void SceneManager::NextScene()
 // ŽŸ‚ÌƒV[ƒ“‚ðÝ’è
 void SceneManager::SetNextScene(SCENE nextScene)
 {
-	Master::mpFadeManager->FadeOut();
+	//Master::mpFadeManager->FadeOut();
 	meNextScene = nextScene;
 }

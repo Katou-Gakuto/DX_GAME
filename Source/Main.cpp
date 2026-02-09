@@ -69,6 +69,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	{
 		return -1;		// エラーが起きたら直ちに終了
 	}
+    // ログ出力を有効化（必要に応じて）
+    SetOutApplicationLogValidFlag(TRUE);
+
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("TEST\n");
 
 	// 初期化
 	Master::mpGameManager->Initilize();
@@ -76,9 +81,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ループ
 	while (!Master::mpEndManager->EndFlag()) {
 
+		// ユーザー定義メッセージをログに追加
+		ErrorLogAdd("LOOP\n");
+
 		// ローディング処理
 		if (Master::mpLoadingManager->GetLoadingFlag() && !Master::mpFadeManager->GetFadeFlag())
 		{
+			// ユーザー定義メッセージをログに追加
+			ErrorLogAdd("ロード\n");
 			// 読み込み
 			Master::mpLoadingManager->Loading();
 		}
@@ -87,6 +97,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		// メイン処理
 		if (Master::mpTimeManager->GetNextUpdateFlag())
 		{
+			// ユーザー定義メッセージをログに追加
+			ErrorLogAdd("メイン処理\n");
 			// 更新
 			Master::mpGameManager->Update();
 

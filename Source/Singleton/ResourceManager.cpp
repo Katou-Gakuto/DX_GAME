@@ -7,7 +7,10 @@
 #include "Vector2.h"
 
 #include "DxLib.h"
+#define EFFEK_SEER_FLAG false
+#if EFFEK_SEER_FLAG
 #include "EffekseerForDXLib.h"
+#endif
 
 #include "Master.h"
 
@@ -614,6 +617,7 @@ void ResourceManager::MovieLoop(int handle)
 // エフェクト情報取得
 int ResourceManager::GetEffectResource(std::string fileName, float size)
 {
+#if EFFEK_SEER_FLAG
 	int handle = -1;
 	if (mmEffectHandle.find(fileName) != mmEffectHandle.end())
 	{
@@ -635,11 +639,15 @@ int ResourceManager::GetEffectResource(std::string fileName, float size)
 	mmEffectCount[handle] = 1;
 
 	return handle;
+#else
+	return -1;
+#endif
 }
 
 // エフェクトハンドルを取得する
 int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 {
+#if EFFEK_SEER_FLAG
 	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
 	{
 		if (effectHandle.second[0] == handle)
@@ -672,11 +680,15 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 	}
 
 	return -1;
+#else
+return -1;
+#endif
 }
 
 // 再生中エフェクトハンドルを削除する
 void ResourceManager::DeletePlayEffectHandle(int handle)
 {
+#if EFFEK_SEER_FLAG
 	// エフェクト削除
 	StopEffekseer3DEffect(handle);
 
@@ -691,11 +703,13 @@ void ResourceManager::DeletePlayEffectHandle(int handle)
 			}
 		}
 	}
+#endif
 }
 
 // エフェクトカウントを減らす
 void ResourceManager::ReduceEffectDataHandle(int handle)
 {
+#if EFFEK_SEER_FLAG
 	int reduceHandle = -1;
 	std::string fileName = "NULL";
 	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
@@ -735,11 +749,13 @@ void ResourceManager::ReduceEffectDataHandle(int handle)
 		mmEffectCount.erase(reduceHandle);
 		mmEffectHandle.erase(fileName);
 	}
+#endif
 }
 
 // エフェクト描画
 void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECTOR size)
 {
+#if EFFEK_SEER_FLAG
 	if (!mbEffectDrawFlag)
 	{
 		DrawGraph(0, 0, mnEffectDrawPreHandle, TRUE);
@@ -749,23 +765,29 @@ void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECT
 	SetPosPlayingEffekseer3DEffect(handle, position.x, position.y, position.z);
 	SetRotationPlayingEffekseer3DEffect(handle, angle.x, angle.y, angle.z);
 	SetScalePlayingEffekseer3DEffect(handle, size.x, size.y, size.z);
+#endif
 }
 
 // エフェクト停止
 void ResourceManager::StopEffect(int handle)
 {
+#if EFFEK_SEER_FLAG
 	SetSpeedPlayingEffekseer3DEffect(handle, 0.0f);
+#endif
 }
 
 // エフェクト再生
 void ResourceManager::PlayEffect(int handle, float speed)
 {
+#if EFFEK_SEER_FLAG
 	SetSpeedPlayingEffekseer3DEffect(handle, speed);
+#endif
 }
 
 // 全エフェクト停止
 void ResourceManager::StopAllEfect()
 {
+#if EFFEK_SEER_FLAG
 	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
 	{
 		for (int i = 1; i < effectHandle.second.size(); i++)
@@ -773,11 +795,13 @@ void ResourceManager::StopAllEfect()
 			StopEffect(effectHandle.second[i]);
 		}
 	}
+#endif
 }
 
 // 全エフェクト再生開始
 void ResourceManager::PlayAllEfect()
 {
+#if EFFEK_SEER_FLAG
 	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
 	{
 		for (int i = 1; i < effectHandle.second.size(); i++)
@@ -785,11 +809,13 @@ void ResourceManager::PlayAllEfect()
 			PlayEffect(effectHandle.second[i], 1.0f);
 		}
 	}
+#endif
 }
 
 // エフェクト初期化
 void ResourceManager::EffectInit()
 {
+#if EFFEK_SEER_FLAG
 	// 引数には画面に表示する最大パーティクル数を設定する。
 	if (Effekseer_Init(20000 * 10) == -1)//8000) == -1)
 	{
@@ -811,11 +837,13 @@ void ResourceManager::EffectInit()
 
 	// エフェクト描画用画像取得
 	mnEffectDrawPreHandle = GetGraphHandle(msResourceFile + "Effect/Background.png");
+#endif
 }
 
 // エフェクト終了
 void ResourceManager::EffectFinailize()
 {
+#if EFFEK_SEER_FLAG
     for (auto &handle : mmEffectHandle)
     {
         DeleteEffekseerEffect(handle.second[0]);
@@ -824,15 +852,18 @@ void ResourceManager::EffectFinailize()
     mmEffectHandle.clear();
     mmEffectHandle.clear();
     Effkseer_End();
+#endif
 }
 
 // エフェクト描画処理
 void ResourceManager::EffectDrawProcess()
 {
+#if EFFEK_SEER_FLAG
 	// DXライブラリのカメラとEffekseerのカメラを同期する。
 	Effekseer_Sync3DSetting();
 	// Effekseerにより再生中のエフェクトを更新する。
 	UpdateEffekseer3D();
 	// Effekseerにより再生中のエフェクトを描画する。
 	DrawEffekseer3D();
+#endif
 }

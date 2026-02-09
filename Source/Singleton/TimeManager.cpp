@@ -1,15 +1,17 @@
 #include <windows.h>
 
+#include "DxLib.h"
+
 #include "TimeManager.h"
 
 // コンストラクタ
 TimeManager::TimeManager(int oneFrameTime)
-: mnFrameCount(0)
-, mnStartTime(0)
-, mnPreviousTime(0)
-, mnStopTime(0)
+: munFrameCount(0)
+, munStartTime(0)
+, munPreviousTime(0)
+, munStopTime(0)
 , mbStopFlag(false)
-, mnOneFrame(oneFrameTime)
+, munOneFrame(oneFrameTime)
 , mbNewSceneTimeFlag(false)
 {
 }
@@ -21,29 +23,31 @@ TimeManager::~TimeManager()
 void TimeManager::Initilize()
 {
     timeBeginPeriod(1); // タイマーの分解量の設定を1msにする (1ミリ秒/1000秒)にする
-    mnStartTime = timeGetTime();
+    munStartTime = timeGetTime();
 }
 
 // 更新
 bool TimeManager::GetNextUpdateFlag()
 {
+
+    ErrorLogFmtAdd("時間: %ld", timeGetTime());
     int nowTime = timeGetTime();
-    if ((mnPreviousTime + mnOneFrame) <= nowTime)
+    if ((munPreviousTime + munOneFrame) <= nowTime)
     {
-        mnFrameCount += 1;
+        munFrameCount += 1;
 
         if (mbStopFlag) {
-            mnStopTime += (nowTime - mnPreviousTime);
+            munStopTime += (nowTime - munPreviousTime);
             if (mbNewSceneTimeFlag) {
                 mbNewSceneTimeFlag = false;
             }
         }
         else if (mbNewSceneTimeFlag) {
-            mnStopTime += ((nowTime - mnPreviousTime) - mnOneFrame);
+            munStopTime += ((nowTime - munPreviousTime) - munOneFrame);
             mbNewSceneTimeFlag = false;
         }
 
-        mnPreviousTime = nowTime;
+        munPreviousTime = nowTime;
 
         return true;
 

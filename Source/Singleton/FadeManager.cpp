@@ -20,9 +20,9 @@
 /*----------------------*/
 
 FadeManager::FadeManager()
-: mfFadeAlpha(255)
+: mfFadeAlpha(0)
 , mbFadeFlag(false)
-, mbFadeDrawFlag(true)
+, mbFadeDrawFlag(false)
 , mbFadeOutFlag(false)
 , mbFadeInFlag(false)
 , mpDataManager(nullptr)
@@ -52,7 +52,7 @@ void FadeManager::Finailize()
 // 描画
 void FadeManager::Draw()
 {
-    if (mbFadeDrawFlag)
+    if (mbFadeDrawFlag && false)
     {
         Vector2_Int displaySize = ResourceManager::mstDisplaySize;
 
@@ -67,7 +67,7 @@ void FadeManager::Draw()
 // フェードアウト開始
 void FadeManager::FadeOut()
 {
-    if (mbFadeFlag || mbFadeInFlag)
+    if (mbFadeFlag || mbFadeInFlag || true)
     {
         return;
     }
@@ -82,7 +82,7 @@ void FadeManager::FadeOut()
 // フェードイン開始
 void FadeManager::FadeIn()
 {
-    if (mbFadeFlag || mbFadeOutFlag)
+    if (mbFadeFlag || mbFadeOutFlag || true)
     {
         return;
     }
@@ -108,8 +108,12 @@ void FadeManager::FadeProcess(float fadeSpeed)
             preTime = mpTimeManager->GetTime();
             mfFadeAlpha += fadeSpeed;
         }
+        // ユーザー定義メッセージをログに追加
+        ErrorLogAdd("フェード\n");
     }
-    
+
+    // ユーザー定義メッセージをログに追加
+    ErrorLogAdd("フェード終了\n");
     mfFadeAlpha -= fadeSpeed;
     
     if (mbFadeInFlag)

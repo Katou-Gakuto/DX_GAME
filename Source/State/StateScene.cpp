@@ -149,6 +149,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
+	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().townAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
 	// モデルとアニメション設定
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::TOWN);
@@ -172,6 +173,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
+		cameraData.angle = VAdd(Master::mpDataManager->GetPlayPlayerData().townAngle, VGet(0.0f, UtilCalc::Pi, 0.0f));
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -280,6 +282,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
+	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().dungeonAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
 	// モデルとアニメション設定
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::DUNGEON);
@@ -292,6 +295,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
+		cameraData.angle = VAdd(Master::mpDataManager->GetPlayPlayerData().dungeonAngle, VGet(0.0f, UtilCalc::Pi, 0.0f));
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -424,6 +428,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		player->Initilize();
 		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
+		player->SetAngle(VGet(0.0f, UtilCalc::Pi, 0.0f));
 	}
 		break;
 	}

@@ -13,6 +13,7 @@ TimeManager::TimeManager(int oneFrameTime)
 , mbStopFlag(false)
 , munOneFrame(oneFrameTime)
 , mbNewSceneTimeFlag(false)
+, mnTimeResetFlag(0)
 {
 }
 // デストラクタ
@@ -29,9 +30,16 @@ void TimeManager::Initilize()
 // 更新
 bool TimeManager::GetNextUpdateFlag()
 {
-
-    ErrorLogFmtAdd("時間: %ld", timeGetTime());
     int nowTime = timeGetTime();
+ 
+    // 0になった場合の処理
+    if (munPreviousTime > nowTime)
+    {
+        munPreviousTime = 0;
+        mnTimeResetFlag += 1;
+    }
+
+    // 時間経過処理
     if ((munPreviousTime + munOneFrame) <= nowTime)
     {
         munFrameCount += 1;

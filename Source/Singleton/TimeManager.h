@@ -1,6 +1,7 @@
 #pragma once
 #include <windows.h>
 
+// TODO: long long int 以上対応の構造体を作る
 class TimeManager
 {
 private:
@@ -21,6 +22,9 @@ private:
 
     // 新しいシーンに移っている処理をしたフラグ
     bool mbNewSceneTimeFlag;
+
+    // 時間がリセットされたフラグ
+    int mnTimeResetFlag;
 
 public:
     /*コンストラクタ*/

@@ -101,8 +101,10 @@ typedef struct PlayerData : public CHARACTER_DATA
 	SCENE dungeonType;	// ダンジョン
 	SCENE preMap;	// 前居たマップ
 
-	VECTOR townPos;	// 町ポジション
-	VECTOR dungeonPos;	// ダンジョンポジション
+	VECTOR townPos;		// 町ポジション
+	VECTOR townAngle;	// 町アングル
+	VECTOR dungeonPos;		// ダンジョンポジション
+	VECTOR dungeonAngle;	// ダンジョンアングル
 	
 	bool dataFlag;	// データが存在するかどうか
 }PLAYER_DATA;

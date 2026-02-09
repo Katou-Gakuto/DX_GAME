@@ -56,7 +56,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 : ObjectBase(OBJECT_TYPE::CHARACTER_BASE, true, nextSceneDeleteFlag)
 , mvOldPosition(UtilCalc::VZero)
 , mvPosition(UtilCalc::VZero)
-, mvMoveDir(UtilCalc::VXOne)
+, mvMoveDir(UtilCalc::VZero)
 , mvVec(UtilCalc::VZero)
 , mvAngle(UtilCalc::VZero)
 , mstStatus(status)
@@ -123,10 +123,10 @@ void CharacterBase::Update()
 // 最終更新
 void CharacterBase::LastUpdate()
 {
-	// if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
-	// {
-	// 	return;
-	// }
+	 if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
+	 {
+	 	return;
+	 }
 
 	CharacterLastUpdate();
 	if (mpFsm != nullptr)
@@ -140,14 +140,14 @@ void CharacterBase::LastUpdate()
 
 	// アニメーション更新
 	mpAnimation->Update();
-
-	// モデルに反映
-	mpModelController->UpdateModels();
 }
 
 // 描画
 void CharacterBase::Draw()
 {
+	// モデルに反映
+	mpModelController->UpdateModels();
+
 	CharacterDraw();
 	if (mpFsm != nullptr)
 	{

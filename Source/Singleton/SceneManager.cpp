@@ -2,6 +2,7 @@
 
 #include "FadeManager.h"
 #include "SceneManager.h"
+#include "TimeManager.h"
 #include "UtilFactorys.h"
 
 SceneManager::SceneManager()
@@ -30,6 +31,8 @@ void SceneManager::Update()
 // ŽŸ‚ÌƒV[ƒ“‚ÖˆÚ“®‚·‚é
 void SceneManager::NextScene()
 {
+	Master::mpTimeManager->SetNewSceneTimeFlag(true);
+
 	mpFSMScene->NextScene(this);
 }
 

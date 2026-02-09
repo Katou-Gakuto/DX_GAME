@@ -203,8 +203,10 @@ void DataManager::Initilize()
 		setInitPlayer.mapType = SCENE::TOWN_1;
 		setInitPlayer.townType = SCENE::TOWN_1;
 		setInitPlayer.townPos = UtilCalc::VZero;
+		setInitPlayer.townAngle = UtilCalc::VZero;
 		setInitPlayer.dungeonType = SCENE::NONE;
 		setInitPlayer.dungeonPos = UtilCalc::VZero;
+		setInitPlayer.dungeonAngle = UtilCalc::VZero;
 		setInitPlayer.preMap = SCENE::NONE;
 		setInitPlayer.position = UtilCalc::VZero;
 		setInitPlayer.angle = UtilCalc::VZero;
@@ -231,8 +233,10 @@ void DataManager::Initilize()
 		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.townPos = UtilCalc::VZero;
+		setPlayer.townAngle = UtilCalc::VZero;
 		setPlayer.dungeonType = SCENE::NONE;
 		setPlayer.dungeonPos = UtilCalc::VZero;
+		setPlayer.dungeonAngle = UtilCalc::VZero;
 		setPlayer.preMap = SCENE::NONE;
 		setPlayer.position = UtilCalc::VZero;
 		setPlayer.angle = UtilCalc::VZero;

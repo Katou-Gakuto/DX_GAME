@@ -140,14 +140,14 @@ void CharacterBase::LastUpdate()
 
 	// アニメーション更新
 	mpAnimation->Update();
+	
+	// モデルに反映
+	mpModelController->UpdateModels();
 }
 
 // 描画
 void CharacterBase::Draw()
 {
-	// モデルに反映
-	mpModelController->UpdateModels();
-
 	CharacterDraw();
 	if (mpFsm != nullptr)
 	{

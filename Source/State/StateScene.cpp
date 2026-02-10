@@ -173,7 +173,8 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		cameraData.angle = /*VAdd*/UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().townAngle/*, VGet(0.0f, UtilCalc::Pi, 0.0f)*/);
+		// HACK: 全アングル反転させてるから他のアングルが関係し始めたら変える
+		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().townAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -295,7 +296,8 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		cameraData.angle = /*VAdd*/UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().dungeonAngle/*, VGet(0.0f, UtilCalc::Pi, 0.0f)*/);
+		// HACK: 全アングル反転させてるから他のアングルが関係し始めたら変える
+		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().dungeonAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);

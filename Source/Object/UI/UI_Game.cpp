@@ -186,6 +186,11 @@ void UI_Game::UIInitilize()
 
 }
 
+// UIÅI‰Šú‰»
+void UI_Game::UILastInitilize()
+{
+}
+
 // UII—¹
 void UI_Game::UIFinalize()
 {

@@ -42,12 +42,16 @@ public:
     void Initilize();
     /*終了*/
     void Finalize();
-    /*更新*/
-    void Update();
-    /*最終更新*/
-    void LastUpdate();
-    /*描画*/
-    void Draw();
+
+    /// <summary>オブジェクト最終初期化</summary>
+    void ObjectLastInitilize();
+    /*オブジェクト更新*/
+    void ObjectUpdate();
+    /*オブジェクト最終更新*/
+    void ObjectLastUpdate();
+    /*オブジェクト描画*/
+    void ObjectDraw();
+
 
     /*リストにオブジェクトを追加する*/
     int Add(ObjectBase* object, OBJECT_TYPE typeNumber);

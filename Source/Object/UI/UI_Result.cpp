@@ -42,6 +42,11 @@ void UI_Result::UIInitilize()
     AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
 }
 
+// UIç≈èIèâä˙âª
+void UI_Result::UILastInitilize()
+{
+}
+
 // UIèIóπ
 void UI_Result::UIFinalize()
 {

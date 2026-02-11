@@ -88,6 +88,19 @@ void CharacterBase::Initilize()
 	CharacterInitilize();
 }
 
+// 最終初期化
+void CharacterBase::LastInitilize()
+{
+	// アニメーション初期化
+	mpAnimation->Initilize();
+
+	// モデルコントローラー初期化
+	mpModelController->Initilize();
+
+
+	CharacterLastInitilize();
+}
+
 // 終了
 void CharacterBase::Finalize()
 {
@@ -382,13 +395,19 @@ BuildingBase::~BuildingBase()
 // 初期化
 void BuildingBase::Initilize()
 {
-	CollisionInitilize();
+	BuildingInitilize();
+}
+
+// 最終初期化
+void BuildingBase::LastInitilize()
+{
+	BuildingLastInitilize();
 }
 
 // 終了
 void BuildingBase::Finalize()
 {
-	CollisionFinalize();
+	BuildingFinalize();
 }
 
 // 更新
@@ -399,7 +418,7 @@ void BuildingBase::Update()
 		return;
 	}
 
-	CollisionUpdate();
+	BuildingUpdate();
 }
 
 // 最終更新
@@ -410,13 +429,13 @@ void BuildingBase::LastUpdate()
 		return;
 	}
 
-	CollisionLastUpdate();
+	BuildingLastUpdate();
 }
 
 // 描画
 void BuildingBase::Draw()
 {
-	CollisionDraw();
+	BuildingDraw();
 }
 
 /*--------------------------------------*/
@@ -447,6 +466,12 @@ AttackBase::~AttackBase()
 void AttackBase::Initilize()
 {
 	AttackInitilize();
+}
+
+// 最終初期化
+void AttackBase::LastInitilize()
+{
+	AttackLastInitilize();
 }
 
 // 終了
@@ -556,6 +581,12 @@ void UIBase::Initilize()
 	mpTimeManager = Master::mpTimeManager;
 
 	UIInitilize();
+}
+
+// 最終初期化
+void UIBase::LastInitilize()
+{
+	UILastInitilize();
 }
 
 // 終了

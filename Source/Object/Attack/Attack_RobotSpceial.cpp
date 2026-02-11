@@ -26,6 +26,11 @@ void Attack_RobotSpceial::AttackInitilize()
 	SetActiveFlag(true);
 }
 
+// アタック最終初期化
+void Attack_RobotSpceial::AttackLastInitilize()
+{
+}
+
 // アタック終了
 void Attack_RobotSpceial::AttackFinalize()
 {

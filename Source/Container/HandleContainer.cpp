@@ -1,3 +1,7 @@
+#include <map>
+#include <string>
+#include <vector>
+
 #include "Master.h"
 
 #include "EndManager.h"
@@ -8,8 +12,8 @@ HandleContainer::HandleContainer()
 : msRegisterFileName("")
 {
     meHandleFlag = HANDLE_FLAG::NONE;
-    mmHandle.clear();
-    mmHandleCount.clear();
+    mmHandles.clear();
+    mmHandleCounts.clear();
 }
 
 // デストラクタ
@@ -25,7 +29,7 @@ bool HandleContainer::CheckFileName(std::string fileName)
 {
     msRegisterFileName = fileName;
 
-    return mmHandle.find(fileName) != mmHandle.end();
+    return mmHandles.find(fileName) != mmHandles.end();
 }
 
 // ハンドルを登録する（デフォルト）
@@ -37,18 +41,18 @@ int HandleContainer::RegisterHandle(int handle, bool countFlag)
         return -1;
     }
 
-    if (mmHandle.find(msRegisterFileName) == mmHandle.end())
+    if (mmHandles.find(msRegisterFileName) == mmHandles.end())
     {
         std::vector<int> enptyHandleList;
         enptyHandleList.clear();
-        mmHandle[msRegisterFileName] = enptyHandleList;
+        mmHandles[msRegisterFileName] = enptyHandleList;
         
-        mmHandleCount[handle] = 0;
+        mmHandleCounts[handle] = 0;
     }
-    mmHandle[msRegisterFileName].push_back(handle);
+    mmHandles[msRegisterFileName].push_back(handle);
     if (countFlag)
     {
-        mmHandleCount[mmHandle[msRegisterFileName][0]] += 1;
+        mmHandleCounts[mmHandles[msRegisterFileName][0]] += 1;
     }
     /*
     
@@ -95,5 +99,45 @@ int HandleContainer::RegisterHandle(int handle, std::string fileName, bool count
 // ハンドル削除
 int HandleContainer::DeleteHandle(int handle, bool countFlag)
 {
-    return 0;
+    for (auto myHandle : mmHandles)
+    {
+		for (int i = 0; i < myHandle.second.size(); i++)
+		{
+			if (myHandle.second[i] == handle)
+			{
+				if ((myHandle.second.size() - 1) <= 0)
+				{
+					mmMovieHandle.erase(myHandle.first);
+				}
+				else
+				{
+					mmMovieHandle[myHandle.first].erase(mmMovieHandle[myHandle.first].begin() + i);
+				}
+				return;
+			}
+		}
+    }
+
+    return -1;
+    /*
+    
+	for (auto movieHandle : mmMovieHandle)
+	{
+		for (int i = 0; i < movieHandle.second.size(); i++)
+		{
+			if (movieHandle.second[i] == handle)
+			{
+				if ((movieHandle.second.size() - 1) <= 0)
+				{
+					mmMovieHandle.erase(movieHandle.first);
+				}
+				else
+				{
+					mmMovieHandle[movieHandle.first].erase(mmMovieHandle[movieHandle.first].begin() + i);
+				}
+				return;
+			}
+		}
+	}
+    */
 }

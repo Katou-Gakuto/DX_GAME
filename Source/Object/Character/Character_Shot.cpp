@@ -46,6 +46,11 @@ void Character_Shot::CharacterInitilize()
 {
 }
 
+// キャラクター初期化
+void Character_Shot::CharacterLastInitilize()
+{
+}
+
 // キャラクター終了
 void Character_Shot::CharacterFinalize()
 {

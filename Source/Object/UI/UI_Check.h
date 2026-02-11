@@ -35,6 +35,8 @@ public:
 private:
     /*UI‰Šú‰»*/
     void UIInitilize() override;
+    /*UI‰Šú‰»*/
+    void UILastInitilize() override;
     /*UII—¹*/
     void UIFinalize() override;
     /*UIXV*/

@@ -34,9 +34,25 @@ void ObjectManager::Finalize()
 	// 全オブジェクト削除
 	DeleteAll();
 }
+//　オブジェクト最終初期化
+void ObjectManager::ObjectLastInitilize()
+{
+	if (mpObjectBase == nullptr)
+	{
+		return;
+	}
 
-// 更新
-void ObjectManager::Update()
+	ObjectBase* workObject = mpObjectBase;
+	do
+	{
+		workObject->LastInitilize();
+
+		workObject = workObject->GetNextObject();
+	} while (workObject != nullptr);
+}
+
+// オブジェクト更新
+void ObjectManager::ObjectUpdate()
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -54,8 +70,8 @@ void ObjectManager::Update()
 	} while (workObject != nullptr);
 }
 
-// 最終更新
-void ObjectManager::LastUpdate()
+// オブジェクト最終更新
+void ObjectManager::ObjectLastUpdate()
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -73,8 +89,8 @@ void ObjectManager::LastUpdate()
 	} while (workObject != nullptr);
 }
 
-// 描画
-void ObjectManager::Draw()
+// オブジェクト描画
+void ObjectManager::ObjectDraw()
 {
 	if (mpObjectBase == nullptr)
 	{

@@ -18,10 +18,10 @@ class HandleContainer
 {
 private:
     // ハンドル
-    std::map<std::string, std::vector<int>> mmHandle;
+    std::map<std::string, std::vector<int>> mmHandles;
 
     // カウント
-    std::map<int, int> mmHandleCount;
+    std::map<int, int> mmHandleCounts;
 
     // 次のハンドル追加ファイル
     std::string msRegisterFileName;

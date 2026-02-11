@@ -24,6 +24,8 @@ public:
 private:
     /*アタック初期化*/
     void AttackInitilize() override;
+    /*アタック最終初期化*/
+    void AttackLastInitilize() override;
     /*アタック終了*/
     void AttackFinalize() override;
     /*アタック更新*/

@@ -187,6 +187,11 @@ void UI_Title::UIInitilize()
     }
 }
 
+// UIÅI‰Šú‰»
+void UI_Title::UILastInitilize()
+{
+}
+
 // UII—¹
 void UI_Title::UIFinalize()
 {

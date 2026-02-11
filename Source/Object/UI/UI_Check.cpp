@@ -27,7 +27,7 @@ UI_Check<T>::~UI_Check()
 
 // UI‰Šú‰»
 template<typename T>
-void UI_Check<T>::UIInitilize()
+void UI_Check<T>::UILastInitilize()
 {
 }
 

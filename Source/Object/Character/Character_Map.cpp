@@ -33,6 +33,11 @@ void Character_Map::CharacterInitilize()
 {
 }
 
+// キャラクター最終初期化
+void Character_Map::CharacterLastInitilize()
+{
+}
+
 // キャラクター終了
 void Character_Map::CharacterFinalize()
 {

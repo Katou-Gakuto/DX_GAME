@@ -81,11 +81,11 @@ void GameManager::Update()
 
     mpCameraManager->Update();
 
-    mpObjectManager->Update();
+    mpObjectManager->ObjectUpdate();
 
     mpCollisionManager->CollisionProcess();
 
-    mpObjectManager->LastUpdate();
+    mpObjectManager->ObjectLastUpdate();
 
 	mpSceneManager->Update();
 }
@@ -104,11 +104,11 @@ void GameManager::Draw()
     mpCameraManager->Draw();
 
     Master::mpResourceManager->StartDraw();
-    mpObjectManager->Draw();
+    mpObjectManager->ObjectDraw();
     mpMapManager->Draw();
     Master::mpResourceManager->MiddleDraw();
 
-    mpObjectManager->Draw();
+    mpObjectManager->ObjectDraw();
 
     mpMapManager->Draw();
 

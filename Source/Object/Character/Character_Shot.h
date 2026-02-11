@@ -24,6 +24,8 @@ public:
 private:
     /*キャラクター初期化*/
     void CharacterInitilize() override;
+    /*キャラクター最終初期化*/
+    void CharacterLastInitilize() override;
     /*キャラクター終了*/
     void CharacterFinalize() override;
 

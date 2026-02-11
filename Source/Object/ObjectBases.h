@@ -97,6 +97,8 @@ public:
 
     /*初期化*/
     virtual void Initilize() = 0;
+    /// <summary>最終初期化</summary>
+    virtual void LastInitilize() = 0;
     /*終了*/
     virtual void Finalize() = 0;
     /*更新*/
@@ -283,6 +285,8 @@ public:
 
     /*初期化*/
     void Initilize() override final;
+    /// <summary>最終初期化</summary>
+    void LastInitilize() override final;
     /*終了*/
     void Finalize() override final;
     /*更新*/
@@ -317,6 +321,8 @@ public:
 protected:
     /*キャラクター初期化*/
     virtual void CharacterInitilize() = 0;
+    /*キャラクター最終初期化*/
+    virtual void CharacterLastInitilize() = 0;
     /*キャラクター終了*/
     virtual void CharacterFinalize() = 0;
 
@@ -439,7 +445,7 @@ public:
 /*------------------------------------------*/
 /*          【ビルディングベース】          */
 /*------------------------------------------*/
-
+// TODO: いろいろ調整
 class BuildingBase : public ObjectBase
 {
 protected:
@@ -459,6 +465,8 @@ public:
 
     /*初期化*/
     void Initilize() override final;
+    /// <summary>最終初期化</summary>
+    void LastInitilize() override final;
     /*終了*/
     void Finalize() override final;
     /*更新*/
@@ -473,16 +481,18 @@ public:
     /*----------------------*/
 
 protected:
-    /*コリジョン初期化*/
-    virtual void CollisionInitilize() = 0;
-    /*コリジョン終了*/
-    virtual void CollisionFinalize() = 0;
-    /*コリジョン更新*/
-    virtual void CollisionUpdate() = 0;
-    /*コリジョン最終更新*/
-    virtual void CollisionLastUpdate() = 0;
-    /*コリジョン描画*/
-    virtual void CollisionDraw() = 0;
+    /*ビルディング初期化*/
+    virtual void BuildingInitilize() = 0;
+    /*ビルディング最終初期化*/
+    virtual void BuildingLastInitilize() = 0;
+    /*ビルディング終了*/
+    virtual void BuildingFinalize() = 0;
+    /*ビルディング更新*/
+    virtual void BuildingUpdate() = 0;
+    /*ビルディング最終更新*/
+    virtual void BuildingLastUpdate() = 0;
+    /*ビルディング描画*/
+    virtual void BuildingDraw() = 0;
 };
 
 /*----------------------------------------------------*/
@@ -537,6 +547,8 @@ public:
 
     /*初期化*/
     void Initilize() override final;
+    /// <summary>最終初期化</summary>
+    void LastInitilize() override final;
     /*終了*/
     void Finalize() override final;
     /*更新*/
@@ -556,6 +568,8 @@ public:
 protected:
     /*アタック初期化*/
     virtual void AttackInitilize() = 0;
+    /*アタック最終初期化*/
+    virtual void AttackLastInitilize() = 0;
     /*アタック終了*/
     virtual void AttackFinalize() = 0;
     /*アタック更新*/
@@ -701,6 +715,8 @@ public:
 
     /*初期化*/
     void Initilize() override final;
+    /// <summary>最終初期化</summary>
+    void LastInitilize() override final;
     /*終了*/
     void Finalize() override final;
     /*更新*/
@@ -800,6 +816,8 @@ public:
 protected:
     /*UI初期化*/
     virtual void UIInitilize() = 0;
+    /*UI最終初期化*/
+    virtual void UILastInitilize() = 0;
     /*UI終了*/
     virtual void UIFinalize() = 0;
     /*UI更新*/

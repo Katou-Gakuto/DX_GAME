@@ -28,6 +28,11 @@ void Attack_Shot::AttackInitilize()
 	SetActiveFlag(true);
 }
 
+// アタック最終初期化
+void Attack_Shot::AttackLastInitilize()
+{
+}
+
 // アタック終了
 void Attack_Shot::AttackFinalize()
 {

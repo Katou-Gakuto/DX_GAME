@@ -16,6 +16,8 @@ public:
 private:
     /*UI初期化*/
     void UIInitilize() override;
+    /*UI最終初期化*/
+    void UILastInitilize() override;
     /*UI終了*/
     void UIFinalize() override;
     /*UI更新*/

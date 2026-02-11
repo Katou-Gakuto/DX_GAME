@@ -1,6 +1,8 @@
 #include "Master.h"
 
 #include "FadeManager.h"
+#include "GameManager.h"
+#include "ObjectManager.h"
 #include "SceneManager.h"
 #include "TimeManager.h"
 #include "UtilFactorys.h"
@@ -34,6 +36,9 @@ void SceneManager::NextScene()
 	Master::mpTimeManager->SetNewSceneTimeFlag(true);
 
 	mpFSMScene->NextScene(this);
+
+	// オブジェクト最終更新
+	Master::mpGameManager->GetObjectManager()->ObjectLastInitilize();
 }
 
 // 次のシーンを設定

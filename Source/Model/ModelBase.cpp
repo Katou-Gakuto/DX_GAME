@@ -1,4 +1,4 @@
-#include "Master.h"
+ï»¿#include "Master.h"
 
 #include "ModelBase.h"
 #include "ModelsControllerBase.h"
@@ -17,13 +17,13 @@ ModelBase::~ModelBase()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void ModelBase::Initilize()
 {
 	ModelInitilize();
 }
 
-// I—¹
+// çµ‚äº†
 void ModelBase::Finalize()
 {
 	ModelFinalize();
@@ -34,7 +34,7 @@ void ModelBase::SetModelsController(ModelsControllerBase* modelsController)
     mpModelsController = modelsController;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ(’¸“_)
+// ãƒ¢ãƒ‡ãƒ«æç”»(é ‚ç‚¹)
 void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData)
 {
     for (int i = 0; i < modelVertexData.size(); i++)
@@ -51,7 +51,7 @@ void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexDat
     }
 }
 
-// ƒ‚ƒfƒ‹•`‰æ(ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹)
+// ãƒ¢ãƒ‡ãƒ«æç”»(ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«)
 void ModelBase::ModelDraw_Handle(const int handle)
 {
     if (handle != -1)
@@ -60,13 +60,13 @@ void ModelBase::ModelDraw_Handle(const int handle)
     }
 }
 
-// ƒ‚ƒfƒ‹•`‰æ(‰æ‘œ)
+// ãƒ¢ãƒ‡ãƒ«æç”»(ç”»åƒ)
 void ModelBase::ModelDraw_Graph(const DRAW_GRAPH_DATA drawData)
 {
     Master::mpResourceManager->DrawData_Graph(drawData);
 }
 
-// ƒ‚ƒfƒ‹•`‰æ(“®‰æ)
+// ãƒ¢ãƒ‡ãƒ«æç”»(å‹•ç”»)
 void ModelBase::ModelDraw_Movie(const DRAW_GRAPH_DATA drawData)
 {
     Master::mpResourceManager->DrawData_Graph(drawData);

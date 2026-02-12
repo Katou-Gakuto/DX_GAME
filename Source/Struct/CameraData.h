@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "DxLib.h"
 
@@ -6,11 +6,11 @@ class CharacterBase;
 
 enum class CAMERA_MODE
 {
-	NONE = -1,// ‚È‚¢
+	NONE = -1,// ãªã„
 
-	FIXED = 0,	// ŒÅ’è‹“_
-	CHARACTER,	// ƒLƒƒƒ‰ƒNƒ^[‹“_
-	PLAYER,	// ƒvƒŒƒCƒ„[‹“_
+	FIXED = 0,	// å›ºå®šè¦–ç‚¹
+	CHARACTER,	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è¦–ç‚¹
+	PLAYER,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç‚¹
 };
 
 struct CameraData
@@ -20,29 +20,29 @@ public:
 
 	inline void SetColor(const FLOAT4& color) { this->red = (int)color.x; this->green = (int)color.y; this->blue = (int)color.z; this->alpha = (int)color.w; }
 
-	CharacterBase* targetCharacter;	// ƒ^[ƒQƒbƒgƒLƒƒƒ‰ƒNƒ^[
+	CharacterBase* targetCharacter;	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 
-	VECTOR targetPosition;	// ƒ^[ƒQƒbƒgƒ|ƒWƒVƒ‡ƒ“
+	VECTOR targetPosition;	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒã‚¸ã‚·ãƒ§ãƒ³
 	
-	VECTOR position;		// ƒJƒƒ‰ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR plusPosition;	// ƒJƒƒ‰ƒvƒ‰ƒXƒ|ƒWƒVƒ‡ƒ“
-	VECTOR angle;	// ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+	VECTOR position;		// ã‚«ãƒ¡ãƒ©ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR plusPosition;	// ã‚«ãƒ¡ãƒ©ãƒ—ãƒ©ã‚¹ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR angle;	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 
-	VECTOR twoDPosition;	// 2Dƒ|ƒWƒVƒ‡ƒ“
+	VECTOR twoDPosition;	// 2Dãƒã‚¸ã‚·ãƒ§ãƒ³
 
-	CAMERA_MODE cameraMode;	// ƒJƒƒ‰ƒ‚[ƒh
+	CAMERA_MODE cameraMode;	// ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰
 
-	int red;	// Ô
-	int green;	// —Î
-	int blue;	// Â
-	int alpha;	// ƒAƒ‹ƒtƒ@’l
+	int red;	// èµ¤
+	int green;	// ç·‘
+	int blue;	// é’
+	int alpha;	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 
-	float cameraDistance;	// ƒJƒƒ‰‚ÌŠÔŠu
+	float cameraDistance;	// ã‚«ãƒ¡ãƒ©ã®é–“éš”
 
-	int cameraID;	// ƒJƒƒ‰ID
+	int cameraID;	// ã‚«ãƒ¡ãƒ©ID
 
-	bool threeDFlag;	// 3D•`‰æƒtƒ‰ƒO
+	bool threeDFlag;	// 3Dæç”»ãƒ•ãƒ©ã‚°
 
-	/*•ûŒüæ“¾*/
+	/*æ–¹å‘å–å¾—*/
 	VECTOR GetDirection();
 };

@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 #include <map>
 #include <string>
 #include <vector>
 
 #include "HandleContainer.h"
 
-// INPROGRESS: ì‹Æ’†@ƒƒ‚@
+// INPROGRESS: ä½œæ¥­ä¸­ã€€ãƒ¡ãƒ¢ã€€
 enum class HANDLE_FLAG
 {
     NONE = 0,
@@ -13,20 +13,20 @@ enum class HANDLE_FLAG
     ZERO_EXCEPT_LOOK,
 };
 
-
+// TODO: 2ã¤ä½œæˆã™ã‚‹ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç¢ºèªä¸­
 class HandleContainer
 {
 private:
-    // ƒnƒ“ƒhƒ‹
+    // ãƒãƒ³ãƒ‰ãƒ«
     std::map<std::string, std::vector<int>> mmHandles;
 
-    // ƒJƒEƒ“ƒg
+    // ã‚«ã‚¦ãƒ³ãƒˆ
     std::map<int, int> mmHandleCounts;
 
-    // Ÿ‚Ìƒnƒ“ƒhƒ‹’Ç‰Áƒtƒ@ƒCƒ‹
+    // æ¬¡ã®ãƒãƒ³ãƒ‰ãƒ«è¿½åŠ ãƒ•ã‚¡ã‚¤ãƒ«
     std::string msRegisterFileName;
 
-    // ƒnƒ“ƒhƒ‹ƒtƒ‰ƒO
+    // ãƒãƒ³ãƒ‰ãƒ«ãƒ•ãƒ©ã‚°
     HANDLE_FLAG meHandleFlag;
 
 public:
@@ -34,63 +34,68 @@ public:
     ~HandleContainer();
 
     /*--------*/
-    /*yæ“¾z*/
+    /*ã€å–å¾—ã€‘*/
     /*--------*/
-    /// <summary>ƒnƒ“ƒhƒ‹ƒtƒ@ƒCƒ‹–¼æ“¾</summary>
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—</summary>
     std::string GetHandleFileName(int handle);
 
-    /// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
-    std::vector<int> GetHandles(std::string fileName) { return mmHandle[fileName]; }
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
+    std::vector<int> GetHandles(std::string fileName) { return mmHandles[fileName]; }
 
-    /// <summary>ƒnƒ“ƒhƒ‹ƒJƒEƒ“ƒgæ“¾</summary>
-    int GetHandleCount(int handle) { return mmHandleCount[handle]; }
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ã‚«ã‚¦ãƒ³ãƒˆå–å¾—</summary>
+    int GetHandleCount(int handle) { return mmHandleCounts[handle]; }
 
     /*--------*/
-    /*yİ’èz*/
+    /*ã€è¨­å®šã€‘*/
     /*--------*/
-    /// <summary>ƒnƒ“ƒhƒ‹ƒtƒ‰ƒOİ’è</summary>
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ãƒ•ãƒ©ã‚°è¨­å®š</summary>
     inline void SetHandleFlag(HANDLE_FLAG handleFlag) { meHandleFlag = handleFlag; }
 
     /*--------*/
-    /*y’Ç‰Áz*/
+    /*ã€è¿½åŠ ã€‘*/
     /*--------*/
-    /// <summary>“¯–¼‚Ìƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©‚ğŠm”F‚·‚é</summary>
+    /// <summary>åŒåã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
     bool CheckFileName(std::string fileName);
 
-    /// <summary>ƒnƒ“ƒhƒ‹‚ğ“o˜^‚·‚é</summary>
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ã‚’ç™»éŒ²ã™ã‚‹</summary>
     int RegisterHandle(int handle, bool countFlag = true);
-    /// <summary>ƒnƒ“ƒhƒ‹‚ğ“o˜^‚·‚é</summary>
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ã‚’ç™»éŒ²ã™ã‚‹</summary>
     int RegisterHandle(int handle, std::string fileName, bool countFlag = true);
 
     /*--------*/
-    /*yíœz*/
+    /*ã€å‰Šé™¤ã€‘*/
     /*--------*/
-    /// <summary>ƒnƒ“ƒhƒ‹íœ</summary>
-    int DeleteHandle(int handle, bool countFlag = true);    
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«å‰Šé™¤</summary>
+    std::vector<int> DeleteHandle(int handle, bool countFlag = true);
+
+    /*--------*/
+    /*ã€äº¤æ›ã€‘*/
+    /*--------*/
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«ã®å€¤ã‚’äº¤æ›ã™ã‚‹</summary>
 };
 
 /*
-ƒnƒ“ƒhƒ‹ƒ}ƒl[ƒWƒƒ[ƒƒ‚
+ãƒãƒ³ãƒ‰ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ¡ãƒ¢
 
-ƒJƒEƒ“ƒg
+ã‚«ã‚¦ãƒ³ãƒˆ
 
-ì¬—\’èŠÖ”
+ä½œæˆäºˆå®šé–¢æ•°
 
-‘S•” 0‚¾‚¯Œ©‚é‚à‚µ‚­‚ÍŒ©‚È‚¢‚Ì‚àì‚é
+å…¨éƒ¨ 0ã ã‘è¦‹ã‚‹ã‚‚ã—ãã¯è¦‹ãªã„ã®ã‚‚ä½œã‚‹
 
-y’Ç‰Áz
-string‘–¸&Ÿ‚Ì’Ç‰Á—\’è•¨‚É‚·‚é
+ã€è¿½åŠ ã€‘
+stringèµ°æŸ»&æ¬¡ã®è¿½åŠ äºˆå®šç‰©ã«ã™ã‚‹
 
-’Ç‰Á(“¯‚¶‚Ì‚ª‚ ‚éê‡‚Í‰½‚à‚µ‚È‚¢@ƒJƒEƒ“ƒg‚É’Ç‰Á‚·‚éƒtƒ‰ƒO‚ğİ’è
--1‚ª—ˆ‚½‚çI—¹
-’Ç‰Á‚µ‚½ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+è¿½åŠ (åŒã˜ã®ãŒã‚ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„ã€€ã‚«ã‚¦ãƒ³ãƒˆã«è¿½åŠ ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+-1ãŒæ¥ãŸã‚‰çµ‚äº†
+è¿½åŠ ã—ãŸãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 
-string‚ğİ’è‚µ‚Ä‚©‚ç’Ç‰Á‚·‚é‚Ì‚àì‚é
+stringã‚’è¨­å®šã—ã¦ã‹ã‚‰è¿½åŠ ã™ã‚‹ã®ã‚‚ä½œã‚‹
 
 
-yíœz
+ã€å‰Šé™¤ã€‘
 
-íœ
-ƒJƒEƒ“ƒg’T‚µ‚Ä‚È‚¯‚ê‚Îƒnƒ“ƒhƒ‹‚Ì•û‚ğ’T‚·@ƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·ƒtƒ‰ƒOİ’è
-íœ‚µ‚½ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+å‰Šé™¤
+ã‚«ã‚¦ãƒ³ãƒˆæ¢ã—ã¦ãªã‘ã‚Œã°ãƒãƒ³ãƒ‰ãƒ«ã®æ–¹ã‚’æ¢ã™ã€€ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™ãƒ•ãƒ©ã‚°è¨­å®š
+å‰Šé™¤ã—ãŸãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 */

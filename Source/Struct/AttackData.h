@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "AttackEnum.h"
 
@@ -6,26 +6,26 @@ class AnimationBase;
 class CharacterBase;
 class ModelsControllerBase;
 
-// UŒ‚î•ñİ’è—pî•ñ
+// æ”»æ’ƒæƒ…å ±è¨­å®šç”¨æƒ…å ±
 struct AttackData
 {
-	CharacterBase* attackCharacter;	// UŒ‚ƒLƒƒƒ‰ƒNƒ^[
+	CharacterBase* attackCharacter;	// æ”»æ’ƒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 
-	ATTACK_TYPE attackType;	// UŒ‚í—Ş
+	ATTACK_TYPE attackType;	// æ”»æ’ƒç¨®é¡
 	
-	ATTACK_METHOD_TYPE attackMethdType;	// UŒ‚è’ií—Ş
+	ATTACK_METHOD_TYPE attackMethdType;	// æ”»æ’ƒæ‰‹æ®µç¨®é¡
 
-	int attackTime;	// UŒ‚ŠÔ
+	int attackTime;	// æ”»æ’ƒæ™‚é–“
 
-	int attackPower; // UŒ‚—Í
+	int attackPower; // æ”»æ’ƒåŠ›
 };
 
-// ƒLƒƒƒ‰ƒNƒ^[UŒ‚î•ñ
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ”»æ’ƒæƒ…å ±
 struct CharacterAttackData
 {
-    ModelsControllerBase* modelController;  // ƒ‚ƒfƒ‹ƒx[ƒX
+    ModelsControllerBase* modelController;  // ãƒ¢ãƒ‡ãƒ«ãƒ™ãƒ¼ã‚¹
 
-    AnimationBase* animation;   // ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX
+    AnimationBase* animation;   // ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹
 
-    int attackDataNumber;	// UŒ‚î•ñƒiƒ“ƒo[
+    int attackDataNumber;	// æ”»æ’ƒæƒ…å ±ãƒŠãƒ³ãƒãƒ¼
 };

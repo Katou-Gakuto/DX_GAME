@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
@@ -15,7 +15,7 @@ ImguiManager::~ImguiManager()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void ImguiManager::Initilize()
 {
     // IMGUI_CHECKVERSION();
@@ -33,7 +33,7 @@ void ImguiManager::Initilize()
     // ImGui_ImplDX11_Init((ID3D11Device*)DxLib::GetUseDirect3D11Device(), (ID3D11DeviceContext*)DxLib::GetUseDirect3D11DeviceContext());
 }
 
-// I—¹
+// çµ‚äº†
 void ImguiManager::Finalize()
 {
     // ImGui_ImplDX11_Shutdown();
@@ -41,7 +41,7 @@ void ImguiManager::Finalize()
     // ImGui::DestroyContext();
 }
 
-// XV
+// æ›´æ–°
 void ImguiManager::Update()
 {	
     // ImGui_ImplDX11_NewFrame();
@@ -50,7 +50,7 @@ void ImguiManager::Update()
     // ImGui::ShowDemoWindow();
 }
 
-// •`‰æ
+// æç”»
 void ImguiManager::Draw()
 {		
     // ImGui::Render();

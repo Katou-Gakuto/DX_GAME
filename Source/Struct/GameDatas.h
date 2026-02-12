@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <vector>
 
@@ -18,7 +18,7 @@ enum class DATA_TYPE
 	LEVEL,
 };
 
-// í—Ş‚Æ–¼‘O‚Ìƒf[ƒ^
+// ç¨®é¡ã¨åå‰ã®ãƒ‡ãƒ¼ã‚¿
 typedef struct TypeAndNameData
 {
 	std::string name = "";
@@ -39,7 +39,7 @@ typedef struct TypeAndNameData
 	}
 }NAME_TYPE_DATA;
 
-// ƒtƒ@ƒCƒ‹–¼:name;_ƒtƒ@ƒCƒ‹í—Ş:typeNumber;_ƒV[ƒ“:sceneType;
+// ãƒ•ã‚¡ã‚¤ãƒ«å:name;_ãƒ•ã‚¡ã‚¤ãƒ«ç¨®é¡:typeNumber;_ã‚·ãƒ¼ãƒ³:sceneType;
 typedef struct FileData : public NAME_TYPE_DATA
 {
 	SCENE sceneType;
@@ -60,21 +60,21 @@ typedef struct FileData : public NAME_TYPE_DATA
 	}
 }FILE_DATA;
 
-// ƒLƒƒƒ‰ƒNƒ^[‚Ìƒf[ƒ^
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿
 typedef struct CharacterData : public NAME_TYPE_DATA
 {
-	BIT_FLAG<unsigned int> survivalFlag;	// ¶‘¶ƒtƒ‰ƒO
+	BIT_FLAG<unsigned int> survivalFlag;	// ç”Ÿå­˜ãƒ•ãƒ©ã‚°
 
-	STATUS status;	// ƒXƒe[ƒ^ƒX
+	STATUS status;	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
-	SCENE mapType;	// ƒ}ƒbƒv
+	SCENE mapType;	// ãƒãƒƒãƒ—
 
-	VECTOR position;	// ƒ|ƒWƒVƒ‡ƒ“
+	VECTOR position;	// ãƒã‚¸ã‚·ãƒ§ãƒ³
 
-	VECTOR angle;	// •ûŒü
+	VECTOR angle;	// æ–¹å‘
 
-	// TODO: c‚µ‚Ä‚¨‚©‚È‚¢‚Æ’¬‚É–ß‚é‚Æ‚«‚ÉƒoƒO‚é‰Â”\«‚ ‚è
-	int objectID;	// ƒIƒuƒWƒFƒNƒgID
+	// TODO: æ®‹ã—ã¦ãŠã‹ãªã„ã¨ç”ºã«æˆ»ã‚‹ã¨ãã«ãƒã‚°ã‚‹å¯èƒ½æ€§ã‚ã‚Š
+	int objectID;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
 
 
 	bool operator==(CharacterData src)
@@ -92,32 +92,32 @@ typedef struct CharacterData : public NAME_TYPE_DATA
 	}
 }CHARACTER_DATA;
 
-// ƒvƒŒƒCƒ„[ƒf[ƒ^
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 typedef struct PlayerData : public CHARACTER_DATA
 {
-	std::string playerFolderName;	// ƒvƒŒƒCƒ„[î•ñ‚ª‚ ‚éƒtƒHƒ‹ƒ_[–¼
+	std::string playerFolderName;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ãŒã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ãƒ¼å
 
-	SCENE townType;	// ’¬
-	SCENE dungeonType;	// ƒ_ƒ“ƒWƒ‡ƒ“
-	SCENE preMap;	// ‘O‹‚½ƒ}ƒbƒv
+	SCENE townType;	// ç”º
+	SCENE dungeonType;	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+	SCENE preMap;	// å‰å±…ãŸãƒãƒƒãƒ—
 
-	VECTOR townPos;		// ’¬ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR townAngle;	// ’¬ƒAƒ“ƒOƒ‹
-	VECTOR dungeonPos;		// ƒ_ƒ“ƒWƒ‡ƒ“ƒ|ƒWƒVƒ‡ƒ“
-	VECTOR dungeonAngle;	// ƒ_ƒ“ƒWƒ‡ƒ“ƒAƒ“ƒOƒ‹
+	VECTOR townPos;		// ç”ºãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR townAngle;	// ç”ºã‚¢ãƒ³ã‚°ãƒ«
+	VECTOR dungeonPos;		// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒã‚¸ã‚·ãƒ§ãƒ³
+	VECTOR dungeonAngle;	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚¢ãƒ³ã‚°ãƒ«
 	
-	bool dataFlag;	// ƒf[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
+	bool dataFlag;	// ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹
 }PLAYER_DATA;
 
-// ƒŒƒxƒ‹ƒf[ƒ^
+// ãƒ¬ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿
 typedef struct LevelData
 {
-	int maxLevelNumber; // Å‘åƒŒƒxƒ‹
-	std::vector<int> levelNumber;   // ƒŒƒxƒ‹
-	std::vector<int> levelUpExpNumber;  // Ÿ‚ÌƒŒƒxƒ‹‚Ü‚Å•K—v‚ÈŒoŒ±’l
+	int maxLevelNumber; // æœ€å¤§ãƒ¬ãƒ™ãƒ«
+	std::vector<int> levelNumber;   // ãƒ¬ãƒ™ãƒ«
+	std::vector<int> levelUpExpNumber;  // æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§å¿…è¦ãªçµŒé¨“å€¤
 
-	int characterType;	// ƒLƒƒƒ‰ƒNƒ^[‚Ìí—Ş
-	STATUS upStatus;	// ¬’·”{—¦
+	int characterType;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ç¨®é¡
+	STATUS upStatus;	// æˆé•·å€ç‡
 
 
 	bool operator==(LevelData src)
@@ -152,13 +152,13 @@ typedef struct LevelData
 
 }LEVEL_DATA;
 
-// î•ñ‚ÌW‚Ü‚è ‚±‚±‚ç•ÓC³—\’è
+// æƒ…å ±ã®é›†ã¾ã‚Š ã“ã“ã‚‰è¾ºä¿®æ­£äºˆå®š
 struct DATAS
 {
-	/*---* ƒf[ƒ^ *---*/
-	std::vector<FILE_DATA> fileNameDatas;       // ƒtƒ@ƒCƒ‹ƒl[ƒ€ƒf[ƒ^ƒY
-	std::vector<CHARACTER_DATA> characterDatas; // ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^ƒY
-	LEVEL_DATA levelData;                       // ƒŒƒxƒ‹ƒf[ƒ^
+	/*---* ãƒ‡ãƒ¼ã‚¿ *---*/
+	std::vector<FILE_DATA> fileNameDatas;       // ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚º
+	std::vector<CHARACTER_DATA> characterDatas; // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚º
+	LEVEL_DATA levelData;                       // ãƒ¬ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿
 	/*---*        *---*/
 
 	DATAS()
@@ -180,23 +180,23 @@ struct DATAS
 
 	bool operator==(DATAS src)
 	{
-		// ƒf[ƒ^‚Ì’†g‚ªŠ®¬‚µ‚½‚çì‚é
+		// ãƒ‡ãƒ¼ã‚¿ã®ä¸­èº«ãŒå®Œæˆã—ãŸã‚‰ä½œã‚‹
 		return false;
 	}
 
 	bool operator!=(DATAS src)
 	{
-		// ƒf[ƒ^‚Ì’†g‚ªŠ®¬‚µ‚½‚çì‚é
+		// ãƒ‡ãƒ¼ã‚¿ã®ä¸­èº«ãŒå®Œæˆã—ãŸã‚‰ä½œã‚‹
 		return false;
 	}
 };
 
-// ˆê‚Â•ª‚Ìƒf[ƒ^
+// ä¸€ã¤åˆ†ã®ãƒ‡ãƒ¼ã‚¿
 typedef struct OneData : public NAME_TYPE_DATA
 {
-	DATAS datas;	// ƒf[ƒ^
+	DATAS datas;	// ãƒ‡ãƒ¼ã‚¿
 
-	bool dataChangeFlag = false;	// •ÏXƒtƒ‰ƒO
+	bool dataChangeFlag = false;	// å¤‰æ›´ãƒ•ãƒ©ã‚°
 
 	OneData(const OneData& src)
 	{
@@ -292,21 +292,21 @@ typedef struct OneData : public NAME_TYPE_DATA
 
 }ONE_DATA;
 
-// ƒvƒŒƒCƒf[ƒ^‘S•”
+// ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿å…¨éƒ¨
 typedef struct OnePlayerAllData
 {
-	PLAYER_DATA playerData;	// ƒvƒŒƒCƒ„[ƒf[ƒ^
+	PLAYER_DATA playerData;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	std::vector<ONE_DATA> oneDatas;	// ƒf[ƒ^1‚Â•ª‚ğ‘S•”
+	std::vector<ONE_DATA> oneDatas;	// ãƒ‡ãƒ¼ã‚¿1ã¤åˆ†ã‚’å…¨éƒ¨
 
-	bool dataFlag;	// ƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚é‚©
+	bool dataFlag;	// ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹
 }ONE_PLAYER_ALL_DATA;
 
 
-// íœ—\’èƒLƒƒƒ‰ƒNƒ^[î•ñ
+// å‰Šé™¤äºˆå®šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æƒ…å ±
 typedef struct DeleteCharacterData
 {
-	SCENE sceneType;	// ƒV[ƒ“í—Ş
+	SCENE sceneType;	// ã‚·ãƒ¼ãƒ³ç¨®é¡
 
-	int characterID;	// ƒLƒƒƒ‰ƒNƒ^[ID
+	int characterID;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ID
 }DELETE_CHARACTER_DATA;

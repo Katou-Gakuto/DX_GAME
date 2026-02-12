@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "StateBase.h"
 
@@ -7,17 +7,17 @@ enum class ANIMATION_FACTORY_NUMBER;
 class CharacterBase;
 
 /*----------*/
-/*yƒV[ƒ“ƒXƒe[ƒg‹¤’Êˆ——pz
+/*ã€ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆå…±é€šå‡¦ç†ç”¨ã€‘
 /*----------*/
 class SceneStateProcess
 {
 protected:
-	/*ƒLƒƒƒ‰ƒNƒ^[ƒ‚ƒfƒ‹İ’è*/
+	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ¢ãƒ‡ãƒ«è¨­å®š*/
 	void CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber);
 };
 
 /*--------------------------*/
-/*yƒXƒ^[ƒgƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ã‚¹ã‚¿ãƒ¼ãƒˆã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 class StartScene : public IStateScene, public SceneStateProcess
 {
@@ -28,14 +28,14 @@ public:
 	StartScene();
 	~StartScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*--------------------------*/
-/*yƒ^ƒCƒgƒ‹ƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 class TitleScene : public IStateScene, public SceneStateProcess
 {
@@ -43,14 +43,14 @@ public:
 	TitleScene();
 	~TitleScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*--------------------*/
-/*y’¬ƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ç”ºã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------*/
 class TownScene : public IStateScene, public SceneStateProcess
 {
@@ -58,14 +58,14 @@ public:
 	TownScene();
 	~TownScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*----------------------------*/
-/*yƒ_ƒ“ƒWƒ‡ƒ“ƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 class DungeonScene : public IStateScene, public SceneStateProcess
 {
@@ -73,14 +73,14 @@ public:
 	DungeonScene();
 	~DungeonScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*------------------------*/
-/*yƒoƒgƒ‹ƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ãƒãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*------------------------*/
 class BattleScene : public IStateScene, public SceneStateProcess
 {
@@ -88,14 +88,14 @@ public:
 	BattleScene();
 	~BattleScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*--------------------------*/
-/*yƒŠƒUƒ‹ƒgƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ãƒªã‚¶ãƒ«ãƒˆã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 class ResultScene : public IStateScene, public SceneStateProcess
 {
@@ -103,14 +103,14 @@ public:
 	ResultScene();
 	~ResultScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };
 
 /*--------------------------------*/
-/*yƒQ[ƒ€ƒI[ƒo[ƒV[ƒ“ƒXƒe[ƒgz*/
+/*ã€ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
 class GameOverScene : public IStateScene, public SceneStateProcess
 {
@@ -118,8 +118,8 @@ public:
 	GameOverScene();
 	~GameOverScene() = default;
 	
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(SceneManager* sceneManager) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(SceneManager* sceneManager) override;
 };

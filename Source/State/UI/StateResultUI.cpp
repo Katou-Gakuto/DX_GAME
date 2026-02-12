@@ -1,4 +1,4 @@
-
+ï»¿
 #include "Master.h"
 
 #include "DataManager.h"
@@ -7,11 +7,11 @@
 #include "StateResultUI.h"
 
 /*--------------------------------*/
-/*     yƒ^ƒCƒgƒ‹UIƒXƒe[ƒgz     */
+/*     ã€ã‚¿ã‚¤ãƒˆãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*--------------------------------*/
 
 /*----------------------*/
-/*yŠJn‰æ–ÊUIƒXƒe[ƒgz*/
+/*ã€é–‹å§‹ç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 
 StartResultUIState::StartResultUIState()
@@ -19,17 +19,17 @@ StartResultUIState::StartResultUIState()
 	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StartResultUIState::OnEnter(UIBase* ui)
 {
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StartResultUIState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 int StartResultUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -37,28 +37,28 @@ int StartResultUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 int StartResultUIState::Decision(UIBase* ui)
 {
-    // ƒV[ƒ“ˆÚ“®
+    // ã‚·ãƒ¼ãƒ³ç§»å‹•
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().dungeonType);
 
-    // ƒGƒlƒ~[íœ
+    // ã‚¨ãƒãƒŸãƒ¼å‰Šé™¤
     Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().dungeonType);
 
 	return mStateNumber;
 }
 
-// •`‰æ
+// æç”»
 void StartResultUIState::Draw(UIBase* ui)
 {
-	// // TODO: ‰æ–Ê‘S‘Ì‚É•`‰æ
-    // // TODO: ‰æ‘œƒnƒ“ƒhƒ‹‚É•ÏX
+	// // TODO: ç”»é¢å…¨ä½“ã«æç”»
+    // // TODO: ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´
     // DisplaySize displaySize = ResourceManager::mstDisplaySize;
     // Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
     // Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
     // DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 
     // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
-    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ƒŠƒUƒ‹ƒg", GetColor(0, 0, 0));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ãƒªã‚¶ãƒ«ãƒˆ", GetColor(0, 0, 0));
 }

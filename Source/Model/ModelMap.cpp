@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 
 #include "Master.h"
 
@@ -15,17 +15,17 @@ ModelMap::~ModelMap()
 {
 }
 
-// ƒ‚ƒfƒ‹‰Šú‰»
+// ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–
 void ModelMap::ModelInitilize()
 {
 }
 
-// ƒ‚ƒfƒ‹I—¹
+// ãƒ¢ãƒ‡ãƒ«çµ‚äº†
 void ModelMap::ModelFinalize()
 {
 }
 
-// ƒ‚ƒfƒ‹•`‰æ
+// ãƒ¢ãƒ‡ãƒ«æç”»
 void ModelMap::ModelDraw()
 {
     if (!mbDrawFlag)
@@ -52,10 +52,10 @@ void ModelMap::ModelDraw()
     }
 }
 
-// ƒ}ƒbƒvƒf[ƒ^“Ç‚İ‚İ
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR mapMinPos, VECTOR tileHalfSize)
 {
-    // TODO: ƒnƒ“ƒhƒ‹‚µ‚©§ì‚µ‚Ä‚È‚¢‚µ•ª‚¯‚éî•ñ‚à•Ï‚¦‚½‚Ù‚¤‚ª—Ç‚¢‚Æv‚¤
+    // TODO: ãƒãƒ³ãƒ‰ãƒ«ã—ã‹åˆ¶ä½œã—ã¦ãªã„ã—åˆ†ã‘ã‚‹æƒ…å ±ã‚‚å¤‰ãˆãŸã»ã†ãŒè‰¯ã„ã¨æ€ã†
     for (int z = 0; z < mapData.size(); z++)
     {
         std::vector<TileModelData> setTileModelLine;
@@ -68,7 +68,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
                 case TileType::Ground:
                     setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
-                    // HACK: c‚Æ‚è‚ ‚¦‚¸‚¢‚ê‚Ä‚é
+                    // HACK: ç¸¦ã¨ã‚Šã‚ãˆãšã„ã‚Œã¦ã‚‹
                     MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y + 50.0f, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
                 break;
             }
@@ -78,7 +78,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
     }
 }
 
-// ƒ}ƒbƒvƒf[ƒ^‰ğ•ú
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 void ModelMap::ReleaseMapModel()
 {
     for (int z = 0; z < mstTileModelDatas.size(); z++)

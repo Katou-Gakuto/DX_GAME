@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <map>
 #include <vector>
 
@@ -21,13 +21,13 @@ class TargetManager;
 class UIBase;
 
 /*------------------*/
-/*yƒXƒe[ƒgƒx[ƒXz*/
+/*ã€ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
 /*------------------*/
 template<typename number>
 class StateBase
 {
 protected:
-	// ƒXƒe[ƒgƒiƒ“ƒo[
+	// ã‚¹ãƒ†ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 	number mStateNumber = (number) - 1;
 public:
 	StateBase() = default;
@@ -38,7 +38,7 @@ public:
 };
 
 /*------------------------*/
-/*yƒJƒƒ‰ƒXƒe[ƒgƒx[ƒXz*/
+/*ã€ã‚«ãƒ¡ãƒ©ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
 /*------------------------*/
 class IStateCamera : public StateBase<CAMERA_MODE>
 {
@@ -46,27 +46,27 @@ public:
 	IStateCamera() = default;
 	virtual ~IStateCamera() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	virtual void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) = 0;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	virtual void OnExit(CameraManager* cameraManager, CameraData cameraData) = 0;
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	virtual void Initilize(CameraManager* cameraManager, CameraData cameraData) = 0;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	virtual void Update(CameraManager* cameraManager, CameraData cameraData) = 0;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	virtual void Draw(CameraManager* cameraManager, CameraData cameraData) = 0;
 
 protected:
-	/*ƒJƒƒ‰‚Ì‹¤’Êİ’è‚ğ‚·‚é*/
+	/*ã‚«ãƒ¡ãƒ©ã®å…±é€šè¨­å®šã‚’ã™ã‚‹*/
 	void CommonSetCamera(CameraData cameraData, int& preThreeDFlag);
 };
 
 /*------------------------------*/
-/*yƒLƒƒƒ‰ƒNƒ^[ƒXƒe[ƒgƒx[ƒXz*/
+/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
 /*------------------------------*/
 class IStateCharacter : public StateBase<int>
 {
@@ -74,58 +74,58 @@ public:
 	IStateCharacter() = default;
 	virtual ~IStateCharacter() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	virtual void OnEnter(CharacterBase* character) = 0;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	virtual void OnExit(CharacterBase* character) = 0;
 
-	/*ƒXƒe[ƒg•ÏXŠm”F*/
+	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
 	virtual int StateCheck(CharacterBase* character) = 0;
-	/*XV*/
+	/*æ›´æ–°*/
 	virtual void Update(CharacterBase* character) = 0;
-	/*ÅIXV*/
+	/*æœ€çµ‚æ›´æ–°*/
 	virtual void LastUpdate(CharacterBase* character) = 0;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	virtual void Draw(CharacterBase* character) = 0;
 
-	/*€–S*/
+	/*æ­»äº¡*/
 	virtual void Death(CharacterBase* character) = 0;
 };
 
 /*----------*/
-/*yƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgƒx[ƒXz
+/*ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘
 /*----------*/
 class IStateAnimation : public StateBase<MODEL_TYPE>
 {
 protected:
-	// ƒ‚ƒfƒ‹ƒx[ƒX
+	// ãƒ¢ãƒ‡ãƒ«ãƒ™ãƒ¼ã‚¹
 	ModelBase* mpModelBase;
 
 public:
 	IStateAnimation() = default;
 	virtual ~IStateAnimation() = default;
 
-	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
 	virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
-	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
 	virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) = 0;
 	
-	/// <summary>XV</summary>
+	/// <summary>æ›´æ–°</summary>
 	virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) = 0;
 
-	/// <summary>ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·</summary>
-	/// <param name="modelType">ƒ‚ƒfƒ‹í—Ş</param>
-	/// <returns>“¯—Ş‚©</returns>
+	/// <summary>ãƒ¢ãƒ‡ãƒ«ç¨®é¡ãŒåŒé¡ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™</summary>
+	/// <param name="modelType">ãƒ¢ãƒ‡ãƒ«ç¨®é¡</param>
+	/// <returns>åŒé¡ã‹</returns>
 	virtual bool CheckSimilarModelType(MODEL_TYPE modelType) = 0;
 
-	/// <summary>ƒ‚ƒfƒ‹İ’è</summary>
-	/// <param name="modelBase">ƒ‚ƒfƒ‹</param>
+	/// <summary>ãƒ¢ãƒ‡ãƒ«è¨­å®š</summary>
+	/// <param name="modelBase">ãƒ¢ãƒ‡ãƒ«</param>
 	void SetModelBase(ModelBase* modelBase);
 };
 
 /*----------*/
-/*yƒAƒjƒƒVƒ‡ƒ“‘€ìƒXƒe[ƒgƒx[ƒXz
+/*ã€ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³æ“ä½œã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘
 /*----------*/
 class IStateAnimationController : public StateBase<ANIMATION_TYPE>
 {
@@ -133,54 +133,54 @@ public:
 	IStateAnimationController() = default;
 	virtual ~IStateAnimationController() = default;
 	
-	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
 	virtual void OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState) = 0;
-	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
 	virtual void OnExit(AnimationBase* animation, ANIMATION_TYPE newState) = 0;
 
-	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
+	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) = 0;
 
-	/// <summary>“¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é</summary>
+	/// <summary>åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) { return mStateNumber == animationType; }
 };
 
 /*------------------------*/
-/*yƒV[ƒ“ƒXƒe[ƒgƒx[ƒXz*/
+/*ã€ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
 /*------------------------*/
 class IStateScene : public StateBase<SCENE>
 {
 protected:
-	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	TargetManager* mpTargetManager;
 	
-	// ƒ}ƒbƒvƒ}ƒl[ƒWƒƒ[
+	// ãƒãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	MapManager* mpMapManager;
 
-	// ƒV[ƒ“ƒJƒƒ‰ID
+	// ã‚·ãƒ¼ãƒ³ã‚«ãƒ¡ãƒ©ID
 	int mnSceneCameraID;
 
 public:
 	IStateScene();
 	virtual ~IStateScene() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	virtual void OnEnter(SceneManager* sceneManager) = 0;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	virtual void OnExit(SceneManager* sceneManager) = 0;
 
-	/*ƒXƒe[ƒWó‘Ô‚É“ü‚Á‚½‚Ì‹¤’Êˆ—*/
+	/*ã‚¹ãƒ†ãƒ¼ã‚¸çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å…±é€šå‡¦ç†*/
 	void StageOnEnter(SceneManager* sceneManager);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	SCENE Update(SceneManager* sceneManager);
 
-	/*ƒV[ƒ“ƒJƒƒ‰ID*/
+	/*ã‚·ãƒ¼ãƒ³ã‚«ãƒ¡ãƒ©ID*/
 	inline int GetSceneCameraID() const { return mnSceneCameraID; }
 };
 
 /*--------------------*/
-/*yUIƒXƒe[ƒgƒx[ƒXz*/
+/*ã€UIã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
 /*--------------------*/
 class IStateUI : public StateBase<int>
 {
@@ -188,31 +188,31 @@ public:
 	IStateUI() = default;
 	virtual ~IStateUI() = default;
 
-	/// <summary>I—¹</summary>
+	/// <summary>çµ‚äº†</summary>
 	virtual void Finalize() {}
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	virtual void OnEnter(UIBase* ui) = 0;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	virtual void OnExit(UIBase* ui) = 0;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	virtual int Update(UIBase* ui) { return mStateNumber; }
 
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	virtual int Decision(UIBase* ui) { return mStateNumber; }
-	/*I—¹*/
+	/*çµ‚äº†*/
 	virtual int Cloce(UIBase* ui) { return mStateNumber; }
 
-	/*ƒ}ƒEƒX*/
+	/*ãƒã‚¦ã‚¹*/
 	virtual int Mouse(UIBase* ui) { return mStateNumber; }
-	/*ƒL[ƒ{[ƒh*/
+	/*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰*/
 	virtual int Keyboard(UIBase* ui) { return mStateNumber; }
-	/*ƒRƒ“ƒgƒ[ƒ‰[*/
+	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼*/
 	virtual int Controller(UIBase* ui) { return mStateNumber; }
-	/*ƒL[ƒ{[ƒh‚ÆƒRƒ“ƒgƒ[ƒ‰[*/
+	/*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼*/
 	virtual int Keyboard_Controller(UIBase* ui) { return mStateNumber; }
 
-	/*•`‰æ*/
+	/*æç”»*/
 	virtual void Draw(UIBase* ui) = 0;
 };

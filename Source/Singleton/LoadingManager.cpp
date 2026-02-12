@@ -1,4 +1,4 @@
-#include "BitFlag.h"
+ï»¿#include "BitFlag.h"
 
 #include "DxLib.h"
 
@@ -18,10 +18,10 @@ LoadingManager::~LoadingManager()
 {
 }
 
-//ƒ[ƒfƒBƒ“ƒO
+//ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
 void LoadingManager::Loading()
 {
-	// ƒtƒF[ƒh
+	// ãƒ•ã‚§ãƒ¼ãƒ‰
 	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::FADE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
 		Master::mpFadeManager->FadeEnd();
@@ -29,17 +29,17 @@ void LoadingManager::Loading()
 		mullLoadingFlag.DisableFlag(LOADING_NUMBER::FADE);
 	}
 
-	// ƒV[ƒ“
+	// ã‚·ãƒ¼ãƒ³
 	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
-		// TODO: ƒGƒtƒFƒNƒg‚ªƒoƒO‚éŠ´‚¶‚ª‚ ‚é(‘¼‚Éƒ~ƒX‚ª‚È‚¢‚©‚ðŠm”F‚µ‚ë)
+		// TODO: ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒãƒã‚°ã‚‹æ„Ÿã˜ãŒã‚ã‚‹(ä»–ã«ãƒŸã‚¹ãŒãªã„ã‹ã‚’ç¢ºèªã—ã‚)
 		//SetUseASyncLoadFlag(TRUE);
 
 		Master::mpGameManager->GetSceneManager()->NextScene();
 
 		while ((GetASyncLoadNum() != 0) && !Master::mpEndManager->EndFlag())
 		{
-			// TODO: ƒV[ƒ““Ç‚Ýž‚Ý’†•`‰æ
+			// TODO: ã‚·ãƒ¼ãƒ³èª­ã¿è¾¼ã¿ä¸­æç”»
 		}
 		if (GetASyncLoadNum() != 0)
 		{

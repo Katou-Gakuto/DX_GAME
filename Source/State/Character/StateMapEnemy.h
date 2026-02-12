@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -8,11 +8,11 @@ class SceneManager;
 class TargetManager;
 
 /*------------------*/
-/*     y‹¤’Êz     */
+/*     ã€å…±é€šã€‘     */
 /*------------------*/
 
 /*--------------------------*/
-/*yƒ}ƒbƒvƒGƒlƒ~[ƒXƒe[ƒgz*/
+/*ã€ãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 
 enum class MAP_ENEMY_STATE
@@ -22,43 +22,43 @@ enum class MAP_ENEMY_STATE
 };
 
 /*----------------------------*/
-/*yƒ}ƒbƒvƒGƒlƒ~[‹¤’Êˆ——pz*/
+/*ã€ãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼å…±é€šå‡¦ç†ç”¨ã€‘*/
 /*----------------------------*/
 class MapEnemyProcess
 {
 protected:
-	// ƒL[ƒXƒe[ƒg
+	// ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆ
 	KeyState* mpKeyState;
 
-	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
+	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	SceneManager* mpSceneManager;
 
-	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	TargetManager* mpTargetManager;
 
-	// ƒ}ƒbƒvƒV[ƒ“
+	// ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³
 	SCENE meMapScene;
 
 protected:
 	MapEnemyProcess(SCENE mapScene);
 	~MapEnemyProcess() = default;
 
-	/*ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev*/
+	/*ä¸€å®šç¯„å›²å†…ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒã„ã‚‹ãªã‚‰ã€Œtrueã€*/
 	bool PlayerTargetCheck(CharacterBase* character, float range);
 
-	/*€–S*/
+	/*æ­»äº¡*/
 	void MapEnemyDeath(CharacterBase* character);
 
-	/*ƒ}ƒbƒvƒV[ƒ“‚ÉˆÚ“®ŠJn‚·‚é*/
+	/*ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ã«ç§»å‹•é–‹å§‹ã™ã‚‹*/
 	void SetMapScene(CharacterBase* character);
 };
 
 /*--------------------------*/
-/*     yŠî–{ƒXƒe[ƒgz     */
+/*     ã€åŸºæœ¬ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*--------------------------*/
 
 /*----------------------------*/
-/*yIdleƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
+/*ã€Idleãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
@@ -66,29 +66,29 @@ public:
 	IdleMapEnemyState(SCENE mapScene);
 	~IdleMapEnemyState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(CharacterBase* character) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ƒXƒe[ƒg•ÏXŠm”F*/
+	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CharacterBase* character) override;
 
-	/*ÅIXV*/
+	/*æœ€çµ‚æ›´æ–°*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CharacterBase* character) override;
 
-	/*€–S*/
+	/*æ­»äº¡*/
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------------*/
-/*yƒeƒƒbƒvƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
+/*ã€ãƒ†ãƒ­ãƒƒãƒ—ãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
 class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
@@ -96,23 +96,23 @@ public:
 	TelopMapEnemyState(SCENE mapScene);
 	~TelopMapEnemyState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(CharacterBase* character) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ƒXƒe[ƒg•ÏXŠm”F*/
+	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CharacterBase* character) override;
 
-	/*ÅIXV*/
+	/*æœ€çµ‚æ›´æ–°*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CharacterBase* character) override;
 
-	/*€–S*/
+	/*æ­»äº¡*/
 	void Death(CharacterBase* character) override;
 };

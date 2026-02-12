@@ -1,9 +1,9 @@
-#include <string>
+ï»¿#include <string>
 
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectManager::ObjectManager()
 : mpObjectBase(nullptr)
 , mpCharacterBase(nullptr)
@@ -14,28 +14,29 @@ ObjectManager::ObjectManager()
 {
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ObjectManager::~ObjectManager()
 {
 }
 
 /*------------------*/
-/*     yˆ—z     */
+/*     ã€å‡¦ç†ã€‘     */
 /*------------------*/
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void ObjectManager::Initilize()
 {
 	munSetID = 0;
 }
 
-// I—¹
+// çµ‚äº†
 void ObjectManager::Finalize()
 {
-	// ‘SƒIƒuƒWƒFƒNƒgíœ
+	// å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤
 	DeleteAll();
 }
-//@ƒIƒuƒWƒFƒNƒgÅI‰Šú‰»
-void ObjectManager::ObjectLastInitilize()
+
+//ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+void ObjectManager::ObjectSceneLastInitilize()
 {
 	if (mpObjectBase == nullptr)
 	{
@@ -45,13 +46,13 @@ void ObjectManager::ObjectLastInitilize()
 	ObjectBase* workObject = mpObjectBase;
 	do
 	{
-		workObject->LastInitilize();
+		workObject->SceneLastInitilize();
 
 		workObject = workObject->GetNextObject();
 	} while (workObject != nullptr);
 }
 
-// ƒIƒuƒWƒFƒNƒgXV
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
 void ObjectManager::ObjectUpdate()
 {
 	if (mpObjectBase == nullptr)
@@ -70,7 +71,7 @@ void ObjectManager::ObjectUpdate()
 	} while (workObject != nullptr);
 }
 
-// ƒIƒuƒWƒFƒNƒgÅIXV
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæœ€çµ‚æ›´æ–°
 void ObjectManager::ObjectLastUpdate()
 {
 	if (mpObjectBase == nullptr)
@@ -89,7 +90,7 @@ void ObjectManager::ObjectLastUpdate()
 	} while (workObject != nullptr);
 }
 
-// ƒIƒuƒWƒFƒNƒg•`‰æ
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»
 void ObjectManager::ObjectDraw()
 {
 	if (mpObjectBase == nullptr)
@@ -108,7 +109,7 @@ void ObjectManager::ObjectDraw()
 	} while (workObject != nullptr);
 }
 
-// ƒŠƒXƒg‚ÉƒIƒuƒWƒFƒNƒg‚ğ’Ç‰Á‚·‚é
+// ãƒªã‚¹ãƒˆã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿½åŠ ã™ã‚‹
 int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 {
 	munSetID += 1;
@@ -123,7 +124,7 @@ int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 
 	if (setFlag)
 	{
-		// ˆê”ÔŒã‚ë‚ÌêŠ‚ğ’T‚·B
+		// ä¸€ç•ªå¾Œã‚ã®å ´æ‰€ã‚’æ¢ã™ã€‚
 		ObjectBase* currentObject = mpObjectBase;
 		ObjectBase* nextObject = mpObjectBase->GetNextObject();
 
@@ -182,7 +183,7 @@ int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 	}
 
 	{
-		// ˆê”ÔŒã‚ë‚ÌêŠ‚ğ’T‚·B
+		// ä¸€ç•ªå¾Œã‚ã®å ´æ‰€ã‚’æ¢ã™ã€‚
 		ObjectBase* currentObject = checkObject;
 		ObjectBase* nextObject = checkObject->GetNextObject(false);
 
@@ -199,7 +200,7 @@ int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 	return munSetID - 1;
 }
 
-// ƒŠƒXƒg‚©‚çƒIƒuƒWƒFƒNƒg‚ğœŠO‚·‚é
+// ãƒªã‚¹ãƒˆã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é™¤å¤–ã™ã‚‹
 void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 {
 	if (mpObjectBase == nullptr)
@@ -213,12 +214,12 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 		checkObject = nullptr;
 	}
 
-	// Œp³ƒNƒ‰ƒX
+	// ç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 	do
 	{
 		if (checkObject != nullptr)
 		{
-			// ‚à‚µÅ‰‚ÌƒIƒuƒWƒFƒNƒg‚¾‚Á‚½ê‡‚Í“Á•Ê‚Èˆ—‚ğ‚·‚éB
+			// ã‚‚ã—æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã ã£ãŸå ´åˆã¯ç‰¹åˆ¥ãªå‡¦ç†ã‚’ã™ã‚‹ã€‚
 			if (checkObject->GetID() == id)
 			{
 				ObjectBase* next = checkObject->GetNextObject(false);
@@ -269,9 +270,9 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 				break;
 			}
 
-			// ˆÈ‰ºAÅ‰‚ÌƒIƒuƒWƒFƒNƒg‚Å‚Í‚È‚©‚Á‚½ê‡‚Ìˆ—
+			// ä»¥ä¸‹ã€æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã¯ãªã‹ã£ãŸå ´åˆã®å‡¦ç†
 
-			// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ğ’Tõ‚·‚é
+			// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ç´¢ã™ã‚‹
 			ObjectBase* target = checkObject->GetNextObject(false);
 			while (target->GetID() != id)
 			{
@@ -283,11 +284,11 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 				}
 			}
 
-			// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚Ì‘O‚ÆŒã‚ë‚ğŒq‚°‚é‚½‚ß‚ÉAˆê’UŠm•Û‚µ‚Ä‚¨‚­
+			// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰ã¨å¾Œã‚ã‚’ç¹‹ã’ã‚‹ãŸã‚ã«ã€ä¸€æ—¦ç¢ºä¿ã—ã¦ãŠã
 			ObjectBase* prev = target->GetPrevObject(false);
 			ObjectBase* next = target->GetNextObject(false);
 
-			// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚Ì‘OŒã‚ğŒq‚°Aíœ‘ÎÛ‚ğŒÇ—§‚³‚¹‚é
+			// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰å¾Œã‚’ç¹‹ã’ã€å‰Šé™¤å¯¾è±¡ã‚’å­¤ç«‹ã•ã›ã‚‹
 			prev->SetNextObject(next, false);
 			if (next != nullptr)
 			{
@@ -296,9 +297,9 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 		}
 	} while (false);
 
-	// ƒIƒuƒWƒFƒNƒgƒx[ƒX
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ™ãƒ¼ã‚¹
 	{
-		// ‚à‚µÅ‰‚ÌƒIƒuƒWƒFƒNƒg‚¾‚Á‚½ê‡‚Í“Á•Ê‚Èˆ—‚ğ‚·‚éB
+		// ã‚‚ã—æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã ã£ãŸå ´åˆã¯ç‰¹åˆ¥ãªå‡¦ç†ã‚’ã™ã‚‹ã€‚
 		if (mpObjectBase->GetID() == id)
 		{
 			ObjectBase* next = mpObjectBase->GetNextObject();
@@ -317,9 +318,9 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 			return;
 		}
 
-		// ˆÈ‰ºAÅ‰‚ÌƒIƒuƒWƒFƒNƒg‚Å‚Í‚È‚©‚Á‚½ê‡‚Ìˆ—
+		// ä»¥ä¸‹ã€æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã¯ãªã‹ã£ãŸå ´åˆã®å‡¦ç†
 
-		// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ğ’Tõ‚·‚é
+		// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ç´¢ã™ã‚‹
 		ObjectBase* target = mpObjectBase->GetNextObject();
 		while (target->GetID() != id)
 		{
@@ -331,34 +332,34 @@ void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 			target = target->GetNextObject();
 		}
 
-		// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚Ì‘O‚ÆŒã‚ë‚ğŒq‚°‚é‚½‚ß‚ÉAˆê’UŠm•Û‚µ‚Ä‚¨‚­
+		// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰ã¨å¾Œã‚ã‚’ç¹‹ã’ã‚‹ãŸã‚ã«ã€ä¸€æ—¦ç¢ºä¿ã—ã¦ãŠã
 		ObjectBase* prev = target->GetPrevObject();
 		ObjectBase* next = target->GetNextObject();
 
-		// íœ‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚Ì‘OŒã‚ğŒq‚°Aíœ‘ÎÛ‚ğŒÇ—§‚³‚¹‚é
+		// å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰å¾Œã‚’ç¹‹ã’ã€å‰Šé™¤å¯¾è±¡ã‚’å­¤ç«‹ã•ã›ã‚‹
 		prev->SetNextObject(next);
 		if (next != nullptr)
 		{
 			next->SetPrevObject(prev);
 		}
 
-		// íœ‚·‚é
+		// å‰Šé™¤ã™ã‚‹
 		target->Finalize();
 		delete target;
 		target = nullptr;
 	}
 }
 
-// ƒIƒuƒWƒFƒNƒg‘Síœ
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå…¨å‰Šé™¤
 void ObjectManager::DeleteAll()
 {
-	// Å‰‚ÌƒIƒuƒWƒFƒNƒg‚ª‚È‚¢‚È‚ç‰½‚à‚µ‚È‚¢
+	// æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãªã„ãªã‚‰ä½•ã‚‚ã—ãªã„
 	if (mpObjectBase == nullptr)
 	{
 		return;
 	}
 
-	// ƒIƒuƒWƒFƒNƒg‚Ì‘Síœ
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…¨å‰Šé™¤
 	ObjectBase* target = mpObjectBase;
 	do
 	{
@@ -368,15 +369,15 @@ void ObjectManager::DeleteAll()
 	} while (target != nullptr);
 }
 
-// •K—v‚Å‚ ‚ê‚ÎƒIƒuƒWƒFƒNƒgíœ‚ğs‚¤
+// å¿…è¦ã§ã‚ã‚Œã°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ã‚’è¡Œã†
 void ObjectManager::DeleteAllIfNeeded()
-{    // Å‰‚ÌƒIƒuƒWƒFƒNƒg‚ª‚È‚¢‚È‚ç‰½‚à‚µ‚È‚¢
+{    // æœ€åˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãªã„ãªã‚‰ä½•ã‚‚ã—ãªã„
 	if (mpObjectBase == nullptr)
 	{
 		return;
 	}
 
-	// íœƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğ‡”Ô‚Éíœ
+	// å‰Šé™¤ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é †ç•ªã«å‰Šé™¤
 	ObjectBase* target = mpObjectBase;
 	do
 	{
@@ -391,12 +392,12 @@ void ObjectManager::DeleteAllIfNeeded()
 }
 
 /*------------------*/
-/*     yæ“¾z     */
+/*     ã€å–å¾—ã€‘     */
 /*------------------*/
 /*------*/
-/*yIDz*/
+/*ã€IDã€‘*/
 /*------*/
-// ID‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾
+// IDã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 ObjectBase* ObjectManager::FindByID(int id, bool deleteGetFlag)
 {
 	if (mpObjectBase == nullptr)
@@ -422,12 +423,12 @@ ObjectBase* ObjectManager::FindByID(int id, bool deleteGetFlag)
 
 
 /*--------*/
-/*yƒ^ƒOz*/
+/*ã€ã‚¿ã‚°ã€‘*/
 /*--------*/
-// ƒ^ƒO‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾
+// ã‚¿ã‚°ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 ObjectBase* ObjectManager::FindByTag(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
-	// í—Ş•Ê‚É’²‚×‚é
+	// ç¨®é¡åˆ¥ã«èª¿ã¹ã‚‹
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
 	if ((OBJECT_TYPE)typeNumber == OBJECT_TYPE::BASE)
@@ -456,7 +457,7 @@ ObjectBase* ObjectManager::FindByTag(std::string tag, OBJECT_TYPE typeNumber, bo
 	return workObject;
 }
 
-// ƒ^ƒO‚©‚ç•¡”ƒIƒuƒWƒFƒNƒg‚ğæ“¾(vector)
+// ã‚¿ã‚°ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—(vector)
 std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -490,7 +491,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, OBJEC
 	return result;
 }
 
-// ƒ^ƒO‚©‚ç•¡”ƒIƒuƒWƒFƒNƒg‚ğæ“¾(list)
+// ã‚¿ã‚°ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—(list)
 std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -525,9 +526,9 @@ std::list<ObjectBase*> ObjectManager::FindsByTag_list(std::string tag, OBJECT_TY
 }
 
 /*----------*/
-/*yƒ^ƒCƒvz*/
+/*ã€ã‚¿ã‚¤ãƒ—ã€‘*/
 /*----------*/
-// w’èƒ^ƒCƒvƒŠƒXƒg‚Ìæ“ªƒIƒuƒWƒFƒNƒg‚ğæ“¾
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 ObjectBase* ObjectManager::GetTypeObject(OBJECT_TYPE typeNumber)
 {
 	switch (typeNumber)
@@ -551,7 +552,7 @@ ObjectBase* ObjectManager::GetTypeObject(OBJECT_TYPE typeNumber)
 	return nullptr;
 }
 
-// w’èƒ^ƒCƒv‚ğ‘Sæ“¾(vector)
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ã‚’å…¨å–å¾—(vector)
 std::vector<ObjectBase*> ObjectManager::FindsByType_vector(OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -582,7 +583,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByType_vector(OBJECT_TYPE typeNumbe
 	return result;
 }
 
-// w’èƒ^ƒCƒv‚ğ‘Sæ“¾(list)
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ã‚’å…¨å–å¾—(list)
 std::list<ObjectBase*> ObjectManager::FindsByType_list(OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -613,7 +614,7 @@ std::list<ObjectBase*> ObjectManager::FindsByType_list(OBJECT_TYPE typeNumber, b
 	return result;
 }
 
-// ‘SƒLƒƒƒ‰ƒNƒ^[ƒx[ƒXæ“¾
+// å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ™ãƒ¼ã‚¹å–å¾—
 std::vector<CharacterBase*> ObjectManager::FindsByType_Character(bool inactiveFlag, bool deleteGetFlag)
 {
 	std::vector<CharacterBase*> result;
@@ -637,7 +638,7 @@ std::vector<CharacterBase*> ObjectManager::FindsByType_Character(bool inactiveFl
 	return result;
 }
 
-// ‘Sƒrƒ‹ƒfƒBƒ“ƒOƒx[ƒXæ“¾
+// å…¨ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹å–å¾—
 std::vector<BuildingBase*> ObjectManager::FindsByType_Building(bool inactiveFlag, bool deleteGetFlag)
 {
 	std::vector<BuildingBase*> result;
@@ -661,7 +662,7 @@ std::vector<BuildingBase*> ObjectManager::FindsByType_Building(bool inactiveFlag
 	return result;
 }
 
-// ‘SƒAƒ^ƒbƒNƒx[ƒXæ“¾
+// å…¨ã‚¢ã‚¿ãƒƒã‚¯ãƒ™ãƒ¼ã‚¹å–å¾—
 std::vector<AttackBase*> ObjectManager::FindsByType_Attack(bool inactiveFlag, bool deleteGetFlag)
 {
 	std::vector<AttackBase*> result;
@@ -687,12 +688,12 @@ std::vector<AttackBase*> ObjectManager::FindsByType_Attack(bool inactiveFlag, bo
 
 
 /*----------*/
-/*yƒ`[ƒ€z*/
+/*ã€ãƒãƒ¼ãƒ ã€‘*/
 /*----------*/
-// ƒ`[ƒ€‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾
+// ãƒãƒ¼ãƒ ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 ObjectBase* ObjectManager::FindByTeam(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
-	// í—Ş•Ê‚É’²‚×‚é
+	// ç¨®é¡åˆ¥ã«èª¿ã¹ã‚‹
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
 	bool allBaseFlag = false;
 	if (typeNumber == OBJECT_TYPE::BASE)
@@ -721,7 +722,7 @@ ObjectBase* ObjectManager::FindByTeam(int team, OBJECT_TYPE typeNumber, bool ina
 	return workObject;
 }
 
-// ƒ`[ƒ€‚©‚ç•¡”ƒIƒuƒWƒFƒNƒgæ“¾(vector)
+// ãƒãƒ¼ãƒ ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—(vector)
 std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -755,7 +756,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, OBJECT_TYPE
 	return result;
 }
 
-// ƒ`[ƒ€‚©‚ç•¡”ƒIƒuƒWƒFƒNƒgæ“¾(list)
+// ãƒãƒ¼ãƒ ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—(list)
 std::list<ObjectBase*> ObjectManager::FindsByTeam_list(int team, OBJECT_TYPE typeNumber, bool inactiveFlag, bool deleteGetFlag)
 {
 	ObjectBase* checkObject = GetTypeObject(typeNumber);
@@ -791,13 +792,13 @@ std::list<ObjectBase*> ObjectManager::FindsByTeam_list(int team, OBJECT_TYPE typ
 
 
 /*------------------*/
-/*     yİ’èz     */
+/*     ã€è¨­å®šã€‘     */
 /*------------------*/
 
 /*--------*/
-/*yíœz*/
+/*ã€å‰Šé™¤ã€‘*/
 /*--------*/
-// w’èƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ—LŒø‰»
+// æŒ‡å®šã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹åŒ–
 void ObjectManager::DeleteSetTag(std::string tag)
 {
 	if (mpObjectBase == nullptr)
@@ -819,7 +820,7 @@ void ObjectManager::DeleteSetTag(std::string tag)
 	} while (workObject != nullptr);
 }
 
-// w’èƒ`[ƒ€‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ—LŒø‰»
+// æŒ‡å®šãƒãƒ¼ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹åŒ–
 void ObjectManager::DeleteSetTeam(int team)
 {
 	if (mpObjectBase == nullptr)
@@ -841,7 +842,7 @@ void ObjectManager::DeleteSetTeam(int team)
 	} while (workObject != nullptr);
 }
 
-// w’èƒV[ƒ“‚Å¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìíœƒtƒ‰ƒO—LŒø‰»
+// æŒ‡å®šã‚·ãƒ¼ãƒ³ã§ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤ãƒ•ãƒ©ã‚°æœ‰åŠ¹åŒ–
 void ObjectManager::DeleteSetScene(SCENE targetScene)
 {
 	if (mpObjectBase == nullptr)
@@ -863,9 +864,9 @@ void ObjectManager::DeleteSetScene(SCENE targetScene)
 }
 
 /*----------*/
-/*y”ñ—LŒøz*/
+/*ã€éæœ‰åŠ¹ã€‘*/
 /*----------*/
-// w’èƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒg‚ğ”ñ—LŒø‰»
+// æŒ‡å®šã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éæœ‰åŠ¹åŒ–
 void ObjectManager::InactiveSetTag(std::string tag)
 {
 	if (mpObjectBase == nullptr)
@@ -887,7 +888,7 @@ void ObjectManager::InactiveSetTag(std::string tag)
 	} while (workObject != nullptr);
 }
 
-// w’èƒ`[ƒ€‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ”ñ—LŒø‰»
+// æŒ‡å®šãƒãƒ¼ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’éæœ‰åŠ¹åŒ–
 void ObjectManager::InactiveSetTeam(int team)
 {
 	if (mpObjectBase == nullptr)
@@ -909,7 +910,7 @@ void ObjectManager::InactiveSetTeam(int team)
 	} while (workObject != nullptr);
 }
 
-// w’èƒV[ƒ“‚Å¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğ”ñ—LŒø‰»‚·‚é
+// æŒ‡å®šã‚·ãƒ¼ãƒ³ã§ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éæœ‰åŠ¹åŒ–ã™ã‚‹
 void ObjectManager::InactiveSetScene(SCENE targetScene)
 {
 	if (mpObjectBase == nullptr)
@@ -931,9 +932,9 @@ void ObjectManager::InactiveSetScene(SCENE targetScene)
 }
 
 /*----------------*/
-/*yƒIƒuƒWƒFƒNƒgz*/
+/*ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘*/
 /*----------------*/
-// ƒŠƒXƒg‚Ìæ“ªƒIƒuƒWƒFƒNƒg‚ğİ’è
+// ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®š
 void ObjectManager::SetTypeObject(OBJECT_TYPE typeNumber, ObjectBase* setObject)
 {
 	switch (typeNumber)

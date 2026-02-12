@@ -1,153 +1,150 @@
-#pragma once
+ï»¿#pragma once
 #include <list>
 #include <string>
 #include <vector>
 
-enum class OBJECT_TYPE;
+#include "ObjectBases.h"
+
 enum class SCENE;
-class ObjectBase;
-class CharacterBase;
-class BuildingBase;
-class AttackBase;
 
 class ObjectManager
 {
 private:
-    // üŒ`ƒŠƒXƒg‚Ìæ“ªƒAƒhƒŒƒX(ƒIƒuƒWƒFƒNƒg‚×[ƒX)
+    // ç·šå½¢ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¹ãƒ¼ã‚¹)
     ObjectBase* mpObjectBase;
 
-    // üŒ`ƒŠƒXƒg‚Ìæ“ªƒAƒhƒŒƒX(ƒLƒƒƒ‰ƒNƒ^[‚×[ƒX)
+    // ç·šå½¢ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¹ãƒ¼ã‚¹)
     ObjectBase* mpCharacterBase;
-    // üŒ`ƒŠƒXƒg‚Ìæ“ªƒAƒhƒŒƒX(Œš•¨‚×[ƒX)
+    // ç·šå½¢ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(å»ºç‰©ã¹ãƒ¼ã‚¹)
     ObjectBase* mpBuildingBase;
-    // üŒ`ƒŠƒXƒg‚Ìæ“ªƒAƒhƒŒƒX(UŒ‚‚×[ƒX)
+    // ç·šå½¢ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(æ”»æ’ƒã¹ãƒ¼ã‚¹)
     ObjectBase* mpAttackBase;
-    // üŒ`ƒŠƒXƒg‚Ìæ“ªƒAƒhƒŒƒX(UI‚×[ƒX)
+    // ç·šå½¢ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(UIã¹ãƒ¼ã‚¹)
     ObjectBase* mpUIBase;
 
-    // İ’è—pID
+    // è¨­å®šç”¨ID
     unsigned int munSetID;
 
 public:
-    /*ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+    /*ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     ObjectManager();
-    /*ƒfƒXƒgƒ‰ƒNƒ^*/
+    /*ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     ~ObjectManager();
 
     /*------------------*/
-    /*     yˆ—z     */
+    /*     ã€å‡¦ç†ã€‘     */
     /*------------------*/
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize();
-    /*I—¹*/
+    /*çµ‚äº†*/
     void Finalize();
 
-    /// <summary>ƒIƒuƒWƒFƒNƒgÅI‰Šú‰»</summary>
-    void ObjectLastInitilize();
-    /*ƒIƒuƒWƒFƒNƒgXV*/
+    /// <summary>ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void ObjectSceneLastInitilize();
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°*/
     void ObjectUpdate();
-    /*ƒIƒuƒWƒFƒNƒgÅIXV*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæœ€çµ‚æ›´æ–°*/
     void ObjectLastUpdate();
-    /*ƒIƒuƒWƒFƒNƒg•`‰æ*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»*/
     void ObjectDraw();
 
 
-    /*ƒŠƒXƒg‚ÉƒIƒuƒWƒFƒNƒg‚ğ’Ç‰Á‚·‚é*/
+    /*ãƒªã‚¹ãƒˆã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿½åŠ ã™ã‚‹*/
     int Add(ObjectBase* object, OBJECT_TYPE typeNumber);
-    /*ƒŠƒXƒg‚©‚çƒIƒuƒWƒFƒNƒg‚ğœŠO‚·‚é*/
+    /*ãƒªã‚¹ãƒˆã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é™¤å¤–ã™ã‚‹*/
     void Delete(unsigned int id, OBJECT_TYPE typeNumber);
 
-    /*ƒIƒuƒWƒFƒNƒg‘Síœ*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå…¨å‰Šé™¤*/
     void DeleteAll();
-    /*•K—v‚Å‚ ‚ê‚ÎƒIƒuƒWƒFƒNƒgíœ‚ğs‚¤*/
+    /*å¿…è¦ã§ã‚ã‚Œã°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ã‚’è¡Œã†*/
     void DeleteAllIfNeeded();
 
-    /*“–‚½‚è”»’èŠm”F*/
+    /*å½“ãŸã‚Šåˆ¤å®šç¢ºèª*/
     //CollisionData CheckObjectHit(CollisionData collisionData, OBJECT_TYPE typeNumber);
 
     /*------------------*/
-    /*     yæ“¾z     */
+    /*     ã€å–å¾—ã€‘     */
     /*------------------*/
 
     /*------*/
-    /*yIDz*/
+    /*ã€IDã€‘*/
     /*------*/
 
-    /*ID‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾*/
+    /*IDã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—*/
     ObjectBase* FindByID(int id, bool deleteGetFlag = false);
 
     /*--------*/
-    /*yƒ^ƒOz*/
+    /*ã€ã‚¿ã‚°ã€‘*/
     /*--------*/
 
-    /*ƒ^ƒO‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾*/
+    /*ã‚¿ã‚°ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—*/
     ObjectBase* FindByTag(std::string tag, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*ƒ^ƒO‚©‚ç•¡”ƒIƒuƒWƒFƒNƒg‚ğæ“¾(vector)*/
+    /*ã‚¿ã‚°ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—(vector)*/
     std::vector<ObjectBase*> FindsByTag_vector(std::string tag, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*ƒ^ƒO‚©‚ç•¡”ƒIƒuƒWƒFƒNƒg‚ğæ“¾(list)*/
+    /*ã‚¿ã‚°ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—(list)*/
     std::list<ObjectBase*> FindsByTag_list(std::string tag, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
 
     /*----------*/
-    /*yƒ^ƒCƒvz*/
+    /*ã€ã‚¿ã‚¤ãƒ—ã€‘*/
     /*----------*/
 
-    /*w’èƒ^ƒCƒvƒŠƒXƒg‚Ìæ“ªƒIƒuƒWƒFƒNƒg‚ğæ“¾*/
+    /*æŒ‡å®šã‚¿ã‚¤ãƒ—ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—*/
     ObjectBase* GetTypeObject(OBJECT_TYPE typeNumber);
-    /*w’èƒ^ƒCƒv‚ğ‘Sæ“¾(vector)*/
+    /*æŒ‡å®šã‚¿ã‚¤ãƒ—ã‚’å…¨å–å¾—(vector)*/
     std::vector<ObjectBase*> FindsByType_vector(OBJECT_TYPE typeNumber, bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*w’èƒ^ƒCƒv‚ğ‘Sæ“¾(list)*/
+    /*æŒ‡å®šã‚¿ã‚¤ãƒ—ã‚’å…¨å–å¾—(list)*/
     std::list<ObjectBase*> FindsByType_list(OBJECT_TYPE typeNumber, bool inactiveFlag = false, bool deleteGetFlag = false);
     
-    /*‘SƒLƒƒƒ‰ƒNƒ^[ƒx[ƒXæ“¾*/
+    /*å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ™ãƒ¼ã‚¹å–å¾—*/
     std::vector <CharacterBase*> FindsByType_Character(bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*‘Sƒrƒ‹ƒfƒBƒ“ƒOƒx[ƒXæ“¾*/
+    /*å…¨ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹å–å¾—*/
     std::vector <BuildingBase*> FindsByType_Building(bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*‘SƒAƒ^ƒbƒNƒx[ƒXæ“¾*/
+    /*å…¨ã‚¢ã‚¿ãƒƒã‚¯ãƒ™ãƒ¼ã‚¹å–å¾—*/
     std::vector <AttackBase*> FindsByType_Attack(bool inactiveFlag = false, bool deleteGetFlag = false);
 
     /*----------*/
-    /*yƒ`[ƒ€z*/
+    /*ã€ãƒãƒ¼ãƒ ã€‘*/
     /*----------*/
 
-    /*ƒ`[ƒ€‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾*/
+    /*ãƒãƒ¼ãƒ ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—*/
     ObjectBase* FindByTeam(int team, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*ƒ`[ƒ€‚©‚ç•¡”ƒIƒuƒWƒFƒNƒgæ“¾(vector)*/
+    /*ãƒãƒ¼ãƒ ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—(vector)*/
     std::vector<ObjectBase*> FindsByTeam_vector(int team, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
-    /*ƒ`[ƒ€‚©‚ç•¡”ƒIƒuƒWƒFƒNƒgæ“¾(list)*/
+    /*ãƒãƒ¼ãƒ ã‹ã‚‰è¤‡æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—(list)*/
     std::list<ObjectBase*> FindsByTeam_list(int team, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
 
     /*------------------*/
-    /*     yİ’èz     */
+    /*     ã€è¨­å®šã€‘     */
     /*------------------*/
 
     /*--------*/
-    /*yíœz*/
+    /*ã€å‰Šé™¤ã€‘*/
     /*--------*/
 
-    /*w’èƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ—LŒø‰»*/
+    /*æŒ‡å®šã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹åŒ–*/
     void DeleteSetTag(std::string tag);
-    /*w’èƒ`[ƒ€‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ—LŒø‰»*/
+    /*æŒ‡å®šãƒãƒ¼ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹åŒ–*/
     void DeleteSetTeam(int team);
-    /*w’èƒV[ƒ“‚Å¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìíœƒtƒ‰ƒO—LŒø‰»*/
+    /*æŒ‡å®šã‚·ãƒ¼ãƒ³ã§ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤ãƒ•ãƒ©ã‚°æœ‰åŠ¹åŒ–*/
     void DeleteSetScene(SCENE targetScene);
 
     /*----------*/
-    /*y”ñ—LŒøz*/
+    /*ã€éæœ‰åŠ¹ã€‘*/
     /*----------*/
 
-    /*w’èƒ^ƒO‚ÌƒIƒuƒWƒFƒNƒg‚ğ”ñ—LŒø‰»*/
+    /*æŒ‡å®šã‚¿ã‚°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éæœ‰åŠ¹åŒ–*/
     void InactiveSetTag(std::string tag);
-    /*w’èƒ`[ƒ€‚ÌƒIƒuƒWƒFƒNƒgíœƒtƒ‰ƒO‚ğ”ñ—LŒø‰»*/
+    /*æŒ‡å®šãƒãƒ¼ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’éæœ‰åŠ¹åŒ–*/
     void InactiveSetTeam(int team);
-    /*w’èƒV[ƒ“‚Å¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğ”ñ—LŒø‰»‚·‚é*/
+    /*æŒ‡å®šã‚·ãƒ¼ãƒ³ã§ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éæœ‰åŠ¹åŒ–ã™ã‚‹*/
     void InactiveSetScene(SCENE targetScene);
 
 private:
     /*----------------*/
-    /*yƒIƒuƒWƒFƒNƒgz*/
+    /*ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘*/
     /*----------------*/
     
-    /*ƒŠƒXƒg‚Ìæ“ªƒIƒuƒWƒFƒNƒg‚ğİ’è*/
+    /*ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®š*/
     void SetTypeObject(OBJECT_TYPE typeNumber, ObjectBase* setObject);
 };

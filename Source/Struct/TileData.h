@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "BitFlag.h"
@@ -8,21 +8,21 @@
 class CharacterBase;
 class MapManager;
 
-// TODO: ƒ}ƒbƒv–¼‚É•Ï‚¦‚é@(ƒtƒ@ƒCƒ‹‚©‚çÅI“I‚Éæ“¾‚·‚é)
+// TODO: ãƒãƒƒãƒ—åã«å¤‰ãˆã‚‹ã€€(ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æœ€çµ‚çš„ã«å–å¾—ã™ã‚‹)
 enum class MapType
 {
-	None = 0,			// ‰½‚à‚È‚¢
-	Normal = 1,			// ’Êíƒ}ƒbƒv
-	Battle = 2,			// í“¬ƒ}ƒbƒv
+	None = 0,			// ä½•ã‚‚ãªã„
+	Normal = 1,			// é€šå¸¸ãƒãƒƒãƒ—
+	Battle = 2,			// æˆ¦é—˜ãƒãƒƒãƒ—
 };
 
 enum class TileType
 {
-	None = 0,			// ‰½‚à‚È‚¢
-	Ground = 1,			// ’n–Ê
+	None = 0,			// ä½•ã‚‚ãªã„
+	Ground = 1,			// åœ°é¢
 };
 
-// ƒ^ƒCƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“
+// ã‚¿ã‚¤ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
 struct TilePos
 {
 public:
@@ -50,23 +50,23 @@ public:
 	}
 };
 
-// ƒ^ƒCƒ‹ƒf[ƒ^
+// ã‚¿ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 struct TileData
 {
 public:
 	TileData();
 	TileData(bool flag);
 
-	std::vector<TilePos> adjacentData; // —×Úƒ^ƒCƒ‹î•ñ
+	std::vector<TilePos> adjacentData; // éš£æ¥ã‚¿ã‚¤ãƒ«æƒ…å ±
 
-	BIT_FLAG<unsigned long long> tileFlag;	// ‚±‚Ìƒ^ƒCƒ‹‚Ìƒtƒ‰ƒOƒf[ƒ^
+	BIT_FLAG<unsigned long long> tileFlag;	// ã“ã®ã‚¿ã‚¤ãƒ«ã®ãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿
 
-	TileType tileType;	// ƒ^ƒCƒ‹‚Ìí—Ş
+	TileType tileType;	// ã‚¿ã‚¤ãƒ«ã®ç¨®é¡
 
-	VECTOR tileDisplacedPos;	// ‚±‚Ìƒ^ƒCƒ‹‚Ì‚¸‚ê‚½ƒxƒNƒgƒ‹
+	VECTOR tileDisplacedPos;	// ã“ã®ã‚¿ã‚¤ãƒ«ã®ãšã‚ŒãŸãƒ™ã‚¯ãƒˆãƒ«
 
-	TilePos tilePos;	// ƒ^ƒCƒ‹ƒ|ƒWƒVƒ‡ƒ“
+	TilePos tilePos;	// ã‚¿ã‚¤ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³
 
-	/*ƒ^ƒCƒ‹ˆ—*/
+	/*ã‚¿ã‚¤ãƒ«å‡¦ç†*/
 	virtual TilePos TileProcess(CharacterBase* character, MapManager* mapManager);
 };

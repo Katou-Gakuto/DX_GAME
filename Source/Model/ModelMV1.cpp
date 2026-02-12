@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 
 #include "Master.h"
 
@@ -17,12 +17,12 @@ ModelMV1::~ModelMV1()
 {
 }
 
-// ƒ‚ƒfƒ‹‰Šú‰»
+// ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–
 void ModelMV1::ModelInitilize()
 {
 }
 
-// ƒ‚ƒfƒ‹I—¹
+// ãƒ¢ãƒ‡ãƒ«çµ‚äº†
 void ModelMV1::ModelFinalize()
 {
     if (mnModelHandle != -1)
@@ -31,23 +31,23 @@ void ModelMV1::ModelFinalize()
     }
 }
 
-// ƒ|ƒWƒVƒ‡ƒ“XV
+// ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°
 void ModelMV1::PositionUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;
     VECTOR position = mvPosition;
 
-    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[‚ğ”½‰f‚·‚é
+    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’åæ˜ ã™ã‚‹
     if (mpModelsController != nullptr)
     {
         size     = UtilCalc::VMultiply(size,     mpModelsController->GetModelSize());
         angle    = VAdd(angle,    mpModelsController->GetModelAngle());
         position = VAdd(position, mpModelsController->GetModelPosition());
 
-        // ‰ñ“]‚Ì’†S‚ğã‚É‚·‚é
+        // å›è»¢ã®ä¸­å¿ƒã‚’ä¸Šã«ã™ã‚‹
         {
-            // X‰ñ“]
+            // Xå›è»¢
             VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));
 
@@ -57,8 +57,8 @@ void ModelMV1::PositionUpdate()
         //tempPosition2.z = -(ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * cosf(Calculation::GetNotExceedAngle(-mfAngle)));
 
 
-            // TODO: ŒvZŠ®¬‚³‚¹‚é
-            // Z‰ñ“]
+            // TODO: è¨ˆç®—å®Œæˆã•ã›ã‚‹
+            // Zå›è»¢
             // anglePos = UtilCalc::VSphericalMovePos(100.0f, VGet(angle.z + (UtilCalc::Pi * 1.5f), -angle.y, angle.x));
             // if (UtilCalc::Abs(angle.y) > (UtilCalc::Pi * 0.3f))
             // {
@@ -70,17 +70,17 @@ void ModelMV1::PositionUpdate()
             // }
         }
 
-        // ‚‚³‚ÌC³
+        // é«˜ã•ã®ä¿®æ­£
         position.y += mpModelsController->GetModelSize().y * 80.0f;
     }
 
-    // ˆÊ’uEŠp“xEƒTƒCƒYİ’è
+    // ä½ç½®ãƒ»è§’åº¦ãƒ»ã‚µã‚¤ã‚ºè¨­å®š
     MV1SetScale(       mnModelHandle, size);
     MV1SetRotationXYZ( mnModelHandle, angle);
     MV1SetPosition(    mnModelHandle, position);
 }
 
-// ƒ‚ƒfƒ‹•`‰æ
+// ãƒ¢ãƒ‡ãƒ«æç”»
 void ModelMV1::ModelDraw()
 {
     if (!mbDrawFlag)
@@ -91,7 +91,7 @@ void ModelMV1::ModelDraw()
     ModelDraw_Handle(mnModelHandle);
 }
 
-// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹İ’è
+// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«è¨­å®š
 void ModelMV1::SetModelHandle(const char* filePath)
 {
     if (mnModelHandle != -1)

@@ -1,95 +1,95 @@
-#pragma once
+ï»¿#pragma once
 #include <windows.h>
 
-// TODO: long long int ˆÈã‘Î‰‚Ì\‘¢‘Ì‚ğì‚é
+// TODO: long long int ä»¥ä¸Šå¯¾å¿œã®æ§‹é€ ä½“ã‚’ä½œã‚‹
 class TimeManager
 {
 private:
 
-    // ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg
+    // ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆ
     unsigned int munFrameCount;
-    // ƒXƒ^[ƒgƒ^ƒCƒ€
+    // ã‚¹ã‚¿ãƒ¼ãƒˆã‚¿ã‚¤ãƒ 
     unsigned int munStartTime;
-    // ˆê‚Â‘O‚ÌŠÔ
+    // ä¸€ã¤å‰ã®æ™‚é–“
     unsigned int munPreviousTime;
-    // ƒXƒgƒbƒvƒ^ƒCƒ€
+    // ã‚¹ãƒˆãƒƒãƒ—ã‚¿ã‚¤ãƒ 
     unsigned int munStopTime;
-    // 1ƒtƒŒ[ƒ€‚Ì•b”
+    // 1ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç§’æ•°
     unsigned int munOneFrame;
 
-    // ƒXƒgƒbƒvƒtƒ‰ƒO
+    // ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°
     bool mbStopFlag;
 
-    // V‚µ‚¢ƒV[ƒ“‚ÉˆÚ‚Á‚Ä‚¢‚éˆ—‚ğ‚µ‚½ƒtƒ‰ƒO
+    // æ–°ã—ã„ã‚·ãƒ¼ãƒ³ã«ç§»ã£ã¦ã„ã‚‹å‡¦ç†ã‚’ã—ãŸãƒ•ãƒ©ã‚°
     bool mbNewSceneTimeFlag;
 
-    // ŠÔ‚ªƒŠƒZƒbƒg‚³‚ê‚½ƒtƒ‰ƒO
+    // æ™‚é–“ãŒãƒªã‚»ãƒƒãƒˆã•ã‚ŒãŸãƒ•ãƒ©ã‚°
     int mnTimeResetFlag;
 
 public:
-    /*ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+    /*ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     TimeManager(int oneFrameTime = 17);
-    /*ƒfƒXƒgƒ‰ƒNƒ^*/
+    /*ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     ~TimeManager();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize();
 
-    /*XVˆ—‚ğ‚â‚é‚©‚ğ•Ô‚·*/
+    /*æ›´æ–°å‡¦ç†ã‚’ã‚„ã‚‹ã‹ã‚’è¿”ã™*/
     bool GetNextUpdateFlag();
 
 
     /// <summary>
-    /// ƒtƒŒ[ƒ€”æ“¾
+    /// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
     /// </summary>
-    /// <returns>Œo‰ßƒtƒŒ[ƒ€”</returns>
+    /// <returns>çµŒéãƒ•ãƒ¬ãƒ¼ãƒ æ•°</returns>
     unsigned int GetFrame() const { return munFrameCount; }
 
     /// <summary>
-    /// ƒQ[ƒ€ŠÔæ“¾
+    /// ã‚²ãƒ¼ãƒ æ™‚é–“å–å¾—
     /// </summary>
-    /// <returns>ƒQ[ƒ€‚ÌŒo‰ßŠÔ</returns>
+    /// <returns>ã‚²ãƒ¼ãƒ ã®çµŒéæ™‚é–“</returns>
     unsigned int GetGameTime() const { return timeGetTime() - (munStartTime + (mbNewSceneTimeFlag ? (munStopTime + (timeGetTime() - munPreviousTime)) : munStopTime)); }
 
     /// <summary>
-    /// ƒXƒ^[ƒg‚©‚ç‚ÌŒo‰ßŠÔ
+    /// ã‚¹ã‚¿ãƒ¼ãƒˆã‹ã‚‰ã®çµŒéæ™‚é–“
     /// </summary>
-    /// <returns>Œo‰ßŠÔ</returns>
+    /// <returns>çµŒéæ™‚é–“</returns>
     unsigned int GetTime() const { return timeGetTime() - munStartTime; }
 
     /// <summary>
-    /// ˆê‚Â‘O‚ÌXVŠÔ
+    /// ä¸€ã¤å‰ã®æ›´æ–°æ™‚é–“
     /// </summary>
-    /// <returns>XVŠÔ</returns>
+    /// <returns>æ›´æ–°æ™‚é–“</returns>
     unsigned int GetPreviousTime() const { return munPreviousTime; }
 
     /// <summary>
-    /// ƒQ[ƒ€’â~ƒtƒ‰ƒOæ“¾
+    /// ã‚²ãƒ¼ãƒ åœæ­¢ãƒ•ãƒ©ã‚°å–å¾—
     /// </summary>
-    /// <returns>’â~‚µ‚Ä‚¢‚é‚È‚çutruev</returns>
+    /// <returns>åœæ­¢ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€</returns>
     bool GetStopFlag() const { return mbStopFlag; }
 
     /// <summary>
-    /// ƒQ[ƒ€’â~ƒtƒ‰ƒOİ’è
+    /// ã‚²ãƒ¼ãƒ åœæ­¢ãƒ•ãƒ©ã‚°è¨­å®š
     /// </summary>
-    /// <param name="flag">’â~‚·‚é‚©‚Ç‚¤‚©utruev‚Å~‚Ü‚é</param>
+    /// <param name="flag">åœæ­¢ã™ã‚‹ã‹ã©ã†ã‹ã€Œtrueã€ã§æ­¢ã¾ã‚‹</param>
     void SetStopFlag(bool flag) { mbStopFlag = flag; }
 
     /// <summary>
-    /// 1ƒtƒŒ[ƒ€‚Ì•b”æ“¾(ƒ~ƒŠ•b)
+    /// 1ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç§’æ•°å–å¾—(ãƒŸãƒªç§’)
     /// </summary>
-    /// <returns>1ƒtƒŒ[ƒ€‚Ì•b”(ƒ~ƒŠ•b)</returns>
+    /// <returns>1ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç§’æ•°(ãƒŸãƒªç§’)</returns>
     unsigned int GetOneFrame() const { return munOneFrame; }
 
     /// <summary>
-    /// 1ƒtƒŒ[ƒ€‚Ì•b”İ’è(ƒ~ƒŠ•b)
+    /// 1ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç§’æ•°è¨­å®š(ãƒŸãƒªç§’)
     /// </summary>
-    /// <param name="time">1ƒtƒŒ[ƒ€‚Ì•b”(ƒ~ƒŠ•b)</param>
+    /// <param name="time">1ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç§’æ•°(ãƒŸãƒªç§’)</param>
     void SetOneFrame(int time) { munOneFrame = time; }
 
     /// <summary>
-    /// ƒV[ƒ“•ÏX’†‚ÉŒo‚Á‚½ƒQ[ƒ€ŠÔ‚ğˆê’è‰»‚·‚éƒtƒ‰ƒO‚ğİ’è
+    /// ã‚·ãƒ¼ãƒ³å¤‰æ›´ä¸­ã«çµŒã£ãŸã‚²ãƒ¼ãƒ æ™‚é–“ã‚’ä¸€å®šåŒ–ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
     /// </summary>
-    /// <param name="flag">V‚µ‚¢ƒV[ƒ“ˆÚ“®’†‚©‚Ç‚¤‚©</param>
+    /// <param name="flag">æ–°ã—ã„ã‚·ãƒ¼ãƒ³ç§»å‹•ä¸­ã‹ã©ã†ã‹</param>
     void SetNewSceneTimeFlag(bool flag) { mbNewSceneTimeFlag = flag; }
 };

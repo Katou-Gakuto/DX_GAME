@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ResourceEnum.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
 
-// DIV‰æ‘œƒf[ƒ^
+// DIVç”»åƒãƒ‡ãƒ¼ã‚¿
 struct DIV_GRAPH_DATA
 {
 public:
@@ -34,7 +34,7 @@ public:
 		count = 0;
 	}
 
-	/*‰Šú‰»—p(ƒnƒ“ƒhƒ‹‚Ì”z—ñ‚Æ‘S‰æ‘œ‚Ì–‡”‚Ì‚İİ’è)*/
+	/*åˆæœŸåŒ–ç”¨(ãƒãƒ³ãƒ‰ãƒ«ã®é…åˆ—ã¨å…¨ç”»åƒã®æšæ•°ã®ã¿è¨­å®š)*/
 	DIV_GRAPH_DATA(int allNumber)
 	{
 		handle = (int *)malloc(sizeof(int) * allNumber);
@@ -51,30 +51,30 @@ public:
 
 struct DRAW_GRAPH_DATA
 {
-	Vector2_Int pos = Vector2_Int(0, 0);	// À•W
-    int handle = -1;	// ƒnƒ“ƒhƒ‹
+	Vector2_Int pos = Vector2_Int(0, 0);	// åº§æ¨™
+    int handle = -1;	// ãƒãƒ³ãƒ‰ãƒ«
 
-    int transFlag = TRUE;	// “§‰ßƒtƒ‰ƒO
-	Vector2_Int turnFlag = Vector2_Int(0, 0);  // ”½“]ƒtƒ‰ƒO
+    int transFlag = TRUE;	// é€éãƒ•ãƒ©ã‚°
+	Vector2_Int turnFlag = Vector2_Int(0, 0);  // åè»¢ãƒ•ãƒ©ã‚°
 
-	Vector2_Int size = Vector2_Int(0, 0);   // ƒTƒCƒY
+	Vector2_Int size = Vector2_Int(0, 0);   // ã‚µã‚¤ã‚º
 
-	Vector2_Int extPos = Vector2_Int(0, 0); // Šg‘åÀ•W
+	Vector2_Int extPos = Vector2_Int(0, 0); // æ‹¡å¤§åº§æ¨™
 
-	Vector2_Int graphPos = Vector2_Int(0, 0);  // ‰æ‘œÀ•W
+	Vector2_Int graphPos = Vector2_Int(0, 0);  // ç”»åƒåº§æ¨™
 
 
-	Vector2_Int upLeft = Vector2_Int(0, 0);     // ¶ãÀ•W
-	Vector2_Int upRight = Vector2_Int(0, 0);    // ‰EãÀ•W
-	Vector2_Int downRight = Vector2_Int(0, 0);  // ‰E‰ºÀ•W
-	Vector2_Int downLeft = Vector2_Int(0, 0);   // ¶‰ºÀ•W
+	Vector2_Int upLeft = Vector2_Int(0, 0);     // å·¦ä¸Šåº§æ¨™
+	Vector2_Int upRight = Vector2_Int(0, 0);    // å³ä¸Šåº§æ¨™
+	Vector2_Int downRight = Vector2_Int(0, 0);  // å³ä¸‹åº§æ¨™
+	Vector2_Int downLeft = Vector2_Int(0, 0);   // å·¦ä¸‹åº§æ¨™
 
-    double angle = 0.0;   // ‰ñ“]Šp“x
+    double angle = 0.0;   // å›è»¢è§’åº¦
 
-	Vector2_Int centerPos = Vector2_Int(0, 0);  // ’†SÀ•W
-    VECTOR_D extRate = VGetD(0.0, 0.0, 0.0);	// ‰ñ“]Šg‘å—¦
+	Vector2_Int centerPos = Vector2_Int(0, 0);  // ä¸­å¿ƒåº§æ¨™
+    VECTOR_D extRate = VGetD(0.0, 0.0, 0.0);	// å›è»¢æ‹¡å¤§ç‡
 
-    DRAW_GRAPH_TYPE drawType = DRAW_GRAPH_TYPE::NORMAL;  // •`‰æí—Ş
+    DRAW_GRAPH_TYPE drawType = DRAW_GRAPH_TYPE::NORMAL;  // æç”»ç¨®é¡
 };
 
 
@@ -96,42 +96,42 @@ public:
 		return *this;
 	}
 
-	// TODO: ‰æ–Ê‚ÌÀ•Wæ“¾(Š„‡)‚Æ•Ê‚ÌÀ•W‚©‚ç‹‚Ä’lŠ„‡•ÏX‚µ‚½À•W
+	// TODO: ç”»é¢ã®åº§æ¨™å–å¾—(å‰²åˆ)ã¨åˆ¥ã®åº§æ¨™ã‹ã‚‰å±…ã¦å€¤å‰²åˆå¤‰æ›´ã—ãŸåº§æ¨™
 
-	/// <summary>¶‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾</summary>
+	/// <summary>å·¦ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—</summary>
 	int Left_RatioWidth(float ratio);
-	/// <summary>ã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾</summary>
+	/// <summary>ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—</summary>
 	int Up_RatioHeight(float ratio);
-	/// <summary>‰E‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾</summary>
+	/// <summary>å³ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—</summary>
 	int Right_RatioWidth(float ratio);
-	/// <summary>‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾</summary>
+	/// <summary>ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—</summary>
 	int Down_RatioHeight(float ratio);
 
-	/// <summary>¶ã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å·¦ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int LeftUp_Ratio(Vector2 ratio);
-	/// <summary>¶ã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å·¦ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int LeftUp_FloatRatio(float ratio) { return LeftUp_Ratio(Vector2(ratio, ratio)); }
 
-	/// <summary>‰Eã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å³ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int RightUp_Ratio(Vector2 ratio);
-	/// <summary>‰Eã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å³ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int RightUp_FloatRatio(float ratio) { return RightUp_Ratio(Vector2(ratio, ratio)); }
 
-	/// <summary>¶‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å·¦ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int LeftDown_Ratio(Vector2 ratio);
-	/// <summary>¶‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å·¦ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int LeftDown_FloatRatio(float ratio) { return LeftDown_Ratio(Vector2(ratio, ratio)); }
 
-	/// <summary>‰E‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å³ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int RightDown_Ratio(Vector2 ratio);
-	/// <summary>‰E‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾</summary>
+	/// <summary>å³ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—</summary>
 	Vector2_Int RightDown_FloatRatio(float ratio) { return RightDown_Ratio(Vector2(ratio, ratio)); }
 } DISPLAY_SIZE;
 
 typedef struct DrawConfigData
 {
-	int blendMode;	// ƒuƒŒƒ“ƒhƒ‚[ƒh
-	int blendParameter;	// ƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^[
+	int blendMode;	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int blendParameter;	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	DrawConfigData()
 	: blendMode(DX_BLENDMODE_NOBLEND)
 	, blendParameter(255)

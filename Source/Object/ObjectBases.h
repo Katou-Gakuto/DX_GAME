@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <list>
 #include <string>
 #include <map>
@@ -8,7 +8,7 @@
 #include "BitFlag.h"
 #include "CollisionData.h"
 #include "Status.h"
-#include "ResourceData.h"// TODO: Á‚·
+#include "ResourceData.h"// TODO: æ¶ˆã™
 
 #include "DxLib.h"
 
@@ -29,14 +29,14 @@ class FSMCharacter;
 class FSMUI;
 
 /*--------------------------------------------------------*/
-/*               yƒIƒuƒWƒFƒNƒgƒx[ƒXŠÖ˜Az               */
+/*               ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ™ãƒ¼ã‚¹é–¢é€£ã€‘               */
 /*--------------------------------------------------------*/
 
 /*------------------------------------------------*/
-/*          yƒIƒuƒWƒFƒNƒgƒx[ƒX—penumz          */
+/*          ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ™ãƒ¼ã‚¹ç”¨enumã€‘          */
 /*------------------------------------------------*/
-
-// ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
+;
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 enum class OBJECT_TYPE
 {
     BASE = 0,
@@ -47,881 +47,881 @@ enum class OBJECT_TYPE
 };
 
 /*------------------------------------------*/
-/*          yƒIƒuƒWƒFƒNƒgƒx[ƒXz          */
+/*          ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ™ãƒ¼ã‚¹ã€‘          */
 /*------------------------------------------*/
 
 class ObjectBase
 {
 private:
-    // ‘OƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    // å‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
     ObjectBase* mpPrevObject;
-    // ŸƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    // æ¬¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
     ObjectBase* mpNextObject;
 
-    // Œp³‚µ‚½ƒNƒ‰ƒX‚Æ“¯ƒ^ƒCƒv‚Ì‘OƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    // ç¶™æ‰¿ã—ãŸã‚¯ãƒ©ã‚¹ã¨åŒã‚¿ã‚¤ãƒ—ã®å‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
     ObjectBase* mpInheritClassPrevObject;
-    // Œp³‚µ‚½ƒNƒ‰ƒX‚Æ“¯ƒ^ƒCƒv‚ÌŸƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    // ç¶™æ‰¿ã—ãŸã‚¯ãƒ©ã‚¹ã¨åŒã‚¿ã‚¤ãƒ—ã®æ¬¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
     ObjectBase* mpInheritClassNextObject;
 
-    // íœƒtƒ‰ƒO
+    // å‰Šé™¤ãƒ•ãƒ©ã‚°
     bool mbIsDeleteFlag;
-    // —LŒøƒtƒ‰ƒO
+    // æœ‰åŠ¹ãƒ•ãƒ©ã‚°
     bool mbIsActiveFlag;
 
-    // Ÿ‚ÌƒV[ƒ“íœ‚·‚éƒtƒ‰ƒO
+    // æ¬¡ã®ã‚·ãƒ¼ãƒ³å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°
     bool mbNextSceneDeleteFlag;
 
-    // ¯•Êƒ^ƒO
+    // è­˜åˆ¥ã‚¿ã‚°
     std::string mnTag;
-    // ƒ`[ƒ€
+    // ãƒãƒ¼ãƒ 
     int mnTeam;
-    // ŒÂ•Êƒiƒ“ƒo[
+    // å€‹åˆ¥ãƒŠãƒ³ãƒãƒ¼
     unsigned int munID;
 
-    // ƒIƒuƒWƒFƒNƒg‚Ìí—Ş
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡
     OBJECT_TYPE meObjectType;
 
 protected:
-    // ¶¬‚³‚ê‚½ƒV[ƒ“
+    // ç”Ÿæˆã•ã‚ŒãŸã‚·ãƒ¼ãƒ³
     SCENE meObjectScene;
 
-    // ƒtƒ‰ƒO
+    // ãƒ•ãƒ©ã‚°
     BIT_FLAG<unsigned long long> mllFlags;
 
 public:
 
-    /*ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
+    /*ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     ObjectBase(OBJECT_TYPE objectType, bool isActiveFlag, bool nextSceneDeleteFlag);
-    /*ƒfƒXƒgƒ‰ƒNƒ^*/
+    /*ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
     ~ObjectBase();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     virtual void Initilize() = 0;
-    /// <summary>ÅI‰Šú‰»</summary>
-    virtual void LastInitilize() = 0;
-    /*I—¹*/
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    virtual void SceneLastInitilize() = 0;
+    /*çµ‚äº†*/
     virtual void Finalize() = 0;
-    /*XV*/
+    /*æ›´æ–°*/
     virtual void Update() = 0;
-    /*ÅIXV*/
+    /*æœ€çµ‚æ›´æ–°*/
     virtual void LastUpdate() = 0;
-    /*•`‰æ*/
+    /*æç”»*/
     virtual void Draw() = 0;
 
-    /*‘OƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾*/
+    /*å‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—*/
     inline ObjectBase* GetPrevObject(bool allBaseFlag = true) { return allBaseFlag ? mpPrevObject : mpInheritClassPrevObject; }
-    /*ŸƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾*/
+    /*æ¬¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—*/
     inline ObjectBase* GetNextObject(bool allBaseFlag = true) { return allBaseFlag ? mpNextObject : mpInheritClassNextObject; }
 
-    /*‘OƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğİ’è‚·‚é*/
+    /*å‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã™ã‚‹*/
     inline void SetPrevObject(ObjectBase* object, bool allBaseFlag = true) { if (allBaseFlag) { mpPrevObject = object; } else { mpInheritClassPrevObject = object; } }
-    /*ŸƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğİ’è‚·‚é*/
+    /*æ¬¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã™ã‚‹*/
     inline void SetNextObject(ObjectBase* object, bool allBaseFlag = true) { if (allBaseFlag) { mpNextObject = object; } else { mpInheritClassNextObject = object; } }
 
-    /*íœƒtƒ‰ƒOİ’è(true = íœ)*/
+    /*å‰Šé™¤ãƒ•ãƒ©ã‚°è¨­å®š(true = å‰Šé™¤)*/
     inline void SetDeleteFlag(const bool flag) { mbIsDeleteFlag = flag; }
-    /*íœƒtƒ‰ƒOæ“¾*/
+    /*å‰Šé™¤ãƒ•ãƒ©ã‚°å–å¾—*/
     inline bool IsDeleteFlag() const { return mbIsDeleteFlag; }
 
-    /*—LŒøƒtƒ‰ƒOİ’è*/
+    /*æœ‰åŠ¹ãƒ•ãƒ©ã‚°è¨­å®š*/
     inline void SetActiveFlag(const bool flag) { mbIsActiveFlag = flag; }
-    /*—LŒøƒtƒ‰ƒOæ“¾*/
+    /*æœ‰åŠ¹ãƒ•ãƒ©ã‚°å–å¾—*/
     inline bool IsActiveFlag() const { return mbIsActiveFlag; }
 
-    /*ƒ^ƒOİ’è*/
+    /*ã‚¿ã‚°è¨­å®š*/
     inline void SetTag(const std::string& tag) { mnTag = tag; }
-    /*ƒ^ƒOæ“¾*/
+    /*ã‚¿ã‚°å–å¾—*/
     inline std::string GetTag() const { return mnTag; }
 
-    /*ƒ`[ƒ€İ’è*/
+    /*ãƒãƒ¼ãƒ è¨­å®š*/
     inline void SetTeam(const int team) { mnTeam = team; }
-    /*ƒ`[ƒ€æ“¾*/
+    /*ãƒãƒ¼ãƒ å–å¾—*/
     inline int GetTeam() const { return mnTeam; }
 
-    /*ŒÂ•Êƒiƒ“ƒo[æ“¾*/
+    /*å€‹åˆ¥ãƒŠãƒ³ãƒãƒ¼å–å¾—*/
     inline unsigned int GetID() const { return munID; }
 
-    /*Ÿ‚ÌƒV[ƒ“íœ‚·‚éƒtƒ‰ƒO‚ğİ’è*/
+    /*æ¬¡ã®ã‚·ãƒ¼ãƒ³å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š*/
     inline void SetNextSceneDeleteFlag(bool nextSceneDeleteFlag) { mbNextSceneDeleteFlag = nextSceneDeleteFlag; }
-    /*Ÿ‚ÌƒV[ƒ“íœ‚·‚éƒtƒ‰ƒO‚ğæ“¾*/
+    /*æ¬¡ã®ã‚·ãƒ¼ãƒ³å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—*/
     inline bool GetNextSceneDeleteFlag() const { return mbNextSceneDeleteFlag; }
 
-    /*ƒIƒuƒWƒFƒNƒgí—Ş(ƒiƒ“ƒo[)æ“¾*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¨®é¡(ãƒŠãƒ³ãƒãƒ¼)å–å¾—*/
     inline OBJECT_TYPE GetObjectTypeNumber() const { return meObjectType; }
 
-    /*ƒIƒuƒWƒFƒNƒg‚ÌƒV[ƒ“‚ğæ“¾*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚·ãƒ¼ãƒ³ã‚’å–å¾—*/
     inline SCENE GetObjectScene() const { return meObjectScene; }
-    /*ƒIƒuƒWƒFƒNƒg‚ÌƒV[ƒ“İ’è*/
+    /*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚·ãƒ¼ãƒ³è¨­å®š*/
     inline void SetObjectScene(SCENE objectScene) { meObjectScene = objectScene; }
 
     /*--------------------------*/
-    /*yŒp³ˆ—ƒLƒƒƒXƒgÈ—ª—pz*/
+    /*ã€ç¶™æ‰¿å‡¦ç†ã‚­ãƒ£ã‚¹ãƒˆçœç•¥ç”¨ã€‘*/
     /*--------------------------*/
-    /*“–‚½‚è”»’è*/
+    /*å½“ãŸã‚Šåˆ¤å®š*/
     virtual void HitCheck(CollisionData& collisionData) {};
 };
 
 /*--------------------------------------------------------*/
-/*               yƒLƒƒƒ‰ƒNƒ^[ƒx[ƒXŠÖŒWz               */
+/*               ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ™ãƒ¼ã‚¹é–¢ä¿‚ã€‘               */
 /*--------------------------------------------------------*/
 
 /*------------------------------------------------*/
-/*          yƒLƒƒƒ‰ƒNƒ^[ƒx[ƒX—penumz          */
+/*          ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ™ãƒ¼ã‚¹ç”¨enumã€‘          */
 /*------------------------------------------------*/
 
-// s“®ƒtƒ‰ƒO
+// è¡Œå‹•ãƒ•ãƒ©ã‚°
 enum class ACTION_FLAG
 {
     // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
 
-    /*ã‰ºˆÚ“®*/
+    /*ä¸Šä¸‹ç§»å‹•*/
     //UP_OR_DOWN_ACTION =   0b00'000'000'001u,
-    /*ãˆÚ“®*/
+    /*ä¸Šç§»å‹•*/
     UP_ACTION =             0b00'000'000'011u,
-    /*‰ºˆÚ“®*/
+    /*ä¸‹ç§»å‹•*/
     DOWN_ACTION =           0b00'000'000'101u,
 
-    /*‰E¶ˆÚ“®*/
+    /*å³å·¦ç§»å‹•*/
     //LEFT_OR_RIGHT_ACTION= 0b00'000'001'000u,
-    /*‰EˆÚ“®*/
+    /*å³ç§»å‹•*/
     RIGHT_ACTION =          0b00'000'011'000u,
-    /*¶ˆÚ“®*/
+    /*å·¦ç§»å‹•*/
     LEFT_ACTION =           0b00'000'101'000u,
 
-    /*‘OŒãˆÚ“®*/
+    /*å‰å¾Œç§»å‹•*/
     //FRONT_OR_BACK_ACTION= 0b00'001'000'000u,
-    /*‘OˆÚ“®*/
+    /*å‰ç§»å‹•*/
     FRONT_ACTION =          0b00'011'000'000u,
-    /*Œã‚ëˆÚ“®*/
+    /*å¾Œã‚ç§»å‹•*/
     BACK_ACTION =           0b00'101'000'000u,
 
-    /*HP‚ª0ˆÈ‰º*/
+    /*HPãŒ0ä»¥ä¸‹*/
     HP_ZERO =               0b01'000'000'000u,
 
-    /*ƒ_ƒbƒVƒ…*/
+    /*ãƒ€ãƒƒã‚·ãƒ¥*/
     DASH =                  0b10'000'000'000u,
 };
 
-// Šm”F—ps“®ƒtƒ‰ƒO
+// ç¢ºèªç”¨è¡Œå‹•ãƒ•ãƒ©ã‚°
 enum class CHECK_ACTION_FLAG
 {
     // MAX 31
 
-    /*ã‰ºˆÚ“®*/
+    /*ä¸Šä¸‹ç§»å‹•*/
     UP_OR_DOWN_ACTION = 0,
-    /*ãˆÚ“®*/
+    /*ä¸Šç§»å‹•*/
     UP_ACTION,
-    /*‰ºˆÚ“®*/
+    /*ä¸‹ç§»å‹•*/
     DOWN_ACTION,
 
-    /*‰E¶ˆÚ“®*/
+    /*å³å·¦ç§»å‹•*/
     LEFT_OR_RIGHT_ACTION,
-    /*‰EˆÚ“®*/
+    /*å³ç§»å‹•*/
     RIGHT_ACTION,
-    /*¶ˆÚ“®*/
+    /*å·¦ç§»å‹•*/
     LEFT_ACTION,
 
-    /*‘OŒãˆÚ“®*/
+    /*å‰å¾Œç§»å‹•*/
     FRONT_OR_BACK_ACTION,
-    /*‘OˆÚ“®*/
+    /*å‰ç§»å‹•*/
     FRONT_ACTION,
-    /*Œã‚ëˆÚ“®*/
+    /*å¾Œã‚ç§»å‹•*/
     BACK_ACTION,
 
-    /*HP‚ª0ˆÈ‰º*/
+    /*HPãŒ0ä»¥ä¸‹*/
     HP_ZERO,
 
-    /*ƒ_ƒbƒVƒ…*/
+    /*ãƒ€ãƒƒã‚·ãƒ¥*/
     DASH
 };
 
 /*------------------------------------------*/
-/*          yƒLƒƒƒ‰ƒNƒ^[ƒx[ƒXz          */
+/*          ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ™ãƒ¼ã‚¹ã€‘          */
 /*------------------------------------------*/
-;// TODO: Á‚·
+;// TODO: æ¶ˆã™
 class CharacterBase : public ObjectBase
 {
 
 protected:
-    // ‘O‚Ìƒ|ƒWƒVƒ‡ƒ“
+    // å‰ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
     VECTOR mvOldPosition;
 
-    // ƒ|ƒWƒVƒ‡ƒ“
+    // ãƒã‚¸ã‚·ãƒ§ãƒ³
     VECTOR mvPosition;
 
-    // ˆÚ“®•ûŒü
+    // ç§»å‹•æ–¹å‘
     VECTOR mvMoveDir;
 
-    // ˆÚ“®—Ê
+    // ç§»å‹•é‡
     VECTOR mvVec;
 
-    // ƒ‚ƒfƒ‹Œü‚«
+    // ãƒ¢ãƒ‡ãƒ«å‘ã
     VECTOR mvAngle;
 
-    // ƒXƒe[ƒ^ƒX
+    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     STATUS mstStatus;
 
-    // ƒLƒƒƒ‰ƒNƒ^[—LŒÀó‘Ôƒ}ƒVƒ“
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³
     FSMCharacter* mpFsm;
 
-    // ƒ‚ƒfƒ‹ƒx[ƒX
+    // ãƒ¢ãƒ‡ãƒ«ãƒ™ãƒ¼ã‚¹
     ModelsControllerBase* mpModelController;
 
-    // ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX
+    // ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹
     AnimationBase* mpAnimation;
 
-    // s“®ƒtƒ‰ƒO
+    // è¡Œå‹•ãƒ•ãƒ©ã‚°
     BIT_FLAG<unsigned int> munActionflags;
 
-    // UŒ‚İ’èî•ñ’B
+    // æ”»æ’ƒè¨­å®šæƒ…å ±é”
     std::map<ATTACK_METHOD_TYPE, CharacterAttackData> mmCharacterAttackDatas;
 
-    // UŒ‚ƒIƒuƒWƒFƒNƒg
+    // æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     AttackBase* mpAttack;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
     ~CharacterBase();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize() override final;
-    /// <summary>ÅI‰Šú‰»</summary>
-    void LastInitilize() override final;
-    /*I—¹*/
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void SceneLastInitilize() override final;
+    /*çµ‚äº†*/
     void Finalize() override final;
-    /*XV*/
+    /*æ›´æ–°*/
     void Update() override final;
-    /*ÅIXV*/
+    /*æœ€çµ‚æ›´æ–°*/
     void LastUpdate() override final;
-    /*•`‰æ*/
+    /*æç”»*/
     void Draw() override final;
 
-    /*“–‚½‚è”»’è*/
+    /*å½“ãŸã‚Šåˆ¤å®š*/
     void HitCheck(CollisionData& collisionData) override = 0;
 
     /*----------------------*/
-    /*     y“Æ©ˆ—z     */
+    /*     ã€ç‹¬è‡ªå‡¦ç†ã€‘     */
     /*----------------------*/
 
 public:
-    /*UŒ‚ŠJn(”½“®ŠÔ‚ğ•Ô‚·)*/
+    /*æ”»æ’ƒé–‹å§‹(åå‹•æ™‚é–“ã‚’è¿”ã™)*/
     virtual void StartAttck(ATTACK_METHOD_TYPE attackMethodType);
 
-    /*UŒ‚’â~*/
+    /*æ”»æ’ƒåœæ­¢*/
     virtual void StopAttack(ATTACK_METHOD_TYPE attackMethodType);
     
-    /// <summary>w’èƒAƒjƒ[ƒVƒ‡ƒ“’†‚Å‚ ‚é‚©‚ğæ“¾</summary>
-    /// <returns>w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚È‚çutruev‚ğ•Ô‚·</returns>
+    /// <summary>æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­ã§ã‚ã‚‹ã‹ã‚’å–å¾—</summary>
+    /// <returns>æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™</returns>
     bool CheckAnimationType(ANIMATION_TYPE animationType);
 
-    /*ƒ_ƒ[ƒW*/
+    /*ãƒ€ãƒ¡ãƒ¼ã‚¸*/
     virtual void Damage(int damage);
 
 
 protected:
-    /*ƒLƒƒƒ‰ƒNƒ^[‰Šú‰»*/
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–*/
     virtual void CharacterInitilize() = 0;
-    /*ƒLƒƒƒ‰ƒNƒ^[ÅI‰Šú‰»*/
-    virtual void CharacterLastInitilize() = 0;
-    /*ƒLƒƒƒ‰ƒNƒ^[I—¹*/
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    virtual void CharacterSceneLastInitilize() = 0;
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼çµ‚äº†*/
     virtual void CharacterFinalize() = 0;
 
-    /*ƒLƒƒƒ‰ƒNƒ^[XV*/
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°*/
     virtual void CharacterUpdate() = 0;
-    /*ƒLƒƒƒ‰ƒNƒ^[ÅIXV*/
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ€çµ‚æ›´æ–°*/
     virtual void CharacterLastUpdate() = 0;
 
-    /*ƒLƒƒƒ‰ƒNƒ^[•`‰æ*/
+    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æç”»*/
     virtual void CharacterDraw() = 0;
 
-    /*s“®ˆ—*/
+    /*è¡Œå‹•å‡¦ç†*/
     virtual void ActionProcess() { TemplateActionProcess(); }
 
-    /*’èŒ^s“®ˆ—*/
+    /*å®šå‹è¡Œå‹•å‡¦ç†*/
     void TemplateActionProcess();
 
-    /*ˆÚ“®ˆ—*/
+    /*ç§»å‹•å‡¦ç†*/
     virtual void MoveProcess();
 
-    /*€–Sˆ—*/
+    /*æ­»äº¡å‡¦ç†*/
     virtual void DeathProcess();
 
 public:
 
     /*--------*/
-    /*yæ“¾z*/
+    /*ã€å–å¾—ã€‘*/
     /*--------*/
 
-    /*ƒXƒe[ƒ^ƒXæ“¾*/
+    /*ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—*/
     inline STATUS* GetStatus() { return &mstStatus; }
 
-    /*ƒ|ƒWƒVƒ‡ƒ“æ“¾*/
+    /*ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—*/
     inline VECTOR GetPos() const { return mvPosition; }
 
-    /*ˆÚ“®—\’è’n“_*/
+    /*ç§»å‹•äºˆå®šåœ°ç‚¹*/
     inline VECTOR GetMovePos() const { return VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed())); }
 
-    /*‘O‚Ìƒ|ƒWƒVƒ‡ƒ“æ“¾*/
+    /*å‰ã®ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—*/
     inline VECTOR GetOldPos() const { return mvOldPosition; }
 
-    /*ˆÚ“®•ûŒüæ“¾*/
+    /*ç§»å‹•æ–¹å‘å–å¾—*/
     inline VECTOR GetMoveDir() const { return mvMoveDir; }
 
-    /*ˆÚ“®—Êæ“¾*/
+    /*ç§»å‹•é‡å–å¾—*/
     inline VECTOR GetVec() const { return mvVec; }
 
-    /*•ûŒüæ“¾*/
+    /*æ–¹å‘å–å¾—*/
     inline VECTOR GetAngle() const { return mvAngle; }
 
-    /*ƒTƒCƒYæ“¾*/
+    /*ã‚µã‚¤ã‚ºå–å¾—*/
     inline VECTOR GetSize() const { return mpModelController->GetModelSize(); }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[æ“¾</summary>
-    /// <returns>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[</returns>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—</summary>
+    /// <returns>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼</returns>
     inline ModelsControllerBase* GetModelsController() { return mpModelController; }
 
-    /// <summary>ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒXæ“¾</summary>
-    /// <returns>ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX</returns>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹å–å¾—</summary>
+    /// <returns>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹</returns>
     inline AnimationBase* GetAnimation() { return  mpAnimation; }
 
     
-    /// <summary>UŒ‚—pƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[æ“¾</summary>
-    /// <returns>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[</returns>
+    /// <summary>æ”»æ’ƒç”¨ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—</summary>
+    /// <returns>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼</returns>
     inline ModelsControllerBase* GetAttackModelsController(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
 
-    /// <summary>UŒ‚—pƒAƒjƒƒVƒ‡ƒ“ƒx[ƒXæ“¾</summary>
-    /// <returns>ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX</returns>
+    /// <summary>æ”»æ’ƒç”¨ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹å–å¾—</summary>
+    /// <returns>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹</returns>
     inline AnimationBase* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { return  mmCharacterAttackDatas[attackMethodType].animation; }
 
-    /// <summary>ƒLƒƒƒ‰ƒNƒ^[‚ª‚µ‚½UŒ‚æ“¾</summary>
-    /// <returns>UŒ‚ƒIƒuƒWƒFƒNƒg</returns>
+    /// <summary>ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒã—ãŸæ”»æ’ƒå–å¾—</summary>
+    /// <returns>æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</returns>
     AttackBase* GetAttack();
 
     /*--------*/
-    /*yİ’èz*/
+    /*ã€è¨­å®šã€‘*/
     /*--------*/
 
-    /*fsmİ’è*/
+    /*fsmè¨­å®š*/
     void SetFSM(FSMCharacter* fsm);
 
-    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“İ’è</summary>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š</summary>
     void SetAnimation(ANIMATION_TYPE animationType);
 
-    /*ƒ|ƒWƒVƒ‡ƒ“İ’è*/
+    /*ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š*/
     inline void SetPos(const VECTOR& pos) { mvPosition = pos; }
-    /*ˆÚ“®•ûŒüİ’è*/
+    /*ç§»å‹•æ–¹å‘è¨­å®š*/
     inline void SetMoveDir(const VECTOR& moveDir) { mvMoveDir = moveDir; }
-    /*ˆÚ“®—Êİ’è*/
+    /*ç§»å‹•é‡è¨­å®š*/
     inline void SetVec(const VECTOR& vec) { mvVec = vec; }
-    /*•ûŒüİ’è*/
+    /*æ–¹å‘è¨­å®š*/
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
 
-    /*ãˆÚ“®İ’è*/
+    /*ä¸Šç§»å‹•è¨­å®š*/
     inline void SetUpMove() { munActionflags ^= (unsigned int)ACTION_FLAG::UP_ACTION; }
-    /*‰ºˆÚ“®İ’è*/
+    /*ä¸‹ç§»å‹•è¨­å®š*/
     inline void SetDownMove() { munActionflags ^= (unsigned int)ACTION_FLAG::DOWN_ACTION; }
 
-    /*‰EˆÚ“®İ’è*/
+    /*å³ç§»å‹•è¨­å®š*/
     inline void SetRightMove() { munActionflags ^= (unsigned int)ACTION_FLAG::RIGHT_ACTION; }
-    /*¶ˆÚ“®İ’è*/
+    /*å·¦ç§»å‹•è¨­å®š*/
     inline void SetLeftMove() { munActionflags ^= (unsigned int)ACTION_FLAG::LEFT_ACTION; }
 
-    /*‘OˆÚ“®İ’è*/
+    /*å‰ç§»å‹•è¨­å®š*/
     inline void SetFrontMove() { munActionflags ^= (unsigned int)ACTION_FLAG::FRONT_ACTION; }
-    /*Œã‚ëˆÚ“®İ’è*/
+    /*å¾Œã‚ç§»å‹•è¨­å®š*/
     inline void SetBackMove() { munActionflags ^= (unsigned int)ACTION_FLAG::BACK_ACTION; }
 
-    /*HP‚ª0ˆÈ‰º‚Ìƒtƒ‰ƒO‚ğİ’è*/
+    /*HPãŒ0ä»¥ä¸‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®š*/
     inline void SetHPZero() { munActionflags ^= (unsigned int)ACTION_FLAG::HP_ZERO; }
 
-    /// <summary>s“®ƒtƒ‰ƒOİ’è</summary>
+    /// <summary>è¡Œå‹•ãƒ•ãƒ©ã‚°è¨­å®š</summary>
     inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags ^= (unsigned int)flagBit; }
 };
 
 /*--------------------------------------------------------*/
-/*               yƒrƒ‹ƒfƒBƒ“ƒOƒx[ƒXŠÖŒWz               */
+/*               ã€ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹é–¢ä¿‚ã€‘               */
 /*--------------------------------------------------------*/
 
 /*------------------------------------------*/
-/*          yƒrƒ‹ƒfƒBƒ“ƒOƒx[ƒXz          */
+/*          ã€ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹ã€‘          */
 /*------------------------------------------*/
-// TODO: ‚¢‚ë‚¢‚ë’²®
+// TODO: ã„ã‚ã„ã‚èª¿æ•´
 class BuildingBase : public ObjectBase
 {
 protected:
-    // ƒ|ƒWƒVƒ‡ƒ“
+    // ãƒã‚¸ã‚·ãƒ§ãƒ³
     VECTOR mvPosition;
 
-    // ƒ‚ƒfƒ‹ƒx[ƒX
+    // ãƒ¢ãƒ‡ãƒ«ãƒ™ãƒ¼ã‚¹
 
     //fsm
 
-    /*“–‚½‚è”»’è—p ‘½•ªƒ‚ƒfƒ‹‚Å‚¢‚¯‚é*/
+    /*å½“ãŸã‚Šåˆ¤å®šç”¨ å¤šåˆ†ãƒ¢ãƒ‡ãƒ«ã§ã„ã‘ã‚‹*/
 //    CollisionData HitCheck(CollisionData collisionData) override { return CollisionCheck(collisionData); }
 
 public:
     BuildingBase(bool nextSceneDeleteFlag);
     ~BuildingBase();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize() override final;
-    /// <summary>ÅI‰Šú‰»</summary>
-    void LastInitilize() override final;
-    /*I—¹*/
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void SceneLastInitilize() override final;
+    /*çµ‚äº†*/
     void Finalize() override final;
-    /*XV*/
+    /*æ›´æ–°*/
     void Update() override final;
-    /*ÅIXV*/
+    /*æœ€çµ‚æ›´æ–°*/
     void LastUpdate() override final;
-    /*•`‰æ*/
+    /*æç”»*/
     void Draw() override final;
 
     /*----------------------*/
-    /*     y“Æ©ˆ—z     */
+    /*     ã€ç‹¬è‡ªå‡¦ç†ã€‘     */
     /*----------------------*/
 
 protected:
-    /*ƒrƒ‹ƒfƒBƒ“ƒO‰Šú‰»*/
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°åˆæœŸåŒ–*/
     virtual void BuildingInitilize() = 0;
-    /*ƒrƒ‹ƒfƒBƒ“ƒOÅI‰Šú‰»*/
-    virtual void BuildingLastInitilize() = 0;
-    /*ƒrƒ‹ƒfƒBƒ“ƒOI—¹*/
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    virtual void BuildingSceneLastInitilize() = 0;
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°çµ‚äº†*/
     virtual void BuildingFinalize() = 0;
-    /*ƒrƒ‹ƒfƒBƒ“ƒOXV*/
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°æ›´æ–°*/
     virtual void BuildingUpdate() = 0;
-    /*ƒrƒ‹ƒfƒBƒ“ƒOÅIXV*/
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°æœ€çµ‚æ›´æ–°*/
     virtual void BuildingLastUpdate() = 0;
-    /*ƒrƒ‹ƒfƒBƒ“ƒO•`‰æ*/
+    /*ãƒ“ãƒ«ãƒ‡ã‚£ãƒ³ã‚°æç”»*/
     virtual void BuildingDraw() = 0;
 };
 
 /*----------------------------------------------------*/
-/*               yƒAƒ^ƒbƒNƒx[ƒXŠÖŒWz               */
+/*               ã€ã‚¢ã‚¿ãƒƒã‚¯ãƒ™ãƒ¼ã‚¹é–¢ä¿‚ã€‘               */
 /*----------------------------------------------------*/
 
 /*--------------------------------------*/
-/*          yƒAƒ^ƒbƒNƒx[ƒXz          */
+/*          ã€ã‚¢ã‚¿ãƒƒã‚¯ãƒ™ãƒ¼ã‚¹ã€‘          */
 /*--------------------------------------*/
 
 class AttackBase : public ObjectBase
 {
 protected:
-    // ƒ|ƒWƒVƒ‡ƒ“
+    // ãƒã‚¸ã‚·ãƒ§ãƒ³
     VECTOR mvPosition;
 
-    // ƒpƒ[
+    // ãƒ‘ãƒ¯ãƒ¼
     int mnPower;
 
-    // UŒ‚ƒLƒƒƒ‰ƒNƒ^[
+    // æ”»æ’ƒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
     CharacterBase* mpAttackCharacter;
 
-    // “–‚½‚Á‚½ƒLƒƒƒ‰ƒNƒ^[
+    // å½“ãŸã£ãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
     std::vector<int> mnHiObjID;
 
-    // ˆÚ“®•ûŒü
+    // ç§»å‹•æ–¹å‘
     VECTOR mvMoveDir;
 
-    // Œü‚«
+    // å‘ã
     VECTOR mvAngle;
 
     //fsm
 
-    // ƒ‚ƒfƒ‹ƒx[ƒX
+    // ãƒ¢ãƒ‡ãƒ«ãƒ™ãƒ¼ã‚¹
     ModelsControllerBase* mpModelController;
 
-    // ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX
+    // ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹
     AnimationBase* mpAnimation;
 
-    // UŒ‚ƒiƒ“ƒo[
+    // æ”»æ’ƒãƒŠãƒ³ãƒãƒ¼
     int mnAttackNumber;
 
-    //// UŒ‚”½“®ŠÔ
+    //// æ”»æ’ƒåå‹•æ™‚é–“
     //int mnAttackRecoilTime;
 
-    // UŒ‚ŠÔ
+    // æ”»æ’ƒæ™‚é–“
     int mnAttackTime;
 
 public:
     AttackBase();
     ~AttackBase();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize() override final;
-    /// <summary>ÅI‰Šú‰»</summary>
-    void LastInitilize() override final;
-    /*I—¹*/
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void SceneLastInitilize() override final;
+    /*çµ‚äº†*/
     void Finalize() override final;
-    /*XV*/
+    /*æ›´æ–°*/
     void Update() override final;
-    /*ÅIXV*/
+    /*æœ€çµ‚æ›´æ–°*/
     void LastUpdate() override final;
-    /*•`‰æ*/
+    /*æç”»*/
     void Draw() override final;
 
-    /*“–‚½‚è”»’è*/
+    /*å½“ãŸã‚Šåˆ¤å®š*/
     void HitCheck(CollisionData& collisionData) override = 0;
 
     /*----------------------*/
-    /*     y“Æ©ˆ—z     */
+    /*     ã€ç‹¬è‡ªå‡¦ç†ã€‘     */
     /*----------------------*/
 
 protected:
-    /*ƒAƒ^ƒbƒN‰Šú‰»*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯åˆæœŸåŒ–*/
     virtual void AttackInitilize() = 0;
-    /*ƒAƒ^ƒbƒNÅI‰Šú‰»*/
-    virtual void AttackLastInitilize() = 0;
-    /*ƒAƒ^ƒbƒNI—¹*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    virtual void AttackSceneLastInitilize() = 0;
+    /*ã‚¢ã‚¿ãƒƒã‚¯çµ‚äº†*/
     virtual void AttackFinalize() = 0;
-    /*ƒAƒ^ƒbƒNXV*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æ›´æ–°*/
     virtual void AttackUpdate() = 0;
-    /*ƒAƒ^ƒbƒNÅIXV*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æœ€çµ‚æ›´æ–°*/
     virtual void AttackLastUpdate() = 0;
-    /*ƒAƒ^ƒbƒN•`‰æ*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æç”»*/
     virtual void AttackDraw() = 0;
 
     /*--------*/
-    /*yİ’èz*/
+    /*ã€è¨­å®šã€‘*/
     /*--------*/
 
 public:
-    /*UŒ‚ƒLƒƒƒ‰ƒNƒ^[İ’è*/
+    /*æ”»æ’ƒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è¨­å®š*/
     inline void SetAttackCharacter(CharacterBase* character) { mpAttackCharacter = character; }
     
-    /*UŒ‚ƒiƒ“ƒo[İ’è*/
+    /*æ”»æ’ƒãƒŠãƒ³ãƒãƒ¼è¨­å®š*/
     inline void SetAttackNumber(int number) { mnAttackNumber = number; }
 
-    /*UŒ‚ŠÔİ’è*/
+    /*æ”»æ’ƒæ™‚é–“è¨­å®š*/
     inline void SetAttackTime(int time) { mnAttackTime = time; }
 
-    /*ˆÚ“®•ûŒüİ’è*/
+    /*ç§»å‹•æ–¹å‘è¨­å®š*/
     inline void SetMoveDir(VECTOR moveDir) { mvMoveDir = moveDir; }
 
-    /*UŒ‚—Íİ’è*/
+    /*æ”»æ’ƒåŠ›è¨­å®š*/
     inline void SetAttackPower(int power) { mnPower = power; }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[İ’è</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼è¨­å®š</summary>
     inline void SetModelController(ModelsControllerBase* modelsController) { mpModelController = modelsController; }
 
-    /// <summary>ƒAƒjƒƒVƒ‡ƒ“İ’è</summary>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³è¨­å®š</summary>
     inline void SetAnimation(AnimationBase* animation) { mpAnimation = animation; }
 
     /*--------*/
-    /*yæ“¾z*/
+    /*ã€å–å¾—ã€‘*/
     /*--------*/
 
 public:
-    /*UŒ‚ƒiƒ“ƒo[æ“¾*/
+    /*æ”»æ’ƒãƒŠãƒ³ãƒãƒ¼å–å¾—*/
     inline int GetAttackNumber() const { return mnAttackNumber; }
 
-    ///*UŒ‚”½“®ŠÔæ“¾*/
+    ///*æ”»æ’ƒåå‹•æ™‚é–“å–å¾—*/
     //inline int GetAttackRecoilTime() const { return mnAttackRecoilTime; }
 
-    /*ƒpƒ[æ“¾*/
+    /*ãƒ‘ãƒ¯ãƒ¼å–å¾—*/
     inline int GetAttackPower()const { return mnPower; }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[æ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—</summary>
     inline ModelsControllerBase* GetModelsController() { return mpModelController; }
 
-    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“æ“¾</summary>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å–å¾—</summary>
     inline AnimationBase* GetAnimation() { return mpAnimation; }
 };
 
 /*----------------------------------------------*/
-/*               yUIƒx[ƒXŠÖŒWz               */
+/*               ã€UIãƒ™ãƒ¼ã‚¹é–¢ä¿‚ã€‘               */
 /*----------------------------------------------*/
 
 /*------------------------------*/
-/*          yUIƒ‚ƒfƒ‹\‘¢‘Ìz
+/*          ã€UIãƒ¢ãƒ‡ãƒ«æ§‹é€ ä½“ã€‘
 /*------------------------------*/
-struct UIDrawModel// TODO: ˆê’UUI‚ğ•\¦‚³‚¹‚½Œã‚É‚±‚ê‚É’u‚«Š·‚¦‚é
+struct UIDrawModel// TODO: ä¸€æ—¦UIã‚’è¡¨ç¤ºã•ã›ãŸå¾Œã«ã“ã‚Œã«ç½®ãæ›ãˆã‚‹
 {
-    // ƒ‚ƒfƒ‹
+    // ãƒ¢ãƒ‡ãƒ«
     ModelsControllerBase* mpUIModelController;
 
-    // ƒAƒjƒƒVƒ‡ƒ“
+    // ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³
     AnimationBase* mpAnimation;
 
-    // •`‰æ‚·‚éƒXƒe[ƒg
+    // æç”»ã™ã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆ
     std::vector<int> mnDrawNumber;
 };
 
 /*--------------------------------*/
-/*          yUIƒx[ƒXz          */
+/*          ã€UIãƒ™ãƒ¼ã‚¹ã€‘          */
 /*--------------------------------*/
-// TODO: Down‚Å‚Ì•ÏXŠÔŠu‚ğƒtƒŒ[ƒ€1‚Â‚É‚·‚é‚Ì‚Æ’·‰Ÿ‚µ‚ÌŠÔŠu‚ğ’²®‚·‚é
+// TODO: Downã§ã®å¤‰æ›´é–“éš”ã‚’ãƒ•ãƒ¬ãƒ¼ãƒ 1ã¤ã«ã™ã‚‹ã®ã¨é•·æŠ¼ã—ã®é–“éš”ã‚’èª¿æ•´ã™ã‚‹
 class UIBase : public ObjectBase
 {
 private:
-    // ©•ª‚ÌUIƒiƒ“ƒo[
+    // è‡ªåˆ†ã®UIãƒŠãƒ³ãƒãƒ¼
     int mnUINumber;
 
-    // ŠÔ’â~ƒtƒ‰ƒO
+    // æ™‚é–“åœæ­¢ãƒ•ãƒ©ã‚°
     bool mbTimeStopFlag;
 
-    // íœŒ¸­‚³‚¹‚éƒtƒ‰ƒO
+    // å‰Šé™¤æ™‚æ¸›å°‘ã•ã›ã‚‹ãƒ•ãƒ©ã‚°
     bool mbDeleteDecreaseFlag;
 
 protected:
-    // ƒL[ó‘Ô
+    // ã‚­ãƒ¼çŠ¶æ…‹
     KeyState* mpKeyState;
 
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
     ResourceManager* mpResourceManager;
 
-    // ƒ^ƒCƒ€ƒ}ƒlƒWƒƒ[
+    // ã‚¿ã‚¤ãƒ ãƒãƒã‚¸ãƒ£ãƒ¼
     TimeManager* mpTimeManager;
 
-    // ‘I‘ğƒiƒ“ƒo[
+    // é¸æŠãƒŠãƒ³ãƒãƒ¼
     int mnSelectNumber;
 
-    // Å‘å‘I‘ğƒiƒ“ƒo[
+    // æœ€å¤§é¸æŠãƒŠãƒ³ãƒãƒ¼
     int mnSelectMaxNumber;
 
-    // ‘I‘ğ‹«ŠE’l
+    // é¸æŠå¢ƒç•Œå€¤
     int mnSelectBoundaryValue;
 
-    // ‘O‰ñ‘I‘ğ•ÏXƒtƒŒ[ƒ€
+    // å‰å›é¸æŠå¤‰æ›´ãƒ•ãƒ¬ãƒ¼ãƒ 
     int mnSelectChangeFrame;
 
-    // ‘I‘ğ•ÏX‚ÌŠÔŠu
+    // é¸æŠå¤‰æ›´ã®é–“éš”
     int mnSetChangeIntervalFrame;
 
-    // ‰æ‘œƒnƒ“ƒhƒ‹’B
+    // ç”»åƒãƒãƒ³ãƒ‰ãƒ«é”
     int* mnGraphHandles;
-    // ‰æ‘œƒnƒ“ƒhƒ‹”
+    // ç”»åƒãƒãƒ³ãƒ‰ãƒ«æ•°
     int mnGraphCount;
 
-    // “®‰æƒnƒ“ƒhƒ‹’B
+    // å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«é”
     int* mnMovieHandles;
-    // “®‰æƒnƒ“ƒhƒ‹”
+    // å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«æ•°
     int mnMovieCount;
 
-    // —LŒÀó‘Ôƒ}ƒVƒ“
+    // æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³
     FSMUI* mpFsm;
 
-    // UI•`‰æƒ‚ƒfƒ‹‚½‚¿
+    // UIæç”»ãƒ¢ãƒ‡ãƒ«ãŸã¡
     std::vector<UIDrawModel> mstUIDrawModels;
 
-    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[‚Ì”
+    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æ•°
     int mnUIModelControllerCount;
 
     
-	// UIÀ•Wî•ñ
+	// UIåº§æ¨™æƒ…å ±
 	std::map<int, std::vector<std::map<int, VECTOR>>> mmUIPositionData;
 
 public:
     UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag = false, bool decreaseFlag = true);
     ~UIBase();
 
-    /*‰Šú‰»*/
+    /*åˆæœŸåŒ–*/
     void Initilize() override final;
-    /// <summary>ÅI‰Šú‰»</summary>
-    void LastInitilize() override final;
-    /*I—¹*/
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void SceneLastInitilize() override final;
+    /*çµ‚äº†*/
     void Finalize() override final;
-    /*XV*/
+    /*æ›´æ–°*/
     void Update() override final;
-    /*ÅIXV*/
+    /*æœ€çµ‚æ›´æ–°*/
     void LastUpdate() override final;
-    /*•`‰æ*/
+    /*æç”»*/
     void Draw() override final;
 
     /*----------------------*/
-    /*     y“Æ©ˆ—z     */
+    /*     ã€ç‹¬è‡ªå‡¦ç†ã€‘     */
     /*----------------------*/
 
     /*--------*/
-    /*yİ’èz*/
+    /*ã€è¨­å®šã€‘*/
     /*--------*/
 public:
-    /*fsmİ’è*/
+    /*fsmè¨­å®š*/
     void SetFsm(FSMUI* fsm);
 
-    /*‘I‘ğ”İ’è*/
+    /*é¸æŠæ•°è¨­å®š*/
     inline void SetSelectNumber(const int number) { mnSelectNumber = number; }
-    /*‘I‘ğÅ‘å”İ’è*/
+    /*é¸æŠæœ€å¤§æ•°è¨­å®š*/
     inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
-    /// <summary>‘I‘ğ‹«ŠE’lİ’è</summary>
+    /// <summary>é¸æŠå¢ƒç•Œå€¤è¨­å®š</summary>
     inline void SetSelectBoundaryValue(int selectBoundaryValue) { mnSelectBoundaryValue = selectBoundaryValue; }
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹İ’è</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«è¨­å®š</summary>
     void SetGraphHandle(int index, int handle);
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹”•ÏX</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«æ•°å¤‰æ›´</summary>
     void SetGraphCount(int count);
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹İ’è</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«è¨­å®š</summary>
     void SetMovieHandle(int index, int handle);
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹”•ÏX</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«æ•°å¤‰æ›´</summary>
     void SetMovieCount(int count);
 
-    /// <summary>UIÀ•Wî•ñİ’è</summary>
+    /// <summary>UIåº§æ¨™æƒ…å ±è¨­å®š</summary>
     void SetUIPositionData(int state, std::vector<std::map<int, VECTOR>> uiPositionData) { mmUIPositionData[state]= uiPositionData; }
 
-    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“İ’è</summary>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š</summary>
     void SetAnimationType(ANIMATION_TYPE aniamtionType);
 
 private:
-    /// <summary>ƒnƒ“ƒhƒ‹”•ÏX</summary>
+    /// <summary>ãƒãƒ³ãƒ‰ãƒ«æ•°å¤‰æ›´</summary>
     void SetHandleCount(int count, int *handleCount, int**handle);
 
     /*--------*/
-    /*yæ“¾z*/
+    /*ã€å–å¾—ã€‘*/
     /*--------*/
 public:
-    /// <summary>fmsæ“¾</summary>
+    /// <summary>fmså–å¾—</summary>
     inline FSMUI* GetFsm() { return mpFsm; }
 
-    /*‘I‘ğ”æ“¾*/
+    /*é¸æŠæ•°å–å¾—*/
     inline int GetSelectNumber() const { return mnSelectNumber; }
 
-    /// <summary>ƒL[æ“¾</summary>
-    /// <returns>ƒL[ƒXƒe[ƒg</returns>
+    /// <summary>ã‚­ãƒ¼å–å¾—</summary>
+    /// <returns>ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆ</returns>
     inline KeyState* GetKey() { return mpKeyState; }
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹’B‚ğæ“¾</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«é”ã‚’å–å¾—</summary>
     inline int* GetGraphHandles() { return mnGraphHandles; }
 
-    /// <summary>‰æ‘œƒnƒ“ƒhƒ‹”‚ğæ“¾</summary>
+    /// <summary>ç”»åƒãƒãƒ³ãƒ‰ãƒ«æ•°ã‚’å–å¾—</summary>
     inline int GetGraphHandleCount() { return mnGraphCount; }
 
-    /// <summary>“®‰æƒnƒ“ƒhƒ‹’B‚ğæ“¾</summary>
+    /// <summary>å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«é”ã‚’å–å¾—</summary>
     inline int* GetMovieHandles() { return mnMovieHandles; }
 
-    /// <summary>“®‰æƒnƒ“ƒhƒ‹”‚ğæ“¾</summary>
+    /// <summary>å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«æ•°ã‚’å–å¾—</summary>
     inline int GetMovieHandleCount() { return mnMovieCount; }
 
-    /// <summary>•`‰æƒ‚ƒfƒ‹î•ñ‘Sæ“¾</summary>
+    /// <summary>æç”»ãƒ¢ãƒ‡ãƒ«æƒ…å ±å…¨å–å¾—</summary>
     inline std::vector<UIDrawModel> GetDrawModels() { return mstUIDrawModels; }
 
-    /// <summary>ƒ‚ƒfƒ‹”æ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«æ•°å–å¾—</summary>
     inline int GetModelCount() { return mstUIDrawModels.size(); }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[æ“¾</summary>
-    /// <returns>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[</returns>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—</summary>
+    /// <returns>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼</returns>
     inline ModelsControllerBase* GetModelsController(int index) { return mstUIDrawModels[index].mpUIModelController; }
 
-    /// <summary>ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒXæ“¾</summary>
-    /// <returns>ƒAƒjƒƒVƒ‡ƒ“ƒx[ƒX</returns>
+    /// <summary>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹å–å¾—</summary>
+    /// <returns>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹</returns>
     inline AnimationBase* GetAnimation(int index) { return  mstUIDrawModels[index].mpAnimation; }
 
-    /// <summary>UIÀ•Wî•ñİ’è</summary>
+    /// <summary>UIåº§æ¨™æƒ…å ±è¨­å®š</summary>
     std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }
 
     /*------------------------*/
-    /*yŒp³ƒIƒuƒWƒFƒNƒgˆ—z*/
+    /*ã€ç¶™æ‰¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‡¦ç†ã€‘*/
     /*------------------------*/
 
 protected:
-    /*UI‰Šú‰»*/
+    /*UIåˆæœŸåŒ–*/
     virtual void UIInitilize() = 0;
-    /*UIÅI‰Šú‰»*/
-    virtual void UILastInitilize() = 0;
-    /*UII—¹*/
+    /*UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    virtual void UISceneLastInitilize() = 0;
+    /*UIçµ‚äº†*/
     virtual void UIFinalize() = 0;
-    /*UIXV*/
+    /*UIæ›´æ–°*/
     virtual void UIUpdate() = 0;
-    /*UIÅIXV*/
+    /*UIæœ€çµ‚æ›´æ–°*/
     virtual void UILastUpdate() = 0;
-    /*UI•`‰æ*/
+    /*UIæç”»*/
     virtual void UIDraw() = 0;
 
-    /*UIƒiƒ“ƒo[İ’è*/
+    /*UIãƒŠãƒ³ãƒãƒ¼è¨­å®š*/
     void SetUINumber();
-    /*UIƒiƒ“ƒo[íœ*/
+    /*UIãƒŠãƒ³ãƒãƒ¼å‰Šé™¤*/
     void DeleteUINumber();
 
-    /*ƒ‚ƒfƒ‹’Ç‰Á*/
+    /*ãƒ¢ãƒ‡ãƒ«è¿½åŠ */
     void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType);
-    /*ƒAƒjƒ[ƒVƒ‡ƒ“İ’è*/
+    /*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š*/
     void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber);
 
     /*----------------------*/
-    /*y“ü—ÍƒL[í—Ş•Êˆ—z*/
+    /*ã€å…¥åŠ›ã‚­ãƒ¼ç¨®é¡åˆ¥å‡¦ç†ã€‘*/
     /*----------------------*/
 
 public:
-    /*ƒ}ƒEƒX‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é*/
+    /*ãƒã‚¦ã‚¹ãŒåå¿œã—ãŸã‚‰é–¢æ•°ã‚’å®Ÿè¡Œã•ã›ã‚‹*/
     void CheckMouse();
 
-    /*ƒL[ƒ{[ƒh‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é*/
+    /*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒåå¿œã—ãŸã‚‰é–¢æ•°ã‚’å®Ÿè¡Œã•ã›ã‚‹*/
     void CheckKeyboard();
 
-    /*ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é*/
+    /*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒåå¿œã—ãŸã‚‰é–¢æ•°ã‚’å®Ÿè¡Œã•ã›ã‚‹*/
     void CheckController();
 
-    /*ƒL[ƒ{[ƒh‚©ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é*/
+    /*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒåå¿œã—ãŸã‚‰é–¢æ•°ã‚’å®Ÿè¡Œã•ã›ã‚‹*/
     void CheckKeyboard_Controller();
 
 protected:
-    /*ƒ}ƒEƒX‚ª”½‰‚µ‚½‚ÉÀs‚·‚é*/
+    /*ãƒã‚¦ã‚¹ãŒåå¿œã—ãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹*/
     virtual void MouseProcess();
-    /*ƒL[ƒ{[ƒh‚ª”½‰‚µ‚½‚ÉÀs‚·‚é*/
+    /*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒåå¿œã—ãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹*/
     virtual void KeyboardProcess();
-    /*ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚ÉÀs‚·‚é*/
+    /*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒåå¿œã—ãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹*/
     virtual void ControllerProcess();
-    /*ƒL[ƒ{[ƒh‚©ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚ÉÀs‚·‚é*/
+    /*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒåå¿œã—ãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹*/
     virtual void Keyboard_ControllerProcess();
 
     /*----------------*/
-    /*yƒeƒ“ƒvƒŒ[ƒgz*/
+    /*ã€ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã€‘*/
     /*----------------*/
 
 public:
-    /*ƒfƒtƒHƒ‹ƒg‘I‘ğˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé¸æŠå‡¦ç†*/
     void DefaultSelectProcess();
-    /*ƒfƒtƒHƒ‹ƒg‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé¸æŠãƒŠãƒ³ãƒãƒ¼æ¸›å°‘å‡¦ç†*/
     void DefaultDecrease();
-    /*ƒfƒtƒHƒ‹ƒg‘I‘ğƒiƒ“ƒo[‘‰Áˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé¸æŠãƒŠãƒ³ãƒãƒ¼å¢—åŠ å‡¦ç†*/
     void DefaultIncrease();
 
-    /*¶‰E‘I‘ğˆ—*/
+    /*å·¦å³é¸æŠå‡¦ç†*/
     void LeftRightSelectProcess();
-    /*¶‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—*/
+    /*å·¦é¸æŠãƒŠãƒ³ãƒãƒ¼æ¸›å°‘å‡¦ç†*/
     void LeftDecrease();
-    /*‰E‘I‘ğƒiƒ“ƒo[‘‰Áˆ—*/
+    /*å³é¸æŠãƒŠãƒ³ãƒãƒ¼å¢—åŠ å‡¦ç†*/
     void RightIncrease();
 
-    /*‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—*/
+    /*é¸æŠãƒŠãƒ³ãƒãƒ¼æ¸›å°‘å‡¦ç†*/
     void SelectNumberDecrease();
-    /*‘I‘ğƒiƒ“ƒo[‘‰Áˆ—*/
+    /*é¸æŠãƒŠãƒ³ãƒãƒ¼å¢—åŠ å‡¦ç†*/
     void SelectNumberIncrease();
 
-    /// <summary>‘I‘ğƒiƒ“ƒo[‹«ŠE’l‚ğŒ×‚¢‚¾Œ¸­ˆ—</summary>
+    /// <summary>é¸æŠãƒŠãƒ³ãƒãƒ¼å¢ƒç•Œå€¤ã‚’è·¨ã„ã æ¸›å°‘å‡¦ç†</summary>
     void SelectBoundaryValueDecrease();
-    /// <summary>‘I‘ğƒiƒ“ƒo[‹«ŠE’l‚ğŒ×‚¢‚¾‘‰Áˆ—</summary>
+    /// <summary>é¸æŠãƒŠãƒ³ãƒãƒ¼å¢ƒç•Œå€¤ã‚’è·¨ã„ã å¢—åŠ å‡¦ç†</summary>
     void SelectBoundaryValueIncrease();
 
-    /*ƒfƒtƒHƒ‹ƒg‘I‘ğŒˆ’èˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé¸æŠæ±ºå®šå‡¦ç†*/
     void DefaultDecision();
-    /*‘I‘ğŒˆ’èˆ—*/
+    /*é¸æŠæ±ºå®šæ™‚å‡¦ç†*/
     virtual void DecisionProcess() = 0;
 
-    /*ƒfƒtƒHƒ‹ƒgI—¹Šm”Fˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆçµ‚äº†ç¢ºèªå‡¦ç†*/
     void DefaultCloce();
-    /*ƒfƒtƒHƒ‹ƒgI—¹ˆ—*/
+    /*ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆçµ‚äº†å‡¦ç†*/
     virtual void CloceProcess();
 
-    /*ã‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·*/
+    /*ä¸ŠãŒæŠ¼ã•ã‚Œã¦ã„ã¦ã€ãªãŠã‹ã¤å‰å›ã®é¸æŠå¤‰æ›´ã‹ã‚‰ä¸€å®šãƒ•ãƒ¬ãƒ¼ãƒ çµŒã£ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™*/
     bool CheckUp_Frame();
-    /*‰º‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·*/
+    /*ä¸‹ãŒæŠ¼ã•ã‚Œã¦ã„ã¦ã€ãªãŠã‹ã¤å‰å›ã®é¸æŠå¤‰æ›´ã‹ã‚‰ä¸€å®šãƒ•ãƒ¬ãƒ¼ãƒ çµŒã£ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™*/
     bool CheckDown_Frame();
-    /*‰E‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·*/
+    /*å³ãŒæŠ¼ã•ã‚Œã¦ã„ã¦ã€ãªãŠã‹ã¤å‰å›ã®é¸æŠå¤‰æ›´ã‹ã‚‰ä¸€å®šãƒ•ãƒ¬ãƒ¼ãƒ çµŒã£ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™*/
     bool CheckRight_Frame();
-    /*¶‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·*/
+    /*å·¦ãŒæŠ¼ã•ã‚Œã¦ã„ã¦ã€ãªãŠã‹ã¤å‰å›ã®é¸æŠå¤‰æ›´ã‹ã‚‰ä¸€å®šãƒ•ãƒ¬ãƒ¼ãƒ çµŒã£ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™*/
     bool CheckLeft_Frame();
 
-    /*A/Enter‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·*/
+    /*A/EnterãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™*/
     bool CheckDecision();
 
-    /*ƒtƒŒ[ƒ€‚ªˆê’èŠÔŒo‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©*/
+    /*ãƒ•ãƒ¬ãƒ¼ãƒ ãŒä¸€å®šæ™‚é–“çµŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹*/
     bool CheckFrame(int frameNumber);
 
-    /*‘I‘ğˆã•ÏX(ƒ}ƒCƒiƒX)*/
+    /*é¸æŠè‚¢ä¸Šå¤‰æ›´(ãƒã‚¤ãƒŠã‚¹)*/
     virtual void Up() { DefaultDecrease(); }
-    /*‘I‘ğˆ‰º•ÏX(ƒvƒ‰ƒX)*/
+    /*é¸æŠè‚¢ä¸‹å¤‰æ›´(ãƒ—ãƒ©ã‚¹)*/
     virtual void Down() { DefaultIncrease(); }
-    /*Œˆ’èˆ—*/
+    /*æ±ºå®šæ™‚å‡¦ç†*/
     virtual void Decision() { DecisionProcess(); }
 };

@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 
 #include "Master.h"
 
@@ -17,7 +17,7 @@
 #include "TargetManager.h"
 #include "TimeManager.h"
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GameManager::GameManager()
 : mpAttackManager(nullptr)
 , mpCameraManager(nullptr)
@@ -29,12 +29,12 @@ GameManager::GameManager()
 , mnUINumber(0)
 {
 }
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 GameManager::~GameManager()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void GameManager::Initilize()
 {
     Master::mpDataManager->Initilize();
@@ -60,7 +60,7 @@ void GameManager::Initilize()
     SetDrawScreen(DX_SCREEN_BACK);
 }
 
-// I—¹ˆ—
+// çµ‚äº†å‡¦ç†
 void GameManager::Finailize()
 {
     mpObjectManager->Finalize();
@@ -74,7 +74,7 @@ void GameManager::Finailize()
     delete mpTargetManager;
 }
 
-// XV
+// æ›´æ–°
 void GameManager::Update()
 {
     Master::mpKeyState->Update();
@@ -90,13 +90,13 @@ void GameManager::Update()
 	mpSceneManager->Update();
 }
 
-// •K—v‚Å‚ ‚ê‚Îíœ‚·‚é
+// å¿…è¦ã§ã‚ã‚Œã°å‰Šé™¤ã™ã‚‹
 void GameManager::DeleteAllIfNeeded()
 {
     mpObjectManager->DeleteAllIfNeeded();
 }
 
-// •`‰æ
+// æç”»
 void GameManager::Draw()
 {
     ClearDrawScreen();
@@ -122,28 +122,28 @@ void GameManager::Draw()
 }
 
 /*----------*/
-/*yUIˆ—z*/
+/*ã€UIå‡¦ç†ã€‘*/
 /*----------*/
 
-// UIƒiƒ“ƒo[‘‰Á
+// UIãƒŠãƒ³ãƒãƒ¼å¢—åŠ 
 int GameManager::IncreaseUINumber()
 {
     mnUINumber += 1;
     if (mnUINumber == 1) {
-        // ŠÔ‚ğ~‚ß‚é
+        // æ™‚é–“ã‚’æ­¢ã‚ã‚‹
         Master::mpTimeManager->SetStopFlag(true);
     }
     return mnUINumber;
 }
 
-// UIƒiƒ“ƒo[Œ¸­
+// UIãƒŠãƒ³ãƒãƒ¼æ¸›å°‘
 void GameManager::DecreaseUINumber()
 {
     mnUINumber -= 1;
     if (mnUINumber <= 0) {
         mnUINumber = 0;
 
-        // ŠÔ‚ğ“®‚©‚·
+        // æ™‚é–“ã‚’å‹•ã‹ã™
         Master::mpTimeManager->SetStopFlag(false);
     }
 }

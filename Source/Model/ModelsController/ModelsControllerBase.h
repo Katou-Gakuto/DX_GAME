@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "AnimationData.h"
@@ -10,78 +10,81 @@
 class ModelsControllerBase
 {
 private:
-    // ƒ‚ƒfƒ‹ƒŠƒXƒg
+    // ãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆ
     std::vector<ModelBase*> mpModelList;
 
-    // ƒ‚ƒfƒ‹ƒ|ƒWƒVƒ‡ƒ“
+    // ãƒ¢ãƒ‡ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³
     VECTOR mvModelPosition;
 
-    // ƒ‚ƒfƒ‹Šp“x
+    // ãƒ¢ãƒ‡ãƒ«è§’åº¦
     VECTOR mvModelAngle;
 
-    // ƒ‚ƒfƒ‹ƒTƒCƒY
+    // ãƒ¢ãƒ‡ãƒ«ã‚µã‚¤ã‚º
     VECTOR mvModelSize;
 
-    // ƒ‚ƒfƒ‹•`‰æƒtƒ‰ƒO
+    // ãƒ¢ãƒ‡ãƒ«æç”»ãƒ•ãƒ©ã‚°
     bool mbModelDrawFlag;
 
 public:
     ModelsControllerBase();
     ~ModelsControllerBase();
 
-    /// <summary>‰Šú‰»</summary>
+    /// <summary>åˆæœŸåŒ–</summary>
     void Initilize();
 
-    /// <summary>I—¹</summary>
+    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    void SceneLastInitilize();
+
+    /// <summary>çµ‚äº†</summary>
     void Finalize();
 
-    /// <summary>ƒQ[ƒ€’†‰Šú‰»</summary>
+    /// <summary>ã‚²ãƒ¼ãƒ ä¸­åˆæœŸåŒ–</summary>
     void GameInit(VECTOR pos, VECTOR angle, VECTOR size);
 
-    /// <summary>ƒ‚ƒfƒ‹’Ç‰Á</summary>
-    /// <param name="model">’Ç‰Á‚·‚éƒ‚ƒfƒ‹</param>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«è¿½åŠ </summary>
+    /// <param name="model">è¿½åŠ ã™ã‚‹ãƒ¢ãƒ‡ãƒ«</param>
     void AddModel(ModelBase* model);
 
-    /// <summary>ƒ‚ƒfƒ‹ˆÊ’uİ’è</summary>
-    /// <param name="useSetting">İ’è‚ğg‚¤‚©‚Ç‚¤‚©</param>
-    /// <param name="position">ƒ|ƒWƒVƒ‡ƒ“</param>
-    /// <param name="angle">Šp“x</param>
-    /// <param name="size">‘å‚«‚³</param>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ä½ç½®è¨­å®š</summary>
+    /// <param name="useSetting">è¨­å®šã‚’ä½¿ã†ã‹ã©ã†ã‹</param>
+    /// <param name="position">ãƒã‚¸ã‚·ãƒ§ãƒ³</param>
+    /// <param name="angle">è§’åº¦</param>
+    /// <param name="size">å¤§ãã•</param>
     void ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size);
     void ModelsPositionSetting(VECTOR position, VECTOR angle) { ModelsPositionSetting(position, angle, mvModelSize); }
     void ModelsPositionSetting(VECTOR position){ ModelsPositionSetting(position, mvModelAngle, mvModelSize); }
     void ModelsPositionSetting(){ ModelsPositionSetting(mvModelPosition, mvModelAngle, mvModelSize); }
 
-    /// <summary>ƒ‚ƒfƒ‹XV</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«æ›´æ–°</summary>
     void UpdateModels();
     
-    /// <summary>ƒ‚ƒfƒ‹•`‰æ</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«æç”»</summary>
     void DrawModels();
 
     /*----------*/
-    /*yæ“¾Eİ’èz
+    /*ã€å–å¾—ãƒ»è¨­å®šã€‘
     /*----------*/
 
-    /// <summary>ƒ‚ƒfƒ‹ƒ|ƒWƒVƒ‡ƒ“æ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—</summary>
     inline VECTOR GetModelPosition() const { return mvModelPosition; }
-    /// <summary>ƒ‚ƒfƒ‹ƒ|ƒWƒVƒ‡ƒ“İ’è</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š</summary>
     inline void SetModelPosition(VECTOR position) { mvModelPosition = position; }
 
-    /// <summary>ƒ‚ƒfƒ‹Šp“xæ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«è§’åº¦å–å¾—</summary>
     inline VECTOR GetModelAngle() const { return mvModelAngle; }
-    /// <summary>ƒ‚ƒfƒ‹Šp“xİ’è</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«è§’åº¦è¨­å®š</summary>
     inline void SetModelAngle(VECTOR angle) { mvModelAngle = angle; }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒTƒCƒYæ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚µã‚¤ã‚ºå–å¾—</summary>
     inline VECTOR GetModelSize() const { return mvModelSize; }
-    /// <summary>ƒ‚ƒfƒ‹ƒTƒCƒYİ’è</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚µã‚¤ã‚ºè¨­å®š</summary>
     inline void SetModelSize(VECTOR size) { mvModelSize = size; }
 
-    /// <summary>ƒ‚ƒfƒ‹ƒŠƒXƒgæ“¾</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆå–å¾—</summary>
     inline std::vector<ModelBase*> GetModelList() const { return mpModelList; }
-    /// <summary>ƒ‚ƒfƒ‹ƒŠƒXƒgİ’è</summary>
+    /// <summary>ãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆè¨­å®š</summary>
     inline void SetModelsList(std::vector<ModelBase*> models) { mpModelList = models; }
 
-    /// <summary>UIƒ‚ƒfƒ‹•`‰æƒtƒ‰ƒOİ’è</summary>
+    /// <summary>UIãƒ¢ãƒ‡ãƒ«æç”»ãƒ•ãƒ©ã‚°è¨­å®š</summary>
     inline void SetModelDrawFlag(bool flag) { mbModelDrawFlag = flag; }
 };

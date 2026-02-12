@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vector>
 
@@ -14,13 +14,13 @@ public:
     ~ModelMovie();
 
 public:
-    /*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
+    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
     virtual void ModelInitilize() override;
-    /*Œp³ƒ‚ƒfƒ‹I—¹*/
+    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
     virtual void ModelFinalize() override;
-    /*ƒ|ƒWƒVƒ‡ƒ“XV*/
+    /*ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°*/
     virtual void PositionUpdate() override;
 
-    /*“®‰æ•`‰æ*/
+    /*å‹•ç”»æç”»*/
     virtual void ModelDraw() override;
 };

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
 #include "ObjectBases.h"
@@ -6,14 +6,14 @@
 class Attack_Shot : public AttackBase
 {
 private:
-    // HACK: UŒ‚î•ñ‚É‚±‚ê‚ç‚ğ‚½‚¹‚é
-    // UŒ‚ŠJnŠÔ
+    // HACK: æ”»æ’ƒæƒ…å ±ã«ã“ã‚Œã‚‰ã‚’æŒãŸã›ã‚‹
+    // æ”»æ’ƒé–‹å§‹æ™‚é–“
     int mnAttackStartTime;
 
-    // İ’è—pUŒ‚ŠJnŠÔ
+    // è¨­å®šç”¨æ”»æ’ƒé–‹å§‹æ™‚é–“
     const int ATTACK_START_TIME = 1088;
 
-    // UŒ‚ƒTƒCƒY
+    // æ”»æ’ƒã‚µã‚¤ã‚º
     VECTOR mvAttackSize;
 
 public:
@@ -22,19 +22,19 @@ public:
 
 
 private:
-    /*ƒAƒ^ƒbƒN‰Šú‰»*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯åˆæœŸåŒ–*/
     void AttackInitilize() override;
-    /*ƒAƒ^ƒbƒNÅI‰Šú‰»*/
-    void AttackLastInitilize() override;
-    /*ƒAƒ^ƒbƒNI—¹*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    void AttackSceneLastInitilize() override;
+    /*ã‚¢ã‚¿ãƒƒã‚¯çµ‚äº†*/
     void AttackFinalize() override;
-    /*ƒAƒ^ƒbƒNXV*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æ›´æ–°*/
     void AttackUpdate() override;
-    /*ƒAƒ^ƒbƒNÅIXV*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æœ€çµ‚æ›´æ–°*/
     void AttackLastUpdate() override;
-    /*ƒAƒ^ƒbƒN•`‰æ*/
+    /*ã‚¢ã‚¿ãƒƒã‚¯æç”»*/
     void AttackDraw() override;
 
-    /*“–‚½‚è”»’è*/
+    /*å½“ãŸã‚Šåˆ¤å®š*/
     void HitCheck(CollisionData& collisionData) override;
 };

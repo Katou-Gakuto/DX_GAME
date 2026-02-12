@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <map>
 #include <vector>
@@ -15,201 +15,201 @@ class SceneManager;
 class UIBase;
 
 /*----------*/
-/*yŒp³—p—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*ã€ç¶™æ‰¿ç”¨æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘*/
 /*----------*/
 template<typename subscript, typename state>
 class FSMBase
 {
 protected:
-	// “o˜^‚µ‚½ó‘ÔƒŠƒXƒg
+	// ç™»éŒ²ã—ãŸçŠ¶æ…‹ãƒªã‚¹ãƒˆ
 	std::map<subscript, state*> mmStateMap;
-	// Œ»İÀs’†‚ÌƒXƒe[ƒg
+	// ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
 	subscript mnCurrentState;
-	// Ÿ‚ÌÀs‚·‚éƒXƒe[ƒg
+	// æ¬¡ã®å®Ÿè¡Œã™ã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆ
 	subscript mnNextState;
 
 public:
 	FSMBase();
 	~FSMBase()
 	{
-		//mapƒRƒ“ƒeƒi‚Ì‰ğ•ú
+		//mapã‚³ãƒ³ãƒ†ãƒŠã®è§£æ”¾
 		for (const auto& pair : mmStateMap)
-			delete (pair.second);//“o˜^‚³‚ê‚½State‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğíœ‚·‚é
+			delete (pair.second);//ç™»éŒ²ã•ã‚ŒãŸStateã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‰Šé™¤ã™ã‚‹
 
 		mmStateMap.clear();
 	}
 
-	/*ƒXƒe[ƒg“o˜^(ƒXƒe[ƒgƒiƒ“ƒo[•ÏX‚³‚ê‚é)*/
+	/*ã‚¹ãƒ†ãƒ¼ãƒˆç™»éŒ²(ã‚¹ãƒ†ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼å¤‰æ›´ã•ã‚Œã‚‹)*/
 	inline void RegisterState(const subscript id, state* state)
 	{
 		state->SetStatenumber(id);
 		mmStateMap[id] = state;
 	}
 
-	/*ƒXƒe[ƒg“o˜^*/
+	/*ã‚¹ãƒ†ãƒ¼ãƒˆç™»éŒ²*/
 	inline void RegisterState(state* state)
 	{
 		mmStateMap[state->GetStateNumber()] = state;
 	}
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	virtual void Init()
 	{
 		mnCurrentState = mnNextState;
 	}
 
-	/*Àsó‘Ôæ“¾*/
+	/*å®Ÿè¡ŒçŠ¶æ…‹å–å¾—*/
 	inline subscript GetCurrentState() const { return mnCurrentState; }
 };
 
-// TODO: 1‚Â‚Ìƒ‚ƒfƒ‹‚É‘Î‚µ‚Ä•¡”‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğŒã‚©‚ç“K—p‚Å‚«‚é‚æ‚¤‚É‚·‚é
+// TODO: 1ã¤ã®ãƒ¢ãƒ‡ãƒ«ã«å¯¾ã—ã¦è¤‡æ•°ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¾Œã‹ã‚‰é©ç”¨ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 /*----------*/
-/*yƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“z
+/*ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘
 /*----------*/
 class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimationController>
 {
 private:
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg’B
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆé”
 	std::vector<std::map<MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
 public:
 	FSMAnimation();
 
-    /// <summary>‰Šú‰»</summary>
+    /// <summary>åˆæœŸåŒ–</summary>
     void Initilize(AnimationBase* animation);
-	/// <summary>I—¹</summary>
+	/// <summary>çµ‚äº†</summary>
 	void Finalize();
 
-	/*ƒAƒjƒ[ƒVƒ‡ƒ“ó‘Ô’B‚ÌƒTƒCƒY‚ğ‘‚â‚·*/
+	/*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çŠ¶æ…‹é”ã®ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™*/
 	void IncreaseAnimationStateSize(int size);
 
-	/// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgî•ñİ’è</summary>
+	/// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆæƒ…å ±è¨­å®š</summary>
 	void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
-	/// <summary>XV</summary>
+	/// <summary>æ›´æ–°</summary>
 	void Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas);
 
-	/// <summary>Ÿ‚ÌƒXƒe[ƒgİ’è</summary>
+	/// <summary>æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆè¨­å®š</summary>
 	inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
-	/// <summary>Œ»İ‚ÌƒXƒe[ƒg‚Æ“¯‚¶í—Ş‚©‚ğŠm”F‚·‚é</summary>
+	/// <summary>ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã¨åŒã˜ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
 	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mnCurrentState]->CheckSameType(animationType); }
 
-	/// <summary>à–¾</summary>
+	/// <summary>èª¬æ˜</summary>
 	
 private:
-	/*V‚µ‚¢ƒXƒe[ƒg‚ğİ’è‚·‚é*/
+	/*æ–°ã—ã„ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹*/
 	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);
 
-	/*Ÿ‚ÌƒXƒe[ƒg‚ªŒ»İ‚ÌƒXƒe[ƒg‚Æˆá‚¤‚È‚çƒXƒe[ƒg•ÏXˆ—‚ğ‚·‚é*/
+	/*æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆãŒç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã¨é•ã†ãªã‚‰ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´å‡¦ç†ã‚’ã™ã‚‹*/
 	void ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType);
 
-	/*Œ»İ‚ÌƒXƒe[ƒgæ“¾*/
+	/*ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆå–å¾—*/
 	IStateAnimation* GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType);
 };
 
 /*----------*/
-/*yƒJƒƒ‰—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*ã€ã‚«ãƒ¡ãƒ©æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘*/
 /*----------*/
 class FSMCamera : public FSMBase<CAMERA_MODE, IStateCamera>
 {
 public:
 	FSMCamera();
 
-	/*Às’†ó‘Ô‚ğƒZƒbƒg‚·‚é*/
+	/*å®Ÿè¡Œä¸­çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
 	void SetCurrentState(CameraManager* cameraManager, int& preThreeDFlag);
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize(CameraManager* cameraManager, int id);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CameraManager* cameraManager);
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CameraManager* cameraManager);
 };
 
 /*----------*/
-/*yƒLƒƒƒ‰ƒNƒ^[—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘*/
 /*----------*/
 class FSMCharacter : public FSMBase<int, IStateCharacter>
 {
 public:
 	FSMCharacter();
 
-	/*Às’†ó‘Ô‚ğƒZƒbƒg‚·‚é*/
+	/*å®Ÿè¡Œä¸­çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
 	void SetCurrentState(int id, CharacterBase* character);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CharacterBase* character);
-	/*ÅIXV*/
+	/*æœ€çµ‚æ›´æ–°*/
 	void LastUpdate(CharacterBase* character);
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CharacterBase* character);
 
-	/*€–S*/
+	/*æ­»äº¡*/
 	void Death(CharacterBase* character);
 };
 
 /*----------*/
-/*yƒV[ƒ“—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*ã€ã‚·ãƒ¼ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘*/
 /*----------*/
 class FSMScene : public FSMBase<SCENE, IStateScene>
 {
 public:
 	FSMScene();
 
-	/*Às’†ó‘Ô‚ğƒZƒbƒg‚·‚é*/
+	/*å®Ÿè¡Œä¸­çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
 	void SetCurrentState(SCENE id, SceneManager* sceneManager);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(SceneManager* sceneManager);
 
-	/*Ÿ‚ÌƒV[ƒ“‚ÖˆÚ“®‚·‚é*/
+	/*æ¬¡ã®ã‚·ãƒ¼ãƒ³ã¸ç§»å‹•ã™ã‚‹*/
 	void NextScene(SceneManager* sceneManager);
 
-	/*ƒJƒƒ‰IDæ“¾*/
+	/*ã‚«ãƒ¡ãƒ©IDå–å¾—*/
 	int GetSceneCameraID();
 };
 
 /*----------*/
-/*yUI—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*ã€UIæœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³ã€‘*/
 /*----------*/
 class FSMUI : public FSMBase<int, IStateUI>
 {
 public:
 	FSMUI();
 
-	/// <summary>I—¹</summary>
+	/// <summary>çµ‚äº†</summary>
 	void Finalize();
 
-	/*Às’†ó‘Ô‚ğƒZƒbƒg‚·‚é*/
+	/*å®Ÿè¡Œä¸­çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
 	void SetCurrentState(int id, UIBase* ui);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(UIBase* ui);
 
-	/*Œˆ’è ¦UIBase‚Éİ’u‚µ‚Ä‚È‚¢*/
+	/*æ±ºå®š â€»UIBaseã«è¨­ç½®ã—ã¦ãªã„*/
 	void Decision(UIBase* ui);
-	/*I—¹ ¦‚±‚Ìˆ—‚Ì‘O‚ÉUIBase‚Åui‚ğíœ‚·‚éd‘g‚İ‚É‚È‚Á‚Ä‚¢‚é*/
+	/*çµ‚äº† â€»ã“ã®å‡¦ç†ã®å‰ã«UIBaseã§uiã‚’å‰Šé™¤ã™ã‚‹ä»•çµ„ã¿ã«ãªã£ã¦ã„ã‚‹*/
 	void Cloce(UIBase* ui);
 
-	/*ƒ}ƒEƒX*/
+	/*ãƒã‚¦ã‚¹*/
 	void Mouse(UIBase* ui);
-	/*ƒL[ƒ{[ƒh*/
+	/*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰*/
 	void Keyboard(UIBase* ui);
-	/*ƒRƒ“ƒgƒ[ƒ‰[*/
+	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼*/
 	void Controller(UIBase* ui);
-	/*ƒL[ƒ{[ƒh‚ÆƒRƒ“ƒgƒ[ƒ‰[*/
+	/*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼*/
 	void Keyboard_Controller(UIBase* ui);
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui);
 
 private:
-	/*Ÿ‚ÌƒXƒe[ƒg‚ªŒ»İ‚ÌƒXƒe[ƒg‚Æˆá‚¤‚È‚çƒXƒe[ƒg•ÏXˆ—‚ğ‚·‚é*/
+	/*æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆãŒç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã¨é•ã†ãªã‚‰ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´å‡¦ç†ã‚’ã™ã‚‹*/
 	void SetState(int nextState, UIBase* ui);
 
-	/*Ÿ‚ÌƒXƒe[ƒg‚ğŠJn‚·‚é*/
+	/*æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é–‹å§‹ã™ã‚‹*/
 	void StartNextState(int nextState, UIBase* ui);
 };

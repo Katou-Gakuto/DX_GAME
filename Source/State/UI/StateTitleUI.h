@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 
 #include "Status.h"
@@ -14,90 +14,90 @@ struct Vector2;
 struct Vector2_Int;
 
 /*----------------------*/
-/*yƒ^ƒCƒgƒ‹UIƒXƒe[ƒgz*/
+/*ã€ã‚¿ã‚¤ãƒˆãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 
 enum class TITLE_UI_STATE
 {
-	START_TITLE_UI_STATE = 0,			// ŠJn‰æ–Ê
-	SELECT_TITLE_UI_STATE,				// ‘I‘ğ
+	START_TITLE_UI_STATE = 0,			// é–‹å§‹ç”»é¢
+	SELECT_TITLE_UI_STATE,				// é¸æŠ
 
-	NEW_DATA_CHECK_TITLE_UI_STATE,		// V‚µ‚¢ƒf[ƒ^‚Ì“ü‚éêŠ‚ª‚ ‚é‚©Šm”F‚·‚é
-	DATA_SELECT_TITLE_UI_STATE,			// ƒf[ƒ^‘I‘ğ
-	TUTORIAL_TITLE_UI_STATE,			// ƒ`ƒ…[ƒgƒŠƒAƒ‹ŠJn
-	SETTING_TITLE_UI_STATE,				// ƒZƒbƒeƒBƒ“ƒO
+	NEW_DATA_CHECK_TITLE_UI_STATE,		// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã®å…¥ã‚‹å ´æ‰€ãŒã‚ã‚‹ã‹ç¢ºèªã™ã‚‹
+	DATA_SELECT_TITLE_UI_STATE,			// ãƒ‡ãƒ¼ã‚¿é¸æŠ
+	TUTORIAL_TITLE_UI_STATE,			// ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«é–‹å§‹
+	SETTING_TITLE_UI_STATE,				// ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°
 
-	/*Vƒf[ƒ^ŠÖŒW*/
-	CHARACTER_SELECT_TITLE_UI_STATE,	// ƒLƒƒƒ‰ƒNƒ^[í—Ş‘I‘ğ
-	PLAYER_NAME_TITLE_UI_STATE,			// ƒvƒŒƒCƒ„[–¼İ’è
-	INPUT_CHECK_TITLE_UI_STATE,			// “ü—Íî•ñ‚ÌÅIŠm”F
+	/*æ–°ãƒ‡ãƒ¼ã‚¿é–¢ä¿‚*/
+	CHARACTER_SELECT_TITLE_UI_STATE,	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç¨®é¡é¸æŠ
+	PLAYER_NAME_TITLE_UI_STATE,			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åè¨­å®š
+	INPUT_CHECK_TITLE_UI_STATE,			// å…¥åŠ›æƒ…å ±ã®æœ€çµ‚ç¢ºèª
 
-	/*ƒZƒbƒeƒBƒ“ƒOŠÖŒW*/
-	SCREEN_SIZE_TITLE_UI_STATE,			// ‰æ–ÊƒTƒCƒY
-	VOLUME_TITLE_UI_STATE,				// ‰¹—Ê
+	/*ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°é–¢ä¿‚*/
+	SCREEN_SIZE_TITLE_UI_STATE,			// ç”»é¢ã‚µã‚¤ã‚º
+	VOLUME_TITLE_UI_STATE,				// éŸ³é‡
 
-	MAX									// Å‘å
+	MAX									// æœ€å¤§
 };
 
 /*----------*/
-/*yƒ^ƒCƒgƒ‹UIƒXƒe[ƒg‹¤’Êˆ——pz
+/*ã€ã‚¿ã‚¤ãƒˆãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆå…±é€šå‡¦ç†ç”¨ã€‘
 /*----------*/
 class TitleUIStateProcess
 {
 protected:
-	// ‘O‚ÌƒXƒe[ƒg
+	// å‰ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
 	TITLE_UI_STATE mePreUiState;
 
-	// ‘O‚Ì‘I‘ğ”
+	// å‰ã®é¸æŠæ•°
 	int mnPreSelectNumber;
 
-	// TODO: UI‚ğ—˜—p‚·‚é•û®‚É•Ï‚¦‚é
-	// ƒZ[ƒuƒf[ƒ^”wŒi‰æ‘œƒnƒ“ƒhƒ‹
+	// TODO: UIã‚’åˆ©ç”¨ã™ã‚‹æ–¹å¼ã«å¤‰ãˆã‚‹
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿èƒŒæ™¯ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int mnSaveDataDrawBackHandle;
-	// ƒZ[ƒuƒf[ƒ^‘I‘ğ”wŒi‰æ‘œƒnƒ“ƒhƒ‹
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é¸æŠèƒŒæ™¯ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int mnSaveDataDrawDelectBackHandle;
 	
-	// TODO: •¶šƒnƒ“ƒhƒ‹‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚ÆUIƒx[ƒX‚Éƒnƒ“ƒhƒ‹‚ğ‚½‚¹‚ê‚é‚æ‚¤‚É‚·‚é
-	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(ƒZ[ƒuƒf[ƒ^)
+	// TODO: æ–‡å­—ãƒãƒ³ãƒ‰ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¨UIãƒ™ãƒ¼ã‚¹ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’æŒãŸã›ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿)
 	int mnSaveDataDrawFontHandle_SaveData;
-	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(ƒvƒŒƒCƒ„[ƒl[ƒ€)
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ¼ãƒ )
 	int mnSaveDataDrawFontHandle_PlayerName;
-	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(‚»‚Ì‘¼)
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ãã®ä»–)
 	int mnSaveDataDrawFontHandle_Other;
 
 public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 
 protected:
-	/*”wŒi•`‰æ*/
+	/*èƒŒæ™¯æç”»*/
 	void DrawBackground(UIBase* ui, std::vector<std::string> str);
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void ProcessOnEnter(UIBase* ui);
 
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void ProcessOnExit(UIBase* ui);
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void ProcessUpadate(UIBase* ui);
 
-	/*ƒQ[ƒ€‚ğŠJn‚·‚é*/
+	/*ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹*/
 	void StartGame(UIBase* ui);
 
-	/*\‘¢ãˆê‚Â‘O‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é*/
+	/*æ§‹é€ ä¸Šä¸€ã¤å‰ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹*/
 	inline int GetPreUiState() { return (int)mePreUiState; }
 
-	/*ƒZ[ƒuƒf[ƒ^‚ğ•`‰æ*/
+	/*ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’æç”»*/
 	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType);
 
-	/*•¶š•`‰æ*/
+	/*æ–‡å­—æç”»*/
 	void UIStringDraw(Vector2_Int pos, DisplaySize displaySize, Vector2 ratio, std::string drawString, int fontHndle);
 };
 
 
 
 /*----------------------*/
-/*yŠJn‰æ–ÊUIƒXƒe[ƒgz*/
+/*ã€é–‹å§‹ç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class StartTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -105,23 +105,23 @@ public:
 	StartTitleUIState();
 	~StartTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*y‘I‘ğ‰æ–ÊUIƒXƒe[ƒgz*/
+/*ã€é¸æŠç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class SelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -129,25 +129,25 @@ public:
 	SelectTitleUIState();
 	~SelectTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*------------------------------------------------*/
-/*yV‚µ‚¢ƒf[ƒ^‚Ì“ü‚éêŠ‚ª‚ ‚é‚©Šm”FUIƒXƒe[ƒgz*/
+/*ã€æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã®å…¥ã‚‹å ´æ‰€ãŒã‚ã‚‹ã‹ç¢ºèªUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*------------------------------------------------*/
 class NewDataCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -155,25 +155,25 @@ public:
 	NewDataCheckTitleUIState();
 	~NewDataCheckTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------------*/
-/*yƒf[ƒ^‘I‘ğ‰æ–ÊUIƒXƒe[ƒgz*/
+/*ã€ãƒ‡ãƒ¼ã‚¿é¸æŠç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 class DataSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -184,25 +184,25 @@ public:
 	DataSelectTitleUIState();
 	~DataSelectTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------------*/
-/*yƒ`ƒ…[ƒgƒŠƒAƒ‹UIƒXƒe[ƒgz*/
+/*ã€ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 class TutorialTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -210,25 +210,25 @@ public:
 	TutorialTitleUIState();
 	~TutorialTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*--------------------------*/
-/*yƒZƒbƒeƒBƒ“ƒOUIƒXƒe[ƒgz*/
+/*ã€ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 class SettingTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -236,25 +236,25 @@ public:
 	SettingTitleUIState();
 	~SettingTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*yƒLƒƒƒ‰ƒNƒ^[í—Ş‘I‘ğUIƒXƒe[ƒgz*/
+/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç¨®é¡é¸æŠUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class CharacterSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -262,25 +262,25 @@ public:
 	CharacterSelectTitleUIState();
 	~CharacterSelectTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*yƒvƒŒƒCƒ„[–¼İ’èUIƒXƒe[ƒgz*/
+/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åè¨­å®šUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class PlayerNameTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -288,25 +288,25 @@ public:
 	PlayerNameTitleUIState();
 	~PlayerNameTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*y“ü—Íî•ñ‚ÌÅIŠm”FUIƒXƒe[ƒgz*/
+/*ã€å…¥åŠ›æƒ…å ±ã®æœ€çµ‚ç¢ºèªUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class InputCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -314,25 +314,25 @@ public:
 	InputCheckTitleUIState();
 	~InputCheckTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*y‰æ–ÊƒTƒCƒY’²®UIƒXƒe[ƒgz*/
+/*ã€ç”»é¢ã‚µã‚¤ã‚ºèª¿æ•´UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class ScreenSizeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -340,25 +340,25 @@ public:
 	ScreenSizeTitleUIState();
 	~ScreenSizeTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };
 
 
 
 /*----------------------*/
-/*y‰¹—Ê’²®UIƒXƒe[ƒgz*/
+/*ã€éŸ³é‡èª¿æ•´UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class VolumeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
@@ -366,17 +366,17 @@ public:
 	VolumeTitleUIState();
 	~VolumeTitleUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
-	/*–ß‚é*/
+	/*æˆ»ã‚‹*/
 	int Cloce(UIBase* ui) override;
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };

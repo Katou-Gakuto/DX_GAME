@@ -1,4 +1,4 @@
-#include <string>
+ï»¿#include <string>
 
 #include "Master.h"
 
@@ -18,12 +18,12 @@ ModelEffect::~ModelEffect()
 {
 }
 
-// Œp³ƒ‚ƒfƒ‹‰Šú‰»
+// ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–
 void ModelEffect::ModelInitilize()
 {
 }
 
-// Œp³ƒ‚ƒfƒ‹I—¹
+// ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†
 void ModelEffect::ModelFinalize()
 {
     if (mnEffectHandle != -1)
@@ -32,7 +32,7 @@ void ModelEffect::ModelFinalize()
     }
 }
 
-// ƒQ[ƒ€’†‰Šú‰»
+// ã‚²ãƒ¼ãƒ ä¸­åˆæœŸåŒ–
 void ModelEffect::GameInit()
 {
     mvDrawSize = mpModelsController->GetModelSize();
@@ -47,7 +47,7 @@ void ModelEffect::GameInit()
     mvDrawPosition.y += mvPosition.y * mvDrawSize.y;
 }
 
-// ƒ|ƒWƒVƒ‡ƒ“XV
+// ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°
 void ModelEffect::PositionUpdate()
 {
     if (mnEffectHandle != -1)
@@ -56,7 +56,7 @@ void ModelEffect::PositionUpdate()
     }
 }
 
-// •`‰æ
+// æç”»
 void ModelEffect::ModelDraw()
 {
 }

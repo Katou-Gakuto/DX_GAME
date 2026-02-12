@@ -1,19 +1,19 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ObjectBases.h"
 #include "StateBase.h"
 
 /*----------------------*/
-/*yƒŠƒUƒ‹ƒgUIƒXƒe[ƒgz*/
+/*ã€ãƒªã‚¶ãƒ«ãƒˆUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 
 enum class RESULT_UI_STATE
 {
-	START_RESULT_UI_STATE = 0,			// ŠJn‰æ–Ê
+	START_RESULT_UI_STATE = 0,			// é–‹å§‹ç”»é¢
 };
 
 /*----------------------*/
-/*yŠJn‰æ–ÊUIƒXƒe[ƒgz*/
+/*ã€é–‹å§‹ç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 class StartResultUIState : public IStateUI
 {
@@ -21,17 +21,17 @@ public:
 	StartResultUIState();
 	~StartResultUIState() = default;
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(UIBase* ui) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(UIBase* ui) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	int Update(UIBase* ui) override;
 
-	/*Œˆ’è*/
+	/*æ±ºå®š*/
 	int Decision(UIBase* ui) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(UIBase* ui) override;
 };

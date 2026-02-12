@@ -1,4 +1,4 @@
-#include "Master.h"
+ï»¿#include "Master.h"
 
 #include "DataManager.h"
 #include "EndManager.h"
@@ -14,10 +14,10 @@
 #include "TelopManager.h"
 #include "TimeManager.h"
 
-// ƒ}ƒXƒ^[Š•¨‘Síœˆ—
+// ãƒã‚¹ã‚¿ãƒ¼æ‰€æŒç‰©å…¨å‰Šé™¤å‡¦ç†
 void Master::AllDelete()
 {
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	mpFadeManager->Finailize();
 	mpGameManager->Finailize();
 #if _DEBUG
@@ -26,7 +26,7 @@ void Master::AllDelete()
 	mpResourceManager->Finailize();
 	mpTelopManager->Finalize();
 	
-	// íœ
+	// å‰Šé™¤
 	delete mpDataManager;
 	delete mpEndManager;
 	delete mpFadeManager;

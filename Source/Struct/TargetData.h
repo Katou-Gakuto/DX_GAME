@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 class CharacterBase;
 
 struct CharacterTargetData
 {
-	// ƒ^[ƒQƒbƒg
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 	CharacterBase* target;
-	// ƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“X
+	// ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³X
 	int mapPosX;
-	// ƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“Z
+	// ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³Z
 	int mapPosZ;
 
 	CharacterTargetData();

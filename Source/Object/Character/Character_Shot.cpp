@@ -1,4 +1,4 @@
-#include "AttackEnum.h"
+ï»¿#include "AttackEnum.h"
 #include "CollisionData.h"
 #include "Status.h"
 
@@ -23,7 +23,7 @@ Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYP
 		for (auto& attackData : attackDatas)
 		{
 			attackData.second.attackCharacter = this;
-			attackData.second.attackPower = status.GetNowAttckPower();// TODO: UŒ‚—Í‚Ìó‚¯æ‚èêŠ‚ğ•ªU‚·‚é
+			attackData.second.attackPower = status.GetNowAttckPower();// TODO: æ”»æ’ƒåŠ›ã®å—ã‘å–ã‚Šå ´æ‰€ã‚’åˆ†æ•£ã™ã‚‹
 
 			Master::mpGameManager->GetAttackManager()->CreateAttack(attackData.second.attackType);
 			mmCharacterAttackDatas[attackData.first].attackDataNumber = Master::mpGameManager->GetAttackManager()->SetAttackData(attackData.second);
@@ -36,56 +36,56 @@ Character_Shot::~Character_Shot()
 {
 }
 
-// UŒ‚ƒŠƒZƒbƒg
+// æ”»æ’ƒãƒªã‚»ãƒƒãƒˆ
 void Character_Shot::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[‰Šú‰»
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 void Character_Shot::CharacterInitilize()
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[‰Šú‰»
-void Character_Shot::CharacterLastInitilize()
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ³åˆæœŸåŒ–
+void Character_Shot::CharacterSceneLastInitilize()
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[I—¹
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼çµ‚äº†
 void Character_Shot::CharacterFinalize()
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[XV
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°
 void Character_Shot::CharacterUpdate()
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[ÅIXV
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ€çµ‚æ›´æ–°
 void Character_Shot::CharacterLastUpdate()
 {
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[•`‰æ
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æç”»
 void Character_Shot::CharacterDraw()
 {
 	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
 }
 
-// “–‚½‚è”»’è—p
+// å½“ãŸã‚Šåˆ¤å®šç”¨
 void Character_Shot::HitCheck(CollisionData& collisionData)
 {
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
 	{
 		collisionData.collisionFlag = true;
 
-		//ˆÚ“®•ûŒü‚ğC³
+		//ç§»å‹•æ–¹å‘ã‚’ä¿®æ­£
 		VECTOR normalWall = VSub(collisionData.position, mvPosition);
-		normalWall = VNorm(normalWall); // ³‹K‰»‚µ‚Ä•ûŒü‚ğæ“¾
+		normalWall = VNorm(normalWall); // æ­£è¦åŒ–ã—ã¦æ–¹å‘ã‚’å–å¾—
 		if (VDot(normalWall, collisionData.vec) < 0.0f)
 		{
 			VECTOR tempV = VScale(normalWall, VDot(collisionData.vec, normalWall));
-			collisionData.vec = VSub(collisionData.vec, tempV); // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğC³
+			collisionData.vec = VSub(collisionData.vec, tempV); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’ä¿®æ­£
 		}
 	}
 }

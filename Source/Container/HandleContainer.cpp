@@ -1,4 +1,4 @@
-#include <map>
+﻿#include <map>
 #include <string>
 #include <vector>
 
@@ -7,7 +7,7 @@
 #include "EndManager.h"
 #include "HandleContainer.h"
 
-// �R���X�g���N�^
+// コンストラクタ
 HandleContainer::HandleContainer()
 : msRegisterFileName("")
 {
@@ -16,15 +16,15 @@ HandleContainer::HandleContainer()
     mmHandleCounts.clear();
 }
 
-// �f�X�g���N�^
+// デストラクタ
 HandleContainer::~HandleContainer()
 {
 }
 
 /*--------*/
-/*�y�ǉ��z*/
+/*【追加】*/
 /*--------*/
-// �����̃t�@�C�������邩���m�F����
+// 同名のファイルがあるかを確認する
 bool HandleContainer::CheckFileName(std::string fileName)
 {
     msRegisterFileName = fileName;
@@ -32,15 +32,17 @@ bool HandleContainer::CheckFileName(std::string fileName)
     return mmHandles.find(fileName) != mmHandles.end();
 }
 
-// �n���h����o�^����i�f�t�H���g�j
+// ハンドルを登録する（デフォルト）
 int HandleContainer::RegisterHandle(int handle, bool countFlag)
 {
+	// ハンドルが-1なら実行を終了させる
     if (handle == (-1))
     {
         Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
         return -1;
     }
 
+	// 設定されたファイル名が使われていないなら新しく設定する
     if (mmHandles.find(msRegisterFileName) == mmHandles.end())
     {
         std::vector<int> enptyHandleList;
@@ -49,7 +51,21 @@ int HandleContainer::RegisterHandle(int handle, bool countFlag)
         
         mmHandleCounts[handle] = 0;
     }
-    mmHandles[msRegisterFileName].push_back(handle);
+	switch (meHandleFlag)
+	{
+	case HANDLE_FLAG::ZERO_LOOK:
+		// 返すハンドルを設定する
+		handle = mmHandles[msRegisterFileName][0];
+		break;
+
+	case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
+	default:
+		// ハンドルを追加する
+		mmHandles[msRegisterFileName].push_back(handle);
+	break;
+	}
+
+	// カウントフラグが「true」ならカウントを増やす
     if (countFlag)
     {
         mmHandleCounts[mmHandles[msRegisterFileName][0]] += 1;
@@ -81,10 +97,10 @@ int HandleContainer::RegisterHandle(int handle, bool countFlag)
 	mmModelCount[handle] = 1;
     */
 
-    return 0;
+    return handle;
 }
 
-// �n���h����o�^����i�t�@�C�����w��j
+// ハンドルを登録する（ファイル名指定）
 int HandleContainer::RegisterHandle(int handle, std::string fileName, bool countFlag)
 {
     msRegisterFileName = fileName;
@@ -94,26 +110,118 @@ int HandleContainer::RegisterHandle(int handle, std::string fileName, bool count
 
 
 /*--------*/
-/*�y�폜�z*/
+/*【削除】*/
 /*--------*/
-// �n���h���폜
-int HandleContainer::DeleteHandle(int handle, bool countFlag)
+// ハンドル削除
+std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 {
     for (auto myHandle : mmHandles)
     {
 		for (int i = 0; i < myHandle.second.size(); i++)
 		{
-			if (myHandle.second[i] == handle)
+			switch (meHandleFlag)
 			{
-				if ((myHandle.second.size() - 1) <= 0)
+			case HANDLE_FLAG::ZERO_LOOK:
+				// 0以外なら何もしない
+				if (i != 0)
 				{
-					mmMovieHandle.erase(myHandle.first);
+					break;
 				}
-				else
+				
+				// 指定のハンドルと比較する
+				if (myHandle.second[i] == handle)
+				{ 
+					// カウント減少
+					int countHandle = mmHandles[myHandle.first][0];
+					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
+					{
+						mmHandleCounts[countHandle] -= 1;
+					}
+
+					// 削除ハンドル
+					std::vector<int> deleteHandles;
+					deleteHandles.clear();
+
+					if (mmHandleCounts[countHandle] <= 0)
+					{
+						// 削除予定のハンドルを全取得
+						deleteHandles = mmHandles[myHandle.first];
+
+						// カウントが0以下なためハンドルとカウント削除
+						mmHandles.erase(myHandle.first);
+						mmHandleCounts.erase(countHandle);
+					}
+
+					return deleteHandles;
+				}
+
+				break;
+
+			case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
+				// 0なら何もしない
+				if (i == 0)
 				{
-					mmMovieHandle[myHandle.first].erase(mmMovieHandle[myHandle.first].begin() + i);
+					break;
 				}
-				return;
+
+				// 指定のハンドルと比較する
+				if (myHandle.second[i] == handle)
+				{
+					// カウント減少
+					int countHandle = mmHandles[myHandle.first][0];
+					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
+					{
+						mmHandleCounts[countHandle] -= 1;
+					}
+
+					
+				}
+				break;
+
+			default:
+				// 指定のハンドルと比較する
+				if (myHandle.second[i] == handle)
+				{
+					// カウント減少
+					int countHandle = mmHandles[myHandle.first][0];
+					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
+					{
+						mmHandleCounts[countHandle] -= 1;
+					}
+
+					// 削除ハンドル
+					std::vector<int> deleteHandles;
+					deleteHandles.clear();
+
+					if (mmHandleCounts[countHandle] <= 0)
+					{
+						// 削除予定のハンドルを全取得
+						deleteHandles = mmHandles[myHandle.first];
+
+						// カウントが0以下なためハンドルとカウント削除
+						mmHandles.erase(myHandle.first);
+						mmHandleCounts.erase(countHandle);
+					}
+					else
+					{
+						// 削除予定のハンドルを保存
+						deleteHandles.push_back(mmHandles[myHandle.first][i]);
+
+						// ハンドル削除					
+						mmHandles[myHandle.first].erase(mmHandles[myHandle.first].begin() + i);
+
+						// カウントが参照しているハンドルなら入れ替える
+						if (i == 0)
+						{
+							mmHandleCounts[mmHandles[myHandle.first][0]] = mmHandleCounts[countHandle];
+							mmHandleCounts.erase(countHandle);
+						}
+					}
+
+					// 削除したハンドルを返す
+					return deleteHandles;
+				}
+				break;
 			}
 		}
     }

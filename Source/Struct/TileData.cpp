@@ -1,4 +1,4 @@
-#include <vector>
+ï»¿#include <vector>
 
 #include "BitFlag.h"
 #include "TileData.h"
@@ -9,7 +9,7 @@
 #include "ObjectBases.h"
 #include "UtilCalc.h"
 
-// ƒ^ƒCƒ‹ƒf[ƒ^
+// ã‚¿ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 TileData::TileData()
 : tileType(TileType::None)
 , tileDisplacedPos(UtilCalc::VZero)
@@ -18,7 +18,7 @@ TileData::TileData()
 {
 	adjacentData.clear();
 }
-// ƒ^ƒCƒ‹ƒf[ƒ^
+// ã‚¿ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 TileData::TileData(bool flag)
 : tileType(TileType::Ground)
 , tileDisplacedPos(UtilCalc::VZero)
@@ -28,7 +28,7 @@ TileData::TileData(bool flag)
 	adjacentData.clear();
 }
 
-// ƒ^ƒCƒ‹ˆ—
+// ã‚¿ã‚¤ãƒ«å‡¦ç†
 TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 {
 	std::vector<TilePos> characterPos;
@@ -70,7 +70,7 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 		{
 			if (this->adjacentData[i] == characterPos[j])
 			{
-				// TODO: ‰½‚©‘‚­
+				// TODO: ä½•ã‹æ›¸ã
 				switch (*(this->adjacentData[i].tileFlag) & 0xffff'ffff'ffff'ff00ull)
 				{
 				default:
@@ -98,7 +98,7 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 
 		VECTOR norm = VGet((float)(this->tilePos.x - pos.x), 0.0f, (float)(this->tilePos.z - pos.z));
 
-		// isƒxƒNƒgƒ‹‚ÆA•Ç‚Ì–@üƒxƒNƒgƒ‹‚Ì“àî‚Ì‹t‚ğŒW”a‚Æ‚µ‚Ä‚¨‚­
+		// é€²è¡Œãƒ™ã‚¯ãƒˆãƒ«ã¨ã€å£ã®æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã®å†…æƒ…ã®é€†ã‚’ä¿‚æ•°aã¨ã—ã¦ãŠã
 		float a = -VDot(character->GetVec(), norm);
 
 		character->SetVec(VAdd(VAdd(character->GetVec(), VScale(norm, a)), VScale(norm, 0.001f)));

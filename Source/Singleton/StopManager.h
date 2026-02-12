@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 class FadeManager;
 class TimeManager;
 
@@ -11,19 +11,19 @@ enum class STOP_FLAG_TYPE
 class StopManager
 {
 private:
-    // ƒtƒF[ƒhƒ}ƒl[ƒWƒƒ[
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
     FadeManager* mpFadeManager;
 
-    // ƒ^ƒCƒ€ƒ}ƒlƒWƒƒ[
+    // ã‚¿ã‚¤ãƒ ãƒãƒã‚¸ãƒ£ãƒ¼
     TimeManager *mpTimeManager;
 
 public:
     StopManager();
     ~StopManager();
 
-    /// <summary>‰Šú‰»</summary>
+    /// <summary>åˆæœŸåŒ–</summary>
     void Initilize();
 
-    /// <summary>ƒXƒgƒbƒvƒtƒ‰ƒOæ“¾</summary>
+    /// <summary>ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°å–å¾—</summary>
     bool GetStopFlag(STOP_FLAG_TYPE stopType);
 };

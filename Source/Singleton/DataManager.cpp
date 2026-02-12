@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <list>
@@ -30,17 +30,17 @@ DataManager::DataManager()
 {
 	mwMsg = {};
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	mstBaseData = OnePlayerAllData();
 	mstBaseData.dataFlag = false;
 	mstBaseData.playerData.dataFlag = false;
 	mstBaseData.oneDatas.clear();
 
-	/*‰ŠúƒvƒŒƒCƒ„[ƒf[ƒ^*/
+	/*åˆæœŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿*/
 	mstInitPlayerDatas.clear();
 
 
-	// ƒvƒŒƒCî•ñ‰Šú‰»
+	// ãƒ—ãƒ¬ã‚¤æƒ…å ±åˆæœŸåŒ–
 	{
 		mstPlayPlayerData = OnePlayerAllData();
 		mstPlayPlayerData.dataFlag = false;
@@ -48,13 +48,13 @@ DataManager::DataManager()
 		mstPlayPlayerData.oneDatas.clear();
 	}
 
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	mstPlayerDatas.clear();
 
-	// ƒvƒŒƒCƒ„[ƒtƒ@ƒCƒ‹ƒl[ƒ€
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 	msPlayerDatasFileName.clear();
 
-	// æ“¾Ï‚İƒtƒ@ƒCƒ‹–¼
+	// å–å¾—æ¸ˆã¿ãƒ•ã‚¡ã‚¤ãƒ«å
 	mmGetFilePosNumbers.clear();
 }
 
@@ -62,23 +62,23 @@ DataManager::~DataManager()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void DataManager::Initilize()
 {
 	mpEndManger = Master::mpEndManager;
 
 
-	// ƒx[ƒXƒf[ƒ^
+	// ãƒ™ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
 	{
-		// TODO: ƒtƒ@ƒCƒ‹‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
-		/*‰Šú‰»*/
+		// TODO: ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å–å¾—ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
+		/*åˆæœŸåŒ–*/
 		mstBaseData = OnePlayerAllData();
 		mstBaseData.dataFlag = false;
 		mstBaseData.playerData.dataFlag = false;
 		mstBaseData.oneDatas.clear();
 
 		ONE_DATA setBaseData = ONE_DATA();
-		// ƒtƒ@ƒCƒ‹
+		// ãƒ•ã‚¡ã‚¤ãƒ«
 		{
 			setBaseData.dataChangeFlag = false;
 			setBaseData.typeNumber = 0;
@@ -109,7 +109,7 @@ void DataManager::Initilize()
 
 			setBaseData.datas.fileNameDatas.clear();
 		}
-		// ƒLƒƒƒ‰ƒNƒ^[1
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼1
 		{
 			setBaseData.dataChangeFlag = false;
 			setBaseData.typeNumber = 1;
@@ -137,7 +137,7 @@ void DataManager::Initilize()
 			mstBaseData.oneDatas.push_back(setBaseData);
 			setBaseData.datas.characterDatas.clear();
 		}
-		// ƒLƒƒƒ‰ƒNƒ^[2
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼2
 		{
 			setBaseData.dataChangeFlag = false;
 			setBaseData.typeNumber = 1;
@@ -174,7 +174,7 @@ void DataManager::Initilize()
 			mstBaseData.oneDatas.push_back(setBaseData);
 			setBaseData.datas.characterDatas.clear();
 		}
-		// ƒLƒƒƒ‰ƒNƒ^[3(ƒ{ƒX)
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼3(ãƒœã‚¹)
 		{
 			setBaseData.dataChangeFlag = false;
 			setBaseData.typeNumber = 1;
@@ -196,7 +196,7 @@ void DataManager::Initilize()
 		mstBaseData.dataFlag = true;
 	}
 
-	// ‰ŠúƒvƒŒƒCƒ„[î•ñ
+	// åˆæœŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±
 	{
 		mstInitPlayerDatas.clear();
 		PLAYER_DATA setInitPlayer = PLAYER_DATA();
@@ -212,12 +212,12 @@ void DataManager::Initilize()
 		setInitPlayer.angle = UtilCalc::VZero;
 		setInitPlayer.dataFlag = true;
 		setInitPlayer.survivalFlag = 1;
-		setInitPlayer.name = "ƒAƒ{ƒJƒh";
+		setInitPlayer.name = "ã‚¢ãƒœã‚«ãƒ‰";
 		setInitPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 		mstInitPlayerDatas.push_back(setInitPlayer);
 	}
 
-	// ƒvƒŒƒCî•ñ‰Šú‰»
+	// ãƒ—ãƒ¬ã‚¤æƒ…å ±åˆæœŸåŒ–
 	{
 		mstPlayPlayerData = OnePlayerAllData();
 		mstPlayPlayerData.dataFlag = false;
@@ -225,7 +225,7 @@ void DataManager::Initilize()
 		mstPlayPlayerData.oneDatas.clear();
 	}
 
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	{
 		mstPlayerDatas.clear();
 
@@ -242,7 +242,7 @@ void DataManager::Initilize()
 		setPlayer.angle = UtilCalc::VZero;
 		setPlayer.dataFlag = true;
 		setPlayer.survivalFlag = 1;
-		setPlayer.name = "ƒAƒ{ƒJƒh";
+		setPlayer.name = "ã‚¢ãƒœã‚«ãƒ‰";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
@@ -250,7 +250,7 @@ void DataManager::Initilize()
 		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::NONE;
-		setPlayer.name = "ƒAƒ{ƒJƒh2";
+		setPlayer.name = "ã‚¢ãƒœã‚«ãƒ‰2";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
@@ -258,7 +258,7 @@ void DataManager::Initilize()
 		setPlayer.mapType = SCENE::TOWN_1;
 		setPlayer.townType = SCENE::TOWN_1;
 		setPlayer.dungeonType = SCENE::NONE;
-		setPlayer.name = "ƒAƒ{ƒJƒh3";
+		setPlayer.name = "ã‚¢ãƒœã‚«ãƒ‰3";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
@@ -267,19 +267,19 @@ void DataManager::Initilize()
 
 	mmGetFilePosNumbers.clear();
 
-	SetBaseFile("Œã‚Åƒtƒ@ƒCƒ‹–¼“ü‚ê‚é");
+	SetBaseFile("å¾Œã§ãƒ•ã‚¡ã‚¤ãƒ«åå…¥ã‚Œã‚‹");
 }
 
-// ƒx[ƒXƒtƒ@ƒCƒ‹İ’è
+// ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«è¨­å®š
 void DataManager::SetBaseFile(std::string fileName)
 {
 }
 
 /*--------*/
-/*yˆ—z*/
+/*ã€å‡¦ç†ã€‘*/
 /*--------*/
 
-// ƒf[ƒ^‚ğ•Û‘¶
+// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 void DataManager::Save()
 {
 	if ((mnPlayPlayerNumber != -1) && mstPlayPlayerData.dataFlag)
@@ -288,25 +288,25 @@ void DataManager::Save()
 	}
 }
 
-// ƒvƒŒƒC’†ƒf[ƒ^‚Éİ’è‚³‚ê‚½ƒf[ƒ^‚ğíœ‚·‚é
+// ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 void DataManager::PlayDataDelete(int playerNumber)
 {
 	if (playerNumber >= mstPlayerDatas.size())
 	{
 		return;
 	}
-	// Á‚·ƒf[ƒ^‚ğİ’è‚·‚é
+	// æ¶ˆã™ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 	SetPlayPlayer(playerNumber);
 
 	/*
-	* yƒtƒ@ƒCƒ‹–¼ƒf[ƒ^‚ÉÚ‚Á‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğ‘Síœz
+	* ã€ãƒ•ã‚¡ã‚¤ãƒ«åãƒ‡ãƒ¼ã‚¿ã«è¼‰ã£ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨å‰Šé™¤ã€‘
 	*/
 	/*
 	if (mstPlayPlayerData.oneDatas[0].typeNumber == (int)DataType::FILE_NAME)
 	{
 		for (int i = 0; i < mstPlayPlayerData.oneDatas[0].datas.fileNameDatas.size(); i++)
 		{
-			/*ƒtƒ@ƒCƒ‹‚ğíœo—ˆ‚½‚çƒvƒŒƒCƒ„[ƒf[ƒ^‚àíœ‚·‚é
+			/*ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤å‡ºæ¥ãŸã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚‚å‰Šé™¤ã™ã‚‹
 			if (std::remove(mstPlayPlayerData.oneDatas[0].datas.fileNameDatas[i].fileName.c_str()) == 0)
 			{
 
@@ -314,7 +314,7 @@ void DataManager::PlayDataDelete(int playerNumber)
 				{
 					if (mstPlayPlayerData.oneDatas[j].name == mstPlayPlayerData.oneDatas[0].datas.fileNameDatas[i].fileName)
 					{
-						// vector‚©‚çíœ
+						// vectorã‹ã‚‰å‰Šé™¤
 						mstPlayPlayerData.oneDatas.erase(mstPlayPlayerData.oneDatas.begin() + j);
 						break;
 					}
@@ -325,20 +325,20 @@ void DataManager::PlayDataDelete(int playerNumber)
 	}
 	*/
 
-	// ƒLƒƒƒ‰ƒNƒ^[ƒtƒ‰ƒO‚ğfalse‚É‚·‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ•ãƒ©ã‚°ã‚’falseã«ã™ã‚‹
 	mstPlayPlayerData.playerData.dataFlag = false;
 
 	/*
-	* yƒvƒŒƒCƒ„[ƒf[ƒ^íœ‚µ‚½Œã‚Éíœ‚µ‚½ó‘Ô‚ğİ’è‚·‚éz
+	* ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿å‰Šé™¤ã—ãŸå¾Œã«å‰Šé™¤ã—ãŸçŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ã€‘
 	*/
 	Save();
 }
 
 /*--------*/
-/*yíœz*/
+/*ã€å‰Šé™¤ã€‘*/
 /*--------*/
 
-// ƒGƒlƒ~[ƒf[ƒ^íœ
+// ã‚¨ãƒãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 void DataManager::DeleteEnemyData(SCENE deleteScene)
 {
 	DELETE_CHARACTER_DATA deleteData;
@@ -356,22 +356,22 @@ void DataManager::DeleteEnemyData(SCENE deleteScene)
 
 	for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
 	{
-		// ƒf[ƒ^í—ŞŠm”F
+		// ãƒ‡ãƒ¼ã‚¿ç¨®é¡ç¢ºèª
 		if (mstPlayPlayerData.oneDatas[i].typeNumber == (int)DATA_TYPE::CHARACTER)
 		{
-			// ƒV[ƒ“Šm”F
+			// ã‚·ãƒ¼ãƒ³ç¢ºèª
 			if (std::find(sceneFileNames.begin(), sceneFileNames.end(), mstPlayPlayerData.oneDatas[i].name) == sceneFileNames.end())
 			{
 				continue;
 			}
 
-			// ƒLƒƒƒ‰ƒNƒ^[Šm”F
+			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç¢ºèª
 			for (int j = 0; j < mstPlayPlayerData.oneDatas[i].datas.characterDatas.size(); j++)
 			{
-				// ID‚ğŠm”F
+				// IDã‚’ç¢ºèª
 				if (mstPlayPlayerData.oneDatas[i].datas.characterDatas[j].objectID == deleteData.characterID)
 				{
-					// íœ
+					// å‰Šé™¤
 					mstPlayPlayerData.oneDatas[i].datas.characterDatas.erase(mstPlayPlayerData.oneDatas[i].datas.characterDatas.begin() + j);
 					return;
 				}
@@ -381,19 +381,19 @@ void DataManager::DeleteEnemyData(SCENE deleteScene)
 }
 
 /*--------*/
-/*yİ’èz*/
+/*ã€è¨­å®šã€‘*/
 /*--------*/
 
-// ƒvƒŒƒCƒ„[İ’è
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¨­å®š
 void DataManager::SetPlayPlayer(int playerNumber)
 {
 	if (mstPlayerDatas.size() > playerNumber)
 	{
 		if (mstPlayerDatas[playerNumber].survivalFlag)
 		{
-			// ƒvƒŒƒCƒ„[ƒf[ƒ^‰Šú‰»
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 			{
-				// ‘O‚Ìƒf[ƒ^‚Åg—p‚µ‚Ä‚¢‚½ƒAƒCƒeƒ€ƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+				// å‰ã®ãƒ‡ãƒ¼ã‚¿ã§ä½¿ç”¨ã—ã¦ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 				/*
 				for (int i = 0; i < mstPlayPlayerData.playerData.item.size(); i++)
 				{
@@ -402,16 +402,16 @@ void DataManager::SetPlayPlayer(int playerNumber)
 				mstPlayPlayerData.playerData.item.clear();
 				*/
 
-				// æ“¾‚µ‚½ƒV[ƒ“‚Ìƒtƒ@ƒCƒ‹ƒ|ƒWƒVƒ‡ƒ“‚ğÁ‚·
+				// å–å¾—ã—ãŸã‚·ãƒ¼ãƒ³ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’æ¶ˆã™
 				mmGetFilePosNumbers.clear();
 
-				// ƒvƒŒƒCƒ„[ƒf[ƒ^‚ğİ’è
+				// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 				mnPlayPlayerNumber = playerNumber;
 				mstPlayPlayerData.dataFlag = false;
 				mstPlayPlayerData.playerData = mstPlayerDatas[playerNumber];
 				mstPlayPlayerData.oneDatas.clear();
 				
-				// ƒAƒCƒeƒ€‚ğİ’è
+				// ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¨­å®š
 				/*
 				for (int i = 0; i < mstPlayPlayerData.playerData.itemNumber; i++) {
 
@@ -437,22 +437,22 @@ void DataManager::SetPlayPlayer(int playerNumber)
 				}*/
 			}
 
-			// ƒtƒ@ƒCƒ‹î•ñ‚ğ“Ç‚İæ‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’èª­ã¿å–ã‚‹
 			/* 
-			// ƒf[ƒ^İ’è—p‰Šú‰»
+			// ãƒ‡ãƒ¼ã‚¿è¨­å®šç”¨åˆæœŸåŒ–
 			OneData setData;
 			setData.dataChangeFlag = false;
 			setData.name = mstPlayPlayerData.playerData.playerFolderName + "/FileNames_Data.txt";
 			setData.typeNumber = -1;
 
-			// ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹
 			std::ifstream nameDataFile;
 			nameDataFile.open(setData.name, std::ios_base::in);
 
-			// ƒtƒ@ƒCƒ‹ƒf[ƒ^æ“¾
+			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 			if (nameDataFile.is_open())
 			{
-				// ƒtƒ@ƒCƒ‹Šm”F
+				// ãƒ•ã‚¡ã‚¤ãƒ«ç¢ºèª
 				nameDataFile >> setData.typeNumber;
 				if (setData.typeNumber == (int)DataType::FILE_NAME)
 				{
@@ -471,12 +471,12 @@ void DataManager::SetPlayPlayer(int playerNumber)
 			setData.typeNumber = -1;
 
 
-			// ƒtƒ@ƒCƒ‹–¼‚É•Û‘¶‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğ‚·‚×‚Äæ“¾‚·‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«åã«ä¿å­˜ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã™ã¹ã¦å–å¾—ã™ã‚‹
 			for (DATA_NAME fileNameData : mstPlayPlayerData.oneDatas[0].datas.fileNameDatas)
 			{
 				setData.name = fileNameData.fileName;
 
-				// ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é
+				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹
 				std::ifstream dataFile;
 				dataFile.open(setData.name, std::ios_base::in);
 
@@ -507,8 +507,8 @@ void DataManager::SetPlayPlayer(int playerNumber)
 			*/
 
 			
-			// HACK: ‚Æ‚è‚ ‚¦‚¸“K“–‚É“ü‚ê‚Ä‚é
-			// ƒf[ƒ^İ’è—p‰Šú‰»
+			// HACK: ã¨ã‚Šã‚ãˆãšé©å½“ã«å…¥ã‚Œã¦ã‚‹
+			// ãƒ‡ãƒ¼ã‚¿è¨­å®šç”¨åˆæœŸåŒ–
 			OneData setData;
 			setData.dataChangeFlag = false;
 			setData.name = mstPlayPlayerData.playerData.playerFolderName + "/FileNames_Data.txt";
@@ -527,7 +527,7 @@ void DataManager::SetPlayPlayer(int playerNumber)
 	}
 }
 
-// ƒLƒƒƒ‰ƒNƒ^[IDİ’è
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼IDè¨­å®š
 void DataManager::SetCharacterID(int id, std::string fileName, int index)
 {
 	for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
@@ -540,13 +540,13 @@ void DataManager::SetCharacterID(int id, std::string fileName, int index)
 }
 
 /*--------*/
-/*yæ“¾z*/
+/*ã€å–å¾—ã€‘*/
 /*--------*/
 
-// *w’è‚ÌƒV[ƒ“‚É•K—v‚È‘Sƒf[ƒ^‚ğæ“¾
+// *æŒ‡å®šã®ã‚·ãƒ¼ãƒ³ã«å¿…è¦ãªå…¨ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 {
-	// ˆÈ‘OŒ©‚Â‚¯‚½ƒtƒ@ƒCƒ‹‚È‚çŒ©‚Â‚¯‚½ƒtƒ@ƒCƒ‹‚ğƒvƒŒƒC’†‚Ìƒf[ƒ^‚©‚çæ‚èo‚·
+	// ä»¥å‰è¦‹ã¤ã‘ãŸãƒ•ã‚¡ã‚¤ãƒ«ãªã‚‰è¦‹ã¤ã‘ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ—ãƒ¬ã‚¤ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–ã‚Šå‡ºã™
 	if (mmGetFilePosNumbers.find(sceneName) != mmGetFilePosNumbers.end())
 	{
 		std::vector<OneData> resultData;
@@ -566,7 +566,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 	std::list <std::string> baseFileNames;
 	baseFileNames.clear();
 
-	// ƒx[ƒXƒtƒ@ƒCƒ‹‚É‚¢‚­‚Â‚±‚ÌƒV[ƒ“‚Ìî•ñ‚ª‚ ‚é‚©‚ğ’²‚×‚é
+	// ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã«ã„ãã¤ã“ã®ã‚·ãƒ¼ãƒ³ã®æƒ…å ±ãŒã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
 	for (int i = 0; i < mstBaseData.oneDatas.size(); i++)
 	{
 		if (mstBaseData.oneDatas[i].typeNumber == (int)DATA_TYPE::FILE_NAME)
@@ -581,19 +581,19 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		}
 	}
 
-	// •K—v‚Èƒf[ƒ^‚ğ•Ô‚·
+	// å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
 	{
-		// •Ô‚·ƒf[ƒ^
+		// è¿”ã™ãƒ‡ãƒ¼ã‚¿
 		std::vector<OneData> resultData;
 		resultData.clear();
 		resultData.reserve(baseFileNames.size());
-		// ˆ—‚Ì³‚µ‚³‚ğŒã‚Å’²‚×‚é
+		// å‡¦ç†ã®æ­£ã—ã•ã‚’å¾Œã§èª¿ã¹ã‚‹
 		
-		// ƒf[ƒ^êŠ‹L˜^—p
+		// ãƒ‡ãƒ¼ã‚¿å ´æ‰€è¨˜éŒ²ç”¨
 		std::list<int> setGetFilePosNumbers;
 		setGetFilePosNumbers.clear();
 
-		// ƒvƒŒƒC’†ƒf[ƒ^‚Ì‰½ˆ‚Éƒtƒ@ƒCƒ‹ƒl[ƒ€ƒf[ƒ^‚ ‚é‚©‚ğæ“¾‚·‚é
+		// ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿ã®ä½•å‡¦ã«ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹
 		std::list<int> fileNameDataPos;
 		fileNameDataPos.clear();
 		for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
@@ -605,7 +605,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		}
 		for (std::string baseFileName : baseFileNames)
 		{
-			// ƒvƒŒƒC’†ƒf[ƒ^‚É‚ ‚é‚©’T‚·
+			// ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ã‹æ¢ã™
 			bool checkFile = false;
 			std::string checkName = baseFileName;
 			for (int namePos : fileNameDataPos)
@@ -633,30 +633,30 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 				}
 			}
 
-			// ƒvƒŒƒC’†ƒf[ƒ^‚É‚È‚¢ê‡ƒx[ƒXƒf[ƒ^‚©‚çæ“¾‚·‚é
+			// ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿ã«ãªã„å ´åˆãƒ™ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹
 			if (!checkFile)
 			{
 				for (int i = 0; i < mstBaseData.oneDatas.size(); i++)
 				{
 					if (mstBaseData.oneDatas[i].name == baseFileName)
 					{
-						// ƒvƒŒƒCƒ„[ƒf[ƒ^‚Éî•ñ‚ğ’Ç‰Á
+						// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã«æƒ…å ±ã‚’è¿½åŠ 
 						ONE_DATA setData = mstBaseData.oneDatas[i];
 						setData.dataChangeFlag = true;
 						setData.name = (mstPlayPlayerData.playerData.playerFolderName + "/" + setData.name.substr(9));
 						mstPlayPlayerData.oneDatas.push_back(setData);
 						setGetFilePosNumbers.push_back(mstPlayPlayerData.oneDatas.size() - 1);
 
-						// ƒŠƒUƒ‹ƒg‚Éî•ñ’Ç‰Á
+						// ãƒªã‚¶ãƒ«ãƒˆã«æƒ…å ±è¿½åŠ 
 						resultData.push_back(setData);
 
 
-						// ƒtƒ@ƒCƒ‹–¼ƒf[ƒ^‚Éî•ñ’Ç‰Á
+						// ãƒ•ã‚¡ã‚¤ãƒ«åãƒ‡ãƒ¼ã‚¿ã«æƒ…å ±è¿½åŠ 
 						FILE_DATA setFileName;
 						setFileName.sceneType = sceneName;
 						setFileName.name = setData.name;
 						setFileName.typeNumber = setData.typeNumber;
-						// ƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+						// ãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 						mstPlayPlayerData.oneDatas[0].datas.fileNameDatas.push_back(setFileName);
 						break;
 					}
@@ -670,7 +670,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 }
 
 
-// ƒ}ƒbƒvƒf[ƒ^æ“¾
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
 {
 	std::vector<std::vector<TileData>> mapData;
@@ -681,7 +681,7 @@ std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
 
 	if (csvFile.is_open())
 	{
-		// ƒtƒ@ƒCƒ‹‚Ìs”‚Æ—ñ”‚ğ”‚¦‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œæ•°ã¨åˆ—æ•°ã‚’æ•°ãˆã‚‹
 		std::string line;
 		int rowCount = 0;
 		int colCount = 0;
@@ -697,12 +697,12 @@ std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
 				}
 			}
 		}
-		// ƒtƒ@ƒCƒ‹‚Ìæ“ª‚É–ß‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«æˆ»ã‚‹
 		csvFile.clear();
 		csvFile.seekg(0, std::ios::beg);
-		// ƒ}ƒbƒvƒf[ƒ^‚Ì2ŸŒ³ƒxƒNƒgƒ‹‚ğ‰Šú‰»
+		// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®2æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«ã‚’åˆæœŸåŒ–
 		mapData.resize(rowCount, std::vector<TileData>(colCount));
-		// ƒ}ƒbƒvƒf[ƒ^‚ğ“Ç‚İ‚Ş
+		// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 		int currentRow = 0;
 		while (std::getline(csvFile, line))
 		{
@@ -720,33 +720,33 @@ std::vector<std::vector<TileData>> DataManager::GetMapData(MapType tileType)
 		}
 	}
 
-	/*std::ifstream csv_file(file_path); // ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	/*std::ifstream csv_file(file_path); // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 
 if (!csv_file.is_open()) {
-std::cerr << "ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½: " << file_path << std::endl;
+std::cerr << "ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ: " << file_path << std::endl;
 return 1;
 }
 
-std::string line; // 1s•ª‚Ìƒf[ƒ^
+std::string line; // 1è¡Œåˆ†ã®ãƒ‡ãƒ¼ã‚¿
 while (std::getline(csv_file, line)) {
 std::istringstream line_stream(line);
 std::string cell;
 
-// ƒJƒ“ƒ}‹æØ‚è‚Åƒf[ƒ^‚ğæ“¾
+// ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 while (std::getline(line_stream, cell, ',')) {
-std::cout << cell << " "; // ŠeƒZƒ‹‚Ìƒf[ƒ^‚ğo—Í
+std::cout << cell << " "; // å„ã‚»ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›
 }
-std::cout << std::endl; // s‚²‚Æ‚É‰üs
+std::cout << std::endl; // è¡Œã”ã¨ã«æ”¹è¡Œ
 }
 
-csv_file.close(); // ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+csv_file.close(); // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 return 0;*/
 
 	csvFile.close();
 	return mapData;
 }
 
-// ƒV[ƒ“‚É‡‚Á‚½ƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+// ã‚·ãƒ¼ãƒ³ã«åˆã£ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 std::vector<std::string> DataManager::GetSceneFileNames(SCENE scsene, bool baseFlag)
 {
 	ONE_PLAYER_ALL_DATA* onePlayerAllData = (baseFlag ? &mstBaseData : &mstPlayPlayerData);
@@ -771,7 +771,7 @@ std::vector<std::string> DataManager::GetSceneFileNames(SCENE scsene, bool baseF
 	return baseFileNames;
 }
 
-// ƒ}ƒbƒvƒŠƒ\[ƒXƒtƒ@ƒCƒ‹–¼æ“¾
+// ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
 std::string DataManager::GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber)
 {
 	return "Resource/3D/Floor/Ceiling_Closed.mv1";

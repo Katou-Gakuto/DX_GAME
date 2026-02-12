@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "BitFlag.h"
@@ -15,9 +15,9 @@ enum class TARGET_TYPE
 class TargetManager
 {
 private:
-	CharacterTargetData mstPlayer;	// ƒvƒŒƒCƒ„[
+	CharacterTargetData mstPlayer;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
-	std::vector<CharacterTargetData> mstEnemys;	// ƒGƒlƒ~[
+	std::vector<CharacterTargetData> mstEnemys;	// ã‚¨ãƒãƒŸãƒ¼
 
 public:
 	TargetManager();
@@ -25,43 +25,43 @@ public:
 
 
 	/*----------*/
-	/*y‰Šú‰»z*/
+	/*ã€åˆæœŸåŒ–ã€‘*/
 	/*----------*/
 
-	/*‘S‰Šú‰»*/
+	/*å…¨åˆæœŸåŒ–*/
 	void Init();
 
-	/*w’èƒ^[ƒQƒbƒg‰Šú‰»*/
+	/*æŒ‡å®šã‚¿ãƒ¼ã‚²ãƒƒãƒˆåˆæœŸåŒ–*/
 	void TargetInit(TARGET_TYPE targetNumber);
 
-	/*w’èƒ^[ƒQƒbƒg‰Šú‰»*/
+	/*æŒ‡å®šã‚¿ãƒ¼ã‚²ãƒƒãƒˆåˆæœŸåŒ–*/
 	void TargetInit(BIT_FLAG<unsigned int> targetNumber);
 
 	/*--------*/
-	/*yíœz*/
+	/*ã€å‰Šé™¤ã€‘*/
 	/*--------*/
 
-	/*íœ*/
+	/*å‰Šé™¤*/
 	void Delete(CharacterBase* character, TARGET_TYPE targetNumber);
 
 
 	/*--------*/
-	/*yİ’èz*/
+	/*ã€è¨­å®šã€‘*/
 	/*--------*/
 
-	/*ƒ^[ƒQƒbƒgİ’è*/
+	/*ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š*/
 	void SetTarget(CharacterBase* target, TARGET_TYPE targetNumber);
-	/*ƒ^[ƒQƒbƒgİ’è*/
+	/*ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š*/
 	void SetTarget(std::vector<CharacterTargetData> target, TARGET_TYPE targetNumber);
 
 
 	/*--------*/
-	/*yæ“¾z*/
+	/*ã€å–å¾—ã€‘*/
 	/*--------*/
 
-	/*ƒ^[ƒQƒbƒgæ“¾*/
+	/*ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå–å¾—*/
 	CharacterTargetData GetTarget(TARGET_TYPE targetNumber);
 
-	/*ƒ^[ƒQƒbƒgæ“¾*/
+	/*ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå–å¾—*/
 	std::vector<CharacterTargetData> GetTargets(TARGET_TYPE targetNumber);
 };

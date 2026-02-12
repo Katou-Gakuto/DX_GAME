@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "TileData.h"
@@ -9,49 +9,49 @@ struct CollisionData;
 struct CharacterTargetData;
 class ModelMap;
 
-// TODO: ƒ}ƒbƒv‰E‘O‚ÉL‚Ñ‚Ä‚é‚Ì‚ğ‰EŒã‚ë‚É’¼‚·@Œ»óZ+•ûŒü‚ªX+•ûŒü‚É‚È‚Á‚ÄX+•ûŒü‚ªZ-•ûŒü‚ÉL‚Ñ‚Ä‚¢‚é
+// TODO: ãƒãƒƒãƒ—å³å‰ã«ä¼¸ã³ã¦ã‚‹ã®ã‚’å³å¾Œã‚ã«ç›´ã™ã€€ç¾çŠ¶Z+æ–¹å‘ãŒX+æ–¹å‘ã«ãªã£ã¦X+æ–¹å‘ãŒZ-æ–¹å‘ã«ä¼¸ã³ã¦ã„ã‚‹
 class MapManager
 {
 private:
-	// ƒ}ƒbƒvî•ñ
+	// ãƒãƒƒãƒ—æƒ…å ±
 	std::vector<std::vector<TileData>> mstMapData;
 
-	// ƒ^ƒCƒ‹‚ÌƒTƒCƒY
+	// ã‚¿ã‚¤ãƒ«ã®ã‚µã‚¤ã‚º
 	VECTOR mvTileHalfSize;
 
-	// ƒ}ƒbƒvÅ¬ƒ|ƒWƒVƒ‡ƒ“
+	// ãƒãƒƒãƒ—æœ€å°ãƒã‚¸ã‚·ãƒ§ãƒ³
 	VECTOR mvMapMinPos;
 
-	// ƒ}ƒbƒvƒ‚ƒfƒ‹
+	// ãƒãƒƒãƒ—ãƒ¢ãƒ‡ãƒ«
 	ModelMap *mpModelMap;
 
 public:
 	MapManager();
 	~MapManager();
 
-	/// <summary>ƒf[ƒ^‰ğ•ú</summary>
+	/// <summary>ãƒ‡ãƒ¼ã‚¿è§£æ”¾</summary>
 	void Release();
 
-	/*ƒ}ƒbƒvî•ñİ’è*/
+	/*ãƒãƒƒãƒ—æƒ…å ±è¨­å®š*/
 	void SetMapData(MapType mapType);
-	/*ƒ}ƒbƒvî•ñİ’è*/
+	/*ãƒãƒƒãƒ—æƒ…å ±è¨­å®š*/
 	void SetMapData(std::vector<std::vector<TileData>> mapData);
 
-	/*ƒ}ƒbƒvî•ñæ“¾*/
+	/*ãƒãƒƒãƒ—æƒ…å ±å–å¾—*/
 	inline std::vector<std::vector<TileData>> GetMapData() const { return mstMapData; }
 
-	/*ƒ}ƒbƒv“–‚½‚è”»’è*/
+	/*ãƒãƒƒãƒ—å½“ãŸã‚Šåˆ¤å®š*/
 	void MapCollision();
 
-	/*ƒLƒƒƒ‰ƒNƒ^[‚Æ‚Ì“–‚½‚è”»’è*/
+	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¨ã®å½“ãŸã‚Šåˆ¤å®š*/
 	std::vector<CharacterTargetData> CharacterCollision(std::vector<CharacterTargetData> characterData);
 
-	/*ƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“æ“¾*/
+	/*ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—*/
 	void GetMapPos(int &setPosX, int &setPosZ, VECTOR pos);
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw();
 
-	/*ƒ^ƒCƒ‹ƒTƒCƒYæ“¾*/
+	/*ã‚¿ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—*/
 	inline VECTOR GetTileSize() const { return VAdd(mvTileHalfSize, mvTileHalfSize); }
 };

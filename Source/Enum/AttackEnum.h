@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 
-// UŒ‚Žè’iŽí—Þ
+// æ”»æ’ƒæ‰‹æ®µç¨®é¡ž
 enum class ATTACK_METHOD_TYPE
 {
-    NORMAL = 0, // ƒm[ƒ}ƒ‹UŒ‚
-    SPCEIAL,    // ƒXƒyƒVƒƒƒ‹UŒ‚
+    NORMAL = 0, // ãƒŽãƒ¼ãƒžãƒ«æ”»æ’ƒ
+    SPCEIAL,    // ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒ
 };
 
-// UŒ‚Ží—Þ
+// æ”»æ’ƒç¨®é¡ž
 enum class ATTACK_TYPE
 {
 	SHOT = 0,

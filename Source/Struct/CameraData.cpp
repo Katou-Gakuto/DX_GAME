@@ -1,4 +1,4 @@
-#include "CameraData.h"
+ï»¿#include "CameraData.h"
 
 #include "ObjectBases.h"
 #include "UtilCalc.h"
@@ -29,7 +29,7 @@ CameraData::CameraData()
 	cameraID = -1;
 }
 
-// •ûŒüæ“¾
+// æ–¹å‘å–å¾—
 VECTOR CameraData::GetDirection()
 {
 	VECTOR direction = UtilCalc::VZero;

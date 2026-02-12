@@ -1,4 +1,4 @@
-#include "ResourceData.h"
+ï»¿#include "ResourceData.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -15,11 +15,11 @@
 #include "UtilCalc.h"
 
 /*--------------------------------*/
-/*     yƒQ[ƒ€UIƒXƒe[ƒgz     */
+/*     ã€ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*--------------------------------*/
 
 /*----------*/
-/*yƒQ[ƒ€UI‹¤’Êˆ——pz
+/*ã€ã‚²ãƒ¼ãƒ UIå…±é€šå‡¦ç†ç”¨ã€‘
 /*----------*/
 GameUIProcess::GameUIProcess()
 {
@@ -27,32 +27,32 @@ GameUIProcess::GameUIProcess()
     mpTargetManager = Master::mpGameManager->GetTargetManager();
 }
 
-// ƒƒjƒ…[ƒL[‚ğ‰Ÿ‚µ‚½‚©•Ô‚·
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹è¿”ã™
 bool GameUIProcess::IsMenuKeyPressed()
 {
-    // TODO: ƒL[‰¼İ’è
+    // TODO: ã‚­ãƒ¼ä»®è¨­å®š
     return Master::mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::X);
 }
 
-// ƒƒjƒ…[‚Ì”wŒi•`‰æ
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®èƒŒæ™¯æç”»
 void GameUIProcess::DrawMenuBackground(UIBase* ui)
 {
-    // // TODO: ‰æ‘œƒnƒ“ƒhƒ‹‚É•ÏX
+    // // TODO: ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´
     // DisplaySize displaySize = ResourceManager::mstDisplaySize;
     // Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
     // Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
     // DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 
     // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
-    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ƒƒjƒ…[", GetColor(0, 0, 0));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼", GetColor(0, 0, 0));
 }
 
-// ƒ~ƒjƒ}ƒbƒv•\¦
+// ãƒŸãƒ‹ãƒãƒƒãƒ—è¡¨ç¤º
 void GameUIProcess::DrawMinMap()
 {
-    // INPROGRESS: À‘•@‚ ‚ÆƒGƒtƒFƒNƒg‚ÌƒGƒ‰[íœƒtƒ@ƒCƒ‹‚²‚Æ‚É‚â‚ê‚Î‚¢‚¢‚ç‚µ‚¢ 2D‚Í‰e‚ª‚¢‚ç‚È‚¢‚©‚çstopƒ}ƒl[ƒWƒƒ[‚Å•`‰æˆ—©‘Ì‚ğˆê‰ñ‚ÅÏ‚Ş‚æ‚¤‚É‚·‚é
+    // INPROGRESS: å®Ÿè£…ã€€ã‚ã¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¨ãƒ©ãƒ¼å‰Šé™¤ãƒ•ã‚¡ã‚¤ãƒ«ã”ã¨ã«ã‚„ã‚Œã°ã„ã„ã‚‰ã—ã„ 2Dã¯å½±ãŒã„ã‚‰ãªã„ã‹ã‚‰stopãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã§æç”»å‡¦ç†è‡ªä½“ã‚’ä¸€å›ã§æ¸ˆã‚€ã‚ˆã†ã«ã™ã‚‹
 
-    // ”ÍˆÍŠOŒvZ
+    // ç¯„å›²å¤–è¨ˆç®—
     {
         mvPlayerPos = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
         mvPlayerAngle = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetAngle();
@@ -60,11 +60,11 @@ void GameUIProcess::DrawMinMap()
     }
 
 
-    // •`‰æ
+    // æç”»
 
 }
 
-// ƒ~ƒjƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“‚É•ÏŠ·‚·‚é
+// ãƒŸãƒ‹ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³ã«å¤‰æ›ã™ã‚‹
 VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
 {
     VECTOR minMapPos;
@@ -74,7 +74,7 @@ VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
 }
 
 /*------------------------*/
-/*yƒQ[ƒ€ŠJnUIƒXƒe[ƒgz*/
+/*ã€ã‚²ãƒ¼ãƒ é–‹å§‹UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*------------------------*/
 StartGameUIState::StartGameUIState()
 : mnElapsedTime(0)
@@ -83,7 +83,7 @@ StartGameUIState::StartGameUIState()
     mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StartGameUIState::OnEnter(UIBase* ui)
 {
     mbFadeInFlag = false;
@@ -94,12 +94,12 @@ void StartGameUIState::OnEnter(UIBase* ui)
     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StartGameUIState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 int StartGameUIState::Update(UIBase* ui)
 {
     if (mnElapsedTime < Master::mpTimeManager->GetGameTime())
@@ -122,30 +122,30 @@ int StartGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 int StartGameUIState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
 
-// •`‰æ
+// æç”»
 void StartGameUIState::Draw(UIBase* ui)
 {
     DrawMinMap();
 }
 
 /*----------------------*/
-/*y’ÊíƒQ[ƒ€UIƒXƒe[ƒgz*/
+/*ã€é€šå¸¸ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 NormalGameUIState::NormalGameUIState()
 {
     mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
-    //printfDx("ƒeƒƒbƒvF’ÊíƒQ[ƒ€UI\n");
+    //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šé€šå¸¸ã‚²ãƒ¼ãƒ UI\n");
     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -154,12 +154,12 @@ void NormalGameUIState::OnEnter(UIBase* ui)
     // }
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void NormalGameUIState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 int NormalGameUIState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -171,20 +171,20 @@ int NormalGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 int NormalGameUIState::Decision(UIBase* ui)
 {
     return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
 }
 
-// •`‰æ
+// æç”»
 void NormalGameUIState::Draw(UIBase* ui)
 {
     DrawMinMap();
 }
 
 /*----------------------*/
-/*yƒ|[ƒYUIƒXƒe[ƒgz*/
+/*ã€ãƒãƒ¼ã‚ºUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 
 PauseGameUIState::PauseGameUIState()
@@ -192,12 +192,12 @@ PauseGameUIState::PauseGameUIState()
     mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void PauseGameUIState::OnEnter(UIBase* ui)
 {
     ui->SetSelectNumber(0);
     ui->Decision();
-    //printfDx("ƒeƒƒbƒvFƒ|[ƒYUI\n");
+    //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒãƒ¼ã‚ºUI\n");
 
     ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 
@@ -207,14 +207,14 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     // }
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void PauseGameUIState::OnExit(UIBase* ui)
 {
     ui->SetSelectNumber(1);
     ui->Decision();
 }
 
-// XV
+// æ›´æ–°
 int PauseGameUIState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -226,13 +226,13 @@ int PauseGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 int PauseGameUIState::Decision(UIBase* ui)
 {
     return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
-// •`‰æ
+// æç”»
 void PauseGameUIState::Draw(UIBase* ui)
 {
     DrawMinMap();

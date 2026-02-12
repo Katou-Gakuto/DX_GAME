@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 
 #include "Master.h"
 
@@ -21,12 +21,12 @@ ModelGraph::~ModelGraph()
 {
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 void ModelGraph::ModelInitilize()
 {
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNI—¹
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯çµ‚äº†
 void ModelGraph::ModelFinalize()
 {
     for (auto drawData : mstDrawDatas)
@@ -39,14 +39,14 @@ void ModelGraph::ModelFinalize()
     mstDrawDatas.clear();
 }
 
-// ƒ|ƒWƒVƒ‡ƒ“XV
+// ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°
 void ModelGraph::PositionUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;
     VECTOR position = mvPosition;
 
-    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[‚ğ”½‰f‚·‚é   
+    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’åæ˜ ã™ã‚‹   
     if (mpModelsController != nullptr)
     {
         size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
@@ -57,7 +57,7 @@ void ModelGraph::PositionUpdate()
     SetDrawData(position, angle, size);
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»
 void ModelGraph::ModelDraw()
 {
     if (!mbDrawFlag)
@@ -102,8 +102,8 @@ void ModelGraph::SetDrawData(VECTOR pos, VECTOR angle, VECTOR size)
         mstDrawDatas[i].angle = angle.z;
 		break;
 
-	case DRAW_GRAPH_TYPE::ROTA_CENTER:// centerPos‚ÆextRate‚ğİ’è‚ÍŠO•”‚Å‚â‚é
-	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:// centerPos‚ÆextRate‚ğİ’è‚ÍŠO•”‚Å‚â‚é
+	case DRAW_GRAPH_TYPE::ROTA_CENTER:// centerPosã¨extRateã‚’è¨­å®šã¯å¤–éƒ¨ã§ã‚„ã‚‹
+	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:// centerPosã¨extRateã‚’è¨­å®šã¯å¤–éƒ¨ã§ã‚„ã‚‹
         mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
         mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
         mstDrawDatas[i].angle = angle.z;
@@ -134,7 +134,7 @@ void ModelGraph::SetDrawData(VECTOR pos, VECTOR angle, VECTOR size)
         }
     }
 
-    // ‘O‚Ìî•ñİ’è
+    // å‰ã®æƒ…å ±è¨­å®š
     mvPrePosition = pos;
     mvPreAngle = angle;
     mvPreSize = size;

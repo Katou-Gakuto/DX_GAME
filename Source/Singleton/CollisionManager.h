@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 struct CollisionData;
 
 class CollisionManager
@@ -7,6 +7,6 @@ public:
 	CollisionManager() {}
 	~CollisionManager() = default;
 
-	/*“–‚½‚è”»’è”½‰fˆ—*/
+	/*å½“ãŸã‚Šåˆ¤å®šåæ˜ å‡¦ç†*/
 	void CollisionProcess();
 };

@@ -1,4 +1,4 @@
-#include "GameDatas.h"
+ï»¿#include "GameDatas.h"
 
 #include "Master.h"
 
@@ -12,11 +12,11 @@
 #include "UtilChange.h"
 
 /*------------------*/
-/*     y‹¤’Êz     */
+/*     ã€å…±é€šã€‘     */
 /*------------------*/
 
 /*----------------------------*/
-/*yƒ}ƒbƒvƒGƒlƒ~[‹¤’Êˆ——pz*/
+/*ã€ãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼å…±é€šå‡¦ç†ç”¨ã€‘*/
 /*----------------------------*/
 MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
 : mpKeyState(Master::mpKeyState)
@@ -26,13 +26,13 @@ MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
 {
 }
 
-// ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev
+// ä¸€å®šç¯„å›²å†…ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒã„ã‚‹ãªã‚‰ã€Œtrueã€
 bool MapEnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 {
     return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
 }
 
-// €–S
+// æ­»äº¡
 void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
 {
     mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
@@ -42,12 +42,12 @@ void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
     }
 }
 
-// ƒ}ƒbƒvƒV[ƒ“ˆÚ“®ŠJn‚·‚é
+// ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ç§»å‹•é–‹å§‹ã™ã‚‹
 void MapEnemyProcess::SetMapScene(CharacterBase* character)
 {
     mpSceneManager->SetNextScene(meMapScene);
 
-    // íœî•ñ‚Éİ’è
+    // å‰Šé™¤æƒ…å ±ã«è¨­å®š
     DELETE_CHARACTER_DATA deleteCharacterData;
     deleteCharacterData.sceneType = mpSceneManager->GetNowScene();
     deleteCharacterData.characterID = character->GetID();
@@ -62,11 +62,11 @@ void MapEnemyProcess::SetMapScene(CharacterBase* character)
 }
 
 /*--------------------------*/
-/*     yŠî–{ƒXƒe[ƒgz     */ 
+/*     ã€åŸºæœ¬ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */ 
 /*--------------------------*/
 
 /*----------------------------*/
-/*yIdleƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
+/*ã€Idleãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene)
 : IStateCharacter()
@@ -75,27 +75,27 @@ IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene)
     mStateNumber = (int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void IdleMapEnemyState::OnEnter(CharacterBase* character)
 {
     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
     {
     case SCENE::TOWN:
-        //printfDx("ƒeƒƒbƒvFƒ_ƒ“ƒWƒ‡ƒ“‚Ös‚¯‚È‚¢‚Å‚·\n");
+        //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã¸è¡Œã‘ãªã„ã§ã™\n");
         break;
 
     case SCENE::DUNGEON:
-        //printfDx("ƒeƒƒbƒvFƒoƒgƒ‹‚Ös‚¯‚È‚¢‚Å‚·\n");
+        //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒãƒˆãƒ«ã¸è¡Œã‘ãªã„ã§ã™\n");
         break;
     }
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void IdleMapEnemyState::OnExit(CharacterBase* character)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 int IdleMapEnemyState::StateCheck(CharacterBase* character)
 {
     if (PlayerTargetCheck(character, 300.0f))
@@ -106,29 +106,29 @@ int IdleMapEnemyState::StateCheck(CharacterBase* character)
     return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void IdleMapEnemyState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void IdleMapEnemyState::LastUpdate(CharacterBase* character)
 {
 }
 
-// •`‰æ
+// æç”»
 void IdleMapEnemyState::Draw(CharacterBase* character)
 {
 }
 
-// €–S
+// æ­»äº¡
 void IdleMapEnemyState::Death(CharacterBase* character)
 {
     MapEnemyDeath(character);
 }
 
 /*--------------------------------*/
-/*yƒeƒƒbƒvƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
+/*ã€ãƒ†ãƒ­ãƒƒãƒ—ãƒãƒƒãƒ—ã‚¨ãƒãƒŸãƒ¼ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
 TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene)
 : IStateCharacter()
@@ -137,27 +137,27 @@ TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene)
     mStateNumber = (int)MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void TelopMapEnemyState::OnEnter(CharacterBase* character)
 {
     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
     {
     case SCENE::TOWN:
-        //printfDx("ƒeƒƒbƒvFƒ_ƒ“ƒWƒ‡ƒ“‚Ös‚­‚É‚ÍEnterƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢\n");
+        //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã¸è¡Œãã«ã¯Enterã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„\n");
         break;
 
     case SCENE::DUNGEON:
-        //printfDx("ƒeƒƒbƒvFƒoƒgƒ‹‚Ös‚­‚É‚ÍEnterƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢\n");
+        //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒãƒˆãƒ«ã¸è¡Œãã«ã¯Enterã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„\n");
         break;
     }
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void TelopMapEnemyState::OnExit(CharacterBase* character)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 int TelopMapEnemyState::StateCheck(CharacterBase* character)
 {
     if (!PlayerTargetCheck(character,300.0f))
@@ -168,7 +168,7 @@ int TelopMapEnemyState::StateCheck(CharacterBase* character)
     return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void TelopMapEnemyState::Update(CharacterBase* character)
 {
     if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
@@ -178,17 +178,17 @@ void TelopMapEnemyState::Update(CharacterBase* character)
     }
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void TelopMapEnemyState::LastUpdate(CharacterBase* character)
 {
 }
 
-// •`‰æ
+// æç”»
 void TelopMapEnemyState::Draw(CharacterBase* character)
 {
 }
 
-// €–S
+// æ­»äº¡
 void TelopMapEnemyState::Death(CharacterBase* character)
 {
     MapEnemyDeath(character);

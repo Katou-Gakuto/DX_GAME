@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 
 #include "BitFlag.h"
@@ -7,130 +7,130 @@
 #include "DxLib.h"
 
 class ModelsControllerBase;
-// TODO: •¶šƒ‚ƒfƒ‹‚ğì‚é
-// TODO: Ø‚è”²‚«‰æ‘œƒ‚ƒfƒ‹‚ğì‚é(3D—p)
+// TODO: æ–‡å­—ãƒ¢ãƒ‡ãƒ«ã‚’ä½œã‚‹
+// TODO: åˆ‡ã‚ŠæŠœãç”»åƒãƒ¢ãƒ‡ãƒ«ã‚’ä½œã‚‹(3Dç”¨)
 /*-------------------------------*/
-/*yƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒXƒ‚ƒfƒ‹î•ñz*/
+/*ã€ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ‡ãƒ«æƒ…å ±ã€‘*/
 /*-------------------------------*/
-// ƒeƒNƒXƒ`ƒƒí—Ş
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç¨®é¡
 enum class TEXTURE_TYPE
 {
-    GRAPH = 0, // ƒOƒ‰ƒtƒBƒbƒN
-    MOVIE, // ƒ€[ƒr[
+    GRAPH = 0, // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+    MOVIE, // ãƒ ãƒ¼ãƒ“ãƒ¼
 };
 
-// ƒCƒ“ƒfƒbƒNƒXî•ñ
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±
 struct IndexData
 {
-    unsigned short v1; // ’¸“_1
-    unsigned short v2; // ’¸“_2
-    unsigned short v3; // ’¸“_3
+    unsigned short v1; // é ‚ç‚¹1
+    unsigned short v2; // é ‚ç‚¹2
+    unsigned short v3; // é ‚ç‚¹3
 };
 
-// ’¸“_î•ñ
+// é ‚ç‚¹æƒ…å ±
 struct IndexedData
 {
-    std::vector<VERTEX3D> vertex;// ’¸“_î•ñ
-    std::vector<IndexData> index; // ƒCƒ“ƒfƒbƒNƒXî•ñ
-    int textureHandle; // ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
-    BIT_FLAG<unsigned char> textureType; // ƒeƒNƒXƒ`ƒƒí—Ş
-    int transFlag;    // “§‰ßƒtƒ‰ƒO
+    std::vector<VERTEX3D> vertex;// é ‚ç‚¹æƒ…å ±
+    std::vector<IndexData> index; // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±
+    int textureHandle; // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«
+    BIT_FLAG<unsigned char> textureType; // ãƒ†ã‚¯ã‚¹ãƒãƒ£ç¨®é¡
+    int transFlag;    // é€éãƒ•ãƒ©ã‚°
 };
 
 class ModelBase
 {
 protected:
-	// ƒTƒCƒY
+	// ã‚µã‚¤ã‚º
 	VECTOR mvSize;
 
-	// ƒ|ƒWƒVƒ‡ƒ“
+	// ãƒã‚¸ã‚·ãƒ§ãƒ³
 	VECTOR mvPosition;
 
-	// Šp“x
+	// è§’åº¦
 	VECTOR mvAngle;
 
-	// ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[
+	// ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
 	ModelsControllerBase* mpModelsController;
 
-	// •`‰æƒtƒ‰ƒO
+	// æç”»ãƒ•ãƒ©ã‚°
 	bool mbDrawFlag;
 
 public:
 	ModelBase();
 	~ModelBase();
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize();
-	/*I—¹*/
+	/*çµ‚äº†*/
 	void Finalize();
 
-	/// <summary>ƒQ[ƒ€‰Šú‰»</summary>
+	/// <summary>ã‚²ãƒ¼ãƒ åˆæœŸåŒ–</summary>
 	virtual void GameInit(){}
 
-	/// <summary>ƒ|ƒWƒVƒ‡ƒ“XV</summary>
+	/// <summary>ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°</summary>
 	virtual void PositionUpdate() {}
 
 	/*--------*/
-	/*yæ“¾z*/
+	/*ã€å–å¾—ã€‘*/
 	/*--------*/
 
-	/*ƒTƒCƒYæ“¾*/
+	/*ã‚µã‚¤ã‚ºå–å¾—*/
 	inline VECTOR GetSize() const { return mvSize; }
-	/*ƒ|ƒWƒVƒ‡ƒ“æ“¾*/
+	/*ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—*/
 	inline VECTOR GetPosition() const { return mvPosition; }
-	/*Šp“xæ“¾*/
+	/*è§’åº¦å–å¾—*/
 	inline VECTOR GetAngle() const { return mvAngle; }
-	/// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
+	/// <summary>ãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
 	virtual int GetHandle() const { return -1; }
-	/// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
+	/// <summary>ãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
 	virtual int* GetHandlePointer() { return nullptr; }
-	/// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
+	/// <summary>ãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
 	virtual std::vector<DRAW_GRAPH_DATA>* GetDrawData() { return nullptr; }
 
-	/// <summary>•`‰æƒtƒ‰ƒOæ“¾</summary>
+	/// <summary>æç”»ãƒ•ãƒ©ã‚°å–å¾—</summary>
 	inline bool GetDrawFlag() const { return mbDrawFlag; }
 
-	/// <summary>ƒ‚ƒfƒ‹•`‰æî•ñ‚Ìæ“¾</summary>
+	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»æƒ…å ±ã®å–å¾—</summary>
 	inline virtual DrawConfigData GetDrawConfigData() { return DrawConfigData(); }
 
 	/*--------*/
-	/*yİ’èz*/
+	/*ã€è¨­å®šã€‘*/
 	/*--------*/
 
-	/*ƒTƒCƒYİ’è*/
+	/*ã‚µã‚¤ã‚ºè¨­å®š*/
 	inline void SetSize(VECTOR size) { mvSize = size; }
-	/*ƒ|ƒWƒVƒ‡ƒ“İ’è*/
+	/*ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š*/
 	inline void SetPosition(VECTOR position) { mvPosition = position; }
-	/*Šp“xİ’è*/
+	/*è§’åº¦è¨­å®š*/
 	inline void SetAngle(VECTOR angle) { mvAngle = angle; }
-	/// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[İ’è</summary>
+	/// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼è¨­å®š</summary>
 	void SetModelsController(ModelsControllerBase* ModelsController);
 
-	/// <summary>•`‰æƒtƒ‰ƒOİ’è</summary>
+	/// <summary>æç”»ãƒ•ãƒ©ã‚°è¨­å®š</summary>
 	inline void SetDrawFlag(bool drawFlag) { mbDrawFlag = drawFlag; }
 
-	/// <summary>ƒ‚ƒfƒ‹•`‰æî•ñ‚Ìİ’è</summary>
+	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»æƒ…å ±ã®è¨­å®š</summary>
 	inline virtual void SetDrawConfigData(DrawConfigData drawConfigData) {}
 
 	/*----------------*/
-	/*yŒp³ƒ‚ƒfƒ‹—pz*/
+	/*ã€ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«ç”¨ã€‘*/
 	/*----------------*/
 
 public:
-	/*ƒ‚ƒfƒ‹•`‰æ*/
+	/*ãƒ¢ãƒ‡ãƒ«æç”»*/
 	virtual void ModelDraw() = 0;
-	/*ƒ‚ƒfƒ‹•`‰æ(’¸“_)*/
+	/*ãƒ¢ãƒ‡ãƒ«æç”»(é ‚ç‚¹)*/
 	void ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData);
-	/*ƒ‚ƒfƒ‹•`‰æ(ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹)*/
+	/*ãƒ¢ãƒ‡ãƒ«æç”»(ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«)*/
 	void ModelDraw_Handle(const int handle);
-	/*ƒ‚ƒfƒ‹•`‰æ(‰æ‘œ)*/
+	/*ãƒ¢ãƒ‡ãƒ«æç”»(ç”»åƒ)*/
 	void ModelDraw_Graph(const DRAW_GRAPH_DATA drawData);
-	/*ƒ‚ƒfƒ‹•`‰æ(“®‰æ)*/
+	/*ãƒ¢ãƒ‡ãƒ«æç”»(å‹•ç”»)*/
 	void ModelDraw_Movie(const DRAW_GRAPH_DATA drawData);
 
 protected:
-	/*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
+	/*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
 	virtual void ModelInitilize() = 0;
-	/*Œp³ƒ‚ƒfƒ‹I—¹*/
+	/*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
 	virtual void ModelFinalize() = 0;
 };

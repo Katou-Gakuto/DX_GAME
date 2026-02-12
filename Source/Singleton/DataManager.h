@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <list>
 #include <map>
 #include <vector>
@@ -15,153 +15,153 @@ class EndManager;
 class DataManager
 {
 private:
-	// ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒW
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	MSG mwMsg;
 
-	// I—¹ƒ}ƒl[ƒWƒƒ[
+	// çµ‚äº†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	EndManager* mpEndManger;
 
 public:
 	DataManager();
 	~DataManager();
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize();
 
 	/// <summary>
-	/// ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWæ“¾
+	/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 	/// </summary>
 	inline MSG* GetMsg() { return &mwMsg; }
 
 	/// <summary>
-	/// ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWİ’è
+	/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 	/// </summary>
 	inline void SetMsg(MSG msg) { mwMsg = msg; }
 
 	/*--------------------------*/
-	/*     yƒQ[ƒ€ƒf[ƒ^z     */
+	/*     ã€ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã€‘     */
 	/*--------------------------*/
 
 private:
-	// ƒvƒŒƒC’†‚ÌƒvƒŒƒCƒ„[ƒf[ƒ^
+	// ãƒ—ãƒ¬ã‚¤ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	ONE_PLAYER_ALL_DATA mstPlayPlayerData;
-	// ƒvƒŒƒC’†‚ÌƒZ[ƒu”Ô†
+	// ãƒ—ãƒ¬ã‚¤ä¸­ã®ã‚»ãƒ¼ãƒ–ç•ªå·
 	int mnPlayPlayerNumber;
 
-	// ƒx[ƒX‚Ìƒf[ƒ^
+	// ãƒ™ãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿
 	ONE_PLAYER_ALL_DATA mstBaseData;
 
-	// ‰Šú‰»—pƒvƒŒƒCƒ„[ƒf[ƒ^
+	// åˆæœŸåŒ–ç”¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	std::vector<PLAYER_DATA> mstInitPlayerDatas;
 
-	// ‘I‘ğ—pƒvƒŒƒCƒ„[
+	// é¸æŠç”¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	std::vector<PLAYER_DATA> mstPlayerDatas;
-	// ‘SƒvƒŒƒCƒ„[‹¤’Ê•”•ªƒtƒ@ƒCƒ‹–¼
+	// å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…±é€šéƒ¨åˆ†ãƒ•ã‚¡ã‚¤ãƒ«å
 	std::string msPlayerDatasFileName;
 
-	// æ“¾Ï‚İƒf[ƒ^êŠ•Û‘¶—p
+	// å–å¾—æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿å ´æ‰€ä¿å­˜ç”¨
 	std::map<SCENE, std::list<int>> mmGetFilePosNumbers;
 
-	// ƒAƒCƒeƒ€ì¬Œã// íœ—\’èƒAƒCƒeƒ€–¼
+	// ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆå¾Œ// å‰Šé™¤äºˆå®šã‚¢ã‚¤ãƒ†ãƒ å
 
-	// ƒ_ƒ“ƒWƒ‡ƒ“‚ÌíœƒLƒƒƒ‰ƒNƒ^[î•ñ
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®å‰Šé™¤ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æƒ…å ±
 	DELETE_CHARACTER_DATA mnDungeonDeleteCharacterData;
 
-	// ’¬‚ÌíœƒLƒƒƒ‰ƒNƒ^[î•ñ
+	// ç”ºã®å‰Šé™¤ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æƒ…å ±
 	DELETE_CHARACTER_DATA mnTownDeleteCharacterData;
 
 public:
 
 	/*--------*/
-	/*yˆ—z*/
+	/*ã€å‡¦ç†ã€‘*/
 	/*--------*/
 
-	/*ƒf[ƒ^‚ğ•Û‘¶*/
+	/*ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜*/
 	void Save();
 
-	/*ƒvƒŒƒC’†ƒf[ƒ^‚Éİ’è‚³‚ê‚½ƒf[ƒ^‚ğíœ‚·‚é*/
+	/*ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹*/
 	void PlayDataDelete(int playerNumber);
 
 	/*--------*/
-	/*yíœz*/
+	/*ã€å‰Šé™¤ã€‘*/
 	/*--------*/
 
-	/// <summary>ƒGƒlƒ~[ƒf[ƒ^íœ</summary>
+	/// <summary>ã‚¨ãƒãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿å‰Šé™¤</summary>
 	void DeleteEnemyData(SCENE deleteScene);
 
 	/*--------*/
-	/*y•ÏXz*/
+	/*ã€å¤‰æ›´ã€‘*/
 	/*--------*/
 
-	/*ƒvƒŒƒCƒ„[ƒf[ƒ^İ’è*/
+	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š*/
 	inline void SetChangePlayerData(PLAYER_DATA data, int playerNumber) { for(int i=0; i<mstPlayerDatas.size(); ++i){ if(i==playerNumber){ mstPlayerDatas[i]=data; } } }
-	/*ˆêí—Ş•ªƒf[ƒ^‚ğ•ÏX*/
+	/*ä¸€ç¨®é¡åˆ†ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´*/
 	inline void ChangeOneData(ONE_DATA data, std::string fileName, int fileType){ if(mstPlayPlayerData.dataFlag){ for(int i=0; i<mstPlayPlayerData.oneDatas.size(); i++){ if((mstPlayPlayerData.oneDatas[i].name==fileName)&&(mstPlayPlayerData.oneDatas[i].typeNumber==fileType)){ data.dataChangeFlag|=(mstPlayPlayerData.oneDatas[i]!=data); mstPlayPlayerData.oneDatas[i]=data; } } } }
-	/*‘Sƒf[ƒ^‚ğ•ÏX*/
+	/*å…¨ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´*/
 	inline void ChangeAllData(std::vector<ONE_DATA> data) { mstPlayPlayerData.oneDatas = data; }
 
 	/*--------*/
-	/*yİ’èz*/
+	/*ã€è¨­å®šã€‘*/
 	/*--------*/
 
-	/*ƒvƒŒƒCƒ„[İ’è*/
+	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¨­å®š*/
 	void SetPlayPlayer(int playerNumber);
 
-	/*ƒvƒŒƒCƒvƒŒƒCƒ„[ƒf[ƒ^İ’è*/
+	/*ãƒ—ãƒ¬ã‚¤ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š*/
 	inline void SetPlayPlayerData(const PLAYER_DATA& data) { mstPlayPlayerData.playerData = data; }
 
-	/// <summary>ƒ_ƒ“ƒWƒ‡ƒ“‚ÌíœƒLƒƒƒ‰ƒNƒ^[IDæ“¾</summary>
+	/// <summary>ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®å‰Šé™¤ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼IDå–å¾—</summary>
 	/// <param name="dungeonDeleteCharacterData"></param>
 	inline void SetDungeonDeleteCharacterID(DELETE_CHARACTER_DATA dungeonDeleteCharacterData) { mnDungeonDeleteCharacterData = dungeonDeleteCharacterData; }
 
-	/// <summary>’¬‚ÌíœƒLƒƒƒ‰ƒNƒ^[IDæ“¾</summary>
+	/// <summary>ç”ºã®å‰Šé™¤ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼IDå–å¾—</summary>
 	/// <param name="townDeleteCharacterData"></param>
 	inline void SetTownDeleteCharacterID(DELETE_CHARACTER_DATA townDeleteCharacterData) { mnTownDeleteCharacterData = townDeleteCharacterData; }
 
-	/// <summary>ƒLƒƒƒ‰ƒNƒ^[IDİ’è</summary>
+	/// <summary>ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼IDè¨­å®š</summary>
 	void SetCharacterID(int id, std::string fileName, int index);
 
 	/*--------*/
-	/*yæ“¾z*/
+	/*ã€å–å¾—ã€‘*/
 	/*--------*/
 
-	/*ƒvƒŒƒCƒvƒŒƒCƒ„[ƒf[ƒ^æ“¾*/
+	/*ãƒ—ãƒ¬ã‚¤ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—*/
 	inline PLAYER_DATA GetPlayPlayerData() const { return mstPlayPlayerData.playerData; }
 
-	/*ƒvƒŒƒCƒ„[ƒf[ƒ^‚ğæ“¾*/
+	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—*/
 	inline std::vector<PLAYER_DATA> GetPlayerData() const { return mstPlayerDatas; }
 
-	/*‰Šú‰»—pƒvƒŒƒCƒ„[ƒf[ƒ^æ“¾*/
+	/*åˆæœŸåŒ–ç”¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—*/
 	inline std::vector<PLAYER_DATA> GetInitPlayerData() const { return mstInitPlayerDatas; }
 
-	/*w’è‚ÌƒV[ƒ“‚É•K—v‚È‘Sƒf[ƒ^‚ğæ“¾*/
+	/*æŒ‡å®šã®ã‚·ãƒ¼ãƒ³ã«å¿…è¦ãªå…¨ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—*/
 	std::vector<ONE_DATA> GetSceneData(SCENE sceneName);
-	/*ˆêí—Ş•ªƒf[ƒ^‚ğæ“¾*/
+	/*ä¸€ç¨®é¡åˆ†ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—*/
 	inline ONE_DATA GetOneData(std::string fileName, int fileType, bool baseFlag = false) const { std::vector<ONE_DATA>oneDatas=GetAllData(baseFlag); for(int i=0; i<oneDatas.size(); ++i) { if((oneDatas[i].typeNumber==fileType)&&(oneDatas[i].name==fileName)){ return oneDatas[i]; } } ONE_DATA nullData; return nullData;}
-	/*‘Sƒf[ƒ^‚ğæ“¾*/
+	/*å…¨ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—*/
 	inline std::vector<ONE_DATA> GetAllData(bool baseFlag = false) const { return (baseFlag ? mstBaseData.oneDatas : mstPlayPlayerData.oneDatas); }
 
 
-	/*ƒ}ƒbƒvƒf[ƒ^æ“¾*/
+	/*ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—*/
 	std::vector<std::vector<TileData>> GetMapData(MapType tileType);
 
 private:
 	/// <summary>
-	/// ƒx[ƒXƒtƒ@ƒCƒ‹İ’è
+	/// ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«è¨­å®š
 	/// </summary>
-	/// <param name="fileName">ƒx[ƒXƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼‚ª‚ ‚éƒtƒ@ƒCƒ‹</param>
+	/// <param name="fileName">ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åãŒã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«</param>
 	void SetBaseFile(std::string fileName);
 
-	/// <summary>ƒV[ƒ“‚É‡‚Á‚½ƒtƒ@ƒCƒ‹–¼‚ğæ“¾</summary>
+	/// <summary>ã‚·ãƒ¼ãƒ³ã«åˆã£ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—</summary>
 	std::vector<std::string> GetSceneFileNames(SCENE scsene, bool baseFlag);
 
 	/*--------------------------*/
-	/*     yƒ}ƒbƒvƒf[ƒ^z     */
+	/*     ã€ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€‘     */
 	/*--------------------------*/
 
-	// TODO: ƒtƒ@ƒCƒ‹‚©‚çó‚¯æ‚ê‚é‚æ‚¤‚É‚·‚é
+	// TODO: ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å—ã‘å–ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 private:
-	// ƒ}ƒbƒvƒŠƒ\[ƒXƒtƒ@ƒCƒ‹–¼•Û‘¶—p•Ï”
+	// ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åä¿å­˜ç”¨å¤‰æ•°
 
 public:
 	 enum class MAP_RESOURCE_FILE_NUMBWER
@@ -169,6 +169,6 @@ public:
 		GRTOUND,
 	};
 
-	/*ƒ}ƒbƒvƒŠƒŠƒ\[ƒXƒtƒ@ƒCƒ‹–¼æ“¾*/
+	/*ãƒãƒƒãƒ—ãƒªãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—*/
 	 std::string GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber);
 };

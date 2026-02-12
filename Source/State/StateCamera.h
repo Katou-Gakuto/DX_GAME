@@ -1,73 +1,73 @@
-#pragma once
+ï»¿#pragma once
 #include "CameraData.h"
 
 #include "StateBase.h"
 
 /*--------------------*/
-/*yŒÅ’è‹“_ƒXƒe[ƒgz*/
+/*ã€å›ºå®šè¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------*/
 class StateFixedCamera : public IStateCamera
 {
 public:
 	StateFixedCamera();
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
 };
 
 /*----------------------------*/
-/*yƒLƒƒƒ‰ƒNƒ^[‹“_ƒXƒe[ƒgz*/
+/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 class StateCharacterCamera : public IStateCamera
 {
 public:
 	StateCharacterCamera();
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
 };
 
 /*--------------------------*/
-/*yƒvƒŒƒCƒ„[‹“_ƒXƒe[ƒgz*/
+/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 class StatePlayerCamera : public IStateCamera
 {
 public:
 	StatePlayerCamera();
 
-	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
 	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
-	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
+	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
 	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*XV*/
+	/*æ›´æ–°*/
 	void Update(CameraManager* cameraManager, CameraData cameraData) override;
 
-	/*•`‰æ*/
+	/*æç”»*/
 	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
 };

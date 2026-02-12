@@ -1,30 +1,30 @@
-#include "ResourceData.h"
+ï»¿#include "ResourceData.h"
 
-// ¶‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾
+// å·¦ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—
 int DisplaySize::Left_RatioWidth(float ratio)
 {
     return static_cast<int>(x * ratio);
 }
 
-// ã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾
+// ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—
 int DisplaySize::Up_RatioHeight(float ratio)
 {
     return static_cast<int>(y * ratio);
 }
 
-// ‰E‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çc²‚ÌÀ•W‚ğæ“¾
+// å³ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰ç¸¦è»¸ã®åº§æ¨™ã‚’å–å¾—
 int DisplaySize::Right_RatioWidth(float ratio)
 {
     return static_cast<int>(x * (1.0f - ratio));
 }
 
-// ‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚ç‰¡²‚ÌÀ•W‚ğæ“¾
+// ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰æ¨ªè»¸ã®åº§æ¨™ã‚’å–å¾—
 int DisplaySize::Down_RatioHeight(float ratio)
 {
     return static_cast<int>(y * (1.0f - ratio));
 }
 
-// ¶ã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾
+// å·¦ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—
 Vector2_Int DisplaySize::LeftUp_Ratio(Vector2 ratio)
 {
     Vector2_Int pos;
@@ -33,7 +33,7 @@ Vector2_Int DisplaySize::LeftUp_Ratio(Vector2 ratio)
     return pos;
 }
 
-// ‰Eã‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾
+// å³ä¸Šã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—
 Vector2_Int DisplaySize::RightUp_Ratio(Vector2 ratio)
 {
     Vector2_Int pos;
@@ -42,7 +42,7 @@ Vector2_Int DisplaySize::RightUp_Ratio(Vector2 ratio)
     return pos;
 }
 
-// ¶‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾
+// å·¦ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—
 Vector2_Int DisplaySize::LeftDown_Ratio(Vector2 ratio)
 {
     Vector2_Int pos;
@@ -51,7 +51,7 @@ Vector2_Int DisplaySize::LeftDown_Ratio(Vector2 ratio)
     return pos;
 }
 
-// ‰E‰º‚ğ‹N“_‚É‚µ‚½Š„‡(0`1)‚©‚çÀ•W‚ğæ“¾
+// å³ä¸‹ã‚’èµ·ç‚¹ã«ã—ãŸå‰²åˆ(0ï½1)ã‹ã‚‰åº§æ¨™ã‚’å–å¾—
 Vector2_Int DisplaySize::RightDown_Ratio(Vector2 ratio)
 {
     Vector2_Int pos;

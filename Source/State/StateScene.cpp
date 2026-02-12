@@ -1,4 +1,4 @@
-#include "CharacterEnum.h"
+Ôªø#include "CharacterEnum.h"
 #include "AnimationData.h"
 #include "CameraData.h"
 #include "GameDatas.h"
@@ -26,32 +26,32 @@
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
 
-// TODO: í¨ÅAÉ_ÉìÉWÉáÉìãLò^Çä÷êîâªÅAÉvÉåÉCÉÑÅ[ÅAÉGÉlÉ~Å[ÅAÉJÉÅÉâê∂ê¨ÉtÉ@ÉNÉgÉäÅ[Ç…à⁄Ç∑ ÉGÉlÉ~Å[à⁄ìÆêÊÉfÅ[É^É}ÉlÅ[ÉWÉÉÅ[Ç©ÇÁéÛÇØéÊÇÈÇÊÇ§Ç…Ç∑ÇÈ
+// TODO: Áî∫„ÄÅ„ÉÄ„É≥„Ç∏„Éß„É≥Ë®òÈå≤„ÇíÈñ¢Êï∞Âåñ„ÄÅ„Éó„É¨„Ç§„É§„Éº„ÄÅ„Ç®„Éç„Éü„Éº„ÄÅ„Ç´„É°„É©ÁîüÊàê„Éï„Ç°„ÇØ„Éà„É™„Éº„Å´Áßª„Åô „Ç®„Éç„Éü„ÉºÁßªÂãïÂÖà„Éá„Éº„Çø„Éû„Éç„Éº„Ç∏„É£„Éº„Åã„ÇâÂèó„ÅëÂèñ„Çã„Çà„ÅÜ„Å´„Åô„Çã
 
 /*----------*/
-/*ÅyÉVÅ[ÉìÉXÉeÅ[Égã§í èàóùópÅz
+/*„Äê„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„ÉàÂÖ±ÈÄöÂá¶ÁêÜÁî®„Äë
 /*----------*/
 
-// TODO: ÉVÅ[ÉìÉiÉìÉoÅ[ÇÉtÉ@ÉNÉgÉäÅ[ÉiÉìÉoÅ[Ç…ïœä∑Ç∑ÇÈédëgÇ›ÇçÏÇÈ
-// ÉLÉÉÉâÉNÉ^Å[ÉÇÉfÉãê›íË
+// TODO: „Ç∑„Éº„É≥„Éä„É≥„Éê„Éº„Çí„Éï„Ç°„ÇØ„Éà„É™„Éº„Éä„É≥„Éê„Éº„Å´Â§âÊèõ„Åô„Çã‰ªïÁµÑ„Åø„Çí‰Ωú„Çã
+// „Ç≠„É£„É©„ÇØ„Çø„Éº„É¢„Éá„É´Ë®≠ÂÆö
 void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber)
 {
-	// ÉÇÉfÉãê›íË
+	// „É¢„Éá„É´Ë®≠ÂÆö
 	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
-	// ÉAÉjÉÅÉVÉáÉìê›íË
+	// „Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	 {
 	 	AnimationBase* characterAnimation = character->GetAnimation();
 	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	 	// ì«Ç›çûÇ›ópÉAÉjÉÅÅ[ÉVÉáÉìÉfÅ[É^ê›íË
+	 	// Ë™≠„ÅøËæº„ÅøÁî®„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Éá„Éº„ÇøË®≠ÂÆö
 	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
-	 	// ÉAÉjÉÅÅ[ÉVÉáÉìóLå¿èÛë‘É}ÉVÉìê›íË
+	 	// „Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥ÊúâÈôêÁä∂ÊÖã„Éû„Ç∑„É≥Ë®≠ÂÆö
 	 	characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
 	 }
 }
 
 /*--------------------------*/
-/*ÅyÉXÉ^Å[ÉgÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„Çπ„Çø„Éº„Éà„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*--------------------------*/
 StartScene::StartScene()
 : IStateScene()
@@ -74,7 +74,7 @@ void StartScene::OnExit(SceneManager* sceneManager)
 
 
 /*--------------------------*/
-/*ÅyÉ^ÉCÉgÉãÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„Çø„Ç§„Éà„É´„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*--------------------------*/
 TitleScene::TitleScene()
 : IStateScene()
@@ -85,7 +85,7 @@ TitleScene::TitleScene()
 
 void TitleScene::OnEnter(SceneManager* sceneManager)
 {
-	// É}ÉbÉvèàóù
+	// „Éû„ÉÉ„ÉóÂá¶ÁêÜ
 	if (mpMapManager == nullptr)
 	{
 		mpMapManager = Master::mpGameManager->GetMapManager();
@@ -96,7 +96,7 @@ void TitleScene::OnEnter(SceneManager* sceneManager)
 	title->Initilize();
 	title->SetFsm(UtilFactorys::FSMUIFactory(title, UI_FACTORY_NUMBER::TITLE));
 
-	// ÉJÉÅÉâçÏê¨
+	// „Ç´„É°„É©‰ΩúÊàê
 	{
 		CameraData cameraData = CameraData();
 		cameraData.cameraMode = CAMERA_MODE::FIXED;
@@ -110,14 +110,14 @@ void TitleScene::OnEnter(SceneManager* sceneManager)
 }
 void TitleScene::OnExit(SceneManager* sceneManager)
 {
-	// ÉJÉÅÉâçÌèú
+	// „Ç´„É°„É©ÂâäÈô§
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
 }
 
 
 /*--------------------------*/
-/*Åyí¨ÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„ÄêÁî∫„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*--------------------------*/
 TownScene::TownScene()
 : IStateScene()
@@ -128,7 +128,7 @@ TownScene::TownScene()
 
 void TownScene::OnEnter(SceneManager* sceneManager)
 {
-	// É}ÉbÉvèàóù
+	// „Éû„ÉÉ„ÉóÂá¶ÁêÜ
 	if (mpMapManager == nullptr)
 	{
 		mpMapManager = Master::mpGameManager->GetMapManager();
@@ -139,33 +139,33 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 
 	mStateNumber = sceneManager->GetNowScene();
 
-	{// í¨ÇãLò^
+	{// Áî∫„ÇíË®òÈå≤
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 		playerData.townType = mStateNumber;
 		Master::mpDataManager->SetPlayPlayerData(playerData);
 	}
 
-	// ÉvÉåÉCÉÑÅ[çÏê¨
+	// „Éó„É¨„Ç§„É§„Éº‰ΩúÊàê
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
 	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().townAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
-	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::TOWN);
-	// // ÉÇÉfÉãê›íË
+	// // „É¢„Éá„É´Ë®≠ÂÆö
 	// player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
-	// // ÉAÉjÉÅÉVÉáÉìê›íË
+	// // „Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	// {
 	// 	AnimationBase* playerAnimation = player->GetAnimation();
 	// 	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;
-	// 	// ì«Ç›çûÇ›ópÉAÉjÉÅÅ[ÉVÉáÉìÉfÅ[É^ê›íË
+	// 	// Ë™≠„ÅøËæº„ÅøÁî®„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Éá„Éº„ÇøË®≠ÂÆö
 	// 	setPlayerLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(playerAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
-	// 	// ÉAÉjÉÅÅ[ÉVÉáÉìóLå¿èÛë‘É}ÉVÉìê›íË
+	// 	// „Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥ÊúâÈôêÁä∂ÊÖã„Éû„Ç∑„É≥Ë®≠ÂÆö
 	// 	playerAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(playerAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setPlayerLoadAnimationData));
 	// }
 
-	// ÉJÉÅÉâçÏê¨
+	// „Ç´„É°„É©‰ΩúÊàê
 	{
 		CameraData cameraData = CameraData();
 		cameraData.cameraMode = CAMERA_MODE::PLAYER;
@@ -173,14 +173,14 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		// HACK: ëSÉAÉìÉOÉãîΩì]Ç≥ÇπÇƒÇÈÇ©ÇÁëºÇÃÉAÉìÉOÉãÇ™ä÷åWÇµénÇﬂÇΩÇÁïœÇ¶ÇÈ
+		// HACK: ÂÖ®„Ç¢„É≥„Ç∞„É´ÂèçËª¢„Åï„Åõ„Å¶„Çã„Åã„Çâ‰ªñ„ÅÆ„Ç¢„É≥„Ç∞„É´„ÅåÈñ¢‰øÇ„ÅóÂßã„ÇÅ„Åü„ÇâÂ§â„Åà„Çã
 		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().townAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
 
-	// ÉVÅ[Éìê∂ê¨ï®ê∂ê¨
+	// „Ç∑„Éº„É≥ÁîüÊàêÁâ©ÁîüÊàê
 	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(sceneManager->GetNowScene());
 	for (int i = 0; i < sceneData.size(); i++) {
 		switch (sceneData[i].typeNumber)
@@ -193,21 +193,21 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 				enemy->SetPos(sceneData[i].datas.characterDatas[j].position);
 				enemy->SetAngle(sceneData[i].datas.characterDatas[j].angle);
 				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, sceneData[i].datas.characterDatas[j].mapType));
-				// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+				// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
 
 				Master::mpDataManager->SetCharacterID(enemy->GetID(), sceneData[i].name, j);
 			}
 			break;
-		// // ÉÇÉfÉãê›íË
+		// // „É¢„Éá„É´Ë®≠ÂÆö
 		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
-		// // ÉAÉjÉÅÉVÉáÉìê›íË
+		// // „Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 		// {
 		// 	AnimationBase* enemyAnimation = enemy->GetAnimation();
 		// 	std::vector<std::vector<LoadAnimationData>> setEnemyLoadAnimationData;
-		// 	// ì«Ç›çûÇ›ópÉAÉjÉÅÅ[ÉVÉáÉìÉfÅ[É^ê›íË
+		// 	// Ë™≠„ÅøËæº„ÅøÁî®„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Éá„Éº„ÇøË®≠ÂÆö
 		// 	setEnemyLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(enemyAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
-		// 	// ÉAÉjÉÅÅ[ÉVÉáÉìóLå¿èÛë‘É}ÉVÉìê›íË
+		// 	// „Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥ÊúâÈôêÁä∂ÊÖã„Éû„Ç∑„É≥Ë®≠ÂÆö
 		// 	enemyAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(enemyAnimation, ANIMATION_FACTORY_NUMBER::TOWN, setEnemyLoadAnimationData));
 		// }
 		}
@@ -225,7 +225,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		break;
 	}
 
-	// UIê∂ê¨
+	// UIÁîüÊàê
 	{
 		UI_Game* gameUI = new UI_Game();
 		gameUI->Initilize();
@@ -235,24 +235,24 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 
 void TownScene::OnExit(SceneManager* sceneManager)
 {
-	// ëOãèÇΩÉ}ÉbÉvÇãLò^
+	// ÂâçÂ±Ö„Åü„Éû„ÉÉ„Éó„ÇíË®òÈå≤
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
 	playerData.townPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
 	playerData.dungeonPos = UtilCalc::VZero;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
-	// É}ÉbÉvÉfÅ[É^âï˙
+	// „Éû„ÉÉ„Éó„Éá„Éº„ÇøËß£Êîæ
 	mpMapManager->Release();
 
-	// ÉJÉÅÉâçÌèú
+	// „Ç´„É°„É©ÂâäÈô§
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
 }
 
 
 /*----------------------------*/
-/*ÅyÉ_ÉìÉWÉáÉìÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„ÉÄ„É≥„Ç∏„Éß„É≥„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*----------------------------*/
 DungeonScene::DungeonScene()
 : IStateScene()
@@ -263,7 +263,7 @@ DungeonScene::DungeonScene()
 
 void DungeonScene::OnEnter(SceneManager* sceneManager)
 {
-	// É}ÉbÉvèàóù
+	// „Éû„ÉÉ„ÉóÂá¶ÁêÜ
 	if (mpMapManager == nullptr)
 	{
 		mpMapManager = Master::mpGameManager->GetMapManager();
@@ -274,7 +274,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 
 	mStateNumber = sceneManager->GetNowScene();
 
-	{// É_ÉìÉWÉáÉìÇãLò^
+	{// „ÉÄ„É≥„Ç∏„Éß„É≥„ÇíË®òÈå≤
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 		playerData.dungeonType = mStateNumber;
 		Master::mpDataManager->SetPlayPlayerData(playerData);
@@ -285,10 +285,10 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
 	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().dungeonAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
-	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::DUNGEON);
 
-	// ÉJÉÅÉâçÏê¨
+	// „Ç´„É°„É©‰ΩúÊàê
 	{
 		CameraData cameraData = CameraData();
 		cameraData.cameraMode = CAMERA_MODE::PLAYER;
@@ -296,13 +296,13 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		cameraData.cameraDistance = 550.0f;
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
-		// HACK: ëSÉAÉìÉOÉãîΩì]Ç≥ÇπÇƒÇÈÇ©ÇÁëºÇÃÉAÉìÉOÉãÇ™ä÷åWÇµénÇﬂÇΩÇÁïœÇ¶ÇÈ
+		// HACK: ÂÖ®„Ç¢„É≥„Ç∞„É´ÂèçËª¢„Åï„Åõ„Å¶„Çã„Åã„Çâ‰ªñ„ÅÆ„Ç¢„É≥„Ç∞„É´„ÅåÈñ¢‰øÇ„ÅóÂßã„ÇÅ„Åü„ÇâÂ§â„Åà„Çã
 		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().dungeonAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
-	// ÉVÅ[Éìê∂ê¨ï®ê∂ê¨
+	// „Ç∑„Éº„É≥ÁîüÊàêÁâ©ÁîüÊàê
 	std::vector<ONE_DATA> sceneData = Master::mpDataManager->GetSceneData(sceneManager->GetNowScene());
 	for (int i = 0; i < sceneData.size(); i++) {
 		switch (sceneData[i].typeNumber)
@@ -315,7 +315,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 				enemy->SetPos(sceneData[i].datas.characterDatas[j].position);
 				enemy->SetAngle(sceneData[i].datas.characterDatas[j].angle);
 				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, sceneData[i].datas.characterDatas[j].mapType));
-				// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+				// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::TOWN);
 
 				Master::mpDataManager->SetCharacterID(enemy->GetID(), sceneData[i].name, j);
@@ -324,36 +324,36 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		}
 	}
 
-	//{// ìG
+	//{// Êïµ
 	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	//	enemy->Initilize();
 	//	enemy->SetPos(VGet(-150.0f, 0.0f, 300.0f));
 	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-	//	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	//	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	//}
-	//{// ìG
+	//{// Êïµ
 	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	//	enemy->Initilize();
 	//	enemy->SetPos(VGet(3000.0f, 0.0f, 3500.0f));
 	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_3));
-	//	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	//	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	//}
-	//{// ìG
+	//{// Êïµ
 	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	//	enemy->Initilize();
 	//	enemy->SetPos(VGet(2000.0f, 0.0f, 500.0f));
 	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-	//	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	//	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	//}
-	//{// ìG
+	//{// Êïµ
 	//	Character_Map* enemy = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	//	enemy->Initilize();
 	//	enemy->SetPos(VGet(1000.0f, 0.0f, 2000.0f));
 	//	enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::MAP_ENEMY, SCENE::BATTLE_2));
-	//	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	//	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	//	CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::DUNGEON);
 	//}
 
@@ -369,7 +369,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		break;
 	}
 
-	// UIê∂ê¨
+	// UIÁîüÊàê
 	{
 		UI_Game* gameUI = new UI_Game();
 		gameUI->Initilize();
@@ -378,23 +378,23 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 }
 void DungeonScene::OnExit(SceneManager* sceneManager)
 {
-	// ëOãèÇΩÉ}ÉbÉvÇãLò^
+	// ÂâçÂ±Ö„Åü„Éû„ÉÉ„Éó„ÇíË®òÈå≤
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
 	playerData.dungeonPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
-	// É}ÉbÉvÉfÅ[É^âï˙
+	// „Éû„ÉÉ„Éó„Éá„Éº„ÇøËß£Êîæ
 	mpMapManager->Release();
 
-	// ÉJÉÅÉâçÌèú
+	// „Ç´„É°„É©ÂâäÈô§
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
 }
 
 
 /*------------------------*/
-/*ÅyÉoÉgÉãÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„Éê„Éà„É´„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*------------------------*/
 BattleScene::BattleScene()
 : IStateScene()
@@ -405,7 +405,7 @@ BattleScene::BattleScene()
 
 void BattleScene::OnEnter(SceneManager* sceneManager)
 {
-	// É}ÉbÉvèàóù
+	// „Éû„ÉÉ„ÉóÂá¶ÁêÜ
 	if (mpMapManager == nullptr)
 	{
 		mpMapManager = Master::mpGameManager->GetMapManager();
@@ -421,7 +421,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	{
 	case CHARACTER_TYPE::ROBOT:
 	{
-		// HACK: âºÉeÉLÉgÉEé¿ëï
+		// HACK: ‰ªÆ„ÉÜ„Ç≠„Éà„Ç¶ÂÆüË£Ö
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
 		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
@@ -429,15 +429,15 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		player->Initilize();
 		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
-		player->SetAngle(VGet(0.0f, UtilCalc::Pi, 0.0f));
+		player->SetAngle(VGet(0.0f, 0.0f, 0.0f));
 	}
 		break;
 	}
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
-	// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+	// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::BATTLE);
 
-	// ÉJÉÅÉâçÏê¨
+	// „Ç´„É°„É©‰ΩúÊàê
 	{
 		CameraData cameraData = CameraData();
 		cameraData.cameraMode = CAMERA_MODE::PLAYER;
@@ -451,8 +451,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
 
-	{// ìG
-		// HACK: âºÉeÉLÉgÉEé¿ëï
+	{// Êïµ
+		// HACK: ‰ªÆ„ÉÜ„Ç≠„Éà„Ç¶ÂÆüË£Ö
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
 		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
@@ -461,7 +461,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 			
 		 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	 		// ì«Ç›çûÇ›ópÉAÉjÉÅÅ[ÉVÉáÉìÉfÅ[É^ê›íË
+	 		// Ë™≠„ÅøËæº„ÅøÁî®„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Éá„Éº„ÇøË®≠ÂÆö
 		 	//setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(nullptr, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
 
 			//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
@@ -470,7 +470,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		enemy->Initilize();
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
-		// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+		// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 
@@ -483,8 +483,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	case SCENE::BATTLE_2:
 		break;
 	case SCENE::BATTLE_3:
-	{// É{ÉX
-		// HACK: âºÉeÉLÉgÉEé¿ëï
+	{// „Éú„Çπ
+		// HACK: ‰ªÆ„ÉÜ„Ç≠„Éà„Ç¶ÂÆüË£Ö
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
 		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
@@ -493,7 +493,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 		//	
 		// 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	 //		// ì«Ç›çûÇ›ópÉAÉjÉÅÅ[ÉVÉáÉìÉfÅ[É^ê›íË
+	 //		// Ë™≠„ÅøËæº„ÅøÁî®„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Éá„Éº„ÇøË®≠ÂÆö
 		// 	//setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(nullptr, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
 
 		//	//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
@@ -504,13 +504,13 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
 		enemy->GetModelsController()->SetModelSize(VGet(2.0f, 2.0f, 2.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));
-		// ÉÇÉfÉãÇ∆ÉAÉjÉÅÉVÉáÉìê›íË
+		// „É¢„Éá„É´„Å®„Ç¢„Éã„É°„Ç∑„Éß„É≥Ë®≠ÂÆö
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 	}
 		break;
 	}
 
-	// UIê∂ê¨
+	// UIÁîüÊàê
 	{
 		UI_Game* gameUI = new UI_Game();
 		gameUI->Initilize();
@@ -519,25 +519,25 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 }
 void BattleScene::OnExit(SceneManager* sceneManager)
 {
-	// ëOãèÇΩÉ}ÉbÉvÇãLò^
+	// ÂâçÂ±Ö„Åü„Éû„ÉÉ„Éó„ÇíË®òÈå≤
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
-	// É}ÉbÉvÉfÅ[É^âï˙
+	// „Éû„ÉÉ„Éó„Éá„Éº„ÇøËß£Êîæ
 	mpMapManager->Release();
 
-	// ÉJÉÅÉâçÌèú
+	// „Ç´„É°„É©ÂâäÈô§
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
 	mnSceneCameraID = -1;
 
-	// çUåÇçÌèú
+	// ÊîªÊíÉÂâäÈô§
 	Master::mpGameManager->GetAttackManager()->SetDelete();
 }
 
 
 /*--------------------------*/
-/*ÅyÉäÉUÉãÉgÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„É™„Ç∂„É´„Éà„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*--------------------------*/
 ResultScene::ResultScene()
 : IStateScene()
@@ -571,7 +571,7 @@ void ResultScene::OnExit(SceneManager* sceneManager)
 
 
 /*--------------------------------*/
-/*ÅyÉQÅ[ÉÄÉIÅ[ÉoÅ[ÉVÅ[ÉìÉXÉeÅ[ÉgÅz*/
+/*„Äê„Ç≤„Éº„É†„Ç™„Éº„Éê„Éº„Ç∑„Éº„É≥„Çπ„ÉÜ„Éº„Éà„Äë*/
 /*--------------------------------*/
 GameOverScene::GameOverScene()
 : IStateScene()
@@ -582,7 +582,7 @@ GameOverScene::GameOverScene()
 
 void GameOverScene::OnEnter(SceneManager* sceneManager)
 {
-	// TODO: ÉQÅ[ÉÄÉIÅ[ÉoÅ[ópÇÃUIçÏê¨
+	// TODO: „Ç≤„Éº„É†„Ç™„Éº„Éê„ÉºÁî®„ÅÆUI‰ΩúÊàê
 	// UI_Result* result = new UI_Result();
 	// result->Initilize();
 	// result->SetFsm(UtilFactorys::FSMUIFactory(result, UI_FACTORY_NUMBER::RESULT));

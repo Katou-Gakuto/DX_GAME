@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "ObjectBases.h"
 
 class UI_Game : public UIBase
@@ -8,19 +8,19 @@ public:
     ~UI_Game();
 
 private:
-    /*UI‰Šú‰»*/
+    /*UIåˆæœŸåŒ–*/
     void UIInitilize() override;
-    /*UIÅI‰Šú‰»*/
-    void UILastInitilize() override;
-    /*UII—¹*/
+    /*UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    void UISceneLastInitilize() override;
+    /*UIçµ‚äº†*/
     void UIFinalize() override;
-    /*UIXV*/
+    /*UIæ›´æ–°*/
     void UIUpdate() override;
-    /*UIÅIXV*/
+    /*UIæœ€çµ‚æ›´æ–°*/
     void UILastUpdate() override;
-    /*UI•`‰æ*/
+    /*UIæç”»*/
     void UIDraw() override;
 
-    /*‘I‘ğŒˆ’èˆ—*/
+    /*é¸æŠæ±ºå®šæ™‚å‡¦ç†*/
     void DecisionProcess() override;
 };

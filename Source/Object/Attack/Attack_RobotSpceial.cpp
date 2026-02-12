@@ -1,4 +1,4 @@
-#include "Master.h"
+ï»¿#include "Master.h"
 
 #include "Attack_RobotSpceial.h"
 #include "ObjectBases.h"
@@ -14,7 +14,7 @@ Attack_RobotSpceial::~Attack_RobotSpceial()
 {
 }
 
-// ƒAƒ^ƒbƒN‰Šú‰»
+// ã‚¢ã‚¿ãƒƒã‚¯åˆæœŸåŒ–
 void Attack_RobotSpceial::AttackInitilize()
 {
 	mnHiObjID.clear();
@@ -26,17 +26,17 @@ void Attack_RobotSpceial::AttackInitilize()
 	SetActiveFlag(true);
 }
 
-// ƒAƒ^ƒbƒNÅI‰Šú‰»
-void Attack_RobotSpceial::AttackLastInitilize()
+// ã‚¢ã‚¿ãƒƒã‚¯ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+void Attack_RobotSpceial::AttackSceneLastInitilize()
 {
 }
 
-// ƒAƒ^ƒbƒNI—¹
+// ã‚¢ã‚¿ãƒƒã‚¯çµ‚äº†
 void Attack_RobotSpceial::AttackFinalize()
 {
 }
 
-// ƒAƒ^ƒbƒNXV
+// ã‚¢ã‚¿ãƒƒã‚¯æ›´æ–°
 void Attack_RobotSpceial::AttackUpdate()
 {
 	mvPosition = mpAttackCharacter->GetPos();
@@ -54,18 +54,18 @@ void Attack_RobotSpceial::AttackUpdate()
 	}
 }
 
-// ƒAƒ^ƒbƒNÅIXV
+// ã‚¢ã‚¿ãƒƒã‚¯æœ€çµ‚æ›´æ–°
 void Attack_RobotSpceial::AttackLastUpdate()
 {
 }
 
-// ƒAƒ^ƒbƒN•`‰æ
+// ã‚¢ã‚¿ãƒƒã‚¯æç”»
 void Attack_RobotSpceial::AttackDraw()
 {
 	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 200.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 }
 
-// “–‚½‚è”»’è
+// å½“ãŸã‚Šåˆ¤å®š
 void Attack_RobotSpceial::HitCheck(CollisionData& collisionData)
 {
 	if (mpAttackCharacter->GetID() == collisionData.objID)

@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 #include "BitFlag.h"
 
-// I—¹ƒtƒ‰ƒOƒiƒ“ƒo[
+// çµ‚äº†ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 enum class END_FLAG_NUMBER
 {
 	START_SCENE_FLAG = 0,
@@ -14,41 +14,41 @@ enum class END_FLAG_NUMBER
 class EndManager
 {
 private:
-	// I—¹ƒtƒ‰ƒO
+	// çµ‚äº†ãƒ•ãƒ©ã‚°
 	BIT_FLAG<unsigned long long> mullEndFlag;
 	
-	// íœƒIƒuƒWƒFƒNƒg
+	// å‰Šé™¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	void* mpDeleteObject;
 
 public:
 	EndManager();
 	~EndManager();
 
-	/*‰Šú‰»*/
+	/*åˆæœŸåŒ–*/
 	void Init();
 
 	/// <summary>
-	/// I—¹ƒtƒ‰ƒO
+	/// çµ‚äº†ãƒ•ãƒ©ã‚°
 	/// </summary>
-	/// <returns>‚Ç‚ê‚©‚ÌI—¹ƒtƒ‰ƒO‚ª—LŒø‚È‚çutruev</returns>
+	/// <returns>ã©ã‚Œã‹ã®çµ‚äº†ãƒ•ãƒ©ã‚°ãŒæœ‰åŠ¹ãªã‚‰ã€Œtrueã€</returns>
 	bool EndFlag() const;
 
 	/// <summary>
-	/// I—¹ƒtƒ‰ƒOİ’è
+	/// çµ‚äº†ãƒ•ãƒ©ã‚°è¨­å®š
 	/// </summary>
-	/// <param name="flag">İ’èƒtƒ‰ƒO</param>
-	/// <param name="number">İ’è‚·‚éI—¹ƒtƒ‰ƒO‚Ìƒrƒbƒg”</param>
+	/// <param name="flag">è¨­å®šãƒ•ãƒ©ã‚°</param>
+	/// <param name="number">è¨­å®šã™ã‚‹çµ‚äº†ãƒ•ãƒ©ã‚°ã®ãƒ“ãƒƒãƒˆæ•°</param>
 	inline void SetEndFlag(bool flag, END_FLAG_NUMBER number) { mullEndFlag.SetFlag(flag, number); }
 
 	/// <summary>
-	/// íœƒIƒuƒWƒFƒNƒgİ’è
+	/// å‰Šé™¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¨­å®š
 	/// </summary>
-	/// <param name="deleteObject">I—¹‚Éíœ‚·‚éƒIƒuƒWƒFƒNƒg</param>
+	/// <param name="deleteObject">çµ‚äº†æ™‚ã«å‰Šé™¤ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
 	inline void SetDeleteObject(void* deleteObject) { mpDeleteObject = deleteObject; }
 
 	/// <summary>
-	/// ƒrƒbƒg‚ÌƒGƒ“ƒhƒtƒ‰ƒOæ“¾
+	/// ãƒ“ãƒƒãƒˆã®ã‚¨ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°å–å¾—
 	/// </summary>
-	/// <returns>ƒrƒbƒgƒtƒ‰ƒO</returns>
+	/// <returns>ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°</returns>
 	inline BIT_FLAG<unsigned long long> GetBitEndflag() const { return mullEndFlag; }
 };

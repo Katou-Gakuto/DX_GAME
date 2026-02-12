@@ -1,68 +1,68 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 
 namespace UtilCalc
 {
-	/*ƒ[ƒ*/
+	/*ã‚¼ãƒ­*/
 	const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
-	/*ƒCƒ`*/
+	/*ã‚¤ãƒ*/
 	const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
-	/*x‚Ì‚Ý1*/
+	/*xã®ã¿1*/
 	const VECTOR VXOne = VGet(1.0f, 0.0f, 0.0f);
-	/*ŽO•ª‚Ìˆê*/
+	/*ä¸‰åˆ†ã®ä¸€*/
 	const float One_Third = 0.3333333f;
 	/*3,14*/
 	const float Pi = DX_PI_F;
 	/*3,14 * 2.0f*/
 	const float PiTwo = DX_PI_F * 2.0f;
 
-	/*•„†”½“]*/
+	/*ç¬¦å·åè»¢*/
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }
 
-	/*ƒ‰ƒWƒAƒ“•ÏŠ·(PI / 180.0f)*/
+	/*ãƒ©ã‚¸ã‚¢ãƒ³å¤‰æ›(PI / 180.0f)*/
 	inline const VECTOR VRadChange(VECTOR src) { return VScale(src, 0.0174532924f/*PI / 180.0f*/); }
-	/*ƒfƒOƒŠ[•ÏŠ·(180.0f / PI)*/
+	/*ãƒ‡ã‚°ãƒªãƒ¼å¤‰æ›(180.0f / PI)*/
 	inline const VECTOR VDegChange(VECTOR src) { return VScale(src, 57.29578f/*180.0f / PI*/); }
 
-    /*•ûŒü‚ð3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(ƒ‰ƒWƒAƒ“)*/
+    /*æ–¹å‘ã‚’3.14ã‹ã‚‰-3.14ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´ã™ã‚‹(ãƒ©ã‚¸ã‚¢ãƒ³)*/
 	float NotExceedAngle(float angle);
 
-    /*•ûŒü‚ð3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(3•ûŒü)(ƒ‰ƒWƒAƒ“)*/
+    /*æ–¹å‘ã‚’3.14ã‹ã‚‰-3.14ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´ã™ã‚‹(3æ–¹å‘)(ãƒ©ã‚¸ã‚¢ãƒ³)*/
 	VECTOR VNotExceedAngle(VECTOR angle);
 
-	/*‹…–ÊˆÚ“®‚µ‚½êŠ(ƒ‰ƒWƒAƒ“)*/
+	/*çƒé¢ç§»å‹•ã—ãŸå ´æ‰€(ãƒ©ã‚¸ã‚¢ãƒ³)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);
 
-	// TODO: –¢Š® Y‚Ì‚ÝŠ®¬
-	/// <summary>ƒxƒNƒgƒ‹‚ðƒAƒ“ƒOƒ‹‚É•ÏŠ·‚·‚é</summary>
+	// TODO: æœªå®Œ Yã®ã¿å®Œæˆ
+	/// <summary>ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚¢ãƒ³ã‚°ãƒ«ã«å¤‰æ›ã™ã‚‹</summary>
 	VECTOR VVecToAngle(VECTOR vec);
 
-	// TODO: –¢Š®
-	/// <summary>ƒAƒ“ƒOƒ‹‚ðƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚é</summary>
+	// TODO: æœªå®Œ
+	/// <summary>ã‚¢ãƒ³ã‚°ãƒ«ã‚’ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹</summary>
 	VECTOR VAngleToVec(VECTOR angle);
 
-	/// <summary>ˆÚ“®—Ê‚ðƒAƒ“ƒOƒ‹‚É”½‰f‚µ‚½’l‚ð•Ô‚·(ƒ‰ƒWƒAƒ“)</summary>
+	/// <summary>ç§»å‹•é‡ã‚’ã‚¢ãƒ³ã‚°ãƒ«ã«åæ˜ ã—ãŸå€¤ã‚’è¿”ã™(ãƒ©ã‚¸ã‚¢ãƒ³)</summary>
 	VECTOR VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed = 0.2f);
 
-	/// <summary>VECTOR‚Ì•½‹Ï‚ðo‚·(³‚Ì”)</summary>
+	/// <summary>VECTORã®å¹³å‡ã‚’å‡ºã™(æ­£ã®æ•°)</summary>
 	float PutVectorAverage(VECTOR vector);
 
-	/// <summary>VECTOR‚ÌŠ|‚¯ŽZ</summary>
+	/// <summary>VECTORã®æŽ›ã‘ç®—</summary>
 	VECTOR VMultiply(VECTOR src, VECTOR dst);
 
-	/// <summary>·‚ðo‚·</summary>
+	/// <summary>å·®ã‚’å‡ºã™</summary>
 	float VDiff(VECTOR src, VECTOR dst);
 
-	/// <summary>ƒAƒ“ƒOƒ‹“¯Žm‚Ì·‚ð•Ô‚·</summary>
+	/// <summary>ã‚¢ãƒ³ã‚°ãƒ«åŒå£«ã®å·®ã‚’è¿”ã™</summary>
 	float AngleDiff(float srcAngle, float dstAngle);
 
 	/*--------------*/
-	/*y“–‚½‚è”»’èz*/
+	/*ã€å½“ãŸã‚Šåˆ¤å®šã€‘*/
 	/*--------------*/
 
-	/*‹…“¯Žm‚Ì“–‚½‚è”»’è*/
+	/*çƒåŒå£«ã®å½“ãŸã‚Šåˆ¤å®š*/
 	bool SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius);
 
-	///*ŽlŠp“¯Žm‚Ì“–‚½‚è”»’è*/
+	///*å››è§’åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š*/
 	//bool BoxCollision(VECTOR srcTopLeft, VECTOR srcBottomRight, VECTOR dstTopLeft, VECTOR dstBottomRight);
 };

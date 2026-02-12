@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-// ƒLƒƒƒ‰ƒNƒ^[ƒ^ƒCƒv
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
 enum class CHARACTER_TYPE
 {
 	ROBOT = 0,

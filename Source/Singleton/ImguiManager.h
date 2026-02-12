@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #if _DEBUG
 class ImguiManager
@@ -7,14 +7,14 @@ public:
     ImguiManager();
     ~ImguiManager();
 
-    /// <summary>‰Šú‰»</summary>
+    /// <summary>åˆæœŸåŒ–</summary>
     void Initilize();
-    /// <summary>I—¹</summary>
+    /// <summary>çµ‚äº†</summary>
     void Finalize();
 
-    /// <summary>XV</summary>
+    /// <summary>æ›´æ–°</summary>
     void Update();
-    /// <summary>•`‰æ</summary>
+    /// <summary>æç”»</summary>
     void Draw();
 };
 #endif

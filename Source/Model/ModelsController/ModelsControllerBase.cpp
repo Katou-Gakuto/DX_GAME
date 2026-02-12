@@ -1,4 +1,4 @@
-#include <vector>
+ï»¿#include <vector>
 
 #include "FSM.h"
 #include "ModelBase.h"
@@ -17,12 +17,18 @@ ModelsControllerBase::~ModelsControllerBase()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void ModelsControllerBase::Initilize()
 {
 }
 
-// I—¹
+// ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+void ModelsControllerBase::SceneLastInitilize()
+{
+    UpdateModels();
+}
+
+// çµ‚äº†
 void ModelsControllerBase::Finalize()
 {
     for (int i = 0; i < mpModelList.size(); i++)
@@ -33,7 +39,7 @@ void ModelsControllerBase::Finalize()
     mpModelList.clear();
 }
 
-// ƒQ[ƒ€’†‰Šú‰»
+// ã‚²ãƒ¼ãƒ ä¸­åˆæœŸåŒ–
 void ModelsControllerBase::GameInit(VECTOR pos, VECTOR angle, VECTOR size)
 {
     ModelsPositionSetting(pos, VGet(angle.x, angle.y - DX_PI_F, angle.z), size);
@@ -44,14 +50,14 @@ void ModelsControllerBase::GameInit(VECTOR pos, VECTOR angle, VECTOR size)
     }
 }
 
-// ƒ‚ƒfƒ‹’Ç‰Á
+// ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
 void ModelsControllerBase::AddModel(ModelBase* model)
 {
     mpModelList.push_back(model);
     model->SetModelsController(this);
 }
 
-// ƒ‚ƒfƒ‹ˆÊ’uİ’è
+// ãƒ¢ãƒ‡ãƒ«ä½ç½®è¨­å®š
 void ModelsControllerBase::ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size)
 {
     mvModelPosition = position;
@@ -59,7 +65,7 @@ void ModelsControllerBase::ModelsPositionSetting(VECTOR position, VECTOR angle, 
     mvModelSize = size;
 }
 
-// ƒ‚ƒfƒ‹XV
+// ãƒ¢ãƒ‡ãƒ«æ›´æ–°
 void ModelsControllerBase::UpdateModels()
 {
     for (int i = 0; i < mpModelList.size(); i++)
@@ -68,7 +74,7 @@ void ModelsControllerBase::UpdateModels()
     }
 }
 
-// ƒ‚ƒfƒ‹•`‰æ
+// ãƒ¢ãƒ‡ãƒ«æç”»
 void ModelsControllerBase::DrawModels()
 {
     if (!mbModelDrawFlag)

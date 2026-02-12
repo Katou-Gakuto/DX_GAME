@@ -1,4 +1,4 @@
-#include "Master.h"
+ï»¿#include "Master.h"
 
 #include "FadeManager.h"
 #include "GameManager.h"
@@ -18,30 +18,30 @@ SceneManager::~SceneManager()
 	delete mpFSMScene;
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void SceneManager::Initilize()
 {
 	mpFSMScene = UtilFactorys::FSMSceneFactory(this);
 }
 
-// XV
+// æ›´æ–°
 void SceneManager::Update()
 {
 	mpFSMScene->Update(this);
 }
 
-// ŽŸ‚ÌƒV[ƒ“‚ÖˆÚ“®‚·‚é
+// æ¬¡ã®ã‚·ãƒ¼ãƒ³ã¸ç§»å‹•ã™ã‚‹
 void SceneManager::NextScene()
 {
 	Master::mpTimeManager->SetNewSceneTimeFlag(true);
 
 	mpFSMScene->NextScene(this);
 
-	// ƒIƒuƒWƒFƒNƒgÅIXV
-	Master::mpGameManager->GetObjectManager()->ObjectLastInitilize();
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæœ€çµ‚æ›´æ–°
+	Master::mpGameManager->GetObjectManager()->ObjectSceneLastInitilize();
 }
 
-// ŽŸ‚ÌƒV[ƒ“‚ðÝ’è
+// æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’è¨­å®š
 void SceneManager::SetNextScene(SCENE nextScene)
 {
 	Master::mpFadeManager->FadeOut();

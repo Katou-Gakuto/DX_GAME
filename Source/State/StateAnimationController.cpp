@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 
 #include "Master.h"
 
@@ -7,29 +7,29 @@
 #include "TimeManager.h"
 
 /*--------------------*/
-/*     yƒx[ƒXƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*     ã€ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*--------------------*/
-// TODO: ƒlƒNƒXƒgƒXƒe[ƒg‚ğƒƒ“ƒo‚Å‚»‚ê‚¼‚ê‚Â‚æ‚¤‚É‚·‚é
+// TODO: ãƒã‚¯ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ¡ãƒ³ãƒã§ãã‚Œãã‚ŒæŒã¤ã‚ˆã†ã«ã™ã‚‹
 /*----------*/
-/*yƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒg‹¤’Êˆ——pz
+/*ã€ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆå…±é€šå‡¦ç†ç”¨ã€‘
 /*----------*/
 StateAnimationControllerProcess::StateAnimationControllerProcess()
 : mnEndTime(0)
 {
 }
 
-// I—¹ŠÔİ’è
+// çµ‚äº†æ™‚é–“è¨­å®š
 void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMATION_TYPE state)
 {
     mnEndTime = animation->GetAnimationTime(state) + Master::mpTimeManager->GetGameTime();
 }
 
-// I—¹ŠÔŠm”F(ˆê’èŠÔŒo‚Á‚Ä‚¢‚ê‚Îutruev‚ğ•Ô‚·)
+// çµ‚äº†æ™‚é–“ç¢ºèª(ä¸€å®šæ™‚é–“çµŒã£ã¦ã„ã‚Œã°ã€Œtrueã€ã‚’è¿”ã™)
 bool StateAnimationControllerProcess::ChackEndTime()
 {
     return mnEndTime <= Master::mpTimeManager->GetGameTime();
 }
-// •ÏXŠm”F
+// å¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if ((nextState == ANIMATION_TYPE::ATTACK_IN) && !animation->SearchAnimationType(nextState))
@@ -41,7 +41,7 @@ ANIMATION_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* anima
 }
 
 /*----------*/
-/*y‘Ò‹@ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateIdleAnimationController::StateIdleAnimationController()
 : IStateAnimationController()
@@ -50,24 +50,24 @@ StateIdleAnimationController::StateIdleAnimationController()
     mStateNumber = ANIMATION_TYPE::IDLE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateIdleAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateIdleAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     return ChangeCheck(animation, nextState);
 }
 
 /*----------*/
-/*yˆÚ“®ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€ç§»å‹•ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateMoveAnimationController::StateMoveAnimationController()
 : IStateAnimationController()
@@ -76,24 +76,24 @@ StateMoveAnimationController::StateMoveAnimationController()
     mStateNumber = ANIMATION_TYPE::WALK;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateMoveAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     return ChangeCheck(animation, nextState);
 }
 
 /*----------*/
-/*yUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackInAnimationController::StateAttackInAnimationController()
 : IStateAnimationController()
@@ -102,18 +102,18 @@ StateAttackInAnimationController::StateAttackInAnimationController()
     mStateNumber = ANIMATION_TYPE::ATTACK_IN;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateAttackInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateAttackInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -124,7 +124,7 @@ ANIMATION_TYPE StateAttackInAnimationController::CheckState(AnimationBase* anima
     return mStateNumber;
 }
 
-// “¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é
+// åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹
 bool StateAttackInAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 {
     if ((animationType == ANIMATION_TYPE::ATTACK) ||
@@ -138,7 +138,7 @@ bool StateAttackInAnimationController::CheckSameType(ANIMATION_TYPE animationTyp
 }
 
 /*----------*/
-/*yUŒ‚ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackAnimationController::StateAttackAnimationController()
 : IStateAnimationController()
@@ -147,18 +147,18 @@ StateAttackAnimationController::StateAttackAnimationController()
     mStateNumber = ANIMATION_TYPE::ATTACK;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateAttackAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateAttackAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -169,7 +169,7 @@ ANIMATION_TYPE StateAttackAnimationController::CheckState(AnimationBase* animati
     return mStateNumber;
 }
 
-// “¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é
+// åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹
 bool StateAttackAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 {
     if ((animationType == ANIMATION_TYPE::ATTACK) ||
@@ -182,7 +182,7 @@ bool StateAttackAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 }
 
 /*----------*/
-/*yUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackOutAnimationController::StateAttackOutAnimationController()
 : IStateAnimationController()
@@ -191,18 +191,18 @@ StateAttackOutAnimationController::StateAttackOutAnimationController()
     mStateNumber = ANIMATION_TYPE::ATTACK_OUT;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateAttackOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateAttackOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -213,7 +213,7 @@ ANIMATION_TYPE StateAttackOutAnimationController::CheckState(AnimationBase* anim
     return mStateNumber;
 }
 
-// “¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é
+// åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹
 bool StateAttackOutAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 {
     if ((animationType == ANIMATION_TYPE::ATTACK) ||
@@ -227,7 +227,7 @@ bool StateAttackOutAnimationController::CheckSameType(ANIMATION_TYPE animationTy
 }
 
 /*----------*/
-/*y2DˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€2Dç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 State2DMoveAnimationController::State2DMoveAnimationController()
 : IStateAnimationController()
@@ -236,18 +236,18 @@ State2DMoveAnimationController::State2DMoveAnimationController()
     mStateNumber = ANIMATION_TYPE::DISPLAY_MOVE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void State2DMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void State2DMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -259,7 +259,7 @@ ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animati
 }
 
 /*----------------------------------------------------*/
-/*yƒtƒF[ƒhƒAƒEƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz*/
+/*ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------------------------------*/
 StateFadeOutAnimationController::StateFadeOutAnimationController()
 : IStateAnimationController()
@@ -268,18 +268,18 @@ StateFadeOutAnimationController::StateFadeOutAnimationController()
     mStateNumber = ANIMATION_TYPE::FADE_OUT;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateFadeOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateFadeOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateFadeOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime() || (nextState == ANIMATION_TYPE::FADE_IN))
@@ -291,7 +291,7 @@ ANIMATION_TYPE StateFadeOutAnimationController::CheckState(AnimationBase* animat
 }
 
 /*----------------------------------------------------*/
-/*yƒtƒF[ƒhƒCƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz*/
+/*ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------------------------------*/
 StateFadeInAnimationController::StateFadeInAnimationController()
 : IStateAnimationController()
@@ -300,18 +300,18 @@ StateFadeInAnimationController::StateFadeInAnimationController()
     mStateNumber = ANIMATION_TYPE::FADE_IN;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateFadeInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
     SetEndTime(animation, mStateNumber);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime() || (nextState == ANIMATION_TYPE::ATTACK_OUT))
@@ -323,18 +323,18 @@ ANIMATION_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animati
 }
 
 /*--------------------*/
-/*     y”h¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*     ã€æ´¾ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*--------------------*/
 
 /*----------*/
-/*yUŒ‚’†I—¹ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒä¸­çµ‚äº†ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackEndAnimationController::StateAttackEndAnimationController()
 : StateAttackAnimationController()
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackEndAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -346,22 +346,22 @@ ANIMATION_TYPE StateAttackEndAnimationController::CheckState(AnimationBase* anim
 }
 
 /*----------*/
-/*yUŒ‚’â~ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒåœæ­¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackOutStopAnimationController::StateAttackOutStopAnimationController()
 : StateAttackOutAnimationController()
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackOutStopAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     return mStateNumber;
 }
 
-/*----------------------------------------------------------------’ÊíUŒ‚------------------------------------------------------------------*/
+/*----------------------------------------------------------------é€šå¸¸æ”»æ’ƒ------------------------------------------------------------------*/
 /*----------*/
-/*y’ÊíUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€é€šå¸¸æ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateNormalAttackInAnimationController::StateNormalAttackInAnimationController()
 : StateAttackInAnimationController()
@@ -369,7 +369,7 @@ StateNormalAttackInAnimationController::StateNormalAttackInAnimationController()
     mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_IN;
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -381,7 +381,7 @@ ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase*
 }
 
 /*----------*/
-/*y’ÊíUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€é€šå¸¸æ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController()
 : StateAttackOutAnimationController()
@@ -389,7 +389,7 @@ StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController
     mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -403,9 +403,9 @@ ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase
 
 
 
-/*----------------------------------------------------------------“ÁêUŒ‚------------------------------------------------------------------*/
+/*----------------------------------------------------------------ç‰¹æ®Šæ”»æ’ƒ------------------------------------------------------------------*/
 /*----------*/
-/*y“ÁêUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€ç‰¹æ®Šæ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateSpceialAttackInAnimationController::StateSpceialAttackInAnimationController()
 : StateAttackInAnimationController()
@@ -413,7 +413,7 @@ StateSpceialAttackInAnimationController::StateSpceialAttackInAnimationController
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK_IN;
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateSpceialAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -424,7 +424,7 @@ ANIMATION_TYPE StateSpceialAttackInAnimationController::CheckState(AnimationBase
     return mStateNumber;
 }
 /*----------*/
-/*y“ÁêUŒ‚ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€ç‰¹æ®Šæ”»æ’ƒã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateSpceialAttackAnimationController::StateSpceialAttackAnimationController()
 : StateAttackAnimationController()
@@ -432,7 +432,7 @@ StateSpceialAttackAnimationController::StateSpceialAttackAnimationController()
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK;
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateSpceialAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -444,7 +444,7 @@ ANIMATION_TYPE StateSpceialAttackAnimationController::CheckState(AnimationBase* 
 }
 
 /*----------*/
-/*y“ÁêUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
+/*ã€ç‰¹æ®Šæ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateSpceialAttackOutAnimationController::StateSpceialAttackOutAnimationController()
 : StateAttackOutAnimationController()
@@ -452,7 +452,7 @@ StateSpceialAttackOutAnimationController::StateSpceialAttackOutAnimationControll
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK_OUT;
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateSpceialAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())
@@ -465,14 +465,14 @@ ANIMATION_TYPE StateSpceialAttackOutAnimationController::CheckState(AnimationBas
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*----------*/
-/*yUŒ‚ê—p‘Ò‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
+/*ã€æ”»æ’ƒå°‚ç”¨å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
 /*----------*/
 StateAttackIdleAnimationController::StateAttackIdleAnimationController()
 : StateIdleAnimationController()
 {
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
 ANIMATION_TYPE StateAttackIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
     if (ChackEndTime())

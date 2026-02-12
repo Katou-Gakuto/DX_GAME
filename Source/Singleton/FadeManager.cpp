@@ -1,4 +1,4 @@
-#include <future>
+ï»¿#include <future>
 #include <iostream>
 
 #include "BitFlag.h"
@@ -16,7 +16,7 @@
 #include "TimeManager.h"
 
 /*----------------------*/
-/*yƒtƒF[ƒhƒ}ƒl[ƒWƒƒ[z*/
+/*ã€ãƒ•ã‚§ãƒ¼ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã€‘*/
 /*----------------------*/
 
 FadeManager::FadeManager()
@@ -36,20 +36,20 @@ FadeManager::~FadeManager()
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void FadeManager::Initilize()
 {
     mpDataManager = Master::mpDataManager;
     mpTimeManager = Master::mpTimeManager;
 }
 
-// I—¹
+// çµ‚äº†
 void FadeManager::Finailize()
 {
     mbFadeFlag = false;
 }
 
-// •`‰æ
+// æç”»
 void FadeManager::Draw()
 {
     if (mbFadeDrawFlag)
@@ -57,14 +57,14 @@ void FadeManager::Draw()
         Vector2_Int displaySize = ResourceManager::mstDisplaySize;
 
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)mfFadeAlpha);
-        /*box‚©‚ç‰æ‘œƒnƒ“ƒhƒ‹‚ÅƒtƒF[ƒh‚µ‚½‚¢
+        /*boxã‹ã‚‰ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãŸã„
         */
         DrawBox(0, 0, displaySize.x, displaySize.y, GetColor(0, 0, 0), TRUE);
         SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
     }
 }
 
-// ƒtƒF[ƒhƒAƒEƒgŠJn
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 void FadeManager::FadeOut()
 {
     if (mbFadeFlag || mbFadeInFlag)
@@ -75,11 +75,11 @@ void FadeManager::FadeOut()
     mbFadeFlag = true;
     mbFadeOutFlag = true;
 
-    /*ƒtƒF[ƒhƒAƒEƒgŠJn*/
+    /*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹*/
     mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, mfFadeSpeed);
 }
 
-// ƒtƒF[ƒhƒCƒ“ŠJn
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 void FadeManager::FadeIn()
 {
     if (mbFadeFlag || mbFadeOutFlag)
@@ -89,7 +89,7 @@ void FadeManager::FadeIn()
     mbFadeFlag = true;
     mbFadeInFlag = true;
     
-    /*ƒtƒF[ƒhƒCƒ“ŠJn*/
+    /*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹*/
    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, -mfFadeSpeed);
 }
 
@@ -122,7 +122,7 @@ void FadeManager::FadeProcess(float fadeSpeed)
     mbFadeFlag = false;
 }
 
-// ƒtƒF[ƒhI—¹
+// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
 void FadeManager::FadeEnd()
 {
     mbFadeOutFlag = false;

@@ -1,35 +1,35 @@
-#pragma once
+ï»¿#pragma once
 
-/*ƒƒ‚@ƒV[ƒ“‚ðV‚µ‚­‘‚â‚·Žž‚É‚â‚é‚±‚Æ
-UtilChange::SceneState‚É’Ç‰Á‚·‚é
-ƒXƒe[ƒgˆ—‘‚­
+/*ãƒ¡ãƒ¢ã€€ã‚·ãƒ¼ãƒ³ã‚’æ–°ã—ãå¢—ã‚„ã™æ™‚ã«ã‚„ã‚‹ã“ã¨
+UtilChange::SceneStateã«è¿½åŠ ã™ã‚‹
+ã‚¹ãƒ†ãƒ¼ãƒˆå‡¦ç†æ›¸ã
 */
 
-// ƒV[ƒ“
+// ã‚·ãƒ¼ãƒ³
 enum class SCENE
 {
-	NONE = -1,	// –³‚µ
-	START = 0,	// ƒXƒ^[ƒg
-	TITLE,		// ƒ^ƒCƒgƒ‹
+	NONE = -1,	// ç„¡ã—
+	START = 0,	// ã‚¹ã‚¿ãƒ¼ãƒˆ
+	TITLE,		// ã‚¿ã‚¤ãƒˆãƒ«
 
-	TOWN,		// ’¬
+	TOWN,		// ç”º
 	TOWN_1,
 	TOWN_2,
 	TOWN_3,
 
-	DUNGEON,	// ƒ_ƒ“ƒWƒ‡ƒ“
+	DUNGEON,	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 	DUNGEON_1,
 	DUNGEON_2,
 	DUNGEON_3,
 
-	BATTLE,		// ƒoƒgƒ‹
+	BATTLE,		// ãƒãƒˆãƒ«
 	BATTLE_1,
 	BATTLE_2,
 	BATTLE_3,
 
-	RESULT,		// ƒŠƒUƒ‹ƒg
+	RESULT,		// ãƒªã‚¶ãƒ«ãƒˆ
 	DUNGEON_RESULT,
 	BATTLR_RESULT,
 
-	GAME_OVER,	// ƒQ[ƒ€ƒI[ƒo[
+	GAME_OVER,	// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 };

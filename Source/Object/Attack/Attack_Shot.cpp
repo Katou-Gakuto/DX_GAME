@@ -1,4 +1,4 @@
-#include "Master.h"
+ï»¿#include "Master.h"
 
 #include "Attack_Shot.h"
 #include "ObjectBases.h"
@@ -16,7 +16,7 @@ Attack_Shot::~Attack_Shot()
 {
 }
 
-// ƒAƒ^ƒbƒN‰Šú‰»
+// ã‚¢ã‚¿ãƒƒã‚¯åˆæœŸåŒ–
 void Attack_Shot::AttackInitilize()
 {
 	mnHiObjID.clear();
@@ -28,17 +28,17 @@ void Attack_Shot::AttackInitilize()
 	SetActiveFlag(true);
 }
 
-// ƒAƒ^ƒbƒNÅI‰Šú‰»
-void Attack_Shot::AttackLastInitilize()
+// ã‚¢ã‚¿ãƒƒã‚¯ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+void Attack_Shot::AttackSceneLastInitilize()
 {
 }
 
-// ƒAƒ^ƒbƒNI—¹
+// ã‚¢ã‚¿ãƒƒã‚¯çµ‚äº†
 void Attack_Shot::AttackFinalize()
 {
 }
 
-// ƒAƒ^ƒbƒNXV
+// ã‚¢ã‚¿ãƒƒã‚¯æ›´æ–°
 void Attack_Shot::AttackUpdate()
 {
 	//mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
@@ -49,19 +49,19 @@ void Attack_Shot::AttackUpdate()
 	}
 }
 
-// ƒAƒ^ƒbƒNÅIXV
+// ã‚¢ã‚¿ãƒƒã‚¯æœ€çµ‚æ›´æ–°
 void Attack_Shot::AttackLastUpdate()
 {
 }
 
-// ƒAƒ^ƒbƒN•`‰æ
+// ã‚¢ã‚¿ãƒƒã‚¯æç”»
 void Attack_Shot::AttackDraw()
 {
 	//DrawCapsule3D(mvPosition, VAdd(mvPosition, VGet(mvMoveDir.x * mvAttackSize.x, mvMoveDir.y * mvAttackSize.y, mvMoveDir.z * mvAttackSize.z)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 50.0, 0.0f)), 100.0f, 32, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 }
 
-// “–‚½‚è”»’è
+// å½“ãŸã‚Šåˆ¤å®š
 void Attack_Shot::HitCheck(CollisionData& collisionData)
 {
 	if (Master::mpTimeManager->GetGameTime() <= mnAttackStartTime)
@@ -69,7 +69,7 @@ void Attack_Shot::HitCheck(CollisionData& collisionData)
 		return;
 	}
 
-	// TODO: “G‚ðì‚Á‚Äí‚¢‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚½‚çC³
+	// TODO: æ•µã‚’ä½œã£ã¦æˆ¦ã„ãŒã§ãã‚‹ã‚ˆã†ã«ãªã£ãŸã‚‰ä¿®æ­£
 	if (mpAttackCharacter->GetID() == collisionData.objID)
 	{
 		return;
@@ -82,7 +82,7 @@ void Attack_Shot::HitCheck(CollisionData& collisionData)
 		}
 	}
 
-	// HACK: ‰¼ŽÀ‘•
+	// HACK: ä»®å®Ÿè£…
 	if (HitCheck_Sphere_Capsule(collisionData.position, collisionData.size, mvPosition, VAdd(mvPosition, VGet(mvMoveDir.x * mvAttackSize.x, mvMoveDir.y * mvAttackSize.y, mvMoveDir.z * mvAttackSize.z)), 100.0f))
 	{
 	// if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 100.0f))

@@ -1,4 +1,4 @@
-#include "CameraData.h"
+ï»¿#include "CameraData.h"
 
 #include "Master.h"
 
@@ -13,74 +13,74 @@
 
 
 /*--------------------*/
-/*yŒÅ’èŽ‹“_ƒXƒe[ƒgz*/
+/*ã€å›ºå®šè¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------*/
 StateFixedCamera::StateFixedCamera()
 {
 	mStateNumber = CAMERA_MODE::FIXED;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateFixedCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
 {
 	CommonSetCamera(cameraData, preThreeDFlag);
 }
 
-// ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateFixedCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void StateFixedCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// XV
+// æ›´æ–°
 void StateFixedCamera::Update(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// •`‰æ
+// æç”»
 void StateFixedCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
 
 /*----------------------------*/
-/*yƒLƒƒƒ‰ƒNƒ^[Ž‹“_ƒXƒe[ƒgz*/
+/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------------*/
 StateCharacterCamera::StateCharacterCamera()
 {
 	mStateNumber = CAMERA_MODE::CHARACTER;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StateCharacterCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
 {
 	CommonSetCamera(cameraData, preThreeDFlag);
 }
 
-// ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StateCharacterCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void StateCharacterCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
 {
 
 }
 
-// XV
+// æ›´æ–°
 void StateCharacterCamera::Update(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// •`‰æ
+// æç”»
 void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
-	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
+	// ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’åæ˜ ã™ã‚‹
 	SetCameraPositionAndTarget_UpVecY(
 		VAdd(VAdd(VScale(UtilCalc::VSignInversion(cameraData.targetCharacter->GetVec()), cameraData.cameraDistance), cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
 		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
@@ -89,35 +89,35 @@ void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraD
 
 
 /*--------------------------*/
-/*yƒvƒŒƒCƒ„[Ž‹“_ƒXƒe[ƒgz*/
+/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç‚¹ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
 StatePlayerCamera::StatePlayerCamera()
 {
 	mStateNumber = CAMERA_MODE::PLAYER;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void StatePlayerCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
 {
 	CommonSetCamera(cameraData, preThreeDFlag);
 }
 
-// ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void StatePlayerCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void StatePlayerCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
 {
 }
 
-// XV
+// æ›´æ–°
 void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraData)
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
-		// ƒJƒƒ‰‚ÌÝ’u‚¾‚¯‚â‚é
+		// ã‚«ãƒ¡ãƒ©ã®è¨­ç½®ã ã‘ã‚„ã‚‹
 		if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::NODE))
 		{
 			cameraData.position = UtilCalc::VSphericalMovePos(cameraData.cameraDistance, UtilCalc::VRadChange(cameraData.angle));
@@ -169,10 +169,10 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 	cameraManager->SetCameraData(cameraData);
 }
 
-// •`‰æ
+// æç”»
 void StatePlayerCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
-	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
+	// ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’åæ˜ ã™ã‚‹
 	SetCameraPositionAndTarget_UpVecY(
 		VAdd(VAdd(cameraData.position, cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
 		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)

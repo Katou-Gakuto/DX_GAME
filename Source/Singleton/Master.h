@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class DataManager;
 class EndManager;
@@ -17,20 +17,20 @@ class TimeManager;
 class Master
 {
 public:
-	static DataManager* mpDataManager;	// ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	static EndManager* mpEndManager;	// ƒGƒ“ƒhƒ}ƒl[ƒWƒƒ[
-	static FadeManager* mpFadeManager;	// ƒtƒF[ƒhƒ}ƒl[ƒWƒƒ[
-	static GameManager* mpGameManager;	// ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[
+	static DataManager* mpDataManager;	// ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static EndManager* mpEndManager;	// ã‚¨ãƒ³ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static FadeManager* mpFadeManager;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static GameManager* mpGameManager;	// ã‚²ãƒ¼ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 #if _DEBUG
-	static ImguiManager* mpImguiManager;	// Imguiƒ}ƒl[ƒWƒƒ[
+	static ImguiManager* mpImguiManager;	// Imguiãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 #endif
-	static KeyState* mpKeyState;	// ƒL[ƒXƒe[ƒg
-	static LoadingManager* mpLoadingManager;	// ƒ[ƒfƒBƒ“ƒOƒ}ƒl[ƒWƒƒ[
-	static ResourceManager* mpResourceManager;	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	static StopManager* mpStopManager;	// ƒXƒgƒbƒvƒ}ƒl[ƒWƒƒ[
-	static TelopManager* mpTelopManager;	// ƒeƒƒbƒvƒ}ƒl[ƒWƒƒ[
-	static TimeManager* mpTimeManager;	// ƒ^ƒCƒ€ƒ}ƒl[ƒWƒƒ[
+	static KeyState* mpKeyState;	// ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆ
+	static LoadingManager* mpLoadingManager;	// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static ResourceManager* mpResourceManager;	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static StopManager* mpStopManager;	// ã‚¹ãƒˆãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static TelopManager* mpTelopManager;	// ãƒ†ãƒ­ãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	static TimeManager* mpTimeManager;	// ã‚¿ã‚¤ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 
-	/*ƒ}ƒXƒ^[Š•¨‘Síœˆ—*/
+	/*ãƒã‚¹ã‚¿ãƒ¼æ‰€æŒç‰©å…¨å‰Šé™¤å‡¦ç†*/
 	static void AllDelete();
 };

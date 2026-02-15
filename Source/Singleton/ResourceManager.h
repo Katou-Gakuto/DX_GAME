@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "HandleContainer.h"
 #include "ResourceEnum.h"
 #include "ResourceData.h"
 #include "Vector2.h"
@@ -80,10 +81,13 @@ public:
 	/*【3Dモデル】*/
 	/*------------*/
 private:
-	// 3Dモデルハンドル
-	std::map<std::string, std::vector<int>> mmModelHandle;
-	// 3Dモデルカウンター
-	std::map<int, int> mmModelCount;
+	// 3Dモデルハンドルコンテナ
+	HandleContainer mst3DModelHandleContainer;
+
+	// // 3Dモデルハンドル
+	// std::map<std::string, std::vector<int>> mmModelHandle;
+	// // 3Dモデルカウンター
+	// std::map<int, int> mmModelCount;
 
 public:
 	/*3Dモデルハンドル取得*/
@@ -97,10 +101,13 @@ public:
 	/*【画像】*/
 	/*--------*/
 private:
-	// 画像ハンドル
-	std::map<std::string, int> mmGraphHandle;
-	// 画像カウンター
-	std::map<int, int> mmGraphCount;
+	// 画像ハンドルコンテナ
+	HandleContainer mstGraphHandleContainer;
+
+	// // 画像ハンドル
+	// std::map<std::string, int> mmGraphHandle;
+	// // 画像カウンター
+	// std::map<int, int> mmGraphCount;
 
 	// Div画像ハンドル
 	std::map<std::string, DIV_GRAPH_DATA> mmDivGraphHandle;
@@ -122,8 +129,11 @@ public:
 	/*【動画】*/
 	/*--------*/
 private:
-	// 動画ハンドル
-	std::map<std::string, std::vector<int>> mmMovieHandle;
+	// 動画ハンドルコンテナ
+	HandleContainer mstMovieHandleContainer;
+
+	// // 動画ハンドル
+	// std::map<std::string, std::vector<int>> mmMovieHandle;
 	
 public:
 	/*動画ハンドル取得*/
@@ -157,10 +167,13 @@ public:
 	/*----------*/
 	// FIXME: フェードで非同期している影響でハンドル取得時エラーが出る
 private:
-	// エフェクトハンドル
-	std::map<std::string, std::vector<int>> mmEffectHandle;
-	// エフェクトカウンター
-	std::map<int, int> mmEffectCount;
+	// エフェクトハンドルコンテナ
+	HandleContainer mstEffectHandleContainer;
+
+	// // エフェクトハンドル
+	// std::map<std::string, std::vector<int>> mmEffectHandle;
+	// // エフェクトカウンター
+	// std::map<int, int> mmEffectCount;
 
 	// エフェクト描画フラグ
 	bool mbEffectDrawFlag;

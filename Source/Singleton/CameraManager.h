@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 
 #include "CameraData.h"
@@ -8,41 +8,41 @@ class FSMCamera;
 class CameraManager
 {
 private:
-	// ã‚«ãƒ¡ãƒ©æƒ…å ±é”
+	// ƒJƒƒ‰î•ñ’B
 	std::map<int, CameraData> mmCameraDatas;
 
-	// ç¾åœ¨ã®ã‚«ãƒ¡ãƒ©ID
+	// Œ»İ‚ÌƒJƒƒ‰ID
 	int mnNowID;
-	// æœ€å¤§ã‚«ãƒ¡ãƒ©ID
+	// Å‘åƒJƒƒ‰ID
 	int mnMaxID;
 
-	// ã‚«ãƒ¡ãƒ©ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ãƒ•ãƒ©ã‚°
+	// ƒJƒƒ‰‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ‰ƒO
 	bool mbNotSetCameraFlag;
 
-	// ã‚«ãƒ¡ãƒ©æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³
+	// ƒJƒƒ‰—LŒÀó‘Ôƒ}ƒVƒ“
 	FSMCamera* mpFsm;
 public:
 	CameraManager();
 	~CameraManager();
 
-	/*ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–*/
+	/*ƒf[ƒ^‰Šú‰»*/
 	void DataInit();
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update();
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw();
 
-	/*æ–°ã—ã„ã‚«ãƒ¡ãƒ©ã‚’ä½œæˆ*/
+	/*V‚µ‚¢ƒJƒƒ‰‚ğì¬*/
 	int NewCamera(CameraData cameraData);
 
-	/*ã‚«ãƒ¡ãƒ©å‰Šé™¤*/
+	/*ƒJƒƒ‰íœ*/
 	void DeleteCameraData(int cameraID);
 
-	/*ã‚«ãƒ¡ãƒ©è¨­å®š*/
+	/*ƒJƒƒ‰İ’è*/
 	void SetCameraMode(int cameraID);
 
-	/*ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿å–å¾—*/
+	/*ƒJƒƒ‰ƒf[ƒ^æ“¾*/
 	inline CameraData GetCameraData(int id = -1)
 	{
 		if (id != -1)
@@ -56,7 +56,7 @@ public:
 		return CameraData();
 	}
 
-	/*ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿è¨­å®š*/
+	/*ƒJƒƒ‰ƒf[ƒ^İ’è*/
 	inline void SetCameraData(const CameraData& cameraData)
 	{
 		if (mnNowID != -1)
@@ -65,9 +65,9 @@ public:
 		}
 	}
 
-	/*ã‚«ãƒ¡ãƒ©ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ãƒ•ãƒ©ã‚°å–å¾—*/
+	/*ƒJƒƒ‰‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ‰ƒOæ“¾*/
 	inline bool GetNotSetCameraFlag() const { return mbNotSetCameraFlag; }
 
-	/*ã‚«ãƒ¡ãƒ©ã®å…¨ãƒ‡ãƒ¼ã‚¿å–å¾—*/
+	/*ƒJƒƒ‰‚Ì‘Sƒf[ƒ^æ“¾*/
 	inline std::map<int, CameraData> GetAllCameraData() { return mmCameraDatas; }
 };

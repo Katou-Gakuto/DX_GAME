@@ -1,50 +1,50 @@
-ï»¿#pragma once
+#pragma once
 
-// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç¨®é¡ž
+// ƒAƒjƒ[ƒVƒ‡ƒ“Ží—Þ
 enum class ANIMATION_TYPE
 {
-    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã©ã†å‹•ãã‹ã‚’å®šç¾©ã™ã‚‹
+    // ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚Ç‚¤“®‚­‚©‚ð’è‹`‚·‚é
 
-    NONE = 0,   // ç„¡ã—
-    IDLE,       // å¾…æ©ŸçŠ¶æ…‹
-    WALK,       // æ­©ã 
-    RUN,        // èµ°ã‚‹
-    JUMP_IN,    // ã‚¸ãƒ£ãƒ³ãƒ—é–‹å§‹
-    JUMP,       // ã‚¸ãƒ£ãƒ³ãƒ—
-    JUMP_OUT,   // ã‚¸ãƒ£ãƒ³ãƒ—çµ‚äº†
-    ATTACK_IN,  // æ”»æ’ƒé–‹å§‹
-    ATTACK,     // æ”»æ’ƒ
-    ATTACK_OUT, // æ”»æ’ƒçµ‚äº†
-    DEATH,      // æ­»äº¡
+    NONE = 0,   // –³‚µ
+    IDLE,       // ‘Ò‹@ó‘Ô
+    WALK,       // •à‚­ 
+    RUN,        // ‘–‚é
+    JUMP_IN,    // ƒWƒƒƒ“ƒvŠJŽn
+    JUMP,       // ƒWƒƒƒ“ƒv
+    JUMP_OUT,   // ƒWƒƒƒ“ƒvI—¹
+    ATTACK_IN,  // UŒ‚ŠJŽn
+    ATTACK,     // UŒ‚
+    ATTACK_OUT, // UŒ‚I—¹
+    DEATH,      // Ž€–S
 
-    NORMAL_ATTACK_IN,   // ãƒŽãƒ¼ãƒžãƒ«æ”»æ’ƒé–‹å§‹
-    NORMAL_ATTACK,      // ãƒŽãƒ¼ãƒžãƒ«æ”»æ’ƒ
-    NORMAL_ATTACK_OUT,  // ãƒŽãƒ¼ãƒžãƒ«æ”»æ’ƒçµ‚äº†
+    NORMAL_ATTACK_IN,   // ƒm[ƒ}ƒ‹UŒ‚ŠJŽn
+    NORMAL_ATTACK,      // ƒm[ƒ}ƒ‹UŒ‚
+    NORMAL_ATTACK_OUT,  // ƒm[ƒ}ƒ‹UŒ‚I—¹
 
-    SPCEIAL_ATTACK_IN,   // ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒé–‹å§‹
-    SPCEIAL_ATTACK,      // ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒ
-    SPCEIAL_ATTACK_OUT,  // ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒçµ‚äº†
+    SPCEIAL_ATTACK_IN,   // ƒXƒyƒVƒƒƒ‹UŒ‚ŠJŽn
+    SPCEIAL_ATTACK,      // ƒXƒyƒVƒƒƒ‹UŒ‚
+    SPCEIAL_ATTACK_OUT,  // ƒXƒyƒVƒƒƒ‹UŒ‚I—¹
 
-    DISPLAY_MOVE,   // ç”»é¢ç§»å‹•
+    DISPLAY_MOVE,   // ‰æ–ÊˆÚ“®
 
-    FADE_OUT,   // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
-    FADE_IN,    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+    FADE_OUT,   // ƒtƒF[ƒhƒAƒEƒg
+    FADE_IN,    // ƒtƒF[ƒhƒCƒ“
 };
 
-// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¢ãƒ‡ãƒ«ç¨®é¡ž
-enum class MODEL_TYPE // TODO: ãƒ¢ãƒ‡ãƒ«ç¨®é¡žã§ã¯ãªãã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å‡¦ç†ç¨®é¡žã«ã™ã‚‹
+// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ‚ƒfƒ‹Ží—Þ
+enum class MODEL_TYPE // TODO: ƒ‚ƒfƒ‹Ží—Þ‚Å‚Í‚È‚­ƒAƒjƒ[ƒVƒ‡ƒ“ˆ—Ží—Þ‚É‚·‚é
 {
-    NONE = 0,   // ç„¡ã—
-    // TODO: IDLEä½œã‚‹
-    MV1_MODEL,  // MV1ãƒ¢ãƒ‡ãƒ«
-    MV1_MODEL_MOVE, // MV1ãƒ¢ãƒ‡ãƒ« ãƒ¢ãƒ‡ãƒ«æ“ä½œ
-    MV1_MODEL_ONLY, // MV1ãƒ¢ãƒ‡ãƒ«ã®ã¿ã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç„¡ã—ãƒ¢ãƒ‡ãƒ«
-    POLYGON_INDEXED, // ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ‡ãƒ«
+    NONE = 0,   // –³‚µ
+    // TODO: IDLEì‚é
+    MV1_MODEL,  // MV1ƒ‚ƒfƒ‹
+    MV1_MODEL_MOVE, // MV1ƒ‚ƒfƒ‹ ƒ‚ƒfƒ‹‘€ì
+    MV1_MODEL_ONLY, // MV1ƒ‚ƒfƒ‹‚Ì‚Ý@ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µƒ‚ƒfƒ‹
+    POLYGON_INDEXED, // ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒXƒ‚ƒfƒ‹
     
-    EFFECT, // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+    EFFECT, // ƒGƒtƒFƒNƒg
 
-    GRAPH,  // ç”»åƒ
-    MOVIE,  // æ˜ åƒ
+    GRAPH,  // ‰æ‘œ
+    MOVIE,  // ‰f‘œ
 
-    FADE,   // ãƒ•ã‚§ãƒ¼ãƒ‰
+    FADE,   // ƒtƒF[ƒh
 };

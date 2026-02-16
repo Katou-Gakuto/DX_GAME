@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -7,13 +7,13 @@ enum class SCENE;
 
 namespace UtilChange
 {
-	/*ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã«å¤‰æ›*/
+	/*ƒV[ƒ“ƒXƒe[ƒg‚É•ÏŠ·*/
 	SCENE SceneState(SCENE scene);
 
-	// TODO: å¾Œã§é–¢æ•°åå¤‰æ›´
-	/*ã‚·ãƒ¼ãƒ³ã®åå‰ã‚’å–å¾—*/
+	// TODO: Œã‚ÅŠÖ”–¼•ÏX
+	/*ƒV[ƒ“‚Ì–¼‘O‚ğæ“¾*/
 	std::string Name(SCENE scene);
 
-	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã«å¤‰æ›*/
+	/*ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚É•ÏŠ·*/
 	std::string CharacterTypeToString(CHARACTER_TYPE characterType);
 };

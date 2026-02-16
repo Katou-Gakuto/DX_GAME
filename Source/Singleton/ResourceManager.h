@@ -1,23 +1,23 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 #include <string>
 #include <vector>
 
-#include "HandleContainer.h"
 #include "ResourceEnum.h"
 #include "ResourceData.h"
 #include "Vector2.h"
 #include "UtilCalc.h"
 
+class HandleContainer;
 
 class ResourceManager
 {
 	/*--------*/
-	/*ã€å…±é€šã€‘*/
+	/*y‹¤’Êz*/
 	/*--------*/
 
 public:
-	// ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+	// ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Ì–¼‘O
 	static std::string msResourceFile;
 
 	static DisplaySize mstDisplaySize;
@@ -26,47 +26,47 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
-	/// <summary>åˆæœŸåŒ–</summary>
+	/// <summary>‰Šú‰»</summary>
 	void Initilize();
-	/*çµ‚äº†*/
+	/*I—¹*/
 	void Finailize();
 
-	/// <summary>é–‹å§‹æç”»</summary>
+	/// <summary>ŠJn•`‰æ</summary>
 	void StartDraw();
-	/// <summary>ä¸­é–“æç”»</summary>
+	/// <summary>’†ŠÔ•`‰æ</summary>
 	void MiddleDraw();
-	/// <summary>æœ€çµ‚æç”»</summary>
+	/// <summary>ÅI•`‰æ</summary>
 	void LastDraw();
 
-	/// <summary>æç”»ãƒ‡ãƒ¼ã‚¿è§£æ”¾</summary>
+	/// <summary>•`‰æƒf[ƒ^‰ğ•ú</summary>
 	void DrawDataRelease();
 
 	/*----------*/
-	/*ã€æç”»ã€‘
+	/*y•`‰æz
 	/*----------*/
 private:
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«
+	// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹
 	int mnShadowMapHandle;
 public:
-	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»</summary>
+	/// <summary>ƒ‚ƒfƒ‹•`‰æ</summary>
 	void DrawModelHandle(int modelHandle);
 
-	/// <summary>é ‚ç‚¹æƒ…å ±ã«ã‚ˆã‚‹æç”»</summary>
+	/// <summary>’¸“_î•ñ‚É‚æ‚é•`‰æ</summary>
 	void DrawIndexed(const VERTEX3D*VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag);
 
-	/// <summary>ç”»åƒæç”»</summary>
+	/// <summary>‰æ‘œ•`‰æ</summary>
 	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
 
 private:
 
-	/// <summary>ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®åˆæœŸåŒ–</summary>
+	/// <summary>ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì‰Šú‰»</summary>
 	void ShadowMapInit();
 
 	/*----------*/
-	/*ã€å–å¾—ã€‘
+	/*yæ“¾z
 	/*----------*/
 public:
-	/// <summary>æç”»æƒ…å ±å–å¾—</summary>
+	/// <summary>•`‰æî•ñæ“¾</summary>
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y);
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
@@ -78,144 +78,144 @@ public:
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
 
 	/*------------*/
-	/*ã€3Dãƒ¢ãƒ‡ãƒ«ã€‘*/
+	/*y3Dƒ‚ƒfƒ‹z*/
 	/*------------*/
 private:
-	// 3Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚³ãƒ³ãƒ†ãƒŠ
-	HandleContainer mst3DModelHandleContainer;
+	// 3Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ƒRƒ“ƒeƒi
+	HandleContainer* mp3DModelHandleContainer;
 
-	// // 3Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+	// // 3Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	// std::map<std::string, std::vector<int>> mmModelHandle;
-	// // 3Dãƒ¢ãƒ‡ãƒ«ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	// // 3Dƒ‚ƒfƒ‹ƒJƒEƒ“ƒ^[
 	// std::map<int, int> mmModelCount;
 
 public:
-	/*3Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«å–å¾—*/
+	/*3Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹æ“¾*/
 	int GetModelHandle(std::string fileName);
-	/*3Dãƒ¢ãƒ‡ãƒ«ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™*/
+	/*3Dƒ‚ƒfƒ‹ƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·*/
 	void ReduceModelHandle(int handle);
-	/* ä¾¿åˆ©ç”¨å¢—ã‚„ã™
+	/* •Ö—˜—p‘‚â‚·
 	*/
 
 	/*--------*/
-	/*ã€ç”»åƒã€‘*/
+	/*y‰æ‘œz*/
 	/*--------*/
 private:
-	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚³ãƒ³ãƒ†ãƒŠ
-	HandleContainer mstGraphHandleContainer;
+	// ‰æ‘œƒnƒ“ƒhƒ‹ƒRƒ“ƒeƒi
+	HandleContainer* mpGraphHandleContainer;
 
-	// // ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+	// // ‰æ‘œƒnƒ“ƒhƒ‹
 	// std::map<std::string, int> mmGraphHandle;
-	// // ç”»åƒã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	// // ‰æ‘œƒJƒEƒ“ƒ^[
 	// std::map<int, int> mmGraphCount;
 
-	// Divç”»åƒãƒãƒ³ãƒ‰ãƒ«
+	// Div‰æ‘œƒnƒ“ƒhƒ‹
 	std::map<std::string, DIV_GRAPH_DATA> mmDivGraphHandle;
-	// Divç”»åƒãƒ•ã‚¡ã‚¤ã¤å
+	// Div‰æ‘œƒtƒ@ƒC‚Â–¼
 	std::vector<std::string> msDivGraphFileNames;
 
 public:
-	/*ç”»åƒãƒãƒ³ãƒ‰ãƒ«å–å¾—*/
+	/*‰æ‘œƒnƒ“ƒhƒ‹æ“¾*/
 	int GetGraphHandle(std::string fileName);
-	/*ç”»åƒã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™*/
+	/*‰æ‘œƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·*/
 	void ReduceGraphHandle(int handle);
 
-	/*Divç”»åƒãƒãƒ³ãƒ‰ãƒ«å–å¾—*/
+	/*Div‰æ‘œƒnƒ“ƒhƒ‹æ“¾*/
 	void GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData);
-	/*Divç”»åƒã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™*/
+	/*Div‰æ‘œƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·*/
 	void ReduceDivGraphHandle(int number);
 
 	/*--------*/
-	/*ã€å‹•ç”»ã€‘*/
+	/*y“®‰æz*/
 	/*--------*/
 private:
-	// å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«ã‚³ãƒ³ãƒ†ãƒŠ
-	HandleContainer mstMovieHandleContainer;
+	// “®‰æƒnƒ“ƒhƒ‹ƒRƒ“ƒeƒi
+	HandleContainer* mpMovieHandleContainer;
 
-	// // å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«
+	// // “®‰æƒnƒ“ƒhƒ‹
 	// std::map<std::string, std::vector<int>> mmMovieHandle;
 	
 public:
-	/*å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«å–å¾—*/
+	/*“®‰æƒnƒ“ƒhƒ‹æ“¾*/
 	int GetMovieHandle(std::string fileName);
-	/*å‹•ç”»ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™*/
+	/*“®‰æƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·*/
 	void ReduceMovie(int handle);
 	
-	/// <summary>å‹•ç”»å†ç”Ÿ</summary>
+	/// <summary>“®‰æÄ¶</summary>
 	void PlayMovie(int handle);
 
-	/// <summary>å‹•ç”»åœæ­¢</summary>
+	/// <summary>“®‰æ’â~</summary>
 	void StopMovie(int handle);
 
-	/// <summary>å‹•ç”»ãƒªã‚»ãƒƒãƒˆ</summary>
+	/// <summary>“®‰æƒŠƒZƒbƒg</summary>
 	void MovieReset(int handle);
 
-	/// <summary>å‹•ç”»ãƒ«ãƒ¼ãƒ—</summary>
+	/// <summary>“®‰æƒ‹[ƒv</summary>
 	void MovieLoop(int handle);
 
-	/*å‹•ç”»éŸ³ã®è¨­å®šãŒå¿…è¦ãªã‚‰ä½œã‚‹
+	/*“®‰æ‰¹‚Ìİ’è‚ª•K—v‚È‚çì‚é
 	*/
 
 	/*------------*/
-	/*ã€ã‚µã‚¦ãƒ³ãƒ‰ã€‘*/
+	/*yƒTƒEƒ“ƒhz*/
 	/*------------*/
 private:
 public:
 
 	/*----------*/
-	/*ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‘
+	/*yƒGƒtƒFƒNƒgz
 	/*----------*/
-	// FIXME: ãƒ•ã‚§ãƒ¼ãƒ‰ã§éåŒæœŸã—ã¦ã„ã‚‹å½±éŸ¿ã§ãƒãƒ³ãƒ‰ãƒ«å–å¾—æ™‚ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
+	// FIXME: ƒtƒF[ƒh‚Å”ñ“¯Šú‚µ‚Ä‚¢‚é‰e‹¿‚Åƒnƒ“ƒhƒ‹æ“¾ƒGƒ‰[‚ªo‚é
 private:
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚³ãƒ³ãƒ†ãƒŠ
-	HandleContainer mstEffectHandleContainer;
+	// ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹ƒRƒ“ƒeƒi
+	HandleContainer* mpEffectHandleContainer;
 
-	// // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	// // ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹
 	// std::map<std::string, std::vector<int>> mmEffectHandle;
-	// // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	// // ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^[
 	// std::map<int, int> mmEffectCount;
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ãƒ•ãƒ©ã‚°
+	// ƒGƒtƒFƒNƒg•`‰æƒtƒ‰ƒO
 	bool mbEffectDrawFlag;
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»æ™‚ä½¿ç”¨ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+	// ƒGƒtƒFƒNƒg•`‰æg—p‰æ‘œƒnƒ“ƒhƒ‹
 	int mnEffectDrawPreHandle;
 
 public:
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæƒ…å ±å–å¾—</summary>
+	/// <summary>ƒGƒtƒFƒNƒgî•ñæ“¾</summary>
 	int GetEffectResource(std::string fileName, float size = 1.0f);
 
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹</summary>
+	/// <summary>ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é</summary>
 	int GetEffectHandle(int handle, int oldHandle);
 
-	/// <summary>å†ç”Ÿä¸­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹</summary>
+	/// <summary>Ä¶’†ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹‚ğíœ‚·‚é</summary>
 	void DeletePlayEffectHandle(int handle);
 
-	/// <summary>æƒ…å ±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™</summary>
-	/// <param name="handle">ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæƒ…å ±ãƒãƒ³ãƒ‰ãƒ«</param>
+	/// <summary>î•ñƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹‚ÌƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·</summary>
+	/// <param name="handle">ƒGƒtƒFƒNƒgî•ñƒnƒ“ƒhƒ‹</param>
 	void ReduceEffectDataHandle(int handle);
 
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»</summary>
+	/// <summary>ƒGƒtƒFƒNƒg•`‰æ</summary>
 	void DrawEffect(int handle, VECTOR position, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
 
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåœæ­¢</summary>
+	/// <summary>ƒGƒtƒFƒNƒg’â~</summary>
 	void StopEffect(int handle);
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå†ç”Ÿ</summary>
+	/// <summary>ƒGƒtƒFƒNƒgÄ¶</summary>
 	void PlayEffect(int handle, float speed);
 
-	/// <summary>å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåœæ­¢</summary>
+	/// <summary>‘SƒGƒtƒFƒNƒg’â~</summary>
 	void StopAllEfect();
 
-	/// <summary>å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå†ç”Ÿé–‹å§‹</summary>
+	/// <summary>‘SƒGƒtƒFƒNƒgÄ¶ŠJn</summary>
 	void PlayAllEfect();
 
 private:
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–</summary>
+	/// <summary>ƒGƒtƒFƒNƒg‰Šú‰»</summary>
 	void EffectInit();
 
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†</summary>
+	/// <summary>ƒGƒtƒFƒNƒgI—¹</summary>
 	void EffectFinailize();
 
-	/// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»å‡¦ç†</summary>
+	/// <summary>ƒGƒtƒFƒNƒg•`‰æˆ—</summary>
 	void EffectDrawProcess();
 };

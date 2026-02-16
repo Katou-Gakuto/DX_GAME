@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 
 #include "Effekseer.h"
 #include "Effekseer.SIMD.h"
@@ -17,7 +17,7 @@ void LoadGradient(Gradient& gradient, uint8_t*& pos, int32_t version);
 /**
 	@brief
 	\~English	How to treat an uv of texture type for ribbon and track
-	\~Japanese	ãƒªãƒœãƒ³ã¨è»Œè·¡å‘ã‘ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®UVã®æ‰±ã„æ–¹
+	\~Japanese	ƒŠƒ{ƒ“‚Æ‹OÕŒü‚¯‚ÌƒeƒNƒXƒ`ƒƒ‚ÌUV‚Ìˆµ‚¢•û
 */
 enum class TextureUVType : int32_t
 {
@@ -27,7 +27,7 @@ enum class TextureUVType : int32_t
 
 /**
 	@brief	\~english	uv texture parameters which is passed into a renderer
-			\~japanese	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã«æ¸¡ã•ã‚Œã‚‹UVTextureã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+			\~japanese	ƒŒƒ“ƒ_ƒ‰[‚É“n‚³‚ê‚éUVTexture‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^[
 */
 struct NodeRendererTextureUVTypeParameter
 {
@@ -641,44 +641,44 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	@brief	ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class EffectLoader : public ReferenceObject
 {
 public:
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	EffectLoader()
 	{
 	}
 
 	/**
-		@brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒfƒXƒgƒ‰ƒNƒ^
 	*/
 	virtual ~EffectLoader()
 	{
 	}
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		@param	path	[in]	èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
-		@param	data	[out]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å‡ºåŠ›ã™ã‚‹å…ˆ
-		@param	size	[out]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®é•·ã•ã‚’å‡ºåŠ›ã™ã‚‹å…ˆ
-		@return	æˆå¦
+		@brief	ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
+		@param	path	[in]	“Ç‚İ‚İŒ³ƒpƒX
+		@param	data	[out]	ƒf[ƒ^”z—ñ‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^‚ğo—Í‚·‚éæ
+		@param	size	[out]	ƒf[ƒ^”z—ñ‚Ì’·‚³‚ğo—Í‚·‚éæ
+		@return	¬”Û
 		@note
-		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		::Effekseer::Effect::Createå®Ÿè¡Œæ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
+		::Effekseer::Effect::CreateÀs‚Ég—p‚³‚ê‚éB
 	*/
 	virtual bool Load(const char16_t* path, void*& data, int32_t& size) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		@param	data	[in]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿
-		@param	size	[int]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®é•·ã•
+		@brief	ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ”jŠü‚·‚éB
+		@param	data	[in]	ƒf[ƒ^”z—ñ‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^
+		@param	size	[int]	ƒf[ƒ^”z—ñ‚Ì’·‚³
 		@note
-		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		::Effekseer::Effect::Createå®Ÿè¡Œçµ‚äº†æ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ”jŠü‚·‚éB
+		::Effekseer::Effect::CreateÀsI—¹‚Ég—p‚³‚ê‚éB
 	*/
 	virtual void Unload(void* data, int32_t size) = 0;
 };
@@ -708,33 +708,33 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	@brief	ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class TextureLoader : public ReferenceObject
 {
 public:
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	TextureLoader()
 	{
 	}
 
 	/**
-		@brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒfƒXƒgƒ‰ƒNƒ^
 	*/
 	virtual ~TextureLoader()
 	{
 	}
 
 	/**
-		@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		@param	path	[in]	èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
-		@param	textureType	[in]	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¨®é¡
-		@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
+		@brief	ƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚ŞB
+		@param	path	[in]	“Ç‚İ‚İŒ³ƒpƒX
+		@param	textureType	[in]	ƒeƒNƒXƒ`ƒƒ‚Ìí—Ş
+		@return	ƒeƒNƒXƒ`ƒƒ‚Ìƒ|ƒCƒ“ƒ^
 		@note
-		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		::Effekseer::Effect::Createå®Ÿè¡Œæ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚ŞB
+		::Effekseer::Effect::CreateÀs‚Ég—p‚³‚ê‚éB
 	*/
 	virtual TextureRef Load(const char16_t* path, TextureType textureType)
 	{
@@ -744,22 +744,22 @@ public:
 	/**
 		@brief
 		\~English	a function called when texture is loaded
-		\~Japanese	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
+		\~Japanese	ƒeƒNƒXƒ`ƒƒ‚ª“Ç‚İ‚Ü‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
 		@param	data
 		\~English	data pointer
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
 		@param	size
 		\~English	the size of data
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
+		\~Japanese	ƒf[ƒ^‚Ì‘å‚«‚³
 		@param	textureType
 		\~English	a kind of texture
-		\~Japanese	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¨®é¡
+		\~Japanese	ƒeƒNƒXƒ`ƒƒ‚Ìí—Ş
 		@param	isMipMapEnabled
 		\~English	whether is a mipmap enabled
-		\~Japanese	MipMapãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+		\~Japanese	MipMap‚ª—LŒø‚©‚Ç‚¤‚©
 		@return
 		\~English	a pointer of loaded texture
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒeƒNƒXƒ`ƒƒ‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual TextureRef Load(const void* data, int32_t size, TextureType textureType, bool isMipMapEnabled)
 	{
@@ -767,11 +767,11 @@ public:
 	}
 
 	/**
-		@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		@param	data	[in]	ãƒ†ã‚¯ã‚¹ãƒãƒ£
+		@brief	ƒeƒNƒXƒ`ƒƒ‚ğ”jŠü‚·‚éB
+		@param	data	[in]	ƒeƒNƒXƒ`ƒƒ
 		@note
-		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		::Effekseer::Effectã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒç ´æ£„ã•ã‚ŒãŸæ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒeƒNƒXƒ`ƒƒ‚ğ”jŠü‚·‚éB
+		::Effekseer::Effect‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª”jŠü‚³‚ê‚½‚Ég—p‚³‚ê‚éB
 	*/
 	virtual void Unload(TextureRef data)
 	{
@@ -813,7 +813,7 @@ class IndexBuffer;
 /**
 	@brief
 	\~English	Model class
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒ‚ƒfƒ‹ƒNƒ‰ƒX
 */
 class Model : public Resource
 {
@@ -914,7 +914,7 @@ namespace Effekseer
 
 /**
 	\~English	Model loader
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒ‚ƒfƒ‹“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class ModelLoader : public ReferenceObject
 {
@@ -926,39 +926,39 @@ public:
 	/*
 	@brief
 	\~English load a model
-	\~Japanese ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
+	\~Japanese ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞB
 	@param path
 	\~English a file path
-	\~Japanese èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
+	\~Japanese “Ç‚İ‚İŒ³ƒpƒX
 	@ return
 	\~English a pointer of loaded a model
-	\~Japanese èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	\~Japanese “Ç‚İ‚Ü‚ê‚½ƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual ModelRef Load(const char16_t* path);
 
 	/**
 		@brief
 		\~English	a function called when model is loaded
-		\~Japanese	ãƒ¢ãƒ‡ãƒ«ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
+		\~Japanese	ƒ‚ƒfƒ‹‚ª“Ç‚İ‚Ü‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
 		@param	data
 		\~English	data pointer
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
 		@param	size
 		\~English	the size of data
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
+		\~Japanese	ƒf[ƒ^‚Ì‘å‚«‚³
 		@return
 		\~English	a pointer of loaded model
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual ModelRef Load(const void* data, int32_t size);
 
 	/**
 		@brief
 		\~English	dispose a model
-		\~Japanese	ãƒ¢ãƒ‡ãƒ«ã‚’ç ´æ£„ã™ã‚‹ã€‚
+		\~Japanese	ƒ‚ƒfƒ‹‚ğ”jŠü‚·‚éB
 		@param	data
 		\~English	a pointer of loaded a model
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual void Unload(ModelRef data);
 };
@@ -982,7 +982,7 @@ namespace Effekseer
 /**
 	@brief
 	\~English	Material loader
-	\~Japanese	ãƒãƒ†ãƒªã‚¢ãƒ«èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒ}ƒeƒŠƒAƒ‹“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class MaterialLoader : public ReferenceObject
 {
@@ -990,27 +990,27 @@ public:
 	/**
 	@brief
 	\~English	Constructor
-	\~Japanese	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	\~Japanese	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	MaterialLoader() = default;
 
 	/**
 	@brief
 	\~English	Destructor
-	\~Japanese	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	\~Japanese	ƒfƒXƒgƒ‰ƒNƒ^
 	*/
 	virtual ~MaterialLoader() = default;
 
 	/**
 		@brief
 		\~English	load a material
-		\~Japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
+		\~Japanese	ƒ}ƒeƒŠƒAƒ‹‚ğ“Ç‚İ‚ŞB
 		@param	path
 		\~English	a file path
-		\~Japanese	èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
+		\~Japanese	“Ç‚İ‚İŒ³ƒpƒX
 		@return
 		\~English	a pointer of loaded a material
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual MaterialRef Load(const char16_t* path)
 	{
@@ -1020,19 +1020,19 @@ public:
 	/**
 		@brief
 		\~English	a function called when a material is loaded
-		\~Japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
+		\~Japanese	ƒ}ƒeƒŠƒAƒ‹‚ª“Ç‚İ‚Ü‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
 		@param	data
 		\~English	data pointer
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
 		@param	size
 		\~English	the size of data
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
+		\~Japanese	ƒf[ƒ^‚Ì‘å‚«‚³
 		@param	fileType
 		\~English	file type
-		\~Japanese	ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡
+		\~Japanese	ƒtƒ@ƒCƒ‹‚Ìí—Ş
 		@return
 		\~English	a pointer of loaded a material
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual MaterialRef Load(const void* data, int32_t size, MaterialFileType fileType)
 	{
@@ -1042,10 +1042,10 @@ public:
 	/**
 		@brief
 		\~English	dispose a material
-		\~Japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ç ´æ£„ã™ã‚‹ã€‚
+		\~Japanese	ƒ}ƒeƒŠƒAƒ‹‚ğ”jŠü‚·‚éB
 		@param	data
 		\~English	a pointer of loaded a material
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual void Unload(MaterialRef data)
 	{
@@ -1073,7 +1073,7 @@ class IndexBuffer;
 /**
 	@brief
 	\~English	Model class
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒ‚ƒfƒ‹ƒNƒ‰ƒX
 */
 class Model : public Resource
 {
@@ -1197,7 +1197,7 @@ public:
 /**
 @brief
 \~English	Curve class
-\~Japanese	ã‚«ãƒ¼ãƒ–ã‚¯ãƒ©ã‚¹
+\~Japanese	ƒJ[ƒuƒNƒ‰ƒX
 */
 class Curve : public Resource
 {
@@ -1222,38 +1222,38 @@ private:
 
 private:
 	/**
-	 * CalcBSplineBasisFunc : B-ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³åŸºåº•é–¢æ•°ã®è¨ˆç®—
+	 * CalcBSplineBasisFunc : B-ƒXƒvƒ‰ƒCƒ“Šî’êŠÖ”‚ÌŒvZ
 	 * 
-	 * const vector<double>& knot : ãƒãƒƒãƒˆåˆ—
-	 * unsigned int j : ãƒãƒƒãƒˆåˆ—ã®é–‹å§‹ç•ªå·
-	 * unsigned int p : æ¬¡æ•°
-	 * double t : è¨ˆç®—å¯¾è±¡ã®ç‹¬ç«‹å¤‰æ•°
+	 * const vector<double>& knot : ƒmƒbƒg—ñ
+	 * unsigned int j : ƒmƒbƒg—ñ‚ÌŠJn”Ô†
+	 * unsigned int p : Ÿ”
+	 * double t : ŒvZ‘ÎÛ‚Ì“Æ—§•Ï”
 	 * 
-	 * ãƒãƒƒãƒˆåˆ—ã¯æ˜‡é †ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ãŒã€ãã®ãƒã‚§ãƒƒã‚¯ã¯è¡Œã‚ãªã„
+	 * ƒmƒbƒg—ñ‚Í¸‡‚Å‚ ‚é•K—v‚ª‚ ‚é‚ªA‚»‚Ìƒ`ƒFƒbƒN‚Ís‚í‚È‚¢
 	 * 
-	 * æˆ»ã‚Šå€¤ : è¨ˆç®—çµæœ
+	 * –ß‚è’l : ŒvZŒ‹‰Ê
 	 */
 	double CalcBSplineBasisFunc(const std::vector<double>& knot, unsigned int j, unsigned int p, double t)
 	{
 		if (knot.size() == 0)
 			return std::numeric_limits<double>::quiet_NaN();
 
-		// ãƒãƒƒãƒˆåˆ—ã®ãƒ‡ãƒ¼ã‚¿é•·ãŒå……åˆ†ã§ãªã„å ´åˆã¯ nan ã‚’è¿”ã™
+		// ƒmƒbƒg—ñ‚Ìƒf[ƒ^’·‚ª[•ª‚Å‚È‚¢ê‡‚Í nan ‚ğ•Ô‚·
 		unsigned int m = static_cast<unsigned int>(knot.size()) - 1;
 		if (m < j + p + 1)
 			return std::numeric_limits<double>::quiet_NaN();
 
-		// æ­£å€¤ã‚’ã¨ã‚‹ç¯„å›²å¤–ãªã‚‰ã‚¼ãƒ­ã‚’è¿”ã™
+		// ³’l‚ğ‚Æ‚é”ÍˆÍŠO‚È‚çƒ[ƒ‚ğ•Ô‚·
 		if ((t < knot[j]) || (t > knot[j + p + 1]))
 			return (0);
-		// p = 0 ã‹ã¤ knot[j] <= t <= knot[j + p + 1] ãªã‚‰ 1 ã‚’è¿”ã™
+		// p = 0 ‚©‚Â knot[j] <= t <= knot[j + p + 1] ‚È‚ç 1 ‚ğ•Ô‚·
 		if (p == 0)
 			return (1);
-		// p = 1 ã®å ´åˆã€ä¸‰è§’ã®é ‚ç‚¹ã®å€¤ã¯ç‰¹åˆ¥æ‰±ã„
+		// p = 1 ‚Ìê‡AOŠp‚Ì’¸“_‚Ì’l‚Í“Á•Êˆµ‚¢
 		if (p == 1 && t == knot[j + 1])
 			return (1);
 
-		// æ¼¸åŒ–å¼ã®è¨ˆç®—
+		// ‘Q‰»®‚ÌŒvZ
 		double d1 = (knot[j + p] == knot[j]) ? 0 : (t - knot[j]) * CalcBSplineBasisFunc(knot, j, p - 1, t) / (knot[j + p] - knot[j]);
 		double d2 = (knot[j + p + 1] == knot[j + 1]) ? 0 : (knot[j + p + 1] - t) * CalcBSplineBasisFunc(knot, j + 1, p - 1, t) / (knot[j + p + 1] - knot[j + 1]);
 
@@ -1348,17 +1348,17 @@ public:
 				static_cast<float>(mControllPoint[0].Z * magnification)};
 		}
 
-		int p = mOrder; // æ¬¡æ•°
+		int p = mOrder; // Ÿ”
 
-		std::vector<double> bs(mControllPointCount); // B-Spline åŸºåº•é–¢æ•°ã®è¨ˆç®—çµæœ(é‡ã¿å€¤ã‚’ç©ç®—)
+		std::vector<double> bs(mControllPointCount); // B-Spline Šî’êŠÖ”‚ÌŒvZŒ‹‰Ê(d‚İ’l‚ğÏZ)
 
-		// ãƒãƒƒãƒˆåˆ—ã®è¦ç´ ã‚’ +1 ã™ã‚‹
+		// ƒmƒbƒg—ñ‚Ì—v‘f‚ğ +1 ‚·‚é
 		auto knot = mKnotValue;
 		knot.push_back(mKnotValue[mKnotValue.size() - 1] + 1);
 
 		float t_rate = float(knot.back() - 1);
 
-		double wSum = 0; // bs ã®åˆè¨ˆ
+		double wSum = 0; // bs ‚Ì‡Œv
 		for (int j = 0; j < mControllPointCount; ++j)
 		{
 			bs[j] = mControllPoint[j].W * CalcBSplineBasisFunc(knot, j, p, t * (t_rate));
@@ -1369,7 +1369,7 @@ public:
 			}
 		}
 
-		Vector3D ans(0, 0, 0); // è¨ˆç®—çµæœ
+		Vector3D ans(0, 0, 0); // ŒvZŒ‹‰Ê
 		for (int j = 0; j < mControllPointCount; ++j)
 		{
 			Vector3D d;
@@ -1451,7 +1451,7 @@ namespace Effekseer
 
 /**
 	\~English	Curve loader
-	\~Japanese	ã‚«ãƒ¼ãƒ–èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒJ[ƒu“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class CurveLoader : public ReferenceObject
 {
@@ -1466,39 +1466,39 @@ public:
 	/*
 	@brief
 	\~English load a curve
-	\~Japanese ã‚«ãƒ¼ãƒ–ã‚’èª­ã¿è¾¼ã‚€ã€‚
+	\~Japanese ƒJ[ƒu‚ğ“Ç‚İ‚ŞB
 	@param path
 	\~English a file path
-	\~Japanese èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
+	\~Japanese “Ç‚İ‚İŒ³ƒpƒX
 	@ return
 	\~English a pointer of loaded a curve
-	\~Japanese èª­ã¿è¾¼ã¾ã‚ŒãŸã‚«ãƒ¼ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+	\~Japanese “Ç‚İ‚Ü‚ê‚½ƒJ[ƒu‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual CurveRef Load(const char16_t* path);
 
 	/*
 	@brief
 	\~English load a curve
-	\~Japanese ã‚«ãƒ¼ãƒ–ã‚’èª­ã¿è¾¼ã‚€ã€‚
+	\~Japanese ƒJ[ƒu‚ğ“Ç‚İ‚ŞB
 	@param	data
 	\~English	data pointer
-	\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	\~Japanese	ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
 	@param	size
 	\~English	the size of data
-	\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
+	\~Japanese	ƒf[ƒ^‚Ì‘å‚«‚³
 	@ return
 	\~English a pointer of loaded a curve
-	\~Japanese èª­ã¿è¾¼ã¾ã‚ŒãŸã‚«ãƒ¼ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+	\~Japanese “Ç‚İ‚Ü‚ê‚½ƒJ[ƒu‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual CurveRef Load(const void* data, int32_t size);
 
 	/**
 		@brief
 		\~English	dispose a curve
-		\~Japanese	ã‚«ãƒ¼ãƒ–ã‚’ç ´æ£„ã™ã‚‹ã€‚
+		\~Japanese	ƒJ[ƒu‚ğ”jŠü‚·‚éB
 		@param	data
 		\~English	a pointer of loaded a curve
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸã‚«ãƒ¼ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒJ[ƒu‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual void Unload(CurveRef data);
 };
@@ -1593,7 +1593,7 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
+	@brief	ƒTƒEƒ“ƒhƒf[ƒ^
 */
 class SoundData : public Resource
 {
@@ -1606,32 +1606,32 @@ public:
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿ç ´æ£„é–¢æ•°æŒ‡å®šã‚¯ãƒ©ã‚¹
+	@brief	ƒTƒEƒ“ƒh“Ç‚İ‚İ”jŠüŠÖ”w’èƒNƒ‰ƒX
 */
 class SoundLoader : public ReferenceObject
 {
 public:
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	SoundLoader()
 	{
 	}
 
 	/**
-		@brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒfƒXƒgƒ‰ƒNƒ^
 	*/
 	virtual ~SoundLoader()
 	{
 	}
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		@param	path	[in]	èª­ã¿è¾¼ã¿å…ƒãƒ‘ã‚¹
-		@return	ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿
+		@brief	ƒTƒEƒ“ƒh‚ğ“Ç‚İ‚ŞB
+		@param	path	[in]	“Ç‚İ‚İŒ³ƒpƒX
+		@return	ƒTƒEƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
 		@note
-		ã‚µã‚¦ãƒ³ãƒ‰ã‚’èª­ã¿è¾¼ã‚€ã€‚
-		::Effekseer::Effect::Createå®Ÿè¡Œæ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒTƒEƒ“ƒh‚ğ“Ç‚İ‚ŞB
+		::Effekseer::Effect::CreateÀs‚Ég—p‚³‚ê‚éB
 	*/
 	virtual SoundDataRef Load(const char16_t* path)
 	{
@@ -1641,16 +1641,16 @@ public:
 	/**
 		@brief
 		\~English	a function called when sound is loaded
-		\~Japanese	ã‚µã‚¦ãƒ³ãƒ‰ãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
+		\~Japanese	ƒTƒEƒ“ƒh‚ª“Ç‚İ‚Ü‚ê‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
 		@param	data
 		\~English	data pointer
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
 		@param	size
 		\~English	the size of data
-		\~Japanese	ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
+		\~Japanese	ƒf[ƒ^‚Ì‘å‚«‚³
 		@return
 		\~English	a pointer of loaded texture
-		\~Japanese	èª­ã¿è¾¼ã¾ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿
+		\~Japanese	“Ç‚İ‚Ü‚ê‚½ƒTƒEƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual SoundDataRef Load(const void* data, int32_t size)
 	{
@@ -1658,11 +1658,11 @@ public:
 	}
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		@param	data	[in]	ã‚µã‚¦ãƒ³ãƒ‰
+		@brief	ƒTƒEƒ“ƒh‚ğ”jŠü‚·‚éB
+		@param	data	[in]	ƒTƒEƒ“ƒh
 		@note
-		ã‚µã‚¦ãƒ³ãƒ‰ã‚’ç ´æ£„ã™ã‚‹ã€‚
-		::Effekseer::Effectã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒç ´æ£„ã•ã‚ŒãŸæ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+		ƒTƒEƒ“ƒh‚ğ”jŠü‚·‚éB
+		::Effekseer::Effect‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª”jŠü‚³‚ê‚½‚Ég—p‚³‚ê‚éB
 	*/
 	virtual void Unload(SoundDataRef data)
 	{

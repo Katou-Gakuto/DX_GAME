@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -7,11 +7,11 @@ class CameraManager;
 class KeyState;
 
 /*------------------*/
-/*     ã€å…±é€šã€‘     */
+/*     y‹¤’Êz     */
 /*------------------*/
 
 /*----------------------*/
-/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*----------------------*/
 
 enum class PLAYER_STATE
@@ -23,49 +23,49 @@ enum class PLAYER_STATE
 };
 
 /*------------------------*/
-/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…±é€šå‡¦ç†ç”¨ã€‘*/
+/*yƒvƒŒƒCƒ„[‹¤’Êˆ——pz*/
 /*------------------------*/
 class PlayerProcess
 {
 protected:
-	// ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆ
+	// ƒL[ƒXƒe[ƒg
 	KeyState* mpKeyState;
 
-	// ã‚«ãƒ¡ãƒ©
+	// ƒJƒƒ‰
 	CameraManager* mpCameraManager;
 
 protected:
 	PlayerProcess();
 	~PlayerProcess() = default;
 
-	/*ç§»å‹•å…±é€šå‡¦ç†*/
+	/*ˆÚ“®‹¤’Êˆ—*/
 	void SetPlayerMove(CharacterBase* character);
 
-	/*ç§»å‹•ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€*/
+	/*ˆÚ“®ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev*/
 	bool GetPlayerMoveFlag();
 
-	/*é€šå¸¸æ”»æ’ƒã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€*/
+	/*’ÊíUŒ‚ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev*/
 	bool GetPlayerNormalAttackFlag();
 
-	/*ç‰¹æ®Šæ”»æ’ƒã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€*/
+	/*“ÁêUŒ‚ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev*/
 	bool GetPlayerSpceialAttackFlag();
 
-	/*ã‚«ãƒ¡ãƒ©ã«åˆã‚ã›ã¦ç§»å‹•æ–¹å‘ã‚’è¨­å®š*/
+	/*ƒJƒƒ‰‚É‡‚í‚¹‚ÄˆÚ“®•ûŒü‚ğİ’è*/
 	void SetMoveDir_Camera(CharacterBase* character);
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void PlayerProcessDraw(CharacterBase* character);
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void PlayerDeath(CharacterBase* character);
 };
 
 /*--------------------------*/
-/*     ã€åŸºæœ¬ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
+/*     yŠî–{ƒXƒe[ƒgz     */
 /*--------------------------*/
 
 /*--------------------------*/
-/*ã€Idleãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yIdleƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------*/
 class IdlePlayerState : public IStateCharacter, public PlayerProcess
 {
@@ -73,29 +73,29 @@ public:
 	IdlePlayerState();
 	~IdlePlayerState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
-/*ã€ç§»å‹•ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yˆÚ“®ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------*/
 class MovePlayerState : public IStateCharacter, public PlayerProcess
 {
@@ -103,29 +103,29 @@ public:
 	MovePlayerState();
 	~MovePlayerState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
-/*ã€ãƒãƒ¼ãƒãƒ«æ”»æ’ƒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒm[ƒ}ƒ‹UŒ‚ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------*/
 class NormalAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
@@ -133,29 +133,29 @@ public:
 	NormalAttackPlayerState();
 	~NormalAttackPlayerState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*------------------------------------*/
-/*ã€ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒXƒyƒVƒƒƒ‹UŒ‚ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*------------------------------------*/
 class SpceialAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
@@ -163,33 +163,33 @@ public:
 	SpceialAttackPlayerState();
 	~SpceialAttackPlayerState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
-/*     ã€æ´¾ç”Ÿã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
+/*     y”h¶ƒXƒe[ƒgz     */
 /*--------------------------*/
 
 /*--------------------------------*/
-/*ã€Idleãƒãƒˆãƒ«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yIdleƒoƒgƒ‹ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------------*/
 class IdleBattlePlayerState : public IdlePlayerState
 {
@@ -197,12 +197,12 @@ public:
 	IdleBattlePlayerState();
 	~IdleBattlePlayerState() = default;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	int StateCheck(CharacterBase* character) override;
 };
 
 /*--------------------------------*/
-/*ã€ç§»å‹•ãƒãƒˆãƒ«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yˆÚ“®ƒoƒgƒ‹ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
 /*--------------------------------*/
 class MoveBattlePlayerState : public MovePlayerState
 {
@@ -210,6 +210,6 @@ public:
 	MoveBattlePlayerState();
 	~MoveBattlePlayerState() = default;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	int StateCheck(CharacterBase* character) override;
 };

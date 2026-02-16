@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 #include <vector>
 
 #include "CollisionData.h"
@@ -25,7 +25,7 @@ AttackManager::~AttackManager()
 {
 }
 
-// æ”»æ’ƒä½œæˆ
+// UŒ‚ì¬
 void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 {
 	switch (attackType)
@@ -50,7 +50,7 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 	}
 }
 
-// æ”»æ’ƒæƒ…å ±è¨­å®š
+// UŒ‚î•ñİ’è
 int AttackManager::SetAttackData(AttackData attackData)
 {
 	mstAttackDatas.push_back(attackData);
@@ -58,7 +58,7 @@ int AttackManager::SetAttackData(AttackData attackData)
 	return (int)mstAttackDatas.size() - 1;
 }
 
-// æ”»æ’ƒé–‹å§‹
+// UŒ‚ŠJn
 AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mstAttackDatas.size() > attackDataNumber)
@@ -67,25 +67,25 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 		{
 			if (!attack->IsActiveFlag())
 			{
-				// æ”»æ’ƒæƒ…å ±è¨­å®š
+				// UŒ‚î•ñİ’è
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
 				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime()/*+ (17 * 300)*/);
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);
 
-				// ãƒ¢ãƒ‡ãƒ«è¨­å®š
+				// ƒ‚ƒfƒ‹İ’è
 				attack->SetModelController(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModelsController(attackMethodType));
 				attack->SetAnimation(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackAnimation(attackMethodType));
 				attack->GetModelsController()->GameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
 				attack->GetAnimation()->Initilize();
 
-				// FIXME: ãªãœã‹ãƒŒãƒ«ãƒã‚¤ãƒ³ã‚¿ãƒ¼ãŒå‡ºãŸã€€ä½œã£ã¦è©¦ã—ã¦ã„ãŸæ™‚ã«å‡ºãŸã‘ã©æœ€è¿‘ã¯å‡ºã¦ãªã„ä½œã£ã¦ãªã„ç‰©ãŒã‚ã‚‹æƒ³å®šã§ä½œã‚‰ã‚ŒãŸçµæœã ã¨äºˆæ¸¬ã•ã‚Œã‚‹
-				// åˆæœŸåŒ–
+				// FIXME: ‚È‚º‚©ƒkƒ‹ƒ|ƒCƒ“ƒ^[‚ªo‚½@ì‚Á‚Ä‚µ‚Ä‚¢‚½‚Éo‚½‚¯‚ÇÅ‹ß‚Ío‚Ä‚È‚¢ì‚Á‚Ä‚È‚¢•¨‚ª‚ ‚é‘z’è‚Åì‚ç‚ê‚½Œ‹‰Ê‚¾‚Æ—\‘ª‚³‚ê‚é
+				// ‰Šú‰»
 				attack->Initilize();
 				attack->SetActiveFlag(true);
 
-				// åå‹•æ™‚é–“ã‚’è¿”ã™
+				// ”½“®ŠÔ‚ğ•Ô‚·
 				return attack;
 			}
 		}
@@ -94,7 +94,7 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 	return 0;
 }
 
-// æ”»æ’ƒåœæ­¢
+// UŒ‚’â~
 void AttackManager::StopAttack(int stopAttackNumber)
 {
 	if (mstAttackDatas.size() > stopAttackNumber)
@@ -113,7 +113,7 @@ void AttackManager::StopAttack(int stopAttackNumber)
 	}
 }
 
-// å‰Šé™¤è¨­å®š
+// íœİ’è
 void AttackManager::SetDelete()
 {
 	for (int i = 0; i < mstAllAttack.size(); i++)

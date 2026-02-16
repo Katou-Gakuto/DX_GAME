@@ -1,13 +1,13 @@
-ï»¿#pragma once
+#pragma once
 #include <iostream>
 #include <type_traits>
 
-// ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ç”¨æ§‹é€ ä½“
+// ƒrƒbƒgƒtƒ‰ƒO—p\‘¢‘Ì
 template<typename T, typename = typename std::enable_if<std::is_integral<T>::value&& std::is_unsigned<T>::value>::type>
 struct BIT_FLAG
 {
 public:
-	T flags;// ãƒ•ãƒ©ã‚°
+	T flags;// ƒtƒ‰ƒO
 
 	BIT_FLAG() : flags((T)0) {}
 	BIT_FLAG(T flag) : flags(flag) {}
@@ -20,12 +20,12 @@ public:
 		return ((this->flags & flag) != 0);
 	}
 
-	/*åˆæœŸåŒ–*/
+	/*‰Šú‰»*/
 	inline void Init() { flags = (T)0; }
-	/*å…¨ãƒ“ãƒƒãƒˆæœ‰åŠ¹*/
+	/*‘Sƒrƒbƒg—LŒø*/
 	inline void SetAllBit() { flags = ~((T)0); }
 
-	/*1ã®ãƒ“ãƒƒãƒˆãŒã‚ã‚Œã°ã€Œtrueã€ã‚’è¿”ã™*/
+	/*1‚Ìƒrƒbƒg‚ª‚ ‚ê‚Îutruev‚ğ•Ô‚·*/
 	inline bool Bool() const {
 		return this->flags != 0;
 	}
@@ -35,7 +35,7 @@ public:
 		return sizeof(T) * 8ULL;
 	}
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆè¨­å®šã€‘-----*/
+	/*-----yw’èƒrƒbƒgİ’èz-----*/
 	inline void SetFlag(bool flag, int number){
 		if (flag){
 			EnableFlag(number);
@@ -45,73 +45,73 @@ public:
 			DisableFlag(number);
 		}
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆè¨­å®šã€‘*/
+	/*yw’èƒrƒbƒgİ’èz*/
 	template<typename ENUM_T>
 	inline void SetFlag(bool flag, ENUM_T number) { SetFlag(flag, (int)number); }
 	/*----------------------------*/
 
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆæœ‰åŠ¹åŒ–ã€‘-----*/
+	/*-----yw’èƒrƒbƒg—LŒø‰»z-----*/
 	inline void EnableFlag(int number){
 		if (CheckNumber(number)){
 			flags |= ((T)1 << number);
 		}
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆæœ‰åŠ¹åŒ–ã€‘*/
+	/*yw’èƒrƒbƒg—LŒø‰»z*/
 	template<typename ENUM_T>
 	inline void EnableFlag(ENUM_T number) { EnableFlag((int)number); }
 	/*------------------------------*/
 
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆç„¡åŠ¹åŒ–ã€‘-----*/
+	/*-----yw’èƒrƒbƒg–³Œø‰»z-----*/
 	inline void DisableFlag(int number){
 		if (CheckNumber(number)){
 			flags &= ~((T)1 << number);
 		}
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆç„¡åŠ¹åŒ–ã€‘*/
+	/*yw’èƒrƒbƒg–³Œø‰»z*/
 	template<typename ENUM_T>
 	inline void DisableFlag(ENUM_T number) { DisableFlag((int)number); }
 	/*------------------------------*/
 
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆåè»¢ã€‘-----*/
+	/*-----yw’èƒrƒbƒg”½“]z-----*/
 	inline void InvertFlag(int number){
 		if (CheckNumber(number)){
 			flags ^= ((T)1 << number);
 		}
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆåè»¢ã€‘*/
+	/*yw’èƒrƒbƒg”½“]z*/
 	template<typename ENUM_T>
 	inline void InvertFlag(ENUM_T number) { InvertFlag((int)number); }
 	/*----------------------------*/
 	
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆå–å¾—ã€‘-----*/
+	/*-----yw’èƒrƒbƒgæ“¾z-----*/
 	inline bool GetFlag(int number) const {
 		if (CheckNumber(number)){
 			return ((flags & ((T)1 << number)) != 0);
 		}
 		return false;
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆå–å¾—ã€‘*/
+	/*yw’èƒrƒbƒgæ“¾z*/
 	template<typename ENUM_T>
 	inline bool GetFlag(ENUM_T number) const { return GetFlag((int)number); }
 	/*----------------------------*/
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆæ•°ã‹ã‚‰æ•°å­—ã‚’è¨­å®šã™ã‚‹ã€‘-----*/
+	/*-----yw’èƒrƒbƒg”‚©‚ç”š‚ğİ’è‚·‚éz-----*/
 	inline void SetNumber(T setNumber, T numberZone, int number)
 	{
 		if (CheckNumber(number)){
 			flags &= (setNumber << number) | ~(numberZone << number);
 		}
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆæ•°ã‹ã‚‰æ•°å­—ã‚’è¨­å®šã™ã‚‹ã€‘*/
+	/*yw’èƒrƒbƒg”‚©‚ç”š‚ğİ’è‚·‚éz*/
 	template<typename ENUM_T>
 	inline void SetNumber(T setNumber, T numberZone, ENUM_T number) const { SetNumber(setNumber, numberZone, (int)number); }
 	/*--------------------------------------------*/
 
-	/*-----ã€æŒ‡å®šãƒ“ãƒƒãƒˆæ•°ã‹ã‚‰æ•°å­—ã‚’å–å¾—ã™ã‚‹ã€‘-----*/
+	/*-----yw’èƒrƒbƒg”‚©‚ç”š‚ğæ“¾‚·‚éz-----*/
 	inline T GetNumber(T numberZone, int number, int rightBitNumber = -1)
 	{
 		if (rightBitNumber == -1)
@@ -124,12 +124,12 @@ public:
 		}
 		return T(0);
 	}
-	/*ã€æŒ‡å®šãƒ“ãƒƒãƒˆæ•°ã‹ã‚‰æ•°å­—ã‚’è¨­å®šã™ã‚‹ã€‘*/
+	/*yw’èƒrƒbƒg”‚©‚ç”š‚ğİ’è‚·‚éz*/
 	template<typename ENUM_T>
 	inline T GetNumber(T numberZone, ENUM_T number, ENUM_T rightBitNumber = (ENUM_T)-1) const { return GetNumber(numberZone, (int)number, (int)rightBitNumber); }
 	/*--------------------------------------------*/
 
-	/*Tã®ãƒ“ãƒƒãƒˆæ•°ã‚’è¶…ãˆã¦ãªã„ã‹ã‚’ç¢ºèªã™ã‚‹(è¶…ãˆã¦ã„ã‚Œã°ã€Œfalseã€ã‚’è¿”ã™)*/
+	/*T‚Ìƒrƒbƒg”‚ğ’´‚¦‚Ä‚È‚¢‚©‚ğŠm”F‚·‚é(’´‚¦‚Ä‚¢‚ê‚Îufalsev‚ğ•Ô‚·)*/
 	static inline bool CheckNumber(int number){
 		if (((sizeof(T) * 8) > number) && (number >= 0)){
 			return true;
@@ -137,6 +137,6 @@ public:
 		return false;
 	}
 
-	/*æŒ‡å®šã®ãƒ“ãƒƒãƒˆã ã‘1ã®æ•´æ•°ã‚’å–å¾—*/
+	/*w’è‚Ìƒrƒbƒg‚¾‚¯1‚Ì®”‚ğæ“¾*/
 	inline static BIT_FLAG BIT_GET(int number) { return BIT_FLAG((T)1 << number); }
 };

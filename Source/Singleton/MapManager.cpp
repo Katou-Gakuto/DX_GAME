@@ -1,4 +1,4 @@
-ï»¿#include <fstream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -32,19 +32,19 @@ MapManager::~MapManager()
 {
 }
 
-// ãƒ‡ãƒ¼ã‚¿è§£æ”¾
+// ƒf[ƒ^‰ğ•ú
 void MapManager::Release()
 {
-    // ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿è§£æ”¾
+    // ƒ‚ƒfƒ‹ƒf[ƒ^‰ğ•ú
     mpModelMap->ReleaseMapModel();
     mstMapData.clear();
 }
 
 
-// ãƒãƒƒãƒ—æƒ…å ±è¨­å®š
+// ƒ}ƒbƒvî•ñİ’è
 void MapManager::SetMapData(MapType mapType)
 {
-    // ãƒ‡ãƒ¼ã‚¿è§£æ”¾
+    // ƒf[ƒ^‰ğ•ú
     Release();
 
     //mstMapData = Master::mpDataManager->GetMapData(mapType);
@@ -103,20 +103,20 @@ void MapManager::SetMapData(MapType mapType)
         }
     }
 
-    // ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¢ãƒ‡ãƒ«ã«èª­ã¿è¾¼ã¾ã›ã‚‹
+    // ƒ}ƒbƒvƒf[ƒ^‚ğƒ‚ƒfƒ‹‚É“Ç‚İ‚Ü‚¹‚é
     mpModelMap->LoadMapData(mstMapData, mvMapMinPos, mvTileHalfSize);
 }
 
-// ãƒãƒƒãƒ—æƒ…å ±è¨­å®š
+// ƒ}ƒbƒvî•ñİ’è
 void MapManager::SetMapData(std::vector<std::vector<TileData>> mapData)
 {
     mstMapData = mapData;
     /*
-    * ãƒãƒƒãƒ—ã‚¿ã‚¤ãƒ«ã«å¿œã˜ãŸå‡¦ç†
+    * ƒ}ƒbƒvƒ^ƒCƒ‹‚É‰‚¶‚½ˆ—
     */
 }
 
-// ãƒãƒƒãƒ—å½“ãŸã‚Šåˆ¤å®š
+// ƒ}ƒbƒv“–‚½‚è”»’è
 void MapManager::MapCollision()
 {
     if (mstMapData.size() > 0)
@@ -149,13 +149,13 @@ void MapManager::MapCollision()
 
 
         /*
-        // åå°„å¾Œé€Ÿåº¦ã‚’ç®—å‡º
+        // ”½ËŒã‘¬“x‚ğZo
         VECTOR N = VNorm(collision->vec);
 
         D3DXVec3Normalize(&N, pNormal);
         *pOut_velo = *pVelo - (1 + res) * D3DXVec3Dot(&N, pVelo) * N;
 
-        // ç§»å‹•ä½ç½®ã‚’è¨ˆç®—
+        // ˆÚ“®ˆÊ’u‚ğŒvZ
         *pOut_pos = *pColliPos + *pOut_velo * time;
         */
         /*if (UtilCalc::BoxCollision(VAdd(collision->position, VScale(UtilCalc::VOne, collision->size * 0.5f)), VSub(collision->position, VScale(UtilCalc::VOne, collision->size * 0.5f)),
@@ -163,7 +163,7 @@ void MapManager::MapCollision()
         {
             VECTOR norm = VGet(0.0f, 0.0f, 1.0f);
 
-            // é€²è¡Œãƒ™ã‚¯ãƒˆãƒ«ã¨ã€å£ã®æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã®å†…æƒ…ã®é€†ã‚’ä¿‚æ•°aã¨ã—ã¦ãŠã
+            // isƒxƒNƒgƒ‹‚ÆA•Ç‚Ì–@üƒxƒNƒgƒ‹‚Ì“àî‚Ì‹t‚ğŒW”a‚Æ‚µ‚Ä‚¨‚­
             float a = -VDot(collision->vec, norm);
 
             collision->vec = VAdd(VAdd(collision->vec, VScale(norm, a)), VScale(norm, 1.0f));
@@ -171,7 +171,7 @@ void MapManager::MapCollision()
     }
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¨ã®å½“ãŸã‚Šåˆ¤å®š
+// ƒLƒƒƒ‰ƒNƒ^[‚Æ‚Ì“–‚½‚è”»’è
 std::vector<CharacterTargetData> MapManager::CharacterCollision(std::vector<CharacterTargetData> characterData)
 {
     for (int i = 0; i < characterData.size(); i++)
@@ -195,7 +195,7 @@ std::vector<CharacterTargetData> MapManager::CharacterCollision(std::vector<Char
     return characterData;
 }
 
-// ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—
+// ƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“æ“¾
 void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
 {
     setPosX = (int)((pos.x + mvMapMinPos.x) / GetTileSize().x);
@@ -211,7 +211,7 @@ void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
     }
 }
 
-// æç”»
+// •`‰æ
 void MapManager::Draw()
 {
     mpModelMap->ModelDraw();
@@ -225,14 +225,14 @@ void MapManager::Draw()
     //         switch (tile.tileType)
     //         {
     //         case TileType::Ground:
-    //             // å·¦å¥¥
+    //             // ¶‰œ
     //             DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
     //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
     //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
     //                 GetColor(0, 0, 255),
     //                 TRUE);
 
-    //             // å³æ‰‹å‰
+    //             // ‰Eè‘O
     //             DrawTriangle3D(VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),
     //                 VGet(drawPos.x + mvTileHalfSize.x, drawPos.y, drawPos.z + mvTileHalfSize.z),
     //                 VGet(drawPos.x - mvTileHalfSize.x, drawPos.y, drawPos.z - mvTileHalfSize.z),

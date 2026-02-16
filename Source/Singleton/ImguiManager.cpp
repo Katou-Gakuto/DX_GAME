@@ -1,4 +1,4 @@
-ï»¿#include "DxLib.h"
+#include "DxLib.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
@@ -15,45 +15,173 @@ ImguiManager::~ImguiManager()
 {
 }
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void ImguiManager::Initilize()
 {
-    // IMGUI_CHECKVERSION();
-    // ImGui::CreateContext();
-    // ImGuiIO& io = ImGui::GetIO(); (void)io;
-    // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;    
-    // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+ //   IMGUI_CHECKVERSION();
+ //   ImGui::CreateContext();
+ //   ImGuiIO& io = ImGui::GetIO(); (void)io;
+ //   io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;    
+ //   io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
-    // ImGui::StyleColorsDark();
+ //   ImGui::StyleColorsDark();
 
-    // ImGuiStyle& style = ImGui::GetStyle();
+	//ImGui_ImplWin32_Init(DxLib::GetMainWindowHandle());
+	//ImGui_ImplDX11_Init((ID3D11Device*)DxLib::GetUseDirect3D11Device(), (ID3D11DeviceContext*)DxLib::GetUseDirect3D11DeviceContext());
 
-
-    // ImGui_ImplWin32_Init(DxLib::GetMainWindowHandle());
-    // ImGui_ImplDX11_Init((ID3D11Device*)DxLib::GetUseDirect3D11Device(), (ID3D11DeviceContext*)DxLib::GetUseDirect3D11DeviceContext());
 }
 
-// çµ‚äº†
+// I—¹
 void ImguiManager::Finalize()
 {
-    // ImGui_ImplDX11_Shutdown();
-    // ImGui_ImplWin32_Shutdown();
-    // ImGui::DestroyContext();
+    //ImGui_ImplDX11_Shutdown();
+    //ImGui_ImplWin32_Shutdown();
+    //ImGui::DestroyContext();
 }
 
-// æ›´æ–°
+// XV
 void ImguiManager::Update()
 {	
-    // ImGui_ImplDX11_NewFrame();
-    // ImGui_ImplWin32_NewFrame();
-    // ImGui::NewFrame();
-    // ImGui::ShowDemoWindow();
+    //ImGui_ImplDX11_NewFrame();
+    //ImGui_ImplWin32_NewFrame();
+    //ImGui::NewFrame();
+    //ImGui::ShowDemoWindow();
 }
 
-// æç”»
+// •`‰æ
 void ImguiManager::Draw()
 {		
-    // ImGui::Render();
-    // ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+ //   ImGui::Render();
+ //   ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+ //   //if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+ //   //{
+ //   //    ImGui::UpdatePlatformWindows();
+ //   //    ImGui::RenderPlatformWindowsDefault(); // š‚±‚ê‚ª‰ö‚µ‚¢
+ //   //}
+	//RefreshDxLibDirect3DSetting();
 }
 #endif
+
+/*
+
+#include "DxLib.h"
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
+
+// Forward declare message handler from imgui_impl_win32.cpp
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+
+	// ƒƒbƒZ[ƒWˆ—‚ÍDxLib‚Ås‚Á‚Ä‚¢‚é‚æ‚¤‚¾
+	
+	return 0;
+}
+
+int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
+				 LPSTR lpCmdLine, int nCmdShow )
+{
+	int gh = -1; // ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
+
+	// ‰Šúİ’è
+	{
+		// DxLib
+		{
+			DxLib::SetGraphMode(1280, 720, 32);
+			DxLib::ChangeWindowMode(true);
+			DxLib::SetUseDirect3DVersion(DX_DIRECT3D_11);
+			DxLib::SetHookWinProc(WndProc);
+			DxLib::SetAlwaysRunFlag(true);
+			if (DxLib::DxLib_Init() == -1) { return false; }
+			DxLib::SetDrawScreen(DX_SCREEN_BACK);
+
+			gh = LoadGraph("test1.bmp"); // š‚±‚Ìƒtƒ@ƒCƒ‹‚ÍDxLib‚ÌƒTƒ“ƒvƒ‹‚É“ü‚Á‚Ä‚½‚à‚Ì‚Å‚·(ƒLƒƒƒ‰‰æ‘œ)
+		}
+
+		// ImGui
+		{
+			IMGUI_CHECKVERSION();
+			ImGui::CreateContext();
+			ImGuiIO& io = ImGui::GetIO(); (void)io;
+			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+			io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows@š‚±‚±Á‚·‚Æƒ}ƒ‹ƒ`ƒEƒBƒ“ƒhƒE‰ğœ
+
+			ImGuiStyle& style = ImGui::GetStyle();
+			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				style.WindowRounding = 0.0f;
+				style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+			}
+
+			ImGui_ImplWin32_Init(DxLib::GetMainWindowHandle());
+			ImGui_ImplDX11_Init((ID3D11Device*)DxLib::GetUseDirect3D11Device(), (ID3D11DeviceContext*)DxLib::GetUseDirect3D11DeviceContext());
+		}
+	}
+
+	// ƒƒCƒ“ƒ‹[ƒv
+	while (!DxLib::ProcessMessage())
+	{
+		// XV•”
+		{
+			// DxLib
+			{
+				 // “Á‚É‚È‚µ
+			}
+
+			// ImGui
+			{
+				ImGui_ImplDX11_NewFrame();
+				ImGui_ImplWin32_NewFrame();
+				ImGui::NewFrame();
+				ImGui::ShowDemoWindow();
+			}
+		}
+
+		// •`‰æ•”
+		{
+			DxLib::ClearDrawScreen();
+
+			// DxLib
+			{
+				DrawGraph(0, 0, gh, true); // š‚±‚ê‚ªÁ‚¦‚Ä‚µ‚Ü‚¤
+			}
+
+			// ImGui
+			{
+				ImGui::Render();
+				ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+				// Update and Render additional Platform Windows
+				if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+				{
+					ImGui::UpdatePlatformWindows();
+					ImGui::RenderPlatformWindowsDefault(); // š‚±‚ê‚ª‰ö‚µ‚¢
+				}
+			}
+
+			DxLib::ScreenFlip();
+		}
+	}
+
+	// I—¹ˆ—
+	{
+		// ImGui
+		{
+			ImGui_ImplDX11_Shutdown();
+			ImGui_ImplWin32_Shutdown();
+			ImGui::DestroyContext();
+		}
+
+		// DxLib
+		{
+			DxLib::DxLib_End();
+		}
+	}
+
+	return 0;
+}
+*/

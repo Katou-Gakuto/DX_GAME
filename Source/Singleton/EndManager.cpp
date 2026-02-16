@@ -1,4 +1,4 @@
-ï»¿#include <windows.h>
+#include <windows.h>
 
 #include "BitFlag.h"
 
@@ -19,12 +19,12 @@ EndManager::~EndManager()
 	}
 }
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void EndManager::Init()
 {
 }
 
-// çµ‚äº†ãƒ•ãƒ©ã‚°
+// I—¹ƒtƒ‰ƒO
 bool EndManager::EndFlag() const
 {
 	bool endFlag = false;

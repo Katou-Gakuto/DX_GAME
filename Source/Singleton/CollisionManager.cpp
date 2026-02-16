@@ -1,4 +1,4 @@
-ï»¿#include <vector>
+#include <vector>
 
 #include "CollisionData.h"
 
@@ -11,7 +11,7 @@
 #include "ObjectManager.h"
 #include "StopManager.h"
 
-/*å½“ãŸã‚Šåˆ¤å®šåæ˜ å‡¦ç†*/
+/*“–‚½‚è”»’è”½‰fˆ—*/
 void CollisionManager::CollisionProcess()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -23,10 +23,10 @@ void CollisionManager::CollisionProcess()
 	std::vector<BuildingBase*> buildingObject = Master::mpGameManager->GetObjectManager()->FindsByType_Building();
 	std::vector<AttackBase*> attackObject = Master::mpGameManager->GetObjectManager()->FindsByType_Attack();
 
-	// å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆ†èª¿ã¹ã‚‹
+	// ‘SƒLƒƒƒ‰ƒNƒ^[•ª’²‚×‚é
 	for (int i = 0; i < characterObject.size(); i++)
 	{
-		// ãƒ‡ãƒ¼ã‚¿å…¥åŠ›
+		// ƒf[ƒ^“ü—Í
 		CharacterBase* checkCharacter = characterObject[i];
 		CollisionData setData;
 		setData.position = checkCharacter->GetPos();
@@ -36,7 +36,7 @@ void CollisionManager::CollisionProcess()
 		setData.size = 180.0f;
 		setData.collisionFlag = false;
 
-		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¨ã®å½“ãŸã‚Šåˆ¤å®š
+		// ƒLƒƒƒ‰ƒNƒ^[‚Æ‚Ì“–‚½‚è”»’è
 		for (int j = 0; j < characterObject.size(); j++)
 		{
 			if (i != j)
@@ -46,14 +46,14 @@ void CollisionManager::CollisionProcess()
 		}
 		setData.collisionFlag = false;
 
-		// å»ºç‰©ã¨ã®å½“ãŸã‚Šåˆ¤å®š
+		// Œš•¨‚Æ‚Ì“–‚½‚è”»’è
 		for (int j = 0; j < buildingObject.size(); j++)
 		{
 			buildingObject[j]->HitCheck(setData);
 		}
 		setData.collisionFlag = false;
 
-		// æ”»æ’ƒã¨ã®å½“ãŸã‚Šåˆ¤å®š
+		// UŒ‚‚Æ‚Ì“–‚½‚è”»’è
 		for (int j = 0; j < attackObject.size(); j++)
 		{
 			attackObject[j]->HitCheck(setData);
@@ -68,7 +68,7 @@ void CollisionManager::CollisionProcess()
 		}
 		setData.collisionFlag = false;
 
-		// ç§»å‹•æ–¹å‘è¨­å®š
+		// ˆÚ“®•ûŒüİ’è
 		checkCharacter->SetVec(setData.vec);
 	}
 

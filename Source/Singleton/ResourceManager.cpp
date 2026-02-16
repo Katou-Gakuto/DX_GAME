@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -12,42 +12,61 @@
 #include "Master.h"
 
 #include "EndManager.h"
+#include "HandleContainer.h"
 #include "ResourceManager.h"
 
 std::string ResourceManager::msResourceFile = "Resource/";
 DisplaySize ResourceManager::mstDisplaySize = DisplaySize();
 /*--------*/
-/*ã€å…±é€šã€‘*/
+/*y‹¤’Êz*/
 /*--------*/
 ResourceManager::ResourceManager()
 : mbEffectDrawFlag(false)
 , mnEffectDrawPreHandle(-1)
+, mp3DModelHandleContainer(nullptr)
+, mpGraphHandleContainer(nullptr)
+, mpMovieHandleContainer(nullptr)
+, mpEffectHandleContainer(nullptr)
 {
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—
+	// ƒVƒƒƒhƒEƒ}ƒbƒv
 	mnShadowMapHandle = -1;
 
-	// 3Dãƒ¢ãƒ‡ãƒ«
-	mmModelHandle.clear();
-	mmModelCount.clear();
+	// 3Dƒ‚ƒfƒ‹
+	// mmModelHandle.clear();
+	// mmModelCount.clear();
 
-	// ç”»åƒ
-	mmGraphHandle.clear();
-	mmGraphCount.clear();
+	// ‰æ‘œ
+	// mmGraphHandle.clear();
+	// mmGraphCount.clear();
 	mmDivGraphHandle.clear();
 	msDivGraphFileNames.clear();
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
-	mmEffectHandle.clear();
-	mmEffectCount.clear();
+	// ƒGƒtƒFƒNƒg
+	// mmEffectHandle.clear();
+	// mmEffectCount.clear();
 }
 ResourceManager::~ResourceManager()
 {
 }
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void ResourceManager::Initilize()
 {
-	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚µã‚¤ã‚ºè¨­å®š
+	// 3Dƒ‚ƒfƒ‹
+	mp3DModelHandleContainer = new HandleContainer();
+
+	// ‰æ‘œ
+	mpGraphHandleContainer = new HandleContainer();
+	mpGraphHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
+
+	// “®‰æ
+	mpMovieHandleContainer = new HandleContainer();
+	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::NONE);
+
+	// ƒGƒtƒFƒNƒg
+	mpEffectHandleContainer = new HandleContainer();
+
+	// ƒfƒBƒXƒvƒŒƒCƒTƒCƒYİ’è
 	Vector2_Int setDisplaySize;
     GetScreenState(&setDisplaySize.x, &setDisplaySize.y, &mstDisplaySize.colorBit);
 	mstDisplaySize = setDisplaySize;
@@ -57,26 +76,33 @@ void ResourceManager::Initilize()
 	EffectInit();
 }
 
-// çµ‚äº†
+// I—¹
 void ResourceManager::Finailize()
 {
-	{// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—
+	{// ƒVƒƒƒhƒEƒ}ƒbƒv
 		DeleteShadowMap(mnShadowMapHandle);
 	}
 
-	{// 3Dãƒ¢ãƒ‡ãƒ«
+	{// 3Dƒ‚ƒfƒ‹
 		MV1InitModel();
-		mmModelCount.clear();
-		mmModelHandle.clear();
+		// mmModelCount.clear();
+		// mmModelHandle.clear();
+
+		delete mp3DModelHandleContainer;
 	}
 
-	{// ç”»åƒ
-		for (std::pair<std::string, int> graphHandle : mmGraphHandle)
+	{// ‰æ‘œ
+		for (std::pair<std::string, std::vector<int>> graphHandle : mpGraphHandleContainer->GetHandleMap())
 		{
-			DeleteGraph(graphHandle.second);
+			for (int i = 0; i < graphHandle.second.size(); i++)
+			{
+				DeleteGraph(graphHandle.second[i]);
+			}
 		}
-		mmGraphHandle.clear();
-		mmGraphCount.clear();
+		// mmGraphHandle.clear();
+		// mmGraphCount.clear();
+
+		delete mpGraphHandleContainer;
 
 		for (const std::pair<std::string, DIV_GRAPH_DATA>& divHandle : mmDivGraphHandle)
 		{
@@ -89,70 +115,71 @@ void ResourceManager::Finailize()
 		msDivGraphFileNames.clear();
 	}
 
-	{// å‹•ç”»
-		for (std::pair<std::string, std::vector<int>> moveiHandle : mmMovieHandle)
+	{// “®‰æ
+		for (std::pair<std::string, std::vector<int>> moveiHandle : mpMovieHandleContainer->GetHandleMap())
 		{
 			for (int i = 0; i < moveiHandle.second.size(); i++)
 			{
 				DeleteGraph(moveiHandle.second[i]);
 			}
 		}
-		mmMovieHandle.clear();
+		// mmMovieHandle.clear();
+		delete mpMovieHandleContainer;
 	}
 
-	{// ã‚µã‚¦ãƒ³ãƒ‰
+	{// ƒTƒEƒ“ƒh
 	}
 
-	{// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	{// ƒGƒtƒFƒNƒg
 		EffectFinailize();
 	}
 }
 
-// é–‹å§‹æç”»
+// ŠJn•`‰æ
 void ResourceManager::StartDraw()
 {
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã®æº–å‚™
+	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚Ì€”õ
 	ShadowMap_DrawSetup(mnShadowMapHandle);
 }
-// ä¸­é–“æç”»
+// ’†ŠÔ•`‰æ
 void ResourceManager::MiddleDraw()
 {
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã‚’çµ‚äº†
+	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚ğI—¹
 	ShadowMap_DrawEnd();
-	// æç”»ã«ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’è¨­å®š
+	// •`‰æ‚Ég—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚ğİ’è
 	SetUseShadowMap(0, mnShadowMapHandle);
 
 }
-// çµ‚äº†æç”»
+// I—¹•`‰æ
 void ResourceManager::LastDraw()
 {
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»å‡¦ç†
+	// ƒGƒtƒFƒNƒg•`‰æˆ—
 	EffectDrawProcess();
 }
 
-// æç”»ãƒ‡ãƒ¼ã‚¿è§£æ”¾
+// •`‰æƒf[ƒ^‰ğ•ú
 void ResourceManager::DrawDataRelease()
 {
-	// æç”»ã«ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®è¨­å®šã‚’è§£é™¤
+	// •`‰æ‚Ég—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìİ’è‚ğ‰ğœ
 	SetUseShadowMap(0, -1);
-	
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ãƒ•ãƒ©ã‚°ç„¡åŠ¹åŒ–
+
+	// ƒGƒtƒFƒNƒg•`‰æƒtƒ‰ƒO–³Œø‰»
 	mbEffectDrawFlag = false;
 }
 
-// ãƒ¢ãƒ‡ãƒ«æç”»
+// ƒ‚ƒfƒ‹•`‰æ
 void ResourceManager::DrawModelHandle(int modelHandle)
 {
 	MV1DrawModel(modelHandle);
 }
 
-// é ‚ç‚¹æƒ…å ±ã«ã‚ˆã‚‹æç”»
+// ’¸“_î•ñ‚É‚æ‚é•`‰æ
 void ResourceManager::DrawIndexed(const VERTEX3D *VertexArray, int VertexNum, const unsigned short *IndexArray, int PolygonNum, int GrHandle, int TransFlag)
 {
 	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
 }
 
-// ç”»åƒã‚„å‹•ç”»ã®æç”»
+// ‰æ‘œ‚â“®‰æ‚Ì•`‰æ
 void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
 {
 	int failureFlag;
@@ -196,19 +223,19 @@ void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
 	}
 }
 
-// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®åˆæœŸåŒ–
+// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì‰Šú‰»
 void ResourceManager::ShadowMapInit()
 {
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ä½œæˆ
+	// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹ì¬
 	mnShadowMapHandle = MakeShadowMap(1024, 1024);
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒæƒ³å®šã™ã‚‹ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚‚ã‚»ãƒƒãƒˆ
+	// ƒVƒƒƒhƒEƒ}ƒbƒv‚ª‘z’è‚·‚éƒ‰ƒCƒg‚Ì•ûŒü‚àƒZƒbƒg
 	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
 
-	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«æç”»ã™ã‚‹ç¯„å›²ã‚’è¨­å®š
+	// ƒVƒƒƒhƒEƒ}ƒbƒv‚É•`‰æ‚·‚é”ÍˆÍ‚ğİ’è
 	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-10000.0f, -1.0f, -10000.0f), VGet(10000.0f, 10000.0f, 10000.0f));
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -225,7 +252,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y)
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, int sizeX, int sizeY)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -245,7 +272,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, int 
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -264,7 +291,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, floa
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -280,7 +307,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, floa
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -299,7 +326,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, floa
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -317,7 +344,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, floa
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -333,7 +360,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos)
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -351,7 +378,7 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos, V
 	return drawData;
 }
 
-// æç”»æƒ…å ±å–å¾—
+// •`‰æî•ñæ“¾
 DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
 {
 	DRAW_GRAPH_DATA drawData;
@@ -371,122 +398,117 @@ DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int leftUp
 }
 
 /*------------*/
-/*ã€3Dãƒ¢ãƒ‡ãƒ«ã€‘*/
+/*y3Dƒ‚ƒfƒ‹z*/
 /*------------*/
-// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«å–å¾—
+// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹æ“¾
 int ResourceManager::GetModelHandle(std::string fileName)
 {
 	int handle = -1;
-	if (mmModelHandle.find(fileName) != mmModelHandle.end())
+	if (mp3DModelHandleContainer->CheckFileName(fileName))
 	{
-		handle = mmModelHandle[fileName][0];
-		mmModelCount[handle] += 1;
-		int resultHandle = MV1DuplicateModel(handle);
-		mmModelHandle[fileName].push_back(resultHandle);
+		handle = mp3DModelHandleContainer->GetHandles(fileName)[0];
+
+		mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
+		int resultHandle = mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));
 		return resultHandle;
 	}
 
-	handle = MV1LoadModel(fileName.c_str());
-	if (handle == -1)
-	{
-		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-		return -1;
-	}
-	std::vector<int> setHandle;
-	setHandle.clear();
-	setHandle.reserve(2);
-	setHandle.push_back(handle);
-	setHandle.push_back(MV1DuplicateModel(handle));
-	mmModelHandle[fileName] = setHandle;
-	mmModelCount[handle] = 1;
-
-	return setHandle[1];
+		
+	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
+	handle = mp3DModelHandleContainer->RegisterHandle(MV1LoadModel(fileName.c_str()), false);
+	
+	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
+	return mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));;
 }
 
-// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«å‰Šé™¤
+// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹íœ
 void ResourceManager::ReduceModelHandle(int handle)
 {
-	std::string fileName = "NULL";
-	for (std::pair<std::string, std::vector<int>> modelHandle : mmModelHandle)
+	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
+	std::vector<int> deleteHnadle = mp3DModelHandleContainer->DeleteHandle(handle);
+
+	for (int i = 0; i < deleteHnadle.size(); i++)
 	{
-		for (int i = 0; i < modelHandle.second.size(); i++)
-		{
-			if (modelHandle.second[i] == handle)
-			{
-				fileName = modelHandle.first;
-				handle = modelHandle.second[0];
-				break;
-			}
-		}
-		
-		if (fileName != "NULL")
-		{
-			break;
-		}
+		MV1DeleteModel(deleteHnadle[i]);
 	}
 
-	mmModelCount[handle] -= 1;
-	if (mmModelCount[handle] <= 0)
-	{
-		MV1DeleteModel(handle);
-		mmModelCount.erase(handle);
-		mmModelHandle.erase(fileName);
-	}
+	// std::string fileName = "NULL";
+	// for (std::pair<std::string, std::vector<int>> modelHandle : mp3DModelHandleContainer->GetHandleMap())
+	// {
+	// 	for (int i = 0; i < modelHandle.second.size(); i++)
+	// 	{
+	// 		if (modelHandle.second[i] == handle)
+	// 		{
+	// 			fileName = modelHandle.first;
+	// 			handle = modelHandle.second[0];
+	// 			break;
+	// 		}
+	// 	}
+
+	// 	if (fileName != "NULL")
+	// 	{
+	// 		break;
+	// 	}
+	// }
+
+	// mmModelCount[handle] -= 1;
+	// if (mmModelCount[handle] <= 0)
+	// {
+	// 	MV1DeleteModel(handle);
+	// 	mmModelCount.erase(handle);
+	// 	mmModelHandle.erase(fileName);
+	// }
 }
 
 
 /*--------*/
-/*ã€ç”»åƒã€‘*/
+/*y‰æ‘œz*/
 /*--------*/
-// ç”»åƒãƒãƒ³ãƒ‰ãƒ«å–å¾—
+// ‰æ‘œƒnƒ“ƒhƒ‹æ“¾
 int ResourceManager::GetGraphHandle(std::string fileName)
 {
 	int handle = -1;
-	if (mmGraphHandle.find(fileName) != mmGraphHandle.end())
+	if (mpGraphHandleContainer->CheckFileName(fileName))
 	{
-		handle = mmGraphHandle[fileName];
-		mmGraphCount[handle] += 1;
-		return handle;
+		return mpGraphHandleContainer->RegisterHandle(0/*‰½‚àw’è‚µ‚È‚¢*/);
 	}
 
-	handle = LoadGraph(fileName.c_str());
-	if (handle == -1)
-	{
-		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-		return -1;
-	}
-	mmGraphHandle[fileName] = handle;
-	mmGraphCount[handle] = 1;
-
-	return handle;
+	return mpGraphHandleContainer->RegisterHandle(LoadGraph(fileName.c_str()));
 }
 
-// ç”»åƒã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™
+// ‰æ‘œƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·
 void ResourceManager::ReduceGraphHandle(int handle)
 {
-	mmGraphCount[handle] -= 1;
-	if (mmGraphCount[handle] <= 0)
-	{
-		DeleteGraph(handle);
-		mmGraphCount.erase(handle);
+	std::vector<int> deleteHandle = mpGraphHandleContainer->DeleteHandle(handle);
 
-		std::string fileName;
-		for (std::pair<std::string, int> graphHandle : mmGraphHandle)
-		{
-			if (graphHandle.second == handle)
-			{
-				fileName = graphHandle.first;
-				break;
-			}
-		}
-		mmGraphHandle.erase(fileName);
+	for (int i = 0; i < deleteHandle.size(); i++)
+	{
+		DeleteGraph(deleteHandle[i]);
 	}
+
+	// mmGraphCount[handle] -= 1;
+	// if (mmGraphCount[handle] <= 0)
+	// {
+	// 	DeleteGraph(handle);
+	// 	mmGraphCount.erase(handle);
+
+	// 	std::string fileName;
+	// 	for (std::pair<std::string, int> graphHandle : mmGraphHandle)
+	// 	{
+	// 		if (graphHandle.second == handle)
+	// 		{
+	// 			fileName = graphHandle.first;
+	// 			break;
+	// 		}
+	// 	}
+	// 	mmGraphHandle.erase(fileName);
+	// }
 }
 
-// Divç”»åƒãƒãƒ³ãƒ‰ãƒ«å–å¾—
+// Div‰æ‘œƒnƒ“ƒhƒ‹æ“¾
 void ResourceManager::GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData)
 {
-	if (mmGraphHandle.find(fileName) != mmGraphHandle.end())
+	if (mmDivGraphHandle.find(fileName) != mmDivGraphHandle.end())
 	{
 		*graphData = mmDivGraphHandle[fileName];
 		graphData->count += 1;
@@ -505,7 +527,7 @@ void ResourceManager::GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* gr
 	graphData->number = ((int)msDivGraphFileNames.size() - 1);
 }
 
-// Divç”»åƒã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™
+// Div‰æ‘œƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·
 void ResourceManager::ReduceDivGraphHandle(int number)
 {
 	if ((mmDivGraphHandle[msDivGraphFileNames[number]].count -= 1) <= 0)
@@ -521,77 +543,81 @@ void ResourceManager::ReduceDivGraphHandle(int number)
 
 
 /*--------*/
-/*ã€å‹•ç”»ã€‘*/
+/*y“®‰æz*/
 /*--------*/
-// å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«å–å¾—
+// “®‰æƒnƒ“ƒhƒ‹æ“¾
 int ResourceManager::GetMovieHandle(std::string fileName)
 {
-	int handle = -1;
-	if (mmMovieHandle.find(fileName) != mmMovieHandle.end())
-	{
-		handle = LoadGraph(fileName.c_str());
-		mmMovieHandle[fileName].push_back(handle);
-		return handle;
-	}
+	return mpMovieHandleContainer->RegisterHandle(LoadGraph(fileName.c_str()), fileName);
+	// int handle = -1;
+	// if (mpMovieHandleContainer->CheckFileName(fileName))
+	// {
+	// 	return mpMovieHandleContainer->RegisterHandle(LoadGraph(fileName.c_str()));
+	// }
 
-	handle = LoadGraph(fileName.c_str());
-	if (handle == -1)
-	{
-		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-		return -1;
-	}
-	std::vector<int> setHandle;
-	setHandle.clear();
-	setHandle.push_back(handle);
-	mmMovieHandle[fileName] = setHandle;
-
-	return handle;
+	// handle = LoadGraph(fileName.c_str());
+	// if (handle == -1)
+	// {
+	// 	Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+	// 	return -1;
+	// }
+	// std::vector<int> setHandle;
+	// setHandle.clear();
+	// setHandle.push_back(handle);
+	// mmMovieHandle[fileName] = setHandle;
 }
 
-// å‹•ç”»ã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™
+// “®‰æƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·
 void ResourceManager::ReduceMovie(int handle)
 {
-	DeleteGraph(handle);
+	std::vector<int> deleteHandle =  mpMovieHandleContainer->DeleteHandle(handle);
 
-	for (auto movieHandle : mmMovieHandle)
+	for (int i = 0; i < deleteHandle.size(); i++)
 	{
-		for (int i = 0; i < movieHandle.second.size(); i++)
-		{
-			if (movieHandle.second[i] == handle)
-			{
-				if ((movieHandle.second.size() - 1) <= 0)
-				{
-					mmMovieHandle.erase(movieHandle.first);
-				}
-				else
-				{
-					mmMovieHandle[movieHandle.first].erase(mmMovieHandle[movieHandle.first].begin() + i);
-				}
-				return;
-			}
-		}
+		DeleteGraph(deleteHandle[i]);
 	}
+
+	// DeleteGraph(handle);
+
+	// for (auto movieHandle : mmMovieHandle)
+	// {
+	// 	for (int i = 0; i < movieHandle.second.size(); i++)
+	// 	{
+	// 		if (movieHandle.second[i] == handle)
+	// 		{
+	// 			if ((movieHandle.second.size() - 1) <= 0)
+	// 			{
+	// 				mmMovieHandle.erase(movieHandle.first);
+	// 			}
+	// 			else
+	// 			{
+	// 				mmMovieHandle[movieHandle.first].erase(mmMovieHandle[movieHandle.first].begin() + i);
+	// 			}
+	// 			return;
+	// 		}
+	// 	}
+	// }
 }
 
-// å‹•ç”»å†ç”Ÿ
+// “®‰æÄ¶
 void ResourceManager::PlayMovie(int handle)
 {
 	PlayMovieToGraph(handle);
 }
 
-// å‹•ç”»åœæ­¢
+// “®‰æ’â~
 void ResourceManager::StopMovie(int handle)
 {
 	PauseMovieToGraph(handle);
 }
 
-// å‹•ç”»ãƒªã‚»ãƒƒãƒˆ
+// “®‰æƒŠƒZƒbƒg
 void ResourceManager::MovieReset(int handle)
 {
 	SeekMovieToGraph(handle, 0);
 }
 
-// å‹•ç”»ãƒ«ãƒ¼ãƒ—
+// “®‰æƒ‹[ƒv
 void ResourceManager::MovieLoop(int handle)
 {
 	if (GetMovieStateToGraph(handle) != 1)
@@ -602,142 +628,149 @@ void ResourceManager::MovieLoop(int handle)
 }
 
 /*------------*/
-/*ã€ã‚µã‚¦ãƒ³ãƒ‰ã€‘*/
+/*yƒTƒEƒ“ƒhz*/
 /*------------*/
 
 
 
 /*----------*/
-/*ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‘
+/*yƒGƒtƒFƒNƒgz
 /*----------*/
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæƒ…å ±å–å¾—
+// ƒGƒtƒFƒNƒgî•ñæ“¾
 int ResourceManager::GetEffectResource(std::string fileName, float size)
 {
-	int handle = -1;
-	if (mmEffectHandle.find(fileName) != mmEffectHandle.end())
+	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
+	
+	if (mpEffectHandleContainer->CheckFileName(fileName))
 	{
-		handle = mmEffectHandle[fileName][0];
-		mmEffectCount[handle] += 1;
-		return handle;
+		return mpEffectHandleContainer->RegisterHandle(0/*‰½‚àw’è‚µ‚È‚¢*/);
 	}
 
-	handle = LoadEffekseerEffect(fileName.c_str(), size);
-	if (handle == -1)
-	{
-		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-		return -1;
-	}
-	std::vector<int> setHandle;
-	setHandle.clear();
-	setHandle.push_back(handle);
-	mmEffectHandle[fileName] = setHandle;
-	mmEffectCount[handle] = 1;
+	return mpEffectHandleContainer->RegisterHandle(LoadEffekseerEffect(fileName.c_str(), size));
+	// if (handle == -1)
+	// {
+	// 	Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+	// 	return -1;
+	// }
+	// std::vector<int> setHandle;
+	// setHandle.clear();
+	// setHandle.push_back(handle);
+	// mmEffectHandle[fileName] = setHandle;
+	// mmEffectCount[handle] = 1;
 
-	return handle;
+	// return handle;
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
+// ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
 int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 {
-	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
+
+	for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
 	{
 		if (effectHandle.second[0] == handle)
 		{
-			int newHandle = PlayEffekseer3DEffect(effectHandle.second[0]);
-			if (newHandle == -1)
-			{
-				Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-				return -1;
-			}
-			
 			if (oldHandle != -1)
 			{
-				for (int i = 1; i < effectHandle.second.size(); i++)
-				{
-					if (effectHandle.second[i] == oldHandle)
-					{
-						StopEffekseer3DEffect(oldHandle);
-						mmEffectHandle[effectHandle.first][i] = newHandle;
-					}
-				}
+				// for (int i = 1; i < effectHandle.second.size(); i++)
+				// {
+				// 	if (effectHandle.second[i] == oldHandle)
+				// 	{
+				// 		StopEffekseer3DEffect(oldHandle);
+				// 		mmEffectHandle[effectHandle.first][i] = newHandle;
+				// 	}
+				// }
+				// TODO: ŒğŠ·‚·‚éˆ—‚É•ÏX
+				// ŒğŠ·‚·‚é
+				mpEffectHandleContainer->DeleteHandle(oldHandle, false);
+				return mpEffectHandleContainer->RegisterHandle(PlayEffekseer3DEffect(handle), effectHandle.first, false);
 			}
 			else
 			{
-				mmEffectHandle[effectHandle.first].push_back(newHandle);
+				return mpEffectHandleContainer->RegisterHandle(PlayEffekseer3DEffect(handle), effectHandle.first, false);
 			}
-
-			return newHandle;
 		}
 	}
 
 	return -1;
 }
 
-// å†ç”Ÿä¸­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+// Ä¶’†ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
 void ResourceManager::DeletePlayEffectHandle(int handle)
 {
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
+	// ƒGƒtƒFƒNƒgíœ
 	StopEffekseer3DEffect(handle);
 
-	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
-	{
-		for (int i = 1; i < effectHandle.second.size(); i++)
-		{
-			if (effectHandle.second[i] == handle)
-			{
-				mmEffectHandle[effectHandle.first].erase(mmEffectHandle[effectHandle.first].begin() + i);
-				return;
-			}
-		}
-	}
+	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
+	mpEffectHandleContainer->DeleteHandle(handle, false);
+
+	// for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	// {
+	// 	for (int i = 1; i < effectHandle.second.size(); i++)
+	// 	{
+	// 		if (effectHandle.second[i] == handle)
+	// 		{
+	// 			mmEffectHandle[effectHandle.first].erase(mmEffectHandle[effectHandle.first].begin() + i);
+	// 			return;
+	// 		}
+	// 	}
+	// }
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ãƒˆã‚’æ¸›ã‚‰ã™
+// ƒGƒtƒFƒNƒgƒJƒEƒ“ƒg‚ğŒ¸‚ç‚·
 void ResourceManager::ReduceEffectDataHandle(int handle)
 {
-	int reduceHandle = -1;
-	std::string fileName = "NULL";
-	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
-	{
-		if ((effectHandle.second.size() > 0) &&
-			(effectHandle.second[0] == handle))
-		{
-			fileName = effectHandle.first;
-			reduceHandle = effectHandle.second[0];
-			break;
-		}
-		// for (int i = 0; i < effectHandle.second.size(); i++)
-		// {
-		// 	if (effectHandle.second[i] == handle)
-		// 	{
-		// 		fileName = effectHandle.first;
-		// 		handle = effectHandle.second[0];
-		// 		break;
-		// 	}
-		// }
-		
-		// if (fileName != "NULL")
-		// {
-		// 	break;
-		// }
-	}
+	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
+	std::vector<int> deleteHandle = mpEffectHandleContainer->DeleteHandle(handle);
 
-	if (reduceHandle == -1)
+	if (deleteHandle.size() > 0)
 	{
-		return;
+		DeleteEffekseerEffect(deleteHandle[0]);
 	}
+	
+	// int reduceHandle = -1;
+	// std::string fileName = "NULL";
+	// for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	// {
+	// 	if ((effectHandle.second.size() > 0) &&
+	// 		(effectHandle.second[0] == handle))
+	// 	{
+	// 		fileName = effectHandle.first;
+	// 		reduceHandle = effectHandle.second[0];
+	// 		break;
+	// 	}
+	// 	// for (int i = 0; i < effectHandle.second.size(); i++)
+	// 	// {
+	// 	// 	if (effectHandle.second[i] == handle)
+	// 	// 	{
+	// 	// 		fileName = effectHandle.first;
+	// 	// 		handle = effectHandle.second[0];
+	// 	// 		break;
+	// 	// 	}
+	// 	// }
 
-	mmEffectCount[reduceHandle] -= 1;
-	if (mmEffectCount[reduceHandle] <= 0)
-	{
-		DeleteEffekseerEffect(reduceHandle);
-		mmEffectCount.erase(reduceHandle);
-		mmEffectHandle.erase(fileName);
-	}
+	// 	// if (fileName != "NULL")
+	// 	// {
+	// 	// 	break;
+	// 	// }
+	// }
+
+	// if (reduceHandle == -1)
+	// {
+	// 	return;
+	// }
+
+	// mmEffectCount[reduceHandle] -= 1;
+	// if (mmEffectCount[reduceHandle] <= 0)
+	// {
+	// 	DeleteEffekseerEffect(reduceHandle);
+	// 	mmEffectCount.erase(reduceHandle);
+	// 	mmEffectHandle.erase(fileName);
+	// }
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»
+// ƒGƒtƒFƒNƒg•`‰æ
 void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECTOR size)
 {
 	if (!mbEffectDrawFlag)
@@ -751,22 +784,22 @@ void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECT
 	SetScalePlayingEffekseer3DEffect(handle, size.x, size.y, size.z);
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåœæ­¢
+// ƒGƒtƒFƒNƒg’â~
 void ResourceManager::StopEffect(int handle)
 {
 	SetSpeedPlayingEffekseer3DEffect(handle, 0.0f);
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå†ç”Ÿ
+// ƒGƒtƒFƒNƒgÄ¶
 void ResourceManager::PlayEffect(int handle, float speed)
 {
 	SetSpeedPlayingEffekseer3DEffect(handle, speed);
 }
 
-// å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåœæ­¢
+// ‘SƒGƒtƒFƒNƒg’â~
 void ResourceManager::StopAllEfect()
 {
-	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
 	{
 		for (int i = 1; i < effectHandle.second.size(); i++)
 		{
@@ -775,10 +808,10 @@ void ResourceManager::StopAllEfect()
 	}
 }
 
-// å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå†ç”Ÿé–‹å§‹
+// ‘SƒGƒtƒFƒNƒgÄ¶ŠJn
 void ResourceManager::PlayAllEfect()
 {
-	for (std::pair<std::string, std::vector<int>> effectHandle : mmEffectHandle)
+	for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
 	{
 		for (int i = 1; i < effectHandle.second.size(); i++)
 		{
@@ -787,52 +820,53 @@ void ResourceManager::PlayAllEfect()
 	}
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
+// ƒGƒtƒFƒNƒg‰Šú‰»
 void ResourceManager::EffectInit()
 {
-	// å¼•æ•°ã«ã¯ç”»é¢ã«è¡¨ç¤ºã™ã‚‹æœ€å¤§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	// ˆø”‚É‚Í‰æ–Ê‚É•\¦‚·‚éÅ‘åƒp[ƒeƒBƒNƒ‹”‚ğİ’è‚·‚éB
 	if (Effekseer_Init(20000 * 10) == -1)//8000) == -1)
 	{
 		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
 		return;
 	}
-	
-	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®åˆ‡ã‚Šæ›¿ãˆã§ãƒªã‚½ãƒ¼ã‚¹ãŒæ¶ˆãˆã‚‹ã®ã‚’é˜²ãã€‚
+
+	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒEƒCƒ“ƒhƒE‚ÌØ‚è‘Ö‚¦‚ÅƒŠƒ\[ƒX‚ªÁ‚¦‚é‚Ì‚ğ–h‚®B
 	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 
-	// DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹ã€‚
+	// DXƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒfƒoƒCƒXƒƒXƒg‚µ‚½‚ÌƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚éB
 	Effekseer_SetGraphicsDeviceLostCallbackFunctions();
 
-	// Zãƒãƒƒãƒ•ã‚¡ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã€‚
+	// Zƒoƒbƒtƒ@‚ğ—LŒø‚É‚·‚éB
 	SetUseZBuffer3D(TRUE);
 
-	// Zãƒãƒƒãƒ•ã‚¡ã¸ã®æ›¸ãè¾¼ã¿ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã€‚
+	// Zƒoƒbƒtƒ@‚Ö‚Ì‘‚«‚İ‚ğ—LŒø‚É‚·‚éB
 	SetWriteZBuffer3D(TRUE);
 
-	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ç”¨ç”»åƒå–å¾—
+	// ƒGƒtƒFƒNƒg•`‰æ—p‰æ‘œæ“¾
 	mnEffectDrawPreHandle = GetGraphHandle(msResourceFile + "Effect/Background.png");
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
+// ƒGƒtƒFƒNƒgI—¹
 void ResourceManager::EffectFinailize()
 {
-    for (auto &handle : mmEffectHandle)
+    for (auto &handle : mpEffectHandleContainer->GetHandleMap())
     {
         DeleteEffekseerEffect(handle.second[0]);
     }
 
-    mmEffectHandle.clear();
-    mmEffectHandle.clear();
+	delete mpEffectHandleContainer;
+    // mmEffectHandle.clear();
+    // mmEffectHandle.clear();
     Effkseer_End();
 }
 
-// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»å‡¦ç†
+// ƒGƒtƒFƒNƒg•`‰æˆ—
 void ResourceManager::EffectDrawProcess()
 {
-	// DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚«ãƒ¡ãƒ©ã¨Effekseerã®ã‚«ãƒ¡ãƒ©ã‚’åŒæœŸã™ã‚‹ã€‚
+	// DXƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒJƒƒ‰‚ÆEffekseer‚ÌƒJƒƒ‰‚ğ“¯Šú‚·‚éB
 	Effekseer_Sync3DSetting();
-	// Effekseerã«ã‚ˆã‚Šå†ç”Ÿä¸­ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹ã€‚
+	// Effekseer‚É‚æ‚èÄ¶’†‚ÌƒGƒtƒFƒNƒg‚ğXV‚·‚éB
 	UpdateEffekseer3D();
-	// Effekseerã«ã‚ˆã‚Šå†ç”Ÿä¸­ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æç”»ã™ã‚‹ã€‚
+	// Effekseer‚É‚æ‚èÄ¶’†‚ÌƒGƒtƒFƒNƒg‚ğ•`‰æ‚·‚éB
 	DrawEffekseer3D();
 }

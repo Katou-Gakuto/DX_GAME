@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include "ObjectBases.h"
 
 class Attack_RobotSpceial : public AttackBase
@@ -9,19 +9,19 @@ public:
 
 
 private:
-    /*ã‚¢ã‚¿ãƒƒã‚¯åˆæœŸåŒ–*/
+    /*ƒAƒ^ƒbƒN‰Šú‰»*/
     void AttackInitilize() override;
-    /*ã‚¢ã‚¿ãƒƒã‚¯ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    /*ƒAƒ^ƒbƒNƒV[ƒ“ÅI‰Šú‰»*/
     void AttackSceneLastInitilize() override;
-    /*ã‚¢ã‚¿ãƒƒã‚¯çµ‚äº†*/
+    /*ƒAƒ^ƒbƒNI—¹*/
     void AttackFinalize() override;
-    /*ã‚¢ã‚¿ãƒƒã‚¯æ›´æ–°*/
+    /*ƒAƒ^ƒbƒNXV*/
     void AttackUpdate() override;
-    /*ã‚¢ã‚¿ãƒƒã‚¯æœ€çµ‚æ›´æ–°*/
+    /*ƒAƒ^ƒbƒNÅIXV*/
     void AttackLastUpdate() override;
-    /*ã‚¢ã‚¿ãƒƒã‚¯æç”»*/
+    /*ƒAƒ^ƒbƒN•`‰æ*/
     void AttackDraw() override;
 
-    /*å½“ãŸã‚Šåˆ¤å®š*/
+    /*“–‚½‚è”»’è*/
     void HitCheck(CollisionData& collisionData) override;
 };

@@ -1,4 +1,4 @@
-ï»¿#include <stdlib.h>
+#include <stdlib.h>
 #include <map>
 #include <vector>
 
@@ -26,47 +26,47 @@ UI_Title::~UI_Title()
 {
 }
 
-// UIåˆæœŸåŒ–
+// UI‰Šú‰»
 void UI_Title::UIInitilize()
 {
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
     DRAW_GRAPH_DATA drawData;
     
-    std::vector<std::map<int, VECTOR>> setUIPosData;    // UIåº§æ¨™æƒ…å ±è¨­å®šç”¨å¤‰æ•°
+    std::vector<std::map<int, VECTOR>> setUIPosData;    // UIÀ•Wî•ñİ’è—p•Ï”
 
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
     
-    // æ˜ åƒè¨­å®š
+    // ‰f‘œİ’è
     {
         setDrawDatas.clear();
         
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = Vector2_Int(0, 0);
         drawData.size = displaySize.LeftUp_FloatRatio(1.0f);
-        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");// TODO: æ™‚é–“å¸¯ã§è‰²å¤‰æ›´
+        drawData.handle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");// TODO: ŠÔ‘Ñ‚ÅF•ÏX
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
     }
 
 
-    // å›ºå®šç”»åƒè¨­å®š
+    // ŒÅ’è‰æ‘œİ’è
     {
         setDrawDatas.clear();
         
-        // ã‚¿ã‚¤ãƒˆãƒ«æ–‡å­—
+        // ƒ^ƒCƒgƒ‹•¶š
         {
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.2f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
             setDrawDatas.push_back(drawData);
-            // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+            // ƒ‚ƒfƒ‹’Ç‰Á
             AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-            // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+            // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
             AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::START_TITLE_UI_STATE, (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
         }
 
@@ -75,7 +75,7 @@ void UI_Title::UIInitilize()
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
         setDrawDatas.push_back(drawData);
 
-        // æ–‡å­—èƒŒæ™¯
+        // •¶š”wŒi
         {
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.16f, 0.5f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.31f, 0.1f));
@@ -96,7 +96,7 @@ void UI_Title::UIInitilize()
             setDrawDatas.push_back(drawData);
         }
 
-        // æ–‡å­—
+        // •¶š
         {
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.185f, 0.52f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.26f, 0.06f));
@@ -117,13 +117,13 @@ void UI_Title::UIInitilize()
             setDrawDatas.push_back(drawData);
         }
 
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
     }
 
-    // ç§»å‹•ç”»åƒè¨­å®š
+    // ˆÚ“®‰æ‘œİ’è
     {
         setDrawDatas.clear();
         
@@ -132,12 +132,12 @@ void UI_Title::UIInitilize()
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/SelectString_1.png");
         setDrawDatas.push_back(drawData);
 
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
 
-        setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // ãƒ¢ãƒ‡ãƒ«æ•°åˆ†ç¢ºä¿
+        setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // ƒ‚ƒfƒ‹”•ªŠm•Û
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.135f, 0.48f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][1] = VGet(0.135f, 0.68f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.505f, 0.48f, 0.0f);
@@ -169,45 +169,45 @@ void UI_Title::UIInitilize()
         }
     }
 
-	// // ãƒ¢ãƒ‡ãƒ«è¨­å®š
+	// // ƒ‚ƒfƒ‹İ’è
     // mpUIModelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &setDrawDatas));
-	// // ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³è¨­å®š
+	// // ƒAƒjƒƒVƒ‡ƒ“İ’è
 	//  {
 	//  	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	//  	// èª­ã¿è¾¼ã¿ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®š
+	//  	// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
 	//  	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE));
-	//  	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³è¨­å®š
+	//  	// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
 	//  	mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mpAnimation, ANIMATION_FACTORY_NUMBER::UI, LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_TITLE, setcharacterLoadAnimationData));
 	//  }
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”»åƒè¨­å®š
+    // ƒvƒŒƒCƒ„[‰æ‘œİ’è
     {
         SetGraphCount(1);
         SetGraphHandle(0, mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"));
     }
 }
 
-// UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+// UIƒV[ƒ“ÅI‰Šú‰»
 void UI_Title::UISceneLastInitilize()
 {
 }
 
-// UIçµ‚äº†
+// UII—¹
 void UI_Title::UIFinalize()
 {
 }
 
-// UIæ›´æ–°
+// UIXV
 void UI_Title::UIUpdate()
 {
 }
 
-// UIæœ€çµ‚æ›´æ–°
+// UIÅIXV
 void UI_Title::UILastUpdate()
 {
 }
 
-// UIæç”»
+// UI•`‰æ
 void UI_Title::UIDraw()
 {
 
@@ -236,13 +236,13 @@ void UI_Title::UIDraw()
 }
 
 
-// é¸æŠæ±ºå®šæ™‚å‡¦ç†
+// ‘I‘ğŒˆ’èˆ—
 void UI_Title::DecisionProcess()
 {
 	mpFsm->Decision(this);
 }
 
-// å‰Šé™¤å‡¦ç†
+// íœˆ—
 void UI_Title::CloceProcess()
 {
 	if (mpFsm != nullptr)

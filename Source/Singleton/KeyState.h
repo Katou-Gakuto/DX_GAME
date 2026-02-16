@@ -1,146 +1,146 @@
-ï»¿#pragma once
+#pragma once
 #include "BitFlag.h"
 
 #include "DxLib.h"
-// TODO: Dxlibãƒ˜ãƒƒãƒ€ãƒ¼ã§ã¯ãªãDirectXã§ã§ãã‚‹ã‚ˆã†ã«ã—ãŸã»ã†ãŒåŠ¹çŽ‡è‰¯ã•ãã†
+// TODO: Dxlibƒwƒbƒ_[‚Å‚Í‚È‚­DirectX‚Å‚Å‚«‚é‚æ‚¤‚É‚µ‚½‚Ù‚¤‚ªŒø—¦—Ç‚³‚»‚¤
 /*----------------------------------------------*/
-/*          ã€ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆenum classã€‘          */
+/*          yƒL[ƒXƒe[ƒgenum classz          */
 /*----------------------------------------------*/
 
 /*--------------------*/
-/*     ã€ãƒ•ãƒ©ã‚°ã€‘     */
+/*     yƒtƒ‰ƒOz     */
 /*--------------------*/
 
-// ãƒ•ãƒ©ã‚°ã®ç¨®é¡ž(ã“ã®enumã‚’ä½¿ã£ã¦ãªã„ãƒ•ãƒ©ã‚°ã‚‚ã‚ã‚‹
+// ƒtƒ‰ƒO‚ÌŽí—Þ(‚±‚Ìenum‚ðŽg‚Á‚Ä‚È‚¢ƒtƒ‰ƒO‚à‚ ‚é
 enum class FLAG_TYPE
 {
-	/*ç¾åœ¨ã®çŠ¶æ…‹*/
+	/*Œ»Ý‚Ìó‘Ô*/
 	NOW,
-	/*æŠ¼ã—ãŸå§‹ã‚ãŸ*/
+	/*‰Ÿ‚µ‚½Žn‚ß‚½*/
 	DOWN,
-	/*é›¢ã—ãŸ*/
+	/*—£‚µ‚½*/
 	UP,
 
-	/*æœ€å¤§*/
+	/*Å‘å*/
 	MAX
 };
 
 /*----------------------------*/
-/*     ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã€‘     */
+/*     yƒRƒ“ƒgƒ[ƒ‰[z     */
 /*----------------------------*/
 
-// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚­ãƒ¼ã®ç¨®é¡ž
+// ƒRƒ“ƒgƒ[ƒ‰[ƒL[‚ÌŽí—Þ
 enum class CONTROLLER_KEY_TYPE
 {
-	/*æœ‰ç„¡*/
+	/*—L–³*/
 	EXISTENCE = 0,
 
-	/*Aãƒœã‚¿ãƒ³*/
+	/*Aƒ{ƒ^ƒ“*/
 	A,
-	/*Bãƒœã‚¿ãƒ³*/
+	/*Bƒ{ƒ^ƒ“*/
 	B,
-	/*Xãƒœã‚¿ãƒ³*/
+	/*Xƒ{ƒ^ƒ“*/
 	X,
-	/*Yãƒœã‚¿ãƒ³*/
+	/*Yƒ{ƒ^ƒ“*/
 	Y,
 
-	/*Lãƒœã‚¿ãƒ³(å·¦ãƒˆãƒªã‚¬ãƒ¼)*/
+	/*Lƒ{ƒ^ƒ“(¶ƒgƒŠƒK[)*/
 	L,
-	/*LTãƒœã‚¿ãƒ³(å·¦å¥¥ãƒˆãƒªã‚¬ãƒ¼)*/
+	/*LTƒ{ƒ^ƒ“(¶‰œƒgƒŠƒK[)*/
 	LT,
-	/*Rãƒœã‚¿ãƒ³(å³ãƒˆãƒªã‚¬ãƒ¼)*/
+	/*Rƒ{ƒ^ƒ“(‰EƒgƒŠƒK[)*/
 	R,
-	/*RTãƒœã‚¿ãƒ³(å³å¥¥ãƒˆãƒªã‚¬ãƒ¼)*/
+	/*RTƒ{ƒ^ƒ“(‰E‰œƒgƒŠƒK[)*/
 	RT,
 
-	/*å·¦ãƒœã‚¿ãƒ³*/
+	/*¶ƒ{ƒ^ƒ“*/
 	LEFT,
-	/*å³ãƒœã‚¿ãƒ³*/
+	/*‰Eƒ{ƒ^ƒ“*/
 	RIGHT,
-	/*ä¸Šãƒœã‚¿ãƒ³*/
+	/*ãƒ{ƒ^ƒ“*/
 	UP,
-	/*ä¸‹ãƒœã‚¿ãƒ³*/
+	/*‰ºƒ{ƒ^ƒ“*/
 	DOWN,
 
-	/*å·¦(å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*¶(¶ƒXƒeƒBƒbƒN)*/
 	LEFT_STICK_LEFT,
-	/*å³(å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰E(¶ƒXƒeƒBƒbƒN)*/
 	LEFT_STICK_RIGHT,
-	/*ä¸Š(å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*ã(¶ƒXƒeƒBƒbƒN)*/
 	LEFT_STICK_UP,
-	/*ä¸‹(å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰º(¶ƒXƒeƒBƒbƒN)*/
 	LEFT_STICK_DOWN,
-	/*æŠ¼ã—è¾¼ã¿(å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰Ÿ‚µž‚Ý(¶ƒXƒeƒBƒbƒN)*/
 	LEFT_STICK_PUSH,
 
-	/*å·¦(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*¶(‰EƒXƒeƒBƒbƒN)*/
 	RIGHT_STICK_LEFT,
-	/*å³(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰E(‰EƒXƒeƒBƒbƒN)*/
 	RIGHT_STICK_RIGHT,
-	/*ä¸Š(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*ã(‰EƒXƒeƒBƒbƒN)*/
 	RIGHT_STICK_UP,
-	/*ä¸‹(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰º(‰EƒXƒeƒBƒbƒN)*/
 	RIGHT_STICK_DOWN,
-	/*æŠ¼ã—è¾¼ã¿(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯)*/
+	/*‰Ÿ‚µž‚Ý(‰EƒXƒeƒBƒbƒN)*/
 	RIGHT_STICK_PUSH,
 
-	/*ã‚¹ã‚¿ãƒ¼ãƒˆ*/
+	/*ƒXƒ^[ƒg*/
 	START,
-	/*ãƒãƒƒã‚¯*/
+	/*ƒoƒbƒN*/
 	BACK,
 
-	/*æœ€å¤§ã‚­ãƒ¼æ•°*/
+	/*Å‘åƒL[”*/
 	KEY_MAX
 };
 
-// å¤‰å‹•ã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+// •Ï“®‚·‚éƒRƒ“ƒgƒ[ƒ‰[ƒL[ƒiƒ“ƒo[
 enum class CONTROLLER_KEY_VARIABLE_NUMBER
 {
-	/*å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯(Xè»¸)*/
+	/*‰EƒXƒeƒBƒbƒN(XŽ²)*/
 	STICK_RIGHT_X = 0,
-	/*å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯(Yè»¸)*/
+	/*‰EƒXƒeƒBƒbƒN(YŽ²)*/
 	STICK_RIGHT_Y,
-	/*å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯(Xè»¸)*/
+	/*¶ƒXƒeƒBƒbƒN(XŽ²)*/
 	STICK_LEFT_X,
-	/*å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯(Yè»¸)*/
+	/*¶ƒXƒeƒBƒbƒN(YŽ²)*/
 	STICK_LEFT_Y,
-	/*å³å¥¥ãƒˆãƒªã‚¬ãƒ¼*/
+	/*‰E‰œƒgƒŠƒK[*/
 	RIGHT_TRIGGER,
-	/*å·¦å¥¥ãƒˆãƒªã‚¬ãƒ¼*/
+	/*¶‰œƒgƒŠƒK[*/
 	LEFT_TRIGGER
 };
 
-// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+// ƒRƒ“ƒgƒ[ƒ‰[ƒiƒ“ƒo[
 enum class CONTROLLER_KEY_NUMBER
 {
-	/*ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰*/
+	/*ƒL[ƒ{[ƒh*/
 	KEY_BOARD = 0,
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼(1)*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[(1)*/
 	CONTROLLER_1,
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼(2)*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[(2)*/
 	CONTROLLER_2,
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼(3)*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[(3)*/
 	CONTROLLER_3,
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼(4)*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[(4)*/
 	CONTROLLER_4,
 
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æœ€å¤§æ•°*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[Å‘å”*/
 	MAX_CONTROLLER
 };
 
 /*------------------------*/
-/*     ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€‘     */
+/*     yƒL[ƒ{[ƒhz     */
 /*------------------------*/
 
-// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°è¨­å®šç”¨
+// ƒL[ƒ{[ƒhƒtƒ‰ƒOÝ’è—p
 namespace KEY_BOARD_SET_NUMBER
 {
-	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ã‚­ãƒ¼ç¨®é¡ž
+	// ƒL[ƒ{[ƒh‚ÌƒL[Ží—Þ
 	enum class BOARD_KEY_TYPE
-	{// 137å€‹
+	{// 137ŒÂ
 
 		/*------------*/
-		/*ã€æ•°å­—ã‚­ãƒ¼ã€‘*/
+		/*y”ŽšƒL[z*/
 		/*------------*/
 
 		_0 = '0',
@@ -155,7 +155,7 @@ namespace KEY_BOARD_SET_NUMBER
 		_9,
 		
 		/*------------*/
-		/*ã€æ–‡å­—ã‚­ãƒ¼ã€‘*/
+		/*y•¶ŽšƒL[z*/
 		/*------------*/
 
 		A = 'A',
@@ -186,72 +186,72 @@ namespace KEY_BOARD_SET_NUMBER
 		Z,
 
 		/*------------*/
-		/*ã€è¨˜å·æ–‡å­—ã€‘*/
+		/*y‹L†•¶Žšz*/
 		/*------------*/
 
-		COLON = 186,				// ã‚³ãƒ­ãƒ³
-		SENI_COLON,					// ã‚»ãƒŸã‚³ãƒ­ãƒ³
-		COMMA,						// ã‚«ãƒ³ãƒž
-		HYPHEN,						// ãƒã‚¤ãƒ•ãƒ³
-		PERIOD,						// ãƒ”ãƒªã‚ªãƒ‰
-		SLASH,						// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
-		AT_SIGN,					// ã‚¢ãƒƒãƒˆãƒžãƒ¼ã‚¯
-		SQUARE_BRACKET = 219,		// è§’æ‹¬å¼§
-		YEN_SIGN,					// å††ãƒžãƒ¼ã‚¯
-		SQUARE_BRACKET_CLOSE,		// è§’æ‹¬å¼§
-		CARET,						// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆ(^)
-		BACK_SLASH = 226,			// ãƒãƒƒã‚¯ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
+		COLON = 186,				// ƒRƒƒ“
+		SENI_COLON,					// ƒZƒ~ƒRƒƒ“
+		COMMA,						// ƒJƒ“ƒ}
+		HYPHEN,						// ƒnƒCƒtƒ“
+		PERIOD,						// ƒsƒŠƒIƒh
+		SLASH,						// ƒXƒ‰ƒbƒVƒ…
+		AT_SIGN,					// ƒAƒbƒgƒ}[ƒN
+		SQUARE_BRACKET = 219,		// ŠpŠ‡ŒÊ
+		YEN_SIGN,					// ‰~ƒ}[ƒN
+		SQUARE_BRACKET_CLOSE,		// ŠpŠ‡ŒÊ
+		CARET,						// ƒLƒƒƒŒƒbƒg(^)
+		BACK_SLASH = 226,			// ƒoƒbƒNƒXƒ‰ƒbƒVƒ…
 
 		/*------------*/
-		/*ã€ç§»å‹•ã‚­ãƒ¼ã€‘*/
+		/*yˆÚ“®ƒL[z*/
 		/*------------*/
 
-		PG_UP = 33,					// ãƒšãƒ¼ã‚¸ã‚¢ãƒƒãƒ—
-		PG_DN,						// ãƒšãƒ¼ã‚¸ãƒ€ã‚¦ãƒ³
-		END,						// è¡Œæœ«ã¾ã§é£›ã¶
-		HOME,						// è¡Œé ­ã¾ã§é£›ã¶
-		ARROW_LEFT,					// å·¦ç§»å‹•
-		ARROW_UP,					// ä¸Šç§»å‹•
-		ARROW_RIGHT,				// å³ç§»å‹•
-		ARROW_DOWN,					// ä¸‹ç§»å‹•
+		PG_UP = 33,					// ƒy[ƒWƒAƒbƒv
+		PG_DN,						// ƒy[ƒWƒ_ƒEƒ“
+		END,						// s––‚Ü‚Å”ò‚Ô
+		HOME,						// s“ª‚Ü‚Å”ò‚Ô
+		ARROW_LEFT,					// ¶ˆÚ“®
+		ARROW_UP,					// ãˆÚ“®
+		ARROW_RIGHT,				// ‰EˆÚ“®
+		ARROW_DOWN,					// ‰ºˆÚ“®
 
 		/*------------*/
-		/*ã€ç‰¹æ®Šã‚­ãƒ¼ã€‘*/
+		/*y“ÁŽêƒL[z*/
 		/*------------*/
 
-		BACK_SPACE = 8,				// ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹
-		TAB,						// ã‚¿ãƒ–
-		ENTER = 13,					// ã‚¨ãƒ³ã‚¿ãƒ¼
-		SPACE = 32,					// ã‚¹ãƒšãƒ¼ã‚¹
-		INSERT = 45,				// ã‚¤ãƒ³ã‚µãƒ¼ãƒˆ
-		_DELETE,					// ãƒ‡ãƒªãƒ¼ãƒˆ
-		APPLICATION_KEY = 93,		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼(ãƒŽãƒ¼ãƒˆã¿ãŸã„ãªçµµã®å¥´)
+		BACK_SPACE = 8,				// ƒoƒbƒNƒXƒy[ƒX
+		TAB,						// ƒ^ƒu
+		ENTER = 13,					// ƒGƒ“ƒ^[
+		SPACE = 32,					// ƒXƒy[ƒX
+		INSERT = 45,				// ƒCƒ“ƒT[ƒg
+		_DELETE,					// ƒfƒŠ[ƒg
+		APPLICATION_KEY = 93,		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒL[(ƒm[ƒg‚Ý‚½‚¢‚ÈŠG‚Ì“z)
 
 		/*------------*/
-		/*ã€ä¿®é£¾ã‚­ãƒ¼ã€‘*/
+		/*yCüƒL[z*/
 		/*------------*/
 
-		SHIFT_LEFT_AND_RIGHT = 16,	// ä¸¡ã‚·ãƒ•ãƒˆ
-		SIFT_LEFT = 160,			// å·¦ã‚·ãƒ•ãƒˆ
-		SIFT_RIGHT,					// å³ã‚·ãƒ•ãƒˆ
-		CTRL_LEFT_AND_RIGHT = 17,	// ä¸¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-		CTRL_LEFT = 162,			// å·¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-		CTRL_RIGHT,					// å³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-		ALT_LEFT_AND_RIGHT = 18,	// ä¸¡ã‚ªãƒ«ãƒˆ
-		ALT_LEFT = 164,				// å·¦ã‚ªãƒ«ãƒˆ
-		ALT_RIGHT,					// å³ã‚ªãƒ«ãƒˆ
-		ESC = 27,					// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
-		WINDOWS = 91,				// ã‚¦ã‚£ãƒ³ãƒ‰ãƒ¼ã‚º
+		SHIFT_LEFT_AND_RIGHT = 16,	// —¼ƒVƒtƒg
+		SIFT_LEFT = 160,			// ¶ƒVƒtƒg
+		SIFT_RIGHT,					// ‰EƒVƒtƒg
+		CTRL_LEFT_AND_RIGHT = 17,	// —¼ƒRƒ“ƒgƒ[ƒ‹
+		CTRL_LEFT = 162,			// ¶ƒRƒ“ƒgƒ[ƒ‹
+		CTRL_RIGHT,					// ‰EƒRƒ“ƒgƒ[ƒ‹
+		ALT_LEFT_AND_RIGHT = 18,	// —¼ƒIƒ‹ƒg
+		ALT_LEFT = 164,				// ¶ƒIƒ‹ƒg
+		ALT_RIGHT,					// ‰EƒIƒ‹ƒg
+		ESC = 27,					// ƒGƒXƒP[ƒv
+		WINDOWS = 91,				// ƒEƒBƒ“ƒh[ƒY
 
 		/*--------------*/
-		/*ã€åŠè§’ãƒ»å…¨è§’ã€‘*/
+		/*y”¼ŠpE‘SŠpz*/
 		/*--------------*/
-		HALF_WIDTH = 240,			// åŠè§’
-		FULL_WIDTH = 242,			// å…¨è§’
+		HALF_WIDTH = 240,			// ”¼Šp
+		FULL_WIDTH = 242,			// ‘SŠp
 
 
 		/*---------*/
-		/*ã€Fæ•°å­—ã€‘*/
+		/*yF”Žšz*/
 		/*---------*/
 
 		F1 = 112,
@@ -268,15 +268,15 @@ namespace KEY_BOARD_SET_NUMBER
 		F12,
 
 		/*--------------*/
-		/*ã€ãƒˆã‚°ãƒ«ã‚­ãƒ¼ã€‘*/
+		/*yƒgƒOƒ‹ƒL[z*/
 		/*--------------*/
 
-		NUM_LOCK = 144,				// num(ãƒŠãƒ )ãƒ­ãƒƒã‚¯
-		CAPS_LOCK,					// caps(ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼)ãƒ­ãƒƒã‚¯
-		SCROLL_LOCK = 20,			// Scroll(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«)ãƒ­ãƒƒã‚¯
+		NUM_LOCK = 144,				// num(ƒiƒ€)ƒƒbƒN
+		CAPS_LOCK,					// caps(ƒLƒƒƒvƒ`ƒƒ[)ƒƒbƒN
+		SCROLL_LOCK = 20,			// Scroll(ƒXƒNƒ[ƒ‹)ƒƒbƒN
 
 		/*----------*/
-		/*ã€NumPadã€‘*/
+		/*yNumPadz*/
 		/*----------*/
 
 		NUMPAD_0_NUM_ON = 96,		// 0
@@ -289,36 +289,36 @@ namespace KEY_BOARD_SET_NUMBER
 		NUMPAD_7_NUM_ON,			// 7
 		NUMPAD_8_NUM_ON,			// 8
 		NUMPAD_9_NUM_ON,			// 9
-		NUMPAD_ASTERISK,			// ã‚¢ã‚¹ã‚¿ãƒªã‚¹ã‚¯(æŽ›ã‘ç®—)
-		NUMPAD_PLUS,				// ãƒ—ãƒ©ã‚¹(è¶³ã—ç®—)
-		NUMPAD_MINUS = 109,			// ãƒžã‚¤ãƒŠã‚¹(å¼•ãç®—)
-		NUMPAD_SLASH = 111,			// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥(å‰²ã‚Šç®—)
-		NUMPAD_5_NUM_OFF = 12,		// ä½•ã‚‚æ–‡å­—ã‚’ã‹ã‘ãªã„å–å¾—å‡ºæ¥ã‚‹ã ã‘
+		NUMPAD_ASTERISK,			// ƒAƒXƒ^ƒŠƒXƒN(Š|‚¯ŽZ)
+		NUMPAD_PLUS,				// ƒvƒ‰ƒX(‘«‚µŽZ)
+		NUMPAD_MINUS = 109,			// ƒ}ƒCƒiƒX(ˆø‚«ŽZ)
+		NUMPAD_SLASH = 111,			// ƒXƒ‰ƒbƒVƒ…(Š„‚èŽZ)
+		NUMPAD_5_NUM_OFF = 12,		// ‰½‚à•¶Žš‚ð‚©‚¯‚È‚¢Žæ“¾o—ˆ‚é‚¾‚¯
 
 
 		/*----------------------------------------*/
-		/*ã€éŸ³é‡ã‚­ãƒ¼(ä½¿ã‚ãªã„äºˆå®šã€å–å¾—ã‚‚ã—ãªã„)ã€‘*/
+		/*y‰¹—ÊƒL[(Žg‚í‚È‚¢—\’èAŽæ“¾‚à‚µ‚È‚¢)z*/
 		/*----------------------------------------*/
 
-		VOLUME_DELETE = 173,		// éŸ³é‡å‰Šé™¤
-		VOLUME_DOWN,				// éŸ³é‡ä¸‹ã’ã‚‹
-		VOLUME_UP,					// éŸ³é‡ä¸Šã’ã‚‹
+		VOLUME_DELETE = 173,		// ‰¹—Êíœ
+		VOLUME_DOWN,				// ‰¹—Ê‰º‚°‚é
+		VOLUME_UP,					// ‰¹—Êã‚°‚é
 
 		/*----------*/
-		/*ã€ãƒžã‚¦ã‚¹ã€‘*/
+		/*yƒ}ƒEƒXz*/
 		/*----------*/
 
-		MOUSE_LEFT = 1,				// å·¦ãƒžã‚¦ã‚¹
-		MOUSE_RIGHT,				// å³ãƒžã‚¦ã‚¹
-		MOUSE_WHEEL_BUTTON = 4,		// ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«
+		MOUSE_LEFT = 1,				// ¶ƒ}ƒEƒX
+		MOUSE_RIGHT,				// ‰Eƒ}ƒEƒX
+		MOUSE_WHEEL_BUTTON = 4,		// ƒ}ƒEƒXƒzƒC[ƒ‹
 	};
 }
 
-// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ æ–‡å­—æ“ä½œç¨®é¡ž
+// ƒL[ƒ{[ƒh •¶Žš‘€ìŽí—Þ
 enum class KEY_BOARD_WORD
 {
 	/*------------*/
-	/*ã€æ•°å­—ã‚­ãƒ¼ã€‘*/
+	/*y”ŽšƒL[z*/
 	/*------------*/
 
 	_0 = 0,
@@ -333,7 +333,7 @@ enum class KEY_BOARD_WORD
 	_9,
 
 	/*------------*/
-	/*ã€æ–‡å­—ã‚­ãƒ¼ã€‘*/
+	/*y•¶ŽšƒL[z*/
 	/*------------*/
 
 	A,
@@ -364,75 +364,75 @@ enum class KEY_BOARD_WORD
 	Z,
 
 	/*------------*/
-	/*ã€è¨˜å·æ–‡å­—ã€‘*/
+	/*y‹L†•¶Žšz*/
 	/*------------*/
 
-	COLON,					// ã‚³ãƒ­ãƒ³
-	SENI_COLON,				// ã‚»ãƒŸã‚³ãƒ­ãƒ³
-	COMMA,					// ã‚«ãƒ³ãƒž
-	HYPHEN,					// ãƒã‚¤ãƒ•ãƒ³
-	PERIOD,					// ãƒ”ãƒªã‚ªãƒ‰
-	SLASH,					// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
-	AT_SIGN,				// ã‚¢ãƒƒãƒˆãƒžãƒ¼ã‚¯
-	SQUARE_BRACKET,			// è§’æ‹¬å¼§
-	YEN_SIGN,				// å††ãƒžãƒ¼ã‚¯
-	SQUARE_BRACKET_CLOSE,	// è§’æ‹¬å¼§
-	CARET,					// ã‚­ãƒ£ãƒ¬ãƒƒãƒˆ(^)
-	BACK_SLASH,				// ãƒãƒƒã‚¯ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
+	COLON,					// ƒRƒƒ“
+	SENI_COLON,				// ƒZƒ~ƒRƒƒ“
+	COMMA,					// ƒJƒ“ƒ}
+	HYPHEN,					// ƒnƒCƒtƒ“
+	PERIOD,					// ƒsƒŠƒIƒh
+	SLASH,					// ƒXƒ‰ƒbƒVƒ…
+	AT_SIGN,				// ƒAƒbƒgƒ}[ƒN
+	SQUARE_BRACKET,			// ŠpŠ‡ŒÊ
+	YEN_SIGN,				// ‰~ƒ}[ƒN
+	SQUARE_BRACKET_CLOSE,	// ŠpŠ‡ŒÊ
+	CARET,					// ƒLƒƒƒŒƒbƒg(^)
+	BACK_SLASH,				// ƒoƒbƒNƒXƒ‰ƒbƒVƒ…
 
 	/*------------*/
-	/*ã€ç§»å‹•ã‚­ãƒ¼ã€‘*/
+	/*yˆÚ“®ƒL[z*/
 	/*------------*/
 
-	PG_UP,					// ãƒšãƒ¼ã‚¸ã‚¢ãƒƒãƒ—
-	PG_DN,					// ãƒšãƒ¼ã‚¸ãƒ€ã‚¦ãƒ³
-	END,					// è¡Œæœ«ã¾ã§é£›ã¶
-	HOME,					// è¡Œé ­ã¾ã§é£›ã¶
-	ARROW_LEFT,				// å·¦ç§»å‹•
-	ARROW_UP,				// ä¸Šç§»å‹•
-	ARROW_RIGHT,			// å³ç§»å‹•
-	ARROW_DOWN,				// ä¸‹ç§»å‹•
+	PG_UP,					// ƒy[ƒWƒAƒbƒv
+	PG_DN,					// ƒy[ƒWƒ_ƒEƒ“
+	END,					// s––‚Ü‚Å”ò‚Ô
+	HOME,					// s“ª‚Ü‚Å”ò‚Ô
+	ARROW_LEFT,				// ¶ˆÚ“®
+	ARROW_UP,				// ãˆÚ“®
+	ARROW_RIGHT,			// ‰EˆÚ“®
+	ARROW_DOWN,				// ‰ºˆÚ“®
 };
 
-// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ ç‰¹æ®Š
+// ƒL[ƒ{[ƒh “ÁŽê
 enum class KEY_BOARD_SPECIAL
 {
 	/*------------*/
-	/*ã€ç‰¹æ®Šã‚­ãƒ¼ã€‘*/
+	/*y“ÁŽêƒL[z*/
 	/*------------*/
 
-	BACK_SPACE = 0,			// ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹
-	TAB,					// ã‚¿ãƒ–
-	ENTER,					// ã‚¨ãƒ³ã‚¿ãƒ¼
-	SPACE,					// ã‚¹ãƒšãƒ¼ã‚¹
-	INSERT,					// ã‚¤ãƒ³ã‚µãƒ¼ãƒˆ
-	_DELETE,				// ãƒ‡ãƒªãƒ¼ãƒˆ
-	APPLICATION_KEY,		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼(ãƒŽãƒ¼ãƒˆã¿ãŸã„ãªçµµã®å¥´)
+	BACK_SPACE = 0,			// ƒoƒbƒNƒXƒy[ƒX
+	TAB,					// ƒ^ƒu
+	ENTER,					// ƒGƒ“ƒ^[
+	SPACE,					// ƒXƒy[ƒX
+	INSERT,					// ƒCƒ“ƒT[ƒg
+	_DELETE,				// ƒfƒŠ[ƒg
+	APPLICATION_KEY,		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒL[(ƒm[ƒg‚Ý‚½‚¢‚ÈŠG‚Ì“z)
 
 	/*------------*/
-	/*ã€ä¿®é£¾ã‚­ãƒ¼ã€‘*/
+	/*yCüƒL[z*/
 	/*------------*/
 
-	SHIFT_LEFT_AND_RIGHT,	// ä¸¡ã‚·ãƒ•ãƒˆ
-	SIFT_LEFT,				// å·¦ã‚·ãƒ•ãƒˆ
-	SIFT_RIGHT,				// å³ã‚·ãƒ•ãƒˆ
-	CTRL_LEFT_AND_RIGHT,	// ä¸¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-	CTRL_LEFT,				// å·¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-	CTRL_RIGHT,				// å³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
-	ALT_LEFT_AND_RIGHT,		// ä¸¡ã‚ªãƒ«ãƒˆ
-	ALT_LEFT,				// å·¦ã‚ªãƒ«ãƒˆ
-	ALT_RIGHT,				// å³ã‚ªãƒ«ãƒˆ
-	ESC,					// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
-	WINDOWS,				// ã‚¦ã‚£ãƒ³ãƒ‰ãƒ¼ã‚º
+	SHIFT_LEFT_AND_RIGHT,	// —¼ƒVƒtƒg
+	SIFT_LEFT,				// ¶ƒVƒtƒg
+	SIFT_RIGHT,				// ‰EƒVƒtƒg
+	CTRL_LEFT_AND_RIGHT,	// —¼ƒRƒ“ƒgƒ[ƒ‹
+	CTRL_LEFT,				// ¶ƒRƒ“ƒgƒ[ƒ‹
+	CTRL_RIGHT,				// ‰EƒRƒ“ƒgƒ[ƒ‹
+	ALT_LEFT_AND_RIGHT,		// —¼ƒIƒ‹ƒg
+	ALT_LEFT,				// ¶ƒIƒ‹ƒg
+	ALT_RIGHT,				// ‰EƒIƒ‹ƒg
+	ESC,					// ƒGƒXƒP[ƒv
+	WINDOWS,				// ƒEƒBƒ“ƒh[ƒY
 
 	/*--------------*/
-	/*ã€åŠè§’ãƒ»å…¨è§’ã€‘*/
+	/*y”¼ŠpE‘SŠpz*/
 	/*--------------*/
-	HALF_WIDTH,				// åŠè§’
-	FULL_WIDTH,				// å…¨è§’
+	HALF_WIDTH,				// ”¼Šp
+	FULL_WIDTH,				// ‘SŠp
 
 	/*---------*/
-	/*ã€Fæ•°å­—ã€‘*/
+	/*yF”Žšz*/
 	/*---------*/
 
 	F1,
@@ -449,17 +449,17 @@ enum class KEY_BOARD_SPECIAL
 	F12,
 };
 
-// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ ãƒ†ãƒ³ã‚­ãƒ¼æ“ä½œ
+// ƒL[ƒ{[ƒh ƒeƒ“ƒL[‘€ì
 enum class KEY_BOARD_NUM_PAD
 {
 	/*--------------*/
-	/*ã€ãƒˆã‚°ãƒ«ã‚­ãƒ¼ã€‘*/
+	/*yƒgƒOƒ‹ƒL[z*/
 	/*--------------*/
 
-	NUM_LOCK = 0,				// num(ãƒŠãƒ )ãƒ­ãƒƒã‚¯
+	NUM_LOCK = 0,				// num(ƒiƒ€)ƒƒbƒN
 
 	/*-----------*/
-	/*ã€FNumPadã€‘*/
+	/*yFNumPadz*/
 	/*-----------*/
 	
 	NUMPAD_0_NUM_ON,			// 0
@@ -472,430 +472,430 @@ enum class KEY_BOARD_NUM_PAD
 	NUMPAD_7_NUM_ON,			// 7
 	NUMPAD_8_NUM_ON,			// 8
 	NUMPAD_9_NUM_ON,			// 9
-	NUMPAD_ASTERISK,			// ã‚¢ã‚¹ã‚¿ãƒªã‚¹ã‚¯(æŽ›ã‘ç®—)
-	NUMPAD_PLUS,				// ãƒ—ãƒ©ã‚¹(è¶³ã—ç®—)
-	NUMPAD_MINUS,				// ãƒžã‚¤ãƒŠã‚¹(å¼•ãç®—)
-	NUMPAD_SLASH,				// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥(å‰²ã‚Šç®—)
-	NUMPAD_5_NUM_OFF,			// ä½•ã‚‚æ–‡å­—ã‚’ã‹ã‘ãªã„å–å¾—å‡ºæ¥ã‚‹ã ã‘
+	NUMPAD_ASTERISK,			// ƒAƒXƒ^ƒŠƒXƒN(Š|‚¯ŽZ)
+	NUMPAD_PLUS,				// ƒvƒ‰ƒX(‘«‚µŽZ)
+	NUMPAD_MINUS,				// ƒ}ƒCƒiƒX(ˆø‚«ŽZ)
+	NUMPAD_SLASH,				// ƒXƒ‰ƒbƒVƒ…(Š„‚èŽZ)
+	NUMPAD_5_NUM_OFF,			// ‰½‚à•¶Žš‚ð‚©‚¯‚È‚¢Žæ“¾o—ˆ‚é‚¾‚¯
 };
 
-// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€€ãƒˆã‚°ãƒ«ã®çŠ¶æ…‹
+// ƒL[ƒ{[ƒh@ƒgƒOƒ‹‚Ìó‘Ô
 enum class KEY_BOARD_TOGGLE
 {
-	NUM_LOCK = 0,	// num(ãƒŠãƒ )ãƒ­ãƒƒã‚¯
-	CAPS_LOCK,		// caps(ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼)ãƒ­ãƒƒã‚¯
-	SCROLL_LOCK,	// Scroll(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«)ãƒ­ãƒƒã‚¯
+	NUM_LOCK = 0,	// num(ƒiƒ€)ƒƒbƒN
+	CAPS_LOCK,		// caps(ƒLƒƒƒvƒ`ƒƒ[)ƒƒbƒN
+	SCROLL_LOCK,	// Scroll(ƒXƒNƒ[ƒ‹)ƒƒbƒN
 };
 
 /*--------------------*/
-/*     ã€ãƒžã‚¦ã‚¹ã€‘     */
+/*     yƒ}ƒEƒXz     */
 /*--------------------*/
 
-// ãƒžã‚¦ã‚¹ã®ãƒ•ãƒ©ã‚°ç¨®é¡ž
+// ƒ}ƒEƒX‚Ìƒtƒ‰ƒOŽí—Þ
 enum class MOUSE_TYPE
 {
-	/*å³ãƒœã‚¿ãƒ³*/
+	/*‰Eƒ{ƒ^ƒ“*/
 	RIGHT_BUTTON = 0,
-	/*å·¦ãƒœã‚¿ãƒ³*/
+	/*¶ƒ{ƒ^ƒ“*/
 	LEFT_BUTTON,
-	/*ãƒ›ã‚¤ãƒ¼ãƒ«ãƒœã‚¿ãƒ³*/
+	/*ƒzƒC[ƒ‹ƒ{ƒ^ƒ“*/
 	WHEEL_BUTTON,
-	/*ãƒ›ã‚¤ãƒ¼ãƒ«å‰æ–¹å‘å›žè»¢*/
+	/*ƒzƒC[ƒ‹‘O•ûŒü‰ñ“]*/
 	WHEEL_FRONT,
-	/*ãƒ›ã‚¤ãƒ¼ãƒ«å¾Œã‚æ–¹å‘å›žè»¢*/
+	/*ƒzƒC[ƒ‹Œã‚ë•ûŒü‰ñ“]*/
 	WHEEL_BACK,
-	/*ãƒžã‚¦ã‚¹å³ç§»å‹•*/
+	/*ƒ}ƒEƒX‰EˆÚ“®*/
 	MOVE_RIGHT,
-	/*ãƒžã‚¦ã‚¹å·¦ç§»å‹•*/
+	/*ƒ}ƒEƒX¶ˆÚ“®*/
 	MOVE_LEFT,
-	/*ãƒžã‚¦ã‚¹å‰ç§»å‹•*/
+	/*ƒ}ƒEƒX‘OˆÚ“®*/
 	MOVE_FRONT,
-	/*ãƒžã‚¦ã‚¹å¾Œã‚ç§»å‹•*/
+	/*ƒ}ƒEƒXŒã‚ëˆÚ“®*/
 	MOVE_BACK,
 
-	/*ãƒžã‚¦ã‚¹ã®ãƒ•ãƒ©ã‚°ç¨®é¡žæœ€å¤§æ•°*/
+	/*ƒ}ƒEƒX‚Ìƒtƒ‰ƒOŽí—ÞÅ‘å”*/
 	MAX
 };
 
-// ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ç¨®é¡ž
+// ƒJ[ƒ\ƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“ƒf[ƒ^Ží—Þ
 enum class CURSOR_POSITION_TYPE
 {
-	/*ç¾åœ¨ç§»å‹•ã—ã¦ã„ã‚‹æ–¹å‘ã«é€²ã¿å§‹ã‚ãŸãƒã‚¸ã‚·ãƒ§ãƒ³*/
+	/*Œ»ÝˆÚ“®‚µ‚Ä‚¢‚é•ûŒü‚Éi‚ÝŽn‚ß‚½ƒ|ƒWƒVƒ‡ƒ“*/
 	START = 0,
-	/*ä¸€ã¤å‰*/
+	/*ˆê‚Â‘O*/
 	PREV,
-	/*ç¾åœ¨*/
+	/*Œ»Ý*/
 	NOW,
 
-	/*ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ç¨®é¡žæœ€å¤§æ•°*/
+	/*ƒJ[ƒ\ƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“ƒf[ƒ^Ží—ÞÅ‘å”*/
 	MAX
 };
 
 
 /*------------------------------------------*/
-/*          ã€ã‚­ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚¯ãƒ©ã‚¹ã€‘          */
+/*          yƒL[ƒXƒe[ƒgƒNƒ‰ƒXz          */
 /*------------------------------------------*/
-// TODO: ã‚¹ãƒ†ãƒ¼ãƒˆã¨ã„ã†å˜èªžãŒç´›ã‚‰ã‚ã—ã„ã‹ã‚‰å¸°ã‚‹
+// TODO: ƒXƒe[ƒg‚Æ‚¢‚¤’PŒê‚ª•´‚ç‚í‚µ‚¢‚©‚ç‹A‚é
 class KeyState
 {
 	/*--------*/
-	/*ã€å…±é€šã€‘*/
+	/*y‹¤’Êz*/
 	/*--------*/
 
 public:
 
-	/*ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
+	/*ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
 	KeyState();
-	/*ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
+	/*ƒfƒXƒgƒ‰ƒNƒ^*/
 	~KeyState();
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update();
 
 	/*
 	/// <summary>
-	/// ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—
+	/// ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾
 	/// </summary>
-	/// <param name="keyNumber">ãƒ“ãƒƒãƒˆæ•°</param>
-	/// <returns>keyNumberåˆ†ãƒ“ãƒƒãƒˆæ•°ã‚’ãšã‚‰ã—ãŸæ•´æ•°</returns>
+	/// <param name="keyNumber">ƒrƒbƒg”</param>
+	/// <returns>keyNumber•ªƒrƒbƒg”‚ð‚¸‚ç‚µ‚½®”</returns>
 	static inline unsigned long long FlagPos(int keyNumber) { return 1ULL << keyNumber; }
 	/// <summary>
-	/// ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+	/// ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 	/// </summary>
-	/// <param name="keyNumber">ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚­ãƒ¼ç¨®é¡ž</param>
-	/// <returns>æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚­ãƒ¼ã®ç®‡æ‰€ã®ã¿1ã®ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyNumber">ƒRƒ“ƒgƒ[ƒ‰[ƒL[Ží—Þ</param>
+	/// <returns>Žw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[ƒL[‚Ì‰ÓŠ‚Ì‚Ý1‚Ìƒtƒ‰ƒO</returns>
 	static inline unsigned int FlagPos_Controller(CONTROLLER_KEY_TYPE keyNumber) { return (unsigned int)FlagPos((int)keyNumber); }
 	/// <summary>
-	/// ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰æ–‡å­—ç³»)
+	/// ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾(ƒL[ƒ{[ƒh•¶ŽšŒn)
 	/// </summary>
-	/// <param name="keyNumber">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰æ–‡å­—ç³»ã‚­ãƒ¼ç¨®é¡ž</param>
-	/// <returns>æŒ‡å®šã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰æ–‡å­—ç³»ã‚­ãƒ¼ã®ç®‡æ‰€ã®ã¿1ã®ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyNumber">ƒL[ƒ{[ƒh•¶ŽšŒnƒL[Ží—Þ</param>
+	/// <returns>Žw’è‚ÌƒL[ƒ{[ƒh•¶ŽšŒnƒL[‚Ì‰ÓŠ‚Ì‚Ý1‚Ìƒtƒ‰ƒO</returns>
 	static inline unsigned long long FlagPos_Board(KEY_BOARD_WORD keyNumber) { return FlagPos((int)keyNumber); }
 	/// <summary>
-	/// ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç‰¹æ®Š)
+	/// ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾(ƒL[ƒ{[ƒh“ÁŽê)
 	/// </summary>
-	/// <param name="keyNumber">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç‰¹æ®Šã‚­ãƒ¼ç¨®é¡ž</param>
-	/// <returns>æŒ‡å®šã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç‰¹æ®Šã‚­ãƒ¼ã®ç®‡æ‰€ã®ã¿1ã®ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyNumber">ƒL[ƒ{[ƒh“ÁŽêƒL[Ží—Þ</param>
+	/// <returns>Žw’è‚ÌƒL[ƒ{[ƒh“ÁŽêƒL[‚Ì‰ÓŠ‚Ì‚Ý1‚Ìƒtƒ‰ƒO</returns>
 	static inline unsigned long FlagPos_Board(KEY_BOARD_SPECIAL keyNumber) { return (unsigned long)FlagPos((int)keyNumber); }
 	/// <summary>
-	/// ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰NumLock)
+	/// ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾(ƒL[ƒ{[ƒhNumLock)
 	/// </summary>
-	/// <param name="keyNumber">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰NumLockã‚­ãƒ¼ç¨®é¡ž</param>
-	/// <returns>æŒ‡å®šã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰NumLockã‚­ãƒ¼ã®ç®‡æ‰€ã®ã¿1ã®ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyNumber">ƒL[ƒ{[ƒhNumLockƒL[Ží—Þ</param>
+	/// <returns>Žw’è‚ÌƒL[ƒ{[ƒhNumLockƒL[‚Ì‰ÓŠ‚Ì‚Ý1‚Ìƒtƒ‰ƒO</returns>
 	static inline unsigned short FlagPos_Board(KEY_BOARD_NUM_PAD keyNumber) { return (unsigned short)FlagPos((int)keyNumber); }
 	/// <summary>
-	/// (ãƒ•ãƒ©ã‚°ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—(ãƒžã‚¦ã‚¹)
+	/// (ƒtƒ‰ƒO‚Ìƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾(ƒ}ƒEƒX)
 	/// </summary>
-	/// <param name="keyNumber">ãƒžã‚¦ã‚¹ã‚­ãƒ¼ç¨®é¡ž</param>
-	/// <returns>æŒ‡å®šã®ãƒžã‚¦ã‚¹ã‚­ãƒ¼ã®ç®‡æ‰€ã®ã¿1ã®ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyNumber">ƒ}ƒEƒXƒL[Ží—Þ</param>
+	/// <returns>Žw’è‚Ìƒ}ƒEƒXƒL[‚Ì‰ÓŠ‚Ì‚Ý1‚Ìƒtƒ‰ƒO</returns>
 	static inline unsigned int FlagPos_Mouse(MOUSE_TYPE keyNumber, int plusNumber = 0) { return (unsigned int)FlagPos((int)keyNumber + ((int)MOUSE_TYPE::MAX * plusNumber)); }
 	*/
 
 private:
-	/*ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’è¨­å®š(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã¯ç¾åœ¨ã®ã‚­ãƒ¼ã®ã¿è¨­å®š)*/
+	/*ƒL[ƒtƒ‰ƒO‚ðÝ’è(ƒRƒ“ƒgƒ[ƒ‰[‚ÍŒ»Ý‚ÌƒL[‚Ì‚ÝÝ’è)*/
 	void SetKey();
 
 	/*------------------*/
-	/*ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã€‘*/
+	/*yƒRƒ“ƒgƒ[ƒ‰[z*/
 	/*------------------*/
 
 private:
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚º*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[ƒtƒ‰ƒOƒY*/
 	BIT_FLAG<unsigned int> munControllerKeyFlags[(int)FLAG_TYPE::MAX][(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
 
-	/*å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª*/
+	/*‰EƒXƒeƒBƒbƒN‰¡*/
 	short mshNowRightStickX[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
-	/*å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦*/
+	/*‰EƒXƒeƒBƒbƒNc*/
 	short mshNowRightStickY[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
 
-	/*å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª*/
+	/*¶ƒXƒeƒBƒbƒN‰¡*/
 	short mshNowLeftStickX[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
-	/*å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦*/
+	/*¶ƒXƒeƒBƒbƒNc*/
 	short mshNowLeftStickY[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
 
-	/*å·¦å¥¥ãƒˆãƒªã‚¬ãƒ¼æŠ¼ã—è¾¼ã¿åº¦åˆ*/
+	/*¶‰œƒgƒŠƒK[‰Ÿ‚µž‚Ý“x‡*/
 	short mshNowLeftTrigger[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
-	/*å³å¥¥ãƒˆãƒªã‚¬ãƒ¼æŠ¼ã—è¾¼ã¿åº¦åˆ*/
+	/*‰E‰œƒgƒŠƒK[‰Ÿ‚µž‚Ý“x‡*/
 	short mshNowRightTrigger[(int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER];
 
-	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æœ€å¤§æ•°*/
+	/*ƒRƒ“ƒgƒ[ƒ‰[Å‘å”*/
 	static constexpr int CONTROLLER_MAX = (const int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER;
 
 public:
 
-	/*-----ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—å§‹ã‚ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µŽn‚ß‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline BIT_FLAG<unsigned int> GetDownKeyFlags_Controller(int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::DOWN][controllerNumber]; }
-	/*ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—å§‹ã‚ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µŽn‚ß‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline BIT_FLAG<unsigned int> GetDownKeyFlags_Controller(CONTROLLER_KEY_NUMBER controllerNumber) const { return GetDownKeyFlags_Controller((int)controllerNumber); }
 	/*--------------------------------------------------------------------------------*/
 	/// <summary>
-	/// å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†ã®æŠ¼ã—å§‹ã‚ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+	/// ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‚Ì‰Ÿ‚µŽn‚ß‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 	/// </summary>
-	/// <param name="keyBoardFlag">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰åˆ†ã‚‚å–å¾—ã™ã‚‹ãªã‚‰ã€Œtrueã€ã«ã™ã‚‹</param>
-	/// <returns>å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—å§‹ã‚ãŸã™ã¹ã¦ã®ã‚­ãƒ¼ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyBoardFlag">ƒL[ƒ{[ƒh•ª‚àŽæ“¾‚·‚é‚È‚çutruev‚É‚·‚é</param>
+	/// <returns>‘SƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µŽn‚ß‚½‚·‚×‚Ä‚ÌƒL[ƒtƒ‰ƒO</returns>
 	BIT_FLAG<unsigned int> GetAllDownKeyFlags_Controller(bool keyBoardFlag = true)  const;
 
 
-	/*-----ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µ‚Ä‚¢‚éƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline BIT_FLAG<unsigned int> GetNowKeyFlags_Controller(int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::NOW][controllerNumber]; }
-	/*ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µ‚Ä‚¢‚éƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline BIT_FLAG<unsigned int> GetNowKeyFlags_Controller(CONTROLLER_KEY_NUMBER controllerNumber) const { return GetNowKeyFlags_Controller((int)controllerNumber); }
 	/*--------------------------------------------------------------------------------*/
 	/// <summary>
-	/// å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†ã®æŠ¼ã—ã¦ã„ã‚‹ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+	/// ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‚Ì‰Ÿ‚µ‚Ä‚¢‚éƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 	/// </summary>
-	/// <param name="keyBoardFlag">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰åˆ†ã‚‚å–å¾—ã™ã‚‹ãªã‚‰ã€Œtrueã€ã«ã™ã‚‹</param>
-	/// <returns>å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ã™ã¹ã¦ã®ã‚­ãƒ¼ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyBoardFlag">ƒL[ƒ{[ƒh•ª‚àŽæ“¾‚·‚é‚È‚çutruev‚É‚·‚é</param>
+	/// <returns>‘SƒRƒ“ƒgƒ[ƒ‰[‚Ì‰Ÿ‚µ‚Ä‚¢‚é‚·‚×‚Ä‚ÌƒL[ƒtƒ‰ƒO</returns>
 	BIT_FLAG<unsigned int> GetAllNowKeyFlags_Controller(bool keyBoardFlag = true)  const;
 
 
-	/*-----ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®é›¢ã—ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì—£‚µ‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline BIT_FLAG<unsigned int> GetUpKeyFlags_Controller(int controllerNumber)  const { return munControllerKeyFlags[(int)FLAG_TYPE::UP][controllerNumber]; }
-	/*ã€æŒ‡å®šã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®é›¢ã—ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yŽw’è‚ÌƒRƒ“ƒgƒ[ƒ‰[‚Ì—£‚µ‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline BIT_FLAG<unsigned int> GetUpKeyFlags_Controller(CONTROLLER_KEY_NUMBER controllerNumber)  const { return GetUpKeyFlags_Controller((int)controllerNumber); }
 	/*----------------------------------------------------------------------------*/
 	/// <summary>
-	/// å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†ã®é›¢ã—ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+	/// ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‚Ì—£‚µ‚½ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 	/// </summary>
-	/// <param name="keyBoardFlag">ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰åˆ†ã‚‚å–å¾—ã™ã‚‹ãªã‚‰ã€Œtrueã€ã«ã™ã‚‹</param>
-	/// <returns>å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®é›¢ã—ãŸã™ã¹ã¦ã®ã‚­ãƒ¼ãƒ•ãƒ©ã‚°</returns>
+	/// <param name="keyBoardFlag">ƒL[ƒ{[ƒh•ª‚àŽæ“¾‚·‚é‚È‚çutruev‚É‚·‚é</param>
+	/// <returns>‘SƒRƒ“ƒgƒ[ƒ‰[‚Ì—£‚µ‚½‚·‚×‚Ä‚ÌƒL[ƒtƒ‰ƒO</returns>
 	BIT_FLAG<unsigned int> GetAllUpKeyFlags_Controller(bool keyBoardFlag = true)  const;
 
 
-	/*-----ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚Ì‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKey_Controller(int keyNumber, int controllerNumber)  const { return munControllerKeyFlags[(int)FLAG_TYPE::NOW][controllerNumber].GetFlag(keyNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚Ì‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKey_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber)  const { return GetKey_Controller((int)keyNumber, controllerNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã®æŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚Ì‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKey_Controller(CONTROLLER_KEY_TYPE keyNumber, CONTROLLER_KEY_NUMBER controllerNumber) const { return GetKey_Controller((int)keyNumber, (int)controllerNumber); }
 	/*------------------------------------------------------------------------------------*/
-	/*-----ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKeyAllController(int keyNumber, bool keyBoard = true) const { for (int i = (keyBoard ? 0 : 1); i < (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER; i++) { if (GetKey_Controller(keyNumber, i)) { return true; } } return false; }
-	/*ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyAllController(CONTROLLER_KEY_TYPE keyNumber, bool keyBoard = true) const { return GetKeyAllController((int)keyNumber, keyBoard); }
 	/*------------------------------------------------------------------------------------------------------------*/
 
-	/*-----ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKeyDown_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::DOWN][controllerNumber].GetFlag(keyNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyDown_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber) const { return GetKeyDown_Controller((int)keyNumber, controllerNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyDown_Controller(CONTROLLER_KEY_TYPE keyNumber, CONTROLLER_KEY_NUMBER controllerNumber) const { return GetKeyDown_Controller((int)keyNumber, (int)controllerNumber); }
 	/*--------------------------------------------------------------------------------------*/
-	/*-----ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒæŠ¼ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª‰Ÿ‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKeyDownAllController(int keyNumber, bool keyBoard = true) const { for (int i = (keyBoard ? 0 : 1); i < (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER; i++) { if (GetKeyDown_Controller(keyNumber, i)) { return true; } } return false; }
-	/*ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒæŠ¼ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª‰Ÿ‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyDownAllController(CONTROLLER_KEY_TYPE keyNumber, bool keyBoard = true) const { return GetKeyDownAllController((int)keyNumber, keyBoard); }
 	/*------------------------------------------------------------------------------------------------------------*/
 
-	/*-----ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œãªããªã£ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚È‚­‚È‚Á‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKeyUp_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::UP][controllerNumber].GetFlag(keyNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œãªããªã£ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚È‚­‚È‚Á‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyUp_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber) const { return GetKeyUp_Controller((int)keyNumber, controllerNumber); }
-	/*ã€ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œãªããªã£ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ª‰Ÿ‚³‚ê‚È‚­‚È‚Á‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyUp_Controller(CONTROLLER_KEY_TYPE keyNumber, CONTROLLER_KEY_NUMBER controllerNumber) const { return GetKeyUp_Controller((int)keyNumber, (int)controllerNumber); }
 	/*----------------------------------------------------------------------------------------------*/
-	/*-----ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	inline bool GetKeyUpAllController(int keyNumber, bool keyBoard = true) const { for (int i = (keyBoard ? 0 : 1); i < (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER; i++) { if (GetKeyUp_Controller(keyNumber, i)) { return true; } } return false; }
-	/*ã€å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ã‚­ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¿œã˜ãŸã‚­ãƒ¼ã‚’èª°ã‹ãŒæŠ¼ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*y‘SƒRƒ“ƒgƒ[ƒ‰[‚ÌƒL[ƒiƒ“ƒo[‚É‰ž‚¶‚½ƒL[‚ð’N‚©‚ª‰Ÿ‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline bool GetKeyUpAllController(CONTROLLER_KEY_TYPE keyNumber, bool keyBoard = true) const { return GetKeyUpAllController((int)keyNumber, keyBoard); }
 	/*------------------------------------------------------------------------------------------------------------*/
 
 
-	/*-----ã€ã‚­ãƒ¼ã®å¤‰å‹•å€¤å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘-----*/
+	/*-----yƒL[‚Ì•Ï“®’lŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z-----*/
 	short GetKeyVariable_Controller(CONTROLLER_KEY_VARIABLE_NUMBER getNumber, int controllerNumber) const;
-	/*ã€ã‚­ãƒ¼ã®å¤‰å‹•å€¤å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)ã€‘*/
+	/*yƒL[‚Ì•Ï“®’lŽæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)z*/
 	inline short GetKeyVariable_Controller(CONTROLLER_KEY_VARIABLE_NUMBER getNumber, CONTROLLER_KEY_NUMBER controllerNumber = CONTROLLER_KEY_NUMBER::MAX_CONTROLLER) const { return GetKeyVariable_Controller(getNumber, (int)controllerNumber); }
 	/*----------------------------------------------*/
 
 private:
 
-	/*ãƒ•ãƒ©ã‚°ã‚’ç¾åœ¨ã®ã‚­ãƒ¼ã«åæ˜ ã•ã›ã‚‹(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)*/
+	/*ƒtƒ‰ƒO‚ðŒ»Ý‚ÌƒL[‚É”½‰f‚³‚¹‚é(ƒRƒ“ƒgƒ[ƒ‰[)*/
 	void SetNowKey_Controller(bool flag, CONTROLLER_KEY_TYPE number, int controllerNumber = 0) { munControllerKeyFlags[(int)FLAG_TYPE::NOW][controllerNumber].SetFlag(flag, number); }
 
 	/*--------------*/
-	/*ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€‘*/
+	/*yƒL[ƒ{[ƒhz*/
 	/*--------------*/
 
 private:
-	// æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚º
+	// •¶Žš‘€ìŒnƒL[ƒtƒ‰ƒOƒY
 	BIT_FLAG<unsigned long long> mullWordFlags[(int)FLAG_TYPE::MAX];
 
-	// ç‰¹æ®Šã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚º
+	// “ÁŽêƒL[ƒtƒ‰ƒOƒY
 	BIT_FLAG<unsigned long> mulSpecialFlags[(int)FLAG_TYPE::MAX];
 
-	// ãƒ†ãƒ³ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚º
+	// ƒeƒ“ƒL[ƒtƒ‰ƒOƒY
 	BIT_FLAG<unsigned short> mushNumpadFlags[(int)FLAG_TYPE::MAX];
 
-	// ãƒˆã‚°ãƒ«çŠ¶æ…‹
+	// ƒgƒOƒ‹ó‘Ô
 	BIT_FLAG<unsigned char> mucToggleFlag;
 
 public:
 
 
 	/// <summary>
-	/// æŠ¼ã—å§‹ã‚ãŸæ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µŽn‚ß‚½•¶Žš‘€ìŒnƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long long> GetDownWordKeyFlags_Board() const { return mullWordFlags[(int)FLAG_TYPE::DOWN]; }
 
 	/// <summary>
-	/// æŠ¼ã—ã¦ã„ã‚‹æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µ‚Ä‚¢‚é•¶Žš‘€ìŒnƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long long> GetNowWordKeyFlags_Board() const { return mullWordFlags[(int)FLAG_TYPE::NOW]; }
 
 	/// <summary>
-	/// é›¢ã—ãŸæ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// —£‚µ‚½•¶Žš‘€ìŒnƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long long> GetUpWordKeyFlags_Board() const { return mullWordFlags[(int)FLAG_TYPE::UP]; }
-	/*-----ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetWordKey_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetWordKey_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKey_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetWordKeyDown_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetWordKeyDown_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKeyDown_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetWordKeyUp_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì•¶Žš‘€ìŒnƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetWordKeyUp_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKeyUp_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------------*/
 
 
 	/// <summary>
-	/// æŠ¼ã—å§‹ã‚ãŸç‰¹æ®Šã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µŽn‚ß‚½“ÁŽêƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long> GetDownSpecialKeyFlags_Board() const { return mulSpecialFlags[(int)FLAG_TYPE::DOWN]; }
 
 	/// <summary>
-	/// æŠ¼ã—ã¦ã„ã‚‹ç‰¹æ®Šã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µ‚Ä‚¢‚é“ÁŽêƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long> GetNowSpecialKeyFlags_Board() const { return mulSpecialFlags[(int)FLAG_TYPE::NOW]; }
 
 	/// <summary>
-	/// é›¢ã—ãŸç‰¹æ®Šã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// —£‚µ‚½“ÁŽêƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned long> GetUpSpecialKeyFlags_Board() const { return mulSpecialFlags[(int)FLAG_TYPE::UP]; }
-	/*-----ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì“ÁŽêƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetSpecialKey_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì“ÁŽêƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetSpecialKey_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKey_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì“ÁŽêƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetSpecialKeyDown_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì“ÁŽêƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKeyDown_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ì“ÁŽêƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetSpecialKeyUp_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber);}
-	/*ã€æŒ‡å®šã®ç‰¹æ®Šã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ì“ÁŽêƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetSpecialKeyUp_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKeyUp_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
 
 
 	/// <summary>
-	/// æŠ¼ã—å§‹ã‚ãŸãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µŽn‚ß‚½ƒeƒ“ƒL[ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned short> GetDownNumpadKeyFlags_Board() const { return mushNumpadFlags[(int)FLAG_TYPE::DOWN]; }
 
 	/// <summary>
-	/// æŠ¼ã—ã¦ã„ã‚‹ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ‰Ÿ‚µ‚Ä‚¢‚éƒeƒ“ƒL[ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned short> GetNowNumpadKeyFlags_Board() const { return mushNumpadFlags[(int)FLAG_TYPE::NOW]; }
 
 	/// <summary>
-	/// é›¢ã—ãŸãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// —£‚µ‚½ƒeƒ“ƒL[ƒL[ƒtƒ‰ƒO‚ð‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned short> GetUpNumpadKeyFlags_Board() const { return mushNumpadFlags[(int)FLAG_TYPE::UP]; }
-	/*-----ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetNumpadKey_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒæŠ¼ã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª‰Ÿ‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetNumpadKey_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKey_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetNumpadKeyDown_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒæŠ¼ã—å§‹ã‚ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª‰Ÿ‚µŽn‚ß‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetNumpadKeyDown_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKeyDown_Board((int)keyNumber); }
 	/*------------------------------------------------------------------------------*/
-	/*-----ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetNumpadKeyUp_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ãŒé›¢ã—ãŸçž¬é–“ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚Ìƒeƒ“ƒL[ƒL[‚ª—£‚µ‚½uŠÔ‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetNumpadKeyUp_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKeyUp_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
 
 	/// <summary>
-	/// ãƒˆã‚°ãƒ«çŠ¶æ…‹å…¨å–å¾—(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	/// ƒgƒOƒ‹ó‘Ô‘SŽæ“¾(ƒL[ƒ{[ƒh)
 	/// </summary>
 	inline BIT_FLAG<unsigned char> GetAllToggleState() const { return mucToggleFlag; }
-	/*-----ã€æŒ‡å®šã®ãƒˆã‚°ãƒ«çŠ¶æ…‹ãŒæœ‰åŠ¹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘-----*/
+	/*-----yŽw’è‚ÌƒgƒOƒ‹ó‘Ô‚ª—LŒø‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z-----*/
 	inline bool GetToggleState(int keyNumber) const { return mucToggleFlag.GetFlag(keyNumber); }
-	/*ã€æŒ‡å®šã®ãƒˆã‚°ãƒ«çŠ¶æ…‹ãŒæœ‰åŠ¹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)ã€‘*/
+	/*yŽw’è‚ÌƒgƒOƒ‹ó‘Ô‚ª—LŒø‚È‚çutruev‚ð•Ô‚·(ƒL[ƒ{[ƒh)z*/
 	inline bool GetToggleState(KEY_BOARD_TOGGLE keyNumber) const { return GetToggleState((int)keyNumber); }
 	/*------------------------------------------------------------------*/
 
 private:
-	/*ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)*/
+	/*ƒL[ƒtƒ‰ƒO‚ðÝ’è‚·‚é(ƒL[ƒ{[ƒh)*/
 	void SetKey_Board(unsigned char* key);
 
-	/*ãƒ•ãƒ©ã‚°ã‚’ç¾åœ¨ã®ã‚­ãƒ¼ã«åæ˜ ã•ã›ã‚‹(æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼)*/
+	/*ƒtƒ‰ƒO‚ðŒ»Ý‚ÌƒL[‚É”½‰f‚³‚¹‚é(•¶Žš‘€ìŒnƒL[ƒ{[ƒhƒL[)*/
 	inline void SetNowWordKey_Board(bool flag, KEY_BOARD_WORD keyNumber) { mullWordFlags[(int)FLAG_TYPE::NOW].SetFlag(flag, keyNumber); }
-	/*ãƒ•ãƒ©ã‚°ã‚’ç¾åœ¨ã®ã‚­ãƒ¼ã«åæ˜ ã•ã›ã‚‹(ç‰¹æ®Šã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼)*/
+	/*ƒtƒ‰ƒO‚ðŒ»Ý‚ÌƒL[‚É”½‰f‚³‚¹‚é(“ÁŽêƒL[ƒ{[ƒhƒL[)*/
 	inline void SetNowSpecialKey_Board(bool flag, KEY_BOARD_SPECIAL keyNumber) { mulSpecialFlags[(int)FLAG_TYPE::NOW].SetFlag(flag, keyNumber); }
-	/*ãƒ•ãƒ©ã‚°ã‚’ç¾åœ¨ã®ã‚­ãƒ¼ã«åæ˜ ã•ã›ã‚‹(ãƒ†ãƒ³ã‚­ãƒ¼ã‚­ãƒ¼ã€€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼)*/
+	/*ƒtƒ‰ƒO‚ðŒ»Ý‚ÌƒL[‚É”½‰f‚³‚¹‚é(ƒeƒ“ƒL[ƒL[@ƒL[ƒ{[ƒhƒL[)*/
 	inline void SetNowNumpadKey_Board(bool flag, KEY_BOARD_NUM_PAD keyNumber) { mushNumpadFlags[(int)FLAG_TYPE::NOW].SetFlag(flag, keyNumber); }
 
 
 	/*----------*/
-	/*ã€ãƒžã‚¦ã‚¹ã€‘*/
+	/*yƒ}ƒEƒXz*/
 	/*----------*/
 
 private:
-	// ãƒžã‚¦ã‚¹ãƒ•ãƒ©ã‚°ã‚º(ç¾åœ¨ã®åå¿œã—ã¦ã„ã‚‹/åå¿œã—å§‹ã‚ãŸ/åå¿œã—ã¦ã„ãŸ)
+	// ƒ}ƒEƒXƒtƒ‰ƒOƒY(Œ»Ý‚Ì”½‰ž‚µ‚Ä‚¢‚é/”½‰ž‚µŽn‚ß‚½/”½‰ž‚µ‚Ä‚¢‚½)
 	BIT_FLAG<unsigned int> munMouseFlags;
 
-	// ãƒžã‚¦ã‚¹ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
+	// ƒ}ƒEƒX‚Ìƒ|ƒWƒVƒ‡ƒ“
 	VECTOR mvCursorPos[(int)CURSOR_POSITION_TYPE::MAX];
 
-	// ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›žè»¢é‡
+	// ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê
 	short mshWheelVolume;
 
 public:
-	/*ãƒžã‚¦ã‚¹ãƒ•ãƒ©ã‚°ã‚’å…¨å–å¾—*/
+	/*ƒ}ƒEƒXƒtƒ‰ƒO‚ð‘SŽæ“¾*/
 	inline BIT_FLAG<unsigned int> GetMouseFlags() const { return munMouseFlags; }
 
-	/*-----ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘-----*/
+	/*-----yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·z-----*/
 	inline bool GetMouse(int number) const { return munMouseFlags.GetFlag(number); }
-	/*ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—ã¦ã„ã‚‹ãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘*/
+	/*yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µ‚Ä‚¢‚é‚È‚çutruev‚ð•Ô‚·z*/
 	inline bool GetMouse(MOUSE_TYPE number) const { return GetMouse((int)number); }
 	/*----------------------------------------------------------*/
 
-	/*-----ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—å§‹ã‚ãŸãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘-----*/
+	/*-----yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µŽn‚ß‚½‚È‚çutruev‚ð•Ô‚·z-----*/
 	inline bool GetDownMouse(int number) const { return munMouseFlags.GetFlag(number + (int)MOUSE_TYPE::MAX); }
-	/*ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—å§‹ã‚ãŸãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘*/
+	/*yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µŽn‚ß‚½‚È‚çutruev‚ð•Ô‚·z*/
 	inline bool GetDownMouse(MOUSE_TYPE number) const { return GetDownMouse((int)number); }
 	/*----------------------------------------------------------*/
 
-	/*-----ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—ã¦ã„ãŸãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘-----*/
+	/*-----yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µ‚Ä‚¢‚½‚È‚çutruev‚ð•Ô‚·z-----*/
 	inline bool GetUpMouse(int number) const { return munMouseFlags.GetFlag(number + (int)MOUSE_TYPE::MAX + (int)MOUSE_TYPE::MAX); }
-	/*ã€æŒ‡å®šã®ãƒ•ãƒ©ã‚°ãŒåå¿œã—ã¦ã„ãŸãªã‚‰ã€Œtrueã€ã‚’è¿”ã™ã€‘*/
+	/*yŽw’è‚Ìƒtƒ‰ƒO‚ª”½‰ž‚µ‚Ä‚¢‚½‚È‚çutruev‚ð•Ô‚·z*/
 	inline bool GetUpMouse(MOUSE_TYPE number) const { return GetUpMouse((int)number); }
 	/*----------------------------------------------------------*/
 
-	/*-----ã€æŒ‡å®šã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—ã€‘-----*/
+	/*-----yŽw’èƒ^ƒCƒ~ƒ“ƒO‚ÌƒJ[ƒ\ƒ‹ƒ|ƒWƒVƒ‡ƒ“Žæ“¾z-----*/
 	inline VECTOR GetCursorPosition(int number) const { return mvCursorPos[number]; }
-	/*ã€æŒ‡å®šã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³å–å¾—ã€‘*/
+	/*yŽw’èƒ^ƒCƒ~ƒ“ƒO‚ÌƒJ[ƒ\ƒ‹ƒ|ƒWƒVƒ‡ƒ“Žæ“¾z*/
 	inline VECTOR GetCursorPosition(CURSOR_POSITION_TYPE number) const { return GetCursorPosition((int)number); }
 	/*----------------------------------------------------*/
 
-	/*ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«å›žè»¢å–å¾—(ä»–ã®å…¥åŠ›ãŒã‚ã‚‹ã¾ã§åå¿œã—ç¶šã‘ã‚‹(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚‚å«ã‚ãŸ))*/
+	/*ƒ}ƒEƒXƒzƒC[ƒ‹‰ñ“]Žæ“¾(‘¼‚Ì“ü—Í‚ª‚ ‚é‚Ü‚Å”½‰ž‚µ‘±‚¯‚é(ƒL[ƒ{[ƒh‚àŠÜ‚ß‚½))*/
 	inline short GetWheelVolume() const { return mshWheelVolume; }
 
 private:
-	/*ãƒžã‚¦ã‚¹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š*/
+	/*ƒ}ƒEƒXƒtƒ‰ƒO‚ðÝ’è*/
 	inline void SetMouseFlag(bool flag, MOUSE_TYPE number) { munMouseFlags.SetFlag(flag, number); }
 
 
-	// TODO: ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—ç”¨ã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãªã©ã‚‚åå¿œã™ã‚‹ä»•çµ„ã¿ä½œã‚Š
+	// TODO: ƒRƒ“ƒgƒ[ƒ‰[Žæ“¾—p‚ÌƒL[ƒ{[ƒh‚È‚Ç‚à”½‰ž‚·‚éŽd‘g‚Ýì‚è
 };

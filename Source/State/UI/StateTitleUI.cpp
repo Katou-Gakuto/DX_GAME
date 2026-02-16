@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -21,37 +21,37 @@
 #include "StateTitleUI.h"
 #include "UtilChange.h"
 
-// TODO: ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—æç”»æ¶ˆã—ã¦ç”»é¢ä½œæˆ
+// TODO: ‚±‚Ìƒtƒ@ƒCƒ‹‚Ì•¶š•`‰æÁ‚µ‚Ä‰æ–Êì¬
 
 /*--------------------------------*/
-/*     ã€ã‚¿ã‚¤ãƒˆãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
+/*     yƒ^ƒCƒgƒ‹UIƒXƒe[ƒgz     */
 /*--------------------------------*/
 
 /*----------*/
-/*ã€ã‚¿ã‚¤ãƒˆãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆå…±é€šå‡¦ç†ç”¨ã€‘
+/*yƒ^ƒCƒgƒ‹UIƒXƒe[ƒg‹¤’Êˆ——pz
 /*----------*/
 TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 : mePreUiState(preUiState)
 , mnPreSelectNumber(-1)
 {
-	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿èƒŒæ™¯ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+	// ƒZ[ƒuƒf[ƒ^”wŒi‰æ‘œƒnƒ“ƒhƒ‹
 	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataBase.png");
 	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
 	
-	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿)
+	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(ƒZ[ƒuƒf[ƒ^)
 	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
-	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ¼ãƒ )
+	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(ƒvƒŒƒCƒ„[ƒl[ƒ€)
 	mnSaveDataDrawFontHandle_PlayerName = CreateFontToHandle(NULL, 22, 8);
-	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—æç”»æ™‚è¨­å®šãƒãƒ³ãƒ‰ãƒ«(ãã®ä»–)
+	// ƒZ[ƒuƒf[ƒ^•¶š—ñ•`‰æİ’èƒnƒ“ƒhƒ‹(‚»‚Ì‘¼)
 	mnSaveDataDrawFontHandle_Other = CreateFontToHandle(NULL, 18, 8);
 }
 
-// èƒŒæ™¯æç”»
+// ”wŒi•`‰æ
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
 	return;
 
-	// èƒŒæ™¯
+	// ”wŒi
 	if (ui->GetMovieHandleCount() >= 1)
 	{
 	// 	int handle = ui->GetMovieHandles()[0];
@@ -79,7 +79,7 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 	// 	Master::mpResourceManager->DrawData_Graph(Master::mpResourceManager->GetDrawGraphData(handle, leftUp, rightUp, leftDown, rightDown));
 	}
 		
-	// é¸æŠ
+	// ‘I‘ğ
 	{
 		DisplaySize displaySize = ResourceManager::mstDisplaySize;
 		Vector2_Int leftUp = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f + (0.2f * ui->GetSelectNumber())));
@@ -95,18 +95,18 @@ void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> st
 	}
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void TitleUIStateProcess::ProcessOnEnter(UIBase* ui)
 {
 	mnPreSelectNumber = -1;
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void TitleUIStateProcess::ProcessOnExit(UIBase* ui)
 {
 }
 
-// æ›´æ–°
+// XV
 void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
 	// mfBackGraphTime += 0.2f;
@@ -135,22 +135,22 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 	}
 }
 
-// ã‚²ãƒ¼ãƒ é–‹å§‹
+// ƒQ[ƒ€ŠJn
 void TitleUIStateProcess::StartGame(UIBase* ui)
 {
 	Master::mpDataManager->SetPlayPlayer(ui->GetSelectNumber());
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().mapType);
 }
 
-// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
+// ƒZ[ƒuƒf[ƒ^‚ğ•`‰æ
 void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType)
 {
-	// å¿…è¦æƒ…å ±å®£è¨€
-	Vector2_Int drawPos = Vector2_Int(0, 0);	// æç”»ãƒã‚¸ã‚·ãƒ§ãƒ³
-	std::string dataNeme = "ã‚»ãƒ¼ãƒ– " + std::to_string(dataNumber);	// ãƒ‡ãƒ¼ã‚¿æ•°è¡¨ç¤ºç”¨æ–‡å­—åˆ—
+	// •K—vî•ñéŒ¾
+	Vector2_Int drawPos = Vector2_Int(0, 0);	// •`‰æƒ|ƒWƒVƒ‡ƒ“
+	std::string dataNeme = "ƒZ[ƒu " + std::to_string(dataNumber);	// ƒf[ƒ^”•\¦—p•¶š—ñ
 	
 	std::string playerName   = "NAME : " + name;
-	std::string characterTypeName = UtilChange::CharacterTypeToString(status.characterType);	// ãƒãƒƒãƒ—å
+	std::string characterTypeName = UtilChange::CharacterTypeToString(status.characterType);	// ƒ}ƒbƒv–¼
 	std::string hpMaxString  = "HP MAX : " + std::to_string(status.maxHp);
 	std::string hpString     = "HP     : " + std::to_string(status.hp);
 	std::string levelString  = "LEVEL  : " + std::to_string(status.level);
@@ -158,9 +158,9 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 	std::string attackString = "ATTACK : " + std::to_string(status.baseAttckPower);
 	std::string speedString  = "SPEED  : " + std::to_string(status.baseSpeed);
 	
-	std::string mapName     =  "MAP    : " + UtilChange::Name(mapType);	// ãƒãƒƒãƒ—å
+	std::string mapName     =  "MAP    : " + UtilChange::Name(mapType);	// ƒ}ƒbƒv–¼
 
-	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
 	ResourceManager* resourceMnaager = Master::mpResourceManager;
 
 	DisplaySize displaySize = ResourceManager::mstDisplaySize;
@@ -184,7 +184,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 	drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
 	drawGraphData.transFlag = TRUE;
 
-	// åœŸå°æç”»
+	// “y‘ä•`‰æ
 	{
 		if (dataNumber != ui->GetSelectNumber())
 		{
@@ -206,7 +206,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 		resourceMnaager->DrawData_Graph(drawGraphData);
 	}
 
-	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”»åƒæç”»
+	// ƒvƒŒƒCƒ„[‰æ‘œ•`‰æ
 	{
 		drawGraphData.handle = ui->GetGraphHandles()[playerGraphNumber];
 		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.05f, 0.1f));
@@ -215,12 +215,12 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 		resourceMnaager->DrawData_Graph(drawGraphData);
 	}
 
-	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æç”»
+	// ƒvƒŒƒCƒ„[î•ñ•`‰æ
 	{
-		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ•°æ–‡å­—
+		// ƒZ[ƒuƒf[ƒ^”•¶š
 		UIStringDraw(drawPos, drawSize, Vector2(0.025f, -0.17f), dataNeme, mnSaveDataDrawFontHandle_SaveData);
 
-		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ¼ãƒ 
+		// ƒvƒŒƒCƒ„[ƒl[ƒ€
 		UIStringDraw(drawPos, drawSize, Vector2(0.3f, 0.1f), playerName, mnSaveDataDrawFontHandle_PlayerName);
 
 		// MAX HP
@@ -239,7 +239,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 		UIStringDraw(drawPos, drawSize, Vector2(0.65f, 0.59f), mapName, mnSaveDataDrawFontHandle_Other);
 	}
 }
-// æ–‡å­—æç”»
+// •¶š•`‰æ
 void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize, Vector2 ratio, std::string drawString, int fontHndle)
 {
 	DrawStringToHandle(pos.x + displaySize.Left_RatioWidth(ratio.x),
@@ -250,7 +250,7 @@ void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize,
 }
 
 /*----------------------*/
-/*ã€é–‹å§‹ç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yŠJn‰æ–ÊUIƒXƒe[ƒgz*/
 /*----------------------*/
 
 StartTitleUIState::StartTitleUIState()
@@ -260,13 +260,13 @@ StartTitleUIState::StartTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::START_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void StartTitleUIState::OnEnter(UIBase* ui)
 {
-	//printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šé–‹å§‹ã€€Enter\n");
+	//printfDx("ƒeƒƒbƒvFŠJn@Enter\n");
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void StartTitleUIState::OnExit(UIBase* ui)
 {
 	if (ui->GetMovieHandleCount() >= 1)
@@ -275,7 +275,7 @@ void StartTitleUIState::OnExit(UIBase* ui)
 	}
 }
 
-// æ›´æ–°
+// XV
 int StartTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -283,26 +283,26 @@ int StartTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int StartTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
 }
 
-// æç”»
+// •`‰æ
 void StartTitleUIState::Draw(UIBase* ui)
 {
-	// HACK: ãƒãƒ³ãƒ‰ãƒ«ã§å¤§ããã—ãŸæ–‡å­—ã‚’æç”»ã™ã‚‹
+	// HACK: ƒnƒ“ƒhƒ‹‚Å‘å‚«‚­‚µ‚½•¶š‚ğ•`‰æ‚·‚é
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
     Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.2f));
-    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ã‚¿ã‚¤ãƒˆãƒ«", GetColor(0, 0, 0));
+    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ƒ^ƒCƒgƒ‹", GetColor(0, 0, 0));
 	stringDrawPos.y = displaySize.Up_RatioHeight(0.7f);
     DrawString(stringDrawPos.x - 50, stringDrawPos.y, "Enter", GetColor(0, 0, 0));
 }
 
 /*----------------------*/
-/*ã€é¸æŠç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y‘I‘ğ‰æ–ÊUIƒXƒe[ƒgz*/
 /*----------------------*/
 
 SelectTitleUIState::SelectTitleUIState()
@@ -312,7 +312,7 @@ SelectTitleUIState::SelectTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void SelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
@@ -334,10 +334,10 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 	}
 
-	//printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šé¸æŠã€€Enter\n");
+	//printfDx("ƒeƒƒbƒvF‘I‘ğ@Enter\n");
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void SelectTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
@@ -348,7 +348,7 @@ void SelectTitleUIState::OnExit(UIBase* ui)
 	}
 }
 
-// æ›´æ–°
+// XV
 int SelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
@@ -360,7 +360,7 @@ int SelectTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int SelectTitleUIState::Decision(UIBase* ui)
 {
 	/*/
@@ -394,25 +394,25 @@ int SelectTitleUIState::Decision(UIBase* ui)
 	return mStateNumber;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int SelectTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void SelectTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("æ–°ã—ãå§‹ã‚ã‚‹");
-	str.push_back("ãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠ");
-	str.push_back("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«");
-	str.push_back("è¨­å®š");
+	str.push_back("V‚µ‚­n‚ß‚é");
+	str.push_back("ƒf[ƒ^‚ğ‘I‘ğ");
+	str.push_back("ƒ`ƒ…[ƒgƒŠƒAƒ‹");
+	str.push_back("İ’è");
 	DrawBackground(ui, str);
 }
 
 /*------------------------------------------------*/
-/*ã€æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã®å…¥ã‚‹å ´æ‰€ãŒã‚ã‚‹ã‹ç¢ºèªUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yV‚µ‚¢ƒf[ƒ^‚Ì“ü‚éêŠ‚ª‚ ‚é‚©Šm”FUIƒXƒe[ƒgz*/
 /*------------------------------------------------*/
 
 NewDataCheckTitleUIState::NewDataCheckTitleUIState()
@@ -422,21 +422,21 @@ NewDataCheckTitleUIState::NewDataCheckTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
-	// TODO: ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œã£ã¦æ©Ÿèƒ½ã‚’è¿½åŠ ã™ã‚‹ ç¢ºèªç”¨ã‚¹ãƒ†ãƒ¼ãƒˆã«ç§»å‹•
+	// TODO: ƒXƒe[ƒg‚ğì‚Á‚Ä‹@”\‚ğ’Ç‰Á‚·‚é Šm”F—pƒXƒe[ƒg‚ÉˆÚ“®
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int NewDataCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -447,28 +447,28 @@ int NewDataCheckTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int NewDataCheckTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int NewDataCheckTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void NewDataCheckTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("æ–°ã—ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚Šã¾ã™ã‹?");
+	str.push_back("V‚µƒf[ƒ^‚ğì‚è‚Ü‚·‚©?");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€ãƒ‡ãƒ¼ã‚¿é¸æŠç”»é¢UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒf[ƒ^‘I‘ğ‰æ–ÊUIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 DataSelectTitleUIState::DataSelectTitleUIState()
@@ -479,7 +479,7 @@ DataSelectTitleUIState::DataSelectTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void DataSelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
@@ -489,16 +489,16 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 
 	mnDrawDataPos = 0;
 
-	//printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šæƒ…å ±é¸æŠã€€Enter\n");
+	//printfDx("ƒeƒƒbƒvFî•ñ‘I‘ğ@Enter\n");
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void DataSelectTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int DataSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
@@ -518,24 +518,24 @@ int DataSelectTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int DataSelectTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int DataSelectTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void DataSelectTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿(ä»Šã¯ä¸€ã¤)");
+	str.push_back("ƒZ[ƒuƒf[ƒ^(¡‚Íˆê‚Â)");
 	DrawBackground(ui, str);
 
 	for (int i = mnDrawDataPos; (i < (mnDrawDataPos + 3)) && (i < Master::mpDataManager->GetPlayerData().size()); i++)
@@ -545,7 +545,7 @@ void DataSelectTitleUIState::Draw(UIBase* ui)
 }
 
 /*----------------------------*/
-/*ã€ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒ`ƒ…[ƒgƒŠƒAƒ‹UIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 TutorialTitleUIState::TutorialTitleUIState()
@@ -555,20 +555,20 @@ TutorialTitleUIState::TutorialTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void TutorialTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void TutorialTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int TutorialTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -579,29 +579,29 @@ int TutorialTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int TutorialTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int TutorialTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void TutorialTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«é–‹å§‹ã—ã¾ã™");
+	str.push_back("ƒ`ƒ…[ƒgƒŠƒAƒ‹ŠJn‚µ‚Ü‚·");
 	DrawBackground(ui, str);
 }
 
 /*--------------------------*/
-/*ã€ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒZƒbƒeƒBƒ“ƒOUIƒXƒe[ƒgz*/
 /*--------------------------*/
 
 SettingTitleUIState::SettingTitleUIState()
@@ -611,7 +611,7 @@ SettingTitleUIState::SettingTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void SettingTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
@@ -620,13 +620,13 @@ void SettingTitleUIState::OnEnter(UIBase* ui)
 	ui->SetSelectMaxNumber(2);
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void SettingTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int SettingTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
@@ -637,7 +637,7 @@ int SettingTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int SettingTitleUIState::Decision(UIBase* ui)
 {
 	switch (ui->GetSelectNumber())
@@ -652,22 +652,22 @@ int SettingTitleUIState::Decision(UIBase* ui)
 	return mStateNumber;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int SettingTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void SettingTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("è¨­å®š");
+	str.push_back("İ’è");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç¨®é¡é¸æŠUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒLƒƒƒ‰ƒNƒ^[í—Ş‘I‘ğUIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 CharacterSelectTitleUIState::CharacterSelectTitleUIState()
@@ -677,20 +677,20 @@ CharacterSelectTitleUIState::CharacterSelectTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void CharacterSelectTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int CharacterSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -701,28 +701,28 @@ int CharacterSelectTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int CharacterSelectTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int CharacterSelectTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void CharacterSelectTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’é¸æŠã—ã¦ãã ã•ã„");
+	str.push_back("ƒLƒƒƒ‰ƒNƒ^[‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åè¨­å®šUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒvƒŒƒCƒ„[–¼İ’èUIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 PlayerNameTitleUIState::PlayerNameTitleUIState()
@@ -732,20 +732,20 @@ PlayerNameTitleUIState::PlayerNameTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void PlayerNameTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void PlayerNameTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int PlayerNameTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -756,28 +756,28 @@ int PlayerNameTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int PlayerNameTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int PlayerNameTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void PlayerNameTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("åå‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„");
+	str.push_back("–¼‘O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€å…¥åŠ›æƒ…å ±ã®æœ€çµ‚ç¢ºèªUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y“ü—Íî•ñ‚ÌÅIŠm”FUIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 InputCheckTitleUIState::InputCheckTitleUIState()
@@ -787,20 +787,20 @@ InputCheckTitleUIState::InputCheckTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void InputCheckTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void InputCheckTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int InputCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -811,29 +811,29 @@ int InputCheckTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int InputCheckTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int InputCheckTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void InputCheckTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("ã“ã®ãƒ‡ãƒ¼ã‚¿ã§ã„ã„ã§ã™ã‹?");
+	str.push_back("‚±‚Ìƒf[ƒ^‚Å‚¢‚¢‚Å‚·‚©?");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€ç”»é¢ã‚µã‚¤ã‚ºèª¿æ•´UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y‰æ–ÊƒTƒCƒY’²®UIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 ScreenSizeTitleUIState::ScreenSizeTitleUIState()
@@ -843,20 +843,20 @@ ScreenSizeTitleUIState::ScreenSizeTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void ScreenSizeTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int ScreenSizeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -867,28 +867,28 @@ int ScreenSizeTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int ScreenSizeTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int ScreenSizeTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void ScreenSizeTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("ç”»é¢ã‚µã‚¤ã‚ºã®èª¿æ•´ã¤");
+	str.push_back("‰æ–ÊƒTƒCƒY‚Ì’²®‚Â");
 	DrawBackground(ui, str);
 }
 
 /*----------------------------*/
-/*ã€éŸ³é‡èª¿æ•´UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y‰¹—Ê’²®UIƒXƒe[ƒgz*/
 /*----------------------------*/
 
 VolumeTitleUIState::VolumeTitleUIState()
@@ -898,20 +898,20 @@ VolumeTitleUIState::VolumeTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
 }
 
-// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
 void VolumeTitleUIState::OnEnter(UIBase* ui)
 {
 	ProcessOnEnter(ui);
 
 }
 
-// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
+// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void VolumeTitleUIState::OnExit(UIBase* ui)
 {
 	ProcessOnExit(ui);
 }
 
-// æ›´æ–°
+// XV
 int VolumeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
@@ -922,22 +922,22 @@ int VolumeTitleUIState::Update(UIBase* ui)
 	return mStateNumber;
 }
 
-// æ±ºå®š
+// Œˆ’è
 int VolumeTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
-// æˆ»ã‚‹
+// –ß‚é
 int VolumeTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
 
-// æç”»
+// •`‰æ
 void VolumeTitleUIState::Draw(UIBase* ui)
 {
 	std::vector<std::string> str;
-	str.push_back("éŸ³é‡ã®èª¿ç¯€");
+	str.push_back("‰¹—Ê‚Ì’²ß");
 	DrawBackground(ui, str);
 }

@@ -1,4 +1,4 @@
-ï»¿#include "BitFlag.h"
+#include "BitFlag.h"
 
 #include "ObjectBases.h"
 #include "TargetData.h"
@@ -11,17 +11,17 @@ TargetManager::TargetManager()
 }
 
 /*----------*/
-/*ã€åˆæœŸåŒ–ã€‘*/
+/*y‰Šú‰»z*/
 /*----------*/
 
-// å…¨åˆæœŸåŒ–
+// ‘S‰Šú‰»
 void TargetManager::Init()
 {
 	mstPlayer = nullptr;
 	mstEnemys.clear();
 }
 
-// æŒ‡å®šã‚¿ãƒ¼ã‚²ãƒƒãƒˆåˆæœŸåŒ–
+// w’èƒ^[ƒQƒbƒg‰Šú‰»
 void TargetManager::TargetInit(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
@@ -36,7 +36,7 @@ void TargetManager::TargetInit(TARGET_TYPE targetNumber)
 	}
 }
 
-// æŒ‡å®šã‚¿ãƒ¼ã‚²ãƒƒãƒˆåˆæœŸåŒ–
+// w’èƒ^[ƒQƒbƒg‰Šú‰»
 void TargetManager::TargetInit(BIT_FLAG<unsigned int> targetNumber)
 {
 	if (targetNumber.BIT_GET((int)TARGET_TYPE::PLAYER))
@@ -51,10 +51,10 @@ void TargetManager::TargetInit(BIT_FLAG<unsigned int> targetNumber)
 
 
 /*--------*/
-/*ã€å‰Šé™¤ã€‘*/
+/*yíœz*/
 /*--------*/
 
-// å‰Šé™¤
+// íœ
 void TargetManager::Delete(CharacterBase* character, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
@@ -73,10 +73,10 @@ void TargetManager::Delete(CharacterBase* character, TARGET_TYPE targetNumber)
 
 
 /*--------*/
-/*ã€è¨­å®šã€‘*/
+/*yİ’èz*/
 /*--------*/
 
-// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š
+// ƒ^[ƒQƒbƒgİ’è
 void TargetManager::SetTarget(CharacterBase* target, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
@@ -91,7 +91,7 @@ void TargetManager::SetTarget(CharacterBase* target, TARGET_TYPE targetNumber)
 	}
 }
 
-// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š
+// ƒ^[ƒQƒbƒgİ’è
 void TargetManager::SetTarget(std::vector<CharacterTargetData> target, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
@@ -111,10 +111,10 @@ void TargetManager::SetTarget(std::vector<CharacterTargetData> target, TARGET_TY
 
 
 /*--------*/
-/*ã€å–å¾—ã€‘*/
+/*yæ“¾z*/
 /*--------*/
 
-// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå–å¾—
+// ƒ^[ƒQƒbƒgæ“¾
 CharacterTargetData TargetManager::GetTarget(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
@@ -132,7 +132,7 @@ CharacterTargetData TargetManager::GetTarget(TARGET_TYPE targetNumber)
 	return nullptr;
 }
 
-// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå–å¾—
+// ƒ^[ƒQƒbƒgæ“¾
 std::vector<CharacterTargetData> TargetManager::GetTargets(TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)

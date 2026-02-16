@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <future>
 #include <iostream>
 
@@ -8,67 +8,67 @@ class TimeManager;
 class FadeManager
 {
 private:
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+    // ƒtƒF[ƒhƒtƒ‰ƒO
     bool mbFadeFlag;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰æç”»
+    // ƒtƒF[ƒh•`‰æ
     bool mbFadeDrawFlag;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ©ã‚°
+    // ƒtƒF[ƒhƒAƒEƒgƒtƒ‰ƒO
     bool mbFadeOutFlag;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ•ãƒ©ã‚°
+    // ƒtƒF[ƒhƒCƒ“ƒtƒ‰ƒO
     bool mbFadeInFlag;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ã®æ¿ƒã•
+    // ƒtƒF[ƒh‚Ì”Z‚³
     float mfFadeAlpha;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ã®é€Ÿåº¦
+    // ƒtƒF[ƒh‚Ì‘¬“x
     float mfFadeSpeed;
 
-    // ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+    // ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
     DataManager* mpDataManager;
 
-    // ã‚¿ã‚¤ãƒ ãƒãƒã‚¸ãƒ£ãƒ¼
+    // ƒ^ƒCƒ€ƒ}ƒlƒWƒƒ[
     TimeManager* mpTimeManager;
 
-    // éåŒæœŸè¿”ã‚Šå€¤
+    // ”ñ“¯Šú•Ô‚è’l
     std::future<void> mfuFadeTask;
 
 public:
     FadeManager();
     ~FadeManager();
 
-    /// <summary>åˆæœŸåŒ–</summary>
+    /// <summary>‰Šú‰»</summary>
     void Initilize();
 
-    /// <summary>çµ‚äº†</summary>
+    /// <summary>I—¹</summary>
     void Finailize();
 
-    /// <summary>æç”»</summary>
+    /// <summary>•`‰æ</summary>
     void Draw();
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹(å…¥ã‚Š)</summary>
+    /// <summary>ƒtƒF[ƒhƒAƒEƒgŠJn(“ü‚è)</summary>
     void FadeOut();
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹(å‡º)</summary>
+    /// <summary>ƒtƒF[ƒhƒCƒ“ŠJn(o)</summary>
     void FadeIn();
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†</summary>
+    /// <summary>ƒtƒF[ƒhˆ—</summary>
     void FadeProcess(float fadeSpeed);
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†</summary>
+    /// <summary>ƒtƒF[ƒhI—¹</summary>
     void FadeEnd();
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°å–å¾—</summary>
+    /// <summary>ƒtƒF[ƒhƒtƒ‰ƒOæ“¾</summary>
     inline bool GetFadeFlag() { return mbFadeFlag; }
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ç‡å–å¾—</summary>
+    /// <summary>ƒtƒF[ƒh—¦æ“¾</summary>
     inline float GetFadeRatio() { return mfFadeAlpha * 0.003921568f; }
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦å–å¾—</summary>
+    /// <summary>ƒtƒF[ƒh‘¬“xæ“¾</summary>
     inline float GetFadeSpeed() { return mfFadeSpeed; }
 
-    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦è¨­å®š</summary>
+    /// <summary>ƒtƒF[ƒh‘¬“xİ’è</summary>
     inline void SetFadeSpeed(float speed) { mfFadeSpeed = speed; }
 };

@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 class AttackManager;
 class CameraManager;
 class CollisionManager;
@@ -10,104 +10,104 @@ class TargetManager;
 class GameManager
 {
 private:
-	// ã‚¢ã‚¿ãƒƒã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒAƒ^ƒbƒNƒ}ƒl[ƒWƒƒ[
 	AttackManager* mpAttackManager;
 
-	//ã‚«ãƒ¡ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	//ƒJƒƒ‰ƒ}ƒl[ƒWƒƒ[
 	CameraManager* mpCameraManager;
 
-	// ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[
 	CollisionManager* mpCollisionManager;
 
-	// ãƒãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒ}ƒbƒvƒ}ƒl[ƒWƒƒ[
 	MapManager* mpMapManager;
 	
-	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒIƒuƒWƒFƒNƒgƒ}ƒl[ƒWƒƒ[
 	ObjectManager* mpObjectManager;
 
-	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
 	SceneManager* mpSceneManager;
 
-	//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	//ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
 	TargetManager* mpTargetManager;
 
-	// UIãƒŠãƒ³ãƒãƒ¼
+	// UIƒiƒ“ƒo[
 	int mnUINumber;
 
 public:
 	GameManager();
 	~GameManager();
 
-	// åˆæœŸåŒ–
+	// ‰Šú‰»
 	void Initilize();
-	// çµ‚äº†
+	// I—¹
 	void Finailize();
 
-	// æ›´æ–°
+	// XV
 	void Update();
-	// å¿…è¦ã§ã‚ã‚Œã°å‰Šé™¤ã™ã‚‹
+	// •K—v‚Å‚ ‚ê‚Îíœ‚·‚é
 	void DeleteAllIfNeeded();
-	// æç”»
+	// •`‰æ
 	void Draw();
 
 	/*------*/
-	/*ã€UIã€‘*/
+	/*yUIz*/
 	/*------*/
 
-	/*UIãƒŠãƒ³ãƒãƒ¼å¢—åŠ */
+	/*UIƒiƒ“ƒo[‘‰Á*/
 	int IncreaseUINumber();	
-	/*UIãƒŠãƒ³ãƒãƒ¼æ¸›å°‘*/
+	/*UIƒiƒ“ƒo[Œ¸­*/
 	void DecreaseUINumber();
 
 	/// <summary>
-	/// UIãƒŠãƒ³ãƒãƒ¼å–å¾—
+	/// UIƒiƒ“ƒo[æ“¾
 	/// </summary>
-	/// <returns>ç¾åœ¨å‡¦ç†ã™ã‚‹UIãƒŠãƒ³ãƒãƒ¼</returns>
+	/// <returns>Œ»İˆ—‚·‚éUIƒiƒ“ƒo[</returns>
 	inline int GetNowUINumber() const { return mnUINumber; }
 
 	/*--------------------*/
-	/*ã€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—ã€‘*/
+	/*yƒ}ƒl[ƒWƒƒ[æ“¾z*/
 	/*--------------------*/
 	
 	/// <summary>
-	/// æ”»æ’ƒãƒãƒã‚¸ãƒ£ãƒ¼å–å¾—
+	/// UŒ‚ƒ}ƒlƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>æ”»æ’ƒãƒãƒã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>UŒ‚ƒ}ƒlƒWƒƒ[</returns>
 	inline AttackManager* GetAttackManager() { return mpAttackManager; }
 
 	/// <summary>
-	/// ã‚«ãƒ¡ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒJƒƒ‰ƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ã‚«ãƒ¡ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒJƒƒ‰ƒ}ƒl[ƒWƒƒ[</returns>
 	inline CameraManager* GetCameraManager() { return mpCameraManager; }
 
 	/// <summary>
-	/// ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[</returns>
 	inline CollisionManager* GetCollisionManager() { return mpCollisionManager; }
 
 	/// <summary>
-	/// ãƒãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒ}ƒbƒvƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ãƒãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒ}ƒbƒvƒ}ƒl[ƒWƒƒ[</returns>
 	inline MapManager* GetMapManager() { return mpMapManager; }
 
 	/// <summary>
-	/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒIƒuƒWƒFƒNƒgƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒIƒuƒWƒFƒNƒgƒ}ƒl[ƒWƒƒ[</returns>
 	inline ObjectManager* GetObjectManager() { return mpObjectManager; }
 
 	/// <summary>
-	/// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[</returns>
 	inline SceneManager* GetSceneManager() { return mpSceneManager; }
 
 	/// <summary>
-	/// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
+	/// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[æ“¾
 	/// </summary>
-	/// <returns>ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼</returns>
+	/// <returns>ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[</returns>
 	inline TargetManager* GetTargetManager() { return mpTargetManager; }
 };

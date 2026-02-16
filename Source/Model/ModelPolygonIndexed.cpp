@@ -1,4 +1,4 @@
-ï»¿#include "DxLib.h"
+#include "DxLib.h"
 
 #include "Master.h"
 
@@ -14,12 +14,12 @@ ModelPolygonIndexed::~ModelPolygonIndexed()
 {
 }
 
-// ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–
+// ƒ‚ƒfƒ‹‰Šú‰»
 void ModelPolygonIndexed::ModelInitilize()
 {
 }
 
-// ãƒ¢ãƒ‡ãƒ«çµ‚äº†
+// ƒ‚ƒfƒ‹I—¹
 void ModelPolygonIndexed::ModelFinalize()
 {
     for (int i = 0; i < mstModelVertex.size(); i++)
@@ -35,7 +35,7 @@ void ModelPolygonIndexed::ModelFinalize()
     }
 }
 
-// ãƒ¢ãƒ‡ãƒ«æç”»
+// ƒ‚ƒfƒ‹•`‰æ
 void ModelPolygonIndexed::ModelDraw()
 {
     if (!mbDrawFlag)

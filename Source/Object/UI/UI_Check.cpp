@@ -1,4 +1,4 @@
-ï»¿#include <string>
+#include <string>
 
 #include "ObjectBases.h"
 #include "UI_Check.h"
@@ -16,7 +16,7 @@ UI_Check<T>::UI_Check(void* yesArgument, void* noArgument, void(T::* yesExecuteM
 , msYesWord(yesWord)
 , msNoWord(noWord)
 {
-	//printfDx("ç¢ºèª\n");
+	//printfDx("Šm”F\n");
 }
 
 template<typename T>
@@ -24,25 +24,25 @@ UI_Check<T>::~UI_Check()
 {
 }
 
-// UIåˆæœŸåŒ–
+// UI‰Šú‰»
 template<typename T>
 void UI_Check<T>::UIInitilize()
 {
 }
 
-// UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+// UIƒV[ƒ“ÅI‰Šú‰»
 template<typename T>
 void UI_Check<T>::UISceneLastInitilize()
 {
 }
 
-// UIçµ‚äº†
+// UII—¹
 template<typename T>
 void UI_Check<T>::UIFinalize()
 {
 }
 
-// UIæ›´æ–°
+// UIXV
 template<typename T>
 void UI_Check<T>::UIUpdate()
 {
@@ -50,19 +50,19 @@ void UI_Check<T>::UIUpdate()
 	DefaultDecision();
 }
 
-// UIæœ€çµ‚æ›´æ–°
+// UIÅIXV
 template<typename T>
 void UI_Check<T>::UILastUpdate()
 {
 }
 
-// UIæç”»
+// UI•`‰æ
 template<typename T>
 void UI_Check<T>::UIDraw()
 {
 }
 
-// é¸æŠæ±ºå®šæ™‚å‡¦ç†
+// ‘I‘ğŒˆ’èˆ—
 template<typename T>
 void UI_Check<T>::DecisionProcess()
 {

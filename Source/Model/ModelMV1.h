@@ -1,34 +1,34 @@
-ï»¿#pragma once
+#pragma once
 
 #include "ModelBase.h"
 
 class ModelMV1 : public ModelBase
 {
 private:
-    int mnModelHandle; // ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+    int mnModelHandle; // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 public:
     ModelMV1();
     ~ModelMV1();
 
 protected:
-    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
+    /*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
     virtual void ModelInitilize() override;
-    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
+    /*Œp³ƒ‚ƒfƒ‹I—¹*/
     virtual void ModelFinalize() override;
 
 public:
-    /*ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°*/
+    /*ƒ|ƒWƒVƒ‡ƒ“XV*/
     void PositionUpdate() override;
 
-    /*ãƒ¢ãƒ‡ãƒ«æç”»*/
+    /*ƒ‚ƒfƒ‹•`‰æ*/
     virtual void ModelDraw() override;
 
-    /*ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«è¨­å®š*/
+    /*ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹İ’è*/
     inline void SetModelHandle(int handle) { mnModelHandle = handle; }
-    /*ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«è¨­å®š*/
+    /*ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹İ’è*/
     void SetModelHandle(const char* filePath);
 
-    /// <summary>ãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
-    /// <returns>ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«</returns>
+    /// <summary>ƒnƒ“ƒhƒ‹æ“¾</summary>
+    /// <returns>ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹</returns>
     int GetHandle() const override  { return mnModelHandle; }
 };

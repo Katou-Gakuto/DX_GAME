@@ -1,280 +1,280 @@
-ï»¿#pragma once
+#pragma once
 #include "AnimationBase.h"
 #include "StateBase.h"
 
 /*--------------------*/
-/*     ã€ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*     yƒx[ƒXƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*--------------------*/
 
 /*----------*/
-/*ã€ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆå…±é€šå‡¦ç†ç”¨ã€‘
+/*yƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒg‹¤’Êˆ——pz
 /*----------*/
 class StateAnimationControllerProcess
 {
 protected:
-	// çµ‚äº†æ™‚é–“
+	// I—¹ŠÔ
 	int mnEndTime;
 protected:
 	StateAnimationControllerProcess();
 
-	/*çµ‚äº†æ™‚é–“è¨­å®š*/
+	/*I—¹ŠÔİ’è*/
 	void SetEndTime(AnimationBase* animation, ANIMATION_TYPE state);
 
-	/*çµ‚äº†æ™‚é–“ç¢ºèª(ä¸€å®šæ™‚é–“çµŒã£ã¦ã„ã‚Œã°ã€Œtrueã€ã‚’è¿”ã™)*/
+	/*I—¹ŠÔŠm”F(ˆê’èŠÔŒo‚Á‚Ä‚¢‚ê‚Îutruev‚ğ•Ô‚·)*/
 	bool ChackEndTime();
 
-	/*å¤‰æ›´ç¢ºèª*/
+	/*•ÏXŠm”F*/
 	ANIMATION_TYPE ChangeCheck(AnimationBase* animation, ANIMATION_TYPE nextState);
 };
 
 /*----------*/
-/*ã€å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y‘Ò‹@ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateIdleAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
     StateIdleAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€ç§»å‹•ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yˆÚ“®ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateMoveAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
     StateMoveAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateAttackInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
     StateAttackInAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
-	/// <summary>åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
+	/// <summary>“¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é</summary>
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateAttackAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
     StateAttackAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
-	/// <summary>åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
+	/// <summary>“¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é</summary>
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateAttackOutAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
 	StateAttackOutAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
-	/// <summary>åŒåˆ†é¡ã®ç¨®é¡ã‹ã‚’ç¢ºèªã™ã‚‹</summary>
+	/// <summary>“¯•ª—Ş‚Ìí—Ş‚©‚ğŠm”F‚·‚é</summary>
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
 };
 
 /*----------*/
-/*ã€2Dç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y2DˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class State2DMoveAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
 	State2DMoveAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------------------------------------------------*/
-/*ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒtƒF[ƒhƒAƒEƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz*/
 /*----------------------------------------------------*/
 class StateFadeOutAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
 	StateFadeOutAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------------------------------------------------*/
-/*ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒtƒF[ƒhƒCƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz*/
 /*----------------------------------------------------*/
 class StateFadeInAnimationController : public IStateAnimationController, public StateAnimationControllerProcess
 {
 public:
 	StateFadeInAnimationController();
 	
-	/// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
-	/// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+	/// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*--------------------*/
-/*     ã€æ´¾ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*     y”h¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*--------------------*/
 
 /*----------*/
-/*ã€æ”»æ’ƒä¸­çµ‚äº†ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚’†I—¹ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
 /*----------*/
 class StateAttackEndAnimationController : public StateAttackAnimationController
 {
 public:
 	StateAttackEndAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒåœæ­¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚’â~ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
 /*----------*/
 class StateAttackOutStopAnimationController : public StateAttackOutAnimationController
 {
 public:
 	StateAttackOutStopAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
-/*----------------------------------------------------------------é€šå¸¸æ”»æ’ƒ------------------------------------------------------------------*/
+/*----------------------------------------------------------------’ÊíUŒ‚------------------------------------------------------------------*/
 /*----------*/
-/*ã€é€šå¸¸æ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y’ÊíUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateNormalAttackInAnimationController : public StateAttackInAnimationController
 {
 public:
 	StateNormalAttackInAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€é€šå¸¸æ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y’ÊíUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateNormalAttackOutAnimationController : public StateAttackOutAnimationController
 {
 public:
 	StateNormalAttackOutAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-/*----------------------------------------------------------------ç‰¹æ®Šæ”»æ’ƒ------------------------------------------------------------------*/
+/*----------------------------------------------------------------“ÁêUŒ‚------------------------------------------------------------------*/
 /*----------*/
-/*ã€ç‰¹æ®Šæ”»æ’ƒé–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y“ÁêUŒ‚ŠJnƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateSpceialAttackInAnimationController : public StateAttackInAnimationController
 {
 public:
 	StateSpceialAttackInAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€ç‰¹æ®Šæ”»æ’ƒã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y“ÁêUŒ‚ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateSpceialAttackAnimationController : public StateAttackAnimationController
 {
 public:
 	StateSpceialAttackAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 
 /*----------*/
-/*ã€ç‰¹æ®Šæ”»æ’ƒçµ‚äº†ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*y“ÁêUŒ‚I—¹ƒAƒjƒƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰[ƒXƒe[ƒgz
 /*----------*/
 class StateSpceialAttackOutAnimationController : public StateAttackOutAnimationController
 {
 public:
 	StateSpceialAttackOutAnimationController();
 
-	/// <summary>ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª</summary>
+	/// <summary>ƒXƒe[ƒg•ÏXŠm”F</summary>
 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 };
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*----------*/
-/*ã€æ”»æ’ƒå°‚ç”¨å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚ê—p‘Ò‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgz
 /*----------*/
 class StateAttackIdleAnimationController : public StateIdleAnimationController
 {

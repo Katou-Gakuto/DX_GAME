@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 #include <vector>
 
@@ -6,40 +6,40 @@
 
 #include "ObjectBases.h"
 
-/*æ”»æ’ƒç¨®é¡*/
+/*UŒ‚í—Ş*/
 enum class ATTACK_TYPE;
 
 class AttackManager
 {
 private:
-	// æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// UŒ‚ƒIƒuƒWƒFƒNƒg
 	std::map<ATTACK_TYPE, std::vector<AttackBase*>> mmAttacks;
 
-	// å…¨æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	// ‘SUŒ‚ƒIƒuƒWƒFƒNƒg
 	std::vector<AttackBase*> mstAllAttack;
 
-	// æ”»æ’ƒæƒ…å ±
+	// UŒ‚î•ñ
 	std::vector<AttackData> mstAttackDatas;
 
 public:
 	AttackManager();
 	~AttackManager();
 
-	/*æ”»æ’ƒä½œæˆ*/
+	/*UŒ‚ì¬*/
 	void CreateAttack(ATTACK_TYPE attackType);
 
-	/*æ”»æ’ƒæƒ…å ±è¨­å®š*/
+	/*UŒ‚î•ñİ’è*/
 	int SetAttackData(AttackData attackData);
 
-	/*æ”»æ’ƒé–‹å§‹*/
+	/*UŒ‚ŠJn*/
 	AttackBase* StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE attackMethodType);
 
-	/*æ”»æ’ƒåœæ­¢*/
+	/*UŒ‚’â~*/
 	void StopAttack(int stopAttackNumber);
 
-	/*å‰Šé™¤è¨­å®š*/
+	/*íœİ’è*/
 	void SetDelete();
 
-	/// <summary>æ”»æ’ƒæƒ…å ±å–å¾—</summary>
+	/// <summary>UŒ‚î•ñæ“¾</summary>
 	inline AttackData GetAttacData(int attackNumber) { return mstAttackDatas[attackNumber]; }
 };

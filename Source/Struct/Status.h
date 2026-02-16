@@ -1,25 +1,25 @@
-ï»¿#pragma once
+#pragma once
 
 enum class CHARACTER_TYPE;
 
-// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+// ƒXƒe[ƒ^ƒX
 struct STATUS
 {
 private:
-	int plusAttckPower = 0;	// ãƒ—ãƒ©ã‚¹æ”»æ’ƒåŠ›
-	int plusSpeed = 0;	// ãƒ—ãƒ©ã‚¹é€Ÿåº¦
+	int plusAttckPower = 0;	// ƒvƒ‰ƒXUŒ‚—Í
+	int plusSpeed = 0;	// ƒvƒ‰ƒX‘¬“x
 
 public:
-	int hp;		// ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ
-	int maxHp;	// æœ€å¤§ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ
+	int hp;		// ƒqƒbƒgƒ|ƒCƒ“ƒg
+	int maxHp;	// Å‘åƒqƒbƒgƒ|ƒCƒ“ƒg
 
-	int level;	// ãƒ¬ãƒ™ãƒ«
+	int level;	// ƒŒƒxƒ‹
 
-	int exp = 0;	// çµŒé¨“å€¤
+	int exp = 0;	// ŒoŒ±’l
 
-	int baseAttckPower;	// æ”»æ’ƒåŠ›
-	int baseSpeed;	// é€Ÿåº¦
-	CHARACTER_TYPE characterType;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç¨®é¡
+	int baseAttckPower;	// UŒ‚—Í
+	int baseSpeed;	// ‘¬“x
+	CHARACTER_TYPE characterType;	// ƒLƒƒƒ‰ƒNƒ^[í—Ş
 
 	STATUS operator *(float number) const
 	{
@@ -62,17 +62,17 @@ public:
 		return result;
 	}
 
-	/// <summary>ç¾åœ¨ã®é€Ÿåº¦ã‚’å–å¾—</summary>
+	/// <summary>Œ»İ‚Ì‘¬“x‚ğæ“¾</summary>
 	int GetNowSpeed() const { return baseSpeed + plusSpeed; }
-	/// <summary>ãƒ—ãƒ©ã‚¹ã™ã‚‹é€Ÿåº¦ã«åŠ ç®—</summary>
+	/// <summary>ƒvƒ‰ƒX‚·‚é‘¬“x‚É‰ÁZ</summary>
 	void AddSpeed(int addSpeed) { plusSpeed += addSpeed; }
-	/// <summary>ãƒ—ãƒ©ã‚¹ã™ã‚‹é€Ÿåº¦ã«æ¸›ç®—</summary>
+	/// <summary>ƒvƒ‰ƒX‚·‚é‘¬“x‚ÉŒ¸Z</summary>
 	void SubSpeed(int subSpeed) { plusSpeed -= subSpeed; }
 
-	/// <summary>ç¾åœ¨ã®æ”»æ’ƒåŠ›ã‚’å–å¾—</summary>
+	/// <summary>Œ»İ‚ÌUŒ‚—Í‚ğæ“¾</summary>
 	int GetNowAttckPower() const { return baseAttckPower + plusAttckPower; }
-	/// <summary>ãƒ—ãƒ©ã‚¹ã™ã‚‹æ”»æ’ƒåŠ›ã«åŠ ç®—</summary>
+	/// <summary>ƒvƒ‰ƒX‚·‚éUŒ‚—Í‚É‰ÁZ</summary>
 	void AddAttckPower(int addAttckPower) { plusAttckPower += addAttckPower; }
-	/// <summary>ãƒ—ãƒ©ã‚¹ã™ã‚‹æ”»æ’ƒåŠ›ã«æ¸›ç®—</summary>
+	/// <summary>ƒvƒ‰ƒX‚·‚éUŒ‚—Í‚ÉŒ¸Z</summary>
 	void SubAttckPower(int subAttckPower) { plusAttckPower -= subAttckPower; }
 };

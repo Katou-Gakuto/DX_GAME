@@ -1,6 +1,6 @@
-ï»¿#pragma once
+#pragma once
 
-// 2Dãƒ™ã‚¯ãƒˆãƒ«(int)
+// 2DƒxƒNƒgƒ‹(int)
 struct Vector2_Int
 {
 	int x;
@@ -34,7 +34,7 @@ struct Vector2_Int
 };
 
 
-// 2Dãƒ™ã‚¯ãƒˆãƒ«
+// 2DƒxƒNƒgƒ‹
 struct Vector2
 {
 	float x;

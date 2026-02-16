@@ -1,4 +1,4 @@
-ï»¿#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "winmm.lib")
 
 #include "DxLib.h"
 
@@ -22,7 +22,7 @@
 #include "XmlArrange.h"
 #endif
 
-// ãƒã‚¹ã‚¿ãƒ¼é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°åˆæœŸåŒ–
+// ƒ}ƒXƒ^[Ã“Iƒƒ“ƒo•Ï”‰Šú‰»
 DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
 FadeManager* Master::mpFadeManager = new FadeManager();
@@ -37,8 +37,39 @@ StopManager* Master::mpStopManager = new StopManager();
 TelopManager* Master::mpTelopManager = new TelopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
+{
+	//switch (msg)
+	//{
+	//case WM_CLOSE:
+	//	break;
+
+	//case WM_DESTROY:
+	//	PostQuitMessage(0);
+	//	return 0;
+	//}
+
+	//return DefWindowProc(hWnd, msg, wp, lp);
+
+	return 0;
+
+	/*
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+
+	// ƒƒbƒZ[ƒWˆ—‚ÍDxLib‚Ås‚Á‚Ä‚¢‚é‚æ‚¤‚¾
+
+	return 0;
+}
+	*/
+}
+
 /// <summary>
-/// ãƒ¡ã‚¤ãƒ³
+/// ƒƒCƒ“
 /// </summary>
 /// <param name="hInstance">HINSTANCE</param>
 /// <param name="hPrevInstance">HINSTANCE</param>
@@ -49,61 +80,66 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 #if _DEBUG && false
-	// Excelç”¨XMLãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆ
+	// Excel—pXMLƒtƒ@ƒCƒ‹‚ğ¶¬
 	XmlArrange* pXmlArrange = new XmlArrange();
 	pXmlArrange->Arrange();
 	delete pXmlArrange;
 #endif
 
-	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•
+	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‹N“®
 	ChangeWindowMode(true);
 
-	// DirectX11ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+	// DirectX11‚ğg—p‚·‚é‚æ‚¤‚É‚·‚é
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
-	// TODO: å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
+	// TODO: •ÏX‚Å‚«‚é‚æ‚¤‚É‚·‚é
 	SetGraphMode(800, 600, 16);
 
-	// DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å‡¦ç†
+#if _DEBUG
+	DxLib::SetHookWinProc(WndProc);
+	DxLib::SetAlwaysRunFlag(true);
+#endif
+
+	// DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
 	if(DxLib_Init() == -1)
 	{
-		return -1;		// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã‚‰ç›´ã¡ã«çµ‚äº†
+		return -1;		// ƒGƒ‰[‚ª‹N‚«‚½‚ç’¼‚¿‚ÉI—¹
 	}
 
-	// åˆæœŸåŒ–
+	// ‰Šú‰»
 	Master::mpGameManager->Initilize();
 
-	// ãƒ«ãƒ¼ãƒ—
+	// ƒ‹[ƒv
 	while (!Master::mpEndManager->EndFlag()) {
 
-		// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å‡¦ç†
+		// ƒ[ƒfƒBƒ“ƒOˆ—
 		if (Master::mpLoadingManager->GetLoadingFlag() && !Master::mpFadeManager->GetFadeFlag())
 		{
-			// èª­ã¿è¾¼ã¿
+			// “Ç‚İ‚İ
 			Master::mpLoadingManager->Loading();
 		}
 
 		
-		// ãƒ¡ã‚¤ãƒ³å‡¦ç†
+		// ƒƒCƒ“ˆ—
 		if (Master::mpTimeManager->GetNextUpdateFlag())
 		{
-			// æ›´æ–°
+			// XV
 			Master::mpGameManager->Update();
 
-			// å¿…è¦ã§ã‚ã‚Œã°å‰Šé™¤ã™ã‚‹
+			// •K—v‚Å‚ ‚ê‚Îíœ‚·‚é
 			Master::mpGameManager->DeleteAllIfNeeded();
 
-			// æç”»
+			// •`‰æ
 			Master::mpGameManager->Draw();
 		}
 	}
 
-	// å‰Šé™¤
+	// íœ
 	Master::AllDelete();
 
-	// DXãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã®çµ‚äº†å‡¦ç†
+	// DXƒ‰ƒCƒuƒ‰ƒŠg—p‚ÌI—¹ˆ—
 	DxLib_End();
 
-	// ã‚½ãƒ•ãƒˆã®çµ‚äº†
+	// ƒ\ƒtƒg‚ÌI—¹
 	return 0;
 }

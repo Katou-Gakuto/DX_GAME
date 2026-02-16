@@ -1,11 +1,11 @@
-ï»¿#include <cmath>
+#include <cmath>
 
 #include "DxLib.h"
 
 #include "UtilCalc.h"
 
 
-// æ–¹å‘ã‚’3.14ã‹ã‚‰-3.14ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´ã™ã‚‹
+// •ûŒü‚ğ3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é
 float UtilCalc::NotExceedAngle(float angle)
 {
     if (angle > Pi) {
@@ -18,7 +18,7 @@ float UtilCalc::NotExceedAngle(float angle)
     return angle;
 }
 
-// æ–¹å‘ã‚’3.14ã‹ã‚‰-3.14ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´ã™ã‚‹(3æ–¹å‘)
+// •ûŒü‚ğ3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(3•ûŒü)
 VECTOR UtilCalc::VNotExceedAngle(VECTOR angle)
 {
     if (angle.x > Pi) {
@@ -45,7 +45,7 @@ VECTOR UtilCalc::VNotExceedAngle(VECTOR angle)
     return angle;
 }
 
-// çƒé¢ç§»å‹•ã—ãŸå ´æ‰€
+// ‹…–ÊˆÚ“®‚µ‚½êŠ
 VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
 {
     VECTOR pos = VAngleToVec(angle);
@@ -56,7 +56,7 @@ VECTOR UtilCalc::VSphericalMovePos(float size, VECTOR angle)
     return VScale(pos, size);
 }
 
-//ã€€ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚¢ãƒ³ã‚°ãƒ«ã«å¤‰æ›ã™ã‚‹
+//@ƒxƒNƒgƒ‹‚ğƒAƒ“ƒOƒ‹‚É•ÏŠ·‚·‚é
 VECTOR UtilCalc::VVecToAngle(VECTOR vec)
 {
     VECTOR angle;
@@ -66,7 +66,7 @@ VECTOR UtilCalc::VVecToAngle(VECTOR vec)
     return angle;
 }
 
-// ã‚¢ãƒ³ã‚°ãƒ«ã‚’ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹
+// ƒAƒ“ƒOƒ‹‚ğƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚é
 VECTOR UtilCalc::VAngleToVec(VECTOR angle)
 {
     VECTOR vec;
@@ -76,14 +76,14 @@ VECTOR UtilCalc::VAngleToVec(VECTOR angle)
     return VNorm(vec);
 }
 
-// ç§»å‹•é‡ã‚’ã‚¢ãƒ³ã‚°ãƒ«ã«åæ˜ ã—ãŸå€¤ã‚’è¿”ã™
+// ˆÚ“®—Ê‚ğƒAƒ“ƒOƒ‹‚É”½‰f‚µ‚½’l‚ğ•Ô‚·
 VECTOR UtilCalc::VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed)
 {
     float targetAngle = VVecToAngle(moveVec).y;
     float diffAngle = targetAngle - angle.y;
     diffAngle = NotExceedAngle(diffAngle);
 
-    // è§’åº¦ã®å·®ã‚’0ã«è¿‘ã¥ã‘ã‚‹
+    // Šp“x‚Ì·‚ğ0‚É‹ß‚Ã‚¯‚é
     if (diffAngle > 0.0f)
     {
         diffAngle -= speed;
@@ -104,19 +104,19 @@ VECTOR UtilCalc::VMoveVecToAngle(VECTOR moveVec, VECTOR angle, float speed)
     return VGet(angle.x, targetAngle - diffAngle, angle.z);
 }
 
-// VECTORã®å¹³å‡ã‚’å‡ºã™(æ­£ã®æ•°)
+// VECTOR‚Ì•½‹Ï‚ğo‚·(³‚Ì”)
 float UtilCalc::PutVectorAverage(VECTOR vector)
 {
     return (-vector.x + vector.y + vector.z) * 0.3333333f;
 }
 
-// VECTORã®æ›ã‘ç®—
+// VECTOR‚ÌŠ|‚¯Z
 VECTOR UtilCalc::VMultiply(VECTOR src, VECTOR dst)
 {
     return VGet(src.x * dst.x, src.y * dst.y, src.z * dst.z);
 }
 
-// ãƒ™ã‚¯ãƒˆãƒ«åŒå£«ã®å·®ã‚’å‡ºã™
+// ƒxƒNƒgƒ‹“¯m‚Ì·‚ğo‚·
 float UtilCalc::VDiff(VECTOR src, VECTOR dst)
 {
     VECTOR result = VSub(src, dst);
@@ -124,7 +124,7 @@ float UtilCalc::VDiff(VECTOR src, VECTOR dst)
     return std::abs(result.x) + std::abs(result.y) + std::abs(result.z);
 }
 
-// ã‚¢ãƒ³ã‚°ãƒ«åŒå£«ã®å·®ã‚’è¿”ã™
+// ƒAƒ“ƒOƒ‹“¯m‚Ì·‚ğ•Ô‚·
 float UtilCalc::AngleDiff(float srcAngle, float dstAngle)
 {
     float angleDiff = std::abs(srcAngle - dstAngle);
@@ -137,13 +137,13 @@ float UtilCalc::AngleDiff(float srcAngle, float dstAngle)
 }
 
 /*--------------*/
-/*ã€å½“ãŸã‚Šåˆ¤å®šã€‘*/
+/*y“–‚½‚è”»’èz*/
 /*--------------*/
 
-// çƒåŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
+// ‹…“¯m‚Ì“–‚½‚è”»’è
 bool UtilCalc::SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, float dstRadius)
 {
-    //å††ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
+    //‰~‚Ì“–‚½‚è”»’è‚ğs‚¤
     VECTOR diff = VSub(dstPos, srcPos);
     float distance = VSize(diff);
 
@@ -154,7 +154,7 @@ bool UtilCalc::SphereCollision(VECTOR srcPos, float srcRadius, VECTOR dstPos, fl
     return false;
 }
 
-//// å››è§’åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
+//// lŠp“¯m‚Ì“–‚½‚è”»’è
 //bool UtilCalc::BoxCollision(VECTOR srcTopRight, VECTOR srcBottomLeft, VECTOR dstTopRight, VECTOR dstBottomLeft)
 //{
 //    if ()

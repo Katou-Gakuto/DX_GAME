@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 
 #include "CameraManager.h"
 #include "FSM.h"
@@ -18,7 +18,7 @@ CameraManager::~CameraManager()
 	delete mpFsm;
 }
 
-// ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+// ƒf[ƒ^‰Šú‰»
 void CameraManager::DataInit()
 {
 	mmCameraDatas.clear();
@@ -28,7 +28,7 @@ void CameraManager::DataInit()
 	mbNotSetCameraFlag = true;
 }
 
-// æ›´æ–°
+// XV
 void CameraManager::Update()
 {
 	if (mnNowID != -1)
@@ -37,7 +37,7 @@ void CameraManager::Update()
 	}
 }
 
-// æç”»
+// •`‰æ
 void CameraManager::Draw()
 {
 	if (mnNowID != -1)
@@ -46,17 +46,17 @@ void CameraManager::Draw()
 	}
 }
 
-// æ–°ã—ã„ã‚«ãƒ¡ãƒ©ã‚’ä½œæˆ
+// V‚µ‚¢ƒJƒƒ‰‚ğì¬
 int CameraManager::NewCamera(CameraData cameraData)
 {
 	cameraData.cameraID = mnMaxID;
 	++mnMaxID;
 	mmCameraDatas[cameraData.cameraID] = cameraData;
 	mpFsm->Initilize(this, cameraData.cameraID);
-	return cameraData.cameraID;// ã‚«ãƒ¡ãƒ©ã®IDã‚’è¿”ã™
+	return cameraData.cameraID;// ƒJƒƒ‰‚ÌID‚ğ•Ô‚·
 }
 
-// ã‚«ãƒ¡ãƒ©å‰Šé™¤
+// ƒJƒƒ‰íœ
 void CameraManager::DeleteCameraData(int cameraID)
 {
 	std::map<int, CameraData>::iterator deleteData = mmCameraDatas.find(cameraID);
@@ -65,7 +65,7 @@ void CameraManager::DeleteCameraData(int cameraID)
 		mmCameraDatas.erase(deleteData);
 	}
 
-	// ç¾åœ¨ã®è¦–ç‚¹ã‚’æ¶ˆã—ãŸãªã‚‰é©å½“ãªè¦–ç‚¹ã‚’è¦‹ã‚‹
+	// Œ»İ‚Ì‹“_‚ğÁ‚µ‚½‚È‚ç“K“–‚È‹“_‚ğŒ©‚é
 	if (mnNowID == cameraID)
 	{
 		if (mmCameraDatas.size() > 0)
@@ -81,7 +81,7 @@ void CameraManager::DeleteCameraData(int cameraID)
 	}
 }
 
-// ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰è¨­å®š
+// ƒJƒƒ‰ƒ‚[ƒhİ’è
 void CameraManager::SetCameraMode(int cameraID)
 {
 	if (mnNowID != cameraID)

@@ -1,4 +1,4 @@
-ï»¿#include <string>
+#include <string>
 
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
@@ -6,7 +6,7 @@
 #include "UtilChange.h"
 
 
-// ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã«å¤‰æ›
+// ƒV[ƒ“ƒXƒe[ƒg‚É•ÏŠ·
 SCENE UtilChange::SceneState(SCENE scene)
 {
 	switch ((SCENE)scene)
@@ -47,7 +47,7 @@ SCENE UtilChange::SceneState(SCENE scene)
 	return SCENE::NONE;
 }
 
-// ã‚·ãƒ¼ãƒ³ã®åå‰ã‚’å–å¾—
+// ƒV[ƒ“‚Ì–¼‘O‚ğæ“¾
 std::string UtilChange::Name(SCENE scene)
 {
 	switch (scene)
@@ -71,34 +71,34 @@ std::string UtilChange::Name(SCENE scene)
 		return "RESUL";
 
 	case SCENE::TOWN_1:
-		return "ç”º1";
+		return "’¬1";
 	case SCENE::TOWN_2:
-		return "ç”º2";
+		return "’¬2";
 	case SCENE::TOWN_3:
-		return "ç”º3";
+		return "’¬3";
 	
 	case SCENE::DUNGEON_1:
-		return "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³1";
+		return "ƒ_ƒ“ƒWƒ‡ƒ“1";
 	case SCENE::DUNGEON_2:
-		return "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³2";
+		return "ƒ_ƒ“ƒWƒ‡ƒ“2";
 	case SCENE::DUNGEON_3:
-		return "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³3";
+		return "ƒ_ƒ“ƒWƒ‡ƒ“3";
 
 	case SCENE::BATTLE_1:
-		return "ãƒãƒˆãƒ«1";
+		return "ƒoƒgƒ‹1";
 	case SCENE::BATTLE_2:
-		return "ãƒãƒˆãƒ«2";
+		return "ƒoƒgƒ‹2";
 	case SCENE::BATTLE_3:
-		return "ãƒãƒˆãƒ«3";
+		return "ƒoƒgƒ‹3";
 	}
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã«å¤‰æ›
+// ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚É•ÏŠ·
 std::string UtilChange::CharacterTypeToString(CHARACTER_TYPE characterType)
 {
 	switch (characterType)
 	{
 	case CHARACTER_TYPE::ROBOT:
-		return "ãƒ­ãƒœãƒƒãƒˆ";
+		return "ƒƒ{ƒbƒg";
 	}
 }

@@ -1,25 +1,25 @@
-ï»¿#pragma once
+#pragma once
 #include "DxLib.h"
 
 enum class COLLISION_TYPE
 {
 	NONE = -1,
-	SPHERE = 0,	// çƒ
-	CUBOID,		// ç›´æ–¹ä½“
+	SPHERE = 0,	// ‹…
+	CUBOID,		// ’¼•û‘Ì
 };
 
 struct CollisionData
 {
 	CollisionData();
 
-	VECTOR position;	// ãƒã‚¸ã‚·ãƒ§ãƒ³
-	VECTOR vec;			// å‘ã
-	float speed;		// é€Ÿåº¦
-	float size;			// å¤§ãã•
+	VECTOR position;	// ƒ|ƒWƒVƒ‡ƒ“
+	VECTOR vec;			// Œü‚«
+	float speed;		// ‘¬“x
+	float size;			// ‘å‚«‚³
 
-	bool collisionFlag;	// è¡çªãƒ•ãƒ©ã‚°
+	bool collisionFlag;	// Õ“Ëƒtƒ‰ƒO
 
-	int objID;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
+	int objID;			// ƒIƒuƒWƒFƒNƒgID
 
-	COLLISION_TYPE collisionType;	// å½“ãŸã‚Šåˆ¤å®šç¨®é¡ž(ä»Šã¯è¨­å®šã§ããªã„ã€€ãƒ¢ãƒ‡ãƒ«ãŒã§ãã¦ã‹ã‚‰)
+	COLLISION_TYPE collisionType;	// “–‚½‚è”»’èŽí—Þ(¡‚ÍÝ’è‚Å‚«‚È‚¢@ƒ‚ƒfƒ‹‚ª‚Å‚«‚Ä‚©‚ç)
 };

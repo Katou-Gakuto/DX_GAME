@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include "TelopEnum.h"
 #include "ResourceData.h"
 
@@ -6,11 +6,11 @@
 
 struct TELOP_DATA
 {
-    TELOP_TYPE telopType;   // ãƒ†ãƒ­ãƒƒãƒ—ç¨®é¡
+    TELOP_TYPE telopType;   // ƒeƒƒbƒví—Ş
 
-    VECTOR telopPos;    // ãƒ†ãƒ­ãƒƒãƒ—åº§æ¨™
+    VECTOR telopPos;    // ƒeƒƒbƒvÀ•W
 
-    VECTOR oneSize; // 1ã¤åˆ†ã®ã‚µã‚¤ã‚º
+    VECTOR oneSize; // 1‚Â•ª‚ÌƒTƒCƒY
 
-    DRAW_GRAPH_DATA drawGraphData;  // æç”»ç”»åƒæƒ…å ±
+    DRAW_GRAPH_DATA drawGraphData;  // •`‰æ‰æ‘œî•ñ
 };

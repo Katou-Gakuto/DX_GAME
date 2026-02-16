@@ -1,12 +1,12 @@
-ï»¿#pragma once
+#pragma once
 #include "ObjectBases.h"
 
 class UI_Title : public UIBase
 {
 private:
-    // ãƒ©ã‚¤ãƒ³ã‚µã‚¤ã‚º
+    // ƒ‰ƒCƒ“ƒTƒCƒY
     float mnLineAeraSize;
-    // ãƒ©ã‚¤ãƒ³æ•°
+    // ƒ‰ƒCƒ“”
     int mnLineNum;
 
 public:
@@ -14,22 +14,22 @@ public:
     ~UI_Title();
 
 private:
-    /*UIåˆæœŸåŒ–*/
+    /*UI‰Šú‰»*/
     void UIInitilize() override;
-    /*UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    /*UIƒV[ƒ“ÅI‰Šú‰»*/
     void UISceneLastInitilize() override;
-    /*UIçµ‚äº†*/
+    /*UII—¹*/
     void UIFinalize() override;
-    /*UIæ›´æ–°*/
+    /*UIXV*/
     void UIUpdate() override;
-    /*UIæœ€çµ‚æ›´æ–°*/
+    /*UIÅIXV*/
     void UILastUpdate() override;
-    /*UIæç”»*/
+    /*UI•`‰æ*/
     void UIDraw() override;
 
-    /*é¸æŠæ±ºå®šæ™‚å‡¦ç†*/
+    /*‘I‘ğŒˆ’èˆ—*/
     void DecisionProcess() override;
 
-    /*çµ‚äº†å‡¦ç†*/
+    /*I—¹ˆ—*/
     void CloceProcess() override;
 };

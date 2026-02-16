@@ -1,4 +1,4 @@
-ï»¿#include <map>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -7,24 +7,26 @@
 #include "EndManager.h"
 #include "HandleContainer.h"
 
-// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 HandleContainer::HandleContainer()
 : msRegisterFileName("")
+, meHandleFlag(HANDLE_FLAG::NONE)
 {
-    meHandleFlag = HANDLE_FLAG::NONE;
     mmHandles.clear();
     mmHandleCounts.clear();
 }
 
-// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒfƒXƒgƒ‰ƒNƒ^
 HandleContainer::~HandleContainer()
 {
+    mmHandles.clear();
+    mmHandleCounts.clear();
 }
 
 /*--------*/
-/*ã€è¿½åŠ ã€‘*/
+/*y’Ç‰Áz*/
 /*--------*/
-// åŒåã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹
+// “¯–¼‚Ìƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©‚ğŠm”F‚·‚é
 bool HandleContainer::CheckFileName(std::string fileName)
 {
     msRegisterFileName = fileName;
@@ -32,17 +34,17 @@ bool HandleContainer::CheckFileName(std::string fileName)
     return mmHandles.find(fileName) != mmHandles.end();
 }
 
-// ãƒãƒ³ãƒ‰ãƒ«ã‚’ç™»éŒ²ã™ã‚‹ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰
+// ƒnƒ“ƒhƒ‹‚ğ“o˜^‚·‚éiƒfƒtƒHƒ‹ƒgj
 int HandleContainer::RegisterHandle(int handle, bool countFlag)
 {
-	// ãƒãƒ³ãƒ‰ãƒ«ãŒ-1ãªã‚‰å®Ÿè¡Œã‚’çµ‚äº†ã•ã›ã‚‹
+	// ƒnƒ“ƒhƒ‹‚ª-1‚È‚çÀs‚ğI—¹‚³‚¹‚é
     if (handle == (-1))
     {
         Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
         return -1;
     }
 
-	// è¨­å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åãŒä½¿ã‚ã‚Œã¦ã„ãªã„ãªã‚‰æ–°ã—ãè¨­å®šã™ã‚‹
+	// İ’è‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚ªg‚í‚ê‚Ä‚¢‚È‚¢‚È‚çV‚µ‚­İ’è‚·‚é
     if (mmHandles.find(msRegisterFileName) == mmHandles.end())
     {
         std::vector<int> enptyHandleList;
@@ -54,18 +56,25 @@ int HandleContainer::RegisterHandle(int handle, bool countFlag)
 	switch (meHandleFlag)
 	{
 	case HANDLE_FLAG::ZERO_LOOK:
-		// è¿”ã™ãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®šã™ã‚‹
-		handle = mmHandles[msRegisterFileName][0];
+		// •Ô‚·ƒnƒ“ƒhƒ‹‚ğİ’è‚·‚é
+		if (mmHandles[msRegisterFileName].size() <= 0)
+		{
+			mmHandles[msRegisterFileName].push_back(handle);
+		}
+		else
+		{
+			handle = mmHandles[msRegisterFileName][0];
+		}
 		break;
 
 	case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
 	default:
-		// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹
+		// ƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é
 		mmHandles[msRegisterFileName].push_back(handle);
 	break;
 	}
 
-	// ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãŒã€Œtrueã€ãªã‚‰ã‚«ã‚¦ãƒ³ãƒˆã‚’å¢—ã‚„ã™
+	// ƒJƒEƒ“ƒgƒtƒ‰ƒO‚ªutruev‚È‚çƒJƒEƒ“ƒg‚ğ‘‚â‚·
     if (countFlag)
     {
         mmHandleCounts[mmHandles[msRegisterFileName][0]] += 1;
@@ -100,7 +109,7 @@ int HandleContainer::RegisterHandle(int handle, bool countFlag)
     return handle;
 }
 
-// ãƒãƒ³ãƒ‰ãƒ«ã‚’ç™»éŒ²ã™ã‚‹ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«åæŒ‡å®šï¼‰
+// ƒnƒ“ƒhƒ‹‚ğ“o˜^‚·‚éiƒtƒ@ƒCƒ‹–¼w’èj
 int HandleContainer::RegisterHandle(int handle, std::string fileName, bool countFlag)
 {
     msRegisterFileName = fileName;
@@ -110,11 +119,12 @@ int HandleContainer::RegisterHandle(int handle, std::string fileName, bool count
 
 
 /*--------*/
-/*ã€å‰Šé™¤ã€‘*/
+/*yíœz*/
 /*--------*/
-// ãƒãƒ³ãƒ‰ãƒ«å‰Šé™¤
+// ƒnƒ“ƒhƒ‹íœ
 std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 {
+	// HACK: •Ï”–¼•´‚ç‚í‚µ‚¢‚©‚ç•ÏX
     for (auto myHandle : mmHandles)
     {
 		for (int i = 0; i < myHandle.second.size(); i++)
@@ -122,32 +132,32 @@ std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 			switch (meHandleFlag)
 			{
 			case HANDLE_FLAG::ZERO_LOOK:
-				// 0ä»¥å¤–ãªã‚‰ä½•ã‚‚ã—ãªã„
+				// 0ˆÈŠO‚È‚ç‰½‚à‚µ‚È‚¢
 				if (i != 0)
 				{
 					break;
 				}
 				
-				// æŒ‡å®šã®ãƒãƒ³ãƒ‰ãƒ«ã¨æ¯”è¼ƒã™ã‚‹
+				// w’è‚Ìƒnƒ“ƒhƒ‹‚Æ”äŠr‚·‚é
 				if (myHandle.second[i] == handle)
 				{ 
-					// ã‚«ã‚¦ãƒ³ãƒˆæ¸›å°‘
+					// ƒJƒEƒ“ƒgŒ¸­
 					int countHandle = mmHandles[myHandle.first][0];
 					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
 					{
 						mmHandleCounts[countHandle] -= 1;
 					}
 
-					// å‰Šé™¤ãƒãƒ³ãƒ‰ãƒ«
+					// íœƒnƒ“ƒhƒ‹
 					std::vector<int> deleteHandles;
 					deleteHandles.clear();
 
 					if (mmHandleCounts[countHandle] <= 0)
 					{
-						// å‰Šé™¤äºˆå®šã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨å–å¾—
+						// íœ—\’è‚Ìƒnƒ“ƒhƒ‹‚ğ‘Sæ“¾
 						deleteHandles = mmHandles[myHandle.first];
 
-						// ã‚«ã‚¦ãƒ³ãƒˆãŒ0ä»¥ä¸‹ãªãŸã‚ãƒãƒ³ãƒ‰ãƒ«ã¨ã‚«ã‚¦ãƒ³ãƒˆå‰Šé™¤
+						// ƒJƒEƒ“ƒg‚ª0ˆÈ‰º‚È‚½‚ßƒnƒ“ƒhƒ‹‚ÆƒJƒEƒ“ƒgíœ
 						mmHandles.erase(myHandle.first);
 						mmHandleCounts.erase(countHandle);
 					}
@@ -158,59 +168,82 @@ std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 				break;
 
 			case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
-				// 0ãªã‚‰ä½•ã‚‚ã—ãªã„
+				// 0‚È‚ç‰½‚à‚µ‚È‚¢
 				if (i == 0)
 				{
 					break;
 				}
 
-				// æŒ‡å®šã®ãƒãƒ³ãƒ‰ãƒ«ã¨æ¯”è¼ƒã™ã‚‹
+				// w’è‚Ìƒnƒ“ƒhƒ‹‚Æ”äŠr‚·‚é
 				if (myHandle.second[i] == handle)
 				{
-					// ã‚«ã‚¦ãƒ³ãƒˆæ¸›å°‘
+					// ƒJƒEƒ“ƒgŒ¸­
 					int countHandle = mmHandles[myHandle.first][0];
 					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
 					{
 						mmHandleCounts[countHandle] -= 1;
 					}
+					// INPROGRESS: ì‹Æ’†–¢Š®
 
-					
-				}
-				break;
-
-			default:
-				// æŒ‡å®šã®ãƒãƒ³ãƒ‰ãƒ«ã¨æ¯”è¼ƒã™ã‚‹
-				if (myHandle.second[i] == handle)
-				{
-					// ã‚«ã‚¦ãƒ³ãƒˆæ¸›å°‘
-					int countHandle = mmHandles[myHandle.first][0];
-					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
-					{
-						mmHandleCounts[countHandle] -= 1;
-					}
-
-					// å‰Šé™¤ãƒãƒ³ãƒ‰ãƒ«
+					// íœƒnƒ“ƒhƒ‹
 					std::vector<int> deleteHandles;
 					deleteHandles.clear();
 
 					if (mmHandleCounts[countHandle] <= 0)
 					{
-						// å‰Šé™¤äºˆå®šã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨å–å¾—
+						// íœ—\’è‚Ìƒnƒ“ƒhƒ‹‚ğ‘Sæ“¾
 						deleteHandles = mmHandles[myHandle.first];
 
-						// ã‚«ã‚¦ãƒ³ãƒˆãŒ0ä»¥ä¸‹ãªãŸã‚ãƒãƒ³ãƒ‰ãƒ«ã¨ã‚«ã‚¦ãƒ³ãƒˆå‰Šé™¤
+						// ƒJƒEƒ“ƒg‚ª0ˆÈ‰º‚È‚½‚ßƒnƒ“ƒhƒ‹‚ÆƒJƒEƒ“ƒgíœ
 						mmHandles.erase(myHandle.first);
 						mmHandleCounts.erase(countHandle);
 					}
 					else
 					{
-						// å‰Šé™¤äºˆå®šã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
+						// íœ—\’è‚Ìƒnƒ“ƒhƒ‹‚ğ•Û‘¶
 						deleteHandles.push_back(mmHandles[myHandle.first][i]);
 
-						// ãƒãƒ³ãƒ‰ãƒ«å‰Šé™¤					
+						// ƒnƒ“ƒhƒ‹íœ					
+						mmHandles[myHandle.first].erase(mmHandles[myHandle.first].begin() + i);
+					}
+
+					return deleteHandles;
+				}
+				break;
+
+			default:
+				// w’è‚Ìƒnƒ“ƒhƒ‹‚Æ”äŠr‚·‚é
+				if (myHandle.second[i] == handle)
+				{
+					// ƒJƒEƒ“ƒgŒ¸­
+					int countHandle = mmHandles[myHandle.first][0];
+					if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
+					{
+						mmHandleCounts[countHandle] -= 1;
+					}
+
+					// íœƒnƒ“ƒhƒ‹
+					std::vector<int> deleteHandles;
+					deleteHandles.clear();
+
+					if (mmHandleCounts[countHandle] <= 0)
+					{
+						// íœ—\’è‚Ìƒnƒ“ƒhƒ‹‚ğ‘Sæ“¾
+						deleteHandles = mmHandles[myHandle.first];
+
+						// ƒJƒEƒ“ƒg‚ª0ˆÈ‰º‚È‚½‚ßƒnƒ“ƒhƒ‹‚ÆƒJƒEƒ“ƒgíœ
+						mmHandles.erase(myHandle.first);
+						mmHandleCounts.erase(countHandle);
+					}
+					else
+					{
+						// íœ—\’è‚Ìƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+						deleteHandles.push_back(mmHandles[myHandle.first][i]);
+
+						// ƒnƒ“ƒhƒ‹íœ					
 						mmHandles[myHandle.first].erase(mmHandles[myHandle.first].begin() + i);
 
-						// ã‚«ã‚¦ãƒ³ãƒˆãŒå‚ç…§ã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ãªã‚‰å…¥ã‚Œæ›¿ãˆã‚‹
+						// ƒJƒEƒ“ƒg‚ªQÆ‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚È‚ç“ü‚ê‘Ö‚¦‚é
 						if (i == 0)
 						{
 							mmHandleCounts[mmHandles[myHandle.first][0]] = mmHandleCounts[countHandle];
@@ -218,7 +251,7 @@ std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 						}
 					}
 
-					// å‰Šé™¤ã—ãŸãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
+					// íœ‚µ‚½ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
 					return deleteHandles;
 				}
 				break;
@@ -226,7 +259,7 @@ std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 		}
     }
 
-    return -1;
+    return {};
     /*
     
 	for (auto movieHandle : mmMovieHandle)

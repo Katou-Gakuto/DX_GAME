@@ -1,4 +1,4 @@
-ï»¿#include "AnimationEnum.h"
+#include "AnimationEnum.h"
 #include "SceneEnum.h"
 #include "ResourceData.h"
 
@@ -22,18 +22,18 @@ UI_Game::~UI_Game()
 {
 }
 
-// UIåˆæœŸåŒ–
+// UI‰Šú‰»
 void UI_Game::UIInitilize()
 {
-    // INPROGRESS: æ“ä½œã‚­ãƒ¼ãŠã‚ˆã³HPã‚’ä½œæˆä¸­ é‡è¡¨ç¤ºç”¨å°¾ãƒ¢ãƒ‡ãƒ«(maxã¨ç¾åœ¨åœ°ã‚’ãƒã‚¤ãƒ³ã‚¿ã§æŒã¤ãƒ¢ãƒ‡ãƒ«)ä½œæˆ
+    // INPROGRESS: ‘€ìƒL[‚¨‚æ‚ÑHP‚ğì¬’† —Ê•\¦—p”öƒ‚ƒfƒ‹(max‚ÆŒ»İ’n‚ğƒ|ƒCƒ“ƒ^‚Å‚Âƒ‚ƒfƒ‹)ì¬
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
-    // ã‚²ãƒ¼ãƒ ç”»é¢ã€HP
+    // ƒQ[ƒ€‰æ–ÊAHP
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
-        // æ“ä½œã‚­ãƒ¼
+        // ‘€ìƒL[
         {
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.transFlag = TRUE;
@@ -86,14 +86,14 @@ void UI_Game::UIInitilize()
             setDrawDatas.push_back(drawData);
         }
         
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
 
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, {});
     }
 
-    // ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚å­—å¹•
+    // ƒQ[ƒ€ŠJnš–‹
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
@@ -151,15 +151,15 @@ void UI_Game::UIInitilize()
             break;
         }
 
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
 
 
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });
     }
 
-    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼èƒŒæ™¯
+    // ƒƒjƒ…[”wŒi
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
@@ -170,9 +170,9 @@ void UI_Game::UIInitilize()
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 
-        // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+        // ƒ‚ƒfƒ‹’Ç‰Á
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-        // æœ€åˆã«è¦‹ãˆãªãã™ã‚‹
+        // Å‰‚ÉŒ©‚¦‚È‚­‚·‚é
         DrawConfigData drawConfigData;
         drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
         drawConfigData.blendParameter = 0;
@@ -180,38 +180,38 @@ void UI_Game::UIInitilize()
         {
             mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList()[i]->SetDrawConfigData(drawConfigData);
         }
-        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+        // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, {});
     }
 
 }
 
-// UIæœ€çµ‚åˆæœŸåŒ–
+// UIÅI‰Šú‰»
 void UI_Game::UISceneLastInitilize()
 {
 }
 
-// UIçµ‚äº†
+// UII—¹
 void UI_Game::UIFinalize()
 {
 }
 
-// UIæ›´æ–°
+// UIXV
 void UI_Game::UIUpdate()
 {
 }
 
-// UIæœ€çµ‚æ›´æ–°
+// UIÅIXV
 void UI_Game::UILastUpdate()
 {
 }
 
-// UIæç”»
+// UI•`‰æ
 void UI_Game::UIDraw()
 {
 }
 
-// é¸æŠæ±ºå®šæ™‚å‡¦ç†
+// ‘I‘ğŒˆ’èˆ—
 void UI_Game::DecisionProcess()
 {
     switch (mnSelectNumber)

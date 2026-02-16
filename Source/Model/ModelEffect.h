@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <string>
 
 #include "ModelBase.h"
@@ -7,34 +7,34 @@
 class ModelEffect : public ModelBase
 {
 protected:
-    // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+    // ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹
     int mnEffectHandle;
 
-    // æç”»è¨­å®šç”¨ãƒã‚¸ã‚·ãƒ§ãƒ³
+    // •`‰æİ’è—pƒ|ƒWƒVƒ‡ƒ“
     VECTOR mvDrawPosition;
-    // æç”»è¨­å®šç”¨ã‚¢ãƒ³ã‚°ãƒ«
+    // •`‰æİ’è—pƒAƒ“ƒOƒ‹
     VECTOR mvDrawAngle;
-    // æç”»è¨­å®šç”¨ã‚µã‚¤ã‚º
+    // •`‰æİ’è—pƒTƒCƒY
     VECTOR mvDrawSize;
 
 public:
     ModelEffect();
     ~ModelEffect();
 
-    /// <summary>ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–</summary>
+    /// <summary>Œp³ƒ‚ƒfƒ‹‰Šú‰»</summary>
 	virtual void ModelInitilize() override;
-    /// <summary>ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†</summary>
+    /// <summary>Œp³ƒ‚ƒfƒ‹I—¹</summary>
 	virtual void ModelFinalize() override;
 
-    /// <summary>ã‚²ãƒ¼ãƒ ä¸­åˆæœŸåŒ–</summary>
+    /// <summary>ƒQ[ƒ€’†‰Šú‰»</summary>
     virtual void GameInit() override;
     
-    /// <summary>ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°</summary>
+    /// <summary>ƒ|ƒWƒVƒ‡ƒ“XV</summary>
     virtual void PositionUpdate() override;
 
-	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»</summary>
+	/// <summary>ƒ‚ƒfƒ‹•`‰æ</summary>
 	virtual void ModelDraw() override;
 
-    /// <summary>ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«å–å¾—</summary>
+    /// <summary>ƒGƒtƒFƒNƒgƒnƒ“ƒhƒ‹æ“¾</summary>
     int *GetHandlePointer() override { return &mnEffectHandle; }
 };

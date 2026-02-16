@@ -1,4 +1,4 @@
-ï»¿#include "CameraData.h"
+#include "CameraData.h"
 
 #include "Master.h"
 
@@ -10,52 +10,52 @@
 #include "TargetManager.h"
 #include "UtilCalc.h"
 
-// TODO: ã“ã“ã§Zãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ©ã‚°åˆ‡ã£ã¦ã‚‚å¤‰ã‚ã‚‰ãªã„ã‹ç¢ºèª
+// TODO: ‚±‚±‚ÅZƒoƒbƒtƒ@ƒtƒ‰ƒOØ‚Á‚Ä‚à•Ï‚í‚ç‚È‚¢‚©Šm”F
 /*------------------------*/
-/*ã€ã‚«ãƒ¡ãƒ©ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
+/*yƒJƒƒ‰ƒXƒe[ƒgƒx[ƒXz*/
 /*------------------------*/
-// ã‚«ãƒ¡ãƒ©ã®å…±é€šè¨­å®šã‚’ã™ã‚‹
+// ƒJƒƒ‰‚Ì‹¤’Êİ’è‚ğ‚·‚é
 void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 {
 	if ((preThreeDFlag == -1) || ((preThreeDFlag == 1) != cameraData.threeDFlag))
 	{
 		if (cameraData.threeDFlag)
 		{
-			// ã‚«ãƒ¡ãƒ©ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°è·é›¢ã‚’è¨­å®šã€‚(ã‚«ãƒ¡ãƒ©ãŒæ˜ ã›ã‚‹ä¸Šé™ç¯„å›²)
+			// ƒJƒƒ‰‚ÌƒNƒŠƒbƒsƒ“ƒO‹——£‚ğİ’èB(ƒJƒƒ‰‚ª‰f‚¹‚éãŒÀ”ÍˆÍ)
 			SetCameraNearFar(16.0f, /*/9999999.0f);//*/3800.0f);
 
-			// èƒŒæ™¯ã®è‰²ã‚’è¨­å®šã™ã‚‹
+			// ”wŒi‚ÌF‚ğİ’è‚·‚é
 			SetBackgroundColor(cameraData.red, cameraData.green, cameraData.blue, cameraData.alpha);
 
-			// Zãƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€æº–å‚™
+			// Zƒoƒtƒ@‚É‘‚«‚Ş€”õ
 			SetUseZBufferFlag(TRUE);
 			SetWriteZBufferFlag(TRUE);
 
-			// ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’åæ˜ ã™ã‚‹
+			// ƒJƒƒ‰ˆÊ’u‚ğ”½‰f‚·‚é
 			SetCameraPositionAndTarget_UpVecY(cameraData.position, cameraData.targetPosition);
 		}
 		else
 		{
-			// ã‚«ãƒ¡ãƒ©ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°è·é›¢ã‚’è¨­å®šã€‚(ã‚«ãƒ¡ãƒ©ãŒæ˜ ã›ã‚‹ä¸Šé™ç¯„å›²)
+			// ƒJƒƒ‰‚ÌƒNƒŠƒbƒsƒ“ƒO‹——£‚ğİ’èB(ƒJƒƒ‰‚ª‰f‚¹‚éãŒÀ”ÍˆÍ)
 			//SetCameraNearFar(16.f, 3800.0f);
 
-			// èƒŒæ™¯ã®è‰²ã‚’è¨­å®šã™ã‚‹
+			// ”wŒi‚ÌF‚ğİ’è‚·‚é
 			SetBackgroundColor(cameraData.red, cameraData.green, cameraData.blue, cameraData.alpha);
 
-			// Zãƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€æº–å‚™
+			// Zƒoƒtƒ@‚É‘‚«‚Ş€”õ
 			SetUseZBufferFlag(FALSE);
 			SetWriteZBufferFlag(FALSE);
 		}
 	}
 	else if (cameraData.threeDFlag)
 	{
-		// ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’åæ˜ ã™ã‚‹
+		// ƒJƒƒ‰ˆÊ’u‚ğ”½‰f‚·‚é
 		SetCameraPositionAndTarget_UpVecY(cameraData.position, cameraData.targetPosition);
 	}
 }
 
 /*----------*/
-/*ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ™ãƒ¼ã‚¹ã€‘
+/*yƒAƒjƒ[ƒVƒ‡ƒ“ƒx[ƒXz
 /*----------*/
 void IStateAnimation::SetModelBase(ModelBase* modelBase)
 {
@@ -64,7 +64,7 @@ void IStateAnimation::SetModelBase(ModelBase* modelBase)
 
 
 /*------------------------*/
-/*ã€ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆãƒ™ãƒ¼ã‚¹ã€‘*/
+/*yƒV[ƒ“ƒXƒe[ƒgƒx[ƒXz*/
 /*------------------------*/
 IStateScene::IStateScene()
 : mpMapManager(nullptr)
@@ -73,7 +73,7 @@ IStateScene::IStateScene()
 {
 }
 
-// çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å…±é€šå‡¦ç†
+// ó‘Ô‚É“ü‚Á‚½‚Ì‹¤’Êˆ—
 void IStateScene::StageOnEnter(SceneManager* sceneManager)
 {
 	if (mpTargetManager == nullptr)
@@ -83,7 +83,7 @@ void IStateScene::StageOnEnter(SceneManager* sceneManager)
 	mpTargetManager->TargetInit((unsigned int)((1 << (int)TARGET_TYPE::PLAYER) | (1 << (int)TARGET_TYPE::ENEMY)));
 }
 
-// æ›´æ–°
+// XV
 SCENE IStateScene::Update(SceneManager* sceneManager)
 {
 	if (sceneManager->GetNextScene() != sceneManager->GetFSMScene()->GetCurrentState())

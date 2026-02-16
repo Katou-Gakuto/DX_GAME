@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <vector>
 
 #include "ResourceData.h"
@@ -8,19 +8,19 @@
 class ModelGraph : public ModelBase
 {
 protected:
-    // æç”»æƒ…å ±
+    // •`‰æî•ñ
     std::vector<DRAW_GRAPH_DATA> mstDrawDatas;
 
-    // å‰ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
+    // ‘O‚Ìƒ|ƒWƒVƒ‡ƒ“
     VECTOR mvPrePosition;
 
-    // å‰ã®ã‚¢ãƒ³ã‚°ãƒ«
+    // ‘O‚ÌƒAƒ“ƒOƒ‹
     VECTOR mvPreAngle;
 
-    // å‰ã®ã‚µã‚¤ã‚º
+    // ‘O‚ÌƒTƒCƒY
     VECTOR mvPreSize;
 
-    // ãƒ¢ãƒ‡ãƒ«æç”»æƒ…å ±
+    // ƒ‚ƒfƒ‹•`‰æî•ñ
     DrawConfigData mstDrawConfigData;
 
 public:
@@ -28,31 +28,31 @@ public:
     ~ModelGraph();
 
 protected:
-    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
+    /*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
     virtual void ModelInitilize() override;
-    /*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
+    /*Œp³ƒ‚ƒfƒ‹I—¹*/
     virtual void ModelFinalize() override;
 
 public:
-    /*ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°*/
+    /*ƒ|ƒWƒVƒ‡ƒ“XV*/
     virtual void PositionUpdate() override;
 
-    /*ç”»åƒæç”»*/
+    /*‰æ‘œ•`‰æ*/
     virtual void ModelDraw() override;
 
-    /// <summary>æç”»æƒ…å ±è¿½åŠ </summary>
+    /// <summary>•`‰æî•ñ’Ç‰Á</summary>
     inline void AddDrawData(DRAW_GRAPH_DATA drawData) { mstDrawDatas.push_back(drawData); }
 
-    /// <summary>æç”»æƒ…å ±è¨­å®š</summary>
+    /// <summary>•`‰æî•ñİ’è</summary>
     inline void SetDrawDatas(std::vector<DRAW_GRAPH_DATA> drawData) { mstDrawDatas = drawData; }
 
-    /// <summary>æç”»æƒ…å ±å–å¾—</summary>
-    /// <returns>æç”»æƒ…å ±(è¤‡æ•°)</returns>
+    /// <summary>•`‰æî•ñæ“¾</summary>
+    /// <returns>•`‰æî•ñ(•¡”)</returns>
     std::vector<DRAW_GRAPH_DATA>* GetDrawData() override { return &mstDrawDatas; }
 
-	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»æƒ…å ±ã®å–å¾—</summary>
+	/// <summary>ƒ‚ƒfƒ‹•`‰æî•ñ‚Ìæ“¾</summary>
     inline DrawConfigData GetDrawConfigData() override { return mstDrawConfigData; }
-	/// <summary>ãƒ¢ãƒ‡ãƒ«æç”»æƒ…å ±ã®è¨­å®š</summary>
+	/// <summary>ƒ‚ƒfƒ‹•`‰æî•ñ‚Ìİ’è</summary>
     inline void SetDrawConfigData(DrawConfigData drawConfigData) override { mstDrawConfigData = drawConfigData; }
 
 protected:

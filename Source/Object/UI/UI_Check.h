@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <string>
 
 #include "ObjectBases.h"
@@ -7,25 +7,25 @@ template<typename T>
 class UI_Check : public UIBase
 {
 private:
-    // yesæ™‚ã®å®Ÿè¡Œé–¢æ•°ã«æ¸¡ã™å¼•æ•°
+    // yes‚ÌÀsŠÖ”‚É“n‚·ˆø”
     void* mpYesArgument;
-    // noæ™‚ã®å®Ÿè¡Œé–¢æ•°ã«æ¸¡ã™å¼•æ•°
+    // no‚ÌÀsŠÖ”‚É“n‚·ˆø”
     void* mpNoArgument;
 
-    // yeså®Ÿè¡Œé–¢æ•°
+    // yesÀsŠÖ”
     void (T::*mfnYesExecuteMemberFunction)(void*);
-    // yeså®Ÿè¡Œé–¢æ•°ã®å‘¼ã³å…ƒã®ãƒã‚¤ãƒ³ã‚¿
+    // yesÀsŠÖ”‚ÌŒÄ‚ÑŒ³‚Ìƒ|ƒCƒ“ƒ^
     T* mpYesFunctionPointer;
-    // noå®Ÿè¡Œé–¢æ•°
+    // noÀsŠÖ”
     void (T::*mfnNoExecuteMemberFunction)(void*);
-    // noå®Ÿè¡Œé–¢æ•°ã®å‘¼ã³å…ƒã®ãƒã‚¤ãƒ³ã‚¿
+    // noÀsŠÖ”‚ÌŒÄ‚ÑŒ³‚Ìƒ|ƒCƒ“ƒ^
     T* mpNoFunctionPointer;
 
-    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+    // ƒƒbƒZ[ƒW
     std::string msMessageWord;
-    // yesã®è¨€è‘‰
+    // yes‚ÌŒ¾—t
     std::string msYesWord;
-    // noã®è¨€è‘‰
+    // no‚ÌŒ¾—t
     std::string msNoWord;
 
 public:
@@ -33,19 +33,19 @@ public:
     ~UI_Check();
 
 private:
-    /*UIåˆæœŸåŒ–*/
+    /*UI‰Šú‰»*/
     void UIInitilize() override;
-    /*UIåˆæœŸåŒ–*/
+    /*UI‰Šú‰»*/
     void UISceneLastInitilize() override;
-    /*UIçµ‚äº†*/
+    /*UII—¹*/
     void UIFinalize() override;
-    /*UIæ›´æ–°*/
+    /*UIXV*/
     void UIUpdate() override;
-    /*UIæœ€çµ‚æ›´æ–°*/
+    /*UIÅIXV*/
     void UILastUpdate() override;
-    /*UIæç”»*/
+    /*UI•`‰æ*/
     void UIDraw() override;
 
-    /*é¸æŠæ±ºå®šæ™‚å‡¦ç†*/
+    /*‘I‘ğŒˆ’èˆ—*/
     void DecisionProcess() override;
 };

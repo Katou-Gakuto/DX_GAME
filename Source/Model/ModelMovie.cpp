@@ -1,4 +1,4 @@
-ï»¿// filepath: c:\Users\student3\source\repos\DX_GAME\Source\Model\ModelMovie.cpp
+// filepath: c:\Users\student3\source\repos\DX_GAME\Source\Model\ModelMovie.cpp
 #include "DxLib.h"
 
 #include "Master.h"
@@ -19,12 +19,12 @@ ModelMovie::~ModelMovie()
 {
 }
 
-// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
+// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
 void ModelMovie::ModelInitilize()
 {
 }
 
-// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯çµ‚äº†
+// ƒOƒ‰ƒtƒBƒbƒNI—¹
 void ModelMovie::ModelFinalize()
 {
     for (auto drawData : mstDrawDatas)
@@ -37,14 +37,14 @@ void ModelMovie::ModelFinalize()
     mstDrawDatas.clear();
 }
 
-// ãƒã‚¸ã‚·ãƒ§ãƒ³æ›´æ–°
+// ƒ|ƒWƒVƒ‡ƒ“XV
 void ModelMovie::PositionUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;
     VECTOR position = mvPosition;
 
-    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’åæ˜ ã™ã‚‹   
+    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[‚ğ”½‰f‚·‚é   
     if (mpModelsController != nullptr)
     {
         size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
@@ -56,7 +56,7 @@ void ModelMovie::PositionUpdate()
 
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
-        // ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã‚’ç¢ºèª
+        // ƒ‹[ƒv‚·‚é‚©‚ğŠm”F
         int  j = 0;
         while (j < mnSinglePlayFlag.size())
         {
@@ -71,12 +71,12 @@ void ModelMovie::PositionUpdate()
             continue;
         }
 
-        // å‹•ç”»ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
+        // “®‰æƒ‹[ƒvÄ¶
         Master::mpResourceManager->MovieLoop(mstDrawDatas[i].handle);
     }
 }
 
-// ãƒ ãƒ¼ãƒ“ãƒ¼æç”»
+// ƒ€[ƒr[•`‰æ
 void ModelMovie::ModelDraw()
 {
     if (!mbDrawFlag)

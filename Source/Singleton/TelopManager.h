@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <string>
 #include <vector>
 
@@ -7,11 +7,11 @@
 class TelopManager
 {
 private:
-    // TODO: æ•°å­—ã§æ‰±ã†ã‚ˆã†ã«ã™ã‚‹
-    // ãƒ†ãƒ­ãƒƒãƒ—æ–‡å­—åˆ—
+    // TODO: ”š‚Åˆµ‚¤‚æ‚¤‚É‚·‚é
+    // ƒeƒƒbƒv•¶š—ñ
     std::vector<std::string> msTelopStrings;
 
-    // æœ€çµ‚ãƒ†ãƒ­ãƒƒãƒ—æç”»æ™‚é–“
+    // ÅIƒeƒƒbƒv•`‰æŠÔ
     int mnPreTelopDrawTime;
 
     static constexpr int TELOP_TIME = 1700;
@@ -20,25 +20,25 @@ public:
     TelopManager();
     ~TelopManager();
     
-    /// <summary>çµ‚äº†</summary>
+    /// <summary>I—¹</summary>
     void Finalize();
     
-    /// <summary>æ›´æ–°</summary>
+    /// <summary>XV</summary>
     void Update();
     
-    /// <summary>æç”»</summary>
+    /// <summary>•`‰æ</summary>
     void Draw();
 
-    /// <summary>ãƒ†ãƒ­ãƒƒãƒ—æç”»</summary>
+    /// <summary>ƒeƒƒbƒv•`‰æ</summary>
     void DrawTelop(TELOP_DATA& telopData);
 
-    /// <summary>ãƒ†ãƒ­ãƒƒãƒ—è¿½åŠ </summary>
+    /// <summary>ƒeƒƒbƒv’Ç‰Á</summary>
     void AddTelop(std::string telop);
 
 private:
-    /// <summary>ãƒ†ãƒ­ãƒƒãƒ—å‰Šé™¤</summary>
+    /// <summary>ƒeƒƒbƒvíœ</summary>
     void DeleteTelop();
 
-    /// <summary>3Dãƒã‚¸ã‚·ãƒ§ãƒ³ãƒ†ãƒ­ãƒƒãƒ—æç”»</summary>
+    /// <summary>3Dƒ|ƒWƒVƒ‡ƒ“ƒeƒƒbƒv•`‰æ</summary>
     void DrawTelop_Position3D(TELOP_DATA& telopData);
 };

@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <vector>
 
 #include "BitFlag.h"
@@ -7,25 +7,25 @@
 
 #include "ModelBase.h"
 
-// ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹
+// ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒXƒ‚ƒfƒ‹ƒNƒ‰ƒX
 class ModelPolygonIndexed : public ModelBase
 {
 private:
-    std::vector<IndexedData> mstModelVertex; // ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
+    std::vector<IndexedData> mstModelVertex; // ƒ‚ƒfƒ‹ƒf[ƒ^
 public:
     ModelPolygonIndexed();
     ~ModelPolygonIndexed();
 
 protected:
-	/*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
+	/*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
 	virtual void ModelInitilize() override;
-	/*ç¶™æ‰¿ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
+	/*Œp³ƒ‚ƒfƒ‹I—¹*/
 	virtual void ModelFinalize() override;
 
 public:
-	/*ãƒ¢ãƒ‡ãƒ«æç”»*/
+	/*ƒ‚ƒfƒ‹•`‰æ*/
 	virtual void ModelDraw() override;
     
-    /*ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿è¿½åŠ */
+    /*ƒ‚ƒfƒ‹ƒf[ƒ^’Ç‰Á*/
     inline void AddModelData(const IndexedData& data) { mstModelVertex.push_back(data); }
 };

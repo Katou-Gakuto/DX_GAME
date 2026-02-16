@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <vector>
 
 #include "ObjectBases.h"
@@ -8,92 +8,92 @@ class MapManager;
 class TargetManager;
 
 /*----------------------*/
-/*ã€ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒQ[ƒ€UIƒXƒe[ƒgz*/
 /*----------------------*/
 
 enum class GAME_UI_STATE
 {
-    START_GAME_UI_STAE = 0, // ã‚²ãƒ¼ãƒ é–‹å§‹
-    NORMAL_GAME_UI_STATE,   // é€šå¸¸
-    PAUSE_GAME_UI_STATE,	// ãƒãƒ¼ã‚º
+    START_GAME_UI_STAE = 0, // ƒQ[ƒ€ŠJn
+    NORMAL_GAME_UI_STATE,   // ’Êí
+    PAUSE_GAME_UI_STATE,	// ƒ|[ƒY
 };
 
 /*----------*/
-/*ã€ã‚²ãƒ¼ãƒ UIå…±é€šå‡¦ç†ç”¨ã€‘
+/*yƒQ[ƒ€UI‹¤’Êˆ——pz
 /*----------*/
 class GameUIProcess
 {
 private:
-    // ãƒãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+    // ƒ}ƒbƒvƒ}ƒl[ƒWƒƒ[
     MapManager* mpMapManager;
 
-    // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+    // ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
     TargetManager* mpTargetManager;
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒã‚¸ã‚·ãƒ§ãƒ³
+    // ƒvƒŒƒCƒ„[ƒ|ƒWƒVƒ‡ƒ“
     VECTOR mvPlayerPos;
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¢ãƒ³ã‚°ãƒ«
+    // ƒvƒŒƒCƒ„[ƒAƒ“ƒOƒ‹
     VECTOR mvPlayerAngle;
 
 public:
     GameUIProcess();
 
 protected:
-    /*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹è¿”ã™*/
+    /*ƒƒjƒ…[ƒL[‚ğ‰Ÿ‚µ‚½‚©•Ô‚·*/
     bool IsMenuKeyPressed();
 
-    // TODO: å¾Œã€…ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§è¡¨ç¤ºãŒç†æƒ³
+    // TODO: ŒãXƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[‚Å•\¦‚ª—‘z
 
-    /*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®èƒŒæ™¯æç”»*/
+    /*ƒƒjƒ…[‚Ì”wŒi•`‰æ*/
     void DrawMenuBackground(UIBase* ui);
 
-    /*ãƒŸãƒ‹ãƒãƒƒãƒ—è¡¨ç¤º*/
+    /*ƒ~ƒjƒ}ƒbƒv•\¦*/
     void DrawMinMap();
 
-    /*ãƒŸãƒ‹ãƒãƒƒãƒ—åº§æ¨™ã«å¤‰æ›ã™ã‚‹*/
+    /*ƒ~ƒjƒ}ƒbƒvÀ•W‚É•ÏŠ·‚·‚é*/
     VECTOR PosToMinMapPos(VECTOR pos);
 };
 
 /*------------------------*/
-/*ã€ã‚²ãƒ¼ãƒ é–‹å§‹UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒQ[ƒ€ŠJnUIƒXƒe[ƒgz*/
 /*------------------------*/
 class StartGameUIState : public IStateUI, public GameUIProcess
 {
 private:
-    // çµŒéæ™‚é–“
+    // Œo‰ßŠÔ
     int mnElapsedTime;
 
-    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ•ãƒ©ã‚°
+    // ƒtƒF[ƒhƒCƒ“ƒtƒ‰ƒO
     bool mbFadeInFlag;
 
-    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®æ·»ãˆå­—
+    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰‚Ì“Y‚¦š
     const int MODEL_CONTROLLER_INDEX = 1;
 
-    // å­—å¹•è¡¨ç¤ºæ™‚é–“
+    // š–‹•\¦ŠÔ
     const int SUBTITLE_TIME = 17 * 230;
 
 public:
     StartGameUIState();
     ~StartGameUIState() = default;
 
-    /// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     void OnEnter(UIBase* ui) override;
-    /// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     void OnExit(UIBase* ui) override;
 
-    /// <summary>æ›´æ–°</summary>
+    /// <summary>XV</summary>
     int Update(UIBase* ui) override;
 
-    /// <summary>æ±ºå®š</summary>
+    /// <summary>Œˆ’è</summary>
     int Decision(UIBase* ui) override;
 
-    /// <summary>æç”»</summary>
+    /// <summary>•`‰æ</summary>
     void Draw(UIBase* ui) override;
 };
 
 /*----------------------*/
-/*ã€é€šå¸¸ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y’ÊíƒQ[ƒ€UIƒXƒe[ƒgz*/
 /*----------------------*/
 class NormalGameUIState : public IStateUI, public GameUIProcess
 {
@@ -101,23 +101,23 @@ public:
     NormalGameUIState();
     ~NormalGameUIState() = default;
 
-    /// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     void OnEnter(UIBase* ui) override;
-    /// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     void OnExit(UIBase* ui) override;
 
-    /// <summary>æ›´æ–°</summary>
+    /// <summary>XV</summary>
     int Update(UIBase* ui) override;
 
-    /// <summary>æ±ºå®š</summary>
+    /// <summary>Œˆ’è</summary>
     int Decision(UIBase* ui) override;
 
-    /// <summary>æç”»</summary>
+    /// <summary>•`‰æ</summary>
     void Draw(UIBase* ui) override;
 };
 
 /*----------------------*/
-/*ã€ãƒãƒ¼ã‚ºUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒ|[ƒYUIƒXƒe[ƒgz*/
 /*----------------------*/
 class PauseGameUIState : public IStateUI, public GameUIProcess
 {
@@ -125,17 +125,17 @@ public:
     PauseGameUIState();
     ~PauseGameUIState() = default;
 
-    /// <summary>ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     void OnEnter(UIBase* ui) override;
-    /// <summary>ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     void OnExit(UIBase* ui) override;
 
-    /// <summary>æ›´æ–°</summary>
+    /// <summary>XV</summary>
     int Update(UIBase* ui) override;
 
-    /// <summary>æ±ºå®š</summary>
+    /// <summary>Œˆ’è</summary>
     int Decision(UIBase* ui) override;
 
-    /// <summary>æç”»</summary>
+    /// <summary>•`‰æ</summary>
     void Draw(UIBase* ui) override;
 };

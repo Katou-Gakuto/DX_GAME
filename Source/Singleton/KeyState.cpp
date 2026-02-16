@@ -1,4 +1,4 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <Windows.h>
 
 #include "BitFlag.h"
@@ -9,18 +9,18 @@
 #include "UtilCalc.h"
 
 /*--------*/
-/*ã€å…±é€šã€‘*/
+/*y‹¤’Êz*/
 /*--------*/
 
-// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 KeyState::KeyState()
 : mshWheelVolume(0)
 , mucToggleFlag(BIT_FLAG<unsigned char>())
 {
-	// ã‚­ãƒ¼ãƒ•ãƒ©ã‚°(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+	// ƒL[ƒtƒ‰ƒO(ƒRƒ“ƒgƒ[ƒ‰[)
 	memset(munControllerKeyFlags, 0, sizeof(BIT_FLAG<unsigned int>) * (int)FLAG_TYPE::MAX * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
 
-	// ã‚­ãƒ¼å¤‰å‹•å€¤
+	// ƒL[•Ï“®’l
 	memset(mshNowRightStickX, 0, sizeof(short) * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
 	memset(mshNowRightStickY, 0, sizeof(short) * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
 	memset(mshNowLeftStickX, 0, sizeof(short) * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
@@ -28,12 +28,12 @@ KeyState::KeyState()
 	memset(mshNowRightTrigger, 0, sizeof(short) * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
 	memset(mshNowLeftTrigger, 0, sizeof(short) * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
 
-	// ã‚­ãƒ¼ãƒ•ãƒ©ã‚°(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+	// ƒL[ƒtƒ‰ƒO(ƒL[ƒ{[ƒh)
 	memset(mullWordFlags, 0, sizeof(BIT_FLAG<unsigned long long>) * (int)FLAG_TYPE::MAX);
 	memset(mulSpecialFlags, 0, sizeof(BIT_FLAG<unsigned long>) * (int)FLAG_TYPE::MAX);
 	memset(mushNumpadFlags, 0, sizeof(BIT_FLAG<unsigned short>) * (int)FLAG_TYPE::MAX);
 
-	// ã‚­ãƒ¼ãƒ•ãƒ©ã‚°(ãƒã‚¦ã‚¹)
+	// ƒL[ƒtƒ‰ƒO(ƒ}ƒEƒX)
 	munMouseFlags.Init();
 
 	for (int i = 0; i < (int)CURSOR_POSITION_TYPE::MAX; i++)
@@ -42,55 +42,55 @@ KeyState::KeyState()
 	}
 }
 
-// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒfƒXƒgƒ‰ƒNƒ^
 KeyState::~KeyState()
 {
 }
 
-// æ›´æ–°
+// XV
 void KeyState::Update()
 {
-	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
+	// ƒRƒ“ƒgƒ[ƒ‰[‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
 	BIT_FLAG<unsigned int> prevControllerKey[CONTROLLER_MAX];
 	memcpy(prevControllerKey, munControllerKeyFlags[(int)FLAG_TYPE::NOW], sizeof(BIT_FLAG<unsigned int>) * CONTROLLER_MAX);
 
-	// ãƒã‚¦ã‚¹ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
+	// ƒ}ƒEƒX‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
 	unsigned int prevMouseKey = munMouseFlags.flags;
 
 	SetKey();
 
-	// æŠ¼ã—ã¯ã˜ã‚ã¨é›¢ã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+	// ‰Ÿ‚µ‚Í‚¶‚ß‚Æ—£‚µ‚½ƒRƒ“ƒgƒ[ƒ‰[ƒtƒ‰ƒO‚ğİ’è
 	for (int i = 0; i < CONTROLLER_MAX; i++)
 	{
 		munControllerKeyFlags[(int)FLAG_TYPE::DOWN][i] = ((~prevControllerKey[i].flags) & munControllerKeyFlags[(int)FLAG_TYPE::NOW][i]);
 		munControllerKeyFlags[(int)FLAG_TYPE::UP][i] = (prevControllerKey[i].flags & (~munControllerKeyFlags[(int)FLAG_TYPE::NOW][i]));
 	}
 
-	// ãƒã‚¦ã‚¹ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+	// ƒ}ƒEƒXƒtƒ‰ƒO‚ğİ’è
 	munMouseFlags = (0b1'1111'1111u & munMouseFlags) | //now
 					(((~prevMouseKey) & (0b1'1111'1111u & munMouseFlags)) << ((int)MOUSE_TYPE::MAX)) | // down
 					((prevMouseKey & (~(0b1'1111'1111u & munMouseFlags))) << ((int)MOUSE_TYPE::MAX + (int)MOUSE_TYPE::MAX)); // up
 }
 
-// ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’è¨­å®š(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã¯ç¾åœ¨ã®ã‚­ãƒ¼ã®ã¿è¨­å®š)
+// ƒL[ƒtƒ‰ƒO‚ğİ’è(ƒRƒ“ƒgƒ[ƒ‰[‚ÍŒ»İ‚ÌƒL[‚Ì‚İİ’è)
 void KeyState::SetKey()
 {
 
 	int controllerNumber = (int)CONTROLLER_KEY_NUMBER::CONTROLLER_1;
-	// ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã€‘
+	// yƒRƒ“ƒgƒ[ƒ‰[z
 	for (int i = controllerNumber; i < (4 + controllerNumber); i++)
 	{
 		//XINPUT_STATE state;
 		//ZeroMemory(&state, sizeof(XINPUT_STATE));
 
-		//// å–å¾—
+		//// æ“¾
 		//unsigned long result = XInputGetState(i - controllerNumber, &state);
 
-		//// æ¥ç¶šãŒãªã„ãªã‚‰ä½•ã‚‚ã—ãªã„
+		//// Ú‘±‚ª‚È‚¢‚È‚ç‰½‚à‚µ‚È‚¢
 		//if (result == ERROR_SUCCESS)
 		//{
 		//	SetNowKey_Controller(true, CONTROLLER_KEY_TYPE::EXISTENCE, i);
-		//	// ãƒœã‚¿ãƒ³å–å¾—
+		//	// ƒ{ƒ^ƒ“æ“¾
 		//	unsigned short buttons = state.Gamepad.wButtons;
 
 		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_A, CONTROLLER_KEY_TYPE::A, i);
@@ -112,13 +112,13 @@ void KeyState::SetKey()
 		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_START, CONTROLLER_KEY_TYPE::START, i);
 		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_BACK, CONTROLLER_KEY_TYPE::BACK, i);
 
-		//	// RT LT å–å¾—
+		//	// RT LT æ“¾
 		//	mshNowLeftTrigger[i] = state.Gamepad.bLeftTrigger;
 		//	mshNowRightTrigger[i] = state.Gamepad.bRightTrigger;
 		//	SetNowKey_Controller(mshNowLeftTrigger[i] > 0, CONTROLLER_KEY_TYPE::LT, i);
 		//	SetNowKey_Controller(mshNowRightTrigger[i] > 0, CONTROLLER_KEY_TYPE::RT, i);
 
-		//	// ã‚¹ãƒ†ã‚£ãƒƒã‚¯å–å¾—
+		//	// ƒXƒeƒBƒbƒNæ“¾
 		//	mshNowLeftStickX[i] = state.Gamepad.sThumbLX;
 		//	mshNowLeftStickY[i] = state.Gamepad.sThumbLY;
 
@@ -140,14 +140,14 @@ void KeyState::SetKey()
 	}
 
 
-	// ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€‘	
+	// yƒL[ƒ{[ƒhz	
 	SetNowKey_Controller(true, CONTROLLER_KEY_TYPE::EXISTENCE);
 
 	unsigned char getKey[256] = { 0 };
-	// å–å¾—ã¨åŒæ™‚ã«æŠ¼ã—ãŸã‚­ãƒ¼ãŒã‚ã‚‹ã‹ã‚’ç¢ºèª
+	// æ“¾‚Æ“¯‚É‰Ÿ‚µ‚½ƒL[‚ª‚ ‚é‚©‚ğŠm”F
 	if (GetKeyboardState(getKey))
 	{
-		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æº–æ‹ ã§ã‚­ãƒ¼ã‚’å–å¾—
+		// ƒRƒ“ƒgƒ[ƒ‰[€‹’‚ÅƒL[‚ğæ“¾
 		{
 			SetNowKey_Controller((getKey['D'] & 0x80) != 0, CONTROLLER_KEY_TYPE::RIGHT);
 			SetNowKey_Controller((getKey[VK_RIGHT] & 0x80) != 0, CONTROLLER_KEY_TYPE::RIGHT);
@@ -164,18 +164,18 @@ void KeyState::SetKey()
 			SetNowKey_Controller((getKey['L'] & 0x80) != 0, CONTROLLER_KEY_TYPE::L);
 			SetNowKey_Controller((getKey['R'] & 0x80) != 0, CONTROLLER_KEY_TYPE::R);
 
-			SetNowKey_Controller((getKey[VK_RETURN] & 0x80) != 0, CONTROLLER_KEY_TYPE::A);// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼
+			SetNowKey_Controller((getKey[VK_RETURN] & 0x80) != 0, CONTROLLER_KEY_TYPE::A);// ƒGƒ“ƒ^[ƒL[
 
 			SetNowKey_Controller((getKey['X'] & 0x80) != 0, CONTROLLER_KEY_TYPE::X);
 
-			SetNowKey_Controller((getKey[VK_BACK] & 0x80) != 0, CONTROLLER_KEY_TYPE::B);	// ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹
+			SetNowKey_Controller((getKey[VK_BACK] & 0x80) != 0, CONTROLLER_KEY_TYPE::B);	// ƒoƒbƒNƒXƒy[ƒX
 		}
 
-		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã‚’å–å¾—
+		// ƒL[ƒ{[ƒh‚Ìó‘Ô‚ğæ“¾
 		SetKey_Board(getKey);
 
-		// ã“ã“ã ã‘ãƒã‚¦ã‚¹
-		// ã‚¯ãƒªãƒƒã‚¯
+		// ‚±‚±‚¾‚¯ƒ}ƒEƒX
+		// ƒNƒŠƒbƒN
 		SetMouseFlag((getKey[1] & 0x80) != 0, MOUSE_TYPE::LEFT_BUTTON);
 		SetMouseFlag((getKey[2] & 0x80) != 0, MOUSE_TYPE::RIGHT_BUTTON);
 		SetMouseFlag((getKey[4] & 0x80) != 0, MOUSE_TYPE::WHEEL_BUTTON);
@@ -185,10 +185,10 @@ void KeyState::SetKey()
 	}
 
 
-	//ã€ãƒã‚¦ã‚¹ã€‘
+	//yƒ}ƒEƒXz
 	{
 
-		//// ã‚«ãƒ¼ã‚½ãƒ«
+		//// ƒJ[ƒ\ƒ‹
 		//POINT cursorPos;
 		//if (GetCursorPos(&cursorPos))
 		//{
@@ -267,7 +267,7 @@ void KeyState::SetKey()
 		//	SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
 		//}
 
-		////ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«
+		////ƒ}ƒEƒXƒzƒC[ƒ‹
 		//if (WM_MOUSEWHEEL == mdxsMsg->message)
 		//{
 		//	mshWheelVolume = GET_WHEEL_DELTA_WPARAM(mdxsMsg->wParam);
@@ -300,10 +300,10 @@ void KeyState::SetKey()
 }
 
 /*------------------*/
-/*ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã€‘*/
+/*yƒRƒ“ƒgƒ[ƒ‰[z*/
 /*------------------*/
 
-// æŠ¼ã—å§‹ã‚ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+// ‰Ÿ‚µn‚ß‚½ƒL[ƒtƒ‰ƒO‚ğ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‘Sæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 BIT_FLAG<unsigned int> KeyState::GetAllDownKeyFlags_Controller(bool keyBoardFlag)  const
 {
 	unsigned int result = (unsigned int)0;
@@ -320,7 +320,7 @@ BIT_FLAG<unsigned int> KeyState::GetAllDownKeyFlags_Controller(bool keyBoardFlag
 	return result;
 }
 
-// æŠ¼ã—ã¦ã„ã‚‹ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+// ‰Ÿ‚µ‚Ä‚¢‚éƒL[ƒtƒ‰ƒO‚ğ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‘Sæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 BIT_FLAG<unsigned int> KeyState::GetAllNowKeyFlags_Controller(bool keyBoardFlag)  const
 {
 	unsigned int result = (unsigned int)0;
@@ -337,7 +337,7 @@ BIT_FLAG<unsigned int> KeyState::GetAllNowKeyFlags_Controller(bool keyBoardFlag)
 	return result;
 }
 
-// é›¢ã—ãŸã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å…¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ†å…¨å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+// —£‚µ‚½ƒL[ƒtƒ‰ƒO‚ğ‘SƒRƒ“ƒgƒ[ƒ‰[•ª‘Sæ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 BIT_FLAG<unsigned int> KeyState::GetAllUpKeyFlags_Controller(bool keyBoardFlag)  const
 {
 	unsigned int result = (unsigned int)0;
@@ -354,7 +354,7 @@ BIT_FLAG<unsigned int> KeyState::GetAllUpKeyFlags_Controller(bool keyBoardFlag) 
 	return result;
 }
 
-// ã‚­ãƒ¼ã®å¤‰å‹•å€¤å–å¾—(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)
+// ƒL[‚Ì•Ï“®’læ“¾(ƒRƒ“ƒgƒ[ƒ‰[)
 short KeyState::GetKeyVariable_Controller(CONTROLLER_KEY_VARIABLE_NUMBER getNumber, int controllerNumber)  const
 {
 	switch (getNumber)
@@ -382,22 +382,22 @@ short KeyState::GetKeyVariable_Controller(CONTROLLER_KEY_VARIABLE_NUMBER getNumb
 }
 
 /*--------------*/
-/*ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€‘*/
+/*yƒL[ƒ{[ƒhz*/
 /*--------------*/
 
-//ã‚­ãƒ¼ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹(ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰)
+//ƒL[ƒtƒ‰ƒO‚ğİ’è‚·‚é(ƒL[ƒ{[ƒh)
 void KeyState::SetKey_Board(unsigned char* key)
 {
-	// ä¸€ã¤å‰ã®çŠ¶æ…‹ã‚’ä¿å­˜
+	// ˆê‚Â‘O‚Ìó‘Ô‚ğ•Û‘¶
 	unsigned long long prevWordFlags = mullWordFlags[(int)FLAG_TYPE::NOW];
 	unsigned long prevSpecialFlags = mulSpecialFlags[(int)FLAG_TYPE::NOW];
 	unsigned short prevNumpadFlags = mushNumpadFlags[(int)FLAG_TYPE::NOW];
 
-	// å–å¾—
+	// æ“¾
 	{
-		// æ–‡å­—æ“ä½œç³»ã‚­ãƒ¼ãƒ•ãƒ©ã‚°
+		// •¶š‘€ìŒnƒL[ƒtƒ‰ƒO
 		{
-			// æ•°å­—ã‚­ãƒ¼
+			// ”šƒL[
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_0] & 0x80) != 0, KEY_BOARD_WORD::_0);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_1] & 0x80) != 0, KEY_BOARD_WORD::_1);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_2] & 0x80) != 0, KEY_BOARD_WORD::_2);
@@ -409,7 +409,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_8] & 0x80) != 0, KEY_BOARD_WORD::_8);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_9] & 0x80) != 0, KEY_BOARD_WORD::_9);
 
-			// æ–‡å­—ã‚­ãƒ¼
+			// •¶šƒL[
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::A] & 0x80) != 0, KEY_BOARD_WORD::A);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::B] & 0x80) != 0, KEY_BOARD_WORD::B);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::C] & 0x80) != 0, KEY_BOARD_WORD::C);
@@ -437,7 +437,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::Y] & 0x80) != 0, KEY_BOARD_WORD::Y);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::Z] & 0x80) != 0, KEY_BOARD_WORD::Z);
 
-			// è¨˜å·æ–‡å­—
+			// ‹L†•¶š
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::COLON] & 0x80) != 0, KEY_BOARD_WORD::COLON);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::SENI_COLON] & 0x80) != 0, KEY_BOARD_WORD::SENI_COLON);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::COMMA] & 0x80) != 0, KEY_BOARD_WORD::COMMA);
@@ -451,7 +451,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::CARET] & 0x80) != 0, KEY_BOARD_WORD::CARET);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::BACK_SLASH] & 0x80) != 0, KEY_BOARD_WORD::BACK_SLASH);
 
-			// ç§»å‹•ã‚­ãƒ¼
+			// ˆÚ“®ƒL[
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::PG_UP] & 0x80) != 0, KEY_BOARD_WORD::PG_UP);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::PG_DN] & 0x80) != 0, KEY_BOARD_WORD::PG_DN);
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::END] & 0x80) != 0, KEY_BOARD_WORD::END);
@@ -462,9 +462,9 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowWordKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::ARROW_DOWN] & 0x80) != 0, KEY_BOARD_WORD::ARROW_DOWN);
 		}
 
-		// ç‰¹æ®Š
+		// “Áê
 		{
-			// ç‰¹æ®Šã‚­ãƒ¼
+			// “ÁêƒL[
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::BACK_SPACE] & 0x80) != 0, KEY_BOARD_SPECIAL::BACK_SPACE);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::TAB] & 0x80) != 0, KEY_BOARD_SPECIAL::TAB);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::ENTER] & 0x80) != 0, KEY_BOARD_SPECIAL::ENTER);
@@ -473,7 +473,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::_DELETE] & 0x80) != 0, KEY_BOARD_SPECIAL::_DELETE);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::APPLICATION_KEY] & 0x80) != 0, KEY_BOARD_SPECIAL::APPLICATION_KEY);
 
-			// ä¿®é£¾ã‚­ãƒ¼
+			// CüƒL[
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::SHIFT_LEFT_AND_RIGHT] & 0x80) != 0, KEY_BOARD_SPECIAL::SHIFT_LEFT_AND_RIGHT);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::SIFT_LEFT] & 0x80) != 0, KEY_BOARD_SPECIAL::SIFT_LEFT);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::SIFT_RIGHT] & 0x80) != 0, KEY_BOARD_SPECIAL::SIFT_RIGHT);
@@ -486,12 +486,12 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::ESC] & 0x80) != 0, KEY_BOARD_SPECIAL::ESC);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::WINDOWS] & 0x80) != 0, KEY_BOARD_SPECIAL::WINDOWS);
 
-			// åŠè§’ãƒ»å…¨è§’
+			// ”¼ŠpE‘SŠp
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::HALF_WIDTH] & 0x80) != 0, KEY_BOARD_SPECIAL::HALF_WIDTH);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::FULL_WIDTH] & 0x80) != 0, KEY_BOARD_SPECIAL::FULL_WIDTH);
 
 
-			// Fæ•°å­—
+			// F”š
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::F1] & 0x80) != 0, KEY_BOARD_SPECIAL::F1);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::F2] & 0x80) != 0, KEY_BOARD_SPECIAL::F2);
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::F3] & 0x80) != 0, KEY_BOARD_SPECIAL::F3);
@@ -506,9 +506,9 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowSpecialKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::F12] & 0x80) != 0, KEY_BOARD_SPECIAL::F12);
 		}
 
-		// ãƒ†ãƒ³ã‚­ãƒ¼
+		// ƒeƒ“ƒL[
 		{
-			// NumLockãƒˆã‚°ãƒ«ã‚­ãƒ¼
+			// NumLockƒgƒOƒ‹ƒL[
 			SetNowNumpadKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::NUM_LOCK] & 0x80) != 0, KEY_BOARD_NUM_PAD::NUM_LOCK);
 
 			// NumPad
@@ -529,7 +529,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 			SetNowNumpadKey_Board((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::NUMPAD_5_NUM_OFF] & 0x80) != 0, KEY_BOARD_NUM_PAD::NUMPAD_5_NUM_OFF);
 		}
 
-		// ãƒˆã‚°ãƒ«ã‚­ãƒ¼çŠ¶æ…‹
+		// ƒgƒOƒ‹ƒL[ó‘Ô
 		{
 			mucToggleFlag.SetFlag((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::NUM_LOCK] & 0x1), KEY_BOARD_TOGGLE::NUM_LOCK);
 			mucToggleFlag.SetFlag((key[(int)KEY_BOARD_SET_NUMBER::BOARD_KEY_TYPE::CAPS_LOCK] & 0x1), KEY_BOARD_TOGGLE::CAPS_LOCK);
@@ -537,7 +537,7 @@ void KeyState::SetKey_Board(unsigned char* key)
 		}
 	}
 
-	// downã¨upã‚’è¨­å®š
+	// down‚Æup‚ğİ’è
 	{
 		mullWordFlags[(int)FLAG_TYPE::DOWN] = ((~prevWordFlags) & mullWordFlags[(int)FLAG_TYPE::NOW]);
 		mullWordFlags[(int)FLAG_TYPE::UP] = (prevWordFlags & (~mullWordFlags[(int)FLAG_TYPE::NOW]));

@@ -1,4 +1,4 @@
-ï»¿
+
 #ifndef __EFFEKSEER_BASE_PRE_H__
 #define __EFFEKSEER_BASE_PRE_H__
 
@@ -152,28 +152,28 @@ const float EFK_PI = 3.141592653589f;
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
+	@brief	ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
 */
 enum class AlphaBlendType : int32_t
 {
 	/// <summary>
-	/// ä¸é€æ˜
+	/// •s“§–¾
 	/// </summary>
 	Opacity = 0,
 	/// <summary>
-	/// é€æ˜
+	/// “§–¾
 	/// </summary>
 	Blend = 1,
 	/// <summary>
-	/// åŠ ç®—
+	/// ‰ÁZ
 	/// </summary>
 	Add = 2,
 	/// <summary>
-	/// æ¸›ç®—
+	/// Œ¸Z
 	/// </summary>
 	Sub = 3,
 	/// <summary>
-	/// ä¹—ç®—
+	/// æZ
 	/// </summary>
 	Mul = 4,
 };
@@ -262,7 +262,7 @@ enum class RenderMode : int32_t
 /**
 	@brief
 	\~English	A thread where reload function is called
-	\~Japanese	ãƒªãƒ­ãƒ¼ãƒ‰ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
+	\~Japanese	ƒŠƒ[ƒh‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚éƒXƒŒƒbƒh
 */
 enum class ReloadingThreadType
 {
@@ -286,7 +286,7 @@ enum class TrailTimeType : int32_t
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	æœ€å¤§å€¤å–å¾—
+	@brief	Å‘å’læ“¾
 */
 template <typename T, typename U>
 T Max(T t, U u)
@@ -299,7 +299,7 @@ T Max(T t, U u)
 }
 
 /**
-	@brief	æœ€å°å€¤å–å¾—
+	@brief	Å¬’læ“¾
 */
 template <typename T, typename U>
 T Min(T t, U u)
@@ -312,7 +312,7 @@ T Min(T t, U u)
 }
 
 /**
-	@brief	ç¯„å›²å†…å€¤å–å¾—
+	@brief	”ÍˆÍ“à’læ“¾
 */
 template <typename T, typename U, typename V>
 T Clamp(T t, U max_, V min_)
@@ -440,33 +440,33 @@ inline int32_t ConvertUtf8ToUtf16(char16_t* dst, int32_t dst_size, const char* s
 
 /**
 	@brief	\~english	An interface of reference counter
-			\~japanese	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+			\~japanese	QÆƒJƒEƒ“ƒ^‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX
 */
 class IReference
 {
 public:
 	/**
-	@brief	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã‚’åŠ ç®—ã™ã‚‹ã€‚
-	@return	åŠ ç®—å¾Œã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿
+	@brief	QÆƒJƒEƒ“ƒ^‚ğ‰ÁZ‚·‚éB
+	@return	‰ÁZŒã‚ÌQÆƒJƒEƒ“ƒ^
 	*/
 	virtual int AddRef() = 0;
 
 	/**
-	@brief	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
-	@return	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿
+	@brief	QÆƒJƒEƒ“ƒ^‚ğæ“¾‚·‚éB
+	@return	QÆƒJƒEƒ“ƒ^
 	*/
 	virtual int GetRef() = 0;
 
 	/**
-	@brief	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã‚’æ¸›ç®—ã™ã‚‹ã€‚0ã«ãªã£ãŸæ™‚ã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‰Šé™¤ã™ã‚‹ã€‚
-	@return	æ¸›ç®—å¾Œã®å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿
+	@brief	QÆƒJƒEƒ“ƒ^‚ğŒ¸Z‚·‚éB0‚É‚È‚Á‚½AƒCƒ“ƒXƒ^ƒ“ƒX‚ğíœ‚·‚éB
+	@return	Œ¸ZŒã‚ÌQÆƒJƒEƒ“ƒ^
 	*/
 	virtual int Release() = 0;
 };
 
 /**
 	@brief	\~english	A reference counter
-			\~japanese	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿
+			\~japanese	QÆƒJƒEƒ“ƒ^
 */
 class ReferenceObject : public IReference
 {
@@ -572,7 +572,7 @@ inline void SafeRelease(T*& val)
 
 /**
 	@brief	\~english	A smart pointer for reference counter
-			\~japanese	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿å‘ã‘ã‚¹ãƒãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
+			\~japanese	QÆƒJƒEƒ“ƒ^Œü‚¯ƒXƒ}[ƒgƒ|ƒCƒ“ƒ^
 */
 template <typename T>
 class RefPtr
@@ -941,7 +941,7 @@ enum class RendererMaterialType : int32_t
 
 /**
 	@brief	\~english	Textures used by material
-			\~japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ã«ä½¿ç”¨ã•ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+			\~japanese	ƒ}ƒeƒŠƒAƒ‹‚Ég—p‚³‚ê‚éƒeƒNƒXƒ`ƒƒ
 */
 struct MaterialTextureParameter
 {
@@ -952,7 +952,7 @@ struct MaterialTextureParameter
 
 /**
 	@brief	\~english	Material parameter for shaders
-			\~japanese	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å‘ã‘ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+			\~japanese	ƒVƒF[ƒ_[Œü‚¯ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^[
 */
 struct MaterialRenderData
 {
@@ -971,7 +971,7 @@ struct MaterialRenderData
 
 /**
 	@brief	\~english	Parameters about a depth which is passed into a renderer
-			\~japanese	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã«æ¸¡ã•ã‚Œã‚‹ãƒ‡ãƒ—ã‚¹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+			\~japanese	ƒŒƒ“ƒ_ƒ‰[‚É“n‚³‚ê‚éƒfƒvƒX‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^[
 */
 struct NodeRendererDepthParameter
 {
@@ -985,7 +985,7 @@ struct NodeRendererDepthParameter
 
 /**
 	@brief	\~english	Flipbook parameter parameters which is passed into a renderer
-			\~japanese	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã«æ¸¡ã•ã‚Œã‚‹ãƒ•ãƒªãƒƒãƒ—ãƒ–ãƒƒã‚¯ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+			\~japanese	ƒŒƒ“ƒ_ƒ‰[‚É“n‚³‚ê‚éƒtƒŠƒbƒvƒuƒbƒN‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^[
 */
 struct NodeRendererFlipbookParameter
 {
@@ -1000,7 +1000,7 @@ struct NodeRendererFlipbookParameter
 
 /**
 	@brief	\~english	Common parameters which is passed into a renderer
-			\~japanese	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã«æ¸¡ã•ã‚Œã‚‹å…±é€šã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+			\~japanese	ƒŒƒ“ƒ_ƒ‰[‚É“n‚³‚ê‚é‹¤’Ê‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^[
 */
 struct NodeRendererBasicParameter
 {
@@ -1076,7 +1076,7 @@ struct NodeRendererBasicParameter
 /**
 	@brief
 	\~English	A user data for rendering in plugins.
-	\~Japanese	ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å‘ã‘ã®æç”»æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
+	\~Japanese	ƒvƒ‰ƒOƒCƒ“Œü‚¯‚Ì•`‰æŠg’£ƒf[ƒ^
 */
 class RenderingUserData : public ReferenceObject
 {
@@ -1151,78 +1151,78 @@ using AlignedFreeFunc = std::function<void(void*, uint32_t)>;
 /**
 	@brief
 	\~English get an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğæ“¾‚·‚éB
 */
 MallocFunc GetMallocFunc();
 
 /**
 	\~English specify an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğİ’è‚·‚éB
 */
 void SetMallocFunc(MallocFunc func);
 
 /**
 	@brief
 	\~English get a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğæ“¾‚·‚éB
 */
 FreeFunc GetFreeFunc();
 
 /**
 	\~English specify a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğİ’è‚·‚éB
 */
 void SetFreeFunc(FreeFunc func);
 
 /**
 	@brief
 	\~English get an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğæ“¾‚·‚éB
 */
 AlignedMallocFunc GetAlignedMallocFunc();
 
 /**
 	\~English specify an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğİ’è‚·‚éB
 */
 void SetAlignedMallocFunc(AlignedMallocFunc func);
 
 /**
 	@brief
 	\~English get a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğæ“¾‚·‚éB
 */
 AlignedFreeFunc GetAlignedFreeFunc();
 
 /**
 	\~English specify a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğİ’è‚·‚éB
 */
 void SetAlignedFreeFunc(AlignedFreeFunc func);
 
 /**
 	@brief
 	\~English get an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğæ“¾‚·‚éB
 */
 MallocFunc GetMallocFunc();
 
 /**
 	\~English specify an allocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠŠm•ÛŠÖ”‚ğİ’è‚·‚éB
 */
 void SetMallocFunc(MallocFunc func);
 
 /**
 	@brief
 	\~English get a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğæ“¾‚·‚éB
 */
 FreeFunc GetFreeFunc();
 
 /**
 	\~English specify a deallocator
-	\~Japanese ãƒ¡ãƒ¢ãƒªç ´æ£„é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese ƒƒ‚ƒŠ”jŠüŠÖ”‚ğİ’è‚·‚éB
 */
 void SetFreeFunc(FreeFunc func);
 
@@ -1419,7 +1419,7 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	3æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«
+	@brief	3ŸŒ³ƒxƒNƒgƒ‹
 */
 struct Vector2D
 {
@@ -1435,12 +1435,12 @@ public:
 	float Y;
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Vector2D();
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Vector2D(float x, float y);
 
@@ -1472,7 +1472,7 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	3æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«
+	@brief	3ŸŒ³ƒxƒNƒgƒ‹
 */
 struct Vector3D
 {
@@ -1493,12 +1493,12 @@ public:
 	float Z;
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Vector3D();
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Vector3D(float x, float y, float z);
 
@@ -1527,40 +1527,40 @@ public:
 	bool operator==(const Vector3D& o);
 
 	/**
-		@brief	åŠ ç®—
+		@brief	‰ÁZ
 	*/
 	static void Add(Vector3D* pOut, const Vector3D* pIn1, const Vector3D* pIn2);
 
 	/**
-		@brief	æ¸›ç®—
+		@brief	Œ¸Z
 	*/
 	static Vector3D& Sub(Vector3D& o, const Vector3D& in1, const Vector3D& in2);
 
 	/**
-		@brief	é•·ã•
+		@brief	’·‚³
 	*/
 	static float Length(const Vector3D& in);
 
 	/**
-		@brief	é•·ã•ã®äºŒä¹—
+		@brief	’·‚³‚Ì“ñæ
 	*/
 	static float LengthSq(const Vector3D& in);
 
 	/**
-		@brief	å†…ç©
+		@brief	“àÏ
 	*/
 	static float Dot(const Vector3D& in1, const Vector3D& in2);
 
 	/**
-		@brief	å˜ä½ãƒ™ã‚¯ãƒˆãƒ«
+		@brief	’PˆÊƒxƒNƒgƒ‹
 	*/
 	static void Normal(Vector3D& o, const Vector3D& in);
 
 	/**
-		@brief	å¤–ç©
+		@brief	ŠOÏ
 		@note
-		å³æ‰‹ç³»ã®å ´åˆã€å³æ‰‹ã®è¦ªæŒ‡ãŒin1ã€äººå·®ã—æŒ‡ãŒin2ã¨ã—ãŸã¨ãã€ä¸­æŒ‡ã®æ–¹å‘ã‚’è¿”ã™ã€‚<BR>
-		å·¦æ‰‹ç³»ã®å ´åˆã€å·¦æ‰‹ã®è¦ªæŒ‡ãŒin1ã€äººå·®ã—æŒ‡ãŒin2ã¨ã—ãŸã¨ãã€ä¸­æŒ‡ã®æ–¹å‘ã‚’è¿”ã™ã€‚<BR>
+		‰EèŒn‚Ìê‡A‰Eè‚Ìew‚ªin1Al·‚µw‚ªin2‚Æ‚µ‚½‚Æ‚«A’†w‚Ì•ûŒü‚ğ•Ô‚·B<BR>
+		¶èŒn‚Ìê‡A¶è‚Ìew‚ªin1Al·‚µw‚ªin2‚Æ‚µ‚½‚Æ‚«A’†w‚Ì•ûŒü‚ğ•Ô‚·B<BR>
 	*/
 	static Vector3D& Cross(Vector3D& o, const Vector3D& in1, const Vector3D& in2);
 
@@ -1573,7 +1573,7 @@ public:
 	/**
 		@brief 
 		\~English	Convert Vector3D into std::array<float,4>
-		\~Japanese	Vector3D ã‹ã‚‰ std::array<float,4> ã«å¤‰æ›ã™ã‚‹ã€‚
+		\~Japanese	Vector3D ‚©‚ç std::array<float,4> ‚É•ÏŠ·‚·‚éB
 	*/
 	std::array<float, 4> ToFloat4() const
 	{
@@ -1614,45 +1614,45 @@ enum ColorMode
 };
 
 /**
-	@brief	è‰²
+	@brief	F
 */
 #pragma pack(push, 1)
 struct Color
 {
 	/**
-		@brief	èµ¤
+		@brief	Ô
 	*/
 	uint8_t R;
 
 	/**
-		@brief	ç·‘
+		@brief	—Î
 	*/
 	uint8_t G;
 
 	/**
-		@brief	é’
+		@brief	Â
 	*/
 	uint8_t B;
 
 	/**
-		@brief	é€æ˜åº¦
+		@brief	“§–¾“x
 	*/
 	uint8_t A;
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Color() = default;
 
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255);
 
 	/**
 		@brief 
 		\~English	Convert Color into std::array<float,4>
-		\~Japanese	Color ã‹ã‚‰ std::array<float,4> ã«å¤‰æ›ã™ã‚‹ã€‚
+		\~Japanese	Color ‚©‚ç std::array<float,4> ‚É•ÏŠ·‚·‚éB
 	*/
 	std::array<float, 4> ToFloat4() const
 	{
@@ -1665,13 +1665,13 @@ struct Color
 	}
 
 	/**
-		@brief	ä¹—ç®—
+		@brief	æZ
 	*/
 	static Color Mul(Color in1, Color in2);
 	static Color Mul(Color in1, float in2);
 
 	/**
-		@brief	ç·šå½¢è£œé–“
+		@brief	üŒ`•âŠÔ
 	*/
 	static Color Lerp(const Color in1, const Color in2, float t);
 
@@ -1735,7 +1735,7 @@ namespace Effekseer
 //
 //----------------------------------------------------------------------------------
 /**
-	@brief	å››è§’å½¢
+	@brief	lŠpŒ`
 */
 struct RectF
 {
@@ -1786,10 +1786,10 @@ namespace Effekseer
 struct Matrix44;
 
 /**
-	@brief	4x3è¡Œåˆ—
+	@brief	4x3s—ñ
 	@note
-	å³æ‰‹ç³»(å›è»¢:åæ™‚è¨ˆå›ã‚Š)<BR>
-	V[x,y,z,1] * M ã®å½¢ã§ãƒ™ã‚¯ãƒˆãƒ«ã¨ã®ä¹—ç®—ãŒå¯èƒ½ã§ã‚ã‚‹ã€‚<BR>
+	‰EèŒn(‰ñ“]:”½Œv‰ñ‚è)<BR>
+	V[x,y,z,1] * M ‚ÌŒ`‚ÅƒxƒNƒgƒ‹‚Æ‚ÌæZ‚ª‰Â”\‚Å‚ ‚éB<BR>
 	[0,0][0,1][0,2]<BR>
 	[1,0][1,1][1,2]<BR>
 	[2,0][2,1][2,2]<BR>
@@ -1800,111 +1800,111 @@ struct Matrix43
 private:
 public:
 	/**
-		@brief	è¡Œåˆ—ã®å€¤
+		@brief	s—ñ‚Ì’l
 	*/
 	float Value[4][3];
 
 	/**
-		@brief	å˜ä½è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
+		@brief	’PˆÊs—ñ‰»‚ğs‚¤B
 	*/
 	void Indentity();
 
 	/**
-		@brief	æ‹¡å¤§è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	x	[in]	Xæ–¹å‘æ‹¡å¤§ç‡
-		@param	y	[in]	Yæ–¹å‘æ‹¡å¤§ç‡
-		@param	z	[in]	Zæ–¹å‘æ‹¡å¤§ç‡
+		@brief	Šg‘ås—ñ‰»‚ğs‚¤B
+		@param	x	[in]	X•ûŒüŠg‘å—¦
+		@param	y	[in]	Y•ûŒüŠg‘å—¦
+		@param	z	[in]	Z•ûŒüŠg‘å—¦
 	*/
 	void Scaling(float x, float y, float z);
 
 	/**
-		@brief	åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘ã®Xè»¸å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	angle	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”½Œvü‚è•ûŒü‚ÌX²‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	angle	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationX(float angle);
 
 	/**
-		@brief	åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘ã®Yè»¸å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	angle	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”½Œvü‚è•ûŒü‚ÌY²‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	angle	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationY(float angle);
 
 	/**
-		@brief	åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘ã®Zè»¸å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	angle	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”½Œvü‚è•ûŒü‚ÌZ²‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	angle	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationZ(float angle);
 
 	/**
-		@brief	åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘ã®XYZè»¸å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	rx	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
-		@param	ry	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
-		@param	rz	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”½Œvü‚è•ûŒü‚ÌXYZ²‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	rx	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
+		@param	ry	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
+		@param	rz	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationXYZ(float rx, float ry, float rz);
 
 	/**
-		@brief	åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘ã®ZXYè»¸å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	rz	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
-		@param	rx	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
-		@param	ry	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”½Œvü‚è•ûŒü‚ÌZXY²‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	rz	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
+		@param	rx	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
+		@param	ry	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationZXY(float rz, float rx, float ry);
 
 	/**
-		@brief	ä»»æ„è»¸ã«å¯¾ã™ã‚‹åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	axis	[in]	å›è»¢è»¸
-		@param	angle	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	”CˆÓ²‚É‘Î‚·‚é”½Œvü‚è•ûŒü‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	axis	[in]	‰ñ“]²
+		@param	angle	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	void RotationAxis(const Vector3D& axis, float angle);
 
 	/**
-		@brief	ä»»æ„è»¸ã«å¯¾ã™ã‚‹åæ™‚è¨ˆå‘¨ã‚Šæ–¹å‘å›è»¢è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	axis	[in]	å›è»¢è»¸
-		@param	s	[in]	ã‚µã‚¤ãƒ³
-		@param	c	[in]	ã‚³ã‚µã‚¤ãƒ³
+		@brief	”CˆÓ²‚É‘Î‚·‚é”½Œvü‚è•ûŒü‰ñ“]s—ñ‰»‚ğs‚¤B
+		@param	axis	[in]	‰ñ“]²
+		@param	s	[in]	ƒTƒCƒ“
+		@param	c	[in]	ƒRƒTƒCƒ“
 	*/
 	void RotationAxis(const Vector3D& axis, float s, float c);
 
 	/**
-		@brief	ç§»å‹•è¡Œåˆ—åŒ–ã‚’è¡Œã†ã€‚
-		@param	x	[in]	Xæ–¹å‘ç§»å‹•
-		@param	y	[in]	Yæ–¹å‘ç§»å‹•
-		@param	z	[in]	Zæ–¹å‘ç§»å‹•
+		@brief	ˆÚ“®s—ñ‰»‚ğs‚¤B
+		@param	x	[in]	X•ûŒüˆÚ“®
+		@param	y	[in]	Y•ûŒüˆÚ“®
+		@param	z	[in]	Z•ûŒüˆÚ“®
 	*/
 	void Translation(float x, float y, float z);
 
 	/**
-		@brief	è¡Œåˆ—ã‚’ã€æ‹¡å¤§ã€å›è»¢ã€ç§»å‹•ã®è¡Œåˆ—ã¨ãƒ™ã‚¯ãƒˆãƒ«ã«åˆ†è§£ã™ã‚‹ã€‚
-		@param	s	[out]	æ‹¡å¤§è¡Œåˆ—
-		@param	r	[out]	å›è»¢è¡Œåˆ—
-		@param	t	[out]	ä½ç½®
+		@brief	s—ñ‚ğAŠg‘åA‰ñ“]AˆÚ“®‚Ìs—ñ‚ÆƒxƒNƒgƒ‹‚É•ª‰ğ‚·‚éB
+		@param	s	[out]	Šg‘ås—ñ
+		@param	r	[out]	‰ñ“]s—ñ
+		@param	t	[out]	ˆÊ’u
 	*/
 	void GetSRT(Vector3D& s, Matrix43& r, Vector3D& t) const;
 
 	/**
-		@brief	è¡Œåˆ—ã‹ã‚‰æ‹¡å¤§ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	s	[out]	æ‹¡å¤§ãƒ™ã‚¯ãƒˆãƒ«
+		@brief	s—ñ‚©‚çŠg‘åƒxƒNƒgƒ‹‚ğæ“¾‚·‚éB
+		@param	s	[out]	Šg‘åƒxƒNƒgƒ‹
 	*/
 	void GetScale(Vector3D& s) const;
 
 	/**
-		@brief	è¡Œåˆ—ã‹ã‚‰å›è»¢è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	s	[out]	å›è»¢è¡Œåˆ—
+		@brief	s—ñ‚©‚ç‰ñ“]s—ñ‚ğæ“¾‚·‚éB
+		@param	s	[out]	‰ñ“]s—ñ
 	*/
 	void GetRotation(Matrix43& r) const;
 
 	/**
-		@brief	è¡Œåˆ—ã‹ã‚‰ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	t	[out]	ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«
+		@brief	s—ñ‚©‚çˆÚ“®ƒxƒNƒgƒ‹‚ğæ“¾‚·‚éB
+		@param	t	[out]	ˆÚ“®ƒxƒNƒgƒ‹
 	*/
 	void GetTranslation(Vector3D& t) const;
 
 	/**
-		@brief	è¡Œåˆ—ã®æ‹¡å¤§ã€å›è»¢ã€ç§»å‹•ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	s	[in]	æ‹¡å¤§è¡Œåˆ—
-		@param	r	[in]	å›è»¢è¡Œåˆ—
-		@param	t	[in]	ä½ç½®
+		@brief	s—ñ‚ÌŠg‘åA‰ñ“]AˆÚ“®‚ğİ’è‚·‚éB
+		@param	s	[in]	Šg‘ås—ñ
+		@param	r	[in]	‰ñ“]s—ñ
+		@param	t	[in]	ˆÊ’u
 	*/
 	void SetSRT(const Vector3D& s, const Matrix43& r, const Vector3D& t);
 
@@ -1919,10 +1919,10 @@ public:
 	bool IsValid() const;
 
 	/**
-		@brief	è¡Œåˆ—åŒå£«ã®ä¹—ç®—ã‚’è¡Œã†ã€‚
-		@param	out	[out]	çµæœ
-		@param	in1	[in]	ä¹—ç®—ã®å·¦å´
-		@param	in2	[in]	ä¹—ç®—ã®å³å´
+		@brief	s—ñ“¯m‚ÌæZ‚ğs‚¤B
+		@param	out	[out]	Œ‹‰Ê
+		@param	in1	[in]	æZ‚Ì¶‘¤
+		@param	in2	[in]	æZ‚Ì‰E‘¤
 	*/
 	static void Multiple(Matrix43& out, const Matrix43& in1, const Matrix43& in2);
 };
@@ -1953,11 +1953,11 @@ namespace Effekseer
 //----------------------------------------------------------------------------------
 
 /**
-	@brief	è¡Œåˆ—
+	@brief	s—ñ
 	@note
-	å³æ‰‹ç³»<BR>
-	å·¦æ‰‹ç³»<BR>
-	V[x,y,z,1] * M ã®å½¢<BR>
+	‰EèŒn<BR>
+	¶èŒn<BR>
+	V[x,y,z,1] * M ‚ÌŒ`<BR>
 	[0,0][0,1][0,2][0,3]
 	[1,0][1,1][1,2][1,3]
 	[2,0][2,1][2,2][2,3]
@@ -1969,107 +1969,107 @@ struct Matrix44
 private:
 public:
 	/**
-		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*/
 	Matrix44();
 
 	/**
-		@brief	è¡Œåˆ—ã®å€¤
+		@brief	s—ñ‚Ì’l
 	*/
 	float Values[4][4];
 
 	/**
-		@brief	å˜ä½è¡Œåˆ—åŒ–
+		@brief	’PˆÊs—ñ‰»
 	*/
 	Matrix44& Indentity();
 
 	/**
-	@brief	è»¢ç½®è¡Œåˆ—åŒ–
+	@brief	“]’us—ñ‰»
 	*/
 	Matrix44& Transpose();
 
 	/**
-		@brief	ã‚«ãƒ¡ãƒ©è¡Œåˆ—åŒ–(å³æ‰‹ç³»)
+		@brief	ƒJƒƒ‰s—ñ‰»(‰EèŒn)
 	*/
 	Matrix44& LookAtRH(const Vector3D& eye, const Vector3D& at, const Vector3D& up);
 
 	/**
-		@brief	ã‚«ãƒ¡ãƒ©è¡Œåˆ—åŒ–(å·¦æ‰‹ç³»)
+		@brief	ƒJƒƒ‰s—ñ‰»(¶èŒn)
 	*/
 	Matrix44& LookAtLH(const Vector3D& eye, const Vector3D& at, const Vector3D& up);
 
 	/**
-		@brief	å°„å½±è¡Œåˆ—åŒ–(å³æ‰‹ç³»)
+		@brief	Ë‰es—ñ‰»(‰EèŒn)
 	*/
 	Matrix44& PerspectiveFovRH(float ovY, float aspect, float zn, float zf);
 
 	/**
-		@brief	OpenGLç”¨å°„å½±è¡Œåˆ—åŒ–(å³æ‰‹ç³»)
+		@brief	OpenGL—pË‰es—ñ‰»(‰EèŒn)
 	*/
 	Matrix44& PerspectiveFovRH_OpenGL(float ovY, float aspect, float zn, float zf);
 
 	/**
-		@brief	å°„å½±è¡Œåˆ—åŒ–(å·¦æ‰‹ç³»)
+		@brief	Ë‰es—ñ‰»(¶èŒn)
 	*/
 	Matrix44& PerspectiveFovLH(float ovY, float aspect, float zn, float zf);
 
 	/**
-	 @brief	OpenGLç”¨å°„å½±è¡Œåˆ—åŒ–(å·¦æ‰‹ç³»)
+	 @brief	OpenGL—pË‰es—ñ‰»(¶èŒn)
 	 */
 	Matrix44& PerspectiveFovLH_OpenGL(float ovY, float aspect, float zn, float zf);
 
 	/**
-		@brief	æ­£å°„å½±è¡Œåˆ—åŒ–(å³æ‰‹ç³»)
+		@brief	³Ë‰es—ñ‰»(‰EèŒn)
 	*/
 	Matrix44& OrthographicRH(float width, float height, float zn, float zf);
 
 	/**
-		@brief	æ­£å°„å½±è¡Œåˆ—åŒ–(å·¦æ‰‹ç³»)
+		@brief	³Ë‰es—ñ‰»(¶èŒn)
 	*/
 	Matrix44& OrthographicLH(float width, float height, float zn, float zf);
 
 	/**
-		@brief	æ‹¡å¤§è¡Œåˆ—åŒ–
+		@brief	Šg‘ås—ñ‰»
 	*/
 	void Scaling(float x, float y, float z);
 
 	/**
-		@brief	Xè»¸å›è»¢è¡Œåˆ—(å³æ‰‹)
+		@brief	X²‰ñ“]s—ñ(‰Eè)
 	*/
 	void RotationX(float angle);
 
 	/**
-		@brief	Yè»¸å›è»¢è¡Œåˆ—(å³æ‰‹)
+		@brief	Y²‰ñ“]s—ñ(‰Eè)
 	*/
 	void RotationY(float angle);
 
 	/**
-		@brief	Zè»¸å›è»¢è¡Œåˆ—(å³æ‰‹)
+		@brief	Z²‰ñ“]s—ñ(‰Eè)
 	*/
 	void RotationZ(float angle);
 
 	/**
-		@brief	ç§»å‹•è¡Œåˆ—
+		@brief	ˆÚ“®s—ñ
 	*/
 	void Translation(float x, float y, float z);
 
 	/**
-		@brief	ä»»æ„è»¸åæ™‚è¨ˆå›è»¢è¡Œåˆ—
+		@brief	”CˆÓ²”½Œv‰ñ“]s—ñ
 	*/
 	void RotationAxis(const Vector3D& axis, float angle);
 
 	/**
-		@brief	ã‚¯ã‚ªãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‹ã‚‰è¡Œåˆ—ã«å¤‰æ›
+		@brief	ƒNƒI[ƒ^ƒjƒIƒ“‚©‚çs—ñ‚É•ÏŠ·
 	*/
 	void Quaternion(float x, float y, float z, float w);
 
 	/**
-		@brief	ä¹—ç®—
+		@brief	æZ
 	*/
 	static Matrix44& Mul(Matrix44& o, const Matrix44& in1, const Matrix44& in2);
 
 	/**
-		@brief	é€†è¡Œåˆ—
+		@brief	‹ts—ñ
 	*/
 	static Matrix44& Inverse(Matrix44& o, const Matrix44& in);
 };
@@ -2136,7 +2136,7 @@ public:
 /**
 	@brief
 	\~English	factory class for io
-	\~Japanese	IOã®ãŸã‚ã®ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚¯ãƒ©ã‚¹
+	\~Japanese	IO‚Ì‚½‚ß‚Ìƒtƒ@ƒNƒgƒŠ[ƒNƒ‰ƒX
 */
 class FileInterface : public ReferenceObject
 {
@@ -2150,7 +2150,7 @@ public:
 	/**
 		@brief
 		\~English	try to open a reader. It need not to succeeds in opening it.
-		\~Japanese	ãƒªãƒ¼ãƒ€ãƒ¼ã‚’é–‹ãã“ã¨ã‚’è©¦ã—ã¾ã™ã€‚æˆåŠŸã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
+		\~Japanese	ƒŠ[ƒ_[‚ğŠJ‚­‚±‚Æ‚ğ‚µ‚Ü‚·B¬Œ÷‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
 	*/
 	virtual FileReaderRef TryOpenRead(const char16_t* path)
 	{
@@ -2174,7 +2174,7 @@ namespace Effekseer
 /**
 	@brief	
 	\~English	Default file loader
-	\~Japanese	æ¨™æº–ã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã‚¯ãƒ©ã‚¹
+	\~Japanese	•W€‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İƒNƒ‰ƒX
 */
 class DefaultFileReader : public FileReader
 {
@@ -2901,7 +2901,7 @@ namespace Effekseer
 
 /**
 	@brief	\~english	Resource base
-			\~japanese	ãƒªã‚½ãƒ¼ã‚¹åŸºåº•
+			\~japanese	ƒŠƒ\[ƒXŠî’ê
 */
 class Resource : public ReferenceObject
 {
@@ -2928,7 +2928,7 @@ private:
 
 /**
 	@brief	\~english	Texture resource
-			\~japanese	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+			\~japanese	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
 */
 class Texture : public Resource
 {
@@ -2961,7 +2961,7 @@ private:
 
 /**
 	@brief	\~english	Material resource
-			\~japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+			\~japanese	ƒ}ƒeƒŠƒAƒ‹ƒŠƒ\[ƒX
 */
 class Material : public Resource
 {
@@ -3012,21 +3012,21 @@ using EffectRef = RefPtr<Effect>;
 /**
 @brief
 \~English	Terms where an effect exists
-\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹æœŸé–“
+\~Japanese	ƒGƒtƒFƒNƒg‚ª‘¶İ‚·‚éŠúŠÔ
 */
 struct EffectTerm
 {
 	/**
 @brief
 \~English	Minimum end time that the effect may exist
-\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å°ã®çµ‚äº†æ™‚é–“
+\~Japanese	ƒGƒtƒFƒNƒg‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ¬‚ÌI—¹ŠÔ
 */
 	int32_t TermMin;
 
 	/**
 	@brief
 	\~English	Maximum end time that the effect may exist
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å¤§ã®çµ‚äº†æ™‚é–“
+	\~Japanese	ƒGƒtƒFƒNƒg‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ‘å‚ÌI—¹ŠÔ
 	*/
 	int32_t TermMax;
 };
@@ -3034,63 +3034,63 @@ struct EffectTerm
 /**
 @brief
 \~English	Terms where instances exists
-\~Japanese	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹æœŸé–“
+\~Japanese	ƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚éŠúŠÔ
 */
 struct EffectInstanceTerm
 {
 	/**
 	@brief
 	\~English	Minimum start time that the first instance may exist
-	\~Japanese	æœ€åˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å°ã®é–‹å§‹æ™‚é–“
+	\~Japanese	Å‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ¬‚ÌŠJnŠÔ
 	*/
 	int32_t FirstInstanceStartMin = 0;
 
 	/**
 	@brief
 	\~English	Maximum start time that the first instance may exist
-	\~Japanese	æœ€åˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å¤§ã®é–‹å§‹æ™‚é–“
+	\~Japanese	Å‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ‘å‚ÌŠJnŠÔ
 	*/
 	int32_t FirstInstanceStartMax = 0;
 
 	/**
 	@brief
 	\~English	Minimum end time that the first instance may exist
-	\~Japanese	æœ€åˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å°ã®çµ‚äº†æ™‚é–“
+	\~Japanese	Å‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ¬‚ÌI—¹ŠÔ
 	*/
 	int32_t FirstInstanceEndMin = INT_MAX;
 
 	/**
 	@brief
 	\~English	Maximum end time that the first instance may exist
-	\~Japanese	æœ€åˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å¤§ã®çµ‚äº†æ™‚é–“
+	\~Japanese	Å‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ‘å‚ÌI—¹ŠÔ
 	*/
 	int32_t FirstInstanceEndMax = INT_MAX;
 
 	/**
 	@brief
 	\~English	Minimum start time that the last instance may exist
-	\~Japanese	æœ€å¾Œã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å°ã®é–‹å§‹æ™‚é–“
+	\~Japanese	ÅŒã‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ¬‚ÌŠJnŠÔ
 	*/
 	int32_t LastInstanceStartMin = 0;
 
 	/**
 	@brief
 	\~English	Maximum start time that the last instance may exist
-	\~Japanese	æœ€å¾Œã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å¤§ã®é–‹å§‹æ™‚é–“
+	\~Japanese	ÅŒã‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ‘å‚ÌŠJnŠÔ
 	*/
 	int32_t LastInstanceStartMax = 0;
 
 	/**
 	@brief
 	\~English	Minimum end time that the last instance may exist
-	\~Japanese	æœ€å¾Œã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å°ã®çµ‚äº†æ™‚é–“
+	\~Japanese	ÅŒã‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ¬‚ÌI—¹ŠÔ
 	*/
 	int32_t LastInstanceEndMin = INT_MAX;
 
 	/**
 	@brief
 	\~English	Maximum end time that the last instance may exist
-	\~Japanese	æœ€å¾Œã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹æœ€å¤§ã®çµ‚äº†æ™‚é–“
+	\~Japanese	ÅŒã‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚é‰Â”\«‚Ì‚ ‚éÅ‘å‚ÌI—¹ŠÔ
 	*/
 	int32_t LastInstanceEndMax = INT_MAX;
 };
@@ -3098,7 +3098,7 @@ struct EffectInstanceTerm
 /**
 	@brief
 	\~English A class to edit an instance of EffectParameter for supporting original format when a binary is loaded.
-	\~Japanese	ç‹¬è‡ªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹ãŸã‚ã®ã€ãƒã‚¤ãƒŠãƒªãŒèª­ã¿è¾¼ã¾ã‚ŒãŸæ™‚ã«EffectParameterã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç·¨é›†ã™ã‚‹ã‚¯ãƒ©ã‚¹
+	\~Japanese	“Æ©ƒtƒH[ƒ}ƒbƒg‚ğƒTƒ|[ƒg‚·‚é‚½‚ß‚ÌAƒoƒCƒiƒŠ‚ª“Ç‚İ‚Ü‚ê‚½‚ÉEffectParameter‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•ÒW‚·‚éƒNƒ‰ƒX
 */
 class EffectFactory : public ReferenceObject
 {
@@ -3110,21 +3110,21 @@ public:
 	/**
 	@brief
 	\~English load body data(parameters of effect) from a binary
-	\~Japanese	ãƒã‚¤ãƒŠãƒªã‹ã‚‰æœ¬ä½“(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼)ã‚’èª­ã¿è¾¼ã‚€ã€‚
+	\~Japanese	ƒoƒCƒiƒŠ‚©‚ç–{‘Ì(ƒGƒtƒFƒNƒg‚Ìƒpƒ‰ƒ[ƒ^[)‚ğ“Ç‚İ‚ŞB
 	*/
 	bool LoadBody(Effect* effect, const void* data, int32_t size, float magnification, const char16_t* materialPath);
 
 	/**
 	@brief
 	\~English set texture data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚éB
 	*/
 	void SetTexture(Effect* effect, int32_t index, TextureType type, TextureRef data);
 
 	/**
 	@brief
 	\~English set sound data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«éŸ³ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚É‰¹‚ğİ’è‚·‚éB
 	*/
 
 	void SetSound(Effect* effect, int32_t index, SoundDataRef data);
@@ -3132,82 +3132,82 @@ public:
 	/**
 	@brief
 	\~English set model data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éƒ‚ƒfƒ‹‚ğİ’è‚·‚éB
 	*/
 	void SetModel(Effect* effect, int32_t index, ModelRef data);
 
 	/**
 	@brief
 	\~English set material data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éƒ}ƒeƒŠƒAƒ‹‚ğİ’è‚·‚éB
 	*/
 	void SetMaterial(Effect* effect, int32_t index, MaterialRef data);
 
 	/**
 	@brief
 	\~English set curve data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚«ãƒ¼ãƒ–ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒJ[ƒu‚ğİ’è‚·‚éB
 	*/
 	void SetCurve(Effect* effect, int32_t index, CurveRef data);
 
 	/**
 	@brief
 	\~English set model data into specified index
-	\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éƒ‚ƒfƒ‹‚ğİ’è‚·‚éB
 	*/
 	void SetProceduralModel(Effect* effect, int32_t index, ModelRef data);
 
 	/**
 	@brief
 	\~English set loading data
-	\~Japanese	ãƒ­ãƒ¼ãƒ‰ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	ƒ[ƒh—pƒf[ƒ^‚ğİ’è‚·‚éB
 	*/
 	void SetLoadingParameter(Effect* effect, ReferenceObject* obj);
 
 	/**
 		@brief
 		\~English this method is called to check whether loaded binary are supported.
-		\~Japanese	ãƒã‚¤ãƒŠãƒªãŒã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹ãŸã‚ã«ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã€‚
+		\~Japanese	ƒoƒCƒiƒŠ‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚é‚©Šm”F‚·‚é‚½‚ß‚É‚±‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚éB
 	*/
 	virtual bool OnCheckIsBinarySupported(const void* data, int32_t size);
 
 	/**
 		@brief
 		\~English this method is called to check whether reloading are supported.
-		\~Japanese	ãƒªãƒ­ãƒ¼ãƒ‰ãŒã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹ãŸã‚ã«ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã€‚
+		\~Japanese	ƒŠƒ[ƒh‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚é‚©Šm”F‚·‚é‚½‚ß‚É‚±‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚éB
 	*/
 	virtual bool OnCheckIsReloadSupported();
 
 	/**
 		@brief
 		\~English this method is called when load a effect from binary
-		\~Japanese	ãƒã‚¤ãƒŠãƒªã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€æ™‚ã«ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã€‚
+		\~Japanese	ƒoƒCƒiƒŠ‚©‚çƒGƒtƒFƒNƒg‚ğ“Ç‚İ‚Ş‚ÉA‚±‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚éB
 	*/
 	virtual bool OnLoading(Effect* effect, const void* data, int32_t size, float magnification, const char16_t* materialPath);
 
 	/**
 		@brief
 		\~English this method is called when load resources
-		\~Japanese	ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€æ™‚ã«ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã€‚
+		\~Japanese	ƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş‚ÉA‚±‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚éB
 	*/
 	virtual void OnLoadingResource(Effect* effect, const void* data, int32_t size, const char16_t* materialPath);
 
 	/**
 	@brief
 	\~English this method is called when unload resources
-	\~Japanese	ãƒªã‚½ãƒ¼ã‚¹ã‚’å»ƒæ£„ã•ã‚Œã‚‹æ™‚ã«ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã€‚
+	\~Japanese	ƒŠƒ\[ƒX‚ğ”pŠü‚³‚ê‚é‚ÉA‚±‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚éB
 	*/
 	virtual void OnUnloadingResource(Effect* effect);
 
 	/**
 	\~English get factory's name
-	\~Japanese	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã®åç§°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒtƒ@ƒNƒgƒŠ[‚Ì–¼Ì‚ğæ“¾‚·‚éB
 	*/
 	virtual const char* GetName() const;
 
 	/**
 	\~English get whether resources are loaded automatically when a binary is loaded
-	\~Japanese	ãƒã‚¤ãƒŠãƒªã‚’èª­ã¿è¾¼ã‚“ã ã¨ãã«è‡ªå‹•çš„ã«ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€ã‹å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒoƒCƒiƒŠ‚ğ“Ç‚İ‚ñ‚¾‚Æ‚«‚É©“®“I‚ÉƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş‚©æ“¾‚·‚éB
 	*/
 	virtual bool GetIsResourcesLoadedAutomatically() const;
 };
@@ -3215,7 +3215,7 @@ public:
 /**
 	@brief
 	\~English	Effect parameters
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
+	\~Japanese	ƒGƒtƒFƒNƒgƒpƒ‰ƒ[ƒ^[ƒNƒ‰ƒX
 */
 class Effect : public IReference
 {
@@ -3229,79 +3229,79 @@ protected:
 
 public:
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
-		@param	manager			[in]	ç®¡ç†ã‚¯ãƒ©ã‚¹
-		@param	data			[in]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿
-		@param	size			[in]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®é•·ã•
-		@param	magnification	[in]	èª­ã¿è¾¼ã¿æ™‚ã®æ‹¡å¤§ç‡
-		@param	materialPath	[in]	ç´ æãƒ­ãƒ¼ãƒ‰æ™‚ã®åŸºæº–ãƒ‘ã‚¹
-		@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‚å¤±æ•—ã—ãŸå ´åˆã¯nullptrã‚’è¿”ã™ã€‚
+		@brief	ƒGƒtƒFƒNƒg‚ğ¶¬‚·‚éB
+		@param	manager			[in]	ŠÇ—ƒNƒ‰ƒX
+		@param	data			[in]	ƒf[ƒ^”z—ñ‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^
+		@param	size			[in]	ƒf[ƒ^”z—ñ‚Ì’·‚³
+		@param	magnification	[in]	“Ç‚İ‚İ‚ÌŠg‘å—¦
+		@param	materialPath	[in]	‘fŞƒ[ƒh‚ÌŠî€ƒpƒX
+		@return	ƒGƒtƒFƒNƒgB¸”s‚µ‚½ê‡‚Ínullptr‚ğ•Ô‚·B
 	*/
 	static EffectRef Create(const ManagerRef& manager, const void* data, int32_t size, float magnification = 1.0f, const char16_t* materialPath = nullptr);
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
-		@param	manager			[in]	ç®¡ç†ã‚¯ãƒ©ã‚¹
-		@param	path			[in]	èª­è¾¼å…ƒã®ãƒ‘ã‚¹
-		@param	magnification	[in]	èª­ã¿è¾¼ã¿æ™‚ã®æ‹¡å¤§ç‡
-		@param	materialPath	[in]	ç´ æãƒ­ãƒ¼ãƒ‰æ™‚ã®åŸºæº–ãƒ‘ã‚¹
-		@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‚å¤±æ•—ã—ãŸå ´åˆã¯nullptrã‚’è¿”ã™ã€‚
+		@brief	ƒGƒtƒFƒNƒg‚ğ¶¬‚·‚éB
+		@param	manager			[in]	ŠÇ—ƒNƒ‰ƒX
+		@param	path			[in]	“ÇŒ³‚ÌƒpƒX
+		@param	magnification	[in]	“Ç‚İ‚İ‚ÌŠg‘å—¦
+		@param	materialPath	[in]	‘fŞƒ[ƒh‚ÌŠî€ƒpƒX
+		@return	ƒGƒtƒFƒNƒgB¸”s‚µ‚½ê‡‚Ínullptr‚ğ•Ô‚·B
 	*/
 	static EffectRef Create(const ManagerRef& manager, const char16_t* path, float magnification = 1.0f, const char16_t* materialPath = nullptr);
 
 	/**
-	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
-	@param	setting			[in]	è¨­å®šã‚¯ãƒ©ã‚¹
-	@param	data			[in]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿
-	@param	size			[in]	ãƒ‡ãƒ¼ã‚¿é…åˆ—ã®é•·ã•
-	@param	magnification	[in]	èª­ã¿è¾¼ã¿æ™‚ã®æ‹¡å¤§ç‡
-	@param	materialPath	[in]	ç´ æãƒ­ãƒ¼ãƒ‰æ™‚ã®åŸºæº–ãƒ‘ã‚¹
-	@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‚å¤±æ•—ã—ãŸå ´åˆã¯nullptrã‚’è¿”ã™ã€‚
+	@brief	ƒGƒtƒFƒNƒg‚ğ¶¬‚·‚éB
+	@param	setting			[in]	İ’èƒNƒ‰ƒX
+	@param	data			[in]	ƒf[ƒ^”z—ñ‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^
+	@param	size			[in]	ƒf[ƒ^”z—ñ‚Ì’·‚³
+	@param	magnification	[in]	“Ç‚İ‚İ‚ÌŠg‘å—¦
+	@param	materialPath	[in]	‘fŞƒ[ƒh‚ÌŠî€ƒpƒX
+	@return	ƒGƒtƒFƒNƒgB¸”s‚µ‚½ê‡‚Ínullptr‚ğ•Ô‚·B
 */
 	static EffectRef Create(const SettingRef& setting, const void* data, int32_t size, float magnification = 1.0f, const char16_t* materialPath = nullptr);
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
-		@param	setting			[in]	è¨­å®šã‚¯ãƒ©ã‚¹
-		@param	path			[in]	èª­è¾¼å…ƒã®ãƒ‘ã‚¹
-		@param	magnification	[in]	èª­ã¿è¾¼ã¿æ™‚ã®æ‹¡å¤§ç‡
-		@param	materialPath	[in]	ç´ æãƒ­ãƒ¼ãƒ‰æ™‚ã®åŸºæº–ãƒ‘ã‚¹
-		@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€‚å¤±æ•—ã—ãŸå ´åˆã¯nullptrã‚’è¿”ã™ã€‚
+		@brief	ƒGƒtƒFƒNƒg‚ğ¶¬‚·‚éB
+		@param	setting			[in]	İ’èƒNƒ‰ƒX
+		@param	path			[in]	“ÇŒ³‚ÌƒpƒX
+		@param	magnification	[in]	“Ç‚İ‚İ‚ÌŠg‘å—¦
+		@param	materialPath	[in]	‘fŞƒ[ƒh‚ÌŠî€ƒpƒX
+		@return	ƒGƒtƒFƒNƒgB¸”s‚µ‚½ê‡‚Ínullptr‚ğ•Ô‚·B
 	*/
 	static EffectRef Create(const SettingRef& setting, const char16_t* path, float magnification = 1.0f, const char16_t* materialPath = nullptr);
 
 	/**
-	@brief	æ¨™æº–ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèª­è¾¼ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+	@brief	•W€‚ÌƒGƒtƒFƒNƒg“ÇƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éB
 	*/
 	static ::Effekseer::EffectLoaderRef CreateEffectLoader(::Effekseer::FileInterfaceRef fileInterface = nullptr);
 
 	/**
 	@brief
 	\~English	Get this effect's name. If this effect is loaded from file, default name is file name without extention.
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åå‰ã‚’å–å¾—ã™ã‚‹ã€‚ã‚‚ã—ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚“ã å ´åˆã€åå‰ã¯æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã§ã‚ã‚‹ã€‚
+	\~Japanese	ƒGƒtƒFƒNƒg‚Ì–¼‘O‚ğæ“¾‚·‚éB‚à‚µƒtƒ@ƒCƒ‹‚©‚çƒGƒtƒFƒNƒg‚ğ“Ç‚İ‚ñ‚¾ê‡A–¼‘O‚ÍŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚Å‚ ‚éB
 	*/
 	virtual const char16_t* GetName() const = 0;
 
 	/**
 		\~English	Set this effect's name
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åå‰ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	ƒGƒtƒFƒNƒg‚Ì–¼‘O‚ğİ’è‚·‚éB
 	*/
 	virtual void SetName(const char16_t* name) = 0;
 
 	/**
-	@brief	è¨­å®šã‚’å–å¾—ã™ã‚‹ã€‚
-	@return	è¨­å®š
+	@brief	İ’è‚ğæ“¾‚·‚éB
+	@return	İ’è
 	*/
 	virtual const SettingRef& GetSetting() const = 0;
 
 	/**
 	@brief	\~English	Get the magnification multiplied by the magnification at the time of loaded and exported.
-			\~Japanese	èª­ã¿è¾¼ã¿æ™‚ã¨å‡ºåŠ›æ™‚ã®æ‹¡å¤§ç‡ã‚’ã‹ã‘ãŸæ‹¡å¤§ç‡ã‚’å–å¾—ã™ã‚‹ã€‚
+			\~Japanese	“Ç‚İ‚İ‚Æo—Í‚ÌŠg‘å—¦‚ğ‚©‚¯‚½Šg‘å—¦‚ğæ“¾‚·‚éB
 	*/
 	virtual float GetMaginification() const = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—
+		@brief	ƒGƒtƒFƒNƒgƒf[ƒ^‚Ìƒo[ƒWƒ‡ƒ“æ“¾
 	*/
 	virtual int GetVersion() const = 0;
 
@@ -3309,161 +3309,161 @@ public:
 		@brief
 		\~English	Get loading parameter supecfied by EffectFactory. This parameter is not used unless EffectFactory is used
 		\~Japanese
-	   EffectFactoryã«ã‚ˆã£ã¦æŒ‡å®šã•ã‚ŒãŸãƒ­ãƒ¼ãƒ‰ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚EffectFactoryã‚’ä½¿ç”¨ã—ãªã„é™ã‚Šã€å­ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¯ä½¿ç”¨ã—ãªã„ã€‚
+	   EffectFactory‚É‚æ‚Á‚Äw’è‚³‚ê‚½ƒ[ƒh—pƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éBEffectFactory‚ğg—p‚µ‚È‚¢ŒÀ‚èAq‚Ìƒpƒ‰ƒ[ƒ^[‚Íg—p‚µ‚È‚¢B
 	*/
 	virtual ReferenceObject* GetLoadingParameter() const = 0;
 
 	/**
-		@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹è‰²ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	n	[in]	ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
-		@return	ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿
+		@brief	Ši”[‚³‚ê‚Ä‚¢‚éF‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+		@param	n	[in]	‰æ‘œ‚ÌƒCƒ“ƒfƒbƒNƒX
+		@return	‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual TextureRef GetColorImage(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetColorImageCount() const = 0;
 
 	/**
 	@brief	\~English	Get a color image's path
-	\~Japanese	è‰²ç”»åƒã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	F‰æ‘œ‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetColorImagePath(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ³•ç·šç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
-	@param	n	[in]	ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
-	@return	ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é–@ü‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+	@param	n	[in]	‰æ‘œ‚ÌƒCƒ“ƒfƒbƒNƒX
+	@return	‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual TextureRef GetNormalImage(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ³•ç·šç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é–@ü‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetNormalImageCount() const = 0;
 
 	/**
 	@brief	\~English	Get a normal image's path
-	\~Japanese	æ³•ç·šç”»åƒã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	–@ü‰æ‘œ‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetNormalImagePath(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ­ªã¿ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
-	@param	n	[in]	ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
-	@return	ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é˜c‚İ‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+	@param	n	[in]	‰æ‘œ‚ÌƒCƒ“ƒfƒbƒNƒX
+	@return	‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^
 	*/
 	virtual TextureRef GetDistortionImage(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ­ªã¿ç”»åƒã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é˜c‚İ‰æ‘œ‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetDistortionImageCount() const = 0;
 
 	/**
 	@brief	\~English	Get a distortion image's path
-	\~Japanese	æ­ªã¿ç”»åƒã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	˜c‚İ‰æ‘œ‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetDistortionImagePath(int n) const = 0;
 
 	/**
-		@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹éŸ³æ³¢å½¢ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	Ši”[‚³‚ê‚Ä‚¢‚é‰¹”gŒ`‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual SoundDataRef GetWave(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹éŸ³æ³¢å½¢ã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚é‰¹”gŒ`‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetWaveCount() const = 0;
 
 	/**
 	@brief	\~English	Get a wave's path
-	\~Japanese	éŸ³æ³¢å½¢ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	‰¹”gŒ`‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetWavePath(int n) const = 0;
 
 	/**
-		@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	Ši”[‚³‚ê‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual ModelRef GetModel(int n) const = 0;
 
 	/**
-	@brief	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Ši”[‚³‚ê‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetModelCount() const = 0;
 
 	/**
 	@brief	\~English	Get a model's path
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒ‚ƒfƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetModelPath(int n) const = 0;
 
 	/**
 	@brief	\~English	Get a material's pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual MaterialRef GetMaterial(int n) const = 0;
 
 	/**
 	@brief	\~English	Get the number of stored material pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetMaterialCount() const = 0;
 
 	/**
 	@brief	\~English	Get a material's path
-	\~Japanese	ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒ}ƒeƒŠƒAƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetMaterialPath(int n) const = 0;
 
 	/**
 	@brief	\~English	Get a curve's pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¼ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒJ[ƒu‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual CurveRef GetCurve(int n) const = 0;
 
 	/**
 	@brief	\~English	Get the number of stored curve pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¼ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒJ[ƒu‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetCurveCount() const = 0;
 
 	/**
 	@brief	\~English	Get a curve's path
-	\~Japanese	ã‚«ãƒ¼ãƒ–ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒJ[ƒu‚ÌƒpƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const char16_t* GetCurvePath(int n) const = 0;
 
 	/**
 	@brief	\~English	Get a procedural model's pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãƒ«ãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒvƒƒV[ƒWƒƒƒ‹ƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual ModelRef GetProceduralModel(int n) const = 0;
 
 	/**
 	@brief	\~English	Get the number of stored procedural model's pointer
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãƒ«ãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã®å€‹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒvƒƒV[ƒWƒƒƒ‹ƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ÌŒÂ”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetProceduralModelCount() const = 0;
 
 	/**
 	@brief	\~English	Get a procedural model's parameter
-	\~Japanese	æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãƒ«ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	Ši”[‚³‚ê‚Ä‚¢‚éƒvƒƒV[ƒWƒƒƒ‹ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éB
 	*/
 	virtual const ProceduralModelParameter* GetProceduralModelParameter(int n) const = 0;
 
 	/**
 		@brief
 		\~English set texture data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTexture(int32_t index, TextureType type, TextureRef data) = 0;
 
 	/**
 		@brief
 		\~English set sound data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«éŸ³ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚É‰¹‚ğİ’è‚·‚éB
 	*/
 
 	virtual void SetSound(int32_t index, SoundDataRef data) = 0;
@@ -3471,63 +3471,63 @@ public:
 	/**
 		@brief
 		\~English set model data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éƒ‚ƒfƒ‹‚ğİ’è‚·‚éB
 	*/
 	virtual void SetModel(int32_t index, ModelRef data) = 0;
 
 	/**
 		@brief
 		\~English set material data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éƒ}ƒeƒŠƒAƒ‹‚ğİ’è‚·‚éB
 	*/
 	virtual void SetMaterial(int32_t index, MaterialRef data) = 0;
 
 	/**
 		@brief
 		\~English set curve data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚«ãƒ¼ãƒ–ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒJ[ƒu‚ğİ’è‚·‚éB
 	*/
 	virtual void SetCurve(int32_t index, CurveRef data) = 0;
 
 	/**
 		@brief
 		\~English set a model data into specified index
-		\~Japanese	æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚«ãƒ¼ãƒ–ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒJ[ƒu‚ğİ’è‚·‚éB
 	*/
 	virtual void SetProceduralModel(int32_t index, ModelRef data) = 0;
 
 	/**
 		@brief
 		\~English	Reload this effect
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‚ÌƒŠƒ[ƒh‚ğs‚¤B
 		@param	managers
 		\~English	An array of manager instances
-		\~Japanese	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®é…åˆ—
+		\~Japanese	ƒ}ƒl[ƒWƒƒ[‚Ì”z—ñ
 		@param	managersCount
 		\~English	Length of array
-		\~Japanese	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å€‹æ•°
+		\~Japanese	ƒ}ƒl[ƒWƒƒ[‚ÌŒÂ”
 		@param	data
 		\~English	An effect's data
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ¼ã‚¿
+		\~Japanese	ƒGƒtƒFƒNƒg‚Ìƒf[ƒ^
 		@param	size
 		\~English	An effect's size
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+		\~Japanese	ƒGƒtƒFƒNƒg‚Ìƒf[ƒ^ƒTƒCƒY
 		@param	materialPath
 		\~English	A path where reaources are loaded
-		\~Japanese	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿å…ƒ
+		\~Japanese	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İŒ³
 		@param	reloadingThreadType
 		\~English	A thread where reload function is called
-		\~Japanese	ãƒªãƒ­ãƒ¼ãƒ‰ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
+		\~Japanese	ƒŠƒ[ƒh‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚éƒXƒŒƒbƒh
 		@return
 		\~English	Result
-		\~Japanese	çµæœ
+		\~Japanese	Œ‹‰Ê
 		@note
 		\~English
 		If an effect is generated with Setting, the effect in managers is reloaded with managers
 		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
 		\~Japanese
-		Settingã‚’ç”¨ã„ã¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ãŸã¨ãã«ã€Managerã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã§å¯¾è±¡ã®Managerå†…ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã€‚
-		ã‚‚ã—ã€reloadingThreadType ãŒ RenderThreadã®å ´åˆã€æ–°è¦ã®ãƒªã‚½ãƒ¼ã‚¹ã¯èª­ã¿è¾¼ã¾ã‚Œãšã€å¤ã„ãƒªã‚½ãƒ¼ã‚¹ã¯ç ´æ£„ã•ã‚Œãªã„ã€‚
+		Setting‚ğ—p‚¢‚ÄƒGƒtƒFƒNƒg‚ğ¶¬‚µ‚½‚Æ‚«‚ÉAManager‚ğw’è‚·‚é‚±‚Æ‚Å‘ÎÛ‚ÌManager“à‚ÌƒGƒtƒFƒNƒg‚ÌƒŠƒ[ƒh‚ğs‚¤B
+		‚à‚µAreloadingThreadType ‚ª RenderThread‚Ìê‡AV‹K‚ÌƒŠƒ\[ƒX‚Í“Ç‚İ‚Ü‚ê‚¸AŒÃ‚¢ƒŠƒ\[ƒX‚Í”jŠü‚³‚ê‚È‚¢B
 	*/
 	virtual bool Reload(ManagerRef* managers,
 						int32_t managersCount,
@@ -3539,32 +3539,32 @@ public:
 	/**
 		@brief
 		\~English	Reload this effect
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‚ÌƒŠƒ[ƒh‚ğs‚¤B
 		@param	managers
 		\~English	An array of manager instances
-		\~Japanese	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®é…åˆ—
+		\~Japanese	ƒ}ƒl[ƒWƒƒ[‚Ì”z—ñ
 		@param	managersCount
 		\~English	Length of array
-		\~Japanese	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å€‹æ•°
+		\~Japanese	ƒ}ƒl[ƒWƒƒ[‚ÌŒÂ”
 		@param	path
 		\~English	An effect's path
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ã‚¹
+		\~Japanese	ƒGƒtƒFƒNƒg‚ÌƒpƒX
 		@param	materialPath
 		\~English	A path where reaources are loaded
-		\~Japanese	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿å…ƒ
+		\~Japanese	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İŒ³
 		@param	reloadingThreadType
 		\~English	A thread where reload function is called
-		\~Japanese	ãƒªãƒ­ãƒ¼ãƒ‰ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
+		\~Japanese	ƒŠƒ[ƒh‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚éƒXƒŒƒbƒh
 		@return
 		\~English	Result
-		\~Japanese	çµæœ
+		\~Japanese	Œ‹‰Ê
 		@note
 		\~English
 		If an effect is generated with Setting, the effect in managers is reloaded with managers
 		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
 		\~Japanese
-		Settingã‚’ç”¨ã„ã¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ãŸã¨ãã«ã€Managerã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã§å¯¾è±¡ã®Managerå†…ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã€‚
-		ã‚‚ã—ã€reloadingThreadType ãŒ RenderThreadã®å ´åˆã€æ–°è¦ã®ãƒªã‚½ãƒ¼ã‚¹ã¯èª­ã¿è¾¼ã¾ã‚Œãšã€å¤ã„ãƒªã‚½ãƒ¼ã‚¹ã¯ç ´æ£„ã•ã‚Œãªã„ã€‚
+		Setting‚ğ—p‚¢‚ÄƒGƒtƒFƒNƒg‚ğ¶¬‚µ‚½‚Æ‚«‚ÉAManager‚ğw’è‚·‚é‚±‚Æ‚Å‘ÎÛ‚ÌManager“à‚ÌƒGƒtƒFƒNƒg‚ÌƒŠƒ[ƒh‚ğs‚¤B
+		‚à‚µAreloadingThreadType ‚ª RenderThread‚Ìê‡AV‹K‚ÌƒŠƒ\[ƒX‚Í“Ç‚İ‚Ü‚ê‚¸AŒÃ‚¢ƒŠƒ\[ƒX‚Í”jŠü‚³‚ê‚È‚¢B
 	*/
 	virtual bool Reload(ManagerRef* managers,
 						int32_t managersCount,
@@ -3573,24 +3573,24 @@ public:
 						ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
 
 	/**
-		@brief	ç”»åƒç­‰ãƒªã‚½ãƒ¼ã‚¹ã®å†èª­ã¿è¾¼ã¿ã‚’è¡Œã†ã€‚
+		@brief	‰æ‘œ“™ƒŠƒ\[ƒX‚ÌÄ“Ç‚İ‚İ‚ğs‚¤B
 	*/
 	virtual void ReloadResources(const void* data = nullptr, int32_t size = 0, const char16_t* materialPath = nullptr) = 0;
 
 	/**
-		@brief	ç”»åƒç­‰ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„ã‚’è¡Œã†ã€‚
+		@brief	‰æ‘œ“™ƒŠƒ\[ƒX‚Ì”jŠü‚ğs‚¤B
 	*/
 	virtual void UnloadResources() = 0;
 
 	/**
-	@brief	Rootã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	Root‚ğæ“¾‚·‚éB
 	*/
 	virtual EffectNode* GetRoot() const = 0;
 
 	/**
 		@brief
 	\~English	Calculate a term of instances where the effect exists
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹æœŸé–“ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+	\~Japanese	ƒGƒtƒFƒNƒg‚ª‘¶İ‚·‚éŠúŠÔ‚ğŒvZ‚·‚éB
 	*/
 	virtual EffectTerm CalculateTerm() const = 0;
 
@@ -3599,9 +3599,9 @@ public:
 };
 
 /**
-@brief	å…±é€šæç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+@brief	‹¤’Ê•`‰æƒpƒ‰ƒ[ƒ^[
 @note
-å¤§ããå¤‰æ›´ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
+‘å‚«‚­•ÏX‚³‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
 */
 struct EffectBasicRenderParameter
 {
@@ -3668,10 +3668,10 @@ struct EffectBasicRenderParameter
 /**
 @brief
 	\~English	Model parameter
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+	\~Japanese	ƒ‚ƒfƒ‹ƒpƒ‰ƒ[ƒ^[
 @note
 	\~English	It may change greatly.
-	\~Japanese	å¤§ããå¤‰æ›´ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
+	\~Japanese	‘å‚«‚­•ÏX‚³‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
 
 */
 struct EffectModelParameter
@@ -3681,9 +3681,9 @@ struct EffectModelParameter
 };
 
 /**
-@brief	ãƒãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆã‚¯ãƒ©ã‚¹
+@brief	ƒm[ƒhƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒNƒ‰ƒX
 @note
-ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒãƒ¼ãƒ‰ã®å®Ÿä½“ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+ƒGƒtƒFƒNƒg‚Ìƒm[ƒh‚ÌÀ‘Ì‚ğ¶¬‚·‚éB
 */
 class EffectNode
 {
@@ -3696,7 +3696,7 @@ public:
 	}
 
 	/**
-	@brief	ãƒãƒ¼ãƒ‰ãŒæ‰€å±ã—ã¦ã„ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	ƒm[ƒh‚ªŠ‘®‚µ‚Ä‚¢‚éƒGƒtƒFƒNƒg‚ğæ“¾‚·‚éB
 	*/
 	virtual Effect* GetEffect() const = 0;
 
@@ -3708,64 +3708,64 @@ public:
 	/**
 		@brief
 		\~English	Get a generation in the node tree. The generation increases by 1 as it moves a child node.
-		\~Japanese	ãƒãƒ¼ãƒ‰ãƒ„ãƒªãƒ¼ã®ä¸–ä»£ã‚’å–å¾—ã™ã‚‹ã€‚ä¸–ä»£ã¯å­ã®ãƒãƒ¼ãƒ‰ã«ãªã‚‹ã«ã—ãŸãŒã£ã¦1å¢—ãˆã‚‹ã€‚
+		\~Japanese	ƒm[ƒhƒcƒŠ[‚Ì¢‘ã‚ğæ“¾‚·‚éB¢‘ã‚Íq‚Ìƒm[ƒh‚É‚È‚é‚É‚µ‚½‚ª‚Á‚Ä1‘‚¦‚éB
 	*/
 	virtual int GetGeneration() const = 0;
 
 	/**
-	@brief	å­ã®ãƒãƒ¼ãƒ‰ã®æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	q‚Ìƒm[ƒh‚Ì”‚ğæ“¾‚·‚éB
 	*/
 	virtual int GetChildrenCount() const = 0;
 
 	/**
-	@brief	å­ã®ãƒãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	q‚Ìƒm[ƒh‚ğæ“¾‚·‚éB
 	*/
 	virtual EffectNode* GetChild(int index) const = 0;
 
 	/**
-	@brief	å…±é€šæç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	‹¤’Ê•`‰æƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éB
 	*/
 	virtual EffectBasicRenderParameter GetBasicRenderParameter() const = 0;
 
 	/**
-	@brief	å…±é€šæç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+	@brief	‹¤’Ê•`‰æƒpƒ‰ƒ[ƒ^[‚ğİ’è‚·‚éB
 	*/
 	virtual void SetBasicRenderParameter(EffectBasicRenderParameter param) = 0;
 
 	/**
 	@brief
 	\~English	Get a model parameter
-	\~Japanese	ãƒ¢ãƒ‡ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒ‚ƒfƒ‹ƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éB
 	*/
 	virtual EffectModelParameter GetEffectModelParameter() = 0;
 
 	/**
 	@brief
 	\~English	Calculate a term of instances where instances exists
-	\~Japanese	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã™ã‚‹æœŸé–“ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+	\~Japanese	ƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚·‚éŠúŠÔ‚ğŒvZ‚·‚éB
 	*/
 	virtual EffectInstanceTerm CalculateInstanceTerm(EffectInstanceTerm& parentTerm) const = 0;
 
 	/**
 		@brief
 		\~English	Get a user data for rendering in plugins.
-		\~Japanese	ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å‘ã‘ã®æç”»æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	ƒvƒ‰ƒOƒCƒ“Œü‚¯‚Ì•`‰æŠg’£ƒf[ƒ^‚ğæ“¾‚·‚éB
 		@note
-		\~Japanese	è©³ç´°ã¯Setterã‚’å‚ç…§ã€‚
+		\~Japanese	Ú×‚ÍSetter‚ğQÆB
 	*/
 	virtual RefPtr<RenderingUserData> GetRenderingUserData() = 0;
 
 	/**
 		@brief
 		\~English	Specify a user data for rendering in plugins.
-		\~Japanese	ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å‘ã‘ã®æç”»æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒvƒ‰ƒOƒCƒ“Œü‚¯‚Ì•`‰æŠg’£ƒf[ƒ^‚ğİ’è‚·‚éB
 		@note
 		\~English
 		This variable is passed to the Renderer at rendering time.
 		The variable is compared by the comparison function described by the inheritance of RenderingUserData, and if the values are different, DrawCall is issued.
 		\~Japanese
-		ã“ã®å¤‰æ•°ã¯æç”»æ™‚ã«Rendererã«æ¸¡ã•ã‚Œã‚‹ã€‚
-		å¤‰æ•°ã¯ã€RenderingUserDataã®ç¶™æ‰¿ã«ã‚ˆã‚Šè¨˜è¿°ã•ã‚Œã‚‹æ¯”è¼ƒç”¨ã®é–¢æ•°ã«ã‚ˆã£ã¦æ¯”è¼ƒã•ã‚Œã€å€¤ãŒç•°ãªã‚‹å ´åˆã€DrawCallã‚’ç™ºè¡Œã™ã‚‹ã€‚
+		‚±‚Ì•Ï”‚Í•`‰æ‚ÉRenderer‚É“n‚³‚ê‚éB
+		•Ï”‚ÍARenderingUserData‚ÌŒp³‚É‚æ‚è‹Lq‚³‚ê‚é”äŠr—p‚ÌŠÖ”‚É‚æ‚Á‚Ä”äŠr‚³‚êA’l‚ªˆÙ‚È‚éê‡ADrawCall‚ğ”­s‚·‚éB
 	*/
 	virtual void SetRenderingUserData(const RefPtr<RenderingUserData>& renderingUserData) = 0;
 };
@@ -3803,21 +3803,21 @@ using RandFunc = std::function<int()>;
 /**
 	@brief
 	\~English Callback event when an instance of an effect is destroyed
-	\~Japanese ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç ´æ£„æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¤ãƒ™ãƒ³ãƒˆ
+	\~Japanese ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX”jŠü‚ÌƒR[ƒ‹ƒoƒbƒNƒCƒxƒ“ƒg
 	@note
 	\~English
 	manager The manager to which the effect belongs
 	handle Handle of the effect instance
 	isRemovingManager Whether the effect instance is removed when the manager is removed.
 	\~Japanese
-	manager æ‰€å±ã—ã¦ã„ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
-	handle ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-	isRemovingManager ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç ´æ£„ã—ãŸã¨ãã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç ´æ£„ã—ã¦ã„ã‚‹ã‹
+	manager Š‘®‚µ‚Ä‚¢‚éƒ}ƒl[ƒWƒƒ[
+	handle ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+	isRemovingManager ƒ}ƒl[ƒWƒƒ[‚ğ”jŠü‚µ‚½‚Æ‚«‚ÉƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ”jŠü‚µ‚Ä‚¢‚é‚©
 */
 using EffectInstanceRemovingCallback = std::function<void(Manager*, Handle, bool)>;
 
 /**
-	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+	@brief ƒGƒtƒFƒNƒgŠÇ—ƒNƒ‰ƒX
 */
 class Manager : public IReference
 {
@@ -3828,34 +3828,34 @@ public:
 	/**
 		@brief
 		\~English Parameters when a manager is updated
-		\~Japanese ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãŒæ›´æ–°ã•ã‚Œã‚‹ã¨ãã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+		\~Japanese ƒ}ƒl[ƒWƒƒ[‚ªXV‚³‚ê‚é‚Æ‚«‚Ìƒpƒ‰ƒ[ƒ^[
 	*/
 	struct UpdateParameter
 	{
 		/**
 			@brief
 			\~English A passing frame
-			\~Japanese çµŒéã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+			\~Japanese Œo‰ß‚·‚éƒtƒŒ[ƒ€
 		*/
 		float DeltaFrame = 1.0f;
 
 		/**
 			@brief
 			\~English An update interval
-			\~Japanese æ›´æ–°é–“éš”
+			\~Japanese XVŠÔŠu
 			@note
 			\~English For example, DeltaTime is 2 and UpdateInterval is 1, an effect is update twice
-			\~Japanese ä¾‹ãˆã°ã€DeltaTimeãŒ2ã§UpdateIntervalãŒ1ã®å ´åˆã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯2å›æ›´æ–°ã•ã‚Œã‚‹ã€‚
+			\~Japanese —á‚¦‚ÎADeltaTime‚ª2‚ÅUpdateInterval‚ª1‚Ìê‡AƒGƒtƒFƒNƒg‚Í2‰ñXV‚³‚ê‚éB
 		*/
 		float UpdateInterval = 1.0f;
 
 		/**
 			@brief
 			\~English Perform synchronous update
-			\~Japanese åŒæœŸæ›´æ–°ã‚’è¡Œã†
+			\~Japanese “¯ŠúXV‚ğs‚¤
 			@note
 			\~English If true, update processing is performed synchronously. If false, update processing is performed asynchronously (after this, do not call anything other than Draw)
-			\~Japanese trueãªã‚‰åŒæœŸçš„ã«æ›´æ–°å‡¦ç†ã‚’è¡Œã†ã€‚falseãªã‚‰éåŒæœŸçš„ã«æ›´æ–°å‡¦ç†ã‚’è¡Œã†ï¼ˆæ¬¡ã¯Drawä»¥å¤–å‘¼ã³å‡ºã—ã¦ã¯ã„ã‘ãªã„ï¼‰
+			\~Japanese true‚È‚ç“¯Šú“I‚ÉXVˆ—‚ğs‚¤Bfalse‚È‚ç”ñ“¯Šú“I‚ÉXVˆ—‚ğs‚¤iŸ‚ÍDrawˆÈŠOŒÄ‚Ño‚µ‚Ä‚Í‚¢‚¯‚È‚¢j
 		*/
 		bool SyncUpdate = true;
 	};
@@ -3863,7 +3863,7 @@ public:
 	/**
 		@brief
 		\~English Parameters for Manager::Draw and Manager::DrawHandle
-		\~Japanese Manager::Draw and Manager::DrawHandleã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+		\~Japanese Manager::Draw and Manager::DrawHandle‚Ég—p‚·‚éƒpƒ‰ƒ[ƒ^[
 	*/
 	struct DrawParameter
 	{
@@ -3876,27 +3876,27 @@ public:
 		/**
 			@brief
 			\~English A direction of camera
-			\~Japanese ã‚«ãƒ¡ãƒ©ã®æ–¹å‘
+			\~Japanese ƒJƒƒ‰‚Ì•ûŒü
 			@note
 			\~English It means that the direction is normalize(focus - position)
-			\~Japanese normalize(focus-position)ã‚’æ„å‘³ã™ã‚‹ã€‚
+			\~Japanese normalize(focus-position)‚ğˆÓ–¡‚·‚éB
 		*/
 		Vector3D CameraFrontDirection;
 
 		/**
 			@brief
 			\~English A bitmask to show effects
-			\~Japanese ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+			\~Japanese ƒGƒtƒFƒNƒg‚ğ•\¦‚·‚é‚½‚ß‚Ìƒrƒbƒgƒ}ƒXƒN
 			@note
 			\~English For example, if effect's layer is 1 and CameraCullingMask's first bit is 1, this effect is shown.
-			\~Japanese ä¾‹ãˆã°ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒ0ã§ã‚«ãƒªãƒ³ã‚°ãƒã‚¹ã‚¯ã®æœ€åˆã®ãƒ“ãƒƒãƒˆãŒ1ã®ã¨ãã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯è¡¨ç¤ºã•ã‚Œã‚‹ã€‚
+			\~Japanese —á‚¦‚ÎAƒGƒtƒFƒNƒg‚ÌƒŒƒCƒ„[‚ª0‚ÅƒJƒŠƒ“ƒOƒ}ƒXƒN‚ÌÅ‰‚Ìƒrƒbƒg‚ª1‚Ì‚Æ‚«ƒGƒtƒFƒNƒg‚Í•\¦‚³‚ê‚éB
 		*/
 		int32_t CameraCullingMask;
 
 		/**
 			@brief
 			\~English Whether effects should be sorted by camera position and direction
-			\~Japanese ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã¨æ–¹å‘ã§ã‚½ãƒ¼ãƒˆã™ã‚‹ã‹ã©ã†ã‹
+			\~Japanese ƒGƒtƒFƒNƒg‚ğƒJƒƒ‰‚ÌˆÊ’u‚Æ•ûŒü‚Åƒ\[ƒg‚·‚é‚©‚Ç‚¤‚©
 		*/
 		bool IsSortingEffectsEnabled = false;
 
@@ -3906,7 +3906,7 @@ public:
 	/**
 		@brief
 		\~English Parameters of Manager::SetLayerParameter to be set for each layer index.
-		\~Japanese Manager::SetLayerParameterã«ãƒ¬ã‚¤ãƒ¤ãƒ¼ã”ã¨ã«è¨­å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+		\~Japanese Manager::SetLayerParameter‚ÉƒŒƒCƒ„[‚²‚Æ‚Éİ’è‚·‚éƒpƒ‰ƒ[ƒ^[
 	*/
 	struct LayerParameter
 	{
@@ -3916,8 +3916,8 @@ public:
 			Position of effects viewer to calculate distance of Level of Details system.
 			Normally should be set the same position which is passed in translation of camera matrix.
 			\~Japanese
-			LODã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã•ã‚Œã‚‹è¦–ç‚¹ã®ä½ç½®ã€‚
-			é€šå¸¸ã¯ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã¨åŒã˜å€¤ã‚’æŒ‡å®šã™ã‚‹ã€‚
+			LODƒVƒXƒeƒ€‚Åg—p‚³‚ê‚é‹“_‚ÌˆÊ’uB
+			’Êí‚ÍƒJƒƒ‰‚ÌˆÊ’u‚Æ“¯‚¶’l‚ğw’è‚·‚éB
 		*/
 		Vector3D ViewerPosition = {0.0f, 0.0f, 0.0f};
 
@@ -3927,8 +3927,8 @@ public:
 			Adds given value to calculated distance from viewer which is used for LOD selection.
 			Useful for LODs debugging.
 			\~Japanese
-			LODã®é¸æŠã«ä½¿ç”¨ã•ã‚Œã‚‹ã€è¦–ç‚¹ã‹ã‚‰ã®è¨ˆç®—ã•ã‚ŒãŸè·é›¢ã«åŠ ç®—ã•ã‚Œã‚‹å€¤ã€‚
-			LODã®ãƒ‡ãƒãƒƒã‚°ã«å½¹ã«ç«‹ã¡ã¾ã™ã€‚
+			LOD‚Ì‘I‘ğ‚Ég—p‚³‚ê‚éA‹“_‚©‚ç‚ÌŒvZ‚³‚ê‚½‹——£‚É‰ÁZ‚³‚ê‚é’lB
+			LOD‚ÌƒfƒoƒbƒO‚É–ğ‚É—§‚¿‚Ü‚·B
 		*/
 		float DistanceBias = 0.0f;
 	};
@@ -3943,259 +3943,259 @@ protected:
 
 public:
 	/**
-		@brief ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
-		@param	instance_max	[in]	æœ€å¤§ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°
-		@param	autoFlip		[in]	è‡ªå‹•ã§ã‚¹ãƒ¬ãƒƒãƒ‰é–“ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œæ›¿ãˆã‚‹ã‹ã©ã†ã‹ã€ã‚’æŒ‡å®šã™ã‚‹ã€‚trueã®å ´åˆã€Updateæ™‚ã«å…¥ã‚Œæ›¿ã‚ã‚‹ã€‚
-		@return	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+		@brief ƒ}ƒl[ƒWƒƒ[‚ğ¶¬‚·‚éB
+		@param	instance_max	[in]	Å‘åƒCƒ“ƒXƒ^ƒ“ƒX”
+		@param	autoFlip		[in]	©“®‚ÅƒXƒŒƒbƒhŠÔ‚Ìƒf[ƒ^‚ğ“ü‚ê‘Ö‚¦‚é‚©‚Ç‚¤‚©A‚ğw’è‚·‚éBtrue‚Ìê‡AUpdate‚É“ü‚ê‘Ö‚í‚éB
+		@return	ƒ}ƒl[ƒWƒƒ[
 	*/
 	static ManagerRef Create(int instance_max, bool autoFlip = true);
 
 	/**
 		@brief
 		\~English Starts a specified number of worker threads
-		\~Japanese æŒ‡å®šã—ãŸæ•°ã®ãƒ¯ãƒ¼ã‚«ãƒ¼ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•ã™ã‚‹
+		\~Japanese w’è‚µ‚½”‚Ìƒ[ƒJ[ƒXƒŒƒbƒh‚ğ‹N“®‚·‚é
 	*/
 	virtual void LaunchWorkerThreads(uint32_t threadCount) = 0;
 
 	/**
 		@brief
 		\~English Get a thread handle (HANDLE(win32), pthread_t(posix) or etc.)
-		\~Japanese ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚(HANDLE(win32) ã‚„ pthread_t(posix) ãªã©)
+		\~Japanese ƒXƒŒƒbƒhƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚éB(HANDLE(win32) ‚â pthread_t(posix) ‚È‚Ç)
 	*/
 	virtual ThreadNativeHandleType GetWorkerThreadHandle(uint32_t threadID) = 0;
 
 	/**
-		@brief	ãƒ©ãƒ³ãƒ€ãƒ é–¢æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒ‰ƒ“ƒ_ƒ€ŠÖ”‚ğæ“¾‚·‚éB
 	*/
 	virtual RandFunc GetRandFunc() const = 0;
 
 	/**
-		@brief	ãƒ©ãƒ³ãƒ€ãƒ é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒ‰ƒ“ƒ_ƒ€ŠÖ”‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRandFunc(RandFunc func) = 0;
 
 	/**
-		@brief	åº§æ¨™ç³»ã‚’å–å¾—ã™ã‚‹ã€‚
-		@return	åº§æ¨™ç³»
+		@brief	À•WŒn‚ğæ“¾‚·‚éB
+		@return	À•WŒn
 	*/
 	virtual CoordinateSystem GetCoordinateSystem() const = 0;
 
 	/**
-		@brief	åº§æ¨™ç³»ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	coordinateSystem	[in]	åº§æ¨™ç³»
+		@brief	À•WŒn‚ğİ’è‚·‚éB
+		@param	coordinateSystem	[in]	À•WŒn
 		@note
-		åº§æ¨™ç³»ã‚’è¨­å®šã™ã‚‹ã€‚
-		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€å‰ã«è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+		À•WŒn‚ğİ’è‚·‚éB
+		ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‘O‚Éİ’è‚·‚é•K—v‚ª‚ ‚éB
 	*/
 	virtual void SetCoordinateSystem(CoordinateSystem coordinateSystem) = 0;
 
 	/**
-		@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»æ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒXƒvƒ‰ƒCƒg•`‰æ‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual SpriteRendererRef GetSpriteRenderer() = 0;
 
 	/**
-		@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»æ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒXƒvƒ‰ƒCƒg•`‰æ‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetSpriteRenderer(SpriteRendererRef renderer) = 0;
 
 	/**
-		@brief	ã‚¹ãƒˆãƒ©ã‚¤ãƒ—æç”»æ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒXƒgƒ‰ƒCƒv•`‰æ‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual RibbonRendererRef GetRibbonRenderer() = 0;
 
 	/**
-		@brief	ã‚¹ãƒˆãƒ©ã‚¤ãƒ—æç”»æ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒXƒgƒ‰ƒCƒv•`‰æ‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRibbonRenderer(RibbonRendererRef renderer) = 0;
 
 	/**
-		@brief	ãƒªãƒ³ã‚°æç”»æ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒŠƒ“ƒO•`‰æ‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual RingRendererRef GetRingRenderer() = 0;
 
 	/**
-		@brief	ãƒªãƒ³ã‚°æç”»æ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒŠƒ“ƒO•`‰æ‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRingRenderer(RingRendererRef renderer) = 0;
 
 	/**
-		@brief	ãƒ¢ãƒ‡ãƒ«æç”»æ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒ‚ƒfƒ‹•`‰æ‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual ModelRendererRef GetModelRenderer() = 0;
 
 	/**
-		@brief	ãƒ¢ãƒ‡ãƒ«æç”»æ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒ‚ƒfƒ‹•`‰æ‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetModelRenderer(ModelRendererRef renderer) = 0;
 
 	/**
-		@brief	è»Œè·¡æç”»æ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	‹OÕ•`‰æ‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual TrackRendererRef GetTrackRenderer() = 0;
 
 	/**
-		@brief	è»Œè·¡æç”»æ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	‹OÕ•`‰æ‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTrackRenderer(TrackRendererRef renderer) = 0;
 
 	/**
-		@brief	è¨­å®šã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	İ’èƒNƒ‰ƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual const SettingRef& GetSetting() const = 0;
 
 	/**
-		@brief	è¨­å®šã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	setting	[in]	è¨­å®š
+		@brief	İ’èƒNƒ‰ƒX‚ğİ’è‚·‚éB
+		@param	setting	[in]	İ’è
 	*/
 	virtual void SetSetting(const SettingRef& setting) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒGƒtƒFƒNƒg“ÇƒNƒ‰ƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual EffectLoaderRef GetEffectLoader() = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒGƒtƒFƒNƒg“ÇƒNƒ‰ƒX‚ğİ’è‚·‚éB
 	*/
 	virtual void SetEffectLoader(EffectLoaderRef effectLoader) = 0;
 
 	/**
-		@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒeƒNƒXƒ`ƒƒ“ÇƒNƒ‰ƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual TextureLoaderRef GetTextureLoader() = 0;
 
 	/**
-		@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒeƒNƒXƒ`ƒƒ“ÇƒNƒ‰ƒX‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTextureLoader(TextureLoaderRef textureLoader) = 0;
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ©Ÿèƒ½ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒTƒEƒ“ƒhÄ¶‹@”\‚ğæ“¾‚·‚éB
 	*/
 	virtual SoundPlayerRef GetSoundPlayer() = 0;
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ©Ÿèƒ½ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒTƒEƒ“ƒhÄ¶‹@”\‚ğİ’è‚·‚éB
 	*/
 	virtual void SetSoundPlayer(SoundPlayerRef soundPlayer) = 0;
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
+		@brief	ƒTƒEƒ“ƒh“ÇƒNƒ‰ƒX‚ğæ“¾‚·‚é
 	*/
 	virtual SoundLoaderRef GetSoundLoader() = 0;
 
 	/**
-		@brief	ã‚µã‚¦ãƒ³ãƒ‰èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒTƒEƒ“ƒh“ÇƒNƒ‰ƒX‚ğİ’è‚·‚éB
 	*/
 	virtual void SetSoundLoader(SoundLoaderRef soundLoader) = 0;
 
 	/**
-		@brief	ãƒ¢ãƒ‡ãƒ«èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	ƒ‚ƒfƒ‹“ÇƒNƒ‰ƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual ModelLoaderRef GetModelLoader() = 0;
 
 	/**
-		@brief	ãƒ¢ãƒ‡ãƒ«èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒ‚ƒfƒ‹“ÇƒNƒ‰ƒX‚ğİ’è‚·‚éB
 	*/
 	virtual void SetModelLoader(ModelLoaderRef modelLoader) = 0;
 
 	/**
 		@brief
 		\~English get a material loader
-		\~Japanese ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒ}ƒeƒŠƒAƒ‹ƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	virtual MaterialLoaderRef GetMaterialLoader() = 0;
 
 	/**
 		@brief
 		\~English specfiy a material loader
-		\~Japanese ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒ}ƒeƒŠƒAƒ‹ƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	virtual void SetMaterialLoader(MaterialLoaderRef loader) = 0;
 
 	/**
 		@brief
 		\~English get a curve loader
-		\~Japanese ã‚«ãƒ¼ãƒ–ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒJ[ƒuƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	virtual CurveLoaderRef GetCurveLoader() = 0;
 
 	/**
 		@brief
 		\~English specfiy a curve loader
-		\~Japanese ã‚«ãƒ¼ãƒ–ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒJ[ƒuƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	virtual void SetCurveLoader(CurveLoaderRef loader) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’åœæ­¢ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+		@brief	ƒGƒtƒFƒNƒg‚ğ’â~‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
 	*/
 	virtual void StopEffect(Handle handle) = 0;
 
 	/**
-		@brief	å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’åœæ­¢ã™ã‚‹ã€‚
+		@brief	‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ğ’â~‚·‚éB
 	*/
 	virtual void StopAllEffects() = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ«ãƒ¼ãƒˆã ã‘ã‚’åœæ­¢ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+		@brief	ƒGƒtƒFƒNƒg‚Ìƒ‹[ƒg‚¾‚¯‚ğ’â~‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
 	*/
 	virtual void StopRoot(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ«ãƒ¼ãƒˆã ã‘ã‚’åœæ­¢ã™ã‚‹ã€‚
-		@param	effect	[in]	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		@brief	ƒGƒtƒFƒNƒg‚Ìƒ‹[ƒg‚¾‚¯‚ğ’â~‚·‚éB
+		@param	effect	[in]	ƒGƒtƒFƒNƒg
 	*/
 	virtual void StopRoot(const EffectRef& effect) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹å–å¾—ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@return	å­˜åœ¨ã—ã¦ã‚‹ã‹?
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª‘¶İ‚µ‚Ä‚¢‚é‚©æ“¾‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@return	‘¶İ‚µ‚Ä‚é‚©?
 	*/
 	virtual bool Exists(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@return	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°
+		@brief	ƒGƒtƒFƒNƒg‚Ég—p‚³‚ê‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”‚ğæ“¾‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@return	ƒCƒ“ƒXƒ^ƒ“ƒX”
 		@note
-		Rootã‚‚å€‹æ•°ã«å«ã¾ã‚Œã‚‹ã€‚ã¤ã¾ã‚Šã€Rootå‰Šé™¤ã‚’ã—ã¦ã„ãªã„é™ã‚Šã€
-		Managerã«æ®‹ã£ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°+ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°ã¯å­˜åœ¨ã—ã¦ã„ã‚‹Rootã®æ•°ã ã‘
-		æœ€åˆã«ç¢ºä¿ã—ãŸå€‹æ•°ã‚ˆã‚Šã‚‚å¤šãå­˜åœ¨ã™ã‚‹ã€‚
+		Root‚àŒÂ”‚ÉŠÜ‚Ü‚ê‚éB‚Â‚Ü‚èARootíœ‚ğ‚µ‚Ä‚¢‚È‚¢ŒÀ‚èA
+		Manager‚Éc‚Á‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”+ƒGƒtƒFƒNƒg‚Ég—p‚³‚ê‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”‚Í‘¶İ‚µ‚Ä‚¢‚éRoot‚Ì”‚¾‚¯
+		Å‰‚ÉŠm•Û‚µ‚½ŒÂ”‚æ‚è‚à‘½‚­‘¶İ‚·‚éB
 	*/
 	virtual int32_t GetInstanceCount(Handle handle) = 0;
 
 	/**
 		@brief
 		\~English Get the number of instances which is used in playing effects
-		\~Japanese å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚Ég—p‚³‚ê‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”‚ğæ“¾‚·‚éB
 		@return
 		\~English The number of instances
-		\~Japanese ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°
+		\~Japanese ƒCƒ“ƒXƒ^ƒ“ƒX”
 		@note
 		\~English
 		The number of Root is included.
 		This means that the number of used instances added resting resting instances is larger than the number of allocated onces by the
 	   number of root.
 		\~Japanese
-		Rootã‚‚å€‹æ•°ã«å«ã¾ã‚Œã‚‹ã€‚ã¤ã¾ã‚Šã€Rootå‰Šé™¤ã‚’ã—ã¦ã„ãªã„é™ã‚Šã€
-		Managerã«æ®‹ã£ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°+ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°ã¯ã€æœ€åˆã«ç¢ºä¿ã—ãŸå€‹æ•°ã‚ˆã‚Šã‚‚å­˜åœ¨ã—ã¦ã„ã‚‹Rootã®æ•°ã®åˆ†ã ã‘å¤šãå­˜åœ¨ã™ã‚‹ã€‚
+		Root‚àŒÂ”‚ÉŠÜ‚Ü‚ê‚éB‚Â‚Ü‚èARootíœ‚ğ‚µ‚Ä‚¢‚È‚¢ŒÀ‚èA
+		Manager‚Éc‚Á‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”+ƒGƒtƒFƒNƒg‚Ég—p‚³‚ê‚Ä‚¢‚éƒCƒ“ƒXƒ^ƒ“ƒX”‚ÍAÅ‰‚ÉŠm•Û‚µ‚½ŒÂ”‚æ‚è‚à‘¶İ‚µ‚Ä‚¢‚éRoot‚Ì”‚Ì•ª‚¾‚¯‘½‚­‘¶İ‚·‚éB
 	*/
 	virtual int32_t GetTotalInstanceCount() const = 0;
 
@@ -4208,190 +4208,190 @@ public:
 	/**
 		@brief
 		\~English Returns current specified LOD parameters.
-		\~Japanese ç¾åœ¨æŒ‡å®šã•ã‚Œã¦ã„ã‚‹LODãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿”ã—ã¾ã™
+		\~Japanese Œ»İw’è‚³‚ê‚Ä‚¢‚éLODƒpƒ‰ƒ[ƒ^‚ğ•Ô‚µ‚Ü‚·
 	 */
 	virtual const LayerParameter& GetLayerParameter(int32_t layer) const = 0;
 
 	/**
 		@brief
 		\~English Set layer parameters.
-		\~Japanese ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒŒƒCƒ„[ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
 		@param	layer
 		\~English	Layer index
-		\~Japanese	ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+		\~Japanese	ƒŒƒCƒ„[‚ÌƒCƒ“ƒfƒbƒNƒX
 		@param	layerParameter
 		\~English	Layer parameters
-		\~Japanese	ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		\~Japanese	ƒŒƒCƒ„[ƒpƒ‰ƒ[ƒ^
 	 */
 	virtual void SetLayerParameter(int32_t layer, const LayerParameter& layerParameter) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@return	è¡Œåˆ—
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Éİ’è‚³‚ê‚Ä‚¢‚és—ñ‚ğæ“¾‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@return	s—ñ
 	*/
 	virtual Matrix43 GetMatrix(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	mat		[in]	å¤‰æ›è¡Œåˆ—
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚É•ÏŠ·s—ñ‚ğİ’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	mat		[in]	•ÏŠ·s—ñ
 	*/
 	virtual void SetMatrix(Handle handle, const Matrix43& mat) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@return	ä½ç½®
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌˆÊ’u‚ğæ“¾‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@return	ˆÊ’u
 	*/
 	virtual Vector3D GetLocation(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½ç½®ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	x	[in]	Xåº§æ¨™
-		@param	y	[in]	Yåº§æ¨™
-		@param	z	[in]	Zåº§æ¨™
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌˆÊ’u‚ğw’è‚·‚éB
+		@param	x	[in]	XÀ•W
+		@param	y	[in]	YÀ•W
+		@param	z	[in]	ZÀ•W
 	*/
 	virtual void SetLocation(Handle handle, float x, float y, float z) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½ç½®ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	location	[in]	ä½ç½®
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌˆÊ’u‚ğw’è‚·‚éB
+		@param	location	[in]	ˆÊ’u
 	*/
 	virtual void SetLocation(Handle handle, const Vector3D& location) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½ç½®ã«åŠ ç®—ã™ã‚‹ã€‚
-		@param	location	[in]	åŠ ç®—ã™ã‚‹å€¤
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌˆÊ’u‚É‰ÁZ‚·‚éB
+		@param	location	[in]	‰ÁZ‚·‚é’l
 	*/
 	virtual void AddLocation(Handle handle, const Vector3D& location) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å›è»¢è§’åº¦ã‚’æŒ‡å®šã™ã‚‹ã€‚(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰ñ“]Šp“x‚ğw’è‚·‚éB(ƒ‰ƒWƒAƒ“)
 	*/
 	virtual void SetRotation(Handle handle, float x, float y, float z) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä»»æ„è»¸å‘¨ã‚Šã®åæ™‚è¨ˆå‘¨ã‚Šã®å›è»¢è§’åº¦ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	axis	[in]	è»¸
-		@param	angle	[in]	è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”CˆÓ²ü‚è‚Ì”½Œvü‚è‚Ì‰ñ“]Šp“x‚ğw’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	axis	[in]	²
+		@param	angle	[in]	Šp“x(ƒ‰ƒWƒAƒ“)
 	*/
 	virtual void SetRotation(Handle handle, const Vector3D& axis, float angle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ‹¡å¤§ç‡ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	x		[in]	Xæ–¹å‘æ‹¡å¤§ç‡
-		@param	y		[in]	Yæ–¹å‘æ‹¡å¤§ç‡
-		@param	z		[in]	Zæ–¹å‘æ‹¡å¤§ç‡
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŠg‘å—¦‚ğw’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	x		[in]	X•ûŒüŠg‘å—¦
+		@param	y		[in]	Y•ûŒüŠg‘å—¦
+		@param	z		[in]	Z•ûŒüŠg‘å—¦
 	*/
 	virtual void SetScale(Handle handle, float x, float y, float z) = 0;
 
 	/**
 	@brief
 		\~English	Specify the color of overall effect.
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…¨ä½“ã®è‰²ã‚’æŒ‡å®šã™ã‚‹ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‘S‘Ì‚ÌF‚ğw’è‚·‚éB
 	*/
 	virtual void SetAllColor(Handle handle, Color color) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆä½ç½®ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	x	[in]	Xåº§æ¨™
-		@param	y	[in]	Yåº§æ¨™
-		@param	z	[in]	Zåº§æ¨™
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ^[ƒQƒbƒgˆÊ’u‚ğw’è‚·‚éB
+		@param	x	[in]	XÀ•W
+		@param	y	[in]	YÀ•W
+		@param	z	[in]	ZÀ•W
 	*/
 	virtual void SetTargetLocation(Handle handle, float x, float y, float z) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆä½ç½®ã‚’æŒ‡å®šã™ã‚‹ã€‚
-		@param	location	[in]	ä½ç½®
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ^[ƒQƒbƒgˆÊ’u‚ğw’è‚·‚éB
+		@param	location	[in]	ˆÊ’u
 	*/
 	virtual void SetTargetLocation(Handle handle, const Vector3D& location) = 0;
 
 	/**
 		@brief
 		\~English get a dynamic parameter, which changes effect parameters dynamically while playing
-		\~Japanese å†ç”Ÿä¸­ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹å‹•çš„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese Ä¶’†‚ÉƒGƒtƒFƒNƒg‚Ìƒpƒ‰ƒ[ƒ^[‚ğ•ÏX‚·‚é“®“Iƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éB
 	*/
 	virtual float GetDynamicInput(Handle handle, int32_t index) = 0;
 
 	/**
 		@brief
 		\~English specfiy a dynamic parameter, which changes effect parameters dynamically while playing
-		\~Japanese å†ç”Ÿä¸­ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹å‹•çš„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese Ä¶’†‚ÉƒGƒtƒFƒNƒg‚Ìƒpƒ‰ƒ[ƒ^[‚ğ•ÏX‚·‚é“®“Iƒpƒ‰ƒ[ƒ^[‚ğİ’è‚·‚éB
 	*/
 	virtual void SetDynamicInput(Handle handle, int32_t index, float value) = 0;
 
 	/**
 		@brief
 		\~English Sends the specified trigger to the currently playing effect.
-		\~Japanese ãƒˆãƒªã‚¬ãƒ¼ã‚’å†ç”Ÿä¸­ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«é€ä¿¡ã—ã¾ã™ã€‚
+		\~Japanese ƒgƒŠƒK[‚ğÄ¶’†‚ÌƒGƒtƒFƒNƒg‚É‘—M‚µ‚Ü‚·B
 	*/
 	virtual void SendTrigger(Handle handle, int32_t index) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ™ãƒ¼ã‚¹è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@return	ãƒ™ãƒ¼ã‚¹è¡Œåˆ—
+		@brief	ƒGƒtƒFƒNƒg‚Ìƒx[ƒXs—ñ‚ğæ“¾‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@return	ƒx[ƒXs—ñ
 	*/
 	virtual Matrix43 GetBaseMatrix(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ™ãƒ¼ã‚¹è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	mat		[in]	è¨­å®šã™ã‚‹è¡Œåˆ—
+		@brief	ƒGƒtƒFƒNƒg‚Ìƒx[ƒXs—ñ‚ğİ’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	mat		[in]	İ’è‚·‚és—ñ
 		@note
-		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…¨ä½“ã®è¡¨ç¤ºä½ç½®ã‚’æŒ‡å®šã™ã‚‹è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹ã€‚
+		ƒGƒtƒFƒNƒg‘S‘Ì‚Ì•\¦ˆÊ’u‚ğw’è‚·‚és—ñ‚ğİ’è‚·‚éB
 	*/
 	virtual void SetBaseMatrix(Handle handle, const Matrix43& mat) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å»ƒæ£„æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	callback	[in]	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚É”pŠü‚ÌƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	callback	[in]	ƒR[ƒ‹ƒoƒbƒN
 	*/
 	virtual void SetRemovingCallback(Handle handle, EffectInstanceRemovingCallback callback) = 0;
 
 	/**
 	@brief	\~English	Get status that a particle of effect specified is shown.
-	\~Japanese	æŒ‡å®šã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‹å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	w’è‚µ‚½ƒGƒtƒFƒNƒg‚Ìƒp[ƒeƒBƒNƒ‹‚ª•\¦‚³‚ê‚Ä‚¢‚é‚©æ“¾‚·‚éB
 
 	@param	handle	\~English	Particle's handle
-	\~Japanese	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+	\~Japanese	ƒp[ƒeƒBƒNƒ‹‚Ìƒnƒ“ƒhƒ‹
 	*/
 	virtual bool GetShown(Handle handle) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’Drawæ™‚ã«æç”»ã™ã‚‹ã‹è¨­å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	shown	[in]	æç”»ã™ã‚‹ã‹?
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğDraw‚É•`‰æ‚·‚é‚©İ’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	shown	[in]	•`‰æ‚·‚é‚©?
 	*/
 	virtual void SetShown(Handle handle, bool shown) = 0;
 
 	/**
 	@brief	\~English	Get status that a particle of effect specified is paused.
-	\~Japanese	æŒ‡å®šã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãŒä¸€æ™‚åœæ­¢ã•ã‚Œã¦ã„ã‚‹ã‹å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	w’è‚µ‚½ƒGƒtƒFƒNƒg‚Ìƒp[ƒeƒBƒNƒ‹‚ªˆê’â~‚³‚ê‚Ä‚¢‚é‚©æ“¾‚·‚éB
 
 	@param	handle	\~English	Particle's handle
-			\~Japanese	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+			\~Japanese	ƒp[ƒeƒBƒNƒ‹‚Ìƒnƒ“ƒhƒ‹
 	*/
 	virtual bool GetPaused(Handle handle) = 0;
 
 	/**
 		@brief	\~English	Pause or resume a particle of effect specified.
-		\~Japanese	æŒ‡å®šã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ä¸€æ™‚åœæ­¢ã€ã‚‚ã—ãã¯å†é–‹ã™ã‚‹ã€‚
+		\~Japanese	w’è‚µ‚½ƒGƒtƒFƒNƒg‚Ìƒp[ƒeƒBƒNƒ‹‚ğˆê’â~A‚à‚µ‚­‚ÍÄŠJ‚·‚éB
 
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	paused	[in]	æ›´æ–°ã™ã‚‹ã‹?
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	paused	[in]	XV‚·‚é‚©?
 	*/
 	virtual void SetPaused(Handle handle, bool paused) = 0;
 
 	/**
 			@brief	\~English	Pause or resume all particle of effects.
-			\~Japanese	å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ä¸€æ™‚åœæ­¢ã€ã‚‚ã—ãã¯å†é–‹ã™ã‚‹ã€‚
+			\~Japanese	‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚Ìƒp[ƒeƒBƒNƒ‹‚ğˆê’â~A‚à‚µ‚­‚ÍÄŠJ‚·‚éB
 			@param	paused \~English	Pause or resume
-			\~Japanese	ä¸€æ™‚åœæ­¢ã€ã‚‚ã—ãã¯å†é–‹
+			\~Japanese	ˆê’â~A‚à‚µ‚­‚ÍÄŠJ
 	*/
 	virtual void SetPausedToAllEffects(bool paused) = 0;
 
@@ -4409,290 +4409,290 @@ public:
 	/**
 		@brief
 		\~English	Get a layer index
-		\~Japanese	ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+		\~Japanese	ƒŒƒCƒ„[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
 		@note
 		\~English For example, if effect's layer is 1 and CameraCullingMask's first bit is 1, this effect is shown.
-		\~Japanese ä¾‹ãˆã°ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒ0ã§ã‚«ãƒªãƒ³ã‚°ãƒã‚¹ã‚¯ã®æœ€åˆã®ãƒ“ãƒƒãƒˆãŒ1ã®ã¨ãã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯è¡¨ç¤ºã•ã‚Œã‚‹ã€‚
+		\~Japanese —á‚¦‚ÎAƒGƒtƒFƒNƒg‚ÌƒŒƒCƒ„[‚ª0‚ÅƒJƒŠƒ“ƒOƒ}ƒXƒN‚ÌÅ‰‚Ìƒrƒbƒg‚ª1‚Ì‚Æ‚«ƒGƒtƒFƒNƒg‚Í•\¦‚³‚ê‚éB
 	*/
 	virtual int32_t GetLayer(Handle handle) = 0;
 
 	/**
 		@brief
 		\~English	Set a layer index
-		\~Japanese	ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨­å®šã™ã‚‹
+		\~Japanese	ƒŒƒCƒ„[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğİ’è‚·‚é
 	*/
 	virtual void SetLayer(Handle handle, int32_t layer) = 0;
 
 	/**
 		@brief
 		\~English	Get a bitmask to specify a group
-		\~Japanese	ã‚°ãƒ«ãƒ¼ãƒ—ã‚’æŒ‡å®šã™ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	ƒOƒ‹[ƒv‚ğw’è‚·‚é‚½‚ß‚Ìƒrƒbƒgƒ}ƒXƒN‚ğæ“¾‚·‚éB
 	*/
 	virtual int64_t GetGroupMask(Handle handle) const = 0;
 
 	/**
 		@brief
 		\~English	Set a bitmask to specify a group
-		\~Japanese	ã‚°ãƒ«ãƒ¼ãƒ—ã‚’æŒ‡å®šã™ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒOƒ‹[ƒv‚ğw’è‚·‚é‚½‚ß‚Ìƒrƒbƒgƒ}ƒXƒN‚ğİ’è‚·‚éB
 	*/
 	virtual void SetGroupMask(Handle handle, int64_t groupmask) = 0;
 
 	/**
 	@brief
 	\~English	Get a playing speed of particle of effect.
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒGƒtƒFƒNƒg‚Ìƒp[ƒeƒBƒNƒ‹‚ÌÄ¶ƒXƒs[ƒh‚ğæ“¾‚·‚éB
 	@param	handle
 	\~English	Particle's handle
-	\~Japanese	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+	\~Japanese	ƒp[ƒeƒBƒNƒ‹‚Ìƒnƒ“ƒhƒ‹
 	@return
 	\~English	Speed
-	\~Japanese	ã‚¹ãƒ”ãƒ¼ãƒ‰
+	\~Japanese	ƒXƒs[ƒh
 	*/
 	virtual float GetSpeed(Handle handle) const = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	handle	[in]	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
-		@param	speed	[in]	ã‚¹ãƒ”ãƒ¼ãƒ‰
+		@brief	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğÄ¶ƒXƒs[ƒh‚ğİ’è‚·‚éB
+		@param	handle	[in]	ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
+		@param	speed	[in]	ƒXƒs[ƒh
 	*/
 	virtual void SetSpeed(Handle handle, float speed) = 0;
 
 	/**
 		@brief
 		\~English	Specify a rate of scale in relation to manager's time  by a group.
-		\~Japanese	ã‚°ãƒ«ãƒ¼ãƒ—ã”ã¨ã«ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«å¯¾ã™ã‚‹æ™‚é–“ã®æ‹¡å¤§ç‡ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒOƒ‹[ƒv‚²‚Æ‚Éƒ}ƒl[ƒWƒƒ[‚É‘Î‚·‚éŠÔ‚ÌŠg‘å—¦‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTimeScaleByGroup(int64_t groupmask, float timeScale) = 0;
 
 	/**
 		@brief
 		\~English	Specify a rate of scale in relation to manager's time  by a handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«ã”ã¨ã«ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«å¯¾ã™ã‚‹æ™‚é–“ã®æ‹¡å¤§ç‡ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒnƒ“ƒhƒ‹‚²‚Æ‚Éƒ}ƒl[ƒWƒƒ[‚É‘Î‚·‚éŠÔ‚ÌŠg‘å—¦‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTimeScaleByHandle(Handle handle, float timeScale) = 0;
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒDrawã§æç”»ã•ã‚Œã‚‹ã‹è¨­å®šã™ã‚‹ã€‚
-				autoDrawãŒfalseã®å ´åˆã€DrawHandleã§æç”»ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
-		@param	autoDraw	[in]	è‡ªå‹•æç”»ãƒ•ãƒ©ã‚°
+		@brief	ƒGƒtƒFƒNƒg‚ªDraw‚Å•`‰æ‚³‚ê‚é‚©İ’è‚·‚éB
+				autoDraw‚ªfalse‚Ìê‡ADrawHandle‚Å•`‰æ‚·‚é•K—v‚ª‚ ‚éB
+		@param	autoDraw	[in]	©“®•`‰æƒtƒ‰ƒO
 	*/
 	virtual void SetAutoDrawing(Handle handle, bool autoDraw) = 0;
 
 	/**
 		@brief
 		\~English	Gets the user pointer set on the handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«ã«è¨­å®šã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	ƒnƒ“ƒhƒ‹‚Éİ’è‚³‚ê‚½ƒ†[ƒU[ƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
 	*/
 	virtual void* GetUserData(Handle handle) = 0;
 
 	/**
 		@brief
 		\~English	Specify a user pointer for custom renderer and custom sound player
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«ã”ã¨ã«ã‚«ã‚¹ã‚¿ãƒ ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚„ã‚«ã‚¹ã‚¿ãƒ ã‚µã‚¦ãƒ³ãƒ‰å‘ã‘ã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒnƒ“ƒhƒ‹‚²‚Æ‚ÉƒJƒXƒ^ƒ€ƒŒƒ“ƒ_ƒ‰[‚âƒJƒXƒ^ƒ€ƒTƒEƒ“ƒhŒü‚¯‚Éƒ†[ƒU[ƒ|ƒCƒ“ƒ^‚ğİ’è‚·‚éB
 	*/
 	virtual void SetUserData(Handle handle, void* userData) = 0;
 
 	/**
 		@brief
 		\~English	Set a default random seed of the effect by a handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«ã”ã¨ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰å€¤ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒnƒ“ƒhƒ‹‚²‚Æ‚ÉƒGƒtƒFƒNƒg‚ÌƒfƒtƒHƒ‹ƒgƒ‰ƒ“ƒ_ƒ€ƒV[ƒh’l‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRandomSeed(Handle handle, int32_t seed) = 0;
 
 	/**
-		@brief	ä»Šã¾ã§ã®Playç­‰ã®å‡¦ç†ã‚’Updateå®Ÿè¡Œæ™‚ã«é©ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
+		@brief	¡‚Ü‚Å‚ÌPlay“™‚Ìˆ—‚ğUpdateÀs‚É“K—p‚·‚é‚æ‚¤‚É‚·‚éB
 	*/
 	virtual void Flip() = 0;
 
 	/**
 		@brief
 		\~English	Update all effects.
-		\~Japanese	å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†ã€‚
+		\~Japanese	‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ÌXVˆ—‚ğs‚¤B
 		@param	deltaFrame
 		\~English	passed time (1 is 1/60 seconds)
-		\~Japanese	æ›´æ–°ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°(60fpsåŸºæº–)
+		\~Japanese	XV‚·‚éƒtƒŒ[ƒ€”(60fpsŠî€)
 	*/
 	virtual void Update(float deltaFrame = 1.0f) = 0;
 
 	/**
 		@brief
 		\~English	Update all effects.
-		\~Japanese	å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†ã€‚
+		\~Japanese	‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ÌXVˆ—‚ğs‚¤B
 		@param	parameter
 		\~English	A parameter for updating effects
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+		\~Japanese	ƒGƒtƒFƒNƒg‚ğXV‚·‚é‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^[
 	*/
 	virtual void Update(const UpdateParameter& parameter) = 0;
 
 	/**
 		@brief
 		\~English	Start to update effects.
-		\~Japanese	æ›´æ–°å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹ã€‚
+		\~Japanese	XVˆ—‚ğŠJn‚·‚éB
 		@note
 		\~English	It is not required if Update is called.
-		\~Japanese	Updateã‚’å®Ÿè¡Œã™ã‚‹éš›ã¯ã€å®Ÿè¡Œã™ã‚‹å¿…è¦ã¯ãªã„ã€‚
+		\~Japanese	Update‚ğÀs‚·‚éÛ‚ÍAÀs‚·‚é•K—v‚Í‚È‚¢B
 	*/
 	virtual void BeginUpdate() = 0;
 
 	/**
 		@brief
 		\~English	Stop to update effects.
-		\~Japanese	æ›´æ–°å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹ã€‚
+		\~Japanese	XVˆ—‚ğI—¹‚·‚éB
 		@note
 		\~English	It is not required if Update is called.
-		\~Japanese	Updateã‚’å®Ÿè¡Œã™ã‚‹éš›ã¯ã€å®Ÿè¡Œã™ã‚‹å¿…è¦ã¯ãªã„ã€‚
+		\~Japanese	Update‚ğÀs‚·‚éÛ‚ÍAÀs‚·‚é•K—v‚Í‚È‚¢B
 	*/
 	virtual void EndUpdate() = 0;
 
 	/**
 		@brief
 		\~English	Update an effect by a handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«å˜ä½ã®æ›´æ–°ã‚’è¡Œã†ã€‚
+		\~Japanese	ƒnƒ“ƒhƒ‹’PˆÊ‚ÌXV‚ğs‚¤B
 		@param	handle
 		\~English	a handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«
+		\~Japanese	ƒnƒ“ƒhƒ‹
 		@param	deltaFrame
 		\~English	passed time (1 is 1/60 seconds)
-		\~Japanese	æ›´æ–°ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°(60fpsåŸºæº–)
+		\~Japanese	XV‚·‚éƒtƒŒ[ƒ€”(60fpsŠî€)
 		@note
 		\~English
 		You need to call BeginUpdate before starting update and EndUpdate after stopping update.
 		\~Japanese
-		æ›´æ–°ã™ã‚‹å‰ã«BeginUpdateã€æ›´æ–°ã—çµ‚ã‚ã£ãŸå¾Œã«EndUpdateã‚’å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+		XV‚·‚é‘O‚ÉBeginUpdateAXV‚µI‚í‚Á‚½Œã‚ÉEndUpdate‚ğÀs‚·‚é•K—v‚ª‚ ‚éB
 	*/
 	virtual void UpdateHandle(Handle handle, float deltaFrame = 1.0f) = 0;
 
 	/**
 		@brief
 		\~English	Update an effect to move to the specified frame
-		\~Japanese	æŒ‡å®šã—ãŸæ™‚é–“ã«ç§»å‹•ã™ã‚‹ãŸã‚ã«æ›´æ–°ã™ã‚‹
+		\~Japanese	w’è‚µ‚½ŠÔ‚ÉˆÚ“®‚·‚é‚½‚ß‚ÉXV‚·‚é
 		\~English	a handle.
-		\~Japanese	ãƒãƒ³ãƒ‰ãƒ«
+		\~Japanese	ƒnƒ“ƒhƒ‹
 		@param	frame
 		\~English	frame time (1 is 1/60 seconds)
-		\~Japanese	ãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“(60fpsåŸºæº–)
+		\~Japanese	ƒtƒŒ[ƒ€ŠÔ(60fpsŠî€)
 		@note
 		\~English	This function is slow.
-		\~Japanese	ã“ã®é–¢æ•°ã¯é…ã„ã€‚
+		\~Japanese	‚±‚ÌŠÖ”‚Í’x‚¢B
 	*/
 	virtual void UpdateHandleToMoveToFrame(Handle handle, float frame) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles.
-	\~Japanese	æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void Draw(const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles in the back of priority 0.
-	\~Japanese	èƒŒé¢ã®æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	”w–Ê‚Ì•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void DrawBack(const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles in the front of priority 0.
-	\~Japanese	å‰é¢ã®æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	‘O–Ê‚Ì•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void DrawFront(const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles with a handle.
-	\~Japanese	ãƒãƒ³ãƒ‰ãƒ«å˜ä½ã®æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	ƒnƒ“ƒhƒ‹’PˆÊ‚Ì•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void DrawHandle(Handle handle, const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles in the back of priority 0.
-	\~Japanese	èƒŒé¢ã®ãƒãƒ³ãƒ‰ãƒ«å˜ä½ã®æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	”w–Ê‚Ìƒnƒ“ƒhƒ‹’PˆÊ‚Ì•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void DrawHandleBack(Handle handle, const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Draw particles in the front of priority 0.
-	\~Japanese	å‰é¢ã®ãƒãƒ³ãƒ‰ãƒ«å˜ä½ã®æç”»å‡¦ç†ã‚’è¡Œã†ã€‚
+	\~Japanese	‘O–Ê‚Ìƒnƒ“ƒhƒ‹’PˆÊ‚Ì•`‰æˆ—‚ğs‚¤B
 	*/
 	virtual void DrawHandleFront(Handle handle, const Manager::DrawParameter& drawParameter = Manager::DrawParameter()) = 0;
 
 	/**
 	@brief
 	\~English	Get whether the effect will be culled.
-	\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚«ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã‹å–å¾—ã™ã‚‹ã€‚
+	\~Japanese	ƒGƒtƒFƒNƒg‚ªƒJƒŠƒ“ƒO‚³‚ê‚é‚©æ“¾‚·‚éB
 	*/
 	virtual bool GetIsCulled(Handle handle, const Manager::DrawParameter& drawParameter) = 0;
 
 	/**
-		@brief	å†ç”Ÿã™ã‚‹ã€‚
-		@param	effect	[in]	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
-		@param	x	[in]	Xåº§æ¨™
-		@param	y	[in]	Yåº§æ¨™
-		@param	z	[in]	Zåº§æ¨™
-		@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+		@brief	Ä¶‚·‚éB
+		@param	effect	[in]	ƒGƒtƒFƒNƒg
+		@param	x	[in]	XÀ•W
+		@param	y	[in]	YÀ•W
+		@param	z	[in]	ZÀ•W
+		@return	ƒGƒtƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
 	*/
 	virtual Handle Play(const EffectRef& effect, float x, float y, float z) = 0;
 
 	/**
 		@brief
 		\~English	Play an effect.
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿã™ã‚‹ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‚ğÄ¶‚·‚éB
 		@param	effect
 		\~English	Played effect
-		\~Japanese	å†ç”Ÿã•ã‚Œã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		\~Japanese	Ä¶‚³‚ê‚éƒGƒtƒFƒNƒg
 		@param	position
 		\~English	Initial position
-		\~Japanese	åˆæœŸä½ç½®
+		\~Japanese	‰ŠúˆÊ’u
 		@param	startFrame
 		\~English	A time to play from middle
-		\~Japanese	é€”ä¸­ã‹ã‚‰å†ç”Ÿã™ã‚‹ãŸã‚ã®æ™‚é–“
+		\~Japanese	“r’†‚©‚çÄ¶‚·‚é‚½‚ß‚ÌŠÔ
 	*/
 	virtual Handle Play(const EffectRef& effect, const Vector3D& position, int32_t startFrame = 0) = 0;
 
 	/**
 		@brief
 		\~English	Get a camera's culling mask to show all effects
-		\~Japanese	å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ã‚«ãƒ¡ãƒ©ã®ã‚«ãƒªãƒ³ã‚°ãƒã‚¹ã‚¯ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ğ•\¦‚·‚é‚½‚ß‚ÌƒJƒƒ‰‚ÌƒJƒŠƒ“ƒOƒ}ƒXƒN‚ğæ“¾‚·‚éB
 	*/
 	virtual int GetCameraCullingMaskToShowAllEffects() = 0;
 
 	/**
-		@brief	Updateå‡¦ç†æ™‚é–“ã‚’å–å¾—ã€‚
+		@brief	Updateˆ—ŠÔ‚ğæ“¾B
 	*/
 	virtual int GetUpdateTime() const = 0;
 
 	/**
-		@brief	Drawå‡¦ç†æ™‚é–“ã‚’å–å¾—ã€‚
+		@brief	Drawˆ—ŠÔ‚ğæ“¾B
 	*/
 	virtual int GetDrawTime() const = 0;
 
 	/**
 		@brief
 		\~English	Gets the number of remaining allocated instances.
-		\~Japanese	æ®‹ã‚Šã®ç¢ºä¿ã—ãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	c‚è‚ÌŠm•Û‚µ‚½ƒCƒ“ƒXƒ^ƒ“ƒX”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetRestInstancesCount() const = 0;
 
 	/**
 		@brief
 		\~English	Lock rendering events
-		\~Japanese	ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã€‚
+		\~Japanese	ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒCƒxƒ“ƒg‚ğƒƒbƒN‚·‚éB
 		@note
 		\~English	I recommend to read internal codes.
-		\~Japanese	å†…éƒ¨ã‚³ãƒ¼ãƒ‰ã‚’èª­ã‚€ã“ã¨ã‚’å‹§ã‚ã¾ã™ã€‚
+		\~Japanese	“à•”ƒR[ƒh‚ğ“Ç‚Ş‚±‚Æ‚ğŠ©‚ß‚Ü‚·B
 	*/
 	virtual void LockRendering() = 0;
 
 	/**
 		@brief
 		\~English	Unlock rendering events
-		\~Japanese	ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã™ã‚‹ã€‚
+		\~Japanese	ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒCƒxƒ“ƒg‚ğƒAƒ“ƒƒbƒN‚·‚éB
 		@note
 		\~English	I recommend to read internal codes.
-		\~Japanese	å†…éƒ¨ã‚³ãƒ¼ãƒ‰ã‚’èª­ã‚€ã“ã¨ã‚’å‹§ã‚ã¾ã™ã€‚
+		\~Japanese	“à•”ƒR[ƒh‚ğ“Ç‚Ş‚±‚Æ‚ğŠ©‚ß‚Ü‚·B
 	*/
 	virtual void UnlockRendering() = 0;
 
@@ -4727,10 +4727,10 @@ class EffectFactory;
 class ResourceManager;
 
 /**
-	@brief	è¨­å®šã‚¯ãƒ©ã‚¹
+	@brief	İ’èƒNƒ‰ƒX
 	@note
-	EffectLoaderç­‰ã€ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã«é–¢ã™ã‚‹è¨­å®šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
-	Managerã®ä»£ã‚ã‚Šã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèª­ã¿è¾¼ã¿æ™‚ã«ä½¿ç”¨ã™ã‚‹ã“ã¨ã§ã€Managerã¨ã¯ç‹¬ç«‹ã—ã¦Effectã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
+	EffectLoader“™Aƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÉŠÖ‚·‚éİ’è‚·‚é‚±‚Æ‚ª‚Å‚«‚éB
+	Manager‚Ì‘ã‚í‚è‚ÉƒGƒtƒFƒNƒg“Ç‚İ‚İ‚Ég—p‚·‚é‚±‚Æ‚ÅAManager‚Æ‚Í“Æ—§‚µ‚ÄEffectƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚é‚±‚Æ‚ª‚Å‚«‚éB
 */
 class Setting : public ReferenceObject
 {
@@ -4749,196 +4749,196 @@ protected:
 
 public:
 	/**
-		@brief	è¨­å®šã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	İ’èƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éB
 	*/
 	static SettingRef Create();
 
 	/**
-	@brief	åº§æ¨™ç³»ã‚’å–å¾—ã™ã‚‹ã€‚
-	@return	åº§æ¨™ç³»
+	@brief	À•WŒn‚ğæ“¾‚·‚éB
+	@return	À•WŒn
 	*/
 	CoordinateSystem GetCoordinateSystem() const;
 
 	/**
-	@brief	åº§æ¨™ç³»ã‚’è¨­å®šã™ã‚‹ã€‚
-	@param	coordinateSystem	[in]	åº§æ¨™ç³»
+	@brief	À•WŒn‚ğİ’è‚·‚éB
+	@param	coordinateSystem	[in]	À•WŒn
 	@note
-	åº§æ¨™ç³»ã‚’è¨­å®šã™ã‚‹ã€‚
-	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€å‰ã«è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+	À•WŒn‚ğİ’è‚·‚éB
+	ƒGƒtƒFƒNƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‘O‚Éİ’è‚·‚é•K—v‚ª‚ ‚éB
 	*/
 	void SetCoordinateSystem(CoordinateSystem coordinateSystem);
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
-		@return	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ­ãƒ¼ãƒ€ãƒ¼
+		@brief	ƒGƒtƒFƒNƒgƒ[ƒ_[‚ğæ“¾‚·‚éB
+		@return	ƒGƒtƒFƒNƒgƒ[ƒ_[
 		*/
 	EffectLoaderRef GetEffectLoader();
 
 	/**
-		@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
-		@param	loader	[in]		ãƒ­ãƒ¼ãƒ€ãƒ¼
+		@brief	ƒGƒtƒFƒNƒgƒ[ƒ_[‚ğİ’è‚·‚éB
+		@param	loader	[in]		ƒ[ƒ_[
 		*/
 	void SetEffectLoader(EffectLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a texture loader
-		\~Japanese ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒeƒNƒXƒ`ƒƒƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	TextureLoaderRef GetTextureLoader() const;
 
 	/**
 		@brief
 		\~English specfiy a texture loader
-		\~Japanese ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒeƒNƒXƒ`ƒƒƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	void SetTextureLoader(TextureLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a model loader
-		\~Japanese ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒ‚ƒfƒ‹ƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	ModelLoaderRef GetModelLoader() const;
 
 	/**
 		@brief
 		\~English specfiy a model loader
-		\~Japanese ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒ‚ƒfƒ‹ƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	void SetModelLoader(ModelLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a sound loader
-		\~Japanese ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒTƒEƒ“ƒhƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	SoundLoaderRef GetSoundLoader() const;
 
 	/**
 		@brief
 		\~English specfiy a sound loader
-		\~Japanese ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒTƒEƒ“ƒhƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	void SetSoundLoader(SoundLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a material loader
-		\~Japanese ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒ}ƒeƒŠƒAƒ‹ƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	MaterialLoaderRef GetMaterialLoader() const;
 
 	/**
 		@brief
 		\~English specfiy a material loader
-		\~Japanese ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒ}ƒeƒŠƒAƒ‹ƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	void SetMaterialLoader(MaterialLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a curve loader
-		\~Japanese ã‚«ãƒ¼ãƒ–ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒJ[ƒuƒ[ƒ_[‚ğæ“¾‚·‚éB
 		@return
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	CurveLoaderRef GetCurveLoader() const;
 
 	/**
 		@brief
 		\~English specfiy a curve loader
-		\~Japanese ã‚«ãƒ¼ãƒ–ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒJ[ƒuƒ[ƒ_[‚ğİ’è‚·‚éB
 		@param	loader
 		\~English	loader
-		\~Japanese ãƒ­ãƒ¼ãƒ€ãƒ¼
+		\~Japanese ƒ[ƒ_[
 	*/
 	void SetCurveLoader(CurveLoaderRef loader);
 
 	/**
 		@brief
 		\~English get a mesh generator
-		\~Japanese ãƒ¡ãƒƒã‚·ãƒ¥ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese ƒƒbƒVƒ…ƒWƒFƒlƒŒ[ƒ^[‚ğæ“¾‚·‚éB
 		@return
 		\~English	generator
-		\~Japanese ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿
+		\~Japanese ƒWƒFƒlƒŒ[ƒ^
 	*/
 	ProceduralModelGeneratorRef GetProceduralMeshGenerator() const;
 
 	/**
 		@brief
 		\~English specfiy a mesh generator
-		\~Japanese ãƒ¡ãƒƒã‚·ãƒ¥ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese ƒƒbƒVƒ…ƒWƒFƒlƒŒ[ƒ^[‚ğİ’è‚·‚éB
 		@param	generator
 		\~English	generator
-		\~Japanese ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿
+		\~Japanese ƒWƒFƒlƒŒ[ƒ^
 	*/
 	void SetProceduralMeshGenerator(ProceduralModelGeneratorRef generator);
 
 	/**
 		@brief
 		\~English	Add effect factory
-		\~Japanese Effect factoryã‚’è¿½åŠ ã™ã‚‹ã€‚
+		\~Japanese Effect factory‚ğ’Ç‰Á‚·‚éB
 	*/
 	void AddEffectFactory(const RefPtr<EffectFactory>& effectFactory);
 
 	/**
 		@brief
 		\~English	Get effect factory
-		\~Japanese Effect Factoryã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese Effect Factory‚ğæ“¾‚·‚éB
 	*/
 	const RefPtr<EffectFactory>& GetEffectFactory(int32_t ind) const;
 
 	/**
 		@brief
 		\~English	clear effect factories
-		\~Japanese å…¨ã¦ã®Effect Factoryã‚’å‰Šé™¤ã™ã‚‹ã€‚
+		\~Japanese ‘S‚Ä‚ÌEffect Factory‚ğíœ‚·‚éB
 	*/
 	void ClearEffectFactory();
 
 	/**
 		@brief
 		\~English	Get the number of effect factory
-		\~Japanese Effect Factoryã®æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese Effect Factory‚Ì”‚ğæ“¾‚·‚éB
 	*/
 	int32_t GetEffectFactoryCount() const;
 
 	/**
 		@brief
 		\~English	Get resource manager
-		\~Japanese Resource Managerã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese Resource Manager‚ğæ“¾‚·‚éB
 	*/
 	const RefPtr<ResourceManager>& GetResourceManager() const;
 
 	/**
 		@brief
 		\~English	Specifies whether caching of file resources is enabled.
-		\~Japanese ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒæœ‰åŠ¹ã‹æŒ‡å®šã™ã‚‹ã€‚
+		\~Japanese ƒtƒ@ƒCƒ‹‚ÌƒŠƒ\[ƒX‚ÌƒLƒƒƒbƒVƒ…‚ª—LŒø‚©w’è‚·‚éB
 	*/
 	void SetIsFileCacheEnabled(bool value);
 };
@@ -4965,7 +4965,7 @@ using ServerRef = RefPtr<Server>;
 /**
 	@brief
 	\~English	A server to edit effect from client such an editor
-	\~Japanese	ã‚¨ãƒ‡ã‚£ã‚¿ã¨ã„ã£ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç·¨é›†ã™ã‚‹ãŸã‚ã®ã‚µãƒ¼ãƒãƒ¼
+	\~Japanese	ƒGƒfƒBƒ^‚Æ‚¢‚Á‚½ƒNƒ‰ƒCƒAƒ“ƒg‚©‚çƒGƒtƒFƒNƒg‚ğ•ÒW‚·‚é‚½‚ß‚ÌƒT[ƒo[
 */
 class Server : public IReference
 {
@@ -4980,57 +4980,57 @@ public:
 	/**
 		@brief
 		\~English	create a server instance
-		\~Japanese	ã‚µãƒ¼ãƒãƒ¼ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		\~Japanese	ƒT[ƒo[‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éB
 	*/
 	static ServerRef Create();
 
 	/**
 		@brief
 		\~English	start a server
-		\~Japanese	ã‚µãƒ¼ãƒãƒ¼ã‚’é–‹å§‹ã™ã‚‹ã€‚
+		\~Japanese	ƒT[ƒo[‚ğŠJn‚·‚éB
 	*/
 	virtual bool Start(uint16_t port) = 0;
 
 	/**
 		@brief
 		\~English	stop a server
-		\~Japanese	ã‚µãƒ¼ãƒãƒ¼ã‚’çµ‚äº†ã™ã‚‹ã€‚
+		\~Japanese	ƒT[ƒo[‚ğI—¹‚·‚éB
 	*/
 	virtual void Stop() = 0;
 
 	/**
 		@brief
 		\~English	register an effect as a target to edit.
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç·¨é›†ã®å¯¾è±¡ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‚ğ•ÒW‚Ì‘ÎÛ‚Æ‚µ‚Ä“o˜^‚·‚éB
 		@param	key
 		\~English	a key to search an effect
-		\~Japanese	æ¤œç´¢ç”¨ã‚­ãƒ¼
+		\~Japanese	ŒŸõ—pƒL[
 		@param	effect
 		\~English	an effect to be edit
-		\~Japanese	ç·¨é›†ã•ã‚Œã‚‹å¯¾è±¡ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		\~Japanese	•ÒW‚³‚ê‚é‘ÎÛ‚ÌƒGƒtƒFƒNƒg
 	*/
 	virtual void Register(const char16_t* key, const EffectRef& effect) = 0;
 
 	/**
 		@brief
 		\~English	unregister an effect
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å¯¾è±¡ã‹ã‚‰å¤–ã™ã€‚
+		\~Japanese	ƒGƒtƒFƒNƒg‚ğ‘ÎÛ‚©‚çŠO‚·B
 		@param	effect
 		\~English	an effect registered
-		\~Japanese	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		\~Japanese	“o˜^‚³‚ê‚Ä‚¢‚éƒGƒtƒFƒNƒg
 	*/
 	virtual void Unregister(const EffectRef& effect) = 0;
 
 	/**
 		@brief
 		\~English	update a server and reload effects
-		\~Japanese	ã‚µãƒ¼ãƒãƒ¼ã‚’æ›´æ–°ã—ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†ã€‚
+		\~Japanese	ƒT[ƒo[‚ğXV‚µAƒGƒtƒFƒNƒg‚ÌƒŠƒ[ƒh‚ğs‚¤B
 		@brief	managers
 		\~English	all managers which is playing effects.
-		\~Japanese	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿã—ã¦ã„ã‚‹å…¨ã¦ã®ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+		\~Japanese	ƒGƒtƒFƒNƒg‚ğÄ¶‚µ‚Ä‚¢‚é‘S‚Ä‚Ìƒ}ƒl[ƒWƒƒ[
 		@brief	managerCount
 		\~English	the number of manager
-		\~Japanese	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å€‹æ•°
+		\~Japanese	ƒ}ƒl[ƒWƒƒ[‚ÌŒÂ”
 
 	*/
 	virtual void
@@ -5039,7 +5039,7 @@ public:
 	/**
 		@brief
 		\~English	Specify root path to load materials
-		\~Japanese	ç´ æã®ãƒ«ãƒ¼ãƒˆãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	‘fŞ‚Ìƒ‹[ƒgƒpƒX‚ğİ’è‚·‚éB
 	*/
 	virtual void SetMaterialPath(const char16_t* materialPath) = 0;
 };

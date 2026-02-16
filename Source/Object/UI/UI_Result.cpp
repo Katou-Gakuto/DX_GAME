@@ -1,4 +1,4 @@
-ï»¿#include "CameraData.h"
+#include "CameraData.h"
 #include "ResourceData.h"
 
 #include "Master.h"
@@ -19,7 +19,7 @@ UI_Result::~UI_Result()
 {
 }
 
-// UIåˆæœŸåŒ–
+// UI‰Šú‰»
 void UI_Result::UIInitilize()
 {
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
@@ -35,34 +35,34 @@ void UI_Result::UIInitilize()
         setDrawDatas.push_back(drawData);
     }
 
-    // ãƒ¢ãƒ‡ãƒ«è¿½åŠ 
+    // ƒ‚ƒfƒ‹’Ç‰Á
     AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
 
-    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
+    // ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
     AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
 }
 
-// UIã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+// UIƒV[ƒ“ÅI‰Šú‰»
 void UI_Result::UISceneLastInitilize()
 {
 }
 
-// UIçµ‚äº†
+// UII—¹
 void UI_Result::UIFinalize()
 {
 }
 
-// UIæ›´æ–°
+// UIXV
 void UI_Result::UIUpdate()
 {
 }
 
-// UIæœ€çµ‚æ›´æ–°
+// UIÅIXV
 void UI_Result::UILastUpdate()
 {
 }
 
-// UIæç”»
+// UI•`‰æ
 void UI_Result::UIDraw()
 {
 
@@ -91,7 +91,7 @@ void UI_Result::UIDraw()
 }
 
 
-// é¸æŠæ±ºå®šæ™‚å‡¦ç†
+// ‘I‘ğŒˆ’èˆ—
 void UI_Result::DecisionProcess()
 {
     mpFsm->Decision(this);

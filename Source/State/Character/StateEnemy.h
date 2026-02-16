@@ -1,18 +1,18 @@
-ï»¿#pragma once
+#pragma once
 
 #include "ObjectBases.h"
 #include "StateBase.h"
 
 class TargetManager;
 
-// TODO: ç§»å‹•ã™ã‚‹ã‚·ãƒ¼ãƒ³ã‚’ç”Ÿæˆæ™‚å–å¾—
+// TODO: ˆÚ“®‚·‚éƒV[ƒ“‚ğ¶¬æ“¾
 
 /*------------------*/
-/*     ã€å…±é€šã€‘     */
+/*     y‹¤’Êz     */
 /*------------------*/
 
 /*--------------------*/
-/*ã€ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*--------------------*/
 
 enum class ENEMY_STATE
@@ -27,7 +27,7 @@ enum class ENEMY_STATE
 };
 
 /*----------*/
-/*ã€ã‚¨ãƒãƒŸãƒ¼ã‚³ãƒãƒ³ãƒ‰ãƒŠãƒ³ãƒãƒ¼ã€‘
+/*yƒGƒlƒ~[ƒRƒ}ƒ“ƒhƒiƒ“ƒo[z
 /*----------*/
 enum class ENEMY_COMMAND_NUMBER
 {
@@ -37,17 +37,17 @@ enum class ENEMY_COMMAND_NUMBER
 	LONG_RANGE,
 };
 
-// é€ƒã’æ™‚é–“
+// “¦‚°ŠÔ
 const int ESCAPE_TIME = 17 * 100;
 
 /*----------------------*/
-/*ã€ã‚¨ãƒãƒŸãƒ¼å…±é€šå‡¦ç†ç”¨ã€‘*/
+/*yƒGƒlƒ~[‹¤’Êˆ——pz*/
 /*----------------------*/
 class EnemyProcess
 {
 
 protected:
-	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
 	TargetManager* mpTargetManager;
 
 	bool mbBossFlag;
@@ -56,31 +56,31 @@ protected:
 	EnemyProcess();
 	~EnemyProcess() = default;
 
-	/*ä¸€å®šç¯„å›²å†…ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒã„ã‚‹ãªã‚‰ã€Œtrueã€*/
+	/*ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev*/
 	bool PlayerTargetCheck(CharacterBase* character, float range);
 
-	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ–¹å‘ã‚’å‘ã„ã¦ç§»å‹•ã™ã‚‹*/
+	/*ƒvƒŒƒCƒ„[•ûŒü‚ğŒü‚¢‚ÄˆÚ“®‚·‚é*/
 	void PlayerTargetMove(CharacterBase* character);
 
-	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ–¹å‘ã«å‘ã*/
+	/*ƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚Ì•ûŒü‚ÉŒü‚­*/
 	void PlayerTargetAngle(CharacterBase* character);
 
-	/*æ­»äº¡å‡¦ç†*/
+	/*€–Sˆ—*/
 	virtual void EnemyDeath(CharacterBase* character);
 
-	/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã«ã‚ˆã£ã¦ã‚³ãƒãƒ³ãƒ‰ã‚’è¿”ã™*/
+	/*ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒRƒ}ƒ“ƒh‚ğ•Ô‚·*/
 	virtual ENEMY_COMMAND_NUMBER GetPlayerDistance_Command(CharacterBase* character);
 
-	/*å®šå‹ã®æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹*/
+	/*’èŒ^‚ÌŸ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é*/
 	int TemplateNextState(CharacterBase* character, int myState);
 };
 
 /*--------------------------*/
-/*     ã€åŸºæœ¬ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
+/*     yŠî–{ƒXƒe[ƒgz     */
 /*--------------------------*/
 
 /*----------------------*/
-/*ã€Idleã‚¨ãƒãƒŸãƒ¼ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yIdleƒGƒlƒ~[ƒe[ƒgz*/
 /*----------------------*/
 class IdleEnemyState : public IStateCharacter, public EnemyProcess
 {
@@ -88,29 +88,29 @@ public:
 	IdleEnemyState();
 	~IdleEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
-/*ã€ç§»å‹•ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yˆÚ“®ƒGƒlƒ~[ƒXƒe[ƒgz
 /*----------*/
 class MoveEnemyState : public IStateCharacter, public EnemyProcess
 {
@@ -118,66 +118,66 @@ public:
 	MoveEnemyState();
 	~MoveEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒå…¥ã‚Šã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚“ü‚èƒGƒlƒ~[ƒXƒe[ƒgz
 /*----------*/
 class AttackInEnemyState : public IStateCharacter, public EnemyProcess
 {
 private:
-	// å·¦å›é¿ãƒ•ãƒ©ã‚°
+	// ¶‰ñ”ğƒtƒ‰ƒO
 	bool mbLeftMoveFlag;
 
-	// å‰å›æ”»æ’ƒæ™‚é–“
+	// ‘O‰ñUŒ‚ŠÔ
 	int mnPreAttackTime;
 
 public:
 	AttackInEnemyState();
 	~AttackInEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
-/*ã€æ”»æ’ƒã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘
+/*yUŒ‚ƒGƒlƒ~[ƒXƒe[ƒgz
 /*----------*/
 class AttackEnemyState : public IStateCharacter, public EnemyProcess
 {
@@ -185,29 +185,29 @@ public:
 	AttackEnemyState();
 	~AttackEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*------------------------*/
-/*ã€é€ƒã’ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y“¦‚°ƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*------------------------*/
 class EscapeEnemyState : public IStateCharacter, public EnemyProcess
 {
@@ -218,34 +218,34 @@ public:
 	EscapeEnemyState();
 	~EscapeEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	virtual void OnEnter(CharacterBase* character) override;
-	/*ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character) override;
 
-	/*ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª*/
+	/*ƒXƒe[ƒg•ÏXŠm”F*/
 	virtual int StateCheck(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	virtual void Update(CharacterBase* character) override;
 
-	/*æœ€çµ‚æ›´æ–°*/
+	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*æç”»*/
+	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 
-	/*æ­»äº¡*/
+	/*€–S*/
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/
-/*     ã€æ´¾ç”Ÿã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
+/*     y”h¶ƒXƒe[ƒgz     */
 /*--------------------------*/
 
-/*-------------------------------------------------- ãƒœã‚¹ã‚¹ãƒ†ãƒ¼ãƒˆ --------------------------------------------------*/
+/*-------------------------------------------------- ƒ{ƒXƒXƒe[ƒg --------------------------------------------------*/
 /*----------------------------*/
-/*ã€Idleãƒœã‚¹ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yIdleƒ{ƒXƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*----------------------------*/
 class IdleBossEnemyState : public IdleEnemyState
 {
@@ -256,7 +256,7 @@ public:
 };
 
 /*----------------------------*/
-/*ã€ç§»å‹•ãƒœã‚¹ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yˆÚ“®ƒ{ƒXƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*----------------------------*/
 class MoveBossEnemyState : public MoveEnemyState
 {
@@ -267,7 +267,7 @@ public:
 };
 
 /*--------------------------------*/
-/*ã€æ”»æ’ƒå…¥ã‚Šãƒœã‚¹ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yUŒ‚“ü‚èƒ{ƒXƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*--------------------------------*/
 class AttackInBossEnemyState : public AttackInEnemyState
 {
@@ -278,7 +278,7 @@ public:
 };
 
 /*----------------------------*/
-/*ã€æ”»æ’ƒãƒœã‚¹ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*yUŒ‚ƒ{ƒXƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*----------------------------*/
 class AttackBossEnemyState : public AttackEnemyState
 {
@@ -290,7 +290,7 @@ public:
 /*------------------------------------------------------------------------------------------------------------------*/
 
 /*--------------------------*/
-/*ã€å·¦å›é¿ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y¶‰ñ”ğƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*--------------------------*/
 class LeftAvoidEnemyState : public EscapeEnemyState
 {
@@ -298,15 +298,15 @@ public:
 	LeftAvoidEnemyState();
 	~LeftAvoidEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	virtual void OnEnter(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	virtual void Update(CharacterBase* character) override;
 };
 
 /*--------------------------*/
-/*ã€å³å›é¿ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
+/*y‰E‰ñ”ğƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*--------------------------*/
 class RightAvoidEnemyState : public EscapeEnemyState
 {
@@ -314,9 +314,9 @@ public:
 	RightAvoidEnemyState();
 	~RightAvoidEnemyState() = default;
 
-	/*ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†*/
+	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	virtual void OnEnter(CharacterBase* character) override;
 
-	/*æ›´æ–°*/
+	/*XV*/
 	virtual void Update(CharacterBase* character) override;
 };

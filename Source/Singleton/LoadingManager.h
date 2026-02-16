@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include "BitFlag.h"
 
 enum class LOADING_NUMBER
@@ -10,33 +10,33 @@ enum class LOADING_NUMBER
 class LoadingManager
 {
 private:
-	// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ•ãƒ©ã‚°
+	// ƒ[ƒfƒBƒ“ƒOƒtƒ‰ƒO
 	BIT_FLAG<unsigned long long> mullLoadingFlag;
 	
 public:
 	LoadingManager();
 	~LoadingManager();
 
-	// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
+	// ƒ[ƒfƒBƒ“ƒO
 	void Loading();
 
 	/*--------*/
-	/*ã€è¨­å®šã€‘*/
+	/*yİ’èz*/
 	/*--------*/
 	
 	/// <summary>
-	/// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ•ãƒ©ã‚°è¨­å®š
+	/// ƒ[ƒfƒBƒ“ƒOƒtƒ‰ƒOİ’è
 	/// </summary>
-	/// <param name="number">ãƒ•ãƒ©ã‚°ã®ãƒ“ãƒƒãƒˆæ•°</param>
+	/// <param name="number">ƒtƒ‰ƒO‚Ìƒrƒbƒg”</param>
 	inline void SetLoadingFlag(LOADING_NUMBER number) { mullLoadingFlag.EnableFlag(number); }
 
 	/*--------*/
-	/*ã€å–å¾—ã€‘*/
+	/*yæ“¾z*/
 	/*--------*/
 
 	/// <summary>
-	/// ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ•ãƒ©ã‚°å–å¾—
+	/// ƒ[ƒfƒBƒ“ƒOƒtƒ‰ƒOæ“¾
 	/// </summary>
-	/// <returns>0ãªã‚‰ã€Œfalseã€ 0ä»¥å¤–ãªã‚‰ã€Œtrueã€</returns>
+	/// <returns>0‚È‚çufalsev 0ˆÈŠO‚È‚çutruev</returns>
 	inline bool GetLoadingFlag() const { return mullLoadingFlag.Bool(); }
 };

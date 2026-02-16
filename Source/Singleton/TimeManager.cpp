@@ -1,10 +1,10 @@
-ï»¿#include <windows.h>
+#include <windows.h>
 
 #include "DxLib.h"
 
 #include "TimeManager.h"
 
-// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 TimeManager::TimeManager(int oneFrameTime)
 : munFrameCount(0)
 , munStartTime(0)
@@ -16,30 +16,30 @@ TimeManager::TimeManager(int oneFrameTime)
 , mnTimeResetFlag(0)
 {
 }
-// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// ƒfƒXƒgƒ‰ƒNƒ^
 TimeManager::~TimeManager()
 {
 }
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void TimeManager::Initilize()
 {
-    timeBeginPeriod(1); // ã‚¿ã‚¤ãƒãƒ¼ã®åˆ†è§£é‡ã®è¨­å®šã‚’1msã«ã™ã‚‹ (1ãƒŸãƒªç§’/1000ç§’)ã«ã™ã‚‹
+    timeBeginPeriod(1); // ƒ^ƒCƒ}[‚Ì•ª‰ğ—Ê‚Ìİ’è‚ğ1ms‚É‚·‚é (1ƒ~ƒŠ•b/1000•b)‚É‚·‚é
     munStartTime = timeGetTime();
 }
 
-// æ›´æ–°
+// XV
 bool TimeManager::GetNextUpdateFlag()
 {
     int nowTime = timeGetTime();
  
-    // 0ã«ãªã£ãŸå ´åˆã®å‡¦ç†
+    // 0‚É‚È‚Á‚½ê‡‚Ìˆ—
     if (munPreviousTime > nowTime)
     {
         munPreviousTime = 0;
         mnTimeResetFlag += 1;
     }
 
-    // æ™‚é–“çµŒéå‡¦ç†
+    // ŠÔŒo‰ßˆ—
     if ((munPreviousTime + munOneFrame) <= nowTime)
     {
         munFrameCount += 1;

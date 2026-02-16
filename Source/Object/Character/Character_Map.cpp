@@ -1,4 +1,4 @@
-ï»¿#include "AttackEnum.h"
+#include "AttackEnum.h"
 #include "CollisionData.h"
 
 #include "DxLib.h"
@@ -18,42 +18,42 @@ Character_Map::~Character_Map()
 {
 }
 
-/*æ”»æ’ƒé–‹å§‹(åå‹•æ™‚é–“ã‚’è¿”ã™)*/
+/*UŒ‚ŠJn(”½“®ŠÔ‚ğ•Ô‚·)*/
 void Character_Map::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
 }
 
-/*æ”»æ’ƒåœæ­¢*/
+/*UŒ‚’â~*/
 void Character_Map::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
+// ƒLƒƒƒ‰ƒNƒ^[‰Šú‰»
 void Character_Map::CharacterInitilize()
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+// ƒLƒƒƒ‰ƒNƒ^[ƒV[ƒ“ÅI‰Šú‰»
 void Character_Map::CharacterSceneLastInitilize()
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼çµ‚äº†
+// ƒLƒƒƒ‰ƒNƒ^[I—¹
 void Character_Map::CharacterFinalize()
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°
+// ƒLƒƒƒ‰ƒNƒ^[XV
 void Character_Map::CharacterUpdate()
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ€çµ‚æ›´æ–°
+// ƒLƒƒƒ‰ƒNƒ^[ÅIXV
 void Character_Map::CharacterLastUpdate()
 {
 }
 
-// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æç”»
+// ƒLƒƒƒ‰ƒNƒ^[•`‰æ
 void Character_Map::CharacterDraw()
 {
 	//if (mvPosition.z > 3400.0f)
@@ -64,20 +64,20 @@ void Character_Map::CharacterDraw()
 	//DrawSphere3D(VAdd(mvPosition, VGet(0.0f, 90.0, 0.0f)), 180.0f, 32, GetColor(255, 0, 255), GetColor(255, 255, 255), TRUE);
 }
 
-// å½“ãŸã‚Šåˆ¤å®šç”¨
+// “–‚½‚è”»’è—p
 void Character_Map::HitCheck(CollisionData& collisionData)
 {
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
 	{
 		collisionData.collisionFlag = true;
 
-		//ç§»å‹•æ–¹å‘ã‚’ä¿®æ­£
+		//ˆÚ“®•ûŒü‚ğC³
 		VECTOR normalWall = VSub(collisionData.position, mvPosition);
-		normalWall = VNorm(normalWall); // æ­£è¦åŒ–ã—ã¦æ–¹å‘ã‚’å–å¾—
+		normalWall = VNorm(normalWall); // ³‹K‰»‚µ‚Ä•ûŒü‚ğæ“¾
 		if (VDot(normalWall, collisionData.vec) < 0.0f)
 		{
 			VECTOR tempV = VScale(normalWall, VDot(collisionData.vec, normalWall));
-			collisionData.vec = VSub(collisionData.vec, tempV); // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’ä¿®æ­£
+			collisionData.vec = VSub(collisionData.vec, tempV); // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğC³
 		}
 	}
 }

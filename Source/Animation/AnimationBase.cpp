@@ -1,4 +1,4 @@
-ï»¿#include "AnimationBase.h"
+#include "AnimationBase.h"
 
 #include "FSM.h"
 
@@ -11,7 +11,7 @@ AnimationBase::AnimationBase()
     mpFsm = nullptr;
 }
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void AnimationBase::Initilize()
 {
     if (mpFsm != nullptr)
@@ -20,23 +20,26 @@ void AnimationBase::Initilize()
     }
 }
 
-// ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–
+// ƒV[ƒ“ÅI‰Šú‰»
 void AnimationBase::SceneLastInitilize()
 {
     Update();
 }
 
-// çµ‚äº†
+// I—¹
 void AnimationBase::Finalize()
 {
-    mstAnimationDatas.clear();
     if (mpFsm != nullptr)
     {
+        mpFsm->Finalize(this);
+
         delete mpFsm;
     }
+
+    mstAnimationDatas.clear();
 }
 
-// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°ãƒ†ã‚¹ãƒˆ
+// ƒAƒjƒ[ƒVƒ‡ƒ“XVƒeƒXƒg
 void AnimationBase::Update()
 {
     if (mpFsm != nullptr)

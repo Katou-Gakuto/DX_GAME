@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 #include <vector>
 
@@ -7,31 +7,31 @@
 #include "ModelMV1.h"
 
 /*-------------------*/
-/*ã€ã‚¿ã‚¤ãƒ«ãƒ¢ãƒ‡ãƒ«æƒ…å ±ã€‘*/
+/*yƒ^ƒCƒ‹ƒ‚ƒfƒ‹î•ñz*/
 /*-------------------*/
-// ã‚¿ã‚¤ãƒ«ãƒ¢ãƒ‡ãƒ«ç¨®é¡
+// ƒ^ƒCƒ‹ƒ‚ƒfƒ‹í—Ş
 enum class TILE_MODEL_TYPE
 {
-    NONE = 0,   // ç„¡ã„
-    HANDLE,     // ãƒãƒ³ãƒ‰ãƒ«
-    INDEXED,    // é ‚ç‚¹
+    NONE = 0,   // –³‚¢
+    HANDLE,     // ƒnƒ“ƒhƒ‹
+    INDEXED,    // ’¸“_
 };
 
-// TODO: ãƒ¢ãƒ‡ãƒ«ä½œæˆä¸­
-// ã‚¿ã‚¤ãƒ«ãƒ¢ãƒ‡ãƒ«æƒ…å ±
+// TODO: ƒ‚ƒfƒ‹ì¬’†
+// ƒ^ƒCƒ‹ƒ‚ƒfƒ‹î•ñ
 struct TileModelData
 {
-    TILE_MODEL_TYPE tileModelType; // ã‚¿ã‚¤ãƒ«ãƒ¢ãƒ‡ãƒ«ç¨®é¡
+    TILE_MODEL_TYPE tileModelType; // ƒ^ƒCƒ‹ƒ‚ƒfƒ‹í—Ş
 
-    int modelHandle; // ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+    int modelHandle; // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 
-    std::vector<IndexedData> modelVertex; // ãƒ¢ãƒ‡ãƒ«é ‚ç‚¹æƒ…å ±
+    std::vector<IndexedData> modelVertex; // ƒ‚ƒfƒ‹’¸“_î•ñ
 };
 
 class ModelMap : public ModelBase
 {
 private:
-    // ã‚¿ã‚¤ãƒ«ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
+    // ƒ^ƒCƒ‹ƒ‚ƒfƒ‹ƒf[ƒ^
     std::vector<std::vector<TileModelData>> mstTileModelDatas;
 
 public:
@@ -39,18 +39,18 @@ public:
     ~ModelMap();
 
 protected:
-    /*ãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–*/
+    /*ƒ‚ƒfƒ‹‰Šú‰»*/
     void ModelInitilize() override;
-    /*ãƒ¢ãƒ‡ãƒ«çµ‚äº†*/
+    /*ƒ‚ƒfƒ‹I—¹*/
     void ModelFinalize() override;
 
 public:
-    /*ãƒ¢ãƒ‡ãƒ«æç”»*/
+    /*ƒ‚ƒfƒ‹•`‰æ*/
     void ModelDraw() override;
 
-    /*ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿*/
+    /*ƒ}ƒbƒvƒf[ƒ^“Ç‚İ‚İ*/
     void LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR mapMinPos, VECTOR tileHalfSize);
 
-    /*ãƒãƒƒãƒ—ãƒ¢ãƒ‡ãƒ«è§£æ”¾*/
+    /*ƒ}ƒbƒvƒ‚ƒfƒ‹‰ğ•ú*/
     void ReleaseMapModel();
 };

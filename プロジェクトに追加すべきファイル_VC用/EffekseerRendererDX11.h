@@ -1,4 +1,4 @@
-ï»¿
+
 #ifndef __EFFEKSEERRENDERER_DX11_BASE_PRE_H__
 #define __EFFEKSEERRENDERER_DX11_BASE_PRE_H__
 
@@ -76,7 +76,7 @@ struct ExternalShaderSettings
 /**
 	@brief	
 	\~english A callback to distort a background before drawing
-	\~japanese èƒŒæ™¯ã‚’æ­ªã¾ã›ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æç”»ã™ã‚‹å‰ã«å®Ÿè¡Œã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	\~japanese ”wŒi‚ğ˜c‚Ü‚¹‚éƒGƒtƒFƒNƒg‚ğ•`‰æ‚·‚é‘O‚ÉÀs‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
 	
 */
 class DistortingCallback
@@ -92,10 +92,10 @@ public:
 	/**
 	@brief	
 	\~english A callback
-	\~japanese ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	\~japanese ƒR[ƒ‹ƒoƒbƒN
 	@note
 	\~english Don't hold renderer in the instance
-	\~japanese ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å†…ã«rendererã‚’ä¿æŒã—ã¦ã¯ã„ã‘ãªã„
+	\~japanese ƒCƒ“ƒXƒ^ƒ“ƒX“à‚Érenderer‚ğ•Û‚µ‚Ä‚Í‚¢‚¯‚È‚¢
 	*/
 	virtual bool OnDistorting(Renderer* renderer)
 	{
@@ -106,7 +106,7 @@ public:
 /**
 	@brief
 	\~english A status of UV when particles are rendered.
-	\~japanese ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’æç”»ã™ã‚‹æ™‚ã®UVã®çŠ¶æ…‹
+	\~japanese ƒp[ƒeƒBƒNƒ‹‚ğ•`‰æ‚·‚é‚ÌUV‚Ìó‘Ô
 */
 enum class UVStyle
 {
@@ -117,7 +117,7 @@ enum class UVStyle
 /**
 	@brief
 	\~english A type of texture which is rendered when textures are not assigned.
-	\~japanese ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã¨ãã«æç”»ã•ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¨®é¡
+	\~japanese ƒeƒNƒXƒ`ƒƒ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚É•`‰æ‚³‚ê‚éƒeƒNƒXƒ`ƒƒ‚Ìí—Ş
 */
 enum class ProxyTextureType
 {
@@ -141,7 +141,7 @@ public:
 	/**
 		@brief
 		\~English	notify that new frame is started.
-		\~Japanese	æ–°è¦ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå§‹ã£ãŸã“ã¨ã‚’é€šçŸ¥ã™ã‚‹ã€‚
+		\~Japanese	V‹KƒtƒŒ[ƒ€‚ªn‚Á‚½‚±‚Æ‚ğ’Ê’m‚·‚éB
 	*/
 	virtual void NewFrame()
 	{
@@ -176,27 +176,27 @@ public:
 	Impl* GetImpl();
 
 	/**
-		@brief	ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆãŒç™ºç”Ÿã—ãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹ã€‚
+		@brief	ƒfƒoƒCƒXƒƒXƒg‚ª”­¶‚µ‚½‚ÉÀs‚·‚éB
 	*/
 	virtual void OnLostDevice() = 0;
 
 	/**
-		@brief	ãƒ‡ãƒã‚¤ã‚¹ãŒãƒªã‚»ãƒƒãƒˆã•ã‚ŒãŸæ™‚ã«å®Ÿè¡Œã™ã‚‹ã€‚
+		@brief	ƒfƒoƒCƒX‚ªƒŠƒZƒbƒg‚³‚ê‚½‚ÉÀs‚·‚éB
 	*/
 	virtual void OnResetDevice() = 0;
 
 	/**
-		@brief	ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¾©å¸°ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
+		@brief	ƒXƒe[ƒg‚ğ•œ‹A‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRestorationOfStatesFlag(bool flag) = 0;
 
 	/**
-		@brief	æç”»ã‚’é–‹å§‹ã™ã‚‹æ™‚ã«å®Ÿè¡Œã™ã‚‹ã€‚
+		@brief	•`‰æ‚ğŠJn‚·‚é‚ÉÀs‚·‚éB
 	*/
 	virtual bool BeginRendering() = 0;
 
 	/**
-		@brief	æç”»ã‚’çµ‚äº†ã™ã‚‹æ™‚ã«å®Ÿè¡Œã™ã‚‹ã€‚
+		@brief	•`‰æ‚ğI—¹‚·‚é‚ÉÀs‚·‚éB
 	*/
 	virtual bool EndRendering() = 0;
 
@@ -231,7 +231,7 @@ public:
 	virtual void SetLightAmbientColor(const ::Effekseer::Color& color);
 
 	/**
-		@brief	æœ€å¤§æç”»ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹ã€‚
+		@brief	Å‘å•`‰æƒXƒvƒ‰ƒCƒg”‚ğæ“¾‚·‚éB
 	*/
 	virtual int32_t GetSquareMaxCount() const = 0;
 
@@ -284,151 +284,151 @@ public:
 	virtual void SetCameraParameter(const ::Effekseer::Vector3D& front, const ::Effekseer::Vector3D& position);
 
 	/**
-		@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	ƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_ƒ‰[‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::SpriteRendererRef CreateSpriteRenderer() = 0;
 
 	/**
-		@brief	ãƒªãƒœãƒ³ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	ƒŠƒ{ƒ“ƒŒƒ“ƒ_ƒ‰[‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::RibbonRendererRef CreateRibbonRenderer() = 0;
 
 	/**
-		@brief	ãƒªãƒ³ã‚°ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	ƒŠƒ“ƒOƒŒƒ“ƒ_ƒ‰[‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::RingRendererRef CreateRingRenderer() = 0;
 
 	/**
-		@brief	ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	ƒ‚ƒfƒ‹ƒŒƒ“ƒ_ƒ‰[‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::ModelRendererRef CreateModelRenderer() = 0;
 
 	/**
-		@brief	è»Œè·¡ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	‹OÕƒŒƒ“ƒ_ƒ‰[‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::TrackRendererRef CreateTrackRenderer() = 0;
 
 	/**
-		@brief	æ¨™æº–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	•W€‚ÌƒeƒNƒXƒ`ƒƒ“ÇƒNƒ‰ƒX‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::TextureLoaderRef CreateTextureLoader(::Effekseer::FileInterfaceRef fileInterface = nullptr) = 0;
 
 	/**
-		@brief	æ¨™æº–ã®ãƒ¢ãƒ‡ãƒ«èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		@brief	•W€‚Ìƒ‚ƒfƒ‹“ÇƒNƒ‰ƒX‚ğ¶¬‚·‚éB
 	*/
 	virtual ::Effekseer::ModelLoaderRef CreateModelLoader(::Effekseer::FileInterfaceRef fileInterface = nullptr) = 0;
 
 	/**
 	@brief
 	\~english Create default material loader
-	\~japanese æ¨™æº–ã®ãƒãƒ†ãƒªã‚¢ãƒ«èª­è¾¼ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+	\~japanese •W€‚Ìƒ}ƒeƒŠƒAƒ‹“ÇƒNƒ‰ƒX‚ğ¶¬‚·‚éB
 
 	*/
 	virtual ::Effekseer::MaterialLoaderRef CreateMaterialLoader(::Effekseer::FileInterfaceRef fileInterface = nullptr) = 0;
 
 	/**
-		@brief	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¼·åˆ¶çš„ã«ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+		@brief	ƒŒƒ“ƒ_[ƒXƒe[ƒg‚ğ‹­§“I‚ÉƒŠƒZƒbƒg‚·‚éB
 	*/
 	virtual void ResetRenderState() = 0;
 
 	/**
-	@brief	èƒŒæ™¯ã‚’æ­ªã¾ã›ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒæç”»ã•ã‚Œã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹ã€‚
+	@brief	”wŒi‚ğ˜c‚Ü‚¹‚éƒGƒtƒFƒNƒg‚ª•`‰æ‚³‚ê‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN‚ğæ“¾‚·‚éB
 	*/
 	virtual DistortingCallback* GetDistortingCallback() = 0;
 
 	/**
-	@brief	èƒŒæ™¯ã‚’æ­ªã¾ã›ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒæç”»ã•ã‚Œã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹ã€‚
+	@brief	”wŒi‚ğ˜c‚Ü‚¹‚éƒGƒtƒFƒNƒg‚ª•`‰æ‚³‚ê‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚éB
 	*/
 	virtual void SetDistortingCallback(DistortingCallback* callback) = 0;
 
 	/**
 	@brief
 	\~english Get draw call count
-	\~japanese ãƒ‰ãƒ­ãƒ¼ã‚³ãƒ¼ãƒ«ã®å›æ•°ã‚’å–å¾—ã™ã‚‹
+	\~japanese ƒhƒ[ƒR[ƒ‹‚Ì‰ñ”‚ğæ“¾‚·‚é
 	*/
 	virtual int32_t GetDrawCallCount() const;
 
 	/**
 	@brief
 	\~english Get the number of vertex drawn
-	\~japanese æç”»ã•ã‚ŒãŸé ‚ç‚¹æ•°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+	\~japanese •`‰æ‚³‚ê‚½’¸“_”‚ğƒŠƒZƒbƒg‚·‚é
 	*/
 	virtual int32_t GetDrawVertexCount() const;
 
 	/**
 	@brief
 	\~english Reset draw call count
-	\~japanese ãƒ‰ãƒ­ãƒ¼ã‚³ãƒ¼ãƒ«ã®å›æ•°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+	\~japanese ƒhƒ[ƒR[ƒ‹‚Ì‰ñ”‚ğƒŠƒZƒbƒg‚·‚é
 	*/
 	virtual void ResetDrawCallCount();
 
 	/**
 	@brief
 	\~english Reset the number of vertex drawn
-	\~japanese æç”»ã•ã‚ŒãŸé ‚ç‚¹æ•°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+	\~japanese •`‰æ‚³‚ê‚½’¸“_”‚ğƒŠƒZƒbƒg‚·‚é
 	*/
 	virtual void ResetDrawVertexCount();
 
 	/**
 	@brief
 	\~english Get a render mode.
-	\~japanese æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~japanese •`‰æƒ‚[ƒh‚ğæ“¾‚·‚éB
 	*/
 	virtual Effekseer::RenderMode GetRenderMode() const;
 
 	/**
 	@brief
 	\~english Specify a render mode.
-	\~japanese æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~japanese •`‰æƒ‚[ƒh‚ğİ’è‚·‚éB
 	*/
 	virtual void SetRenderMode(Effekseer::RenderMode renderMode);
 
 	/**
 	@brief
 	\~english Get an UV Style of texture when particles are rendered.
-	\~japanese ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’æç”»ã™ã‚‹ã¨ãã®UVã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~japanese ƒp[ƒeƒBƒNƒ‹‚ğ•`‰æ‚·‚é‚Æ‚«‚ÌUV‚Ìó‘Ô‚ğæ“¾‚·‚éB
 	*/
 	virtual UVStyle GetTextureUVStyle() const;
 
 	/**
 	@brief
 	\~english Set an UV Style of texture when particles are rendered.
-	\~japanese ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’æç”»ã™ã‚‹ã¨ãã®UVã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~japanese ƒp[ƒeƒBƒNƒ‹‚ğ•`‰æ‚·‚é‚Æ‚«‚ÌUV‚Ìó‘Ô‚ğİ’è‚·‚éB
 	*/
 	virtual void SetTextureUVStyle(UVStyle style);
 
 	/**
 	@brief
 	\~english Get an UV Style of background when particles are rendered.
-	\~japanese ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’æç”»ã™ã‚‹ã¨ãã®èƒŒæ™¯ã®UVã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€‚
+	\~japanese ƒp[ƒeƒBƒNƒ‹‚ğ•`‰æ‚·‚é‚Æ‚«‚Ì”wŒi‚ÌUV‚Ìó‘Ô‚ğæ“¾‚·‚éB
 	*/
 	virtual UVStyle GetBackgroundTextureUVStyle() const;
 
 	/**
 	@brief
 	\~english Set an UV Style of background when particles are rendered.
-	\~japanese ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’æç”»ã™ã‚‹ã¨ãã®èƒŒæ™¯ã®UVã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~japanese ƒp[ƒeƒBƒNƒ‹‚ğ•`‰æ‚·‚é‚Æ‚«‚Ì”wŒi‚ÌUV‚Ìó‘Ô‚ğİ’è‚·‚éB
 	*/
 	virtual void SetBackgroundTextureUVStyle(UVStyle style);
 
 	/**
 	@brief
 	\~english Get a current time (s)
-	\~japanese ç¾åœ¨ã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹ã€‚(ç§’)
+	\~japanese Œ»İ‚ÌŠÔ‚ğæ“¾‚·‚éB(•b)
 	*/
 	virtual float GetTime() const;
 
 	/**
 	@brief
 	\~english Set a current time (s)
-	\~japanese ç¾åœ¨ã®æ™‚é–“ã‚’è¨­å®šã™ã‚‹ã€‚(ç§’)
+	\~japanese Œ»İ‚ÌŠÔ‚ğİ’è‚·‚éB(•b)
 	*/
 	virtual void SetTime(float time);
 
 	/**
 	@brief
 	\~English	specify a command list to render.  This function is available except DirectX9, DirectX11 and OpenGL.
-	\~Japanese	æç”»ã«ä½¿ç”¨ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹ã€‚ã“ã®é–¢æ•°ã¯DirectX9ã€DirectX11ã€OpenGLä»¥å¤–ã§ä½¿ç”¨ã§ãã‚‹ã€‚
+	\~Japanese	•`‰æ‚Ég—p‚·‚éƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğİ’è‚·‚éB‚±‚ÌŠÖ”‚ÍDirectX9ADirectX11AOpenGLˆÈŠO‚Åg—p‚Å‚«‚éB
 	*/
 	virtual void SetCommandList(Effekseer::RefPtr<CommandList> commandList)
 	{
@@ -436,52 +436,52 @@ public:
 
 	/**
 		@brief	\~English	Get a background texture.
-		\~Japanese	èƒŒæ™¯ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	”wŒi‚ğæ“¾‚·‚éB
 		@note
 		\~English	Textures are generated by a function specific to each backend or SetBackground.
-		\~Japanese	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯å„ãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰å›ºæœ‰ã®é–¢æ•°ã‹SetBackgroundã§ç”Ÿæˆã•ã‚Œã‚‹ã€‚
+		\~Japanese	ƒeƒNƒXƒ`ƒƒ‚ÍŠeƒoƒbƒNƒGƒ“ƒhŒÅ—L‚ÌŠÖ”‚©SetBackground‚Å¶¬‚³‚ê‚éB
 	*/
 	virtual const ::Effekseer::Backend::TextureRef& GetBackground();
 
 	/**
 	@brief
 	\~English	Specify a background texture.
-	\~Japanese	èƒŒæ™¯ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹ã€‚
+	\~Japanese	”wŒi‚ÌƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚éB
 	*/
 	virtual void SetBackground(::Effekseer::Backend::TextureRef texture);
 
 	/**
 	@brief
 	\~English	Create a proxy texture
-	\~Japanese	ä»£æ›¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ç”Ÿæˆã™ã‚‹
+	\~Japanese	‘ã‘Ö‚ÌƒeƒNƒXƒ`ƒƒ‚ğ¶¬‚·‚é
 	*/
 	virtual ::Effekseer::Backend::TextureRef CreateProxyTexture(ProxyTextureType type);
 
 	/**
 	@brief
 	\~English	Delete a proxy texture
-	\~Japanese	ä»£æ›¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å‰Šé™¤ã™ã‚‹
+	\~Japanese	‘ã‘Ö‚ÌƒeƒNƒXƒ`ƒƒ‚ğíœ‚·‚é
 	*/
 	virtual void DeleteProxyTexture(Effekseer::Backend::TextureRef& texture);
 
 	/**
 		@brief	
 		\~English	Get a depth texture and parameters to reconstruct from z to depth
-		\~Japanese	æ·±åº¦ç”»åƒã¨Zã‹ã‚‰æ·±åº¦ã‚’å¾©å…ƒã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	[“x‰æ‘œ‚ÆZ‚©‚ç[“x‚ğ•œŒ³‚·‚é‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚éB
 	*/
 	virtual void GetDepth(::Effekseer::Backend::TextureRef& texture, DepthReconstructionParameter& reconstructionParam);
 
 	/**
 		@brief	
 		\~English	Specify a depth texture and parameters to reconstruct from z to depth
-		\~Japanese	æ·±åº¦ç”»åƒã¨Zã‹ã‚‰æ·±åº¦ã‚’å¾©å…ƒã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	[“x‰æ‘œ‚ÆZ‚©‚ç[“x‚ğ•œŒ³‚·‚é‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^[‚ğİ’è‚·‚éB
 	*/
 	virtual void SetDepth(::Effekseer::Backend::TextureRef texture, const DepthReconstructionParameter& reconstructionParam);
 
 	/**
 		@brief
 		\~English	Specify whether maintain gamma color in a linear color space
-		\~Japanese	ãƒªãƒ‹ã‚¢ç©ºé–“ã§ã‚‚ã‚¬ãƒ³ãƒã‚«ãƒ©ãƒ¼ã‚’ç¶­æŒã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã€ã‚’è¨­å®šã™ã‚‹ã€‚
+		\~Japanese	ƒŠƒjƒA‹óŠÔ‚Å‚àƒKƒ“ƒ}ƒJƒ‰[‚ğˆÛ‚·‚é‚æ‚¤‚É‚·‚é‚©A‚ğİ’è‚·‚éB
 
 	*/
 	virtual void SetMaintainGammaColorInLinearColorSpace(bool value);
@@ -489,7 +489,7 @@ public:
 	/**
 		@brief	
 		\~English	Get the graphics device
-		\~Japanese	ã‚°ãƒ©ãƒ•ã‚£ã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+		\~Japanese	ƒOƒ‰ƒtƒBƒNƒXƒfƒoƒCƒX‚ğæ“¾‚·‚éB
 	*/
 	virtual Effekseer::Backend::GraphicsDeviceRef GetGraphicsDevice() const;
 
@@ -557,10 +557,10 @@ namespace EffekseerRendererDX11
 
 /**
 		@brief	\~English	Properties in a texture
-				\~Japanese	ãƒ†ã‚¯ã‚¹ãƒãƒ£å†…ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+				\~Japanese	ƒeƒNƒXƒ`ƒƒ“à‚ÌƒvƒƒpƒeƒB
 
 		@note	\~English	You need not to release pointers
-				\~Japanese	ãƒã‚¤ãƒ³ã‚¿ã®è§£æ”¾ã™ã‚‹å¿…è¦ã¯ãªã„
+				\~Japanese	ƒ|ƒCƒ“ƒ^‚Ì‰ğ•ú‚·‚é•K—v‚Í‚È‚¢
 */
 struct TextureProperty
 {
@@ -588,11 +588,11 @@ public:
 	/**
 		@brief
 		\~english	Create an instance
-		\~japanese	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		\~japanese	ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éB
 		@param	graphicsDevice	GraphicsDevice
 		@param	squareMaxCount
 		\~english	the number of maximum sprites
-		\~japanese	æœ€å¤§æç”»ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ•°
+		\~japanese	Å‘å•`‰æƒXƒvƒ‰ƒCƒg”
 		@param	depthFunc	a func to compare a dpeth
 		@param	isMSAAEnabled whether is MSAA enabled
 		@return	instance
@@ -604,12 +604,12 @@ public:
 	/**
 		@brief
 		\~english	Create an instance
-		\~japanese	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+		\~japanese	ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éB
 		@param	device		Device of DirectX
 		@param	context		Context of DirectX
 		@param	squareMaxCount
 		\~english	the number of maximum sprites
-		\~japanese	æœ€å¤§æç”»ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ•°
+		\~japanese	Å‘å•`‰æƒXƒvƒ‰ƒCƒg”
 		@param	depthFunc	a func to compare a dpeth
 		@param	isMSAAEnabled whether is MSAA enabled
 		@return	instance
@@ -626,15 +626,15 @@ public:
 
 	/**
 		@brief	\~English	Set background
-				\~Japanese	èƒŒæ™¯ã‚’è¨­å®šã™ã‚‹
+				\~Japanese	”wŒi‚ğİ’è‚·‚é
 	*/
 	[[deprecated("please use EffekseerRenderer::SetBackground")]] virtual void SetBackground(ID3D11ShaderResourceView* background) = 0;
 
 	/**
 		@brief	\~English	Reset internal states for DefferedContext
-				\~Japanese	DefferedContextã®ãŸã‚ã«ã€å†…éƒ¨ã®çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+				\~Japanese	DefferedContext‚Ì‚½‚ß‚ÉA“à•”‚Ìó‘Ô‚ğƒŠƒZƒbƒg‚·‚éB
 		@note	\~English	Please call before BeginRendering after FinishCommandList
-				\~Japanese	FinishCommandListã®å¾Œã§BeginRenderingã®å‰ã«å‘¼ã‚“ã§ãã ã•ã„ã€‚
+				\~Japanese	FinishCommandList‚ÌŒã‚ÅBeginRendering‚Ì‘O‚ÉŒÄ‚ñ‚Å‚­‚¾‚³‚¢B
 	*/
 	virtual void ResetStateForDefferedContext() = 0;
 };

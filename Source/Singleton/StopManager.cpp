@@ -1,11 +1,11 @@
-ï»¿#include "Master.h"
+#include "Master.h"
 
 #include "FadeManager.h"
 #include "StopManager.h"
 #include "TimeManager.h"
 
 /*----------------------*/
-/*ã€ã‚¹ãƒˆãƒƒãƒ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã€‘*/
+/*yƒXƒgƒbƒvƒ}ƒl[ƒWƒƒ[z*/
 /*----------------------*/
 
 StopManager::StopManager()
@@ -18,7 +18,7 @@ StopManager::~StopManager()
 {
 }
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 void StopManager::Initilize()
 {
     mpFadeManager = Master::mpFadeManager;
@@ -26,7 +26,7 @@ void StopManager::Initilize()
     mpTimeManager = Master::mpTimeManager;
 }
 
-// ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°å–å¾—
+// ƒXƒgƒbƒvƒtƒ‰ƒOæ“¾
 bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
 {
     bool stopflag = false;

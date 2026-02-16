@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 
 #include "AttackEnum.h"
@@ -18,25 +18,25 @@ public:
     Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData, std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas);
     ~Character_Shot();
 
-    /*æ”»æ’ƒãƒªã‚»ãƒƒãƒˆ*/
+    /*UŒ‚ƒŠƒZƒbƒg*/
     void StopAttack(ATTACK_METHOD_TYPE attackMethodType) override;
 
 private:
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–*/
+    /*ƒLƒƒƒ‰ƒNƒ^[‰Šú‰»*/
     void CharacterInitilize() override;
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–*/
+    /*ƒLƒƒƒ‰ƒNƒ^[ƒV[ƒ“ÅI‰Šú‰»*/
     void CharacterSceneLastInitilize() override;
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼çµ‚äº†*/
+    /*ƒLƒƒƒ‰ƒNƒ^[I—¹*/
     void CharacterFinalize() override;
 
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°*/
+    /*ƒLƒƒƒ‰ƒNƒ^[XV*/
     void CharacterUpdate() override;
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æœ€çµ‚æ›´æ–°*/
+    /*ƒLƒƒƒ‰ƒNƒ^[ÅIXV*/
     void CharacterLastUpdate() override;
 
-    /*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æç”»*/
+    /*ƒLƒƒƒ‰ƒNƒ^[•`‰æ*/
     void CharacterDraw() override;
 
-    /*å½“ãŸã‚Šåˆ¤å®šç”¨*/
+    /*“–‚½‚è”»’è—p*/
     void HitCheck(CollisionData& collisionData) override;
 };

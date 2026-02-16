@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include <map>
 #include <vector>
 
@@ -9,68 +9,68 @@
 class AnimationBase
 {
 private:
-    // ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+    // ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[
     ModelsControllerBase* mpModelsController;
 
-    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³
+    // ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“
     FSMAnimation* mpFsm;    
 
-    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
     std::vector<AnimationDatas*> mstAnimationDatas;
 
-    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ™‚é–“
+    // ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ
     std::map<ANIMATION_TYPE, int> mmAnimationTime;
 
 public:
     AnimationBase();
     ~AnimationBase() = default;
 
-    /// <summary>åˆæœŸåŒ–</summary>
+    /// <summary>‰Šú‰»</summary>
     void Initilize();
 
-    /// <summary>ã‚·ãƒ¼ãƒ³æœ€çµ‚åˆæœŸåŒ–</summary>
+    /// <summary>ƒV[ƒ“ÅI‰Šú‰»</summary>
     void SceneLastInitilize();
 
-    /// <summary>çµ‚äº†</summary>
+    /// <summary>I—¹</summary>
     void Finalize();
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“XV</summary>
     void Update();
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿è¿½åŠ </summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^’Ç‰Á</summary>
     inline void AddAnimationData(AnimationDatas* animationData) { mstAnimationDatas.push_back(animationData); }
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ç¨®é¡æ¢ç´¢</summary>
+    /// <summary>ƒAƒjƒƒVƒ‡ƒ“í—Ş’Tõ</summary>
     inline bool SearchAnimationType(ANIMATION_TYPE animationType) { return (mmAnimationTime.find(animationType) != mmAnimationTime.end()); }
 
     /*----------*/
-    /*ã€è¨­å®šãƒ»å–å¾—ã€‘
+    /*yİ’èEæ“¾z
     /*----------*/
 public:
-    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—</summary>
+    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[æ“¾</summary>
     inline ModelsControllerBase* GetModelsController() const { return mpModelsController; }
-    /// <summary>ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼è¨­å®š</summary>
+    /// <summary>ƒ‚ƒfƒ‹ƒRƒ“ƒgƒ[ƒ‰[İ’è</summary>
     inline void SetModelsController(ModelsControllerBase* modelsController) { mpModelsController = modelsController; }
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³å–å¾—</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“æ“¾</summary>
     inline FSMAnimation* GetFsm() const { return mpFsm; }
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒã‚·ãƒ³è¨­å®š</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è</summary>
     inline void SetFsm(FSMAnimation* fsm) { mpFsm = fsm; }
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^æ“¾</summary>
     inline std::vector<AnimationDatas*>& GetAnimationDatas() { return mstAnimationDatas; }
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®š</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è</summary>
     inline void SetAnimationDatas(const std::vector<AnimationDatas*>& animationDatas) { mstAnimationDatas = animationDatas; }
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç¨®é¡å–å¾—</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“í—Şæ“¾</summary>
     inline ANIMATION_TYPE GetAnimationType() { if(mpFsm!=nullptr){return mpFsm->GetCurrentState();} return ANIMATION_TYPE::NONE; }
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç¨®é¡è¨­å®š</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“í—Şİ’è</summary>
     inline void SetAnimationType(ANIMATION_TYPE animationType) { if(mpFsm!=nullptr){mpFsm->SetNextState(animationType);} }
 
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ™‚é–“å–å¾—</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔæ“¾</summary>
     inline int GetAnimationTime(ANIMATION_TYPE animationType) { return mmAnimationTime[animationType]; }
-    /// <summary>ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ™‚é–“è¨­å®š</summary>
+    /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔİ’è</summary>
     inline void SetAnimationTime(ANIMATION_TYPE animationType, int time) { mmAnimationTime[animationType] = time; }
-    /// <summary>å…¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ™‚é–“è¨­å®š</summary>
+    /// <summary>‘SƒAƒjƒ[ƒVƒ‡ƒ“ŠÔİ’è</summary>
     inline void SetAllAnimationTime(std::map<ANIMATION_TYPE, int> animationTime) { mmAnimationTime = animationTime; }
 };

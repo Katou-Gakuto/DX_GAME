@@ -1,4 +1,4 @@
-ï»¿#include <string>
+#include <string>
 #include <vector>
 
 #include "Master.h"
@@ -19,12 +19,12 @@ TelopManager::~TelopManager()
 {
 }
 
-// çµ‚äº†
+// I—¹
 void TelopManager::Finalize()
 {
 }
 
-// æ›´æ–°
+// XV
 void TelopManager::Update()
 {
     if ((mnPreTelopDrawTime < Master::mpTimeManager->GetTime()) && (msTelopStrings.size() > 0))
@@ -33,12 +33,12 @@ void TelopManager::Update()
     }
 }
 
-// æç”»
+// •`‰æ
 void TelopManager::Draw()
 {
 }
 
-// ãƒ†ãƒ­ãƒƒãƒ—æç”»
+// ƒeƒƒbƒv•`‰æ
 void TelopManager::DrawTelop(TELOP_DATA& telopData)
 {
     switch (telopData.telopType)
@@ -49,66 +49,66 @@ void TelopManager::DrawTelop(TELOP_DATA& telopData)
     }
 }
 
-// ãƒ†ãƒ­ãƒƒãƒ—è¿½åŠ 
+// ƒeƒƒbƒv’Ç‰Á
 void TelopManager::AddTelop(std::string telop)
 {
     msTelopStrings.push_back(telop);
     mnPreTelopDrawTime = Master::mpTimeManager->GetTime() + TELOP_TIME;
 }
 
-// ãƒ†ãƒ­ãƒƒãƒ—å‰Šé™¤
+// ƒeƒƒbƒvíœ
 void TelopManager::DeleteTelop()
 {
     msTelopStrings.clear();
 }
 
-/*-------------------------------------------------- ãƒ†ãƒ­ãƒƒãƒ—æç”» --------------------------------------------------*/
-// 3Dãƒã‚¸ã‚·ãƒ§ãƒ³ãƒ†ãƒ­ãƒƒãƒ—æç”»
+/*-------------------------------------------------- ƒeƒƒbƒv•`‰æ --------------------------------------------------*/
+// 3Dƒ|ƒWƒVƒ‡ƒ“ƒeƒƒbƒv•`‰æ
 void TelopManager::DrawTelop_Position3D(TELOP_DATA& telopData)
 {
     int drawLineCount = 0;
     
-    // // æç”»å…ˆã‚’å¤‰æ›´
+    // // •`‰ææ‚ğ•ÏX
     // SetDrawScreen(mnStasusDrawScreenHandle);
     // ClearDrawScreen();
 
 
 
-    // 1åˆ—ãšã¤ä¸‹ã‹ã‚‰æç”»
-    // ç”»åƒæç”»
+    // 1—ñ‚¸‚Â‰º‚©‚ç•`‰æ
+    // ‰æ‘œ•`‰æ
     for (int i = 0; i < 0; i++)
     {
         Master::mpResourceManager->DrawData_Graph(telopData.drawGraphData);
 
         //SetDrawScreen(DX_SCREEN_BACK);
-        //// 3Dã‚«ãƒ¡ãƒ©è¨­å®š
+        //// 3DƒJƒƒ‰İ’è
         //Master::mpGameManager->GetCameraManager()->Draw();
         //DrawBillboard3D(VGet(telopData.telopPos.x, telopData.telopPos.y + (telopData.oneSize.y * drawLineCount), telopData.telopPos.z), 0.5f, 0.5f, telopData.oneSize.x, 0.0f, mnStasusDrawScreenHandle, TRUE);
     }
 
     /*
-    // æç”»å¿…è¦ãƒ‡ãƒ¼ã‚¿å–å¾—
+    // •`‰æ•K—vƒf[ƒ^æ“¾
     VECTOR setCharacterPos = VAdd(mvObjectPosition, VGet(0, msStatus.size * 2.7, 0));
 
-    // æç”»å…ˆã‚’å¤‰æ›´
+    // •`‰ææ‚ğ•ÏX
     SetDrawScreen(mnStasusDrawScreenHandle);
     ClearDrawScreen();
 
-    // åœŸå°
+    // “y‘ä
     DrawBoxAA(0, 0, mnScreenSizeX, 40, GetColor(255, 255, 255), TRUE);
     DrawBoxAA(2, 2, mnScreenSizeX - 2, 40 - 2, GetColor(0, 0, 0), TRUE);
 
-    // åå‰
+    // –¼‘O
     //DrawExtendGraph(0, 0, 100, 50, mnNameHandle, TRUE);
     DrawFormatString(5, 21, GetColor(255, 255, 255), "%s", mstrName.c_str());
 
-    // ãƒ¬ãƒ™ãƒ«
+    // ƒŒƒxƒ‹
     DrawBox(1, 1, 65, 20, GetColor(255, 255, 255), TRUE);
     DrawBox(3, 3, 63, 18, GetColor(0, 0, 0), TRUE);
     DrawFormatString(5, 3, GetColor(255, 255, 255), "Lv.%d", msStatus.level);
 
     SetDrawScreen(DX_SCREEN_BACK);
-    // 3Dã‚«ãƒ¡ãƒ©è¨­å®š
+    // 3DƒJƒƒ‰İ’è
     Master::mpCamera->Initialize3DCameraTemplate();
     DrawBillboard3D(setCharacterPos, 0.5f, 0.5f, 200.0f, 0.0f, mnStasusDrawScreenHandle, TRUE);
     */

@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 
 #include "SceneEnum.h"
 
@@ -8,39 +8,39 @@
 class SceneManager
 {
 private:
-	// æœ‰é™çŠ¶æ…‹ãƒžã‚·ãƒ³
+	// —LŒÀó‘Ôƒ}ƒVƒ“
 	FSMScene* mpFSMScene;
-	// æ¬¡ã®ã‚·ãƒ¼ãƒ³
+	// ŽŸ‚ÌƒV[ƒ“
 	SCENE meNextScene;
 
 public:
 	SceneManager();
 	~SceneManager();
 
-	/*åˆæœŸåŒ–*/
+	/*‰Šú‰»*/
 	void Initilize();
-	/*æ›´æ–°*/
+	/*XV*/
 	void Update();
-	/*æ¬¡ã®ã‚·ãƒ¼ãƒ³ã¸ç§»å‹•ã™ã‚‹*/
+	/*ŽŸ‚ÌƒV[ƒ“‚ÖˆÚ“®‚·‚é*/
 	void NextScene();
 
 	/*--------------------------------------------------
-	* ã€è¨­å®šã€‘
+	* yÝ’èz
 	*/
-	/*æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’è¨­å®š*/
+	/*ŽŸ‚ÌƒV[ƒ“‚ðÝ’è*/
 	void SetNextScene(SCENE nextScene);
 	
 	/*--------------------------------------------------
-	* ã€å–å¾—ã€‘
+	* yŽæ“¾z
 	*/
-	/*ä»Šã®ã‚·ãƒ¼ãƒ³ã‚’å–å¾—*/
+	/*¡‚ÌƒV[ƒ“‚ðŽæ“¾*/
 	inline SCENE GetNowScene() const { return mpFSMScene->GetCurrentState(); }
-	/*æ¬¡ã®ã‚·ãƒ¼ãƒ³ã‚’å–å¾—*/
+	/*ŽŸ‚ÌƒV[ƒ“‚ðŽæ“¾*/
 	inline SCENE GetNextScene() const { return meNextScene; }
 
-	/*æœ‰é™çŠ¶æ…‹ãƒžã‚·ãƒ³å–å¾—*/
+	/*—LŒÀó‘Ôƒ}ƒVƒ“Žæ“¾*/
 	inline FSMScene* GetFSMScene() const { return mpFSMScene; }
 
-	/*ã‚·ãƒ¼ãƒ³ã‚«ãƒ¡ãƒ©IDå–å¾—*/
+	/*ƒV[ƒ“ƒJƒƒ‰IDŽæ“¾*/
 	inline int GetSceneCameraID() const { return mpFSMScene->GetSceneCameraID(); }
 };

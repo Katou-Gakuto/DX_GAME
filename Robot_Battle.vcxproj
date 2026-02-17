@@ -160,6 +160,7 @@
     <ClInclude Include="Source\Struct\CameraData.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
+    <ClInclude Include="Source\Struct\ImguiData.h" />
     <ClInclude Include="Source\Struct\ResourceData.h" />
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Struct\TargetData.h" />

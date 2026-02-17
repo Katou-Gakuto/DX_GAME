@@ -141,17 +141,17 @@ public:
 	{
 #if _DEBUG
 		if (CheckNumber(number)){
-			flags &= (setNumber << number) | ~(numberZone << number);
-			flags = (flags & ~(numberZone << number))
-				| ((setNumber & numberZone) << number);
+			// TODO: 要確認
+			//flags &= (setNumber << number) | ~(numberZone << number);
+			flags = (flags & ~(numberZone << number)) | ((setNumber & numberZone) << number);
 		}
 		else
 		{
 			BIT_FAILURE_FLAG = true;
 		}
 #else
-		flags &= (setNumber << number) | ~(numberZone << number); flags = (flags & ~(numberZone << number))
-			| ((setNumber & numberZone) << number);
+		//flags &= (setNumber << number) | ~(numberZone << number);
+		flags = (flags & ~(numberZone << number)) | ((setNumber & numberZone) << number);
 #endif
 	}
 	/*【指定ビット数から数字を設定する】*/

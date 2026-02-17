@@ -234,6 +234,16 @@ void ImguiManager::Draw()
 #endif
 }
 
+/// <summary>floatスライダー</summary>
+void ImguiManager::FloatImgui()
+{
+    /*
+    ImGui::SliderFloat();
+    DragFloat
+    InputFloat
+    */
+}
+
 // // Helper functions
 
 // bool CreateDeviceD3D(HWND hWnd)

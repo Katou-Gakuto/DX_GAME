@@ -127,6 +127,9 @@
     <Filter Include="リソース ファイル\テスト用">
       <UniqueIdentifier>{32361acc-2582-4f09-aef9-b6a8507a97e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\参考_AI回答">
+      <UniqueIdentifier>{aa42ea15-c9f4-4061-95a1-cdd1623540b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -196,9 +199,6 @@
       <Filter>ソース ファイル\Object\Character</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object\UI\UI_Check.cpp">
-      <Filter>ソース ファイル\Object\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Object\UI\UI_Debug.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object\UI\UI_Game.cpp">
@@ -425,9 +425,6 @@
     <ClInclude Include="Source\Object\UI\UI_Check.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UI\UI_Debug.h">
-      <Filter>ヘッダー ファイル\Object\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Object\UI\UI_Game.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
@@ -612,6 +609,15 @@
     </Text>
     <Text Include="Text\テスト用\動画.txt">
       <Filter>リソース ファイル\テスト用</Filter>
+    </Text>
+    <Text Include="Text\参考_AI回答\ゲーム性.txt">
+      <Filter>リソース ファイル\参考_AI回答</Filter>
+    </Text>
+    <Text Include="Text\参考_AI回答\ゲーム説明.txt">
+      <Filter>リソース ファイル\参考_AI回答</Filter>
+    </Text>
+    <Text Include="Text\参考_AI回答\ポートフォリオ.txt">
+      <Filter>リソース ファイル\参考_AI回答</Filter>
     </Text>
   </ItemGroup>
 </Project>

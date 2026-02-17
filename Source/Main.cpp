@@ -8,9 +8,7 @@
 #include "EndManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
-#if _DEBUG
 #include "ImguiManager.h"
-#endif
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
@@ -27,46 +25,13 @@ DataManager* Master::mpDataManager = new DataManager();
 EndManager* Master::mpEndManager = new EndManager();
 FadeManager* Master::mpFadeManager = new FadeManager();
 GameManager* Master::mpGameManager = new GameManager();
-#if _DEBUG
 ImguiManager* Master::mpImguiManager = new ImguiManager();
-#endif
 KeyState* Master::mpKeyState = new KeyState();
 LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
 StopManager* Master::mpStopManager = new StopManager();
 TelopManager* Master::mpTelopManager = new TelopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
-
-
-LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
-{
-	//switch (msg)
-	//{
-	//case WM_CLOSE:
-	//	break;
-
-	//case WM_DESTROY:
-	//	PostQuitMessage(0);
-	//	return 0;
-	//}
-
-	//return DefWindowProc(hWnd, msg, wp, lp);
-
-	return 0;
-
-	/*
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
-
-	// メッセージ処理はDxLibで行っているようだ
-
-	return 0;
-}
-	*/
-}
 
 /// <summary>
 /// メイン
@@ -86,6 +51,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	delete pXmlArrange;
 #endif
 
+#ifndef _DEBUG
+	// log.txtを生成しない
+	SetOutApplicationLogValidFlag(FALSE);
+#endif
+
 	// ウインドウモードで起動
 	ChangeWindowMode(true);
 
@@ -93,11 +63,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
 	// TODO: 変更できるようにする
-	SetGraphMode(800, 600, 16);
+	SetGraphMode(1280, 960, 32);
 
 #if _DEBUG
-	DxLib::SetHookWinProc(WndProc);
-	DxLib::SetAlwaysRunFlag(true);
+	Master::mpImguiManager->DxInit();
 #endif
 
 	// DXライブラリ初期化処理
@@ -106,8 +75,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return -1;		// エラーが起きたら直ちに終了
 	}
 
+#if _DEBUG
+	Master::mpImguiManager->Initilize();
+#endif
+
 	// 初期化
 	Master::mpGameManager->Initilize();
+
 
 	// ループ
 	while (!Master::mpEndManager->EndFlag()) {
@@ -123,6 +97,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		// メイン処理
 		if (Master::mpTimeManager->GetNextUpdateFlag())
 		{
+
+#if _DEBUG
+			Master::mpImguiManager->Update();
+#endif
 			// 更新
 			Master::mpGameManager->Update();
 

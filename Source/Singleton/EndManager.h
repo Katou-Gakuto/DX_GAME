@@ -9,6 +9,7 @@ enum class END_FLAG_NUMBER
 	LOADING_FLAG,
 	MAP_FLAG,
 	HANDLE_FLAG,
+	BIT_FLAG,
 };
 
 class EndManager
@@ -31,7 +32,7 @@ public:
 	/// 終了フラグ
 	/// </summary>
 	/// <returns>どれかの終了フラグが有効なら「true」</returns>
-	bool EndFlag() const;
+	bool EndFlag();
 
 	/// <summary>
 	/// 終了フラグ設定

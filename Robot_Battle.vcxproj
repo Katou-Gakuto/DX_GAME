@@ -44,7 +44,6 @@
     <ClCompile Include="Source\Object\Character\Character_Shot.cpp" />
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Check.cpp" />
-    <ClCompile Include="Source\Object\UI\UI_Debug.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Game.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
@@ -121,7 +120,6 @@
     <ClInclude Include="Source\Object\Character\Character_Shot.h" />
     <ClInclude Include="Source\Object\ObjectBases.h" />
     <ClInclude Include="Source\Object\UI\UI_Check.h" />
-    <ClInclude Include="Source\Object\UI\UI_Debug.h" />
     <ClInclude Include="Source\Object\UI\UI_Game.h" />
     <ClInclude Include="Source\Object\UI\UI_Result.h" />
     <ClInclude Include="Source\Object\UI\UI_Title.h" />
@@ -181,6 +179,9 @@
     <Text Include="Text\テスト用\ハンドル.txt" />
     <Text Include="Text\テスト用\動画.txt" />
     <Text Include="Text\テスト用\画像.txt" />
+    <Text Include="Text\参考_AI回答\ゲーム性.txt" />
+    <Text Include="Text\参考_AI回答\ゲーム説明.txt" />
+    <Text Include="Text\参考_AI回答\ポートフォリオ.txt" />
     <Text Include="Text\必要素材.txt" />
     <Text Include="Text\進級制作メモ.txt" />
   </ItemGroup>
@@ -290,13 +291,13 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

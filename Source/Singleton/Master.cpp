@@ -4,9 +4,7 @@
 #include "EndManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
-#if _DEBUG
 #include "ImguiManager.h"
-#endif
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
@@ -20,9 +18,7 @@ void Master::AllDelete()
 	// I—¹ˆ—
 	mpFadeManager->Finailize();
 	mpGameManager->Finailize();
-#if _DEBUG
 	mpImguiManager->Finalize();
-#endif
 	mpResourceManager->Finailize();
 	mpTelopManager->Finalize();
 	
@@ -31,9 +27,7 @@ void Master::AllDelete()
 	delete mpEndManager;
 	delete mpFadeManager;
 	delete mpGameManager;
-#if _DEBUG
 	delete mpImguiManager;
-#endif
 	delete mpKeyState;
 	delete mpLoadingManager;
 	delete mpResourceManager;

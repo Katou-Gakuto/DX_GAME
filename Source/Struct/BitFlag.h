@@ -2,6 +2,11 @@
 #include <iostream>
 #include <type_traits>
 
+#if _DEBUG
+// エラー時用
+static bool BIT_FAILURE_FLAG = false;
+#endif
+
 // ビットフラグ用構造体
 template<typename T, typename = typename std::enable_if<std::is_integral<T>::value&& std::is_unsigned<T>::value>::type>
 struct BIT_FLAG
@@ -53,9 +58,17 @@ public:
 
 	/*-----【指定ビット有効化】-----*/
 	inline void EnableFlag(int number){
+#if _DEBUG
 		if (CheckNumber(number)){
 			flags |= ((T)1 << number);
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		flags |= ((T)1 << number);
+#endif
 	}
 	/*【指定ビット有効化】*/
 	template<typename ENUM_T>
@@ -65,9 +78,17 @@ public:
 
 	/*-----【指定ビット無効化】-----*/
 	inline void DisableFlag(int number){
+#if _DEBUG
 		if (CheckNumber(number)){
 			flags &= ~((T)1 << number);
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		flags &= ~((T)1 << number);
+#endif
 	}
 	/*【指定ビット無効化】*/
 	template<typename ENUM_T>
@@ -77,9 +98,17 @@ public:
 
 	/*-----【指定ビット反転】-----*/
 	inline void InvertFlag(int number){
+#if _DEBUG
 		if (CheckNumber(number)){
 			flags ^= ((T)1 << number);
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		flags ^= ((T)1 << number);
+#endif
 	}
 	/*【指定ビット反転】*/
 	template<typename ENUM_T>
@@ -89,9 +118,17 @@ public:
 
 	/*-----【指定ビット取得】-----*/
 	inline bool GetFlag(int number) const {
+#if _DEBUG
 		if (CheckNumber(number)){
 			return ((flags & ((T)1 << number)) != 0);
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		return ((flags & ((T)1 << number)) != 0);
+#endif
 		return false;
 	}
 	/*【指定ビット取得】*/
@@ -102,9 +139,20 @@ public:
 	/*-----【指定ビット数から数字を設定する】-----*/
 	inline void SetNumber(T setNumber, T numberZone, int number)
 	{
+#if _DEBUG
 		if (CheckNumber(number)){
 			flags &= (setNumber << number) | ~(numberZone << number);
+			flags = (flags & ~(numberZone << number))
+				| ((setNumber & numberZone) << number);
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		flags &= (setNumber << number) | ~(numberZone << number); flags = (flags & ~(numberZone << number))
+			| ((setNumber & numberZone) << number);
+#endif
 	}
 	/*【指定ビット数から数字を設定する】*/
 	template<typename ENUM_T>
@@ -119,9 +167,17 @@ public:
 			rightBitNumber = number;
 		}
 
+#if _DEBUG
 		if (CheckNumber(number)){
 			return (flags & (numberZone << number)) >> rightBitNumber;
 		}
+		else
+		{
+			BIT_FAILURE_FLAG = true;
+		}
+#else
+		return (flags & (numberZone << number)) >> rightBitNumber;
+#endif
 		return T(0);
 	}
 	/*【指定ビット数から数字を設定する】*/

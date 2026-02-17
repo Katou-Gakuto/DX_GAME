@@ -8,6 +8,7 @@
 #include "DataManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
+#include "ImguiManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectManager.h"
@@ -56,6 +57,8 @@ void GameManager::Initilize()
     mpCollisionManager = new CollisionManager();
     mpMapManager = new MapManager();
     mpTargetManager = new TargetManager();
+
+
 
     SetDrawScreen(DX_SCREEN_BACK);
 }
@@ -117,6 +120,10 @@ void GameManager::Draw()
     Master::mpFadeManager->Draw();
 
     Master::mpResourceManager->DrawDataRelease();
+
+#if _DEBUG
+    Master::mpImguiManager->Draw();
+#endif
 
     ScreenFlip();
 }

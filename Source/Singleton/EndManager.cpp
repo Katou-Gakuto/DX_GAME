@@ -25,8 +25,17 @@ void EndManager::Init()
 }
 
 // 終了フラグ
-bool EndManager::EndFlag() const
+bool EndManager::EndFlag()
 {
+#if _DEBUG
+	// ビットフラグ設定
+	if (BIT_FAILURE_FLAG)
+	{
+		SetEndFlag(true, END_FLAG_NUMBER::BIT_FLAG);
+	}
+#endif
+
+
 	bool endFlag = false;
 
 	endFlag |= (ProcessMessage() != 0);
@@ -36,6 +45,7 @@ bool EndManager::EndFlag() const
 	if (mullEndFlag.Bool())
 	{
 		endFlag = true;
+		ErrorLogFmtAdd("%llu", mullEndFlag);
 	}
 
 	return endFlag;

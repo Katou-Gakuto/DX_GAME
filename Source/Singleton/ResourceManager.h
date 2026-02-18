@@ -47,6 +47,9 @@ public:
 private:
 	// シャドウマップハンドル
 	int mnShadowMapHandle;
+	
+	// シャドウ描画中フラグ
+	bool mbDrawShadowMapFlag;
 public:
 	/// <summary>モデル描画</summary>
 	void DrawModelHandle(int modelHandle);
@@ -76,6 +79,9 @@ public:
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos);
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size);
 	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
+	
+	/// <summary>シャドウマップ描画フラグ</summary>
+	inline bool GetShadowMapDrawFlag() const { return mbDrawShadowMapFlag; }
 
 	/*------------*/
 	/*【3Dモデル】*/

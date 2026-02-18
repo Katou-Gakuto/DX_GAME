@@ -1,11 +1,13 @@
 #pragma once
 class FadeManager;
+class ResourceManager;
 class TimeManager;
 
 enum class STOP_FLAG_TYPE
 {
     NODE = 0,
     GAME_OBJECT,
+    UI_MODEL,
 };
 
 class StopManager
@@ -14,8 +16,12 @@ private:
     // フェードマネージャー
     FadeManager* mpFadeManager;
 
+    // リソースマネージャー
+    ResourceManager* mpResourceManager;
+
     // タイムマネジャー
     TimeManager *mpTimeManager;
+
 
 public:
     StopManager();

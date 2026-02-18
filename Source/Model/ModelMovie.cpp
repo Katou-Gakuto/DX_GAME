@@ -1,12 +1,16 @@
-// filepath: c:\Users\student3\source\repos\DX_GAME\Source\Model\ModelMovie.cpp
+#include "ImguiEnum.h"
+#include "ImguiData.h"
+
 #include "DxLib.h"
 
 #include "Master.h"
 
+#include "ImguiManager.h"
 #include "ModelGraph.h"
 #include "ModelMovie.h"
 #include "ModelsControllerBase.h"
 #include "ResourceManager.h"
+#include "StopManager.h"
 #include "UtilCalc.h"
 
 ModelMovie::ModelMovie()
@@ -19,14 +23,28 @@ ModelMovie::~ModelMovie()
 {
 }
 
-// グラフィック初期化
+// ムービー初期化
 void ModelMovie::ModelInitilize()
 {
+	IMGUI_FLOAT_DATA imguiFloatData;
+	imguiFloatData.SetVariable(&mvPosition.x);
+	imguiFloatData.SetVariable(&mvPosition.y);
+	imguiFloatData.SetVariable(&mvSize.x);
+	imguiFloatData.SetVariable(&mvSize.y);
+	imguiFloatData.SetLabel("MOVIE_");
+	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+	imguiFloatData.SetMin(-100.0f);
+	imguiFloatData.SetMax(100.0f);
+	imguiFloatData.SetSpeed(0.01f);
+
+	Master::mpImguiManager->SetFloatImgui(imguiFloatData);
 }
 
-// グラフィック終了
+// 終了
 void ModelMovie::ModelFinalize()
 {
+    Master::mpImguiManager->DeleteImguiData("MOVIE_");
+
     for (auto drawData : mstDrawDatas)
     {
         if (drawData.handle != -1)
@@ -79,7 +97,7 @@ void ModelMovie::PositionUpdate()
 // ムービー描画
 void ModelMovie::ModelDraw()
 {
-    if (!mbDrawFlag)
+    if (!mbDrawFlag || Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
     {
         return;
     }

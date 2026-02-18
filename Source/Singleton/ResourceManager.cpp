@@ -27,6 +27,7 @@ ResourceManager::ResourceManager()
 , mpGraphHandleContainer(nullptr)
 , mpMovieHandleContainer(nullptr)
 , mpEffectHandleContainer(nullptr)
+, mbDrawShadowMapFlag(false)
 {
 	// シャドウマップ
 	mnShadowMapHandle = -1;
@@ -140,12 +141,14 @@ void ResourceManager::StartDraw()
 {
 	// シャドウマップへの描画の準備
 	ShadowMap_DrawSetup(mnShadowMapHandle);
+	mbDrawShadowMapFlag = true;
 }
 // 中間描画
 void ResourceManager::MiddleDraw()
 {
 	// シャドウマップへの描画を終了
 	ShadowMap_DrawEnd();
+	mbDrawShadowMapFlag = false;
 	// 描画に使用するシャドウマップを設定
 	SetUseShadowMap(0, mnShadowMapHandle);
 

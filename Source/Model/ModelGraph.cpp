@@ -1,11 +1,16 @@
+#include "ImguiEnum.h"
+#include "ImguiData.h"
+
 #include "DxLib.h"
 
 #include "Master.h"
 
+#include "ImguiManager.h"
 #include "ModelBase.h"
 #include "ModelGraph.h"
 #include "ModelsControllerBase.h"
 #include "ResourceManager.h"
+#include "StopManager.h"
 #include "UtilCalc.h"
 
 ModelGraph::ModelGraph()
@@ -24,11 +29,27 @@ ModelGraph::~ModelGraph()
 // グラフィック初期化
 void ModelGraph::ModelInitilize()
 {
+	IMGUI_FLOAT_DATA imguiFloatData;
+	imguiFloatData.SetVariable(&mvPosition.x);
+	imguiFloatData.SetVariable(&mvPosition.y);
+	imguiFloatData.SetVariable(&mvSize.x);
+	imguiFloatData.SetVariable(&mvSize.y);
+	imguiFloatData.SetLabel("GRAPH_");
+	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+	imguiFloatData.SetMin(-100.0f);
+	imguiFloatData.SetMax(100.0f);
+    imguiFloatData.SetStep(0.1f);
+	imguiFloatData.SetSpeed(0.01f);
+    imguiFloatData.SetStepFast(0.1f);
+
+	Master::mpImguiManager->SetFloatImgui(imguiFloatData);
 }
 
 // グラフィック終了
 void ModelGraph::ModelFinalize()
 {
+    Master::mpImguiManager->DeleteImguiData("GRAPH_");
+
     for (auto drawData : mstDrawDatas)
     {
         if (drawData.handle != -1)
@@ -60,7 +81,7 @@ void ModelGraph::PositionUpdate()
 // グラフィック描画
 void ModelGraph::ModelDraw()
 {
-    if (!mbDrawFlag)
+    if (!mbDrawFlag || Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
     {
         return;
     }

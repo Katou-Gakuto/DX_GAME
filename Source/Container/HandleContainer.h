@@ -5,7 +5,6 @@
 
 #include "HandleContainer.h"
 
-// INPROGRESS: ì‹Æ’†@ƒƒ‚@
 enum class HANDLE_FLAG
 {
     NONE = 0,

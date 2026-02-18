@@ -1,6 +1,7 @@
 #include "Master.h"
 
 #include "FadeManager.h"
+#include "ResourceManager.h"
 #include "StopManager.h"
 #include "TimeManager.h"
 
@@ -23,6 +24,8 @@ void StopManager::Initilize()
 {
     mpFadeManager = Master::mpFadeManager;
 
+    mpResourceManager = Master::mpResourceManager;
+
     mpTimeManager = Master::mpTimeManager;
 }
 
@@ -40,6 +43,10 @@ bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
     case STOP_FLAG_TYPE::GAME_OBJECT:
         stopflag |= mpTimeManager->GetStopFlag();
         stopflag |= mpFadeManager->GetFadeFlag();
+        break;
+    
+    case STOP_FLAG_TYPE::UI_MODEL:
+        stopflag |= mpResourceManager->GetShadowMapDrawFlag();
         break;
     }
 

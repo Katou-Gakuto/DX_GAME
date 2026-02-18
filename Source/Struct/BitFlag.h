@@ -141,8 +141,6 @@ public:
 	{
 #if _DEBUG
 		if (CheckNumber(number)){
-			// TODO: —vŠm”F
-			//flags &= (setNumber << number) | ~(numberZone << number);
 			flags = (flags & ~(numberZone << number)) | ((setNumber & numberZone) << number);
 		}
 		else
@@ -150,7 +148,6 @@ public:
 			BIT_FAILURE_FLAG = true;
 		}
 #else
-		//flags &= (setNumber << number) | ~(numberZone << number);
 		flags = (flags & ~(numberZone << number)) | ((setNumber & numberZone) << number);
 #endif
 	}

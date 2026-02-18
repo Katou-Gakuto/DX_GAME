@@ -183,7 +183,7 @@ std::vector<int> HandleContainer::DeleteHandle(int handle, bool countFlag)
 					{
 						mmHandleCounts[countHandle] -= 1;
 					}
-					// INPROGRESS: 作業中未完
+					// INPROGRESS: 作業中未完 確認
 
 					// 削除ハンドル
 					std::vector<int> deleteHandles;

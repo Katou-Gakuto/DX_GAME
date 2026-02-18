@@ -1,9 +1,14 @@
-#include "DxLib.h"
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
 #include <d3d11.h>
 #include <tchar.h>
+#include <vector>
+
+#include "ImguiEnum.h"
+#include "ImguiData.h"
+
+#include "DxLib.h"
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
 
 #include "ImguiManager.h"
 
@@ -12,6 +17,8 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 ImguiManager::ImguiManager()
 : mpMode(1)
 {
+    mstImguiFloatDatas.clear();
+    mstImguiIntDatas.clear();
 }
 
 ImguiManager::~ImguiManager()
@@ -208,6 +215,16 @@ void ImguiManager::Update()
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         ImGui::ShowDemoWindow();
+
+        for (int i = 0; i < mstImguiFloatDatas.size(); i++)
+        {
+            DrawFloatImgui(mstImguiFloatDatas[i]);
+        }
+        
+        for (int i = 0; i < mstImguiIntDatas.size(); i++)
+        {
+            DrawIntImgui(mstImguiIntDatas[i]);
+        }
     }
 #endif
 }
@@ -234,14 +251,204 @@ void ImguiManager::Draw()
 #endif
 }
 
-/// <summary>floatÉXÉâÉCÉ_Å[</summary>
-void ImguiManager::FloatImgui()
+// floatÇÃImguièÓïÒê›íË
+void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
-    /*
-    ImGui::SliderFloat();
-    DragFloat
-    InputFloat
-    */
+#if _DEBUG
+    imguiFloatData.Label = imguiFloatData.Label + std::to_string(mstImguiFloatDatas.size());
+    mstImguiFloatDatas.push_back(imguiFloatData);
+#endif
+}
+
+// intÇÃImguièÓïÒê›íË
+void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
+{
+#if _DEBUG
+    imguiIntData.Label = imguiIntData.Label + std::to_string(mstImguiIntDatas.size());
+    mstImguiIntDatas.push_back(imguiIntData);
+#endif
+}
+
+// ImguièÓïÒçÌèú
+void ImguiManager::DeleteImguiData(std::string labelName)
+{
+#if _DEBUG
+    for (int i = 0; i < mstImguiFloatDatas.size(); i++)
+    {
+        if (labelName == mstImguiFloatDatas[i].Label.substr(0, mstImguiFloatDatas[i].Label.size() - 1))
+        {
+            mstImguiFloatDatas.erase(mstImguiFloatDatas.begin() + i);
+            return;
+        }
+    }
+    for (int i = 0; i < mstImguiIntDatas.size(); i++)
+    {
+        if (labelName == mstImguiIntDatas[i].Label.substr(0, mstImguiIntDatas[i].Label.size() - 1))
+        {
+            mstImguiIntDatas.erase(mstImguiIntDatas.begin() + i);
+            return;
+        }
+    }
+#endif
+}
+
+// floatÇÃImguuiï`âÊ
+void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
+{
+#if _DEBUG
+    float floatData[4] = {};
+    for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
+    {
+        if (i >= 4)
+        {
+            break;
+        }
+
+        floatData[i] = *(imguiFloatData.VariableDatas[i]);
+    }
+    switch (imguiFloatData.ImguiType)
+    {
+    case IMGUI_TYPE::SLIDER1:
+        ImGui::SliderFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER2:
+        ImGui::SliderFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER3:
+        ImGui::SliderFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER4:
+        ImGui::SliderFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG1:
+        ImGui::DragFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG2:
+        ImGui::DragFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG3:
+        ImGui::DragFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG4:
+        ImGui::DragFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT1:
+        ImGui::InputFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Step, imguiFloatData.StepFast, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT2:
+        ImGui::InputFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT3:
+        ImGui::InputFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT4:
+        ImGui::InputFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+
+    case IMGUI_TYPE::ANGLE:
+        ImGui::SliderAngle(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        break;
+    }
+
+    for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
+    {
+        if (i >= 4)
+        {
+            break;
+        }
+
+        *(imguiFloatData.VariableDatas[i]) = floatData[i];
+    }
+#endif
+}
+
+
+// intÇÃImguuiï`âÊ
+void ImguiManager::DrawIntImgui(IMGUI_INT_DATA imguiIntData)
+{
+#if _DEBUG
+    int intData[4] = {};
+    for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
+    {
+        if (i >= 4)
+        {
+            break;
+        }
+
+        intData[i] = *(imguiIntData.VariableDatas[i]);
+    }
+    switch (imguiIntData.ImguiType)
+    {
+    case IMGUI_TYPE::SLIDER1:
+        ImGui::SliderInt(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER2:
+        ImGui::SliderInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER3:
+        ImGui::SliderInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::SLIDER4:
+        ImGui::SliderInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG1:
+        ImGui::DragInt(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG2:
+        ImGui::DragInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG3:
+        ImGui::DragInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::DRAG4:
+        ImGui::DragInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT1:
+        ImGui::InputInt(imguiIntData.Label.c_str(), intData, imguiIntData.Step, imguiIntData.StepFast, imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT2:
+        ImGui::InputInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT3:
+        ImGui::InputInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        break;
+
+    case IMGUI_TYPE::INPUT4:
+        ImGui::InputInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        break;
+    }
+
+    for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
+    {
+        if (i >= 4)
+        {
+            break;
+        }
+
+        *(imguiIntData.VariableDatas[i]) = intData[i];
+    }
+#endif
 }
 
 // // Helper functions

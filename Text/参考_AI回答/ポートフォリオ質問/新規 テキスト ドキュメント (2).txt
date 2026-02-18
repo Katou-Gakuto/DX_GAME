@@ -1,0 +1,13 @@
+[AnimationBase（アニメーション本体）]
+    ├─ 保持 ──> [FSMAnimation（アニメーションFSM）]
+    │               ├─ ANIMATION_TYPE（アニメーション種類）によるステート管理
+    │               └─ 各ステートは MODEL_TYPE（モデル種類）のステート (IStateAnimation) を持つ
+    │
+    ├─ 保持 ──> [AnimationDatas*]（アニメーションデータの配列）
+    │               └─ 各 AnimationDatas は map<ANIMATION_TYPE, OneAnimationData> を保持
+    │
+    └─ 参照 ──> [ModelsControllerBase（モデルコントローラー）]
+                        ├─ 保持 ──> vector<ModelBase*>（モデルリスト mpModelList）
+                        │               └─ 各 ModelBase は自身の更新・描画を行う
+                        ├─ 持つ ──> mvModelPosition（位置）、mvModelAngle（角度）、mvModelSize（サイズ）
+                        └─ 更新 ──> ModelBase::PositionUpdate()、ModelDraw()

@@ -123,7 +123,7 @@ void CharacterBase::SceneLastInitilize()
 void CharacterBase::Finalize()
 {
 	CharacterFinalize();
-	
+
 	// モデルコントローラー終了
 	mpModelController->Finalize();
 	delete mpModelController;
@@ -143,6 +143,12 @@ void CharacterBase::Finalize()
 		attackDatas.second.animation->Finalize();
 		delete attackDatas.second.animation;
 		attackDatas.second.animation = nullptr;
+	}
+
+	if (mpFsm != nullptr)
+	{
+		mpFsm->Finalize(this);
+		delete mpFsm;
 	}
 }
 

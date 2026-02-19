@@ -190,6 +190,12 @@ FSMCharacter::FSMCharacter()
 {
 }
 
+// 終了
+void FSMCharacter::Finalize(CharacterBase* character)
+{
+	mmStateMap[mnCurrentState]->Finalize(character);
+}
+
 // 実行中状態をセットする
 void FSMCharacter::SetCurrentState(int id, CharacterBase* character)
 {

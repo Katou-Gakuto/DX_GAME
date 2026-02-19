@@ -1,3 +1,4 @@
+#include "GameDataEnum.h"
 #include "GameDatas.h"
 
 #include "Master.h"
@@ -38,7 +39,7 @@ void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
     mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
     if ((UtilChange::SceneState(mpSceneManager->GetNowScene()) != SCENE::TOWN) && (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0))
     {
-        mpSceneManager->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
+        mpSceneManager->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
     }
 }
 

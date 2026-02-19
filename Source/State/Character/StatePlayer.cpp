@@ -70,9 +70,7 @@ bool PlayerProcess::GetPlayerMoveFlag()
 // 攻撃キーを押していれば「true」
 bool PlayerProcess::GetPlayerNormalAttackFlag()
 {
-	// TODO: 試遊会ように変更
-	//return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::L);
-	return mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::F);
+	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::L);
 }
 
 // 特殊攻撃キーを押していれば「true」

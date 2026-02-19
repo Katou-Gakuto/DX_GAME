@@ -1,5 +1,8 @@
 #pragma once
 
+#include "GameDataEnum.h"
+#include "GameDatas.h"
+
 #include "StateBase.h"
 
 enum class ANIMATION_FACTORY_NUMBER;
@@ -14,6 +17,9 @@ class SceneStateProcess
 protected:
 	/*キャラクターモデル設定*/
 	void CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber);
+
+	/*プレイヤーポジションデータ設定*/
+	void SetPlayerPosData(PLAYER_DATA* playerData, DATA_SCENE dataScene, SCENE scene);
 };
 
 /*--------------------------*/

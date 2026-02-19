@@ -19,6 +19,7 @@
 
 #include "DataManager.h"
 #include "EndManager.h"
+#include "ObjectBases.h"
 #include "UtilCalc.h"
 #include "UtilChange.h"
 
@@ -201,12 +202,12 @@ void DataManager::Initilize()
 		mstInitPlayerDatas.clear();
 		PLAYER_DATA setInitPlayer = PLAYER_DATA();
 		setInitPlayer.mapType = SCENE::TOWN_1;
-		setInitPlayer.townType = SCENE::TOWN_1;
-		setInitPlayer.townPos = UtilCalc::VZero;
-		setInitPlayer.townAngle = UtilCalc::VZero;
-		setInitPlayer.dungeonType = SCENE::NONE;
-		setInitPlayer.dungeonPos = UtilCalc::VZero;
-		setInitPlayer.dungeonAngle = UtilCalc::VZero;
+		setInitPlayer.sceneData[DATA_SCENE::TOWN].sceneType = SCENE::TOWN_1;
+		setInitPlayer.sceneData[DATA_SCENE::TOWN].scenePos = UtilCalc::VZero;
+		setInitPlayer.sceneData[DATA_SCENE::TOWN].sceneAngle = UtilCalc::VZero;
+		setInitPlayer.sceneData[DATA_SCENE::DUNGEON].sceneType = SCENE::NONE;
+		setInitPlayer.sceneData[DATA_SCENE::DUNGEON].scenePos = UtilCalc::VZero;
+		setInitPlayer.sceneData[DATA_SCENE::DUNGEON].sceneAngle = UtilCalc::VZero;
 		setInitPlayer.preMap = SCENE::NONE;
 		setInitPlayer.position = UtilCalc::VZero;
 		setInitPlayer.angle = UtilCalc::VZero;
@@ -231,12 +232,12 @@ void DataManager::Initilize()
 
 		PLAYER_DATA setPlayer = PLAYER_DATA();
 		setPlayer.mapType = SCENE::TOWN_1;
-		setPlayer.townType = SCENE::TOWN_1;
-		setPlayer.townPos = UtilCalc::VZero;
-		setPlayer.townAngle = VGet(0.0f, UtilCalc::Pi * 1.5f, 0.0f);
-		setPlayer.dungeonType = SCENE::NONE;
-		setPlayer.dungeonPos = UtilCalc::VZero;
-		setPlayer.dungeonAngle = VGet(0.0f, UtilCalc::Pi * -1.5f, 0.0f);
+		setPlayer.sceneData[DATA_SCENE::TOWN].sceneType = SCENE::TOWN_1;
+		setPlayer.sceneData[DATA_SCENE::TOWN].scenePos = UtilCalc::VZero;
+		setPlayer.sceneData[DATA_SCENE::TOWN].sceneAngle = VGet(0.0f, UtilCalc::Pi * 1.5f, 0.0f);
+		setPlayer.sceneData[DATA_SCENE::DUNGEON].sceneType = SCENE::NONE;
+		setPlayer.sceneData[DATA_SCENE::DUNGEON].scenePos = UtilCalc::VZero;
+		setPlayer.sceneData[DATA_SCENE::DUNGEON].sceneAngle = VGet(0.0f, UtilCalc::Pi * -1.5f, 0.0f);
 		setPlayer.preMap = SCENE::NONE;
 		setPlayer.position = UtilCalc::VZero;
 		setPlayer.angle = UtilCalc::VZero;
@@ -248,16 +249,16 @@ void DataManager::Initilize()
 		mstPlayerDatas.push_back(setPlayer);
 
 		setPlayer.mapType = SCENE::TOWN_1;
-		setPlayer.townType = SCENE::TOWN_1;
-		setPlayer.dungeonType = SCENE::NONE;
+		setPlayer.sceneData[DATA_SCENE::TOWN].sceneType = SCENE::TOWN_1;
+		setPlayer.sceneData[DATA_SCENE::DUNGEON].sceneType = SCENE::NONE;
 		setPlayer.name = "アボカド2";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 
 		setPlayer.mapType = SCENE::TOWN_1;
-		setPlayer.townType = SCENE::TOWN_1;
-		setPlayer.dungeonType = SCENE::NONE;
+		setPlayer.sceneData[DATA_SCENE::TOWN].sceneType = SCENE::TOWN_1;
+		setPlayer.sceneData[DATA_SCENE::DUNGEON].sceneType = SCENE::NONE;
 		setPlayer.name = "アボカド3";
 		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
@@ -280,10 +281,16 @@ void DataManager::SetBaseFile(std::string fileName)
 /*--------*/
 
 // データを保存
-void DataManager::Save()
+void DataManager::Save(CharacterBase* playerObject)
 {
 	if ((mnPlayPlayerNumber != -1) && mstPlayPlayerData.dataFlag)
 	{
+		if (playerObject != nullptr)
+		{
+			mstPlayPlayerData.playerData.angle = playerObject->GetAngle();
+			mstPlayPlayerData.playerData.position = playerObject->GetPos();
+		}
+
 		mstPlayerDatas[mnPlayPlayerNumber] = mstPlayPlayerData.playerData;
 	}
 }
@@ -331,7 +338,7 @@ void DataManager::PlayDataDelete(int playerNumber)
 	/*
 	* 【プレイヤーデータ削除した後に削除した状態を設定する】
 	*/
-	Save();
+	Save(nullptr);
 }
 
 /*--------*/

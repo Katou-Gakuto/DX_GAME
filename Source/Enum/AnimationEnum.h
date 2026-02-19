@@ -6,6 +6,9 @@ enum class ANIMATION_TYPE
     // アニメーションがどう動くかを定義する
 
     NONE = 0,   // 無し
+    START,      // 開始
+    END,        // 終了
+
     IDLE,       // 待機状態
     WALK,       // 歩く 
     RUN,        // 走る

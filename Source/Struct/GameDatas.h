@@ -2,21 +2,14 @@
 #include <string>
 #include <vector>
 
+#include "GameDataEnum.h"
 #include "BitFlag.h"
+#include "Coin.h"
 #include "Status.h"
 
 #include "DxLib.h"
 
 enum class SCENE;
-
-enum class DATA_TYPE
-{
-	FILE_NAME = 0,
-	CHARACTER,
-	PLAYER,
-	INIT_PLAYER,
-	LEVEL,
-};
 
 // 種類と名前のデータ
 typedef struct TypeAndNameData
@@ -92,19 +85,27 @@ typedef struct CharacterData : public NAME_TYPE_DATA
 	}
 }CHARACTER_DATA;
 
+typedef struct ScenePlayerData
+{
+	SCENE sceneType;	// シーンタイプ
+	VECTOR scenePos;	// シーンポジション
+	VECTOR sceneAngle;	// シーンアングル
+}SCENE_PLAYER_DATA;
+
 // プレイヤーデータ
 typedef struct PlayerData : public CHARACTER_DATA
 {
 	std::string playerFolderName;	// プレイヤー情報があるフォルダー名
 
-	SCENE townType;	// 町
-	SCENE dungeonType;	// ダンジョン
 	SCENE preMap;	// 前居たマップ
 
-	VECTOR townPos;		// 町ポジション
-	VECTOR townAngle;	// 町アングル
-	VECTOR dungeonPos;		// ダンジョンポジション
-	VECTOR dungeonAngle;	// ダンジョンアングル
+	SCENE_PLAYER_DATA sceneData[DATA_SCENE::MAX];	// シーン別データ
+
+	COIN_DATA cion;	// コイン
+
+	unsigned long long score;	// スコア
+	
+	SCORE_RANK scoreRank;	// スコア評価
 	
 	bool dataFlag;	// データが存在するかどうか
 }PLAYER_DATA;

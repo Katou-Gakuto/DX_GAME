@@ -1,3 +1,6 @@
+#include "GameDataEnum.h"
+#include "GameDatas.h"
+
 #include "Master.h"
 
 #include "DataManager.h"
@@ -14,10 +17,25 @@
 /*----------------------*/
 /*【エネミー共通処理用】*/
 /*----------------------*/
-EnemyProcess::EnemyProcess()
+EnemyProcess::EnemyProcess(bool bossFlag)
 : mpTargetManager(Master::mpGameManager->GetTargetManager())
-, mbBossFlag(false)
+, mbBossFlag(bossFlag)
 {
+}
+
+// プレイヤーのステータス設定
+void EnemyProcess::SetPlayerStatus()
+{
+	// ステータス取得
+	STATUS playerStatus = Master::mpDataManager->GetPlayPlayerData().status;
+
+	// ステータスを変更
+	CharacterBase* playerObject = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER);
+	STATUS playerObjectStatus = *playerObject->GetStatus();
+	playerStatus.hp = playerObjectStatus.hp;
+
+	// ステータスをデータに設定
+	Master::mpDataManager->SetPlayPlayerStatus(playerStatus);
 }
 
 // 一定範囲内にプレイヤーターゲットがいるなら「true」
@@ -48,14 +66,15 @@ void EnemyProcess::EnemyDeath(CharacterBase* character)
 		// TODO: ダンジョンリザルトに移動
 		// エネミー初期化
 		mpTargetManager->TargetInit(TARGET_TYPE::ENEMY);
-		Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().townType);
-		Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().townType);
+		Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
+		Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
 	}
 	else
 	{
 		mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
 		if (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0)
 		{
+			SetPlayerStatus();
 			Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::BATTLR_RESULT);
 		}
 	}
@@ -110,9 +129,9 @@ int EnemyProcess::TemplateNextState(CharacterBase* character, int myState)
 /*----------------------*/
 /*【Idleエネミーテート】*/
 /*----------------------*/
-IdleEnemyState::IdleEnemyState()
+IdleEnemyState::IdleEnemyState(bool bossFlag)
 : IStateCharacter()
-, EnemyProcess()
+, EnemyProcess(bossFlag)
 {
 	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
 }
@@ -157,9 +176,9 @@ void IdleEnemyState::Death(CharacterBase* character)
 /*----------*/
 /*【移動エネミーステート】
 /*----------*/
-MoveEnemyState::MoveEnemyState()
+MoveEnemyState::MoveEnemyState(bool bossFlag)
 : IStateCharacter()
-, EnemyProcess()
+, EnemyProcess(bossFlag)
 {
 	mStateNumber = (int)ENEMY_STATE::MOVE_ENEMY_STATE;
 }
@@ -205,9 +224,9 @@ void MoveEnemyState::Death(CharacterBase* character)
 /*----------------------------*/
 /*【攻撃入りエネミーステート】*/
 /*----------------------------*/
-AttackInEnemyState::AttackInEnemyState()
+AttackInEnemyState::AttackInEnemyState(bool bossFlag)
 : IStateCharacter()
-, EnemyProcess()
+, EnemyProcess(bossFlag)
 , mbLeftMoveFlag(false)
 , mnPreAttackTime(0)
 {
@@ -281,9 +300,9 @@ void AttackInEnemyState::Death(CharacterBase* character)
 /*----------*/
 /*【攻撃エネミーステート】
 /*----------*/
-AttackEnemyState::AttackEnemyState()
+AttackEnemyState::AttackEnemyState(bool bossFlag)
 : IStateCharacter()
-, EnemyProcess()
+, EnemyProcess(bossFlag)
 {
 	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
 }
@@ -335,9 +354,9 @@ void AttackEnemyState::Death(CharacterBase* character)
 /*------------------------*/
 /*【逃げエネミーステート】*/
 /*------------------------*/
-EscapeEnemyState::EscapeEnemyState()
+EscapeEnemyState::EscapeEnemyState(bool bossFlag)
 : IStateCharacter()
-, EnemyProcess()
+, EnemyProcess(bossFlag)
 , mnEscapeTime(0)
 {
 	mStateNumber = (int)ENEMY_STATE::ESCAPE_ENEMY_STATE;
@@ -394,54 +413,11 @@ void EscapeEnemyState::Death(CharacterBase* character)
 /*     【派生ステート】     */
 /*--------------------------*/
 
-/*-------------------------------------------------- ボスステート --------------------------------------------------*/
-/*----------------------------*/
-/*【Idleボスエネミーステート】*/
-/*----------------------------*/
-IdleBossEnemyState::IdleBossEnemyState()
-: IdleEnemyState()
-{
-	mbBossFlag = true;
-	mStateNumber = (int)ENEMY_STATE::IDLE_ENEMY_STATE;
-}
-
-/*----------------------------*/
-/*【移動ボスエネミーステート】*/
-/*----------------------------*/
-MoveBossEnemyState::MoveBossEnemyState()
-: MoveEnemyState()
-{
-	mbBossFlag = true;
-	mStateNumber = (int)ENEMY_STATE::MOVE_ENEMY_STATE;
-}
-
-/*--------------------------------*/
-/*【攻撃入りボスエネミーステート】*/
-/*--------------------------------*/
-AttackInBossEnemyState::AttackInBossEnemyState()
-: AttackInEnemyState()
-{
-	mbBossFlag = true;
-	mStateNumber = (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
-}
-
-/*----------------------------*/
-/*【攻撃ボスエネミーステート】*/
-/*----------------------------*/
-AttackBossEnemyState::AttackBossEnemyState()
-: AttackEnemyState()
-{
-	mbBossFlag = true;
-	mStateNumber = (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
-}
-
-/*------------------------------------------------------------------------------------------------------------------*/
-
 /*--------------------------*/
 /*【左回避エネミーステート】*/
 /*--------------------------*/
-LeftAvoidEnemyState::LeftAvoidEnemyState()
-: EscapeEnemyState()
+LeftAvoidEnemyState::LeftAvoidEnemyState(bool bossFlag)
+: EscapeEnemyState(bossFlag)
 {
 	mStateNumber = (int)ENEMY_STATE::LEFT_AVOID_ENEMY_STATE;
 }
@@ -463,8 +439,8 @@ void LeftAvoidEnemyState::Update(CharacterBase* character)
 /*--------------------------*/
 /*【右回避エネミーステート】*/
 /*--------------------------*/
-RightAvoidEnemyState::RightAvoidEnemyState()
-: EscapeEnemyState()
+RightAvoidEnemyState::RightAvoidEnemyState(bool bossFlag)
+: EscapeEnemyState(bossFlag)
 {
 	mStateNumber = (int)ENEMY_STATE::RIGHT_AVOID_ENEMY_STATE;
 }

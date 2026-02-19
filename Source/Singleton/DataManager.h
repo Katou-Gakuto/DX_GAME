@@ -6,11 +6,13 @@
 
 #include "SceneEnum.h"
 #include "GameDatas.h"
+#include "Status.h"
 
 enum class MapType;
 struct TileData;
 
 class EndManager;
+class CharacterBase;
 
 class DataManager
 {
@@ -77,7 +79,7 @@ public:
 	/*--------*/
 
 	/*データを保存*/
-	void Save();
+	void Save(CharacterBase* playerObject);
 
 	/*プレイ中データに設定されたデータを削除する*/
 	void PlayDataDelete(int playerNumber);
@@ -109,6 +111,9 @@ public:
 
 	/*プレイプレイヤーデータ設定*/
 	inline void SetPlayPlayerData(const PLAYER_DATA& data) { mstPlayPlayerData.playerData = data; }
+
+	/// <summary>プレイ中ステータス設定</summary>
+	inline void SetPlayPlayerStatus(const STATUS status) { mstPlayPlayerData.playerData.status = status; }
 
 	/// <summary>ダンジョンの削除キャラクターID取得</summary>
 	/// <param name="dungeonDeleteCharacterData"></param>

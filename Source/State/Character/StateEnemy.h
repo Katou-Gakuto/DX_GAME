@@ -53,8 +53,11 @@ protected:
 	bool mbBossFlag;
 
 protected:
-	EnemyProcess();
+	EnemyProcess(bool bossFlag);
 	~EnemyProcess() = default;
+
+	/*プレイヤーのステータス設定*/
+	void SetPlayerStatus();
 
 	/*一定範囲内にプレイヤーターゲットがいるなら「true」*/
 	bool PlayerTargetCheck(CharacterBase* character, float range);
@@ -85,7 +88,7 @@ protected:
 class IdleEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	IdleEnemyState();
+	IdleEnemyState(bool bossFlag = false);
 	~IdleEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -115,7 +118,7 @@ public:
 class MoveEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	MoveEnemyState();
+	MoveEnemyState(bool bossFlag = false);
 	~MoveEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -152,7 +155,7 @@ private:
 	int mnPreAttackTime;
 
 public:
-	AttackInEnemyState();
+	AttackInEnemyState(bool bossFlag = false);
 	~AttackInEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -182,7 +185,7 @@ public:
 class AttackEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	AttackEnemyState();
+	AttackEnemyState(bool bossFlag = false);
 	~AttackEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -215,7 +218,7 @@ protected:
 	int mnEscapeTime;
 
 public:
-	EscapeEnemyState();
+	EscapeEnemyState(bool bossFlag = false);
 	~EscapeEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -243,59 +246,13 @@ public:
 /*     【派生ステート】     */
 /*--------------------------*/
 
-/*-------------------------------------------------- ボスステート --------------------------------------------------*/
-/*----------------------------*/
-/*【Idleボスエネミーステート】*/
-/*----------------------------*/
-class IdleBossEnemyState : public IdleEnemyState
-{
-private:
-public:
-	IdleBossEnemyState();
-	~IdleBossEnemyState() = default;
-};
-
-/*----------------------------*/
-/*【移動ボスエネミーステート】*/
-/*----------------------------*/
-class MoveBossEnemyState : public MoveEnemyState
-{
-private:
-public:
-	MoveBossEnemyState();
-	~MoveBossEnemyState() = default;
-};
-
-/*--------------------------------*/
-/*【攻撃入りボスエネミーステート】*/
-/*--------------------------------*/
-class AttackInBossEnemyState : public AttackInEnemyState
-{
-private:
-public:
-	AttackInBossEnemyState();
-	~AttackInBossEnemyState() = default;
-};
-
-/*----------------------------*/
-/*【攻撃ボスエネミーステート】*/
-/*----------------------------*/
-class AttackBossEnemyState : public AttackEnemyState
-{
-private:
-public:
-	AttackBossEnemyState();
-	~AttackBossEnemyState() = default;
-};
-/*------------------------------------------------------------------------------------------------------------------*/
-
 /*--------------------------*/
 /*【左回避エネミーステート】*/
 /*--------------------------*/
 class LeftAvoidEnemyState : public EscapeEnemyState
 {
 public:
-	LeftAvoidEnemyState();
+	LeftAvoidEnemyState(bool bossFlag = false);
 	~LeftAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/
@@ -311,7 +268,7 @@ public:
 class RightAvoidEnemyState : public EscapeEnemyState
 {
 public:
-	RightAvoidEnemyState();
+	RightAvoidEnemyState(bool bossFlag = false);
 	~RightAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/

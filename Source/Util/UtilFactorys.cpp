@@ -704,13 +704,13 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::BOSS_ENEMY:
-		fsmCharacter->RegisterState(new IdleBossEnemyState());
-		fsmCharacter->RegisterState(new MoveBossEnemyState());
-		fsmCharacter->RegisterState(new AttackInBossEnemyState());
-		fsmCharacter->RegisterState(new AttackBossEnemyState());
-		fsmCharacter->RegisterState(new EscapeEnemyState());
-		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
-		fsmCharacter->RegisterState(new RightAvoidEnemyState());
+		fsmCharacter->RegisterState(new IdleEnemyState(true));
+		fsmCharacter->RegisterState(new MoveEnemyState(true));
+		fsmCharacter->RegisterState(new AttackInEnemyState(true));
+		fsmCharacter->RegisterState(new AttackEnemyState(true));
+		fsmCharacter->RegisterState(new EscapeEnemyState(true));
+		fsmCharacter->RegisterState(new LeftAvoidEnemyState(true));
+		fsmCharacter->RegisterState(new RightAvoidEnemyState(true));
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
 

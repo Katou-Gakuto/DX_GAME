@@ -1,3 +1,5 @@
+#include "GameDataEnum.h"
+#include "GameDatas.h"
 
 #include "Master.h"
 
@@ -41,10 +43,10 @@ int StartResultUIState::Update(UIBase* ui)
 int StartResultUIState::Decision(UIBase* ui)
 {
     // シーン移動
-	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().dungeonType);
+	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneType);
 
     // エネミー削除
-    Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().dungeonType);
+    Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneType);
 
 	return mStateNumber;
 }

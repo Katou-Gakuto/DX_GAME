@@ -292,13 +292,13 @@ int StartTitleUIState::Decision(UIBase* ui)
 // 描画
 void StartTitleUIState::Draw(UIBase* ui)
 {
-	// HACK: ハンドルで大きくした文字を描画する
-    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+	// // HACK: ハンドルで大きくした文字を描画する
+    // DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
-    Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.2f));
-    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "タイトル", GetColor(0, 0, 0));
-	stringDrawPos.y = displaySize.Up_RatioHeight(0.7f);
-    DrawString(stringDrawPos.x - 50, stringDrawPos.y, "Enter", GetColor(0, 0, 0));
+    // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.2f));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "タイトル", GetColor(0, 0, 0));
+	// stringDrawPos.y = displaySize.Up_RatioHeight(0.7f);
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "Enter", GetColor(0, 0, 0));
 }
 
 /*----------------------*/

@@ -50,6 +50,20 @@ void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATIO
 	 }
 }
 
+// プレイヤーポジションデータ設定
+void SceneStateProcess::SetPlayerPosData(PLAYER_DATA* playerData, DATA_SCENE dataScene, SCENE scene)
+{
+	if (playerData->mapType == scene)
+	{
+		playerData->sceneData[dataScene].scenePos = playerData->position;
+		playerData->sceneData[dataScene].sceneAngle = playerData->angle;
+	}
+	else
+	{
+		playerData->mapType = scene;
+	}
+}
+
 /*--------------------------*/
 /*【スタートシーンステート】*/
 /*--------------------------*/
@@ -139,17 +153,25 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 
 	mStateNumber = sceneManager->GetNowScene();
 
-	{// 町を記録
+	{// プレイヤーデータ設定
+		// プレイヤーデータ取得
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
-		playerData.townType = mStateNumber;
+
+		// 町記録
+		playerData.sceneData[DATA_SCENE::TOWN].sceneType = mStateNumber;
+
+		// プレイヤーポジション設定
+		SetPlayerPosData(&playerData, DATA_SCENE::TOWN, mStateNumber);
+
+		// データ設定
 		Master::mpDataManager->SetPlayPlayerData(playerData);
 	}
 
 	// プレイヤー作成
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
-	player->SetPos(Master::mpDataManager->GetPlayPlayerData().townPos);
-	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().townAngle);
+	player->SetPos(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].scenePos);
+	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::TOWN_PLAYER));
 	// モデルとアニメション設定
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::TOWN);
@@ -174,7 +196,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
 		// HACK: 全アングル反転させてるから他のアングルが関係し始めたら変える
-		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().townAngle), -1.0f);
+		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -238,8 +260,8 @@ void TownScene::OnExit(SceneManager* sceneManager)
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
-	playerData.townPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
-	playerData.dungeonPos = UtilCalc::VZero;
+	playerData.sceneData[DATA_SCENE::TOWN].scenePos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+	playerData.sceneData[DATA_SCENE::DUNGEON].sceneAngle = UtilCalc::VZero;
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
 	// マップデータ解放
@@ -274,16 +296,24 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 
 	mStateNumber = sceneManager->GetNowScene();
 
-	{// ダンジョンを記録
+	{// プレイヤーデータを設定
+		// プレイヤーデータ取得
 		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
-		playerData.dungeonType = mStateNumber;
+
+		// ダンジョン記録
+		playerData.sceneData[DATA_SCENE::DUNGEON].sceneType = mStateNumber;
+
+		// プレイヤーポジション設定
+		SetPlayerPosData(&playerData, DATA_SCENE::DUNGEON, mStateNumber);
+
+		// データ設定
 		Master::mpDataManager->SetPlayPlayerData(playerData);
 	}
 
 	Character_Map* player = new Character_Map(Master::mpDataManager->GetPlayPlayerData().status);
 	player->Initilize();
-	player->SetPos(Master::mpDataManager->GetPlayPlayerData().dungeonPos);
-	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().dungeonAngle);
+	player->SetPos(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].scenePos);
+	player->SetAngle(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneAngle);
 	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER));
 	// モデルとアニメション設定
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::DUNGEON);
@@ -297,7 +327,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		cameraData.targetCharacter = player;
 		cameraData.threeDFlag = true;
 		// HACK: 全アングル反転させてるから他のアングルが関係し始めたら変える
-		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().dungeonAngle), -1.0f);
+		cameraData.angle = VScale(UtilCalc::VDegChange(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneAngle), -1.0f);
 		cameraData.SetColor(F4Get(128, 128, 128, 0));
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
@@ -381,7 +411,8 @@ void DungeonScene::OnExit(SceneManager* sceneManager)
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
 	playerData.preMap = mStateNumber;
-	playerData.dungeonPos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+	playerData.sceneData[DATA_SCENE::DUNGEON].scenePos = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
+	playerData.sceneData[DATA_SCENE::DUNGEON].sceneAngle = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target->GetAngle();
 	Master::mpDataManager->SetPlayPlayerData(playerData);
 
 	// マップデータ解放
@@ -415,6 +446,17 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();
+	
+	{// プレイヤーデータ設定
+		// プレイヤーデータ取得
+		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+
+		// プレイヤーポジション設定
+		SetPlayerPosData(&playerData, DATA_SCENE::BATTLE, mStateNumber);
+
+		// データ設定
+		Master::mpDataManager->SetPlayPlayerData(playerData);
+	}
 
 	CharacterBase* player = nullptr;
 	switch (Master::mpDataManager->GetPlayPlayerData().status.characterType)

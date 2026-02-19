@@ -74,6 +74,9 @@ public:
 	IStateCharacter() = default;
 	virtual ~IStateCharacter() = default;
 
+	/// <summary>I—¹</summary>
+	virtual void Finalize(CharacterBase* character) {}
+
 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	virtual void OnEnter(CharacterBase* character) = 0;
 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/

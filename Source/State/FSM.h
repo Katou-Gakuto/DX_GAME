@@ -136,6 +136,9 @@ class FSMCharacter : public FSMBase<int, IStateCharacter>
 public:
 	FSMCharacter();
 
+	/// <summary>終了</summary>
+	void Finalize(CharacterBase* character);
+
 	/*実行中状態をセットする*/
 	void SetCurrentState(int id, CharacterBase* character);
 

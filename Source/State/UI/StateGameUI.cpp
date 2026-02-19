@@ -186,7 +186,7 @@ void NormalGameUIState::Draw(UIBase* ui)
 /*----------------------*/
 /*【ポーズUIステート】*/
 /*----------------------*/
-
+#include "DataManager.h"
 PauseGameUIState::PauseGameUIState()
 {
     mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
@@ -200,6 +200,8 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     //printfDx("テロップ：ポーズUI\n");
 
     ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+
+    Master::mpDataManager->Save(Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER));
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
     // {

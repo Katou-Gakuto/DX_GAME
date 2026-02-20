@@ -13,6 +13,10 @@ public:
 #if _DEBUG
     std::vector<VariableType*> VariableDatas = {};    // 変数ポインタ
 
+    VariableType PreVariable[4];    // 前の変数
+
+    VariableType ChangeVariable[4]; // 変更用変数
+
     float Speed = 1.0f; // ドラッグ時の変化速度
 
     float Step = 0.0f;      // 刻み幅
@@ -22,7 +26,7 @@ public:
     float Max = 0;  // 最大値
     
     std::string Label = "NONE";  // ラベル
-    std::string Format = "%.3f"; // 表示数字
+    std::string Format = "%.6f"; // 表示数字
 
     ImGuiSliderFlags Flag = 0;  // オプションフラグ
 
@@ -117,6 +121,6 @@ struct IMGUI_FLOAT_DATA : public IMGUI_TEMPLATE_DATA<float>
 };
 
 // int
-struct IMGUI_INT_DATA : public IMGUI_TEMPLATE_DATA<float>
+struct IMGUI_INT_DATA : public IMGUI_TEMPLATE_DATA<int>
 {
 };

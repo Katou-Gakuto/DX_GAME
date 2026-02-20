@@ -244,7 +244,7 @@ void DataManager::Initilize()
 		setPlayer.dataFlag = true;
 		setPlayer.survivalFlag = 1;
 		setPlayer.name = "アボカド";
-		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 9, 10, CHARACTER_TYPE::ROBOT);
+		setPlayer.status = STATUS::SetStatus(100, 100, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT);
 
 		mstPlayerDatas.push_back(setPlayer);
 

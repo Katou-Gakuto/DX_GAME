@@ -4,6 +4,7 @@
 #include "Master.h"
 
 #include "FSM.h"
+#include "ImguiManager.h"
 #include "ResourceManager.h"
 #include "UI_Result.h"
 #include "UtilFactorys.h"
@@ -18,6 +19,21 @@ UI_Result::UI_Result()
 UI_Result::~UI_Result()
 {
 }
+
+// HACK: テスト用　削除する
+#define TEST_NUMBER 11
+
+Vector2 TestPos[TEST_NUMBER] =  {Vector2(0.0f, 0.0f), Vector2(0.0f, 0.0f), 
+                                Vector2(0.685f, 0.190f), Vector2(0.685f, 0.550f), Vector2(0.685f, 0.710f), 
+                                
+                                Vector2(0.080f, 0.216f), Vector2(0.080f, 0.371f), Vector2(0.080f, 0.476f), 
+                                Vector2(0.080f, 0.570f), Vector2(0.080f, 0.670f), Vector2(0.080f, 0.840f)};
+
+Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f), Vector2(1.0f, 1.0f), 
+                                Vector2(0.225f, 0.250f), Vector2(0.225f, 0.150f), Vector2(0.225f, 0.150f), 
+                                
+                                Vector2(0.520f, 0.140f), Vector2(0.520f, 0.100f), Vector2(0.520f, 0.100f), 
+                                Vector2(0.520f, 0.100f), Vector2(0.520f, 0.100f), Vector2(0.520f, 0.100f)};
 
 // UI初期化
 void UI_Result::UIInitilize()
@@ -35,11 +51,17 @@ void UI_Result::UIInitilize()
         setDrawDatas.push_back(drawData);
     }
 
-    // モデル追加
-    AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
+    for (int i = 0; i < TEST_NUMBER; i++)
+    {
+        setDrawDatas[0].pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(TestPos[i]);
+        setDrawDatas[0].size = ResourceManager::mstDisplaySize.LeftUp_Ratio(TestSize[i]);
 
-    // アニメーション設定
-    AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
+
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
+    }
 }
 
 // UIシーン最終初期化

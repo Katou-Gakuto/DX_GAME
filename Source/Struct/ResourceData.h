@@ -126,6 +126,8 @@ public:
 	Vector2_Int RightDown_Ratio(Vector2 ratio);
 	/// <summary>右下を起点にした割合(0～1)から座標を取得</summary>
 	Vector2_Int RightDown_FloatRatio(float ratio) { return RightDown_Ratio(Vector2(ratio, ratio)); }
+
+
 } DISPLAY_SIZE;
 
 typedef struct DrawConfigData

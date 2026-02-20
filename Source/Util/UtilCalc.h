@@ -10,11 +10,16 @@ namespace UtilCalc
 	/*x‚Ì‚İ1*/
 	const VECTOR VXOne = VGet(1.0f, 0.0f, 0.0f);
 	/*O•ª‚Ìˆê*/
-	const float One_Third = 0.3333333f;
+	constexpr float One_Third = 0.3333333f;
 	/*3,14*/
-	const float Pi = DX_PI_F;
+	constexpr float Pi = DX_PI_F;
 	/*3,14 * 2.0f*/
-	const float PiTwo = DX_PI_F * 2.0f;
+	constexpr float PiTwo = DX_PI_F * 2.0f;
+
+	constexpr float FloatError = 0.00000001f;
+
+	/// <summary>float“¯m‚ª‚ÌŒë·”ÍˆÍ“à‚È‚çutruev‚ğ•Ô‚·</summary>
+	bool FloatEqual(float src, float dst, float error);
 
 	/*•„†”½“]*/
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }

@@ -5,6 +5,12 @@
 #include "UtilCalc.h"
 
 
+// float“¯m‚ª‚ÌŒë·”ÍˆÍ“à‚È‚çutruev‚ğ•Ô‚·
+bool UtilCalc::FloatEqual(float src, float dst, float error)
+{
+    return std::fabs(src - dst) < error;
+}
+
 // •ûŒü‚ğ3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é
 float UtilCalc::NotExceedAngle(float angle)
 {

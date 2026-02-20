@@ -51,6 +51,7 @@
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
     <ClCompile Include="Source\Singleton\DataManager.cpp" />
+    <ClCompile Include="Source\Singleton\DotWeenManager.cpp" />
     <ClCompile Include="Source\Singleton\EndManager.cpp" />
     <ClCompile Include="Source\Singleton\FadeManager.cpp" />
     <ClCompile Include="Source\Singleton\GameManager.cpp" />
@@ -79,6 +80,7 @@
     <ClCompile Include="Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="Source\State\UI\StateTitleUI.cpp" />
     <ClCompile Include="Source\Struct\CameraData.cpp" />
+    <ClCompile Include="Source\Struct\Coin.cpp" />
     <ClCompile Include="Source\Struct\CollisionData.cpp" />
     <ClCompile Include="Source\Struct\ResourceData.cpp" />
     <ClCompile Include="Source\Struct\TargetData.cpp" />
@@ -102,6 +104,8 @@
     <ClInclude Include="Source\Enum\AnimationEnum.h" />
     <ClInclude Include="Source\Enum\AttackEnum.h" />
     <ClInclude Include="Source\Enum\CharacterEnum.h" />
+    <ClInclude Include="Source\Enum\DirectionEnum.h" />
+    <ClInclude Include="Source\Enum\DotWeenEnum.h" />
     <ClInclude Include="Source\Enum\GameDataEnum.h" />
     <ClInclude Include="Source\Enum\ImguiEnum.h" />
     <ClInclude Include="Source\Enum\ResourceEnum.h" />
@@ -129,6 +133,7 @@
     <ClInclude Include="Source\Singleton\CameraManager.h" />
     <ClInclude Include="Source\Singleton\CollisionManager.h" />
     <ClInclude Include="Source\Singleton\DataManager.h" />
+    <ClInclude Include="Source\Singleton\DotWeenManager.h" />
     <ClInclude Include="Source\Singleton\EndManager.h" />
     <ClInclude Include="Source\Singleton\FadeManager.h" />
     <ClInclude Include="Source\Singleton\GameManager.h" />
@@ -162,6 +167,7 @@
     <ClInclude Include="Source\Struct\CameraData.h" />
     <ClInclude Include="Source\Struct\Coin.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />
+    <ClInclude Include="Source\Struct\DotWeenData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
     <ClInclude Include="Source\Struct\ImguiData.h" />
     <ClInclude Include="Source\Struct\ResourceData.h" />
@@ -176,19 +182,26 @@
     <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Text\Memo.txt" />
-    <Text Include="Text\Terms.txt" />
-    <Text Include="Text\テスト用\------------.txt" />
-    <Text Include="Text\テスト用\エフェクト.txt" />
-    <Text Include="Text\テスト用\ハンドル.txt" />
-    <Text Include="Text\テスト用\動画.txt" />
-    <Text Include="Text\テスト用\画像.txt" />
-    <Text Include="Text\参考_AI回答\ゲーム性.txt" />
-    <Text Include="Text\参考_AI回答\ゲーム説明.txt" />
-    <Text Include="Text\参考_AI回答\ポートフォリオ.txt" />
-    <Text Include="Text\必要素材.txt" />
-    <Text Include="Text\思考まとめ.txt" />
-    <Text Include="Text\進級制作メモ.txt" />
+    <Text Include="..\Schedule\Text\Memo.txt" />
+    <Text Include="..\Schedule\Text\Terms.txt" />
+    <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt" />
+    <Text Include="..\Schedule\Text\テスト用\------------.txt" />
+    <Text Include="..\Schedule\Text\テスト用\エフェクト.txt" />
+    <Text Include="..\Schedule\Text\テスト用\ハンドル.txt" />
+    <Text Include="..\Schedule\Text\テスト用\ハンドルマネージャーメモ.txt" />
+    <Text Include="..\Schedule\Text\テスト用\動画.txt" />
+    <Text Include="..\Schedule\Text\テスト用\画像.txt" />
+    <Text Include="..\Schedule\Text\リザルト要素.txt" />
+    <Text Include="..\Schedule\Text\先生メモ.txt" />
+    <Text Include="..\Schedule\Text\出力-デバッグ.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\PDFを開いたときに自動で何か動作させたい.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム性.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム説明.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\ポートフォリオ.txt" />
+    <Text Include="..\Schedule\Text\工夫した.txt" />
+    <Text Include="..\Schedule\Text\必要素材.txt" />
+    <Text Include="..\Schedule\Text\思考まとめ.txt" />
+    <Text Include="..\Schedule\Text\進級制作メモ.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

@@ -11,6 +11,7 @@
 #include "imgui_impl_win32.h"
 
 #include "ImguiManager.h"
+#include "UtilCalc.h"
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -255,6 +256,12 @@ void ImguiManager::Draw()
 void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
 #if _DEBUG
+   for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
+    {
+        if (i >= 4){break; }
+        imguiFloatData.ChangeVariable[i] = *(imguiFloatData.VariableDatas[i]);
+        imguiFloatData.PreVariable[i] = *(imguiFloatData.VariableDatas[i]);
+    }
     imguiFloatData.Label = imguiFloatData.Label + std::to_string(mstImguiFloatDatas.size());
     mstImguiFloatDatas.push_back(imguiFloatData);
 #endif
@@ -264,6 +271,12 @@ void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
 {
 #if _DEBUG
+   for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
+    {
+        if (i >= 4) {break;}
+        imguiIntData.ChangeVariable[i] = *(imguiIntData.VariableDatas[i]);
+        imguiIntData.PreVariable[i] = *(imguiIntData.VariableDatas[i]);
+    }
     imguiIntData.Label = imguiIntData.Label + std::to_string(mstImguiIntDatas.size());
     mstImguiIntDatas.push_back(imguiIntData);
 #endif
@@ -296,68 +309,71 @@ void ImguiManager::DeleteImguiData(std::string labelName)
 void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
 #if _DEBUG
-    float floatData[4] = {};
     for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
     {
         if (i >= 4)
         {
             break;
         }
+        if (UtilCalc::FloatEqual(*(imguiFloatData.VariableDatas[i]), imguiFloatData.PreVariable[i], UtilCalc::FloatError))
+        {
+            continue;
+        }
 
-        floatData[i] = *(imguiFloatData.VariableDatas[i]);
+        imguiFloatData.ChangeVariable[i] += *(imguiFloatData.VariableDatas[i]) - imguiFloatData.PreVariable[i];
     }
     switch (imguiFloatData.ImguiType)
     {
     case IMGUI_TYPE::SLIDER1:
-        ImGui::SliderFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::SliderFloat(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER2:
-        ImGui::SliderFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::SliderFloat2(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER3:
-        ImGui::SliderFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::SliderFloat3(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER4:
-        ImGui::SliderFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::SliderFloat4(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG1:
-        ImGui::DragFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::DragFloat(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG2:
-        ImGui::DragFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::DragFloat2(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG3:
-        ImGui::DragFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::DragFloat3(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG4:
-        ImGui::DragFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::DragFloat4(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Speed, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT1:
-        ImGui::InputFloat(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Step, imguiFloatData.StepFast, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::InputFloat(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Step, imguiFloatData.StepFast, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT2:
-        ImGui::InputFloat2(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::InputFloat2(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT3:
-        ImGui::InputFloat3(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::InputFloat3(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT4:
-        ImGui::InputFloat4(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::InputFloat4(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
 
     case IMGUI_TYPE::ANGLE:
-        ImGui::SliderAngle(imguiFloatData.Label.c_str(), floatData, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
+        ImGui::SliderAngle(imguiFloatData.Label.c_str(), imguiFloatData.ChangeVariable, imguiFloatData.Min, imguiFloatData.Max, imguiFloatData.Format.c_str(), imguiFloatData.Flag);
         break;
     }
 
@@ -368,7 +384,8 @@ void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
             break;
         }
 
-        *(imguiFloatData.VariableDatas[i]) = floatData[i];
+        *(imguiFloatData.VariableDatas[i]) = imguiFloatData.ChangeVariable[i];
+        imguiFloatData.PreVariable[i] = *(imguiFloatData.VariableDatas[i]);
     }
 #endif
 }
@@ -378,7 +395,6 @@ void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 void ImguiManager::DrawIntImgui(IMGUI_INT_DATA imguiIntData)
 {
 #if _DEBUG
-    int intData[4] = {};
     for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
     {
         if (i >= 4)
@@ -386,56 +402,61 @@ void ImguiManager::DrawIntImgui(IMGUI_INT_DATA imguiIntData)
             break;
         }
 
-        intData[i] = *(imguiIntData.VariableDatas[i]);
+        if (*(imguiIntData.VariableDatas[i]) == imguiIntData.PreVariable[i])
+        {
+            continue;
+        }
+
+        imguiIntData.ChangeVariable[i] += *(imguiIntData.VariableDatas[i]) - imguiIntData.PreVariable[i];
     }
     switch (imguiIntData.ImguiType)
     {
     case IMGUI_TYPE::SLIDER1:
-        ImGui::SliderInt(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::SliderInt(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER2:
-        ImGui::SliderInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::SliderInt2(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER3:
-        ImGui::SliderInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::SliderInt3(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::SLIDER4:
-        ImGui::SliderInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::SliderInt4(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG1:
-        ImGui::DragInt(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::DragInt(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG2:
-        ImGui::DragInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::DragInt2(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG3:
-        ImGui::DragInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::DragInt3(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::DRAG4:
-        ImGui::DragInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
+        ImGui::DragInt4(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Speed, imguiIntData.Min, imguiIntData.Max, imguiIntData.Format.c_str(), imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT1:
-        ImGui::InputInt(imguiIntData.Label.c_str(), intData, imguiIntData.Step, imguiIntData.StepFast, imguiIntData.Flag);
+        ImGui::InputInt(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Step, imguiIntData.StepFast, imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT2:
-        ImGui::InputInt2(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        ImGui::InputInt2(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT3:
-        ImGui::InputInt3(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        ImGui::InputInt3(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Flag);
         break;
 
     case IMGUI_TYPE::INPUT4:
-        ImGui::InputInt4(imguiIntData.Label.c_str(), intData, imguiIntData.Flag);
+        ImGui::InputInt4(imguiIntData.Label.c_str(), imguiIntData.ChangeVariable, imguiIntData.Flag);
         break;
     }
 
@@ -446,7 +467,8 @@ void ImguiManager::DrawIntImgui(IMGUI_INT_DATA imguiIntData)
             break;
         }
 
-        *(imguiIntData.VariableDatas[i]) = intData[i];
+        *(imguiIntData.VariableDatas[i]) = imguiIntData.ChangeVariable[i];
+        imguiIntData.PreVariable[i] = *(imguiIntData.VariableDatas[i]);
     }
 #endif
 }

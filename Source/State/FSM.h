@@ -6,6 +6,7 @@
 #include "StateBase.h"
 
 enum class CAMERA_MODE;
+enum class DOT_WEEN_TYPE;
 enum class SCENE;
 
 class AnimationBase;
@@ -152,6 +153,14 @@ public:
 
 	/*€–S*/
 	void Death(CharacterBase* character);
+};
+
+// INPROGRESS: ì‹Æ’†
+/*-------------------------*/
+/*yDotWeen—LŒÀó‘Ôƒ}ƒVƒ“z*/
+/*-------------------------*/
+class FSMDotWeen : public FSMBase<DOT_WEEN_TYPE, IStateDotWeen>
+{
 };
 
 /*----------*/

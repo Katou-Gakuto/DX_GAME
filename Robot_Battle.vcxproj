@@ -75,6 +75,7 @@
     <ClCompile Include="Source\State\StateAnimationController.cpp" />
     <ClCompile Include="Source\State\StateBase.cpp" />
     <ClCompile Include="Source\State\StateCamera.cpp" />
+    <ClCompile Include="Source\State\StateDotWeen.cpp" />
     <ClCompile Include="Source\State\StateScene.cpp" />
     <ClCompile Include="Source\State\UI\StateGameUI.cpp" />
     <ClCompile Include="Source\State\UI\StateResultUI.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Source\State\StateAnimationController.h" />
     <ClInclude Include="Source\State\StateBase.h" />
     <ClInclude Include="Source\State\StateCamera.h" />
+    <ClInclude Include="Source\State\StateDotWeen.h" />
     <ClInclude Include="Source\State\StateScene.h" />
     <ClInclude Include="Source\State\UI\StateGameUI.h" />
     <ClInclude Include="Source\State\UI\StateResultUI.h" />

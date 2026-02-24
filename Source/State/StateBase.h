@@ -7,6 +7,7 @@
 
 enum class MODEL_TYPE;
 enum class CAMERA_MODE;
+enum class DOT_WEEN_TYPE;
 enum class SCENE;
 
 struct AnimationStateData;
@@ -149,6 +150,15 @@ public:
 
 	/// <summary>同分類の種類かを確認する</summary>
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) { return mStateNumber == animationType; }
+};
+
+// INPROGRESS: 作業中
+/*-------------------------*/
+/*【DotWeenステートベース】*/
+/*-------------------------*/
+class IStateDotWeen : public StateBase<DOT_WEEN_TYPE>
+{
+	
 };
 
 /*------------------------*/

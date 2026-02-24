@@ -68,9 +68,5 @@ void DotWeenManager::DeleteDotWeenData(int id)
 // DotWeen処理
 void DotWeenManager::DotWeenProcess(DOT_WEEN_DATA dotWeenData)
 {
-    switch (dotWeenData.DotWeenType)
-    {
-    case DOT_WEEN_TYPE::OUT_BOUNCE:
-        break;
-    }
+    // ステートで処理
 }

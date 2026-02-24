@@ -492,7 +492,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
-
+	/*
 	{// 敵
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
@@ -551,7 +551,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	}
 		break;
 	}
-
+	*/
 	// UI生成
 	{
 		UI_Game* gameUI = new UI_Game();

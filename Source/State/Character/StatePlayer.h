@@ -34,6 +34,10 @@ protected:
 	// カメラ
 	CameraManager* mpCameraManager;
 
+	// HACK: カメラモード追加作成してこれらを消す
+	// ターゲット番号
+	static int mnTargetNumber;
+
 protected:
 	PlayerProcess();
 	~PlayerProcess() = default;
@@ -50,8 +54,20 @@ protected:
 	/*特殊攻撃キーを押していれば「true」*/
 	bool GetPlayerSpceialAttackFlag();
 
+	/*ターゲット変更キーを押していれば「true」*/
+	bool GetTargetChangeFlag();
+
 	/*カメラに合わせて移動方向を設定*/
 	void SetMoveDir_Camera(CharacterBase* character);
+
+	/*ターゲット変更*/
+	void TargetChange();
+
+	/*ターゲットにカメラを向ける*/
+	void SetTargetCamera(CharacterBase* character);
+
+	/*ターゲットアリのカメラ処理*/
+	void TargetCameraProcess(CharacterBase* character);
 
 	/*描画*/
 	void PlayerProcessDraw(CharacterBase* character);

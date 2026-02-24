@@ -12,6 +12,7 @@
 #include "ResourceManager.h"
 #include "StopManager.h"
 #include "UtilCalc.h"
+#include "UtilChange.h"
 
 ModelGraph::ModelGraph()
 : ModelBase()
@@ -98,59 +99,57 @@ void ModelGraph::ModelDraw()
 
 void ModelGraph::SetDrawData(VECTOR pos, VECTOR angle, VECTOR size)
 {
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
         switch (mstDrawDatas[i].drawType)
         {
 	case DRAW_GRAPH_TYPE::NORMAL:
 	case DRAW_GRAPH_TYPE::TURN:
-        mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
-        mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
+        mstDrawDatas[i].pos.x = displaySize.Left_RatioWidth(pos.x);
+        mstDrawDatas[i].pos.y = displaySize.Left_RatioWidth(pos.y);
 		break;
 
 	case DRAW_GRAPH_TYPE::EXTEND:
-        mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
-        mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
-        mstDrawDatas[i].extPos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(size.x) + mstDrawDatas[i].pos.x;
-        mstDrawDatas[i].extPos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(size.y) + mstDrawDatas[i].pos.y;
+        mstDrawDatas[i].pos.x = displaySize.Left_RatioWidth(pos.x);
+        mstDrawDatas[i].pos.y = displaySize.Left_RatioWidth(pos.y);
+        mstDrawDatas[i].extPos.x = displaySize.Left_RatioWidth(size.x) + mstDrawDatas[i].pos.x;
+        mstDrawDatas[i].extPos.y = displaySize.Left_RatioWidth(size.y) + mstDrawDatas[i].pos.y;
 		break;
 
 	case DRAW_GRAPH_TYPE::ROTA:
-        mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
-        mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
-        mstDrawDatas[i].extPos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(size.x) + mstDrawDatas[i].pos.x;
-        mstDrawDatas[i].extPos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(size.y) + mstDrawDatas[i].pos.y;
+        mstDrawDatas[i].pos.x = displaySize.Left_RatioWidth(pos.x);
+        mstDrawDatas[i].pos.y = displaySize.Left_RatioWidth(pos.y);
+        mstDrawDatas[i].extPos.x = displaySize.Left_RatioWidth(size.x) + mstDrawDatas[i].pos.x;
+        mstDrawDatas[i].extPos.y = displaySize.Left_RatioWidth(size.y) + mstDrawDatas[i].pos.y;
         mstDrawDatas[i].angle = angle.z;
 		break;
 
 	case DRAW_GRAPH_TYPE::ROTA_CENTER:// centerPos‚ÆextRate‚ðÝ’è‚ÍŠO•”‚Å‚â‚é
 	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:// centerPos‚ÆextRate‚ðÝ’è‚ÍŠO•”‚Å‚â‚é
-        mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
-        mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
+        mstDrawDatas[i].pos.x = displaySize.Left_RatioWidth(pos.x);
+        mstDrawDatas[i].pos.y = displaySize.Left_RatioWidth(pos.y);
         mstDrawDatas[i].angle = angle.z;
 		break;
 
 	case DRAW_GRAPH_TYPE::RECT:
-        mstDrawDatas[i].pos.x = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x);
-        mstDrawDatas[i].pos.y = ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y);
+        mstDrawDatas[i].pos.x = displaySize.Left_RatioWidth(pos.x);
+        mstDrawDatas[i].pos.y = displaySize.Left_RatioWidth(pos.y);
 		break;
 
 	case DRAW_GRAPH_TYPE::SIZE:
-        mstDrawDatas[i].pos.x += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x - mvPrePosition.x);
-        mstDrawDatas[i].pos.y += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y - mvPrePosition.y);
-        mstDrawDatas[i].size.x += ResourceManager::mstDisplaySize.Left_RatioWidth(size.x - mvPreSize.x);
-        mstDrawDatas[i].size.y += ResourceManager::mstDisplaySize.Left_RatioWidth(size.y - mvPreSize.y);
+        mstDrawDatas[i].pos += displaySize.LeftUp_SeparateRatio(UtilChange::ChangeVector_XY(mvPrePosition), UtilChange::ChangeVector_XY(pos));
+        mstDrawDatas[i].size += displaySize.LeftUp_SeparateRatio(UtilChange::ChangeVector_XY(mvPreSize), UtilChange::ChangeVector_XY(size));
         break;
 
 	case DRAW_GRAPH_TYPE::FREE:
-        mstDrawDatas[i].upLeft.x += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x - mvPrePosition.x);
-        mstDrawDatas[i].upLeft.y += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y - mvPrePosition.y);
-        mstDrawDatas[i].upRight.x += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x - mvPrePosition.x);
-        mstDrawDatas[i].upRight.y += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y - mvPrePosition.y);
-        mstDrawDatas[i].downLeft.x += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x - mvPrePosition.x);
-        mstDrawDatas[i].downLeft.y += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y - mvPrePosition.y);
-        mstDrawDatas[i].downRight.x += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.x - mvPrePosition.x);
-        mstDrawDatas[i].downRight.y += ResourceManager::mstDisplaySize.Left_RatioWidth(pos.y - mvPrePosition.y);
+    {
+        Vector2_Int plusPos = displaySize.LeftUp_SeparateRatio(UtilChange::ChangeVector_XY(mvPrePosition), UtilChange::ChangeVector_XY(pos));
+        mstDrawDatas[i].upLeft += plusPos;
+        mstDrawDatas[i].upRight += plusPos;
+        mstDrawDatas[i].downLeft += plusPos;
+        mstDrawDatas[i].downRight += plusPos;
+    }
         break;
         }
     }

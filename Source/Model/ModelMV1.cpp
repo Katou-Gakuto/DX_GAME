@@ -47,6 +47,7 @@ void ModelMV1::PositionUpdate()
 
         // ‰ñ“]‚Ì’†S‚ðã‚É‚·‚é
         {
+            // INPROGRESS: ì‹Æ’†C³’†
             // X‰ñ“]
             VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));

@@ -10,6 +10,8 @@ private:
 
     int mnIdMax;
 
+    static constexpr int DOT_WEEN_ID_MAX = 2'000'000'000;
+
 public:
     DotWeenManager();
     ~DotWeenManager();
@@ -22,7 +24,7 @@ public:
 	void Update();
 
     /// <summary>DotWennî•ñİ’è</summary>
-    inline int SetDotWeen(DOT_WEEN_DATA dotWeenData) { mstDotWeenDatas.push_back(dotWeenData); }
+    int SetDotWeen(DOT_WEEN_DATA dotWeenData);
     
     /// <summary>DotWeenî•ñíœ</summary>
     void DeleteDotWeenData(int id);

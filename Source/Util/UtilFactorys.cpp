@@ -405,10 +405,10 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2024/*(60 / 0.5) * 17*/);
+			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2040/*(60 / 0.5) * 17*/);
 			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
 			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_IN, 2024);
+			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_IN, 2040);
 			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK, 2040);
 			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_OUT, 1632);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);

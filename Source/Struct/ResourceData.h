@@ -96,13 +96,15 @@ public:
 		return *this;
 	}
 
-	// TODO: 画面の座標取得(割合)と別の座標から居て値割合変更した座標
 
-	/// <summary>左を起点にした割合(0～1)から縦軸の座標を取得</summary>
+	/*--------------------------------*/
+	/*【上下左右を起点に割合座標取得】*/
+	/*--------------------------------*/
+	/// <summary>左を起点にした割合(0～1)から横軸の座標を取得</summary>
 	int Left_RatioWidth(float ratio);
 	/// <summary>上を起点にした割合(0～1)から縦軸の座標を取得</summary>
 	int Up_RatioHeight(float ratio);
-	/// <summary>右を起点にした割合(0～1)から縦軸の座標を取得</summary>
+	/// <summary>右を起点にした割合(0～1)から横軸の座標を取得</summary>
 	int Right_RatioWidth(float ratio);
 	/// <summary>下を起点にした割合(0～1)から縦軸の座標を取得</summary>
 	int Down_RatioHeight(float ratio);
@@ -127,6 +129,39 @@ public:
 	/// <summary>右下を起点にした割合(0～1)から座標を取得</summary>
 	Vector2_Int RightDown_FloatRatio(float ratio) { return RightDown_Ratio(Vector2(ratio, ratio)); }
 
+
+	
+	/*----------------------------------*/
+	/*【上下左右から離れた割合座標取得】*/
+	/*----------------------------------*/
+	/// <summary>左を起点にした離れた割合(0～1)から横軸の座標を取得</summary>
+	int Left_SeparateRatioWidth(float startRatio, float endRatio);
+	/// <summary>上を起点にした離れた割合(0～1)から縦軸の座標を取得</summary>
+	int Up_SeparateRatioHeight(float startRatio, float endRatio);
+	/// <summary>右を起点にした離れた割合(0～1)から横軸の座標を取得</summary>
+	int Right_SeparateRatioWidth(float startRatio, float endRatio);
+	/// <summary>下を起点にした離れた割合(0～1)から縦軸の座標を取得</summary>
+	int Down_SeparateRatioHeight(float startRatio, float endRatio);
+
+	/// <summary>左上を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int LeftUp_SeparateRatio(Vector2 startRatio, Vector2 endRatio);
+	/// <summary>左上を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int LeftUp_SeparateFloatRatio(float startRatio, float endRatio) { return LeftUp_SeparateRatio(Vector2(startRatio, startRatio), Vector2(endRatio, endRatio)); }
+
+	/// <summary>右上を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int RightUp_SeparateRatio(Vector2 startRatio, Vector2 endRatio);
+	/// <summary>右上を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int RightUp_SeparateFloatRatio(float startRatio, float endRatio) { return RightUp_SeparateRatio(Vector2(startRatio, startRatio), Vector2(endRatio, endRatio)); }
+
+	/// <summary>左下を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int LeftDown_SeparateRatio(Vector2 startRatio, Vector2 endRatio);
+	/// <summary>左下を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int LeftDown_SeparateFloatRatio(float startRatio, float endRatio) { return LeftDown_SeparateRatio(Vector2(startRatio, startRatio), Vector2(endRatio, endRatio)); }
+
+	/// <summary>右下を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int RightDown_SeparateRatio(Vector2 startRatio, Vector2 endRatio);
+	/// <summary>右下を起点にした離れた割合(0～1)から座標を取得</summary>
+	Vector2_Int RightDown_SeparateFloatRatio(float startRatio, float endRatio) { return RightDown_SeparateRatio(Vector2(startRatio, startRatio), Vector2(endRatio, endRatio)); }
 
 } DISPLAY_SIZE;
 

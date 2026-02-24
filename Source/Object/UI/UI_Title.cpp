@@ -143,9 +143,9 @@ void UI_Title::UIInitilize()
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][2] = VGet(0.505f, 0.48f, 0.0f);
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][3] = VGet(0.505f, 0.68f, 0.0f);
         setUIPosData[mstUIDrawModels.size() - 1][0] = VGet(0.0f, 0.0f, 0.0f);
-        setUIPosData[mstUIDrawModels.size() - 1][1] = VGet(0.0f, 0.146f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][1] = VGet(0.0f, 0.196f, 0.0f);
         setUIPosData[mstUIDrawModels.size() - 1][2] = VGet(0.37f, 0.0f, 0.0f);
-        setUIPosData[mstUIDrawModels.size() - 1][3] = VGet(0.37f, 0.146f, 0.0f);
+        setUIPosData[mstUIDrawModels.size() - 1][3] = VGet(0.37f, 0.196f, 0.0f);
         std::vector<std::map<int, VECTOR>> nullUIPosData;
         nullUIPosData.clear();
         for (int i = 0; i < (int)TITLE_UI_STATE::MAX; i++)

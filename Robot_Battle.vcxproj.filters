@@ -675,5 +675,8 @@
     <Text Include="..\Schedule\Text\リザルト要素.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
+    <Text Include="..\Schedule\Text\UI画像構想.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
   </ItemGroup>
 </Project>

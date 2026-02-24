@@ -184,6 +184,7 @@
   <ItemGroup>
     <Text Include="..\Schedule\Text\Memo.txt" />
     <Text Include="..\Schedule\Text\Terms.txt" />
+    <Text Include="..\Schedule\Text\UI画像構想.txt" />
     <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt" />
     <Text Include="..\Schedule\Text\テスト用\------------.txt" />
     <Text Include="..\Schedule\Text\テスト用\エフェクト.txt" />

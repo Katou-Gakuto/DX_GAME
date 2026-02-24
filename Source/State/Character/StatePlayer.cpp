@@ -1,6 +1,7 @@
 #include <string>
 
 #include "AttackEnum.h"
+#include "CameraData.h"
 
 #include "Master.h"
 
@@ -21,10 +22,12 @@
 /*------------------------*/
 /*【プレイヤー共通処理用】*/
 /*------------------------*/
+int PlayerProcess::mnTargetNumber = -1;
 PlayerProcess::PlayerProcess()
 : mpKeyState(Master::mpKeyState)
 , mpCameraManager(Master::mpGameManager->GetCameraManager())
 {
+	mnTargetNumber = -1;
 }
 
 // 移動共通処理
@@ -79,11 +82,55 @@ bool PlayerProcess::GetPlayerSpceialAttackFlag()
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::R);
 }
 
+// ターゲット変更キーを押していれば「true」
+bool PlayerProcess::GetTargetChangeFlag()
+{
+	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::Y);
+}
+
 // カメラに合わせて移動方向を設定
 void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
 {
 	character->SetMoveDir(mpCameraManager->GetCameraData().GetDirection());
 }
+
+// ターゲット変更
+void PlayerProcess::TargetChange()
+{
+	mnTargetNumber += 1;
+
+	if (mnTargetNumber >= Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size())
+	{
+		mnTargetNumber = -1;
+	}
+}
+
+// ターゲットにカメラを向ける
+void PlayerProcess::SetTargetCamera(CharacterBase* character)
+{
+	CharacterBase* targetEnemy = Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY)[mnTargetNumber];
+
+	CameraData cameraData = mpCameraManager->GetCameraData();
+	cameraData.angle.y = -UtilCalc::VDegChange(UtilCalc::VMoveVecToAngle(VSub(character->GetPos(), targetEnemy->GetPos()), UtilCalc::VZero, UtilCalc::PiTwo)).y + UtilCalc::RadPi;
+	mpCameraManager->SetCameraData(cameraData);
+}
+
+// ターゲットアリのカメラ処理
+void PlayerProcess::TargetCameraProcess(CharacterBase* character)
+{
+	if (GetTargetChangeFlag())
+	{
+		TargetChange();
+	}
+
+	if (mnTargetNumber != -1)
+	{
+		SetTargetCamera(character);
+	}
+
+	SetMoveDir_Camera(character);
+}
+
 
 // HACK: 仮実装
 #include "SceneEnum.h"
@@ -171,6 +218,15 @@ int IdlePlayerState::StateCheck(CharacterBase* character)
 // 更新
 void IdlePlayerState::Update(CharacterBase* character)
 {
+	if (GetTargetChangeFlag())
+	{
+		TargetChange();
+	}
+
+	if (mnTargetNumber != -1)
+	{
+		SetTargetCamera(character);
+	}
 }
 
 // 最終更新
@@ -223,7 +279,7 @@ int MovePlayerState::StateCheck(CharacterBase* character)
 // 更新
 void MovePlayerState::Update(CharacterBase* character)
 {
-	SetMoveDir_Camera(character);
+	TargetCameraProcess(character);
 
 	SetPlayerMove(character);
 }

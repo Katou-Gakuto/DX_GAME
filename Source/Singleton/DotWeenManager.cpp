@@ -36,6 +36,21 @@ void DotWeenManager::Update()
     }
 }
 
+// DotWennî•ñİ’è
+int DotWeenManager::SetDotWeen(DOT_WEEN_DATA dotWeenData)
+{
+    dotWeenData.Id = mnIdMax;
+    mnIdMax += 1;
+    if (mnIdMax > DOT_WEEN_ID_MAX)
+    {
+        mnIdMax = 0;
+    }
+
+    mstDotWeenDatas.push_back(dotWeenData);
+
+    return dotWeenData.Id;
+}
+
 // DotWeenî•ñíœ
 void DotWeenManager::DeleteDotWeenData(int id)
 {

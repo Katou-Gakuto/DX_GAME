@@ -559,3 +559,108 @@ bool StateFadeGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 {
     return false;
 }
+
+/*----------*/
+/*【数字アニメーション】*/
+/*----------*/
+StateNumberAnimation::StateNumberAnimation()
+: IStateAnimation()
+{
+    mStateNumber = MODEL_TYPE::UI_NUMBER;
+}
+
+// この状態に入った時の処理
+void StateNumberAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+}
+
+// この状態を出る時の処理
+void StateNumberAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+}
+
+// 終了
+void StateNumberAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+{
+}
+
+// 更新
+void StateNumberAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateNumberAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}
+
+/*----------*/
+/*【DOTweenアニメーション】*/
+/*----------*/
+StateDOTweenAnimation::StateDOTweenAnimation()
+: IStateAnimation()
+{
+    mStateNumber = MODEL_TYPE::UI_TOD_WEEN;
+}
+
+// この状態に入った時の処理
+void StateDOTweenAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+}
+
+// この状態を出る時の処理
+void StateDOTweenAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+}
+
+// 終了
+void StateDOTweenAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+{
+}
+
+// 更新
+void StateDOTweenAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateDOTweenAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}
+
+/*----------*/
+/*【割合アニメーション】*/
+/*----------*/
+StateRatioAnimation::StateRatioAnimation()
+: IStateAnimation()
+{
+    mStateNumber = MODEL_TYPE::UI_RAITO;
+}
+
+// この状態に入った時の処理
+void StateRatioAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType)
+{
+}
+
+// この状態を出る時の処理
+void StateRatioAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
+{
+}
+
+// 終了
+void StateRatioAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+{
+}
+
+// 更新
+void StateRatioAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+{
+}
+
+// モデル種類が同類なら「true」を返す
+bool StateRatioAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
+{
+    return false;
+}

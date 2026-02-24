@@ -31,6 +31,14 @@ struct Vector2_Int
 
 		return vec;
 	}
+
+	Vector2_Int operator +=(Vector2_Int src)
+	{
+		this->x += src.x;
+		this->y += src.y;
+
+		return *this;
+	} 
 };
 
 

@@ -26,8 +26,8 @@ UI_Result::~UI_Result()
 Vector2 TestPos[TEST_NUMBER] =  {Vector2(0.0f, 0.0f), Vector2(0.0f, 0.0f), 
                                 Vector2(0.685f, 0.190f), Vector2(0.685f, 0.550f), Vector2(0.685f, 0.710f), 
                                 
-                                Vector2(0.080f, 0.216f), Vector2(0.080f, 0.371f), Vector2(0.080f, 0.476f), 
-                                Vector2(0.080f, 0.570f), Vector2(0.080f, 0.670f), Vector2(0.080f, 0.840f)};
+                                Vector2(0.080f, 0.156f), Vector2(0.080f, 0.301f), Vector2(0.080f, 0.406f), 
+                                Vector2(0.080f, 0.510f), Vector2(0.080f, 0.620f), Vector2(0.080f, 0.730f)};
 
 Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f), Vector2(1.0f, 1.0f), 
                                 Vector2(0.225f, 0.250f), Vector2(0.225f, 0.150f), Vector2(0.225f, 0.150f), 

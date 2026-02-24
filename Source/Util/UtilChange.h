@@ -2,6 +2,10 @@
 #include <iostream>
 #include <string>
 
+#include "DxLib.h"
+
+struct Vector2;
+
 enum class CHARACTER_TYPE;
 enum class SCENE;
 
@@ -16,4 +20,11 @@ namespace UtilChange
 
 	/*キャラクターの名前に変換*/
 	std::string CharacterTypeToString(CHARACTER_TYPE characterType);
+
+	/// <summary>ベクトルをベクトル2に変換(xy)</summary>
+	Vector2 ChangeVector_XY(VECTOR src);
+	/// <summary>ベクトルをベクトル2に変換(xz)</summary>
+	Vector2 ChangeVector_XZ(VECTOR src);
+	/// <summary>ベクトルをベクトル2に変換(yz)</summary>
+	Vector2 ChangeVector_YZ(VECTOR src);
 };

@@ -27,7 +27,7 @@ void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMA
 // 終了時間確認(一定時間経っていれば「true」を返す)
 bool StateAnimationControllerProcess::ChackEndTime()
 {
-    return mnEndTime <= Master::mpTimeManager->GetGameTime();
+    return mnEndTime < Master::mpTimeManager->GetGameTime();
 }
 // 変更確認
 ANIMATION_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* animation, ANIMATION_TYPE nextState)

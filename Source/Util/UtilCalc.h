@@ -16,7 +16,15 @@ namespace UtilCalc
 	/*3,14 * 2.0f*/
 	constexpr float PiTwo = DX_PI_F * 2.0f;
 
+	/*フロート誤差*/
 	constexpr float FloatError = 0.00000001f;
+
+	/*ラジアン変換*/
+	constexpr float DegToRad = 0.0174532924f;
+	/*デグリー変換*/
+	constexpr float RadToDeg = 57.29578f;
+
+	constexpr float RadPi = 57.29578f * DX_PI_F;
 
 	/// <summary>float同士がの誤差範囲内なら「true」を返す</summary>
 	bool FloatEqual(float src, float dst, float error);
@@ -25,9 +33,9 @@ namespace UtilCalc
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }
 
 	/*ラジアン変換(PI / 180.0f)*/
-	inline const VECTOR VRadChange(VECTOR src) { return VScale(src, 0.0174532924f/*PI / 180.0f*/); }
+	inline const VECTOR VRadChange(VECTOR src) { return VScale(src, DegToRad/*PI / 180.0f*/); }
 	/*デグリー変換(180.0f / PI)*/
-	inline const VECTOR VDegChange(VECTOR src) { return VScale(src, 57.29578f/*180.0f / PI*/); }
+	inline const VECTOR VDegChange(VECTOR src) { return VScale(src, RadToDeg/*180.0f / PI*/); }
 
     /*方向を3.14から-3.14になるように調整する(ラジアン)*/
 	float NotExceedAngle(float angle);

@@ -168,6 +168,8 @@ void KeyState::SetKey()
 
 			SetNowKey_Controller((getKey['X'] & 0x80) != 0, CONTROLLER_KEY_TYPE::X);
 
+			SetNowKey_Controller((getKey['Y'] & 0x80) != 0, CONTROLLER_KEY_TYPE::Y);
+
 			SetNowKey_Controller((getKey[VK_BACK] & 0x80) != 0, CONTROLLER_KEY_TYPE::B);	// バックスペース
 		}
 

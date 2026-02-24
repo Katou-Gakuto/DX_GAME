@@ -354,3 +354,96 @@ private:
     /*モデル種類が同類なら「true」を返す*/
     bool CheckSimilarModelType(MODEL_TYPE modelType) override;
 };
+
+/*----------------------*/
+/*【数字アニメーション】*/
+/*----------------------*/
+class StateNumberAnimation : public IStateAnimation
+{
+public:
+    StateNumberAnimation();
+    ~StateNumberAnimation() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>終了</summary>
+    virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+
+    /// <summary>更新</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+};
+
+/*-------------------------*/
+/*【DOTweenアニメーション】*/
+/*-------------------------*/
+class StateDOTweenAnimation : public IStateAnimation
+{
+public:
+    StateDOTweenAnimation();
+    ~StateDOTweenAnimation() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>終了</summary>
+    virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+
+    /// <summary>更新</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+};
+
+/*----------------------*/
+/*【割合アニメーション】*/
+/*----------------------*/
+class StateRatioAnimation : public IStateAnimation
+{
+public:
+    StateRatioAnimation();
+    ~StateRatioAnimation() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
+    /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+
+    /// <summary>終了</summary>
+    virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+
+    /// <summary>更新</summary>
+    /// <param name="animation">アニメーション</param>
+    /// <param name="animationDatas">アニメーション情報</param>
+    virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+
+private:
+    /*モデル種類が同類なら「true」を返す*/
+    bool CheckSimilarModelType(MODEL_TYPE modelType) override;
+};

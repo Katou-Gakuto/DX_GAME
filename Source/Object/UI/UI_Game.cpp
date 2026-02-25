@@ -89,6 +89,14 @@ void UI_Game::UIInitilize()
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
 
+        DrawConfigData drawConfigData;
+        drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
+        drawConfigData.blendParameter = 100;
+        for (int i  = 0; i < mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList().size(); i++)
+        {
+            mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList()[i]->SetDrawConfigData(drawConfigData);
+        }
+
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, {});
     }
@@ -153,7 +161,6 @@ void UI_Game::UIInitilize()
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
-
 
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });

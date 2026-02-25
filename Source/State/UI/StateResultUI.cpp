@@ -34,7 +34,7 @@ void StartResultUIState::OnExit(UIBase* ui)
 // XV
 int StartResultUIState::Update(UIBase* ui)
 {
-	//ui->DefaultDecision();
+	ui->DefaultDecision();
 
 	return mStateNumber;
 }

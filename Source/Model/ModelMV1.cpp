@@ -51,6 +51,25 @@ void ModelMV1::PositionUpdate()
             // X‰ñ“]
             VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));
+            
+            //VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * TEST_FLOAT[0], VGet((angle.x * TEST_FLOAT[1] * TEST_FLOAT[3]) + (UtilCalc::Pi * TEST_FLOAT[2]), -angle.y, angle.z));
+            //position = VAdd(position, VGet(-anglePos.x, anglePos.y, -anglePos.z));
+
+          /*  
+                    // ‰ñ“]‚³‚¹‚é
+        float totalRotational = (mfMaxAttackMiddleMotionTime - (GetAnimCount() / mfMaxAttackMiddleMotionTime));
+
+        MV1SetRotationXYZ(mnModelHandle, VGet(totalRotational * (DX_PI_F * 2.0f), mfAngle + DX_PI_F, 0.0f));
+
+        VECTOR tempPosition2 = Calculation::GetSphericalMove(mpCharacter->GetStatus().size, (totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5), -mfAngle);
+        //tempPosition2.x = ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * sinf(Calculation::GetNotExceedAngle(-mfAngle));
+        //tempPosition2.y = ATTACK_MIDDLE_XYZ_SET * sinf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5)));
+        //tempPosition2.z = -(ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * cosf(Calculation::GetNotExceedAngle(-mfAngle)));
+
+        SetPosition(VAdd(VAdd(mpCharacter->GetObjectPosition(), 
+                            VGet(0.0f, mpCharacter->GetStatus().size, 0.0f)),
+                    VGet(-tempPosition2.x, tempPosition2.y, -tempPosition2.z)));
+            */
 
         //VECTOR tempPosition2 = Calculation::GetSphericalMove(mpCharacter->GetStatus().size, (totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5), -mfAngle);
         //tempPosition2.x = ATTACK_MIDDLE_XYZ_SET * cosf(Calculation::GetNotExceedAngle((totalRotational * (DX_PI_F * 2.0f)) + (DX_PI_F * 1.5))) * sinf(Calculation::GetNotExceedAngle(-mfAngle));

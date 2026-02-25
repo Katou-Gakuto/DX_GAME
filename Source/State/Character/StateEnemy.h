@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EnemyCommonProcessing.h"
 #include "ObjectBases.h"
 #include "StateBase.h"
 
@@ -43,7 +44,7 @@ const int ESCAPE_TIME = 17 * 100;
 /*----------------------*/
 /*【エネミー共通処理用】*/
 /*----------------------*/
-class EnemyProcess
+class EnemyProcess : public EnemyCommonProcessing
 {
 
 protected:
@@ -91,6 +92,8 @@ public:
 	IdleEnemyState(bool bossFlag = false);
 	~IdleEnemyState() = default;
 
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
 	/*この状態を出る時の処理*/
@@ -120,6 +123,8 @@ class MoveEnemyState : public IStateCharacter, public EnemyProcess
 public:
 	MoveEnemyState(bool bossFlag = false);
 	~MoveEnemyState() = default;
+
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
@@ -158,6 +163,8 @@ public:
 	AttackInEnemyState(bool bossFlag = false);
 	~AttackInEnemyState() = default;
 
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
 	/*この状態を出る時の処理*/
@@ -187,6 +194,8 @@ class AttackEnemyState : public IStateCharacter, public EnemyProcess
 public:
 	AttackEnemyState(bool bossFlag = false);
 	~AttackEnemyState() = default;
+
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
@@ -220,6 +229,8 @@ protected:
 public:
 	EscapeEnemyState(bool bossFlag = false);
 	~EscapeEnemyState() = default;
+
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
 	virtual void OnEnter(CharacterBase* character) override;

@@ -106,6 +106,10 @@ void TitleUIStateProcess::ProcessOnExit(UIBase* ui)
 {
 }
 
+// HACK: 消す
+#include "DotWeenData.h"
+#include "DotWeenManager.h"
+
 // 更新
 void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 {
@@ -121,6 +125,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 		Master::mpResourceManager->MovieLoop(ui->GetMovieHandles()[0]);
 	}
 
+	// HACK: 他のUIでも使えるようにする
 	if (mnPreSelectNumber != ui->GetSelectNumber())
 	{
 		std::vector<std::map<int, VECTOR>> uiPositionData = ui->GetUIPositionData(ui->GetFsm()->GetCurrentState());
@@ -128,7 +133,21 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 		{
 			if (uiPositionData[i].find(ui->GetSelectNumber()) != uiPositionData[i].end())
 			{
-				ui->GetModelsController(i)->SetModelPosition(uiPositionData[i][ui->GetSelectNumber()]);
+				// TODO: ファクトリーでやる
+				DOT_WEEN_DATA dotWeenData;
+				dotWeenData.DotWeenType = DOT_WEEN_TYPE::OUT_BOUNCE;
+				dotWeenData.ChangeData = &ui->GetModelsController(i)->GetModelPositionPointer()->x;
+				dotWeenData.DotWeenTime = 170 - 68;
+				dotWeenData.StartTime = Master::mpTimeManager->GetTime();
+				dotWeenData.EndData = uiPositionData[i][ui->GetSelectNumber()].x;
+				dotWeenData.StartData = *dotWeenData.ChangeData;
+				Master::mpGameManager->GetDotWeenManager()->SetDotWeen(dotWeenData);
+
+				dotWeenData.ChangeData = &ui->GetModelsController(i)->GetModelPositionPointer()->y;
+				dotWeenData.EndData = uiPositionData[i][ui->GetSelectNumber()].y;
+				dotWeenData.StartData = *dotWeenData.ChangeData;
+				Master::mpGameManager->GetDotWeenManager()->SetDotWeen(dotWeenData);
+				//ui->GetModelsController(i)->SetModelPosition(uiPositionData[i][ui->GetSelectNumber()]);
 			}
 		}
 		mnPreSelectNumber = ui->GetSelectNumber();

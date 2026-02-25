@@ -51,7 +51,5 @@ enum class MODEL_TYPE // TODO: モデル種類ではなくアニメーション処理種類にする
 
     FADE,   // フェード
 
-    UI_NUMBER,
-    UI_TOD_WEEN,
-    UI_RAITO,
+    TOD_WEEN,
 };

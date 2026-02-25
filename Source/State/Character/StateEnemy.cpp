@@ -4,6 +4,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "EnemyCommonProcessing.h"
 #include "GameManager.h"
 #include "StateEnemy.h"
 #include "SceneManager.h"
@@ -18,7 +19,8 @@
 /*yƒGƒlƒ~[‹¤’Êˆ——pz*/
 /*----------------------*/
 EnemyProcess::EnemyProcess(bool bossFlag)
-: mpTargetManager(Master::mpGameManager->GetTargetManager())
+: EnemyCommonProcessing(STATE_ENEMY_TYPE::BATTLE_ENEMY)
+, mpTargetManager(Master::mpGameManager->GetTargetManager())
 , mbBossFlag(bossFlag)
 {
 }
@@ -165,6 +167,7 @@ void IdleEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void IdleEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S
@@ -213,6 +216,7 @@ void MoveEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void MoveEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S
@@ -289,6 +293,7 @@ void AttackInEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void AttackInEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S
@@ -343,6 +348,7 @@ void AttackEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void AttackEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S
@@ -401,6 +407,7 @@ void EscapeEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void EscapeEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S

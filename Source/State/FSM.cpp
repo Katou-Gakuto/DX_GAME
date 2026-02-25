@@ -3,7 +3,9 @@
 #include <vector>
 
 #include "AnimationEnum.h"
+#include "DotWeenEnum.h"
 #include "AnimationData.h"
+#include "DotWeenData.h"
 
 #include "Master.h"
 
@@ -18,6 +20,7 @@
 #include "ObjectManager.h"
 #include "SceneManager.h"
 #include "StateBase.h"
+#include "StateDotWeen.h"
 #include "StateScene.h"
 #include "UtilChange.h"
 
@@ -233,6 +236,39 @@ void FSMCharacter::Draw(CharacterBase* character)
 void FSMCharacter::Death(CharacterBase* character)
 {
 	mmStateMap[mnCurrentState]->Death(character);
+}
+
+
+/*-------------------------*/
+/*【DotWeen有限状態マシン】*/
+/*-------------------------*/
+FSMDotWeen::FSMDotWeen()
+: FSMBase()
+{
+}
+
+// 初期化
+void FSMDotWeen::Initilize()
+{
+	RegisterState(DOT_WEEN_TYPE::OUT_BOUNCE, new StateOutBounce());
+}
+
+// 更新
+void FSMDotWeen::Update(std::vector<DOT_WEEN_DATA>& dotWeenData)
+{
+	for (int i  = 0; i < dotWeenData.size(); i++)
+	{
+		if ((dotWeenData[i].StartTime + dotWeenData[i].DotWeenTime) <= (dotWeenData[i].GameTimeFlag ? Master::mpTimeManager->GetGameTime() : Master::mpTimeManager->GetTime()))
+		{
+			*dotWeenData[i].ChangeData = dotWeenData[i].EndData;
+			dotWeenData.erase(dotWeenData.begin() + i);
+			i -= 1;
+			continue;
+		}
+
+		mmStateMap[dotWeenData[i].DotWeenType]->Update(dotWeenData[i]);
+
+	}
 }
 
 /*------------------------*/

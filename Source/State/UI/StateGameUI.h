@@ -11,7 +11,7 @@ class TargetManager;
 /*【ゲームUIステート】*/
 /*----------------------*/
 
-enum class GAME_UI_STATE
+enum GAME_UI_STATE
 {
     START_GAME_UI_STAE = 0, // ゲーム開始
     NORMAL_GAME_UI_STATE,   // 通常

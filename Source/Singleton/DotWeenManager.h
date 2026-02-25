@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "DotWeenData.h"
+#include "FSM.h"
 
 class DotWeenManager
 {
@@ -11,6 +12,9 @@ private:
     int mnIdMax;
 
     static constexpr int DOT_WEEN_ID_MAX = 2'000'000'000;
+
+    // DotWeenˆ— —LŒÀó‘Ôƒ}ƒVƒ“
+    FSMDotWeen* mpFsm;
 
 public:
     DotWeenManager();
@@ -28,8 +32,4 @@ public:
     
     /// <summary>DotWeenî•ñíœ</summary>
     void DeleteDotWeenData(int id);
-
-private:
-    /*DotWeenˆ—*/
-    void DotWeenProcess(DOT_WEEN_DATA dotWeenData);
 };

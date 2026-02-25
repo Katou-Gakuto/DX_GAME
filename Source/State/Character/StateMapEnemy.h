@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EnemyCommonProcessing.h"
 #include "ObjectBases.h"
 #include "StateBase.h"
 
@@ -24,7 +25,7 @@ enum class MAP_ENEMY_STATE
 /*----------------------------*/
 /*【マップエネミー共通処理用】*/
 /*----------------------------*/
-class MapEnemyProcess
+class MapEnemyProcess : public EnemyCommonProcessing
 {
 protected:
 	// キーステート
@@ -66,6 +67,8 @@ public:
 	IdleMapEnemyState(SCENE mapScene);
 	~IdleMapEnemyState() = default;
 
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
 	/*この状態を出る時の処理*/
@@ -95,6 +98,8 @@ class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 public:
 	TelopMapEnemyState(SCENE mapScene);
 	~TelopMapEnemyState() = default;
+
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;

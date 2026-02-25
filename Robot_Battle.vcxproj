@@ -67,6 +67,7 @@
     <ClCompile Include="Source\Singleton\TargetManager.cpp" />
     <ClCompile Include="Source\Singleton\TelopManager.cpp" />
     <ClCompile Include="Source\Singleton\TimeManager.cpp" />
+    <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp" />
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Source\Singleton\TargetManager.h" />
     <ClInclude Include="Source\Singleton\TelopManager.h" />
     <ClInclude Include="Source\Singleton\TimeManager.h" />
+    <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h" />
     <ClInclude Include="Source\State\Character\StateEnemy.h" />
     <ClInclude Include="Source\State\Character\StateMapEnemy.h" />
     <ClInclude Include="Source\State\Character\StatePlayer.h" />

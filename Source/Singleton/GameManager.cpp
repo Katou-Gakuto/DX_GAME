@@ -6,6 +6,7 @@
 #include "CameraManager.h"
 #include "CollisionManager.h"
 #include "DataManager.h"
+#include "DotWeenManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
 #include "ImguiManager.h"
@@ -23,6 +24,7 @@ GameManager::GameManager()
 : mpAttackManager(nullptr)
 , mpCameraManager(nullptr)
 , mpCollisionManager(nullptr)
+, mpDotWeenManager(nullptr)
 , mpMapManager(nullptr)
 , mpObjectManager(nullptr)
 , mpSceneManager(nullptr)
@@ -41,6 +43,9 @@ void GameManager::Initilize()
     Master::mpDataManager->Initilize();
 
     mpCameraManager = new CameraManager();
+
+    mpDotWeenManager = new DotWeenManager();
+    mpDotWeenManager->Initilize();
 
     Master::mpResourceManager->Initilize();
 
@@ -66,9 +71,11 @@ void GameManager::Initilize()
 // I—¹ˆ—
 void GameManager::Finailize()
 {
+    mpDotWeenManager->Finailize();
     mpObjectManager->Finalize();
 
     delete mpCameraManager;
+    delete mpDotWeenManager;
     delete mpObjectManager;
     delete mpSceneManager;
     delete mpAttackManager;
@@ -85,6 +92,8 @@ void GameManager::Update()
     mpCameraManager->Update();
 
     mpObjectManager->ObjectUpdate();
+
+    mpDotWeenManager->Update();
 
     mpCollisionManager->CollisionProcess();
 

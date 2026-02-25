@@ -2,10 +2,12 @@
 #include "DotWeenData.h"
 
 #include "DotWeenManager.h"
+#include "FSM.h"
 
 // コンストラクタ
 DotWeenManager::DotWeenManager()
 : mnIdMax(0)
+, mpFsm(nullptr)
 {
     mstDotWeenDatas.clear();
 }
@@ -13,11 +15,14 @@ DotWeenManager::DotWeenManager()
 // デストラクタ
 DotWeenManager::~DotWeenManager()
 {
+    delete mpFsm;
 }
 
 // 初期化
 void DotWeenManager::Initilize()
 {
+    mpFsm = new FSMDotWeen();
+    mpFsm->Initilize();
 }
 
 // 終了
@@ -30,10 +35,7 @@ void DotWeenManager::Finailize()
 void DotWeenManager::Update()
 {
     // DotWeen情報の更新処理
-    for (int i = 0; i < mstDotWeenDatas.size(); ++i)
-    {
-        DotWeenProcess(mstDotWeenDatas[i]);
-    }
+    mpFsm->Update(mstDotWeenDatas);
 }
 
 // DotWenn情報設定
@@ -63,10 +65,4 @@ void DotWeenManager::DeleteDotWeenData(int id)
             return;
         }
     }
-}
-
-// DotWeen処理
-void DotWeenManager::DotWeenProcess(DOT_WEEN_DATA dotWeenData)
-{
-    // ステートで処理
 }

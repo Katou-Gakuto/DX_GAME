@@ -2,6 +2,7 @@
 class AttackManager;
 class CameraManager;
 class CollisionManager;
+class DotWeenManager;
 class MapManager;
 class ObjectManager;
 class SceneManager;
@@ -18,6 +19,9 @@ private:
 
 	// コリジョンマネージャー
 	CollisionManager* mpCollisionManager;
+
+	// DotWeenマネージャー
+	DotWeenManager* mpDotWeenManager;
 
 	// マップマネージャー
 	MapManager* mpMapManager;
@@ -86,6 +90,12 @@ public:
 	/// </summary>
 	/// <returns>コリジョンマネージャー</returns>
 	inline CollisionManager* GetCollisionManager() { return mpCollisionManager; }
+
+	/// <summary>
+	/// DotWeenマネージャー取得
+	/// </summary>
+	/// <returns>DotWeenマネージャー</returns>
+	inline DotWeenManager* GetDotWeenManager() { return mpDotWeenManager; }
 
 	/// <summary>
 	/// マップマネージャー取得

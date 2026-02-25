@@ -4,6 +4,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "EnemyCommonProcessing.h"
 #include "GameManager.h"
 #include "KeyState.h"
 #include "StateMapEnemy.h"
@@ -20,7 +21,8 @@
 /*yƒ}ƒbƒvƒGƒlƒ~[‹¤’Êˆ——pz*/
 /*----------------------------*/
 MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
-: mpKeyState(Master::mpKeyState)
+: EnemyCommonProcessing(STATE_ENEMY_TYPE::MAP_ENEMY)
+, mpKeyState(Master::mpKeyState)
 , mpSceneManager(Master::mpGameManager->GetSceneManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
 , meMapScene(mapScene)
@@ -120,6 +122,7 @@ void IdleMapEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void IdleMapEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S
@@ -187,6 +190,7 @@ void TelopMapEnemyState::LastUpdate(CharacterBase* character)
 // •`‰æ
 void TelopMapEnemyState::Draw(CharacterBase* character)
 {
+    EnemyDataDraw(character);
 }
 
 // Ž€–S

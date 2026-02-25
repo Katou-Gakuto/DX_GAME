@@ -38,6 +38,10 @@ protected:
 	// ターゲット番号
 	static int mnTargetNumber;
 
+	const Vector2 HP_LEFT_UP = Vector2(0.01f, 0.01f);
+	const Vector2 HP_RIGHT_DOWN = Vector2(0.4f, 0.06f);
+	const Vector2 HP_FRAME_SIZE = Vector2(0.005f, 0.005f);
+
 protected:
 	PlayerProcess();
 	~PlayerProcess() = default;

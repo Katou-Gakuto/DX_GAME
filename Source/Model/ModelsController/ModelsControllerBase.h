@@ -69,6 +69,8 @@ public:
     inline VECTOR GetModelPosition() const { return mvModelPosition; }
     /// <summary>モデルポジション設定</summary>
     inline void SetModelPosition(VECTOR position) { mvModelPosition = position; }
+    /// <summary>モデルポジションポインタ</summary>
+    inline VECTOR* GetModelPositionPointer() { return &mvModelPosition; }
 
     /// <summary>モデル角度取得</summary>
     inline VECTOR GetModelAngle() const { return mvModelAngle; }

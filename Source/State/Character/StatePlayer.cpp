@@ -11,6 +11,7 @@
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StatePlayer.h"
+#include "ResourceManager.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
@@ -142,9 +143,17 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	// HACK: 仮実装
 	if (UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE)
 	{
-		DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", character->GetStatus()->hp);
+		// HACK: これを更新のモデル描画前に移動させる
+		Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
+		Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
+		Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
+
+		DrawBox(leftUp.x - frameSize.x, leftUp.y - frameSize.y, rightDown.x + frameSize.x, rightDown.y + frameSize.y, GetColor(0, 0, 0), TRUE);
+
+		DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(100, 100, 100), TRUE);
+		DrawBox(leftUp.x, leftUp.y, leftUp.x + ((rightDown.x - leftUp.x) * ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp)) , rightDown.y, GetColor(255, 255, 255), TRUE);	
 	}
-	// HACK: モデルが出来たら消す
+
 
 	// VECTOR pos1;
 	// VECTOR pos2;

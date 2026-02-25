@@ -347,6 +347,9 @@
     <ClCompile Include="Source\State\StateDotWeen.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -618,6 +621,9 @@
     </ClInclude>
     <ClInclude Include="Source\State\StateDotWeen.h">
       <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

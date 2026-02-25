@@ -80,7 +80,7 @@ StartGameUIState::StartGameUIState()
 : mnElapsedTime(0)
 , mbFadeInFlag(false)
 {
-    mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
+    mStateNumber = GAME_UI_STATE::START_GAME_UI_STAE;
 }
 
 // Ç±ÇÃèÛë‘Ç…ì¸Ç¡ÇΩéûÇÃèàóù
@@ -115,7 +115,7 @@ int StartGameUIState::Update(UIBase* ui)
         }
         else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
         {
-            return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+            return GAME_UI_STATE::NORMAL_GAME_UI_STATE;
         }
     }
 
@@ -139,7 +139,7 @@ void StartGameUIState::Draw(UIBase* ui)
 /*----------------------*/
 NormalGameUIState::NormalGameUIState()
 {
-    mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+    mStateNumber = GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
 // Ç±ÇÃèÛë‘Ç…ì¸Ç¡ÇΩéûÇÃèàóù
@@ -174,7 +174,7 @@ int NormalGameUIState::Update(UIBase* ui)
 // åàíË
 int NormalGameUIState::Decision(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    return GAME_UI_STATE::PAUSE_GAME_UI_STATE;
 }
 
 // ï`âÊ
@@ -189,7 +189,7 @@ void NormalGameUIState::Draw(UIBase* ui)
 #include "DataManager.h"
 PauseGameUIState::PauseGameUIState()
 {
-    mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    mStateNumber = GAME_UI_STATE::PAUSE_GAME_UI_STATE;
 }
 
 // Ç±ÇÃèÛë‘Ç…ì¸Ç¡ÇΩéûÇÃèàóù
@@ -231,7 +231,7 @@ int PauseGameUIState::Update(UIBase* ui)
 // åàíË
 int PauseGameUIState::Decision(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+    return GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
 // ï`âÊ

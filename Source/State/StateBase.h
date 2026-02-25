@@ -11,6 +11,7 @@ enum class DOT_WEEN_TYPE;
 enum class SCENE;
 
 struct AnimationStateData;
+struct DOT_WEEN_DATA;
 
 class AnimationBase;
 class CameraManager;
@@ -158,7 +159,8 @@ public:
 /*-------------------------*/
 class IStateDotWeen : public StateBase<DOT_WEEN_TYPE>
 {
-	
+public:
+	virtual void Update(DOT_WEEN_DATA dotWeenData) = 0;
 };
 
 /*------------------------*/

@@ -9,6 +9,8 @@ enum class CAMERA_MODE;
 enum class DOT_WEEN_TYPE;
 enum class SCENE;
 
+struct DOT_WEEN_DATA;
+
 class AnimationBase;
 class CameraManager;
 class CharacterBase;
@@ -155,12 +157,19 @@ public:
 	void Death(CharacterBase* character);
 };
 
-// INPROGRESS: 作業中
 /*-------------------------*/
 /*【DotWeen有限状態マシン】*/
 /*-------------------------*/
 class FSMDotWeen : public FSMBase<DOT_WEEN_TYPE, IStateDotWeen>
 {
+public:
+	FSMDotWeen();
+
+	/// <summary>初期化</summary>
+	void Initilize();
+
+	/// <summary>更新</summary>
+	void Update(std::vector<DOT_WEEN_DATA>& dotWeenData);
 };
 
 /*----------*/

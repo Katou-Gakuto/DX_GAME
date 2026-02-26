@@ -200,9 +200,6 @@
     <ClCompile Include="Source\Object\Character\Character_Shot.cpp">
       <Filter>ソース ファイル\Object\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\UI_Check.cpp">
-      <Filter>ソース ファイル\Object\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Object\UI\UI_Game.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
@@ -349,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp">
       <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\DrawManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -624,6 +624,9 @@
     </ClInclude>
     <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h">
       <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\DrawManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -116,11 +116,11 @@ public:
 	inline void SetPlayPlayerStatus(const STATUS status) { mstPlayPlayerData.playerData.status = status; }
 
 	/// <summary>ダンジョンの削除キャラクターID取得</summary>
-	/// <param name="dungeonDeleteCharacterData"></param>
+	/// <param name="dungeonDeleteCharacterData">ID情報</param>
 	inline void SetDungeonDeleteCharacterID(DELETE_CHARACTER_DATA dungeonDeleteCharacterData) { mnDungeonDeleteCharacterData = dungeonDeleteCharacterData; }
 
 	/// <summary>町の削除キャラクターID取得</summary>
-	/// <param name="townDeleteCharacterData"></param>
+	/// <param name="townDeleteCharacterData">ID情報</param>
 	inline void SetTownDeleteCharacterID(DELETE_CHARACTER_DATA townDeleteCharacterData) { mnTownDeleteCharacterData = townDeleteCharacterData; }
 
 	/// <summary>キャラクターID設定</summary>

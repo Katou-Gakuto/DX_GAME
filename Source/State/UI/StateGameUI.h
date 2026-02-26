@@ -3,6 +3,7 @@
 
 #include "ObjectBases.h"
 #include "StateBase.h"
+#include "UI_Check.h"
 
 class MapManager;
 class TargetManager;
@@ -11,11 +12,32 @@ class TargetManager;
 /*【ゲームUIステート】*/
 /*----------------------*/
 
-enum GAME_UI_STATE
+enum class GAME_UI_STATE
 {
     START_GAME_UI_STAE = 0, // ゲーム開始
     NORMAL_GAME_UI_STATE,   // 通常
     PAUSE_GAME_UI_STATE,	// ポーズ
+
+    DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
+    CONFIG_CHANGE_UI_STATE, // 設定変更
+
+    GAME_END_UI_STATE,  // ゲーム終了
+};
+
+/*----------------------------*/
+/*【ゲームUI選択ナンバーEnum】*/
+/*----------------------------*/
+enum GAME_UI_SELECT_NUKMBER
+{
+    PLAY_GAME = -2,
+    STOP_GAME,
+
+    /*---------- PAUSE選択用 ----------*/
+    UI_CLOSE = 0,           // 閉じる
+    UI_DRAW_PLAYER_DATA,    // プレイヤー情報
+    UI_CONFIG_CHANGE,       // 設定変更
+    UI_GAME_END,            // ゲーム終了
+    PAUSE_SELECT_MAX,       // ポーズ選択最大数
 };
 
 /*----------*/
@@ -23,6 +45,10 @@ enum GAME_UI_STATE
 /*----------*/
 class GameUIProcess
 {
+protected:
+    // 前の選択数
+    int mnPreSelectNumber;
+
 private:
     // マップマネージャー
     MapManager* mpMapManager;
@@ -90,6 +116,9 @@ public:
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -114,6 +143,9 @@ public:
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -121,6 +153,7 @@ public:
 /*----------------------*/
 class PauseGameUIState : public IStateUI, public GameUIProcess
 {
+private:
 public:
     PauseGameUIState();
     ~PauseGameUIState() = default;
@@ -138,4 +171,99 @@ public:
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
+};
+
+
+/*------------------------------*/
+/*【プレイヤー情報表示ステート】*/
+/*------------------------------*/
+class DrawPlayerDataState : public IStateUI, public GameUIProcess
+{
+public:
+    DrawPlayerDataState();
+    ~DrawPlayerDataState() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    void OnEnter(UIBase* ui) override;
+    /// <summary>この状態を出る時の処理</summary>
+    void OnExit(UIBase* ui) override;
+
+    /// <summary>更新</summary>
+    int Update(UIBase* ui) override;
+
+    /// <summary>決定</summary>
+    int Decision(UIBase* ui) override;
+
+    /// <summary>描画</summary>
+    void Draw(UIBase* ui) override;
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
+};
+
+/*--------------------*/
+/*【設定変更ステート】*/
+/*--------------------*/
+class ConfigChangeState : public IStateUI, public GameUIProcess
+{
+private:
+public:
+    ConfigChangeState();
+    ~ConfigChangeState() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    void OnEnter(UIBase* ui) override;
+    /// <summary>この状態を出る時の処理</summary>
+    void OnExit(UIBase* ui) override;
+
+    /// <summary>更新</summary>
+    int Update(UIBase* ui) override;
+
+    /// <summary>決定</summary>
+    int Decision(UIBase* ui) override;
+
+    /// <summary>描画</summary>
+    void Draw(UIBase* ui) override;
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
+};
+
+/*----------------------*/
+/*【ゲーム終了ステート】*/
+/*----------------------*/
+class GameEndState : public IStateUI, public GameUIProcess
+{
+private:
+    // 戻るフラグ
+    bool mbReturnFlag;
+public:
+    GameEndState();
+    ~GameEndState() = default;
+
+    /// <summary>この状態に入った時の処理</summary>
+    void OnEnter(UIBase* ui) override;
+    /// <summary>この状態を出る時の処理</summary>
+    void OnExit(UIBase* ui) override;
+
+    /// <summary>更新</summary>
+    int Update(UIBase* ui) override;
+
+    /// <summary>決定</summary>
+    int Decision(UIBase* ui) override;
+
+    /// <summary>描画</summary>
+    void Draw(UIBase* ui) override;
+
+    /*ステートを戻る*/
+    void StateReturn(void *null);
+
+    /*終了する*/
+    void GameEnd(void *null);
+
+	/// <summary>終了</summary>
+	int Cloce(UIBase* ui) override;
 };

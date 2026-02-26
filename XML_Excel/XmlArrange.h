@@ -98,4 +98,7 @@ private:
 
     // データをExcel用のXmlファイルに変換する
     void DataToExcelXmlFile(std::string fileName);
+
+    // Xmlファイルのあるディレクトリを取得する
+    std::string GetXmlFileDir();
 };

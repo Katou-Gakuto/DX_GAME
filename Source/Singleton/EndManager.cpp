@@ -44,6 +44,14 @@ bool EndManager::EndFlag()
 
 	if (mullEndFlag.Bool())
 	{
+#if _DEBUG
+		// ブレークポイント弾き用
+		if ((mullEndFlag & (1llu << (int)END_FLAG_NUMBER::WITHIN_EXPECTATION_FLAG)) != 0)
+		{
+			return true;
+		}
+#endif
+
 		endFlag = true;
 		ErrorLogFmtAdd("%llu", mullEndFlag);
 	}

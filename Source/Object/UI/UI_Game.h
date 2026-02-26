@@ -23,4 +23,7 @@ private:
 
     /*‘I‘ğŒˆ’èˆ—*/
     void DecisionProcess() override;
+    
+    /*íœˆ—*/
+    void CloceProcess() override;
 };

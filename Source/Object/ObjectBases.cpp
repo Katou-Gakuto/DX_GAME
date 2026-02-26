@@ -864,7 +864,7 @@ void UIBase::DeleteUINumber()
 	// TODO: ‚±‚±‚ç•Ó‚Ìˆ—Œ©’¼‚µ
 	if (!IsDeleteFlag())
 	{
-		mnUINumber -= 1;
+		mnUINumber = Master::mpGameManager->GetNowUINumber();
 	}
 }
 

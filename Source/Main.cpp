@@ -44,7 +44,7 @@ TimeManager* Master::mpTimeManager = new TimeManager();
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-#if _DEBUG && false
+#if _DEBUG && true
 	// Excel用XMLファイルを生成
 	XmlArrange* pXmlArrange = new XmlArrange();
 	pXmlArrange->Arrange();

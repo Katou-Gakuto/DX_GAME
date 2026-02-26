@@ -314,7 +314,7 @@ void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_
 // ステート変更確認
 ANIMATION_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
 {
-    if (ChackEndTime() || (nextState == ANIMATION_TYPE::ATTACK_OUT))
+    if (ChackEndTime() || (nextState == ANIMATION_TYPE::FADE_OUT))
     {
         return nextState;
     }

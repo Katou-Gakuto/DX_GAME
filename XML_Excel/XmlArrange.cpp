@@ -1,3 +1,7 @@
+
+
+#include <windows.h>
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -57,7 +61,10 @@ void XmlArrange::Arrange()
         folderPath = folderPath + "../";
     }
 
-    XmlToData(folderPath + "x64/Debug/" + FileRxtension_Search(folderPath + "x64/Debug/", projectName + ".xml"));
+    std::string xmlFileDir = GetXmlFileDir();
+    XmlToData(xmlFileDir + FileRxtension_Search(xmlFileDir, projectName + ".xml"));
+    
+    // XmlToData(folderPath + "x64/Debug/" + FileRxtension_Search(folderPath + "x64/Debug/", projectName + ".xml"));
     DataToExcelXmlFile(folderPath + "XML_Excel/_Excel.xml");
 }
 
@@ -231,6 +238,13 @@ void XmlArrange::RegisterClassFunction(std::string line)
         classNameCount++;
     }
 
+    // TODO: classに属していない関数に反応しないようする
+    // class無し
+    if (line.size() <= classNameCount)
+    {
+        return;
+    }
+
     // クラス名登録
     if (mstXmlData.xmlClassDatas.size() == 0)
     {
@@ -288,8 +302,44 @@ void XmlArrange::RegisterVariableExplanation(std::ifstream& xmlFile, std::string
         }
         variableExplanationStart++;
     }
+
     // 変数説明文取得
     std::vector<std::string> variableExplanations = ExtractExplanation_StringAndFile(line, xmlFile, line.substr(0, variableExplanationStart), "</param>");
+    
+    for (int i = 0; i < variableExplanations.size(); i++)
+    {
+        if (variableExplanations[i].find("</member>") != std::string::npos)
+        {
+            return;
+        }
+        if (variableExplanations[i].find("</summary>") != std::string::npos)
+        {
+            return;
+        }
+        if (variableExplanations[i].find("</returns>") != std::string::npos)
+        {
+            return;
+        }
+
+        if (variableExplanations[i].find("<param name=") != std::string::npos)
+        {
+            // 変数説明開始位置取得
+            variableExplanationStart = 13;
+            while (variableExplanations[i].size() > (variableExplanationStart + 1))
+            {
+                if (variableExplanations[i].substr(variableExplanationStart, 1) == ">")
+                {
+                    variableExplanationStart++;
+                    break;
+                }
+                variableExplanationStart++;
+            }
+            std::string variableExplanation = variableExplanations[i].substr(variableExplanationStart);
+            variableExplanations.clear();
+            variableExplanations.push_back(variableExplanation);
+        }
+    }
+
     mstXmlData.xmlClassDatas[mstXmlData.classDataEnd()].xmlFunctionDatas[mstXmlData.functionDataEnd()].variableExplanations.insert(mstXmlData.xmlClassDatas[mstXmlData.classDataEnd()].xmlFunctionDatas[mstXmlData.functionDataEnd()].variableExplanations.end(), variableExplanations.begin(), variableExplanations.end());
 }
 
@@ -424,6 +474,24 @@ void XmlArrange::DataToExcelXmlFile(std::string fileName)
     }
 
     excelXmlFile.close();
+}
+
+
+// Xmlファイルのあるディレクトリを取得する
+std::string XmlArrange::GetXmlFileDir()
+{
+    char path[MAX_PATH];
+    DWORD len = GetModuleFileNameA(NULL, path, MAX_PATH);
+    if (len == 0 || len == MAX_PATH) {
+        throw std::runtime_error("Failed to get executable path.");
+    }
+
+    std::string fullPath(path);
+    size_t pos = fullPath.find_last_of("\\/");
+    if (pos != std::string::npos) {
+        return fullPath.substr(0, pos + 1); // ディレクトリ部分のみ
+    }
+    return fullPath; // フォルダ区切りが見つからない場合
 }
 
 #undef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING

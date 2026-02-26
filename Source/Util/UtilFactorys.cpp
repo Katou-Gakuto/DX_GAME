@@ -771,6 +771,9 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new StartGameUIState());
 		fsmUI->RegisterState(new NormalGameUIState());
 		fsmUI->RegisterState(new PauseGameUIState());
+		fsmUI->RegisterState(new DrawPlayerDataState());
+		fsmUI->RegisterState(new ConfigChangeState());
+		fsmUI->RegisterState(new GameEndState());
 
 		fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
 		break;

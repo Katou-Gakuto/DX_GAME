@@ -43,7 +43,6 @@
     <ClCompile Include="Source\Object\Character\Character_Map.cpp" />
     <ClCompile Include="Source\Object\Character\Character_Shot.cpp" />
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
-    <ClCompile Include="Source\Object\UI\UI_Check.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Game.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
@@ -52,6 +51,7 @@
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
     <ClCompile Include="Source\Singleton\DataManager.cpp" />
     <ClCompile Include="Source\Singleton\DotWeenManager.cpp" />
+    <ClCompile Include="Source\Singleton\DrawManager.cpp" />
     <ClCompile Include="Source\Singleton\EndManager.cpp" />
     <ClCompile Include="Source\Singleton\FadeManager.cpp" />
     <ClCompile Include="Source\Singleton\GameManager.cpp" />
@@ -136,6 +136,7 @@
     <ClInclude Include="Source\Singleton\CollisionManager.h" />
     <ClInclude Include="Source\Singleton\DataManager.h" />
     <ClInclude Include="Source\Singleton\DotWeenManager.h" />
+    <ClInclude Include="Source\Singleton\DrawManager.h" />
     <ClInclude Include="Source\Singleton\EndManager.h" />
     <ClInclude Include="Source\Singleton\FadeManager.h" />
     <ClInclude Include="Source\Singleton\GameManager.h" />

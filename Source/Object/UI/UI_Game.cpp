@@ -206,6 +206,7 @@ void UI_Game::UIFinalize()
 // UI更新
 void UI_Game::UIUpdate()
 {
+    printfDx("%d\n", mnSelectNumber);
 }
 
 // UI最終更新
@@ -221,20 +222,30 @@ void UI_Game::UIDraw()
 // 選択決定時処理
 void UI_Game::DecisionProcess()
 {
-    switch (mnSelectNumber)
+    if (mnSelectNumber < 0)
     {
-    case 0:
-        SetUINumber();
-        mpResourceManager->StopAllEfect();
-        break;
+        if (mnSelectNumber == -1)
+        {
+            SetUINumber();
+            mpResourceManager->StopAllEfect();
+        }
+        else if (mnSelectNumber == -2)
+        {
+            DeleteUINumber();
+            mpResourceManager->PlayAllEfect();
+        }
 
-    case 1:
-        DeleteUINumber();
-        mpResourceManager->PlayAllEfect();
-        break;
-
-    default:
-        mpFsm->Decision(this);
-        break;
+        return;
     }
+
+    mpFsm->Decision(this);
+}
+
+// 削除処理
+void UI_Game::CloceProcess()
+{
+	if (mpFsm != nullptr)
+	{
+		mpFsm->Cloce(this);
+	}
 }

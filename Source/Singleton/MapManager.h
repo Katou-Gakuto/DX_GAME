@@ -1,7 +1,10 @@
 #pragma once
 #include <vector>
 
+#include "MinMapData.h"
+#include "ResourceData.h"
 #include "TileData.h"
+#include "Vector2.h"
 
 #include "DxLib.h"
 
@@ -24,6 +27,12 @@ private:
 
 	// マップモデル
 	ModelMap *mpModelMap;
+	
+	// 前のディスプレイサイズ
+	DisplaySize mstPreDisplaySize;
+
+    // ミニマップ表示用スクリーンハンドル
+    int mnDrawMinMapScreenHandle;
 
 public:
 	MapManager();

@@ -4,6 +4,8 @@
 
 #include "BitFlag.h"
 #include "CollisionData.h"
+#include "MinMapData.h"
+#include "ResourceData.h"
 #include "TargetData.h"
 #include "TileData.h"
 
@@ -16,12 +18,15 @@
 #include "GameManager.h"
 #include "MapManager.h"
 #include "ModelMap.h"
+#include "ResourceManager.h"
 #include "TargetManager.h"
 #include "UtilCalc.h"
 
 MapManager::MapManager()
 : mvTileHalfSize(VGet(250.0f, 0.0f, 250.0f))
 , mvMapMinPos(VGet(250.0f, 0.0f, 250.0f))
+, mstPreDisplaySize()
+, mnDrawMinMapScreenHandle(-1)
 {
     mpModelMap = new ModelMap();
     mpModelMap->Initilize();
@@ -35,6 +40,12 @@ MapManager::~MapManager()
 // データ解放
 void MapManager::Release()
 {
+    if (mnDrawMinMapScreenHandle != -1)
+    {
+        DeleteGraph(mnDrawMinMapScreenHandle);
+        mnDrawMinMapScreenHandle = -1;
+    }
+
     // モデルデータ解放
     mpModelMap->ReleaseMapModel();
     mstMapData.clear();

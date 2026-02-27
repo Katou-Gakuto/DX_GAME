@@ -153,7 +153,6 @@ public:
 	virtual bool CheckSameType(ANIMATION_TYPE animationType) { return mStateNumber == animationType; }
 };
 
-// INPROGRESS: 作業中
 /*-------------------------*/
 /*【DotWeenステートベース】*/
 /*-------------------------*/

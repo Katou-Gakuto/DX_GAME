@@ -73,6 +73,8 @@ void GameManager::Finailize()
 {
     mpDotWeenManager->Finailize();
     mpObjectManager->Finalize();
+    
+    mpMapManager->Release();
 
     delete mpCameraManager;
     delete mpDotWeenManager;

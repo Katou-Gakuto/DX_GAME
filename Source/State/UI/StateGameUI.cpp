@@ -1,5 +1,6 @@
 #include <vector>
 
+#include "MinMapData.h"
 #include "ResourceData.h"
 #include "Vector2.h"
 
@@ -7,6 +8,7 @@
 
 #include "Master.h"
 
+#include "DataManager.h"
 #include "EndManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
@@ -31,6 +33,22 @@ GameUIProcess::GameUIProcess()
 , mpMapManager(Master::mpGameManager->GetMapManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
 {
+    // 画面サイズ取得
+    COORDINATE_X_Y_INT set = XYGet_Int(0, 0);
+    int colorBit = 0;
+    GetScreenState(&set.x, &set.y, &colorBit);
+    /*
+    msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // 左上
+    msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // 右下*/
+//    /*
+    msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // 左上
+    msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // 右下*/
+    msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // 一辺
+    mnMapFrameDreadth = 5;
+    msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
+
+    mnMapDrawHandle = MakeScreen(msMapSide.x + (mnMapFrameDreadth * 2), msMapSide.y + (mnMapFrameDreadth * 2), TRUE);
+    mnDrawMinMapScreenHandle = MakeScreen();
 }
 
 // メニューキーを押したか返す
@@ -58,21 +76,92 @@ void GameUIProcess::DrawMinMap()
 {
     // INPROGRESS: 実装　あとエフェクトのエラー削除ファイルごとにやればいいらしい 2Dは影がいらないからstopマネージャーで描画処理自体を一回で済むようにする
 
+    // キャラクター全取得
     std::vector<ObjectBase*>objects = Master::mpGameManager->GetObjectManager()->FindsByType_vector(OBJECT_TYPE::CHARACTER_BASE);
-    std::vector<VECTOR> minMapPos(objects.size());
-    int minMapPosCount = 0;
+
+    // 範囲内にいるキャラクターのポジション情報
+    std::vector<MIN_MAP_DATA> minMapWithinRangePos(objects.size());
+    // 範囲内にいる数
+    int minMapWithinRangePosCount = 0;
+
+    // 範囲外のキャラクターの方向情報
+    std::vector<MIN_MAP_DATA> minMapOutsideRangeDir(objects.size());
 
     // 範囲外計算
     {
         mvPlayerPos = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos();
         mvPlayerAngle = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetAngle();
 
-
+        
     }
 
 
     // 描画
 
+
+    
+    // // 描画先を変更
+    // SetDrawScreen(mnMapDrawHandle);
+    // ClearDrawScreen();
+    
+    // // マップ描画場所
+    // DrawBoxAA(mnMapFrameDreadth, mnMapFrameDreadth, msMapSide.x + mnMapFrameDreadth, msMapSide.y + mnMapFrameDreadth, GetColor(0, 0, 0), TRUE);
+    
+    // Object_Base_Character *targetObject = Master::mpGameManager->GetObjectManager()->FindByTag_CharacterObject(PLAYER_TAG);
+    // if (targetObject != nullptr)
+    // {
+    //     VECTOR set = Master::mpCamera->GetDirection();
+    //     mfMapAngle = atan2(set.x, set.z);
+    //     // マップ土台描画
+    //     {
+    //         std::vector <Object_Base_Fixed *> fixedObject = Master::mpGameManager->GetObjectManager()->FindsByTag_FixedObject(WALL_TAG);
+    //         for (int i = 0; i < fixedObject.size(); i++) {
+    //             COORDINATE_X_Y xPlus_yPlus = GetMapPos(fixedObject[i]->GetPlusPosition());
+    //             COORDINATE_X_Y xPlus_yMinus = GetMapPos(VGet(fixedObject[i]->GetPlusPosition().x, 0, fixedObject[i]->GetMinusPosition().z));
+    //             COORDINATE_X_Y xMinus_yPlus = GetMapPos(VGet(fixedObject[i]->GetMinusPosition().x, 0, fixedObject[i]->GetPlusPosition().z));
+    //             COORDINATE_X_Y xMinus_yMinus = GetMapPos(fixedObject[i]->GetMinusPosition());
+
+    //             DrawTriangle(xPlus_yPlus.x + msMapMiddle.x, xPlus_yPlus.y + msMapMiddle.y,
+    //                 xPlus_yMinus.x + msMapMiddle.x, xPlus_yMinus.y + msMapMiddle.y,
+    //                 xMinus_yPlus.x + msMapMiddle.x, xMinus_yPlus.y + msMapMiddle.y, fixedObject[i]->GetDrawMapColor(), true);
+
+    //             DrawTriangle(xMinus_yMinus.x + msMapMiddle.x, xMinus_yMinus.y + msMapMiddle.y,
+    //                 xPlus_yMinus.x + msMapMiddle.x, xPlus_yMinus.y + msMapMiddle.y,
+    //                 xMinus_yPlus.x + msMapMiddle.x, xMinus_yPlus.y + msMapMiddle.y, fixedObject[i]->GetDrawMapColor(), true);
+    //         }
+    //     }
+
+    //     std::vector<Object_Base_Character *> neutralCharacter = Master::mpGameManager->GetObjectManager()->FindsByTag_CharacterObject(NEUTRAL_CHARACTER);
+    //     for (int i = 0; i < neutralCharacter.size(); i++) {
+    //             COORDINATE_X_Y set = GetMapPos(neutralCharacter[i]->GetObjectPosition());
+
+    //             DrawCircleAA(set.x + msMapMiddle.x, set.y + msMapMiddle.y, 6 * (mfMinMagnificationRate / *mfMagnificationRate), 32, GetColor(0,255, 0), TRUE);
+    //     }
+
+    //     // エネミー描画
+    //     std::vector<Object_Base_Character *> enemyObject = Master::mpGameManager->GetObjectManager()->FindsByTag_CharacterObject(ENEMY_TAG);
+    //     for (int i = 0; i < enemyObject.size(); i++) {
+    //         if (enemyObject[i]->GetObjectScene() != SCENE::EXCEPTION) {
+    //             COORDINATE_X_Y set = GetMapPos(enemyObject[i]->GetObjectPosition());
+
+    //             DrawCircleAA(set.x + msMapMiddle.x, set.y + msMapMiddle.y, 6 * (mfMinMagnificationRate / *mfMagnificationRate), 32, GetColor(255, 0, 0), TRUE);
+    //         }
+    //     }
+
+    //     // プレイヤー位置描画(中心)
+    //     DrawCircleAA(msMapMiddle.x, msMapMiddle.y, 6 * (mfMinMagnificationRate / *mfMagnificationRate), 32, GetColor(0, 0, 255), TRUE);
+
+    //     // マップ枠描画
+    //     DrawBox(0, 0, mnMapFrameDreadth, msMapSide.y + (mnMapFrameDreadth * 2), GetColor(0, 0, 0), TRUE); // 左
+    //     DrawBox(mnMapFrameDreadth, 0, msMapSide.x + mnMapFrameDreadth, mnMapFrameDreadth, GetColor(0, 0, 0), TRUE); // 上
+    //     DrawBox(msMapSide.x + mnMapFrameDreadth, 0, msMapSide.x + (mnMapFrameDreadth * 2), msMapSide.y + (mnMapFrameDreadth * 2), GetColor(0, 0, 0), TRUE); // 右
+    //     DrawBox(mnMapFrameDreadth, msMapSide.y + mnMapFrameDreadth, msMapSide.x + mnMapFrameDreadth, msMapSide.y + (mnMapFrameDreadth * 2), GetColor(0, 0, 0), TRUE); // 下
+
+    //     SetDrawScreen(DX_SCREEN_BACK);
+    //     // 3Dカメラ設定
+    //     Master::mpCamera->Initialize3DCameraTemplate();
+    //     DrawGraph(msMapUpperLeft.x - mnMapFrameDreadth, msMapUpperLeft.y - mnMapFrameDreadth, mnMapDrawHandle, TRUE);
+    // }
 }
 
 // ミニマップポジションに変換する

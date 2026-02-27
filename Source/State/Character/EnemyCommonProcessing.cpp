@@ -13,7 +13,7 @@ EnemyCommonProcessing::EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType)
 {
     meEnemyType = enemyType;
 
-    mnScreenHandle = MakeScreen(SCREEN_SIZES[(int)enemyType].x, SCREEN_SIZES[(int)enemyType].y);
+    mnScreenHandle = MakeScreen(SCREEN_SIZES[(int)enemyType].x, SCREEN_SIZES[(int)enemyType].y, TRUE);
 }
 
 // íœˆ—
@@ -96,5 +96,7 @@ void EnemyCommonProcessing::EnemyDataDraw(CharacterBase *enemy)
     SetDrawScreen(DX_SCREEN_BACK);
     // 3DƒJƒƒ‰Ý’è
     Master::mpGameManager->GetCameraManager()->Draw();
+    SetDrawBlendMode(DX_BLENDMODE_PMA_ALPHA, 128);
     DrawBillboard3D(setCharacterPos, 0.5f, 0.0f, 200.0f, 0.0f, mnScreenHandle, TRUE);
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }

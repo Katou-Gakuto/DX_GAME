@@ -166,7 +166,9 @@ void UI_Game::UIInitilize()
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });
     }
 
+    int testNumber = 10;
     // メニュー背景
+    for (int i = 0; i < testNumber/*テスト*/; i++)
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
@@ -179,6 +181,12 @@ void UI_Game::UIInitilize()
 
         // モデル追加
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+
+        if (i != (testNumber - 1))
+        {
+            continue;
+        }
+
         // 最初に見えなくする
         DrawConfigData drawConfigData;
         drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
@@ -207,6 +215,8 @@ void UI_Game::UIFinalize()
 void UI_Game::UIUpdate()
 {
     printfDx("%d\n", mnSelectNumber);
+
+    //SetDrawBright(0.0f, 0.0f, 0.0f);
 }
 
 // UI最終更新

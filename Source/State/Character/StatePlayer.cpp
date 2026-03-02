@@ -8,6 +8,7 @@
 #include "CameraManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
+#include "MapManager.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StatePlayer.h"
@@ -181,6 +182,8 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	// }
 
 	//DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
+
+	Master::mpGameManager->GetMapManager()->DrawMinMap();
 }
 
 // Ž€–S

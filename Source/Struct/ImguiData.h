@@ -11,19 +11,21 @@ struct IMGUI_TEMPLATE_DATA
 {
 public:
 #if _DEBUG
+    static constexpr int IMGUI_VARIABLE_MAX = 4;
+
     std::vector<VariableType*> VariableDatas = {};    // 変数ポインタ
 
-    VariableType PreVariable[4];    // 前の変数
+    VariableType PreVariable[IMGUI_VARIABLE_MAX];    // 前の変数
 
-    VariableType ChangeVariable[4]; // 変更用変数
+    VariableType ChangeVariable[IMGUI_VARIABLE_MAX]; // 変更用変数
 
     float Speed = 1.0f; // ドラッグ時の変化速度
 
     float Step = 0.0f;      // 刻み幅
     float StepFast = 0.0f;  // Ctrl押しながらの刻み幅
 
-    float Min = 0;  // 最小値
-    float Max = 0;  // 最大値
+    VariableType Min = 0.0f;  // 最小値
+    VariableType Max = 0.0f;  // 最大値
     
     std::string Label = "NONE";  // ラベル
     std::string Format = "%.6f"; // 表示数字
@@ -33,6 +35,60 @@ public:
     IMGUI_TYPE ImguiType = IMGUI_TYPE::SLIDER1; // Imgui種類
 
 #endif
+    IMGUI_TEMPLATE_DATA()
+#if _DEBUG
+    : Speed(1.0f)
+    , Step(0.0f)
+    , StepFast(0.0f)
+    , Min((VariableType)0)
+    , Max((VariableType)0)
+    , Label("NONE")
+    , Format("%.6f")
+    , Flag(0)
+    , ImguiType(IMGUI_TYPE::SLIDER1)
+#endif
+    {
+#if _DEBUG
+        VariableDatas.clear();
+#endif
+    }
+
+    IMGUI_TEMPLATE_DATA(
+                        std::vector<VariableType*> variableDatas,
+                        VariableType preVariable[IMGUI_VARIABLE_MAX],
+                        VariableType changeVariable[IMGUI_VARIABLE_MAX],
+                        float speed = 1.0f,
+                        float step = 0.0f,
+                        float stepFast = 0.0f,
+                        VariableType min = (VariableType)0,
+                        VariableType max = (VariableType)0,
+                        std::string label = "NONE",
+                        std::string format = "%.6f",
+                        ImGuiSliderFlags flag = 0,
+                        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+                        )
+#if _DEBUG
+    : Speed(speed)
+    , Step(step)
+    , StepFast(stepFast)
+    , Min(min)
+    , Max(max)
+    , Label(label)
+    , Format(format)
+    , Flag(flag)
+    , ImguiType(imguiType)
+    , VariableDatas(variableDatas)
+#endif
+    {
+#if _DEBUG
+        for (int i = 0; i < IMGUI_VARIABLE_MAX; i++)
+        {
+            PreVariable[i] = preVariable[i];
+            ChangeVariable[i] = changeVariable[i];
+        }
+#endif
+    }
+
     /*------------*/
     /*【リセット】*/
     /*------------*/
@@ -75,13 +131,13 @@ public:
     }
 
     /// <summary>最低値設定</summary>
-    void SetMin(float min) {
+    void SetMin(VariableType min) {
     #if _DEBUG
         Min = min;
     #endif
     }
     /// <summary>最大値設定</summary>
-    void SetMax(float max) {
+    void SetMax(VariableType max) {
     #if _DEBUG
         Max = max;
     #endif

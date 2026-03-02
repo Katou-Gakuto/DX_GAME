@@ -38,7 +38,7 @@ struct Vector2_Int
 		this->y += src.y;
 
 		return *this;
-	} 
+	}
 };
 
 
@@ -53,10 +53,10 @@ struct Vector2
 		this->x = 0.0f;
 		this->y = 0.0f;
 	}
-	Vector2(float x, float y)
+	Vector2(float X, float Y)
 	{
-		this->x = x;
-		this->y = y;
+		this->x = X;
+		this->y = Y;
 	}
 
 	operator Vector2_Int()

@@ -17,6 +17,9 @@ private:
     // IMGUIデータ int
     std::vector<IMGUI_INT_DATA> mstImguiIntDatas;
 
+    // 追加Imguiナンバー
+    int mnAddNumber;
+
 public:
 
     ImguiManager();
@@ -43,6 +46,11 @@ public:
 
     /// <summary>Imgui情報削除</summary>
     void DeleteImguiData(std::string labelName);
+
+    /// <summary>Imgui追加描画</summary>
+    void AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData);
+    /// <summary>Imgui追加描画</summary>
+    void AddDrawImgui(IMGUI_INT_DATA imguiIntData);
 
 private:
     /*floatのImguui描画*/

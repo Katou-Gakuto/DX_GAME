@@ -61,6 +61,7 @@ void GameManager::Initilize()
     mpAttackManager = new AttackManager();
     mpCollisionManager = new CollisionManager();
     mpMapManager = new MapManager();
+    mpMapManager->Initilize();
     mpTargetManager = new TargetManager();
 
 
@@ -74,7 +75,7 @@ void GameManager::Finailize()
     mpDotWeenManager->Finailize();
     mpObjectManager->Finalize();
     
-    mpMapManager->Release();
+    mpMapManager->Finalize();
 
     delete mpCameraManager;
     delete mpDotWeenManager;

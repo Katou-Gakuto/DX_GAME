@@ -17,6 +17,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 ImguiManager::ImguiManager()
 : mpMode(1)
+, mnAddNumber(0)
 {
     mstImguiFloatDatas.clear();
     mstImguiIntDatas.clear();
@@ -216,6 +217,7 @@ void ImguiManager::Update()
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         ImGui::ShowDemoWindow();
+        mnAddNumber = 0;
 
         for (int i = 0; i < mstImguiFloatDatas.size(); i++)
         {
@@ -302,6 +304,25 @@ void ImguiManager::DeleteImguiData(std::string labelName)
             return;
         }
     }
+#endif
+}
+
+// Imgui’Ç‰Á•`‰æ
+void ImguiManager::AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData)
+{
+#if _DEBUG
+    imguiFloatData.Label = imguiFloatData.Label + "_" + std::to_string(mnAddNumber);
+    ++mnAddNumber;
+    DrawFloatImgui(imguiFloatData);
+#endif
+}
+// Imgui’Ç‰Á•`‰æ
+void ImguiManager::AddDrawImgui(IMGUI_INT_DATA imguiIntData)
+{
+#if _DEBUG
+    imguiIntData.Label = imguiIntData.Label + "_" + std::to_string(mnAddNumber);
+    ++mnAddNumber;
+    DrawIntImgui(imguiIntData);
 #endif
 }
 

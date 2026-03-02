@@ -33,22 +33,22 @@ GameUIProcess::GameUIProcess()
 , mpMapManager(Master::mpGameManager->GetMapManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
 {
-    // 画面サイズ取得
-    COORDINATE_X_Y_INT set = XYGet_Int(0, 0);
-    int colorBit = 0;
-    GetScreenState(&set.x, &set.y, &colorBit);
-    /*
-    msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // 左上
-    msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // 右下*/
-//    /*
-    msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // 左上
-    msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // 右下*/
-    msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // 一辺
-    mnMapFrameDreadth = 5;
-    msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
+//     // 画面サイズ取得
+//     COORDINATE_X_Y_INT set = XYGet_Int(0, 0);
+//     int colorBit = 0;
+//     GetScreenState(&set.x, &set.y, &colorBit);
+//     /*
+//     msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // 左上
+//     msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // 右下*/
+// //    /*
+//     msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // 左上
+//     msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // 右下*/
+//     msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // 一辺
+//     mnMapFrameDreadth = 5;
+//     msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
 
-    mnMapDrawHandle = MakeScreen(msMapSide.x + (mnMapFrameDreadth * 2), msMapSide.y + (mnMapFrameDreadth * 2), TRUE);
-    mnDrawMinMapScreenHandle = MakeScreen();
+//     mnMapDrawHandle = MakeScreen(msMapSide.x + (mnMapFrameDreadth * 2), msMapSide.y + (mnMapFrameDreadth * 2), TRUE);
+//     mnDrawMinMapScreenHandle = MakeScreen();
 }
 
 // メニューキーを押したか返す

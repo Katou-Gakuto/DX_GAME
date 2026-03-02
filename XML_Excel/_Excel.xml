@@ -3316,6 +3316,18 @@ int
    </explanations>
    </member>
    <member className="ImguiManager">
+   <functionName>AddDrawImgui</functionName>
+   <explanations>
+Imgui追加描画
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>AddDrawImgui</functionName>
+   <explanations>
+Imgui追加描画
+   </explanations>
+   </member>
+   <member className="ImguiManager">
    <functionName>DeleteImguiData</functionName>
    <explanations>
 Imgui情報削除
@@ -3520,9 +3532,42 @@ floatのImgui情報設定
    </explanations>
    </member>
    <member className="MapManager">
+   <functionName>DrawMinMap</functionName>
+   <explanations>
+ミニマップ描画
+   </explanations>
+   </member>
+   <member className="MapManager">
+   <functionName>SetMinMapDrawLength</functionName>
+   <explanations>
+ミニマップ描画長さ変更
+   </explanations>
+   <returnExplanation>
+成功フラグ
+   </returnExplanation>
+   </member>
+   <member className="MapManager">
+   <functionName>SetMinMapSize_And_CreateHandle</functionName>
+   <explanations>
+ミニマップサイス変更(0.0f～1.0f)
+   </explanations>
+   </member>
+   <member className="MapManager">
    <functionName>Release</functionName>
    <explanations>
 データ解放
+   </explanations>
+   </member>
+   <member className="MapManager">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="MapManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
    </explanations>
    </member>
    <member className="UtilFactorys">

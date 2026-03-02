@@ -91,6 +91,25 @@ void ModelGraph::ModelDraw()
 
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
+#if _DEBUG
+
+        IMGUI_INT_DATA imguiIntData;
+        imguiIntData.SetVariable(&mstDrawDatas[i].pos.x);
+        imguiIntData.SetVariable(&mstDrawDatas[i].pos.y);
+        imguiIntData.SetVariable(&mstDrawDatas[i].size.x);
+        imguiIntData.SetVariable(&mstDrawDatas[i].size.y);
+        imguiIntData.SetLabel("DRAW_GRAPH_" + std::to_string(i));
+        imguiIntData.SetImguiType(IMGUI_TYPE::DRAG4);
+        imguiIntData.SetFormat("%d");
+        imguiIntData.SetMin(-5000);
+        imguiIntData.SetMax(5000);
+        imguiIntData.SetStep(10);
+        imguiIntData.SetSpeed(5.0f);
+        imguiIntData.SetStepFast(5.0f);
+
+        Master::mpImguiManager->AddDrawImgui(imguiIntData);
+#endif
+
         ModelDraw_Graph(mstDrawDatas[i]);
     }
 

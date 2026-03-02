@@ -27,7 +27,7 @@ namespace UtilCalc
 	constexpr float RadPi = 57.29578f * DX_PI_F;
 
 	/// <summary>float“¯m‚ª‚ÌŒë·”ÍˆÍ“à‚È‚çutruev‚ğ•Ô‚·</summary>
-	bool FloatEqual(float src, float dst, float error);
+	bool FloatEqual(float src, float dst, float error = FloatError);
 
 	/*•„†”½“]*/
 	inline const VECTOR VSignInversion(VECTOR src) { return VGet(src.x, src.y, src.z); }

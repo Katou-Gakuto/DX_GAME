@@ -404,6 +404,20 @@ void XmlArrange::XmlToData(std::string fileName)
 // データをExcel用のXmlファイルに変換する
 void XmlArrange::DataToExcelXmlFile(std::string fileName)
 {
+    // データがない場合
+    if (mstXmlData.xmlClassDatas.size() <= 0)
+    {
+        XmlClassData nullClassData;
+        nullClassData.className = "クラス無し";
+        XmlFunctionData nullFunctionData;
+        nullFunctionData.functionName = "関数無し";
+        nullFunctionData.functionExplanation.push_back("");
+        nullFunctionData.variableExplanations.push_back("");
+        nullFunctionData.returnExplanation.push_back("");
+        nullClassData.xmlFunctionDatas.push_back(nullFunctionData);
+        mstXmlData.xmlClassDatas.push_back(nullClassData);
+    }
+
     // Excel用XMLファイル作成
     std::ofstream excelXmlFile;
     excelXmlFile.open(fileName);

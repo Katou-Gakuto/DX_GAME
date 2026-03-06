@@ -43,6 +43,8 @@ MapManager::MapManager()
     mpModelMap->Initilize();
 
     mstMapData.clear();
+
+    mstMaskData.maskHandle = -1;
 }
 MapManager::~MapManager()
 {
@@ -51,6 +53,7 @@ MapManager::~MapManager()
 // 初期化
 void MapManager::Initilize()
 {
+
     // 画面の大きさ取得
     mstDisplaySize = &ResourceManager::mstDisplaySize;
 
@@ -81,10 +84,15 @@ void MapManager::Initilize()
         // マスクデータ
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK] =
                                     Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapMask.png"),
-                                        Vector2_Int(0, 0),
-                                        setUISize
+                                        LoadMask((ResourceManager::msResourceFile + "2D/MiniMapMask.png").c_str()),
+                                        //Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapMask.png"),
+                                        Vector2_Int(0, 0)/**/,
+                                        setUISize//*/
         );
+        // マスクにデータをセット
+        mstMaskData.maskHandle = MakeMask(16, 16);
+        SetDataToMask(16, 16, mstMaskData.maskData , mstMaskData.maskHandle);
+        mstMaskData.maskHandle = SetDataToMask(1, 1, mstMaskData.maskData, mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].handle);
 
 
         Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y/*タイポじゃない*/, true),
@@ -112,11 +120,54 @@ void MapManager::Initilize()
                                         setCharacterSize
         );
     }
+
+
+#if _DEBUG
+    
+    	IMGUI_FLOAT_DATA imguiFloatData;
+        imguiFloatData.SetVariable(&MIN_MAP_LEFT_UP_POS.x);
+        imguiFloatData.SetVariable(&MIN_MAP_LEFT_UP_POS.y);
+    	imguiFloatData.SetVariable(&mstMinMapSize.x);
+    	imguiFloatData.SetVariable(&mstMinMapSize.y);
+    	imguiFloatData.SetLabel("MinMapSize_");
+    	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+    	imguiFloatData.SetMin(-100.0f);
+    	imguiFloatData.SetMax(100.0f);
+        imguiFloatData.SetStep(0.1f);
+    	imguiFloatData.SetSpeed(0.01f);
+        imguiFloatData.SetStepFast(0.1f);
+    
+        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+        
+
+        IMGUI_INT_DATA imguiIntData;
+        imguiIntData.SetImguiType(IMGUI_TYPE::DRAG4);
+        imguiIntData.SetFormat("%d");
+        imguiIntData.SetMin(-5000);
+        imguiIntData.SetMax(5000);
+        imguiIntData.SetStep(10);
+        imguiIntData.SetSpeed(5.0f);
+        imguiIntData.SetStepFast(5.0f);
+        for (int i = 0; i < MIN_MAP_DRAW_GRAPH_TYPE::MAX; i++)
+        {
+            imguiIntData.ReSetVariable();
+            imguiIntData.SetVariable(&mstMinMapDrawGraphData[i].pos.x);
+            imguiIntData.SetVariable(&mstMinMapDrawGraphData[i].pos.y);
+            imguiIntData.SetVariable(&mstMinMapDrawGraphData[i].size.x);
+            imguiIntData.SetVariable(&mstMinMapDrawGraphData[i].size.y);
+            imguiIntData.SetLabel("MIN_MAP_DATA_" + std::to_string(i));
+
+            Master::mpImguiManager->SetIntImgui(imguiIntData);
+        }
+#endif
 }
 
 // 終了
 void MapManager::Finalize()
 {
+    // マスクデータを削除します
+    DeleteMask(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].handle) ;
+
     for (int i = 0; i < MIN_MAP_DRAW_GRAPH_TYPE::MAX; i++)
     {
         Master::mpResourceManager->ReduceGraphHandle(mstMinMapDrawGraphData[i].handle);
@@ -370,22 +421,6 @@ bool MapManager::SetMinMapDrawLength(float minMapDrawLength)
 // ミニマップ描画
 void MapManager::DrawMinMap()
 {
-#if _DEBUG
-
-	IMGUI_FLOAT_DATA imguiFloatData;
-	imguiFloatData.SetVariable(&mstMinMapSize.x);
-	imguiFloatData.SetVariable(&mstMinMapSize.y);
-	imguiFloatData.SetLabel("MinMapSize_");
-	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG2);
-	imguiFloatData.SetMin(-100.0f);
-	imguiFloatData.SetMax(100.0f);
-    imguiFloatData.SetStep(0.1f);
-	imguiFloatData.SetSpeed(0.01f);
-    imguiFloatData.SetStepFast(0.1f);
-
-    Master::mpImguiManager->AddDrawImgui(imguiFloatData);
-#endif
-
     // 必要ならハンドル作成
     CreateMinMapScreenHandle(true);
 
@@ -397,6 +432,7 @@ void MapManager::DrawMinMap()
         // 描画先を変更
         SetDrawScreen(mnDrawMinMapScreenHandle);
         ClearDrawScreen();
+
 
         // ミニマップ外キャラクター描画
         for (int i = 0; i < allMinMapDrawData.minMapOutsideRangeDir.size(); i++)
@@ -410,6 +446,10 @@ void MapManager::DrawMinMap()
         //SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
         //Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK]);
         //SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+        // マスク画面を作成します
+        CreateMaskScreen() ;
+        DrawMask(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].pos.x, mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].pos.y, mstMaskData.maskHandle, DX_MASKTRANS_NONE/*DX_MASKTRANS_WHITE*/ );
 
         // ミニマップ背景
         Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::BACK_GROUND]);
@@ -427,7 +467,11 @@ void MapManager::DrawMinMap()
         // ミニマップ枠
         Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::FRAME]);
 
-        DrawBoxAA(0, 0, 100, 100, GetColor(255, 255, 255), TRUE);
+        //Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK]);
+        
+        // マスク画面を削除します
+        DeleteMaskScreen() ;
+
         // 描画先戻す
         SetDrawScreen(DX_SCREEN_BACK);
         // 3Dカメラ設定
@@ -489,7 +533,7 @@ void MapManager::CreateMinMapScreenHandle(bool createRequiredFlag)
     mstMinMapCenterPos.y = mstDisplaySize->Up_SeparateRatioHeight( MIN_MAP_LEFT_UP_POS.y, mstMinMapSize.y * 0.5f/*半分*/, true);
 
     // TODO: 描画情報も変更
-    Vector2_Int setUISize = Vector2_Int(static_cast<int>(mstMinMapSize.x), static_cast<int>(mstMinMapSize.y));
+    Vector2_Int setUISize = Vector2_Int(mstDisplaySize->Left_RatioWidth(mstMinMapSize.x), mstDisplaySize->Up_RatioHeight(mstMinMapSize.y));
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::BACK_GROUND].size = Vector2_Int(setUISize);
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::FRAME].size =       Vector2_Int(setUISize);
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].size =        Vector2_Int(setUISize);
@@ -509,4 +553,19 @@ ALL_MIN_MAP_DRAW_DATA MapManager::GetMinMapDrawPos()
     ALL_MIN_MAP_DRAW_DATA allMinMapDrawData;
 
     return allMinMapDrawData;
+}
+
+// マスクリセット
+void MapManager::ReSetMask(int width, int height)
+{
+    if (mstMaskData.maskHandle != -1)
+    {
+        DeleteMask(mstMaskData.maskHandle);
+    }
+
+    // TODO: ハンドルが別々か、確認 後で16を変更できるようにする
+    // マスクにデータをセット
+    mstMaskData.maskHandle = MakeMask(16, 16);
+    SetDataToMask(16, 16, mstMaskData.maskData , mstMaskData.maskHandle);
+    mstMaskData.maskHandle = SetDataToMask(1, 1, mstMaskData.maskData, mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MASK].handle);
 }

@@ -55,8 +55,8 @@ public:
 
     IMGUI_TEMPLATE_DATA(
                         std::vector<VariableType*> variableDatas,
-                        VariableType preVariable[IMGUI_VARIABLE_MAX],
-                        VariableType changeVariable[IMGUI_VARIABLE_MAX],
+                        VariableType* preVariable,
+                        VariableType* changeVariable,
                         float speed = 1.0f,
                         float step = 0.0f,
                         float stepFast = 0.0f,

@@ -78,7 +78,8 @@ private:
 		MAX
 	};
 
-	const Vector2 MIN_MAP_LEFT_UP_POS = Vector2(0.8f, 0.1f);
+	// HACK: 戻す
+	/*const*/ Vector2 MIN_MAP_LEFT_UP_POS = Vector2(0.8f, 0.1f);
 
 	// ディスプレイサイズ
 	DisplaySize* mstDisplaySize;
@@ -105,6 +106,15 @@ private:
 	// ミニマップ描画　画像　情報
 	DRAW_GRAPH_DATA mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MAX];
 
+	struct MASK_DATA
+	{
+		int maskHandle;
+		unsigned char maskData[16][16];
+	};
+
+	// マスクデータ
+	MASK_DATA mstMaskData;
+
 public:
 	/// <summary>ミニマップサイス変更(0.0f～1.0f)</summary>
 	inline void SetMinMapSize_And_CreateHandle(Vector2 minMapSize) { mstMinMapSize = minMapSize; CreateMinMapScreenHandle(true); }
@@ -122,4 +132,7 @@ private:
 
 	/*ミニマップ表示ポジション取得*/
 	ALL_MIN_MAP_DRAW_DATA GetMinMapDrawPos();
+
+	/*マスクリセット*/
+	void ReSetMask(int width, int height);
 };

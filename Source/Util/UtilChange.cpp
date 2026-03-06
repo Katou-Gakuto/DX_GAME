@@ -47,7 +47,7 @@ SCENE UtilChange::SceneState(SCENE scene)
 		return SCENE::GAME_OVER;
 	}
 
-	return SCENE::NONE;
+	return scene;
 }
 
 // ƒV[ƒ“‚Ì–¼‘O‚ğæ“¾

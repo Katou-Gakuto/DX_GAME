@@ -121,6 +121,9 @@ void TitleScene::OnEnter(SceneManager* sceneManager)
 		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
 	}
+	
+	// HACK: ウェーブ制じゃなくしたら消す
+	Master::mpDataManager->InitWave();
 }
 void TitleScene::OnExit(SceneManager* sceneManager)
 {
@@ -634,4 +637,149 @@ void GameOverScene::OnEnter(SceneManager* sceneManager)
 
 void GameOverScene::OnExit(SceneManager* sceneManager)
 {
+}
+
+/*--------------------------------*/
+/*【ゲームループシーンステート】*/
+/*--------------------------------*/
+GameLoopScene::GameLoopScene()
+: IStateScene()
+, SceneStateProcess()
+{
+	mStateNumber = SCENE::GAME_LOOP;
+}
+
+void GameLoopScene::OnEnter(SceneManager* sceneManager)
+{
+	if (!Master::mpDataManager->SetNextWave())
+	{
+		// HACK: 仮設定
+		// ゲーム終了
+		sceneManager->SetNextScene(SCENE::DUNGEON_RESULT);
+		return;
+	}
+
+	// バトル
+	sceneManager->SetNextScene(SCENE::BATTLE_LOOP);
+}
+
+void GameLoopScene::OnExit(SceneManager* sceneManager)
+{
+}
+
+/*--------------------------------*/
+/*【バトルループシーンステート】*/
+/*--------------------------------*/
+BattleLoopScene::BattleLoopScene()
+: IStateScene()
+, SceneStateProcess()
+{
+	mStateNumber = SCENE::BATTLE_LOOP;
+}
+
+void BattleLoopScene::OnEnter(SceneManager* sceneManager)
+{
+	// マップ処理
+	if (mpMapManager == nullptr)
+	{
+		mpMapManager = Master::mpGameManager->GetMapManager();
+	}
+	mpMapManager->SetMapData(MapType::Battle);
+
+	StageOnEnter(sceneManager);
+
+	mStateNumber = sceneManager->GetNowScene();
+	
+	{// プレイヤーデータ設定
+		// プレイヤーデータ取得
+		PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+
+		// プレイヤーポジション設定
+		SetPlayerPosData(&playerData, DATA_SCENE::BATTLE, mStateNumber);
+
+		// データ設定
+		Master::mpDataManager->SetPlayPlayerData(playerData);
+	}
+
+	CharacterBase* player = nullptr;
+	switch (Master::mpDataManager->GetPlayPlayerData().status.characterType)
+	{
+	case CHARACTER_TYPE::ROBOT:
+	{
+		// HACK: 仮テキトウ実装
+		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
+		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+
+		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		player->Initilize();
+		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
+		player->SetAngle(VGet(0.0f, 0.0f, 0.0f));
+	}
+		break;
+	}
+	player->SetFSM(UtilFactorys::FSMCharacterFactory(player, CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER));
+	// モデルとアニメション設定
+	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::BATTLE);
+
+	// カメラ作成
+	{
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::PLAYER;
+		cameraData.plusPosition = VGet(0.0f, 180.0f, 0.0f);
+		cameraData.cameraDistance = 550.0f;
+		cameraData.targetCharacter = player;
+		cameraData.threeDFlag = true;
+		cameraData.SetColor(F4Get(128, 128, 128, 0));
+		//cameraData.SetColor(F4Get(0, 255, 255, 0));
+		mnSceneCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnSceneCameraID);
+	}
+	
+	{// 敵
+		// シーン生成物生成
+		std::vector<CHARACTER_DATA> enemyData = Master::mpDataManager->GetWaveEnemy();
+		for (int i = 0; i < enemyData.size(); i++) {
+			for (int j = 0; j < enemyData.size(); j++)
+			{
+				// HACK: 仮テキトウ実装
+				std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
+				enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+				enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+				
+				Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+				enemy->Initilize();
+				enemy->SetPos(enemyData[j].position);
+				enemy->SetAngle(enemyData[j].angle);
+				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
+				// モデルとアニメション設定
+				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
+			}
+		}
+	}
+	
+	// UI生成
+	{
+		UI_Game* gameUI = new UI_Game();
+		gameUI->Initilize();
+		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
+	}
+}
+
+void BattleLoopScene::OnExit(SceneManager* sceneManager)
+{
+	// 前居たマップを記録
+	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
+	playerData.preMap = mStateNumber;
+	Master::mpDataManager->SetPlayPlayerData(playerData);
+
+	// マップデータ解放
+	mpMapManager->Release();
+
+	// カメラ削除
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
+	mnSceneCameraID = -1;
+
+	// 攻撃削除
+	Master::mpGameManager->GetAttackManager()->SetDelete();
 }

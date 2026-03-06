@@ -144,6 +144,8 @@ void UI_Game::UIInitilize()
             setDrawDatas.push_back(drawData);
             break;
 
+        case SCENE::BATTLE_LOOP:
+            stringNumber = -3;
         case SCENE::BATTLE_1:
             stringNumber++;
         case SCENE::BATTLE_2:

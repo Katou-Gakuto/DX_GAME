@@ -32,4 +32,7 @@ enum class SCENE
 	BATTLR_RESULT,
 
 	GAME_OVER,	// ゲームオーバー
+
+	GAME_LOOP,	// ゲームループ
+	BATTLE_LOOP,	// バトルループ
 };

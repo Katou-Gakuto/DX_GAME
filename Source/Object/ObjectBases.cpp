@@ -136,14 +136,16 @@ void CharacterBase::Finalize()
 
 	for (auto& attackDatas : mmCharacterAttackDatas)
 	{
-		attackDatas.second.modelController->Finalize();
-		delete attackDatas.second.modelController;
-		attackDatas.second.modelController = nullptr;
-
+		// FIXME: ƒGƒ‰[‚ð‚Í‚­‚Æ‚«‚ª‚ ‚é
 		attackDatas.second.animation->Finalize();
 		delete attackDatas.second.animation;
 		attackDatas.second.animation = nullptr;
+
+		attackDatas.second.modelController->Finalize();
+		delete attackDatas.second.modelController;
+		attackDatas.second.modelController = nullptr;
 	}
+	mmCharacterAttackDatas.clear();
 
 	if (mpFsm != nullptr)
 	{

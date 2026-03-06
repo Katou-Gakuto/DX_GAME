@@ -146,7 +146,6 @@ public:
 	/*全データを取得*/
 	inline std::vector<ONE_DATA> GetAllData(bool baseFlag = false) const { return (baseFlag ? mstBaseData.oneDatas : mstPlayPlayerData.oneDatas); }
 
-
 	/*マップデータ取得*/
 	std::vector<std::vector<TileData>> GetMapData(MapType tileType);
 
@@ -159,6 +158,27 @@ private:
 
 	/// <summary>シーンに合ったファイル名を取得</summary>
 	std::vector<std::string> GetSceneFileNames(SCENE scsene, bool baseFlag);
+
+	/*------------*/
+	/*【ウェーブ】*/
+	/*------------*/
+private:
+	// ウェーブ数
+	int mnWaveNumber;
+
+	// ウェーブ別エネミーデータ
+	std::vector<std::vector<CHARACTER_DATA>> mstWaveEnemyData;
+
+public:
+
+	/// <summary>ウェーブ進行</summary>
+	bool SetNextWave();
+	/// <summary>ウェーブ初期化</summary>
+	void InitWave();
+
+	/// <summary>ウェーブのエネミーデータ取得</summary>
+	std::vector<CHARACTER_DATA> GetWaveEnemy();
+
 
 	/*--------------------------*/
 	/*     【マップデータ】     */

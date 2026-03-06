@@ -269,6 +269,36 @@ void DataManager::Initilize()
 	mmGetFilePosNumbers.clear();
 
 	SetBaseFile("後でファイル名入れる");
+
+	// ウェーブデータ
+	{
+		mnWaveNumber = -1;
+		mstWaveEnemyData.clear();
+
+		// TODO: ファイルから読み込む
+		for (int i = 1; i < 7; i++)
+		{
+			std::vector<CHARACTER_DATA> enemyDatas;
+			enemyDatas.clear();
+
+			for (int l = 0; l < 2; l++)
+			{
+				CHARACTER_DATA enemyData;
+				enemyData.survivalFlag = true;
+				enemyData.name = "ROBOT_ENEMY1";
+				enemyData.typeNumber = 3;
+				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 0, 1 * i, 1, CHARACTER_TYPE::ROBOT);
+				enemyData.mapType = SCENE::BATTLE_LOOP;
+				enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
+
+				enemyDatas.push_back(enemyData);
+			}
+			enemyDatas[0].position = VGet(2000.0f, 0.0f, 2700.0f);
+			enemyDatas[1].position = VGet(2700.0f, 0.0f, 2000.0f);
+
+			mstWaveEnemyData.push_back(enemyDatas);
+		}
+	}
 }
 
 // ベースファイル設定
@@ -777,6 +807,41 @@ std::vector<std::string> DataManager::GetSceneFileNames(SCENE scsene, bool baseF
 
 	return baseFileNames;
 }
+
+
+/*------------*/
+/*【ウェーブ】*/
+/*------------*/
+
+// ウェーブ進行
+bool DataManager::SetNextWave()
+{
+	if ((mnWaveNumber + 1) >= mstWaveEnemyData.size())
+	{
+		return false;
+	}
+
+	mnWaveNumber += 1;
+	return true;
+}
+
+// ウェーブ初期化
+void DataManager::InitWave()
+{
+	mnWaveNumber = -1;
+}
+
+// ウェーブのエネミーデータ取得
+std::vector<CHARACTER_DATA> DataManager::GetWaveEnemy()
+{
+	return mstWaveEnemyData[mnWaveNumber];
+}
+
+
+
+/*--------------------------*/
+/*     【マップデータ】     */
+/*--------------------------*/
 
 // マップリソースファイル名取得
 std::string DataManager::GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber)

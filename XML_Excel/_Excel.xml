@@ -3463,6 +3463,24 @@ floatのImgui情報設定
    </returnExplanation>
    </member>
    <member className="DataManager">
+   <functionName>GetWaveEnemy</functionName>
+   <explanations>
+ウェーブのエネミーデータ取得
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>InitWave</functionName>
+   <explanations>
+ウェーブ初期化
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetNextWave</functionName>
+   <explanations>
+ウェーブ進行
+   </explanations>
+   </member>
+   <member className="DataManager">
    <functionName>GetSceneFileNames</functionName>
    <explanations>
 シーンに合ったファイル名を取得

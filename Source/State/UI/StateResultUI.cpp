@@ -42,11 +42,18 @@ int StartResultUIState::Update(UIBase* ui)
 // 決定
 int StartResultUIState::Decision(UIBase* ui)
 {
+    /*// UNDONE: 元に戻す
     // シーン移動
 	Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneType);
 
     // エネミー削除
     Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::DUNGEON].sceneType);
+    */
+
+    // HACK: 仮実装
+    // シーン移動
+	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
+
 
 	return mStateNumber;
 }

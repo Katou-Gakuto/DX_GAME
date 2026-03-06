@@ -12,6 +12,7 @@
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StatePlayer.h"
+#include "StopManager.h"
 #include "ResourceManager.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
@@ -183,6 +184,10 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 
 	//DrawString(500 , 10 , (std::to_string(character->GetPos().x) + "\n" + std::to_string(character->GetPos().y) + "\n" + std::to_string(character->GetPos().z)).c_str(), GetColor(255, 255, 0));
 
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
+	{
+		return;
+	}
 	Master::mpGameManager->GetMapManager()->DrawMinMap();
 }
 

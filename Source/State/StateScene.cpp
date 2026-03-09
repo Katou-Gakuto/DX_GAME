@@ -740,21 +740,18 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 		// シーン生成物生成
 		std::vector<CHARACTER_DATA> enemyData = Master::mpDataManager->GetWaveEnemy();
 		for (int i = 0; i < enemyData.size(); i++) {
-			for (int j = 0; j < enemyData.size(); j++)
-			{
-				// HACK: 仮テキトウ実装
-				std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
-				enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-				enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-				
-				Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
-				enemy->Initilize();
-				enemy->SetPos(enemyData[j].position);
-				enemy->SetAngle(enemyData[j].angle);
-				enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
-				// モデルとアニメション設定
-				CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
-			}
+			// HACK: 仮テキトウ実装
+			std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
+			enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+			enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+
+			Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+			enemy->Initilize();
+			enemy->SetPos(enemyData[i].position);
+			enemy->SetAngle(enemyData[i].angle);
+			enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
+			// モデルとアニメション設定
+			CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
 		}
 	}
 	

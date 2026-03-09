@@ -27,10 +27,10 @@ ModelMovie::~ModelMovie()
 void ModelMovie::ModelInitilize()
 {
 	IMGUI_FLOAT_DATA imguiFloatData;
-	imguiFloatData.SetVariable(&mvPosition.x);
-	imguiFloatData.SetVariable(&mvPosition.y);
-	imguiFloatData.SetVariable(&mvSize.x);
-	imguiFloatData.SetVariable(&mvSize.y);
+	imguiFloatData.AddVariable(&mvPosition.x);
+	imguiFloatData.AddVariable(&mvPosition.y);
+	imguiFloatData.AddVariable(&mvSize.x);
+	imguiFloatData.AddVariable(&mvSize.y);
 	imguiFloatData.SetLabel("MOVIE_");
 	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
 	imguiFloatData.SetMin(-100.0f);

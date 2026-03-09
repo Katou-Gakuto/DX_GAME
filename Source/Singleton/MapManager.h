@@ -71,7 +71,6 @@ private:
 	{
 		BACK_GROUND = 0,	// 背景
 		FRAME,				// 枠
-		MASK,				// マスク
 		MIN_MAP_OUTSIDE_CHARACTER,	// ミニマップ外キャラクター
 		MIN_MAP_WITHIN_CHARACTER,	// ミニマップ内キャラクター
 		PLAYER,						// プレイヤー
@@ -108,8 +107,9 @@ private:
 
 	struct MASK_DATA
 	{
-		int maskHandle;
-		unsigned char maskData[16][16];
+		std::vector<std::vector<int>> maskGraphPixelData;
+		Vector2_Int maskSize;
+		unsigned char *maskData;
 	};
 
 	// マスクデータ

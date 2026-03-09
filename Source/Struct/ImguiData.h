@@ -104,7 +104,7 @@ public:
     /*yİ’èz*/
     /*--------*/
     /// <summary>•Ï”İ’è</summary>
-    void SetVariable(VariableType *src) {
+    void AddVariable(VariableType *src) {
     #if _DEBUG
         VariableDatas.push_back(src);
     #endif

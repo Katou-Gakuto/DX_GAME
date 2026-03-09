@@ -353,6 +353,9 @@
     <ClCompile Include="Source\Object\UI\UI_Config.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Util\UtilFileLoading.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -635,6 +638,12 @@
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Struct\MinMapData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\UtilFileLoading.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\FileLoadingData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>

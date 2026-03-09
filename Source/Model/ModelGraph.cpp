@@ -31,10 +31,10 @@ ModelGraph::~ModelGraph()
 void ModelGraph::ModelInitilize()
 {
 	IMGUI_FLOAT_DATA imguiFloatData;
-	imguiFloatData.SetVariable(&mvPosition.x);
-	imguiFloatData.SetVariable(&mvPosition.y);
-	imguiFloatData.SetVariable(&mvSize.x);
-	imguiFloatData.SetVariable(&mvSize.y);
+	imguiFloatData.AddVariable(&mvPosition.x);
+	imguiFloatData.AddVariable(&mvPosition.y);
+	imguiFloatData.AddVariable(&mvSize.x);
+	imguiFloatData.AddVariable(&mvSize.y);
 	imguiFloatData.SetLabel("GRAPH_");
 	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
 	imguiFloatData.SetMin(-100.0f);
@@ -94,10 +94,10 @@ void ModelGraph::ModelDraw()
 #if _DEBUG
 
         IMGUI_INT_DATA imguiIntData;
-        imguiIntData.SetVariable(&mstDrawDatas[i].pos.x);
-        imguiIntData.SetVariable(&mstDrawDatas[i].pos.y);
-        imguiIntData.SetVariable(&mstDrawDatas[i].size.x);
-        imguiIntData.SetVariable(&mstDrawDatas[i].size.y);
+        imguiIntData.AddVariable(&mstDrawDatas[i].pos.x);
+        imguiIntData.AddVariable(&mstDrawDatas[i].pos.y);
+        imguiIntData.AddVariable(&mstDrawDatas[i].size.x);
+        imguiIntData.AddVariable(&mstDrawDatas[i].size.y);
         imguiIntData.SetLabel("DRAW_GRAPH_" + std::to_string(i));
         imguiIntData.SetImguiType(IMGUI_TYPE::DRAG4);
         imguiIntData.SetFormat("%d");

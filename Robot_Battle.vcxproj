@@ -91,6 +91,7 @@
     <ClCompile Include="Source\Util\UtilCalc.cpp" />
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
+    <ClCompile Include="Source\Util\UtilFileLoading.cpp" />
     <ClCompile Include="XML_Excel\XmlArrange.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\Struct\Coin.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />
     <ClInclude Include="Source\Struct\DotWeenData.h" />
+    <ClInclude Include="Source\Struct\FileLoadingData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
     <ClInclude Include="Source\Struct\ImguiData.h" />
     <ClInclude Include="Source\Struct\MinMapData.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="Source\Util\UtilCalc.h" />
     <ClInclude Include="Source\Util\UtilChange.h" />
     <ClInclude Include="Source\Util\UtilFactorys.h" />
+    <ClInclude Include="Source\Util\UtilFileLoading.h" />
     <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <ItemGroup>

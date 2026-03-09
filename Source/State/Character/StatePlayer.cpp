@@ -143,7 +143,8 @@ void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
 	// HACK: 仮実装
-	if (UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE)
+	if ((UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE) ||
+		(UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE_LOOP))
 	{
 		// HACK: これを更新のモデル描画前に移動させる
 		Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
@@ -155,7 +156,6 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 		DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(100, 100, 100), TRUE);
 		DrawBox(leftUp.x, leftUp.y, leftUp.x + ((rightDown.x - leftUp.x) * ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp)) , rightDown.y, GetColor(255, 255, 255), TRUE);	
 	}
-
 
 	// VECTOR pos1;
 	// VECTOR pos2;

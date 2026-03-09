@@ -3,6 +3,12 @@
     <assembly>
     Robot_Battle
     </assembly>
+   <member className="UtilFileLoading">
+   <functionName>LoadingBitMapFile</functionName>
+   <explanations>
+ビットマップファイル読み込み
+   </explanations>
+   </member>
    <member className="StateSpceialAttackOutAnimationController">
    <functionName>CheckState</functionName>
    <explanations>

@@ -76,8 +76,8 @@ private:
         for (int i = 0; i < TEST_NUMBER; i++)
         {
             IMGUI_FLOAT_DATA imguiFloatData;
-            imguiFloatData.SetVariable(&mvDrawTestPossCheck[i].x);
-            imguiFloatData.SetVariable(&mvDrawTestPossCheck[i].y);
+            imguiFloatData.AddVariable(&mvDrawTestPossCheck[i].x);
+            imguiFloatData.AddVariable(&mvDrawTestPossCheck[i].y);
             imguiFloatData.SetLabel("UICheck_Pos_");
             imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG2);
             imguiFloatData.SetMin(-10.0f);

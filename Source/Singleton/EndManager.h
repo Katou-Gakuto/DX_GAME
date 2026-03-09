@@ -11,6 +11,7 @@ enum class END_FLAG_NUMBER
 	MAP_FLAG,	// マップマネージャー	
 	HANDLE_FLAG,	// ハンドルコンテナ
 	BIT_FLAG,	// ビットフラグ
+	FILE_FLAG,	// ファイルフラグ
 };
 
 class EndManager

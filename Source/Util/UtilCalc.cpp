@@ -25,27 +25,56 @@ float UtilCalc::NotExceedAngle(float angle)
 }
 
 // •ûŒü‚ð3.14‚©‚ç-3.14‚É‚È‚é‚æ‚¤‚É’²®‚·‚é(3•ûŒü)
-VECTOR UtilCalc::VNotExceedAngle(VECTOR angle)
+VECTOR UtilCalc::VNotExceedAngle(VECTOR angle, bool radFlag)
 {
-    if (angle.x > Pi) {
-        angle.x -= PiTwo;
+    // ”¼Œa
+    float radius = (radFlag ? RadPi : Pi);
+    // ’¼Œa
+    float diameter = (radFlag ? RadPiTwo : PiTwo);
+
+    if (angle.x > radius) {
+        angle.x -= diameter;
+        while (angle.x > radius)
+        {
+            angle.x -= diameter;
+        }
     }
-    else if (angle.x < -Pi) {
-        angle.x += PiTwo;
+    else if (angle.x < -radius) {
+        angle.x += diameter;
+        while (angle.x < -radius)
+        {
+            angle.x += diameter;
+        }
     }
 
-    if (angle.y > Pi) {
-        angle.y -= PiTwo;
+    if (angle.y > radius) {
+        angle.y -= diameter;
+        while (angle.y > radius)
+        {
+            angle.y -= diameter;
+        }
     }
-    else if (angle.y < -Pi) {
-        angle.y += PiTwo;
+    else if (angle.y < -radius) {
+        angle.y += diameter;
+        while (angle.y < -radius)
+        {
+            angle.y += diameter;
+        }
     }
 
-    if (angle.z > Pi) {
-        angle.z -= PiTwo;
+    if (angle.z > radius) {
+        angle.z -= diameter;
+        while (angle.z > radius)
+        {
+            angle.z -= diameter;
+        }
     }
-    else if (angle.z < -Pi) {
-        angle.z += PiTwo;
+    else if (angle.z < -radius) {
+        angle.z += diameter;
+        while (angle.z < -radius)
+        {
+            angle.z += diameter;
+        }
     }
 
     return angle;

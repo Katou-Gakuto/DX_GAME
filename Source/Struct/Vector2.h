@@ -59,11 +59,39 @@ struct Vector2
 		this->y = Y;
 	}
 
-	operator Vector2_Int()
+	Vector2 operator +(Vector2 src)
+	{
+		Vector2 vec;
+
+		vec.x = this->x + src.x;
+		vec.y = this->y + src.y;
+
+		return vec;
+	}
+
+	Vector2 operator +=(Vector2 src)
+	{
+		this->x += src.x;
+		this->y += src.y;
+
+		return *this;
+	}
+
+	Vector2_Int GetVecInt()
 	{
 		Vector2_Int vecInt;
 		vecInt.x = static_cast<int>(this->x);
 		vecInt.y = static_cast<int>(this->y);
 		return vecInt;
+	}
+
+	int IntX()
+	{
+		return static_cast<int>(this->x);
+	}
+
+	int IntY()
+	{
+		return static_cast<int>(this->y);
 	}
 };

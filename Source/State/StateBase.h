@@ -44,6 +44,10 @@ public:
 /*------------------------*/
 class IStateCamera : public StateBase<CAMERA_MODE>
 {
+protected:
+	// ƒJƒƒ‰1ƒtƒŒ[ƒ€ˆÚ“®—Ê
+	const float CAMERA_ONE_FRAME_AMOUNT = 3.0f;
+
 public:
 	IStateCamera() = default;
 	virtual ~IStateCamera() = default;

@@ -129,38 +129,42 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 
 	KeyState* keyState = Master::mpKeyState;
 
+	// ¶‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
-		cameraData.angle.y += 3.0f;
-		if (cameraData.angle.y >= 180.0f)
+		cameraData.angle.y += CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData.angle.y >= UtilCalc::RadPi)
 		{
-			cameraData.angle.y -= 360.0f;
+			cameraData.angle.y -= UtilCalc::RadPiTwo;
 		}
 
 	}
+	// ‰E‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_RIGHT))
 	{
-		cameraData.angle.y -= 3.0f;
-		if (cameraData.angle.y <= (-180.0f))
+		cameraData.angle.y -= CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData.angle.y <= (-UtilCalc::RadPi))
 		{
-			cameraData.angle.y += 360.0f;
+			cameraData.angle.y += UtilCalc::RadPiTwo;
 		}
 	}
 
+	// ã‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_UP))
 	{
-		cameraData.angle.x += 3.0f;
-		if (cameraData.angle.x >= 70.0f)
+		cameraData.angle.x += CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData.angle.x >= UP_MAX_ANGLE)
 		{
-			cameraData.angle.x = 70.0f;
+			cameraData.angle.x = UP_MAX_ANGLE;
 		}
 	}
+	// ‰º‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_DOWN))
 	{
-		cameraData.angle.x -= 3.0f;
-		if (cameraData.angle.x <= 0.0f)
+		cameraData.angle.x -= CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData.angle.x <= DOWN_MAX_ANGLE)
 		{
-			cameraData.angle.x = 0.0f;
+			cameraData.angle.x = DOWN_MAX_ANGLE;
 		}
 	}
 

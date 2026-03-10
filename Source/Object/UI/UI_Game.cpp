@@ -216,7 +216,7 @@ void UI_Game::UIFinalize()
 // UIçXêV
 void UI_Game::UIUpdate()
 {
-    printfDx("%d\n", mnSelectNumber);
+    //printfDx("%d\n", mnSelectNumber);
 
     //SetDrawBright(0.0f, 0.0f, 0.0f);
 }

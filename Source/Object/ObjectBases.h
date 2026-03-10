@@ -376,6 +376,9 @@ public:
     /*サイズ取得*/
     inline VECTOR GetSize() const { return mpModelController->GetModelSize(); }
 
+    /*平均サイズ取得*/
+    inline float GetAverageSize() const { return (mpModelController->GetModelSize().x + mpModelController->GetModelSize().y + mpModelController->GetModelSize().z) / 3.0f; }
+
     /// <summary>モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
     inline ModelsControllerBase* GetModelsController() { return mpModelController; }

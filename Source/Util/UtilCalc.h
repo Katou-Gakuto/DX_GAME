@@ -23,8 +23,13 @@ namespace UtilCalc
 	constexpr float DegToRad = 0.0174532924f;
 	/*デグリー変換*/
 	constexpr float RadToDeg = 57.29578f;
+	/*デグリー半径*/
+	constexpr float RadPi = 180.0f;
+	/*デグリー直径*/
+	constexpr float RadPiTwo = 360.0f;
 
-	constexpr float RadPi = 57.29578f * DX_PI_F;
+	/*キャラクター1.0f割合サイズ*/
+	static float CharacterOneSize = 180.0f;
 
 	/// <summary>float同士がの誤差範囲内なら「true」を返す</summary>
 	bool FloatEqual(float src, float dst, float error = FloatError);
@@ -41,7 +46,7 @@ namespace UtilCalc
 	float NotExceedAngle(float angle);
 
     /*方向を3.14から-3.14になるように調整する(3方向)(ラジアン)*/
-	VECTOR VNotExceedAngle(VECTOR angle);
+	VECTOR VNotExceedAngle(VECTOR angle, bool radFlag = false);
 
 	/*球面移動した場所(ラジアン)*/
 	VECTOR VSphericalMovePos(float size, VECTOR angle);

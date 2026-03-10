@@ -54,7 +54,7 @@ void FadeManager::Draw()
 {
     if (mbFadeDrawFlag)
     {
-        Vector2_Int displaySize = ResourceManager::mstDisplaySize;
+        Vector2_Int displaySize = ResourceManager::mstDisplaySize.GetVecInt();
 
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)mfFadeAlpha);
         /*boxから画像ハンドルでフェードしたい

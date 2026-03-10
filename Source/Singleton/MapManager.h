@@ -86,7 +86,7 @@ private:
 	// 前のディスプレイサイズ
 	DisplaySize mstPreDisplaySize;
 
-	// ミニマップサイズ
+	// ミニマップ描画サイズ
 	DisplaySize mstMinMapSize;
 
 	// ミニマップ中央ポジション
@@ -97,7 +97,7 @@ private:
 	// ミニマップ最大描画距離
 	static constexpr float MIN_MAP_DRAW_MAX_DISTANCE = 10000.0f;
 	// ミニマップ最小描画距離
-	static constexpr float MIN_MAP_DRAW_MIN_DISTANCE = 200.0f;
+	static constexpr float MIN_MAP_DRAW_MIN_DISTANCE = 1000.0f;
 
     // ミニマップ表示用スクリーンハンドル
     int mnDrawMinMapScreenHandle;
@@ -117,7 +117,7 @@ private:
 
 public:
 	/// <summary>ミニマップサイス変更(0.0f～1.0f)</summary>
-	inline void SetMinMapSize_And_CreateHandle(Vector2 minMapSize) { mstMinMapSize = minMapSize; CreateMinMapScreenHandle(true); }
+	void SetMinMapSize_And_CreateHandle(Vector2 minMapSize);
 
 	/// <summary>ミニマップ描画長さ変更</summary>
 	/// <returns>成功フラグ</returns>

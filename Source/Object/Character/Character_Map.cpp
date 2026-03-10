@@ -67,7 +67,7 @@ void Character_Map::CharacterDraw()
 // “–‚½‚è”»’è—p
 void Character_Map::HitCheck(CollisionData& collisionData)
 {
-	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 180.0f))
+	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, UtilCalc::CharacterOneSize))
 	{
 		collisionData.collisionFlag = true;
 

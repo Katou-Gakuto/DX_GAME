@@ -214,7 +214,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 			drawGraphData.handle = mnSaveDataDrawDelectBackHandle;
 		}
 		drawGraphData.pos = drawPos;
-		drawGraphData.size = drawSize;
+		drawGraphData.size = drawSize.GetVecInt();
 
 		resourceMnaager->DrawData_Graph(drawGraphData);
 		

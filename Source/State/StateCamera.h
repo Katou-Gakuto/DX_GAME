@@ -54,6 +54,12 @@ public:
 /*--------------------------*/
 class StatePlayerCamera : public IStateCamera
 {
+private:
+	// 上方向最大アングル
+	const float UP_MAX_ANGLE = 70.0f;
+	// 下方向最大アングル
+	const float DOWN_MAX_ANGLE = 0.0f;
+
 public:
 	StatePlayerCamera();
 

@@ -10,7 +10,7 @@ template<typename VariableType>
 struct IMGUI_TEMPLATE_DATA
 {
 public:
-#if _DEBUG
+#ifdef _DEBUG
     static constexpr int IMGUI_VARIABLE_MAX = 4;
 
     std::vector<VariableType*> VariableDatas = {};    // 変数ポインタ
@@ -36,7 +36,7 @@ public:
 
 #endif
     IMGUI_TEMPLATE_DATA()
-#if _DEBUG
+#ifdef _DEBUG
     : Speed(1.0f)
     , Step(0.0f)
     , StepFast(0.0f)
@@ -46,9 +46,11 @@ public:
     , Format("%.6f")
     , Flag(0)
     , ImguiType(IMGUI_TYPE::SLIDER1)
+    , PreVariable()
+    , ChangeVariable()
 #endif
     {
-#if _DEBUG
+#ifdef _DEBUG
         VariableDatas.clear();
 #endif
     }
@@ -67,7 +69,7 @@ public:
                         ImGuiSliderFlags flag = 0,
                         IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
                         )
-#if _DEBUG
+#ifdef _DEBUG
     : Speed(speed)
     , Step(step)
     , StepFast(stepFast)
@@ -80,7 +82,7 @@ public:
     , VariableDatas(variableDatas)
 #endif
     {
-#if _DEBUG
+#ifdef _DEBUG
         for (int i = 0; i < IMGUI_VARIABLE_MAX; i++)
         {
             PreVariable[i] = preVariable[i];
@@ -95,9 +97,9 @@ public:
     /// <summary>変数リセット</summary>
     void ReSetVariable()
     {
-    #if _DEBUG
+#ifdef _DEBUG
         VariableDatas.clear();
-    #endif
+#endif
     }
 
     /*--------*/
@@ -105,78 +107,134 @@ public:
     /*--------*/
     /// <summary>変数設定</summary>
     void AddVariable(VariableType *src) {
-    #if _DEBUG
+#ifdef _DEBUG
         VariableDatas.push_back(src);
-    #endif
+#endif
     }
 
     /// <summary>速度設定</summary>
     void SetSpeed(float speed) {
-    #if _DEBUG
+#ifdef _DEBUG
         Speed = speed;
-    #endif
+#endif
     }
 
     /// <summary>刻み幅設定</summary>
     void SetStep(float step) {
-    #if _DEBUG
+#ifdef _DEBUG
         Step = step;
-    #endif
+#endif
     }
     /// <summary>刻み幅(ctrl)設定</summary>
     void SetStepFast(float stepFast) {
-    #if _DEBUG
+#ifdef _DEBUG
         StepFast = stepFast;
-    #endif
+#endif
     }
 
     /// <summary>最低値設定</summary>
     void SetMin(VariableType min) {
-    #if _DEBUG
+#ifdef _DEBUG
         Min = min;
-    #endif
+#endif
     }
     /// <summary>最大値設定</summary>
     void SetMax(VariableType max) {
-    #if _DEBUG
+#ifdef _DEBUG
         Max = max;
-    #endif
+#endif
     }
 
     /// <summary>ラベル設定</summary>
     void SetLabel(std::string label) {
-    #if _DEBUG
+#ifdef _DEBUG
         Label = label;
-    #endif
+#endif
     }
     /// <summary>フォーマット設定</summary>
     void SetFormat(std::string format) {
-    #if _DEBUG
+#ifdef _DEBUG
         Format = format;
-    #endif
+#endif
     }
 
     /// <summary>オプションフラグ設定</summary>
     void SetFlag(ImGuiSliderFlags flag) {
-    #if _DEBUG
+#ifdef _DEBUG
         Flag = flag;
-    #endif
+#endif
     }
 
     /// <summary>Imgui種類設定</summary>
     void SetImguiType(IMGUI_TYPE imguiType) {
-    #if _DEBUG
-        ImguiType = imguiType;
-    #endif
+#ifdef _DEBUG
+        ImguiType = imguiType;    
+#endif
     }
 };
 
 // float
 struct IMGUI_FLOAT_DATA : public IMGUI_TEMPLATE_DATA<float>
 {
+    static IMGUI_FLOAT_DATA GetImguiData(
+        std::vector<float*> variableDatas,
+        float speed = 1.0f,
+        float step = 0.0f,
+        float stepFast = 0.0f,
+        float min = -1.0f,
+        float max = 1.0f,
+        std::string label = "NONE",
+        std::string format = "%.6f",
+        ImGuiSliderFlags flag = 0,
+        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+    )
+    {
+        IMGUI_FLOAT_DATA imguiData;
+#ifdef _DEBUG
+        imguiData.VariableDatas = variableDatas;
+        imguiData.Speed = speed;
+        imguiData.Step = step;
+        imguiData.StepFast = stepFast;
+        imguiData.Min = min;
+        imguiData.Max = max;
+        imguiData.Label = label;
+        imguiData.Format = format;
+        imguiData.Flag = flag;
+        imguiData.ImguiType = imguiType;
+#endif
+        return imguiData;
+    }
 };
 
 // int
 struct IMGUI_INT_DATA : public IMGUI_TEMPLATE_DATA<int>
 {
+    static IMGUI_INT_DATA GetImguiData(
+        std::vector<int*> variableDatas,
+        float speed = 1.0f,
+        float step = 1.0f,
+        float stepFast = 1.0f,
+        int min = -1,
+        int max = 1,
+        std::string label = "NONE",
+        std::string format = "%d",
+        ImGuiSliderFlags flag = 0,
+        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+    )
+    {
+        IMGUI_INT_DATA imguiData;
+#ifdef _DEBUG
+        imguiData.VariableDatas = variableDatas;
+        imguiData.Speed = speed;
+        imguiData.Step = step;
+        imguiData.StepFast = stepFast;
+        imguiData.Min = min;
+        imguiData.Max = max;
+        imguiData.Label = label;
+        imguiData.Format = format;
+        imguiData.Flag = flag;
+        imguiData.ImguiType = imguiType;
+#endif
+        return imguiData;
+    }
 };

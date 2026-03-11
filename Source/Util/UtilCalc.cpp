@@ -108,7 +108,7 @@ VECTOR UtilCalc::VAngleToVec(VECTOR angle)
     vec.x = cosf(NotExceedAngle(angle.x)) * sinf(NotExceedAngle(angle.y));
     vec.y = sinf(NotExceedAngle(angle.x));
     vec.z = cosf(NotExceedAngle(angle.x)) * cosf(NotExceedAngle(angle.y));
-    return VNorm(vec);
+    return vec;
 }
 
 // ˆÚ“®—Ê‚ðƒAƒ“ƒOƒ‹‚É”½‰f‚µ‚½’l‚ð•Ô‚·

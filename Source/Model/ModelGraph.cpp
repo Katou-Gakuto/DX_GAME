@@ -91,7 +91,7 @@ void ModelGraph::ModelDraw()
 
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
-#if _DEBUG
+#ifdef _DEBUG
 
         IMGUI_INT_DATA imguiIntData;
         imguiIntData.AddVariable(&mstDrawDatas[i].pos.x);

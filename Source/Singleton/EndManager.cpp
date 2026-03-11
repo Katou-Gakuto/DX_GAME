@@ -27,7 +27,7 @@ void EndManager::Init()
 // 終了フラグ
 bool EndManager::EndFlag()
 {
-#if _DEBUG
+#ifdef _DEBUG
 	// ビットフラグ設定
 	if (BIT_FAILURE_FLAG)
 	{
@@ -44,7 +44,7 @@ bool EndManager::EndFlag()
 
 	if (mullEndFlag.Bool())
 	{
-#if _DEBUG
+#ifdef _DEBUG
 		// ブレークポイント弾き用
 		if ((mullEndFlag & (1llu << (int)END_FLAG_NUMBER::WITHIN_EXPECTATION_FLAG)) != 0)
 		{

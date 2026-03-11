@@ -26,6 +26,7 @@
 #include "ModelMap.h"
 #include "ObjectBases.h"
 #include "ResourceManager.h"
+#include "StopManager.h"
 #include "TargetManager.h"
 #include "UtilCalc.h"
 #include "UtilChange.h"
@@ -42,6 +43,8 @@ MapManager::MapManager()
 , mstMinMapCenterPos()
 , mstMinMapDrawDistance(Vector2(1000.0f, 0.0f))// HACK: 仮設定
 , mnDrawMinMapScreenHandle(-1)
+, mnMapBackHandle(-1)
+, mnMapBackResourceHandle(-1)
 {
     mpModelMap = new ModelMap();
     mpModelMap->Initilize();
@@ -61,6 +64,13 @@ static std::vector<std::vector<bool>> bitFlag;
 // 初期化
 void MapManager::Initilize()
 {
+    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Test/TestSphere.mv1");
+    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 5.0f));
+    mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
+
+    // モデルの頂点数を取得
+    int vertexCount = (mnMapBackHandle);
+
     // 画面の大きさ取得
     mstDisplaySize = &ResourceManager::mstDisplaySize;
 
@@ -75,18 +85,18 @@ void MapManager::Initilize()
         Vector2_Int setUISize = mstMinMapSize.GetVecInt();
         // 背景
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::BACK_GROUND] =
-                                    Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Red.png"),
-                                        Vector2_Int(0, 0),
-                                        setUISize
-        );
+            Master::mpResourceManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Red.png"),
+                Vector2_Int(0, 0),
+                setUISize
+            );
         // 枠
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::FRAME] =
-                                    Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
-                                        Vector2_Int(0, 0),
-                                        setUISize
-        );
+            Master::mpResourceManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
+                Vector2_Int(0, 0),
+                setUISize
+            );
 
         // マスクデータ
         {
@@ -128,80 +138,95 @@ void MapManager::Initilize()
             DeleteSoftImage(maskGraphHandle);
         }
 
-        Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y/*タイポじゃない*/, true),
-                                                   mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y, true));
+        Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_RatioWidth(mstMinMapDrawDistance.y/*タイポじゃない*/),
+            mstMinMapCenterPos.Up_RatioHeight(mstMinMapDrawDistance.y));
         // 範囲外キャラ
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER] =
-                                    Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
-                                        Vector2_Int(),
-                                        setCharacterSize
-        );
+            Master::mpResourceManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Vector2_Int(),
+                Vector2_Int(mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y/*タイポじゃない*/, true),
+                    mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y, true))
+            );
         // 範囲内キャラ
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER] =
-                                    Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
-                                        Vector2_Int(),
-                                        setCharacterSize
-        );
+            Master::mpResourceManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Vector2_Int(),
+                setCharacterSize
+            );
 
         // プレイヤー
         mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::PLAYER] =
-                                    Master::mpResourceManager->GetDrawGraphData(
-                                        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
-                                        Vector2_Int(static_cast<int>(mstMinMapCenterPos.x), static_cast<int>(mstMinMapCenterPos.y)),
-                                        setCharacterSize
-        );
+            Master::mpResourceManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Vector2_Int(static_cast<int>(mstMinMapCenterPos.x), static_cast<int>(mstMinMapCenterPos.y)),
+                setCharacterSize
+            );
     }
 
 
-#if _DEBUG
-    
-    	IMGUI_FLOAT_DATA imguiFloatData;
-        imguiFloatData.AddVariable(&MIN_MAP_LEFT_UP_POS.x);
-        imguiFloatData.AddVariable(&MIN_MAP_LEFT_UP_POS.y);
-    	imguiFloatData.AddVariable(&mstMinMapSize.x);
-    	imguiFloatData.AddVariable(&mstMinMapSize.y);
-    	imguiFloatData.SetLabel("MinMapSize_");
-    	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
-    	imguiFloatData.SetMin(-10000.0f);
-    	imguiFloatData.SetMax(10000.0f);
-        imguiFloatData.SetStep(0.1f);
-    	imguiFloatData.SetSpeed(0.01f);
-        imguiFloatData.SetStepFast(0.1f);
-    
-        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
-        
-        imguiFloatData.ReSetVariable();
-        imguiFloatData.AddVariable(&testDrawPos.x);
-        imguiFloatData.AddVariable(&testDrawPos.y);
-        imguiFloatData.AddVariable(&testDrawPos.z);
-        imguiFloatData.AddVariable(&testDrawPos.w);
-        imguiFloatData.SetLabel("MINMAP_TEST_SIZE");
-        imguiFloatData.SetStep(100.0f);
-        imguiFloatData.SetSpeed(10.0f);
-        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
-        
+#ifdef _DEBUG
 
-        IMGUI_INT_DATA imguiIntData;
-        imguiIntData.SetImguiType(IMGUI_TYPE::DRAG4);
-        imguiIntData.SetFormat("%d");
-        imguiIntData.SetMin(-5000);
-        imguiIntData.SetMax(5000);
-        imguiIntData.SetStep(10);
-        imguiIntData.SetSpeed(5.0f);
-        imguiIntData.SetStepFast(5.0f);
-        for (int i = 0; i < MIN_MAP_DRAW_GRAPH_TYPE::MAX; i++)
-        {
-            imguiIntData.ReSetVariable();
-            imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].pos.x);
-            imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].pos.y);
-            imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].size.x);
-            imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].size.y);
-            imguiIntData.SetLabel("MIN_MAP_DATA_" + std::to_string(i));
+    IMGUI_FLOAT_DATA imguiFloatData;
+    imguiFloatData.AddVariable(&MIN_MAP_LEFT_UP_POS.x);
+    imguiFloatData.AddVariable(&MIN_MAP_LEFT_UP_POS.y);
+    imguiFloatData.AddVariable(&mstMinMapSize.x);
+    imguiFloatData.AddVariable(&mstMinMapSize.y);
+    imguiFloatData.SetLabel("MinMapSize_");
+    imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+    imguiFloatData.SetMin(-1000000.0f);
+    imguiFloatData.SetMax(1000000.0f);
+    imguiFloatData.SetStep(0.1f);
+    imguiFloatData.SetSpeed(0.01f);
+    imguiFloatData.SetStepFast(0.1f);
 
-            Master::mpImguiManager->SetIntImgui(imguiIntData);
-        }
+    Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+
+    imguiFloatData.ReSetVariable();
+    imguiFloatData.AddVariable(&testDrawPos.x);
+    imguiFloatData.AddVariable(&testDrawPos.y);
+    imguiFloatData.AddVariable(&testDrawPos.z);
+    imguiFloatData.AddVariable(&testDrawPos.w);
+    imguiFloatData.SetLabel("MINMAP_TEST_SIZE");
+    imguiFloatData.SetSpeed(0.001f);
+    imguiFloatData.SetSpeed(10.0f);
+    Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+
+
+    IMGUI_INT_DATA imguiIntData;
+    imguiIntData.SetImguiType(IMGUI_TYPE::DRAG4);
+    imguiIntData.SetFormat("%d");
+    imguiIntData.SetMin(-5000);
+    imguiIntData.SetMax(5000);
+    imguiIntData.SetStep(10);
+    imguiIntData.SetSpeed(5.0f);
+    imguiIntData.SetStepFast(5.0f);
+    for (int i = 0; i < MIN_MAP_DRAW_GRAPH_TYPE::MAX; i++)
+    {
+        imguiIntData.ReSetVariable();
+        imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].pos.x);
+        imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].pos.y);
+        imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].size.x);
+        imguiIntData.AddVariable(&mstMinMapDrawGraphData[i].size.y);
+        imguiIntData.SetLabel("MIN_MAP_DATA_" + std::to_string(i));
+
+        Master::mpImguiManager->SetIntImgui(imguiIntData);
+    }
+
+    Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                     { &mstMinMapDrawGraphData[0].pos.x, &mstMinMapDrawGraphData[0].pos.y, &mstMinMapDrawGraphData[0].size.x, &mstMinMapDrawGraphData[0].size.y },
+                                                                     1.0f,
+                                                                     1.0f,
+                                                                     1.0f,
+                                                                     0,
+                                                                     1000,
+                                                                     "NONE_",
+                                                                     "%d",
+                                                                     0,
+                                                                     IMGUI_TYPE::SLIDER4
+                                                                    )
+                                        );
 
 #endif
 
@@ -227,6 +252,10 @@ void MapManager::Finalize()
     }
 
     Release();
+
+    // マップ背景削除
+    Master::mpResourceManager->ReduceModelHandle(mnMapBackHandle);
+    Master::mpResourceManager->ReduceMovie(mnMapBackResourceHandle);
 }
 
 // データ解放
@@ -411,6 +440,18 @@ void MapManager::GetMapPos(int& setPosX, int& setPosZ, VECTOR pos)
 // 描画
 void MapManager::Draw()
 {
+    // 動画ループ再生
+    CharacterBase* backGroundDrawPlayer = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER).target;
+    if ((backGroundDrawPlayer != nullptr) && !Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::BACK_GROUND))
+    {
+        SetUseLighting(FALSE);
+        //MV1SetPosition(mnMapBackHandle, backGroundDrawPlayer->GetPos());
+        Master::mpResourceManager->MovieLoop(mnMapBackResourceHandle);
+        MV1SetTextureGraphHandle(mnMapBackHandle, 0, mnMapBackResourceHandle, FALSE);
+        Master::mpResourceManager->DrawModelHandle(mnMapBackHandle);
+        SetUseLighting(TRUE);
+    }
+
     mpModelMap->ModelDraw();
     // for (int z = 0; z < mstMapData.size(); z++)
     // {
@@ -462,8 +503,8 @@ bool MapManager::SetMinMapDrawLength(float minMapDrawLength)
 
     mstMinMapDrawDistance.y = testDrawPos.z - ((mstMinMapDrawDistance.x / MIN_MAP_DRAW_MAX_DISTANCE) * /*0.9f*/testDrawPos.y);
 
-    Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y/*タイポじゃない*/, true),
-                                               mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y, true));
+    Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_RatioWidth(mstMinMapDrawDistance.y/*タイポじゃない*/),
+                                               mstMinMapCenterPos.Up_RatioHeight(mstMinMapDrawDistance.y));
 
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER].size =   setCharacterSize;// ここ変更ミニマップの描画サイズ変えた時のみでいいと思う
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].size =    setCharacterSize;
@@ -478,7 +519,7 @@ void MapManager::DrawMinMap()
 {
     SetMinMapDrawLength(testDrawPos.x);
     // 必要ならハンドル作成
-    CreateMinMapScreenHandle(true);
+    CreateMinMapScreenHandle();
 
     // 描画物取得
     ALL_MIN_MAP_DRAW_DATA allMinMapDrawData = GetMinMapDrawPos();
@@ -563,12 +604,12 @@ void MapManager::DrawMinMap()
         // ミニマップ内キャラクター描画
         for (int i = 0; i < allMinMapDrawData.minMapWithinRangePos.size(); i++)
         {
-            mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].pos = mstMinMapSize.LeftUp_Ratio(allMinMapDrawData.minMapWithinRangePos[i].vectorData);
+            mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].pos = mstMinMapSize.LeftUp_Ratio(allMinMapDrawData.minMapWithinRangePos[i].vectorData) - (mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].size * 0.5f);
             Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER]);
         }
 
         // プレイヤー描画
-        //Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::PLAYER]);
+        Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::PLAYER]);
         
         // マスク画面を削除します
         DeleteMaskScreen() ;
@@ -582,7 +623,7 @@ void MapManager::DrawMinMap()
         // ミニマップ外キャラクター描画
         for (int i = 0; i < allMinMapDrawData.minMapOutsideRangeDir.size(); i++)
         {
-            mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER].pos = mstMinMapSize.LeftUp_Ratio(allMinMapDrawData.minMapOutsideRangeDir[i].vectorData);
+            mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER].pos = mstMinMapSize.LeftUp_Ratio(allMinMapDrawData.minMapOutsideRangeDir[i].vectorData) - (mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER].size * 0.5f);
             Master::mpResourceManager->DrawData_Graph(mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER]);
         }
 
@@ -647,10 +688,10 @@ void MapManager::CreateMinMapScreenHandle(bool createRequiredFlag)
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::BACK_GROUND].size = setUISize;
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::FRAME].size =       setUISize;
 
-    Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y/*タイポじゃない*/, true),
-                                               mstMinMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMinMapDrawDistance.y, true));
+    Vector2_Int setCharacterSize = Vector2_Int(mstMinMapCenterPos.Left_RatioWidth(mstMinMapDrawDistance.y/*タイポじゃない*/),
+                                               mstMinMapCenterPos.Up_RatioHeight(mstMinMapDrawDistance.y));
 
-    mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_OUTSIDE_CHARACTER].size =   setCharacterSize;
+    mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].size =    setCharacterSize;
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MIN_MAP_WITHIN_CHARACTER].size =    setCharacterSize;
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::PLAYER].size =  setCharacterSize;
     mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::PLAYER].pos =   Vector2_Int(static_cast<int>(mstMinMapCenterPos.x - (static_cast<float>(setCharacterSize.x) * 0.5f)), static_cast<int>(mstMinMapCenterPos.y - (static_cast<float>(setCharacterSize.y) * 0.5f)));
@@ -669,31 +710,51 @@ ALL_MIN_MAP_DRAW_DATA MapManager::GetMinMapDrawPos()
     allMinMapDrawData.minMapOutsideRangeDir.reserve(enemys.size());
     allMinMapDrawData.minMapWithinRangePos.reserve(enemys.size());
     MIN_MAP_DATA minMapData;
+
+    // プレイヤーが見ている方向
+    VECTOR playerAngle = VGet(0.0f, Master::mpGameManager->GetCameraManager()->GetCameraData().angle.y, 0.0f);
     
     for (int i = 0; i < enemys.size(); i++)
     {
+        // エネミーへのベクトル
+        VECTOR enemyVec = VSub(enemys[i].target->GetPos(), player->GetPos());
+
         // 範囲内
-        if (UtilCalc::SphereCollision(player->GetPos(), mstMinMapDrawDistance.x, enemys[i].target->GetPos(), 0.0f))
-        {
-            // エネミーへのベクトル
-            VECTOR enemyVec = VSub(enemys[i].target->GetPos(), player->GetPos());
-            // プレイヤーが見ている方向
-            VECTOR playerAngle = VGet(0.0f, Master::mpGameManager->GetCameraManager()->GetCameraData().angle.y, 0.0f);
-            // プレイヤーが向いている方向に対してエネミーがどれくらいずれたアングルにいるか
-            VECTOR tesdt = UtilCalc::VNotExceedAngle(VSub(UtilCalc::VVecToAngle(enemyVec), UtilCalc::VDegChange(playerAngle)));
-            minMapData.vectorData = UtilChange::ChangeVector_XZ(VAdd(UtilCalc::VSphericalMovePos(enemyVec.x / mstMinMapDrawDistance.x, tesdt), UtilCalc::VSphericalMovePos(enemyVec.y / mstMinMapDrawDistance.x/*タイポじゃない*/, VAdd(tesdt, VGet(0.0f, UtilCalc::PiTwo * 0.25f/*4分の一回転*/, 0.0f)))));
-            minMapData.vectorData += Vector2(0.5f, 0.5f);
+        if (UtilCalc::SphereCollision(player->GetPos(), mstMinMapDrawDistance.x * 0.5f, enemys[i].target->GetPos(), 0.0f))
+        {            
+            minMapData.vectorData.x = enemyVec.x / mstMinMapDrawDistance.x;
+            minMapData.vectorData.y = enemyVec.z / mstMinMapDrawDistance.x;
+
+            minMapData.vectorData = UtilChange::ChangeVector_XZ(
+                                                                VAdd(
+                                                                    UtilCalc::VSphericalMovePos(minMapData.vectorData.x, VAdd(UtilCalc::VRadChange(playerAngle), VGet(0.0f, UtilCalc::Pi * 0.5f ,0.0f))),
+                                                                    UtilCalc::VSphericalMovePos(minMapData.vectorData.y, UtilCalc::VRadChange(playerAngle))    
+                                                                    )
+                                                                );
+            // 座標修正
+            minMapData.vectorData.x += 0.5f;
+            minMapData.vectorData.y += 0.5f;
+
             allMinMapDrawData.minMapWithinRangePos.push_back(minMapData);
-            if ()
-            {
-                printfDx("%f\n", playerAngle.y);
-            }
         }
         // 範囲外
         else
         {
+            // プレイヤーが向いている方向に対してエネミーがどれくらいずれたアングルにいるか
+            VECTOR enemyAngleFromPlayerForward = UtilCalc::VNotExceedAngle(VAdd(UtilCalc::VVecToAngle(enemyVec), UtilCalc::VRadChange(playerAngle)));
+
+            minMapData.vectorData = UtilChange::ChangeVector_XZ(
+                                                                UtilCalc::VSphericalMovePos(0.5f, enemyAngleFromPlayerForward)
+                                                                );
+
+            // 座標修正
+            minMapData.vectorData.x += 0.5f;
+            minMapData.vectorData.y += 0.5f;
+
             allMinMapDrawData.minMapOutsideRangeDir.push_back(minMapData);
         }
+        
+
     }
 
     return allMinMapDrawData;

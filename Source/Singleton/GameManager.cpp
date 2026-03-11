@@ -133,7 +133,7 @@ void GameManager::Draw()
 
     Master::mpResourceManager->DrawDataRelease();
 
-#if _DEBUG
+#ifdef _DEBUG
     Master::mpImguiManager->Draw();
 #endif
 

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <type_traits>
 
-#if _DEBUG
+#ifdef _DEBUG
 // エラー時用
 static bool BIT_FAILURE_FLAG = false;
 #endif
@@ -58,7 +58,7 @@ public:
 
 	/*-----【指定ビット有効化】-----*/
 	inline void EnableFlag(int number){
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			flags |= ((T)1 << number);
 		}
@@ -78,7 +78,7 @@ public:
 
 	/*-----【指定ビット無効化】-----*/
 	inline void DisableFlag(int number){
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			flags &= ~((T)1 << number);
 		}
@@ -98,7 +98,7 @@ public:
 
 	/*-----【指定ビット反転】-----*/
 	inline void InvertFlag(int number){
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			flags ^= ((T)1 << number);
 		}
@@ -118,7 +118,7 @@ public:
 
 	/*-----【指定ビット取得】-----*/
 	inline bool GetFlag(int number) const {
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			return ((flags & ((T)1 << number)) != 0);
 		}
@@ -139,7 +139,7 @@ public:
 	/*-----【指定ビット数から数字を設定する】-----*/
 	inline void SetNumber(T setNumber, T numberZone, int number)
 	{
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			flags = (flags & ~(numberZone << number)) | ((setNumber & numberZone) << number);
 		}
@@ -164,7 +164,7 @@ public:
 			rightBitNumber = number;
 		}
 
-#if _DEBUG
+#ifdef _DEBUG
 		if (CheckNumber(number)){
 			return (flags & (numberZone << number)) >> rightBitNumber;
 		}

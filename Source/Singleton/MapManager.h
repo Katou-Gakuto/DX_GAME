@@ -27,6 +27,12 @@ private:
 	// マップモデル
 	ModelMap *mpModelMap;
 
+	// マップ背景ハンドル
+	int mnMapBackHandle;
+
+	// マップの背景素材ハンドル
+	int mnMapBackResourceHandle;
+
 public:
 	MapManager();
 	~MapManager();

@@ -16,7 +16,7 @@
 #include "TelopManager.h"
 #include "TimeManager.h"
 
-#if _DEBUG
+#ifdef _DEBUG
 #include "XmlArrange.h"
 #endif
 
@@ -44,7 +44,7 @@ TimeManager* Master::mpTimeManager = new TimeManager();
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-#if _DEBUG && true
+#ifdef _DEBUG && true
 	// Excel用XMLファイルを生成
 	XmlArrange* pXmlArrange = new XmlArrange();
 	pXmlArrange->Arrange();
@@ -65,7 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// TODO: 変更できるようにする
 	SetGraphMode(1280, 960, 32);
 
-#if _DEBUG
+#ifdef _DEBUG
 	Master::mpImguiManager->DxInit();
 #endif
 
@@ -75,7 +75,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return -1;		// エラーが起きたら直ちに終了
 	}
 
-#if _DEBUG
+#ifdef _DEBUG
 	Master::mpImguiManager->Initilize();
 #endif
 
@@ -98,7 +98,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		if (Master::mpTimeManager->GetNextUpdateFlag())
 		{
 
-#if _DEBUG
+#ifdef _DEBUG
 			Master::mpImguiManager->Update();
 #endif
 			// 更新

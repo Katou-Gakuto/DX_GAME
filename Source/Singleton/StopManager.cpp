@@ -48,6 +48,10 @@ bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
     case STOP_FLAG_TYPE::UI_MODEL:
         stopflag |= mpResourceManager->GetShadowMapDrawFlag();
         break;
+
+    case STOP_FLAG_TYPE::BACK_GROUND:
+        stopflag |= mpResourceManager->GetShadowMapDrawFlag();
+        break;
     }
 
     return stopflag;

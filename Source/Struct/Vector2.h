@@ -32,12 +32,40 @@ struct Vector2_Int
 		return vec;
 	}
 
+	Vector2_Int operator -(Vector2_Int src)
+	{
+		Vector2_Int vec;
+
+		vec.x = this->x - src.x;
+		vec.y = this->y - src.y;
+
+		return vec;
+	}
+
 	Vector2_Int operator +=(Vector2_Int src)
 	{
 		this->x += src.x;
 		this->y += src.y;
 
 		return *this;
+	}
+
+	Vector2_Int operator -=(Vector2_Int src)
+	{
+		this->x -= src.x;
+		this->y -= src.y;
+
+		return *this;
+	}
+
+	Vector2_Int operator *(float src)
+	{
+		Vector2_Int vec;
+
+		vec.x = this->x * src;
+		vec.y = this->y * src;
+
+		return vec;
 	}
 };
 

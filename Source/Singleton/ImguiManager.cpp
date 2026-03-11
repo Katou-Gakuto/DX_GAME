@@ -30,7 +30,7 @@ ImguiManager::~ImguiManager()
 
 void ImguiManager::DxInit()
 {
-#if _DEBUG
+#ifdef _DEBUG
     if (mpMode == 1)
     {
         DxLib::SetHookWinProc(WndProc);
@@ -42,7 +42,7 @@ void ImguiManager::DxInit()
 // ‰Šú‰»
 void ImguiManager::Initilize()
 {
-#if _DEBUG
+#ifdef _DEBUG
     if (mpMode == 0)
     {
         // //// Make process DPI aware and obtain main monitor scale
@@ -111,7 +111,7 @@ void ImguiManager::Initilize()
 // I—¹
 void ImguiManager::Finalize()
 {
-#if _DEBUG
+#ifdef _DEBUG
     if (mpMode == 0)
     {
         // // Cleanup
@@ -135,7 +135,7 @@ void ImguiManager::Finalize()
 // XV
 void ImguiManager::Update()
 {
-#if _DEBUG
+#ifdef _DEBUG
     if (mpMode == 0)
     {
         // // Poll and handle messages (inputs, window resize, etc.)
@@ -235,7 +235,7 @@ void ImguiManager::Update()
 // •`‰æ
 void ImguiManager::Draw()
 {
-#if _DEBUG	
+#ifdef _DEBUG	
     if (mpMode == 0)
     {
         // // Rendering
@@ -257,7 +257,7 @@ void ImguiManager::Draw()
 // float‚ÌImguiî•ñİ’è
 void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
-#if _DEBUG
+#ifdef _DEBUG
    for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
     {
         if (i >= 4){break; }
@@ -272,7 +272,7 @@ void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 // int‚ÌImguiî•ñİ’è
 void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
 {
-#if _DEBUG
+#ifdef _DEBUG
    for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
     {
         if (i >= 4) {break;}
@@ -287,7 +287,7 @@ void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
 // Imguiî•ñíœ
 void ImguiManager::DeleteImguiData(std::string labelName)
 {
-#if _DEBUG
+#ifdef _DEBUG
     for (int i = 0; i < mstImguiFloatDatas.size(); i++)
     {
         if (labelName == mstImguiFloatDatas[i].Label.substr(0, mstImguiFloatDatas[i].Label.size() - 1))
@@ -310,7 +310,7 @@ void ImguiManager::DeleteImguiData(std::string labelName)
 // Imgui’Ç‰Á•`‰æ
 void ImguiManager::AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
-#if _DEBUG
+#ifdef _DEBUG
     imguiFloatData.Label = imguiFloatData.Label + "_" + std::to_string(mnAddNumber);
     ++mnAddNumber;
     DrawFloatImgui(imguiFloatData);
@@ -319,7 +319,7 @@ void ImguiManager::AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData)
 // Imgui’Ç‰Á•`‰æ
 void ImguiManager::AddDrawImgui(IMGUI_INT_DATA imguiIntData)
 {
-#if _DEBUG
+#ifdef _DEBUG
     imguiIntData.Label = imguiIntData.Label + "_" + std::to_string(mnAddNumber);
     ++mnAddNumber;
     DrawIntImgui(imguiIntData);
@@ -329,7 +329,7 @@ void ImguiManager::AddDrawImgui(IMGUI_INT_DATA imguiIntData)
 // float‚ÌImguui•`‰æ
 void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
-#if _DEBUG
+#ifdef _DEBUG
     for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
     {
         if (i >= 4)
@@ -415,7 +415,7 @@ void ImguiManager::DrawFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 // int‚ÌImguui•`‰æ
 void ImguiManager::DrawIntImgui(IMGUI_INT_DATA imguiIntData)
 {
-#if _DEBUG
+#ifdef _DEBUG
     for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
     {
         if (i >= 4)

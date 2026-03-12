@@ -79,6 +79,7 @@
     <ClCompile Include="Source\State\StateCamera.cpp" />
     <ClCompile Include="Source\State\StateDotWeen.cpp" />
     <ClCompile Include="Source\State\StateScene.cpp" />
+    <ClCompile Include="Source\State\UI\StateConfigUi.cpp" />
     <ClCompile Include="Source\State\UI\StateGameUI.cpp" />
     <ClCompile Include="Source\State\UI\StateResultUI.cpp" />
     <ClCompile Include="Source\State\UI\StateTitleUI.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Source\State\StateCamera.h" />
     <ClInclude Include="Source\State\StateDotWeen.h" />
     <ClInclude Include="Source\State\StateScene.h" />
+    <ClInclude Include="Source\State\UI\StateConfigUi.h" />
     <ClInclude Include="Source\State\UI\StateGameUI.h" />
     <ClInclude Include="Source\State\UI\StateResultUI.h" />
     <ClInclude Include="Source\State\UI\StateTitleUI.h" />
@@ -196,6 +198,7 @@
     <Text Include="..\Schedule\Text\Memo.txt" />
     <Text Include="..\Schedule\Text\Terms.txt" />
     <Text Include="..\Schedule\Text\UI画像構想.txt" />
+    <Text Include="..\Schedule\Text\UsageExample.txt" />
     <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt" />
     <Text Include="..\Schedule\Text\テスト用\------------.txt" />
     <Text Include="..\Schedule\Text\テスト用\エフェクト.txt" />

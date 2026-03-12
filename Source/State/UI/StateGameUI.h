@@ -210,6 +210,12 @@ public:
 class ConfigChangeState : public IStateUI, public GameUIProcess
 {
 private:
+    enum CONFIG_SELECT_TYPE
+    {
+        BACK_TO_MENU = 0,   // メニューに戻る
+        MIN_MAP,    // ミニマップ操作
+        MAX
+    };
 public:
     ConfigChangeState();
     ~ConfigChangeState() = default;

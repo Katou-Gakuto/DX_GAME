@@ -356,6 +356,9 @@
     <ClCompile Include="Source\Util\UtilFileLoading.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\UI\StateConfigUi.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -646,6 +649,9 @@
     <ClInclude Include="Source\Struct\FileLoadingData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
+    <ClInclude Include="Source\State\UI\StateConfigUi.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Schedule\Text\Memo.txt">
@@ -709,6 +715,9 @@
       <Filter>リソース ファイル</Filter>
     </Text>
     <Text Include="..\Schedule\Text\UI画像構想.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\UsageExample.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
   </ItemGroup>

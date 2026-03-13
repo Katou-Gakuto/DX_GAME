@@ -96,6 +96,7 @@ MinimapConfigState::MinimapConfigState()
 
 void MinimapConfigState::OnEnter(UIBase* ui)
 {
+    ui->SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP);
     ui->SetSelectMaxNumber(MIN_MAP_CONFIG_TYPE::MAX);
     ui->SetSelectNumber(mnPreSelectNumber);
 }

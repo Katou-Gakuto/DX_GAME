@@ -3857,6 +3857,17 @@ fms取得
    </explanations>
    </member>
    <member className="UIBase">
+   <functionName>ResetSelectStepNumber</functionName>
+   <explanations>
+   </explanations>
+   </member>
+   <member className="UIBase">
+   <functionName>SetSelectNumberChangeType</functionName>
+   <explanations>
+選択ナンバー変更種類設定
+   </explanations>
+   </member>
+   <member className="UIBase">
    <functionName>SetAnimationType</functionName>
    <explanations>
 アニメーション設定

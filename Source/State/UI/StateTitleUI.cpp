@@ -351,7 +351,7 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 	
 	ui->SetSelectMaxNumber(4);
 	ui->SetSelectBoundaryValue(2);
-
+	
 	for(int i = 0; i < ui->GetDrawModels().size(); i++)
 	{
 		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);

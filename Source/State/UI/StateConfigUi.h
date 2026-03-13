@@ -37,8 +37,11 @@ public:
     ConfigUIProcess(int *statePointer, int defaultStateNumber);
 
 protected:
-    /// <summary>ステートナンバー取得</summary>
+    /*ステートナンバー取得*/
     int GetConfigStateNumber(int stateNumber);
+    
+    /**/
+    
 };
 
 /*----------------------*/

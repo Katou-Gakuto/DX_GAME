@@ -50,7 +50,7 @@ public:
     /// </summary>
     /// <returns>ゲームの経過時間</returns>
     unsigned int GetGameTime() const { return timeGetTime() - (munStartTime + (mbNewSceneTimeFlag ? (munStopTime + (timeGetTime() - munPreviousTime)) : munStopTime)); }
-
+    // TODO: timeGetTime　1フレームに1回呼ぶだけにする
     /// <summary>
     /// スタートからの経過時間
     /// </summary>

@@ -420,25 +420,25 @@ public:
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
 
     /*上移動設定*/
-    inline void SetUpMove() { munActionflags ^= (unsigned int)ACTION_FLAG::UP_ACTION; }
+    inline void SetUpMove() { munActionflags.SetXorBit(ACTION_FLAG::UP_ACTION); }
     /*下移動設定*/
-    inline void SetDownMove() { munActionflags ^= (unsigned int)ACTION_FLAG::DOWN_ACTION; }
+    inline void SetDownMove() { munActionflags.SetXorBit(ACTION_FLAG::DOWN_ACTION); }
 
     /*右移動設定*/
-    inline void SetRightMove() { munActionflags ^= (unsigned int)ACTION_FLAG::RIGHT_ACTION; }
+    inline void SetRightMove() { munActionflags.SetXorBit(ACTION_FLAG::RIGHT_ACTION); }
     /*左移動設定*/
-    inline void SetLeftMove() { munActionflags ^= (unsigned int)ACTION_FLAG::LEFT_ACTION; }
+    inline void SetLeftMove() { munActionflags.SetXorBit(ACTION_FLAG::LEFT_ACTION); }
 
     /*前移動設定*/
-    inline void SetFrontMove() { munActionflags ^= (unsigned int)ACTION_FLAG::FRONT_ACTION; }
+    inline void SetFrontMove() { munActionflags.SetXorBit(ACTION_FLAG::FRONT_ACTION); }
     /*後ろ移動設定*/
-    inline void SetBackMove() { munActionflags ^= (unsigned int)ACTION_FLAG::BACK_ACTION; }
+    inline void SetBackMove() { munActionflags.SetXorBit(ACTION_FLAG::BACK_ACTION); }
 
     /*HPが0以下のフラグを設定*/
-    inline void SetHPZero() { munActionflags ^= (unsigned int)ACTION_FLAG::HP_ZERO; }
+    inline void SetHPZero() { munActionflags.SetXorBit(ACTION_FLAG::HP_ZERO); }
 
     /// <summary>行動フラグ設定</summary>
-    inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags ^= (unsigned int)flagBit; }
+    inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags.SetXorBit(flagBit); }
 };
 
 /*--------------------------------------------------------*/
@@ -636,21 +636,44 @@ public:
 /*--------------------------------------*/
 /*          【UIベース用enum】          */
 /*--------------------------------------*/
-// 超えたキーフラグ
-enum class EXCEEDED_KEY_FLAG
+// 選択ナンバーフラグ関連用 enum
+enum class SELECT_NUMBER_FLAG_ENUM
 {
-    // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
-// INPROGRESS: 作業中
+    // MAX 0b0000'0000'0000'0000
+    /*---------- bit ----------*/
     /*超えた*/
-    EXCEEDED       = 0b1'0000u,
-    /*上*/
-    UP_EXCEEDED    = 0b1'0001u,
-    /*下*/
-    DOWN_EXCEEDED  = 0b1'0010u,
-    /*右*/
-    RIGHT_EXCEEDED = 0b1'0100u,
-    /*左*/
-    LEFT_EXCEEDED  = 0b1'1000u,
+    EXCEEDED                                 =  0b0001'0000u,
+    /*数字減少 超えた*/
+    NUMBER_DECREASE_EXCEEDED                 =  0b0001'0001u,
+    /*数字増加 超えた*/
+    NUMBER_INCREASE_EXCEEDED                 =  0b0001'0010u,
+    /*境界値分減少 超えた*/
+    BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED  =  0b0001'0100u,
+    /*境界値分増加 超えた*/
+    BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED  =  0b0001'1000u,
+
+    /*変更　ビット範囲*/
+    CHANGE_BIT_ZONE                          =/*0b1110'0000u*/0b111u,
+
+    /*初期化用ビット*/
+    INIT_BIT                                 =  0b1110'0000u,
+    /*-------------------------*/
+
+    /*---------- 数字 ----------*/
+    /*0*/
+    ZERO = 0,
+
+    /*変更　通常*/
+    CHANGE_NORMAL                  = 1,
+    /*変更　境界停止*/
+    CHANGE_BOUNDARY_STOP           = 2,
+    // /*変更　境界移動反転*/
+    // CHANGE_BOUNDARY_MOVE_INVERSION = 3,
+    // /*変更 境界内移動*/
+    // CHANGE_MOVING_IN_BOUNDARY = 4,
+    /*変更　ビット移動量*/
+    CHANGE_BIT_MOVING_DISTANCE     = 5,
+    /*--------------------------*/
 };
 
 /*------------------------------*/
@@ -684,8 +707,8 @@ private:
     // 削除時減少させるフラグ
     bool mbDeleteDecreaseFlag;
 
-    // 数字が越えたフラグ
-    BIT_FLAG<unsigned char> mstExceedNumberFlag;
+    // 選択ナンバー関連フラグ
+    BIT_FLAG<unsigned short> mstSelectNumberFlag;
 
 protected:
     // キー状態
@@ -699,6 +722,8 @@ protected:
 
     // 選択ナンバー
     int mnSelectNumber;
+    // 選択ステップ数
+    int mnSelectStepNumber;
 
     // 最大選択ナンバー
     int mnSelectMaxNumber;
@@ -764,11 +789,11 @@ public:
     void SetFsm(FSMUI* fsm);
 
     /*選択数設定*/
-    inline void SetSelectNumber(const int number) { mnSelectNumber = number; }
+    inline void SetSelectNumber(const int number) { mnSelectNumber = number; ResetSelectStepNumber(); }
     /*選択最大数設定*/
     inline void SetSelectMaxNumber(const int maxNumber) { mnSelectMaxNumber = maxNumber; }
     /// <summary>選択境界値設定</summary>
-    inline void SetSelectBoundaryValue(int selectBoundaryValue) { mnSelectBoundaryValue = selectBoundaryValue; }
+    inline void SetSelectBoundaryValue(int selectBoundaryValue) { mnSelectBoundaryValue = selectBoundaryValue; ResetSelectStepNumber(); }
 
     /// <summary>画像ハンドル設定</summary>
     void SetGraphHandle(int index, int handle);
@@ -788,7 +813,13 @@ public:
     /// <summary>アニメーション設定</summary>
     void SetAnimationType(ANIMATION_TYPE aniamtionType);
 
+    /// <summary>選択ナンバー変更種類設定</summary>
+    inline void SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM type) {mstSelectNumberFlag.SetNumber(type, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE);}
+
 private:
+    /// <summary></summary>
+    inline void ResetSelectStepNumber() { mnSelectStepNumber = mnSelectNumber / mnSelectBoundaryValue; }
+
     /// <summary>ハンドル数変更</summary>
     void SetHandleCount(int count, int *handleCount, int**handle);
 

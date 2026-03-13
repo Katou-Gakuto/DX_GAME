@@ -586,6 +586,8 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnMovieCount(0)
 , mpFsm(nullptr)
 , mnUIModelControllerCount(0)
+, mstSelectNumberFlag(0)
+, mnSelectStepNumber(0)
 {
 	mmUIPositionData.clear();
 
@@ -608,6 +610,8 @@ UIBase::~UIBase()
 // ‰Šú‰»
 void UIBase::Initilize()
 {
+	mstSelectNumberFlag.SetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_NORMAL, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE);
+
 	if (mbTimeStopFlag)
 	{
 		SetUINumber();
@@ -707,6 +711,7 @@ void UIBase::LastUpdate()
 		mstUIDrawModels[i].mpUIModelController->UpdateModels();
 	}
 
+	mstSelectNumberFlag.Init(SELECT_NUMBER_FLAG_ENUM::INIT_BIT);
 }
 
 // •`‰æ
@@ -1065,11 +1070,30 @@ void UIBase::RightIncrease()
 void UIBase::SelectNumberDecrease()
 {
 	--mnSelectNumber;
+	if ((mnSelectStepNumber * mnSelectBoundaryValue) > mnSelectNumber)
+	{
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			++mnSelectNumber;
+			return;	
+		}
+		--mnSelectStepNumber;
+	}
+
 	if (mnSelectNumber < 0)
 	{
-		if (mnSelectMaxNumber != 0)
+		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::NUMBER_DECREASE_EXCEEDED);
+
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			mnSelectNumber = 0;
+		}
+		else if (mnSelectMaxNumber != 0)
 		{
 			mnSelectNumber = mnSelectMaxNumber - 1;
+			ResetSelectStepNumber();
 		}
 		else
 		{
@@ -1082,9 +1106,31 @@ void UIBase::SelectNumberDecrease()
 void UIBase::SelectNumberIncrease()
 {
 	++mnSelectNumber;
+	if (((mnSelectStepNumber + 1) * mnSelectBoundaryValue) <= mnSelectNumber)
+	{
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			--mnSelectNumber;
+			return;	
+		}
+		++mnSelectStepNumber;
+	}
+	
 	if (mnSelectNumber >= mnSelectMaxNumber)
 	{
-		mnSelectNumber = 0;
+		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED);
+
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			mnSelectNumber = mnSelectMaxNumber - 1;
+		}
+		else
+		{
+			mnSelectNumber = 0;
+		}
+		ResetSelectStepNumber();
 	}
 }
 
@@ -1097,9 +1143,17 @@ void UIBase::SelectBoundaryValueDecrease()
 	}
 
 	mnSelectNumber -= mnSelectBoundaryValue;
+	--mnSelectStepNumber;
 	if (mnSelectNumber < 0)
 	{
-		if (mnSelectMaxNumber != 0)
+		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED);
+
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			mnSelectNumber += mnSelectBoundaryValue;
+		}
+		else if (mnSelectMaxNumber != 0)
 		{
 			mnSelectNumber += mnSelectMaxNumber;
 		}
@@ -1107,6 +1161,7 @@ void UIBase::SelectBoundaryValueDecrease()
 		{
 			mnSelectNumber = 0;
 		}
+		ResetSelectStepNumber();
 	}
 }
 
@@ -1119,9 +1174,21 @@ void UIBase::SelectBoundaryValueIncrease()
 	}
 
 	mnSelectNumber += mnSelectBoundaryValue;
+	++mnSelectStepNumber;
 	if (mnSelectNumber >= mnSelectMaxNumber)
 	{
-		mnSelectNumber -= mnSelectMaxNumber;
+		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED);
+
+		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
+			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
+		{
+			mnSelectNumber -= mnSelectBoundaryValue;
+		}
+		else
+		{
+			mnSelectNumber -= mnSelectMaxNumber;
+		}
+		ResetSelectStepNumber();
 	}
 }
 

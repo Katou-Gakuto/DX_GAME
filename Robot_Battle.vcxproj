@@ -86,6 +86,7 @@
     <ClCompile Include="Source\Struct\CameraData.cpp" />
     <ClCompile Include="Source\Struct\Coin.cpp" />
     <ClCompile Include="Source\Struct\CollisionData.cpp" />
+    <ClCompile Include="Source\Struct\DrawData.cpp" />
     <ClCompile Include="Source\Struct\ResourceData.cpp" />
     <ClCompile Include="Source\Struct\TargetData.cpp" />
     <ClCompile Include="Source\Struct\TileData.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Source\Struct\Coin.h" />
     <ClInclude Include="Source\Struct\CollisionData.h" />
     <ClInclude Include="Source\Struct\DotWeenData.h" />
+    <ClInclude Include="Source\Struct\DrawData.h" />
     <ClInclude Include="Source\Struct\FileLoadingData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
     <ClInclude Include="Source\Struct\ImguiData.h" />

@@ -22,6 +22,8 @@ enum class GAME_UI_STATE
     CONFIG_CHANGE_UI_STATE, // Ý’è•ÏX
 
     GAME_END_UI_STATE,  // ƒQ[ƒ€I—¹
+
+    MAX
 };
 
 /*----------------------------*/

@@ -359,6 +359,9 @@
     <ClCompile Include="Source\State\UI\StateConfigUi.cpp">
       <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Struct\DrawData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -651,6 +654,9 @@
     </ClInclude>
     <ClInclude Include="Source\State\UI\StateConfigUi.h">
       <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\DrawData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

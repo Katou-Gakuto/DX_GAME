@@ -16,6 +16,7 @@
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
+#include "StateConfigUi.h"
 #include "StateGameUI.h"
 #include "TargetManager.h"
 #include "UI_Check.h"
@@ -284,7 +285,8 @@ int PauseGameUIState::Decision(UIBase* ui)
         return (int)GAME_UI_STATE::DRAW_PLAYER_DATA_UI_STATE;
         
     case GAME_UI_SELECT_NUKMBER::UI_CONFIG_CHANGE:
-        return (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
+        // return (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
+        return (int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SELECT_CONFIG_STATE;
         
     case GAME_UI_SELECT_NUKMBER::UI_GAME_END:
         return (int)GAME_UI_STATE::GAME_END_UI_STATE;
@@ -296,6 +298,8 @@ int PauseGameUIState::Decision(UIBase* ui)
 // •`‰æ
 void PauseGameUIState::Draw(UIBase* ui)
 {
+    clsDx();
+    printfDx("%d : UInannba\n", ui->GetSelectNumber());
     DrawMinMap();
 
     DrawMenuBackground(ui);

@@ -5,6 +5,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "EndManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
@@ -22,6 +23,7 @@
 
 // マスター静的メンバ変数初期化
 DataManager* Master::mpDataManager = new DataManager();
+DrawManager* Master::mpDrawManager = new DrawManager();
 EndManager* Master::mpEndManager = new EndManager();
 FadeManager* Master::mpFadeManager = new FadeManager();
 GameManager* Master::mpGameManager = new GameManager();

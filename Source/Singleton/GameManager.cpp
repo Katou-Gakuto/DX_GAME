@@ -7,6 +7,7 @@
 #include "CollisionManager.h"
 #include "DataManager.h"
 #include "DotWeenManager.h"
+#include "DrawManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
 #include "ImguiManager.h"
@@ -41,6 +42,8 @@ GameManager::~GameManager()
 void GameManager::Initilize()
 {
     Master::mpDataManager->Initilize();
+
+    Master::mpDrawManager->Initilize();
 
     mpCameraManager = new CameraManager();
 
@@ -130,6 +133,9 @@ void GameManager::Draw()
     Master::mpResourceManager->LastDraw();
 
     Master::mpFadeManager->Draw();
+
+    // TODO: ƒŠƒ\[ƒX‚Ì•`‰æˆ—‚±‚¿‚ç‚ÉˆÚ‚·
+    Master::mpDrawManager->Draw();
 
     Master::mpResourceManager->DrawDataRelease();
 

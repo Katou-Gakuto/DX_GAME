@@ -470,7 +470,6 @@ void ResourceManager::ReduceModelHandle(int handle)
 // ‰æ‘œƒnƒ“ƒhƒ‹æ“¾
 int ResourceManager::GetGraphHandle(std::string fileName)
 {
-	int handle = -1;
 	if (mpGraphHandleContainer->CheckFileName(fileName))
 	{
 		return mpGraphHandleContainer->RegisterHandle(0/*‰½‚àw’è‚µ‚È‚¢*/);

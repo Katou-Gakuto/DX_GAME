@@ -1278,6 +1278,7 @@ bool UIBase::CheckLeft_Frame()
 		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
+		// TODO: ˆ—‚ð‚·‚éêŠ‚ÉˆÚ“®(‘¼‚Ì‚à)
 		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}

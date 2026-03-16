@@ -59,6 +59,13 @@ void TargetManager::Delete(CharacterBase* character, TARGET_TYPE targetNumber)
 {
 	switch (targetNumber)
 	{
+	case TARGET_TYPE::PLAYER:
+		if (mstPlayer.target == character)
+		{
+			mstPlayer.target = nullptr;
+		}
+		break;
+	
 	case TARGET_TYPE::ENEMY:
 		for (int i = 0; i < mstEnemys.size(); i++)
 		{

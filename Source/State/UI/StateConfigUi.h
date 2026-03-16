@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+#include "DrawData.h"
+
 #include "ObjectBases.h"
 #include "StateBase.h"
 
@@ -29,6 +31,8 @@ class ConfigUIProcess
 protected:
     int mnPreSelectNumber;
 
+    DRAW_DATA mstDrawData;
+
 private:
     int* mnStatePointer;
     int mnDefaultStateNumber;
@@ -39,9 +43,16 @@ public:
 protected:
     /*ステートナンバー取得*/
     int GetConfigStateNumber(int stateNumber);
+    // INPROGRESS: 作業中
+    /*値を上下の入力を元に変更する*/
+    void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 1 << 100);
+    /*値を上下の入力を元に変更する*/
+    void ValueLeftRightInputBasedOnChange(UIBase* ui, float *value, float changeSpeed = 1, float min = 0, float max = 1 << 100);
     
-    /**/
-    
+    /*ステートに入った時の処理*/
+    void ConfigOnEnter(UIBase* ui);
+    /*ステートを出た時の処理*/
+    void ConfigOnExit(UIBase* ui);
 };
 
 /*----------------------*/

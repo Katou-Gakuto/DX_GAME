@@ -1,5 +1,6 @@
 #include "Master.h"
 
+#include "DrawManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
 #include "ObjectManager.h"
@@ -34,6 +35,9 @@ void SceneManager::Update()
 void SceneManager::NextScene()
 {
 	Master::mpTimeManager->SetNewSceneTimeFlag(true);
+
+	// •`‰æî•ñíœ
+	Master::mpDrawManager->DeleteDrawData();
 
 	mpFSMScene->NextScene(this);
 

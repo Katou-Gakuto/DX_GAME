@@ -3763,6 +3763,58 @@ floatのImgui情報設定
 初期化
    </explanations>
    </member>
+   <member className="DrawManager">
+   <functionName>DeleteDrawData</functionName>
+   <explanations>
+全描画情報削除
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>AddDrawData</functionName>
+   <explanations>
+描画情報追加
+   </explanations>
+   <returnExplanation>
+描画情報ID
+   </returnExplanation>
+   <variable0>追加する描画情報</variable0>
+   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
+   </member>
+   <member className="DrawManager">
+   <functionName>ChangeDrawOrder</functionName>
+   <explanations>
+描画順を変更する
+   </explanations>
+   <returnExplanation>
+失敗フラグ
+   </returnExplanation>
+   <variable0>変更する描画情報ID</variable0>
+   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
+   </member>
+   <member className="DrawManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
    <member className="UIBase">
    <functionName>SelectBoundaryValueIncrease</functionName>
    <explanations>

@@ -1,6 +1,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "EndManager.h"
 #include "FadeManager.h"
 #include "GameManager.h"
@@ -16,6 +17,7 @@
 void Master::AllDelete()
 {
 	// I—¹ˆ—
+	mpDrawManager->Finalize();
 	mpFadeManager->Finailize();
 	mpGameManager->Finailize();
 	mpImguiManager->Finalize();
@@ -24,6 +26,7 @@ void Master::AllDelete()
 	
 	// íœ
 	delete mpDataManager;
+	delete mpDrawManager;
 	delete mpEndManager;
 	delete mpFadeManager;
 	delete mpGameManager;

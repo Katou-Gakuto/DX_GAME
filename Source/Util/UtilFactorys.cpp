@@ -25,6 +25,7 @@
 #include "StateAnimationController.h"
 #include "StateBase.h"
 #include "StateCamera.h"
+#include "StateConfigUi.h"
 #include "StateEnemy.h"
 #include "StateGameUI.h"
 #include "StateMapEnemy.h"
@@ -778,6 +779,12 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new DrawPlayerDataState());
 		fsmUI->RegisterState(new ConfigChangeState());
 		fsmUI->RegisterState(new GameEndState());
+
+		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SELECT_CONFIG_STATE, new ConfigSelectState());
+		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::MINIMAP_CONFIG_STATE, new MinimapConfigState());
+		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SOUND_CONFIG_STATE, new SoundConfigState());
+		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::CAMERA_CONFIG_STATE, new CameraConfigState());
+		
 
 		fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
 		break;

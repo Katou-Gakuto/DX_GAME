@@ -1,6 +1,7 @@
 #pragma once
 
 class DataManager;
+class DrawManager;
 class EndManager;
 class FadeManager;
 class GameManager;
@@ -16,6 +17,7 @@ class Master
 {
 public:
 	static DataManager* mpDataManager;	// データマネージャー
+	static DrawManager* mpDrawManager;	// 描画マネージャー
 	static EndManager* mpEndManager;	// エンドマネージャー
 	static FadeManager* mpFadeManager;	// フェードマネージャー
 	static GameManager* mpGameManager;	// ゲームマネージャー

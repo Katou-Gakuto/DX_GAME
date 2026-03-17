@@ -255,7 +255,7 @@ void ImguiManager::Draw()
 }
 
 // float‚ÌImguiî•ñİ’è
-void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
+std::string ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
 #ifdef _DEBUG
    for (int i = 0; i < imguiFloatData.VariableDatas.size(); i++)
@@ -266,11 +266,13 @@ void ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
     }
     imguiFloatData.Label = imguiFloatData.Label + std::to_string(mstImguiFloatDatas.size());
     mstImguiFloatDatas.push_back(imguiFloatData);
+    return imguiFloatData.Label;
 #endif
+    return "";
 }
 
 // int‚ÌImguiî•ñİ’è
-void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
+std::string ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
 {
 #ifdef _DEBUG
    for (int i = 0; i < imguiIntData.VariableDatas.size(); i++)
@@ -281,7 +283,9 @@ void ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
     }
     imguiIntData.Label = imguiIntData.Label + std::to_string(mstImguiIntDatas.size());
     mstImguiIntDatas.push_back(imguiIntData);
+    return imguiIntData.Label;
 #endif
+    return "";
 }
 
 // Imguiî•ñíœ

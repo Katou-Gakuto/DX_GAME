@@ -663,7 +663,7 @@ public:
 
 
 	/*-----【キーナンバーに応じたキーの押しているなら「true」を返す(コントローラー)】-----*/
-	inline bool GetKey_Controller(int keyNumber, int controllerNumber)  const { return munControllerKeyFlags[(int)FLAG_TYPE::NOW][controllerNumber].GetFlag(keyNumber); }
+	inline bool GetKey_Controller(int keyNumber, int controllerNumber)  const { return munControllerKeyFlags[(int)FLAG_TYPE::NOW][controllerNumber].GetFlag_BitShift(keyNumber); }
 	/*【キーナンバーに応じたキーの押しているなら「true」を返す(コントローラー)】*/
 	inline bool GetKey_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber)  const { return GetKey_Controller((int)keyNumber, controllerNumber); }
 	/*【キーナンバーに応じたキーの押しているなら「true」を返す(コントローラー)】*/
@@ -676,7 +676,7 @@ public:
 	/*------------------------------------------------------------------------------------------------------------*/
 
 	/*-----【キーナンバーに応じたキーが押された瞬間なら「true」を返す(コントローラー)】-----*/
-	inline bool GetKeyDown_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::DOWN][controllerNumber].GetFlag(keyNumber); }
+	inline bool GetKeyDown_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::DOWN][controllerNumber].GetFlag_BitShift(keyNumber); }
 	/*【キーナンバーに応じたキーが押された瞬間なら「true」を返す(コントローラー)】*/
 	inline bool GetKeyDown_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber) const { return GetKeyDown_Controller((int)keyNumber, controllerNumber); }
 	/*【キーナンバーに応じたキーが押された瞬間なら「true」を返す(コントローラー)】*/
@@ -689,7 +689,7 @@ public:
 	/*------------------------------------------------------------------------------------------------------------*/
 
 	/*-----【キーナンバーに応じたキーが押されなくなった瞬間なら「true」を返す(コントローラー)】-----*/
-	inline bool GetKeyUp_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::UP][controllerNumber].GetFlag(keyNumber); }
+	inline bool GetKeyUp_Controller(int keyNumber, int controllerNumber) const { return munControllerKeyFlags[(int)FLAG_TYPE::UP][controllerNumber].GetFlag_BitShift(keyNumber); }
 	/*【キーナンバーに応じたキーが押されなくなった瞬間なら「true」を返す(コントローラー)】*/
 	inline bool GetKeyUp_Controller(CONTROLLER_KEY_TYPE keyNumber, int controllerNumber) const { return GetKeyUp_Controller((int)keyNumber, controllerNumber); }
 	/*【キーナンバーに応じたキーが押されなくなった瞬間なら「true」を返す(コントローラー)】*/
@@ -748,17 +748,17 @@ public:
 	/// </summary>
 	inline BIT_FLAG<unsigned long long> GetUpWordKeyFlags_Board() const { return mullWordFlags[(int)FLAG_TYPE::UP]; }
 	/*-----【指定の文字操作系キーが押しているなら「true」を返す(キーボード)】-----*/
-	inline bool GetWordKey_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
+	inline bool GetWordKey_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::NOW].GetFlag_BitShift(keyNumber); }
 	/*【指定の文字操作系キーが押しているなら「true」を返す(キーボード)】*/
 	inline bool GetWordKey_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKey_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------------*/
 	/*-----【指定の文字操作系キーが押し始めた瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetWordKeyDown_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
+	inline bool GetWordKeyDown_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::DOWN].GetFlag_BitShift(keyNumber); }
 	/*【指定の文字操作系キーが押し始めた瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetWordKeyDown_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKeyDown_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------------*/
 	/*-----【指定の文字操作系キーが離した瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetWordKeyUp_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber); }
+	inline bool GetWordKeyUp_Board(int keyNumber) const { return mullWordFlags[(int)FLAG_TYPE::UP].GetFlag_BitShift(keyNumber); }
 	/*【指定の文字操作系キーが離した瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetWordKeyUp_Board(KEY_BOARD_WORD keyNumber) const { return GetWordKeyUp_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------------*/
@@ -779,17 +779,17 @@ public:
 	/// </summary>
 	inline BIT_FLAG<unsigned long> GetUpSpecialKeyFlags_Board() const { return mulSpecialFlags[(int)FLAG_TYPE::UP]; }
 	/*-----【指定の特殊キーが押しているなら「true」を返す(キーボード)】-----*/
-	inline bool GetSpecialKey_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
+	inline bool GetSpecialKey_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::NOW].GetFlag_BitShift(keyNumber); }
 	/*【指定の特殊キーが押しているなら「true」を返す(キーボード)】*/
 	inline bool GetSpecialKey_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKey_Board((int)keyNumber); }
 	/*----------------------------------------------------------------------*/
 	/*-----【指定の特殊キーが押し始めた瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetSpecialKeyDown_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
+	inline bool GetSpecialKeyDown_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::DOWN].GetFlag_BitShift(keyNumber); }
 	/*【指定の特殊キーが押し始めた瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKeyDown_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
 	/*-----【指定の特殊キーが離した瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetSpecialKeyUp_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber);}
+	inline bool GetSpecialKeyUp_Board(int keyNumber) const { return mulSpecialFlags[(int)FLAG_TYPE::UP].GetFlag_BitShift(keyNumber);}
 	/*【指定の特殊キーが離した瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetSpecialKeyUp_Board(KEY_BOARD_SPECIAL keyNumber) const { return GetSpecialKeyUp_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
@@ -810,17 +810,17 @@ public:
 	/// </summary>
 	inline BIT_FLAG<unsigned short> GetUpNumpadKeyFlags_Board() const { return mushNumpadFlags[(int)FLAG_TYPE::UP]; }
 	/*-----【指定のテンキーキーが押しているなら「true」を返す(キーボード)】-----*/
-	inline bool GetNumpadKey_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::NOW].GetFlag(keyNumber); }
+	inline bool GetNumpadKey_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::NOW].GetFlag_BitShift(keyNumber); }
 	/*【指定のテンキーキーが押しているなら「true」を返す(キーボード)】*/
 	inline bool GetNumpadKey_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKey_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
 	/*-----【指定のテンキーキーが押し始めた瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetNumpadKeyDown_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::DOWN].GetFlag(keyNumber); }
+	inline bool GetNumpadKeyDown_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::DOWN].GetFlag_BitShift(keyNumber); }
 	/*【指定のテンキーキーが押し始めた瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetNumpadKeyDown_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKeyDown_Board((int)keyNumber); }
 	/*------------------------------------------------------------------------------*/
 	/*-----【指定のテンキーキーが離した瞬間なら「true」を返す(キーボード)】-----*/
-	inline bool GetNumpadKeyUp_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::UP].GetFlag(keyNumber); }
+	inline bool GetNumpadKeyUp_Board(int keyNumber) const { return mushNumpadFlags[(int)FLAG_TYPE::UP].GetFlag_BitShift(keyNumber); }
 	/*【指定のテンキーキーが離した瞬間なら「true」を返す(キーボード)】*/
 	inline bool GetNumpadKeyUp_Board(KEY_BOARD_NUM_PAD keyNumber) const { return GetNumpadKeyUp_Board((int)keyNumber); }
 	/*--------------------------------------------------------------------------*/
@@ -830,7 +830,7 @@ public:
 	/// </summary>
 	inline BIT_FLAG<unsigned char> GetAllToggleState() const { return mucToggleFlag; }
 	/*-----【指定のトグル状態が有効なら「true」を返す(キーボード)】-----*/
-	inline bool GetToggleState(int keyNumber) const { return mucToggleFlag.GetFlag(keyNumber); }
+	inline bool GetToggleState(int keyNumber) const { return mucToggleFlag.GetFlag_BitShift(keyNumber); }
 	/*【指定のトグル状態が有効なら「true」を返す(キーボード)】*/
 	inline bool GetToggleState(KEY_BOARD_TOGGLE keyNumber) const { return GetToggleState((int)keyNumber); }
 	/*------------------------------------------------------------------*/
@@ -866,19 +866,19 @@ public:
 	inline BIT_FLAG<unsigned int> GetMouseFlags() const { return munMouseFlags; }
 
 	/*-----【指定のフラグが反応しているなら「true」を返す】-----*/
-	inline bool GetMouse(int number) const { return munMouseFlags.GetFlag(number); }
+	inline bool GetMouse(int number) const { return munMouseFlags.GetFlag_BitShift(number); }
 	/*【指定のフラグが反応しているなら「true」を返す】*/
 	inline bool GetMouse(MOUSE_TYPE number) const { return GetMouse((int)number); }
 	/*----------------------------------------------------------*/
 
 	/*-----【指定のフラグが反応し始めたなら「true」を返す】-----*/
-	inline bool GetDownMouse(int number) const { return munMouseFlags.GetFlag(number + (int)MOUSE_TYPE::MAX); }
+	inline bool GetDownMouse(int number) const { return munMouseFlags.GetFlag_BitShift(number + (int)MOUSE_TYPE::MAX); }
 	/*【指定のフラグが反応し始めたなら「true」を返す】*/
 	inline bool GetDownMouse(MOUSE_TYPE number) const { return GetDownMouse((int)number); }
 	/*----------------------------------------------------------*/
 
 	/*-----【指定のフラグが反応していたなら「true」を返す】-----*/
-	inline bool GetUpMouse(int number) const { return munMouseFlags.GetFlag(number + (int)MOUSE_TYPE::MAX + (int)MOUSE_TYPE::MAX); }
+	inline bool GetUpMouse(int number) const { return munMouseFlags.GetFlag_BitShift(number + (int)MOUSE_TYPE::MAX + (int)MOUSE_TYPE::MAX); }
 	/*【指定のフラグが反応していたなら「true」を返す】*/
 	inline bool GetUpMouse(MOUSE_TYPE number) const { return GetUpMouse((int)number); }
 	/*----------------------------------------------------------*/

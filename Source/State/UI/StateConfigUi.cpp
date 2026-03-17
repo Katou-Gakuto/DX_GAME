@@ -22,17 +22,17 @@ ConfigUIProcess::ConfigUIProcess(int *statePointer, int defaultStateNumber)
 , mnStatePointer(statePointer)
 , mnDefaultStateNumber(defaultStateNumber)
 {
-    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    // DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
-    mstDrawData = DRAW_DATA();
-    mstDrawData.drawFlag = false;
-    mstDrawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
-    mstDrawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-    mstDrawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
-    mstDrawData.drawGraphData.size = displaySize.LeftUp_FloatRatio(0.8f);
-    mstDrawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
-    mstDrawData.drawGraphData.transFlag = TRUE;
-    Master::mpDrawManager->AddDrawData(&mstDrawData);
+    // mstDrawData = DRAW_DATA();
+    // mstDrawData.drawFlag = false;
+    // mstDrawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+    // mstDrawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+    // mstDrawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
+    // mstDrawData.drawGraphData.size = displaySize.LeftUp_FloatRatio(0.8f);
+    // mstDrawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
+    // mstDrawData.drawGraphData.transFlag = TRUE;
+    // Master::mpDrawManager->AddDrawData(&mstDrawData);
 }
 
 // ステートナンバー取得
@@ -67,17 +67,49 @@ void ConfigUIProcess::ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, i
     }
 }
 
+// 値を左右の入力を元に変更する
+void ConfigUIProcess::ValueLeftRightInputBasedOnChange(UIBase* ui, float *value, float changeSpeed, float min, float max)
+{
+    if (changeSpeed < 0.0000f)
+    {
+        changeSpeed = -changeSpeed;
+    }
+
+    if (ui->CheckLeft_Frame())
+    {
+        *value -= changeSpeed;
+        if (min > *value)
+        {
+            *value = min;
+        }
+    }
+    if (ui->CheckRight_Frame())
+    {
+        *value += changeSpeed;
+        if (max < *value)
+        {
+            *value = max;
+        }
+    }
+}
+
 // ステートに入った時の処理
 void ConfigUIProcess::ConfigOnEnter(UIBase* ui)
 {
-    mstDrawData.drawFlag = true;
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        mstDrawData[i].drawFlag = true;
+    }
     ui->SetSelectNumber(mnPreSelectNumber);
 }
 
 // ステートを出た時の処理
 void ConfigUIProcess::ConfigOnExit(UIBase* ui)
 {
-    mstDrawData.drawFlag = false;
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        mstDrawData[i].drawFlag = false;
+    }
     mnPreSelectNumber = ui->GetSelectNumber();
 }
 
@@ -88,6 +120,29 @@ ConfigSelectState::ConfigSelectState()
 : ConfigUIProcess(&mStateNumber, CONFIG_UI_STATE::SELECT_CONFIG_STATE)
 {
     mStateNumber = CONFIG_UI_STATE::SELECT_CONFIG_STATE;
+
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+
+    mstDrawData.clear();
+    mstDrawData.push_back(DRAW_DATA());
+    mstDrawData[0].drawFlag = false;
+    mstDrawData[0].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+    mstDrawData[0].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+    mstDrawData[0].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+    mstDrawData[0].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+    mstDrawData[0].drawGraphData.transFlag = TRUE;
+    for (int i = 0; i < 3; i++)
+    {
+        mstDrawData.push_back(mstDrawData[0]);
+    }
+    mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
+    mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+    mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+    mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
+    }
 }
 
 void ConfigSelectState::OnEnter(UIBase* ui)
@@ -103,6 +158,18 @@ void ConfigSelectState::OnEnter(UIBase* ui)
     {
         mnPreConfigExceptStateNumber = preStateNumber;
         ui->SetSelectNumber(0);
+    }
+
+    for (int i = 0; i < CONFIG_UI_STATE::CONFIG_UI_STATE_MAX; i++)
+    {
+        if (i == ui->GetSelectNumber())
+        {
+            mstDrawData[i].drawFlag = true;
+        }
+        else
+        {
+            mstDrawData[i].drawFlag = false;
+        }
     }
 }
 
@@ -122,6 +189,18 @@ int ConfigSelectState::Update(UIBase* ui)
     if (ui->CheckDown_Frame())
     {
         ui->Decision();
+    }
+
+    for (int i = 0; i < CONFIG_UI_STATE::CONFIG_UI_STATE_MAX; i++)
+    {
+        if (i == ui->GetSelectNumber())
+        {
+            mstDrawData[i].drawFlag = true;
+        }
+        else
+        {
+            mstDrawData[i].drawFlag = false;
+        }
     }
 
     return mStateNumber;

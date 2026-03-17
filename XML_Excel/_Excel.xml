@@ -520,6 +520,12 @@
    </explanations>
    </member>
    <member className="AttackManager">
+   <functionName>GetAllAttack</functionName>
+   <explanations>
+攻撃全取得
+   </explanations>
+   </member>
+   <member className="AttackManager">
    <functionName>GetAttacData</functionName>
    <explanations>
 攻撃情報取得
@@ -3828,6 +3834,12 @@ floatのImgui情報設定
    </explanations>
    </member>
    <member className="UIBase">
+   <functionName>UIInitilize</functionName>
+   <explanations>
+選択ナンバー超過フラグ取得
+   </explanations>
+   </member>
+   <member className="UIBase">
    <functionName>GetUIPositionData</functionName>
    <explanations>
 UI座標情報設定
@@ -3983,6 +3995,15 @@ UI座標情報設定
    <functionName>GetAttackPower</functionName>
    <explanations>
    </explanations>
+   </member>
+   <member className="AttackBase">
+   <functionName>GetAttackCharacter</functionName>
+   <explanations>
+攻撃キャラクター取得
+   </explanations>
+   <returnExplanation>
+キャラクター
+   </returnExplanation>
    </member>
    <member className="AttackBase">
    <functionName>SetAnimation</functionName>

@@ -8,6 +8,9 @@ class ModelMovie : public ModelGraph
 {
 private:
     std::vector<int> mnSinglePlayFlag;
+#ifdef _DEBUG
+    std::string msDebugName;
+#endif
 
 public:
     ModelMovie();

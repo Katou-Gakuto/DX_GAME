@@ -152,6 +152,19 @@ void CharacterBase::Finalize()
 		mpFsm->Finalize(this);
 		delete mpFsm;
 	}
+
+	if (mpAttack != nullptr)
+	{
+		std::vector<AttackBase*> attacks = Master::mpGameManager->GetAttackManager()->GetAllAttack();
+		for (int i = 0; i < attacks.size(); i++)
+		{
+			if ((mpAttack == attacks[i]) && (mpAttack->GetAttackCharacter() == this))
+			{
+				mpAttack->SetActiveFlag(false);
+				break;
+			}
+		}
+	}
 }
 
 // 更新
@@ -305,15 +318,15 @@ void CharacterBase::TemplateActionProcess()
 		bool moveFlag = false;
 		
 		// 走る
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::DASH))
+		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::DASH))
 		{
 			mvVec = VAdd(mvVec, frontVec);
 			moveFlag = true;
 		}
 		// 前後
-		else if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
+		else if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
 		{
-			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::FRONT_ACTION))
+			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_ACTION))
 			{
 				mvVec = VAdd(mvVec, frontVec);
 			}
@@ -325,9 +338,9 @@ void CharacterBase::TemplateActionProcess()
 		}
 
 		// 左右
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::LEFT_OR_RIGHT_ACTION))
+		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::LEFT_OR_RIGHT_ACTION))
 		{
-			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::RIGHT_ACTION))
+			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::RIGHT_ACTION))
 			{
 				mvVec = VAdd(mvVec, rightVec);
 			}
@@ -339,9 +352,9 @@ void CharacterBase::TemplateActionProcess()
 		}
 
 		// 上下
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::UP_OR_DOWN_ACTION))
+		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_OR_DOWN_ACTION))
 		{
-			if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::UP_ACTION))
+			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_ACTION))
 			{
 				mvVec.y += 1.0f;
 			}
@@ -362,7 +375,7 @@ void CharacterBase::TemplateActionProcess()
 			SetAnimation(ANIMATION_TYPE::WALK);
 		}
 
-		if (munActionflags.GetFlag((int)CHECK_ACTION_FLAG::HP_ZERO))
+		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::HP_ZERO))
 		{
 			DeathProcess();
 		}
@@ -1083,7 +1096,7 @@ void UIBase::SelectNumberDecrease()
 
 	if (mnSelectNumber < 0)
 	{
-		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::NUMBER_DECREASE_EXCEEDED);
+		mstSelectNumberFlag.SetOrBit((unsigned short)SELECT_NUMBER_FLAG_ENUM::NUMBER_DECREASE_EXCEEDED | (unsigned short)SELECT_NUMBER_FLAG_ENUM::EXCEEDED);
 
 		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
 			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
@@ -1119,7 +1132,7 @@ void UIBase::SelectNumberIncrease()
 	
 	if (mnSelectNumber >= mnSelectMaxNumber)
 	{
-		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED);
+		mstSelectNumberFlag.SetOrBit((unsigned short)SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED | (unsigned short)SELECT_NUMBER_FLAG_ENUM::EXCEEDED);
 
 		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
 			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
@@ -1146,7 +1159,7 @@ void UIBase::SelectBoundaryValueDecrease()
 	--mnSelectStepNumber;
 	if (mnSelectNumber < 0)
 	{
-		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED);
+		mstSelectNumberFlag.SetOrBit((unsigned short)SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED | (unsigned short)SELECT_NUMBER_FLAG_ENUM::EXCEEDED);
 
 		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
 			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))
@@ -1177,7 +1190,7 @@ void UIBase::SelectBoundaryValueIncrease()
 	++mnSelectStepNumber;
 	if (mnSelectNumber >= mnSelectMaxNumber)
 	{
-		mstSelectNumberFlag.SetXorBit(SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED);
+		mstSelectNumberFlag.SetOrBit((unsigned short)SELECT_NUMBER_FLAG_ENUM::BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED | (unsigned short)SELECT_NUMBER_FLAG_ENUM::EXCEEDED);
 
 		if (mstSelectNumberFlag.GetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE)
 			== static_cast<unsigned short>(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP))

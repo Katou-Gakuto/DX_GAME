@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "DrawData.h"
+#include "Vector2.h"
 
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -29,9 +30,19 @@ enum CONFIG_UI_STATE
 class ConfigUIProcess
 {
 protected:
+    enum CONFIG_POS_TYPE
+    {
+        LEFT_UP = 0,
+        RIGHT_DOWN,
+        MAX
+    };
+
+    // 前に選択していた項目
     int mnPreSelectNumber;
 
-    DRAW_DATA mstDrawData;
+    std::vector<DRAW_DATA> mstDrawData;
+
+    const Vector2 CONFIG_POSS[CONFIG_POS_TYPE::MAX] = { Vector2(0.1f, 0.1f), Vector2(0.8f, 0.8f) };
 
 private:
     int* mnStatePointer;
@@ -43,11 +54,11 @@ public:
 protected:
     /*ステートナンバー取得*/
     int GetConfigStateNumber(int stateNumber);
-    // INPROGRESS: 作業中
+    
     /*値を上下の入力を元に変更する*/
-    void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 1 << 100);
+    void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 10000);
     /*値を上下の入力を元に変更する*/
-    void ValueLeftRightInputBasedOnChange(UIBase* ui, float *value, float changeSpeed = 1, float min = 0, float max = 1 << 100);
+    void ValueLeftRightInputBasedOnChange(UIBase* ui, float *value, float changeSpeed = 1.0f, float min = 0.0f, float max = 10000.0f);
     
     /*ステートに入った時の処理*/
     void ConfigOnEnter(UIBase* ui);

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <vector>
 
 #include "ImguiData.h"
@@ -39,10 +40,10 @@ public:
     void Draw();
 
     /// <summary>float‚ÌImguiî•ñİ’è</summary>
-    void SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData);
+    std::string SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData);
 
     /// <summary>int‚ÌImguiî•ñİ’è</summary>
-    void SetIntImgui(IMGUI_INT_DATA imguiIntData);
+    std::string SetIntImgui(IMGUI_INT_DATA imguiIntData);
 
     /// <summary>Imguiî•ñíœ</summary>
     void DeleteImguiData(std::string labelName);

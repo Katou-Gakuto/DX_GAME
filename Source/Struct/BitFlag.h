@@ -122,7 +122,7 @@ public:
 	
 
 	/*-----yw’èƒrƒbƒgæ“¾z-----*/
-	inline bool GetFlag(int number) const {
+	inline bool GetFlag_BitShift(int number) const {
 #ifdef _DEBUG
 		if (CheckNumber(number)){
 			return ((flags & ((T)1 << number)) != 0);
@@ -138,8 +138,24 @@ public:
 	}
 	/*yw’èƒrƒbƒgæ“¾z*/
 	template<typename ENUM_T, typename = typename std::enable_if<std::is_enum<ENUM_T>::value>::type>
-	inline bool GetFlag(ENUM_T number) const { return GetFlag((int)number); }
+	inline bool GetFlag_BitShift(ENUM_T number) const { return GetFlag_BitShift((int)number); }
 	/*----------------------------*/
+
+
+	/*-----yƒrƒbƒgæ“¾z-----*/
+	inline bool GetFlag_Bit(int bit) const {
+#ifdef _DEBUG
+		return ((flags & bit) != 0);
+#else
+		return ((flags & bit) != 0);
+#endif
+		return false;
+	}
+	/*yw’èƒrƒbƒgæ“¾z*/
+	template<typename ENUM_T, typename = typename std::enable_if<std::is_enum<ENUM_T>::value>::type>
+	inline bool GetFlag_Bit(ENUM_T bit) const { return GetFlag_Bit((T)bit); }
+	/*----------------------------*/
+
 
 	/*-----yw’èƒrƒbƒg”‚©‚ç”š‚ğİ’è‚·‚éz-----*/
 	inline void SetNumber(T setNumber, T numberZone, int number)

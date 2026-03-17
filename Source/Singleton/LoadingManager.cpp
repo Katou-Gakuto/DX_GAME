@@ -22,7 +22,7 @@ LoadingManager::~LoadingManager()
 void LoadingManager::Loading()
 {
 	// フェード
-	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::FADE) && !Master::mpEndManager->GetBitEndflag().Bool())
+	if (mullLoadingFlag.GetFlag_BitShift(LOADING_NUMBER::FADE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
 		Master::mpFadeManager->FadeEnd();
 
@@ -30,7 +30,7 @@ void LoadingManager::Loading()
 	}
 
 	// シーン
-	if (mullLoadingFlag.GetFlag(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
+	if (mullLoadingFlag.GetFlag_BitShift(LOADING_NUMBER::SCENE) && !Master::mpEndManager->GetBitEndflag().Bool())
 	{
 		// TODO: エフェクトがバグる感じがある(他にミスがないかを確認しろ)
 		//SetUseASyncLoadFlag(TRUE);

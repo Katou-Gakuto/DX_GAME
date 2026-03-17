@@ -37,13 +37,17 @@ void ModelMovie::ModelInitilize()
 	imguiFloatData.SetMax(100.0f);
 	imguiFloatData.SetSpeed(0.01f);
 
-	Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+#ifdef _DEBUG
+    msDebugName = Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+#endif
 }
 
 // I—¹
 void ModelMovie::ModelFinalize()
 {
-    Master::mpImguiManager->DeleteImguiData("MOVIE_");
+#ifdef _DEBUG
+    Master::mpImguiManager->DeleteImguiData(msDebugName);
+#endif
 
     for (auto drawData : mstDrawDatas)
     {

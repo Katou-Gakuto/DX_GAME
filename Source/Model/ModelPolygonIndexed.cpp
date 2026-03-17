@@ -24,11 +24,11 @@ void ModelPolygonIndexed::ModelFinalize()
 {
     for (int i = 0; i < mstModelVertex.size(); i++)
     {
-        if (mstModelVertex[i].textureType.GetFlag(TEXTURE_TYPE::GRAPH))
+        if (mstModelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::GRAPH))
         {
             Master::mpResourceManager->ReduceGraphHandle(mstModelVertex[i].textureHandle);
         }
-        else if (mstModelVertex[i].textureType.GetFlag(TEXTURE_TYPE::MOVIE))
+        else if (mstModelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::MOVIE))
         {
             Master::mpResourceManager->ReduceMovie(mstModelVertex[i].textureHandle);
         }

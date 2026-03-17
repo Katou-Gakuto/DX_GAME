@@ -42,4 +42,7 @@ public:
 
 	/// <summary>UŒ‚î•ñæ“¾</summary>
 	inline AttackData GetAttacData(int attackNumber) { return mstAttackDatas[attackNumber]; }
+
+	/// <summary>UŒ‚‘Sæ“¾</summary>
+	std::vector<AttackBase*> GetAllAttack() { return mstAllAttack; }
 };

@@ -613,6 +613,10 @@ public:
     /*--------*/
 
 public:
+    /// <summary>攻撃キャラクター取得</summary>
+    /// <returns>キャラクター</returns>
+    inline CharacterBase* GetAttackCharacter() { return mpAttackCharacter; }
+
     /*攻撃ナンバー取得*/
     inline int GetAttackNumber() const { return mnAttackNumber; }
 
@@ -644,13 +648,13 @@ enum class SELECT_NUMBER_FLAG_ENUM
     /*超えた*/
     EXCEEDED                                 =  0b0001'0000u,
     /*数字減少 超えた*/
-    NUMBER_DECREASE_EXCEEDED                 =  0b0001'0001u,
+    NUMBER_DECREASE_EXCEEDED                 =  0b0000'0001u,
     /*数字増加 超えた*/
-    NUMBER_INCREASE_EXCEEDED                 =  0b0001'0010u,
+    NUMBER_INCREASE_EXCEEDED                 =  0b0000'0010u,
     /*境界値分減少 超えた*/
-    BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED  =  0b0001'0100u,
+    BOUNDARY_VALUE_NUMBER_DECREASE_EXCEEDED  =  0b0000'0100u,
     /*境界値分増加 超えた*/
-    BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED  =  0b0001'1000u,
+    BOUNDARY_VALUE_NUMBER_INCREASE_EXCEEDED  =  0b0000'1000u,
 
     /*変更　ビット範囲*/
     CHANGE_BIT_ZONE                          =/*0b1110'0000u*/0b111u,
@@ -864,7 +868,13 @@ public:
     inline AnimationBase* GetAnimation(int index) { return  mstUIDrawModels[index].mpAnimation; }
 
     /// <summary>UI座標情報設定</summary>
-    std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }
+    inline std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }
+
+    /// <summary>選択ナンバー超過フラグ取得</summary>
+    inline bool GetSelectExceededFlag(SELECT_NUMBER_FLAG_ENUM enumBit) { return mstSelectNumberFlag.GetFlag_Bit(enumBit); }
+
+    /// <summary>選択ナンバー関連フラグ取得</summary>
+    inline BIT_FLAG<unsigned short> GetSelectNumberFlag() { return mstSelectNumberFlag; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

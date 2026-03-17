@@ -94,11 +94,11 @@ void ModelMap::ReleaseMapModel()
                 case  TILE_MODEL_TYPE::INDEXED:
                     for (int i = 0; i < mstTileModelDatas[z][x].modelVertex.size(); i++)
                     {
-                        if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag(TEXTURE_TYPE::GRAPH))
+                        if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::GRAPH))
                         {
                             Master::mpResourceManager->ReduceGraphHandle(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
                         }
-                        else if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag(TEXTURE_TYPE::MOVIE))
+                        else if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::MOVIE))
                         {
                             Master::mpResourceManager->ReduceMovie(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
                         }

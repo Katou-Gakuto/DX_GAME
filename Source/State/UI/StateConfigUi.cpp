@@ -124,21 +124,58 @@ ConfigSelectState::ConfigSelectState()
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
     mstDrawData.clear();
-    mstDrawData.push_back(DRAW_DATA());
-    mstDrawData[0].drawFlag = false;
-    mstDrawData[0].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
-    mstDrawData[0].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-    mstDrawData[0].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-    mstDrawData[0].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
-    mstDrawData[0].drawGraphData.transFlag = TRUE;
-    for (int i = 0; i < 3; i++)
+    mstDrawData.reserve(CONFIG_DRAW_DATA_TYPE::MAX);
+    // 固定表示物
     {
-        mstDrawData.push_back(mstDrawData[0]);
+        mstDrawData.push_back(DRAW_DATA());
+        mstDrawData[0].drawFlag = false;
+        mstDrawData[0].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        mstDrawData[0].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        mstDrawData[0].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[0].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[0].drawGraphData.transFlag = TRUE;
+        for (int i = 0; i < (CONFIG_UI_STATE::CONFIG_UI_STATE_MAX - 1); i++)
+        {
+            mstDrawData.push_back(mstDrawData[0]);
+        }
+        mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
+        mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+        mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+        mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
     }
-    mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
-    mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
-    mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
-    mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+
+    // スライダー
+    for (int i = 0; CONFIG_DRAW_DATA_TYPE::MAX > mstDrawData.size(); i++)
+    {
+        mstDrawData.push_back(DRAW_DATA());
+        mstDrawData[mstDrawData.size() - 1].drawFlag = false;
+        mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png");
+
+        mstDrawData.push_back(DRAW_DATA());
+        mstDrawData[mstDrawData.size() - 1].drawFlag = false;
+        mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png");
+
+        
+        mstDrawData.push_back(DRAW_DATA());
+        mstDrawData[mstDrawData.size() - 1].drawFlag = false;
+        mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
+    }
+
     for (int i = 0; i < mstDrawData.size(); i++)
     {
         Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
@@ -176,20 +213,11 @@ void ConfigSelectState::OnEnter(UIBase* ui)
 void ConfigSelectState::OnExit(UIBase* ui)
 {
     ConfigOnExit(ui);
-
-    mnPreSelectNumber = ui->GetSelectNumber();
 }
 
 int ConfigSelectState::Update(UIBase* ui)
 {
     ui->LeftRightSelectProcess();
-    ui->DefaultDecision();
-    ui->DefaultCloce();
-
-    if (ui->CheckDown_Frame())
-    {
-        ui->Decision();
-    }
 
     for (int i = 0; i < CONFIG_UI_STATE::CONFIG_UI_STATE_MAX; i++)
     {
@@ -201,6 +229,13 @@ int ConfigSelectState::Update(UIBase* ui)
         {
             mstDrawData[i].drawFlag = false;
         }
+    }
+
+    ui->DefaultDecision();
+    ui->DefaultCloce();
+    if (ui->CheckDown_Frame())
+    {
+        ui->Decision();
     }
 
     return mStateNumber;
@@ -249,8 +284,6 @@ void MinimapConfigState::OnEnter(UIBase* ui)
 void MinimapConfigState::OnExit(UIBase* ui)
 {
     ConfigOnExit(ui);
-
-    mnPreSelectNumber = ui->GetSelectNumber();
 }
 
 int MinimapConfigState::Update(UIBase* ui)
@@ -290,6 +323,7 @@ void SoundConfigState::OnEnter(UIBase* ui)
 {
     ConfigOnEnter(ui);
 
+    ui->SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP);
     ui->SetSelectMaxNumber(SOUND_CONFIG_TYPE::MAX);
     ui->SetSelectNumber(mnPreSelectNumber);
 }
@@ -297,8 +331,6 @@ void SoundConfigState::OnEnter(UIBase* ui)
 void SoundConfigState::OnExit(UIBase* ui)
 {
     ConfigOnExit(ui);
-
-    mnPreSelectNumber = ui->GetSelectNumber();
 }
 
 int SoundConfigState::Update(UIBase* ui)
@@ -338,6 +370,7 @@ void CameraConfigState::OnEnter(UIBase* ui)
 {
     ConfigOnEnter(ui);
 
+    ui->SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP);
     ui->SetSelectMaxNumber(CAMERA_CONFIG_TYPE::MAX);
     ui->SetSelectNumber(mnPreSelectNumber);
 }
@@ -345,8 +378,6 @@ void CameraConfigState::OnEnter(UIBase* ui)
 void CameraConfigState::OnExit(UIBase* ui)
 {
     ConfigOnExit(ui);
-
-    mnPreSelectNumber = ui->GetSelectNumber();
 }
 
 int CameraConfigState::Update(UIBase* ui)

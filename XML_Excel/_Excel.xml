@@ -3834,7 +3834,13 @@ floatのImgui情報設定
    </explanations>
    </member>
    <member className="UIBase">
-   <functionName>UIInitilize</functionName>
+   <functionName>GetSelectNumberFlag</functionName>
+   <explanations>
+選択ナンバー関連フラグ取得
+   </explanations>
+   </member>
+   <member className="UIBase">
+   <functionName>GetSelectExceededFlag</functionName>
    <explanations>
 選択ナンバー超過フラグ取得
    </explanations>

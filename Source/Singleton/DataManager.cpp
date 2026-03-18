@@ -287,7 +287,7 @@ void DataManager::Initilize()
 				enemyData.survivalFlag = true;
 				enemyData.name = "ROBOT_ENEMY1";
 				enemyData.typeNumber = 3;
-				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 0, 1 * i, 1, CHARACTER_TYPE::ROBOT);
+				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 0, (1 + 19) * i, 1, CHARACTER_TYPE::ROBOT);
 				enemyData.mapType = SCENE::BATTLE_LOOP;
 				enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
 

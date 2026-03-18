@@ -28,6 +28,9 @@ class FSMAnimation;
 class FSMCharacter;
 class FSMUI;
 
+extern class ObjectBase;
+bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check = false);
+
 /*--------------------------------------------------------*/
 /*               【オブジェクトベース関連】               */
 /*--------------------------------------------------------*/
@@ -106,8 +109,52 @@ public:
     /*最終更新*/
     virtual void LastUpdate() = 0;
     /*描画*/
-    virtual void Draw() = 0;
 
+    virtual void Draw() = 0;
+#ifdef _DEBUG
+    /*前オブジェクトへのポインタ取得*/
+    inline ObjectBase* GetPrevObject(bool allBaseFlag = true) {
+
+        if (DEBUG_OBJECT_POINT_CHECK(allBaseFlag ? mpPrevObject : mpInheritClassPrevObject))
+        {
+            if (allBaseFlag)
+            {
+                mpPrevObject = reinterpret_cast<ObjectBase*>(reinterpret_cast<uintptr_t>(mpPrevObject) | (reinterpret_cast<uintptr_t>(mpInheritClassPrevObject) & 0xffff'ffff'0000'0000u));
+            }
+            else
+            {
+                mpInheritClassPrevObject = reinterpret_cast<ObjectBase*>(reinterpret_cast<uintptr_t>(mpInheritClassPrevObject) | (reinterpret_cast<uintptr_t>(mpPrevObject) & 0xffff'ffff'0000'0000u));
+            }
+        }
+
+   
+
+        return allBaseFlag ? mpPrevObject : mpInheritClassPrevObject;
+    }
+    /*次オブジェクトへのポインタ取得*/
+    inline ObjectBase* GetNextObject(bool allBaseFlag = true) {
+
+        if (DEBUG_OBJECT_POINT_CHECK(allBaseFlag ? mpNextObject : mpInheritClassNextObject))
+        {
+            if (allBaseFlag)
+            {
+                mpNextObject = reinterpret_cast<ObjectBase*>(reinterpret_cast<uintptr_t>(mpNextObject) | (reinterpret_cast<uintptr_t>(mpInheritClassNextObject) & 0xffff'ffff'0000'0000u));
+            }
+            else
+            {
+                mpInheritClassNextObject = reinterpret_cast<ObjectBase*>(reinterpret_cast<uintptr_t>(mpInheritClassNextObject) | (reinterpret_cast<uintptr_t>(mpNextObject) & 0xffff'ffff'0000'0000u));
+            }
+        }
+
+
+        return allBaseFlag ? mpNextObject : mpInheritClassNextObject;
+    }
+    /*前オブジェクトのポインタを設定する*/
+    inline void SetPrevObject(ObjectBase* object, bool allBaseFlag = true) { DEBUG_OBJECT_POINT_CHECK(object, true); if (allBaseFlag) { mpPrevObject = object; } else { mpInheritClassPrevObject = object; } }
+    /*次オブジェクトのポインタを設定する*/
+    inline void SetNextObject(ObjectBase* object, bool allBaseFlag = true) { DEBUG_OBJECT_POINT_CHECK(object, true); if (allBaseFlag) { mpNextObject = object; } else { mpInheritClassNextObject = object; } }
+
+#else
     /*前オブジェクトへのポインタ取得*/
     inline ObjectBase* GetPrevObject(bool allBaseFlag = true) { return allBaseFlag ? mpPrevObject : mpInheritClassPrevObject; }
     /*次オブジェクトへのポインタ取得*/
@@ -118,6 +165,7 @@ public:
     /*次オブジェクトのポインタを設定する*/
     inline void SetNextObject(ObjectBase* object, bool allBaseFlag = true) { if (allBaseFlag) { mpNextObject = object; } else { mpInheritClassNextObject = object; } }
 
+#endif
     /*削除フラグ設定(true = 削除)*/
     inline void SetDeleteFlag(const bool flag) { mbIsDeleteFlag = flag; }
     /*削除フラグ取得*/
@@ -435,7 +483,7 @@ public:
     inline void SetBackMove() { munActionflags.SetXorBit(ACTION_FLAG::BACK_ACTION); }
 
     /*HPが0以下のフラグを設定*/
-    inline void SetHPZero() { munActionflags.SetXorBit(ACTION_FLAG::HP_ZERO); }
+    inline void SetHPZero() { munActionflags.SetOrBit(ACTION_FLAG::HP_ZERO); }
 
     /// <summary>行動フラグ設定</summary>
     inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags.SetXorBit(flagBit); }

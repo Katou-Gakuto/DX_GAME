@@ -30,6 +30,7 @@ enum CONFIG_UI_STATE
 class ConfigUIProcess
 {
 protected:
+    // コンフィグポジション種類
     enum CONFIG_POS_TYPE
     {
         LEFT_UP = 0,
@@ -40,8 +41,10 @@ protected:
     // 前に選択していた項目
     int mnPreSelectNumber;
 
+    // 描画情報
     std::vector<DRAW_DATA> mstDrawData;
 
+    // コンフィグ座標
     const Vector2 CONFIG_POSS[CONFIG_POS_TYPE::MAX] = { Vector2(0.1f, 0.1f), Vector2(0.8f, 0.8f) };
 
 private:
@@ -72,6 +75,25 @@ protected:
 class ConfigSelectState : public IStateUI, public ConfigUIProcess
 {
 private:
+    // 描画情報種類
+    enum CONFIG_DRAW_DATA_TYPE
+    {
+        RETURN = 0,
+        MINIMAP,
+        SOUND,
+        CAMERA,
+
+        SLIDER_1_LEFT,
+        SLIDER_1_RIGHT,
+        SLIDER_1_BUTTON,
+        
+        SLIDER_2_LEFT,
+        SLIDER_2_RIGHT,
+        SLIDER_2_BUTTON,
+
+        MAX
+    };
+
     // 前のConfig以外のステートナンバー
     int mnPreConfigExceptStateNumber;
 

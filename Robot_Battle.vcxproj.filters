@@ -350,9 +350,6 @@
     <ClCompile Include="Source\Singleton\DrawManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\UI_Config.cpp">
-      <Filter>ソース ファイル\Object\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Util\UtilFileLoading.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
@@ -639,9 +636,6 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\DrawManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Object\UI\UI_Config.h">
-      <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Struct\MinMapData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>

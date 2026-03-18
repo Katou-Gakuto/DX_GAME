@@ -57,7 +57,6 @@ void DrawManager::Draw()
             case DRAW_MANAGER_DRAW_TYPE::GRAPH:
                 SetDrawBlendMode(drawData->drawConfigData.blendMode, drawData->drawConfigData.blendParameter);
 
-                // INPROGRESS: ì‹Æ’†‚È‚º‚©•`‰æ‚·‚é
                 Master::mpResourceManager->DrawData_Graph(drawData->drawGraphData);
 
                 SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);

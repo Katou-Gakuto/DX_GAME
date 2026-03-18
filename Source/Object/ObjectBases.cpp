@@ -1316,3 +1316,32 @@ bool UIBase::CheckFrame(int frameNumber)
 
 	return false;
 }
+
+
+
+
+#include <cassert>
+bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check)
+{
+	if (p != nullptr)
+	{
+		// ポインタを整数に変換
+		uintptr_t addr = reinterpret_cast<uintptr_t>(p);
+
+		// 上位32ビットを取り出す
+		uint32_t upper = static_cast<uint32_t>(addr >> 32);
+
+		// 0かどうか確認
+		if (check)
+		{
+			assert(upper != 0 && "上位32ビットは0です\n");
+		}
+		if (upper == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	return false;
+}

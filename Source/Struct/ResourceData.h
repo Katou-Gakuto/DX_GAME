@@ -62,6 +62,7 @@ struct DRAW_GRAPH_DATA
 	Vector2_Int extPos = Vector2_Int(0, 0); // 拡大座標
 
 	Vector2_Int graphPos = Vector2_Int(0, 0);  // 画像座標
+	Vector2_Int graphSize = Vector2_Int(0, 0);  // 画像サイズ
 
 
 	Vector2_Int upLeft = Vector2_Int(0, 0);     // 左上座標

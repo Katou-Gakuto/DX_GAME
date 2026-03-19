@@ -10,6 +10,15 @@
 #include "TargetManager.h"
 #include "ObjectBases.h"
 
+#include "ImguiManager.h"
+bool imguiSetFlag_Config = true;
+Vector2 pos_Config = Vector2(0.37f, 0.17f);
+float posMove_Config = 0.1f;
+float centerPos_Config = 0.5f;
+Vector2 size_Config = Vector2(0.24f, 0.02f);
+Vector2 buttonSize_Config = Vector2(0.01f, 0.02f);
+DisplaySize graphSize_Config = { Vector2(3221.0f, 218.0f), 0.0f };
+
 /*--------------------------------*/
 /*   【コンフィグUIステート】     */
 /*--------------------------------*/
@@ -22,6 +31,40 @@ ConfigUIProcess::ConfigUIProcess(int *statePointer, int defaultStateNumber)
 , mnStatePointer(statePointer)
 , mnDefaultStateNumber(defaultStateNumber)
 {
+    if (imguiSetFlag_Config)
+    {
+        imguiSetFlag_Config = false;
+            
+        IMGUI_FLOAT_DATA imguiFloatData;
+        imguiFloatData.AddVariable(&pos_Config.x);
+        imguiFloatData.AddVariable(&pos_Config.y);
+        imguiFloatData.AddVariable(&posMove_Config);
+        imguiFloatData.SetLabel("CONFIG_POSS_");
+        imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG3);
+        imguiFloatData.SetMin(0.0f);
+        imguiFloatData.SetMax(1.0f);
+        imguiFloatData.SetSpeed(0.01f);
+
+        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+        
+        imguiFloatData.ReSetVariable();
+        imguiFloatData.AddVariable(&size_Config.x);
+        imguiFloatData.AddVariable(&size_Config.y);
+        imguiFloatData.AddVariable(&buttonSize_Config.x);
+        imguiFloatData.AddVariable(&buttonSize_Config.y);
+        imguiFloatData.SetLabel("CONFIG_SIZES_");
+        imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+        
+        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+        
+        imguiFloatData.ReSetVariable();
+        imguiFloatData.AddVariable(&centerPos_Config);
+        imguiFloatData.SetLabel("CONFIG_CENTER_POS_");
+        imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG1);
+        
+        Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+    }
+
     // DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
     // mstDrawData = DRAW_DATA();
@@ -150,19 +193,26 @@ ConfigSelectState::ConfigSelectState()
         mstDrawData.push_back(DRAW_DATA());
         mstDrawData[mstDrawData.size() - 1].drawFlag = false;
         mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x * centerPos_Config, size_Config.y), true);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.graphSize = graphSize_Config.LeftUp_Ratio(Vector2(centerPos_Config, 1.0f));
         mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.x = 0;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.y = 0;
         mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png");
 
         mstDrawData.push_back(DRAW_DATA());
         mstDrawData[mstDrawData.size() - 1].drawFlag = false;
         mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x - (size_Config.x * centerPos_Config), size_Config.y), true);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.graphPos = graphSize_Config.LeftUp_Ratio(Vector2(centerPos_Config, 0.0f));
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.graphSize = graphSize_Config.LeftUp_FloatRatio(1.0f);
         mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.x = 0;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.y = 0;
         mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png");
 
         
@@ -170,9 +220,11 @@ ConfigSelectState::ConfigSelectState()
         mstDrawData[mstDrawData.size() - 1].drawFlag = false;
         mstDrawData[mstDrawData.size() - 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
         mstDrawData[mstDrawData.size() - 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], CONFIG_POSS[CONFIG_POS_TYPE::RIGHT_DOWN]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], buttonSize_Config, true);
         mstDrawData[mstDrawData.size() - 1].drawGraphData.transFlag = TRUE;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.x = 0;
+        mstDrawData[mstDrawData.size() - 1].drawGraphData.turnFlag.y = 0;
         mstDrawData[mstDrawData.size() - 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
     }
 
@@ -236,6 +288,28 @@ int ConfigSelectState::Update(UIBase* ui)
     if (ui->CheckDown_Frame())
     {
         ui->Decision();
+    }
+
+    
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    int j = CONFIG_DRAW_DATA_TYPE::SLIDER_1_LEFT;
+    //int j = CONFIG_DRAW_DATA_TYPE::MAX;
+    for (int i = 0; j < CONFIG_DRAW_DATA_TYPE::MAX; i++)
+    {
+        mstDrawData[j].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[j].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x * centerPos_Config, size_Config.y), true);
+        mstDrawData[j].drawGraphData.graphSize = graphSize_Config.LeftUp_Ratio(Vector2(centerPos_Config, 1.0f));
+        j++;
+
+        mstDrawData[j].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[j].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x - (size_Config.x * centerPos_Config), size_Config.y), true);
+        mstDrawData[j].drawGraphData.graphPos = graphSize_Config.LeftUp_Ratio(Vector2(centerPos_Config, 0.0f));
+        mstDrawData[j].drawGraphData.graphSize = graphSize_Config.LeftUp_SeparateRatio(Vector2(centerPos_Config, 0.0f), Vector2(1.0f - centerPos_Config, 1.0f));
+        j++;
+
+        mstDrawData[j].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+        mstDrawData[j].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * centerPos_Config), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], buttonSize_Config, true);
+        j++;
     }
 
     return mStateNumber;

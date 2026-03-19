@@ -102,7 +102,7 @@ void PlayerProcess::TargetChange()
 {
 	mnTargetNumber += 1;
 
-	if (mnTargetNumber >= Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size())
+	if (Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() <= mnTargetNumber)
 	{
 		mnTargetNumber = -1;
 	}
@@ -111,6 +111,17 @@ void PlayerProcess::TargetChange()
 // ターゲットにカメラを向ける
 void PlayerProcess::SetTargetCamera(CharacterBase* character)
 {
+	if (Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() <= mnTargetNumber)
+	{
+		if (Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() <= 0)
+		{
+			mnTargetNumber = -1;
+			return;
+		}
+
+		mnTargetNumber = Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() - 1;
+	}
+
 	CharacterBase* targetEnemy = Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY)[mnTargetNumber];
 
 	CameraData cameraData = mpCameraManager->GetCameraData();

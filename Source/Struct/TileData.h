@@ -53,6 +53,15 @@ public:
 // タイルデータ
 struct TileData
 {
+private:
+	// タイル方向種類
+	enum TILE_DIRECTION_TYPE
+	{
+		X_DIRECTION = 0,
+		Y_DIRECTION,
+		MAX
+	};
+
 public:
 	TileData();
 	TileData(bool flag);

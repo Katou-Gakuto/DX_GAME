@@ -654,6 +654,7 @@ void GameLoopScene::OnEnter(SceneManager* sceneManager)
 	if (!Master::mpDataManager->SetNextWave())
 	{
 		// HACK: 仮設定
+		// TODO: ゲーム中リザルトに移す
 		// ゲーム終了
 		sceneManager->SetNextScene(SCENE::DUNGEON_RESULT);
 		return;

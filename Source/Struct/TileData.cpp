@@ -77,6 +77,7 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 					break;
 				}
 				characterPos.erase(characterPos.begin() + j);
+				j--;
 			}
 		}
 	}
@@ -93,6 +94,33 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 					return pos;
 				}
 				break;
+			}
+		}
+
+		for (int tileDirectionType = 0; tileDirectionType < TILE_DIRECTION_TYPE::MAX; tileDirectionType++)
+		{
+			TilePos checkPos = pos;
+			switch (tileDirectionType)
+			{
+			case TILE_DIRECTION_TYPE::X_DIRECTION:
+				checkPos.x = this->tilePos.x;
+				break;
+
+			case TILE_DIRECTION_TYPE::Y_DIRECTION:
+				checkPos.z = this->tilePos.z;
+				break;
+			}
+
+			for (int i = 0; i < this->adjacentData.size(); i++)
+			{
+				if (this->adjacentData[i] == checkPos)
+				{
+					if (*(this->adjacentData[i].tileFlag) & 0b1ull)
+					{
+						pos = this->adjacentData[i];
+						return pos;
+					}
+				}
 			}
 		}
 

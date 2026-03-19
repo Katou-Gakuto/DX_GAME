@@ -308,6 +308,16 @@ void ImguiManager::DeleteImguiData(std::string labelName)
             return;
         }
     }
+
+
+    for (int i = 0; i < mstImguiFloatDatas.size(); i++)
+    {
+        if (labelName == mstImguiFloatDatas[i].Label)
+        {
+            mstImguiFloatDatas.erase(mstImguiFloatDatas.begin() + i);
+            return;
+        }
+    }
 #endif
 }
 

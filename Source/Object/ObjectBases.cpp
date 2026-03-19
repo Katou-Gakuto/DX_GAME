@@ -131,7 +131,7 @@ void CharacterBase::Finalize()
 
 	// アニメーション終了
 	mpAnimation->Finalize();
-	delete mpAnimation;
+	delete mpAnimation;// この中でエラー　余計に消してるかも
 	mpAnimation = nullptr;
 
 	for (auto& attackDatas : mmCharacterAttackDatas)

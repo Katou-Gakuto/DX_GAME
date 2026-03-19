@@ -123,4 +123,6 @@ void DrawManager::DeleteDrawData()
 
         mstDrawData[orderIt].clear();
     }
+
+    mnDrawDataID = 0;
 }

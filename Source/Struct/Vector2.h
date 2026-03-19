@@ -87,7 +87,7 @@ struct Vector2
 		this->y = Y;
 	}
 
-	Vector2 operator +(Vector2 src)
+	Vector2 operator +(Vector2 src) const
 	{
 		Vector2 vec;
 
@@ -105,7 +105,7 @@ struct Vector2
 		return *this;
 	}
 
-	Vector2_Int GetVecInt()
+	Vector2_Int GetVecInt() const
 	{
 		Vector2_Int vecInt;
 		vecInt.x = static_cast<int>(this->x);
@@ -113,12 +113,12 @@ struct Vector2
 		return vecInt;
 	}
 
-	int IntX()
+	int IntX() const
 	{
 		return static_cast<int>(this->x);
 	}
 
-	int IntY()
+	int IntY() const
 	{
 		return static_cast<int>(this->y);
 	}

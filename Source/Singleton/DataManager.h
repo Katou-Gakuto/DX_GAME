@@ -195,5 +195,20 @@ public:
 	};
 
 	/*マップリリソースファイル名取得*/
-	 std::string GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber);
+	std::string GetMapResourceFileName(MAP_RESOURCE_FILE_NUMBWER fileNumber);
+
+	/*--------------------*/
+	/*【コンフィグデータ】*/
+	/*--------------------*/
+	private:
+	
+// bool imguiSetFlag_Config = true;
+// Vector2 pos_Config = Vector2(0.37f, 0.17f);
+// float posMove_Config = 0.1f;
+// float centerPos_Config = 0.5f;
+// Vector2 size_Config = Vector2(0.24f, 0.02f);
+// Vector2 buttonSize_Config = Vector2(0.01f, 0.02f);
+// DisplaySize graphSize_Config = { Vector2(3221.0f, 218.0f), 0.0f };
+
+	public:
 };

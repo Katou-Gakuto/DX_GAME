@@ -64,7 +64,7 @@ static std::vector<std::vector<bool>> bitFlag;
 // ‰Šú‰»
 void MapManager::Initilize()
 {
-    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Test/TestSphere.mv1");
+    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Test/TestSphere3.mv1");
     MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 5.0f));
     mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
 

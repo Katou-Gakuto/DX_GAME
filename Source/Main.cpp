@@ -54,6 +54,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 #endif
 
 #ifndef _DEBUG
+	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
+	SetEnableXAudioFlag(TRUE);
+
 	// log.txt‚ð¶¬‚µ‚È‚¢
 	SetOutApplicationLogValidFlag(FALSE);
 #endif
@@ -65,7 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
 	// TODO: •ÏX‚Å‚«‚é‚æ‚¤‚É‚·‚é
-	//SetGraphMode(1280, 960, 32);
+	SetGraphMode(1280, 960, 32);
 
 #ifdef _DEBUG
 	Master::mpImguiManager->DxInit();

@@ -1,3 +1,5 @@
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <fstream>
 #include <string>
 #include <vector>
@@ -60,13 +62,28 @@ MapManager::~MapManager()
 
 static FLOAT4 testDrawPos = F4Get(10000.0f, 0.9f, 1.0f, 0.0f);
 static std::vector<std::vector<bool>> bitFlag;
-
+static float testSize = 50.0f;
 // 初期化
 void MapManager::Initilize()
 {
-    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Test/TestSphere3.mv1");
-    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 5.0f));
+    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Sky/SkySphere.mv1");
+    //MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 200.0f));
+    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 50.0f));
     mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
+
+    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+        { &testSize },
+        0.1f,
+        0.1f,
+        0.1f,
+        0.0f,
+        50.0f,
+        "TEST_SIZE_BACK_",
+        "%f",
+        0,
+        IMGUI_TYPE::SLIDER1
+    )
+    );
 
     // モデルの頂点数を取得
     int vertexCount = (mnMapBackHandle);
@@ -445,7 +462,7 @@ void MapManager::Draw()
     if ((backGroundDrawPlayer != nullptr) && !Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::BACK_GROUND))
     {
         SetUseLighting(FALSE);
-        //MV1SetPosition(mnMapBackHandle, backGroundDrawPlayer->GetPos());
+        MV1SetPosition(mnMapBackHandle, backGroundDrawPlayer->GetPos());
         Master::mpResourceManager->MovieLoop(mnMapBackResourceHandle);
         MV1SetTextureGraphHandle(mnMapBackHandle, 0, mnMapBackResourceHandle, FALSE);
         Master::mpResourceManager->DrawModelHandle(mnMapBackHandle);
@@ -517,6 +534,8 @@ bool MapManager::SetMinMapDrawLength(float minMapDrawLength)
 // ミニマップ描画
 void MapManager::DrawMinMap()
 {
+    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, testSize));
+
     SetMinMapDrawLength(testDrawPos.x);
     // 必要ならハンドル作成
     CreateMinMapScreenHandle();

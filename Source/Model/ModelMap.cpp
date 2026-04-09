@@ -1,3 +1,5 @@
+#include <string>
+
 #include "DxLib.h"
 
 #include "Master.h"
@@ -8,6 +10,7 @@
 
 
 ModelMap::ModelMap()
+: mnGroundModelGraphHandle(-1)
 {
     mstTileModelDatas.clear();
 }
@@ -18,6 +21,7 @@ ModelMap::~ModelMap()
 // モデル初期化
 void ModelMap::ModelInitilize()
 {
+    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Floor.png");
 }
 
 // モデル終了
@@ -55,6 +59,7 @@ void ModelMap::ModelDraw()
 // マップデータ読み込み
 void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR mapMinPos, VECTOR tileHalfSize)
 {
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
     // TODO: ハンドルしか制作してないし分ける情報も変えたほうが良いと思う
     for (int z = 0; z < mapData.size(); z++)
     {
@@ -68,6 +73,15 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
                 case TileType::Ground:
                     setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
+
+                    //MV1SetTextureGraphHandle(setTileModel.modelHandle, 0, mnGroundModelGraphHandle, FALSE);
+                    MV1SetWriteZBuffer(setTileModel.modelHandle, FALSE);
+                    int materialNumber = MV1GetMaterialNum(setTileModel.modelHandle);
+                    for (int i = 0; i < materialNumber; i++)
+                    {
+                        MV1SetMaterialDrawBlendMode(setTileModel.modelHandle, i, DX_BLENDMODE_ALPHA);
+                        MV1SetMaterialDrawBlendParam(setTileModel.modelHandle, i, 128);
+                    }
                     // HACK: 縦とりあえずいれてる
                     MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y + 50.0f, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
                 break;
@@ -76,6 +90,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
         }
         mstTileModelDatas.push_back(setTileModelLine);
     }
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
 
 // マップデータ解放

@@ -54,14 +54,14 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	}
 
 
-	// if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Q))
-	// {
-	// 	character->SetUpMove();
-	// }
-	// if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::E))
-	// {
-	// 	character->SetDownMove();
-	// }
+	 if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Q))
+	 {
+	 	character->SetUpMove();
+	 }
+	 if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::E))
+	 {
+	 	character->SetDownMove();
+	 }
 }
 
 // 移動キーを押していれば「true」

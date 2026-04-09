@@ -34,6 +34,9 @@ private:
     // タイルモデルデータ
     std::vector<std::vector<TileModelData>> mstTileModelDatas;
 
+    // 地面モデル画像ハンドル
+    int mnGroundModelGraphHandle;
+
 public:
     ModelMap();
     ~ModelMap();

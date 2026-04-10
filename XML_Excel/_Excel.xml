@@ -3381,6 +3381,31 @@ floatのImgui情報設定
 初期化
    </explanations>
    </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>ChangeVariable</functionName>
+   <explanations>
+設定変数変更
+   </explanations>
+   <variable0>変更割合量</variable0>
+   </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>SetFloat</functionName>
+   <explanations>
+float変数設定
+   </explanations>
+   <variable0>変更変数</variable0>
+   <variable1>最大値</variable1>
+   <variable2>最低値</variable2>
+   </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>SetInt</functionName>
+   <explanations>
+int変数設定
+   </explanations>
+   <variable0>変更変数</variable0>
+   <variable1>最大値</variable1>
+   <variable2>最低値</variable2>
+   </member>
    <member className="TelopManager">
    <functionName>DrawTelop_Position3D</functionName>
    <explanations>
@@ -3913,6 +3938,12 @@ UI座標情報設定
    <returnExplanation>
 キーステート
    </returnExplanation>
+   </member>
+   <member className="UIBase">
+   <functionName>GetPreSelectnumber</functionName>
+   <explanations>
+前の選択数取得
+   </explanations>
    </member>
    <member className="UIBase">
    <functionName>GetFsm</functionName>

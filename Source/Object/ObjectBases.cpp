@@ -587,6 +587,7 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mpKeyState(nullptr)
 , mpResourceManager(nullptr)
 , mnSelectNumber(0)
+, mnPreSelectNumber(0)
 , mnSelectMaxNumber(maxMenuSelect)
 , mnSelectBoundaryValue(-1)
 , mnSelectChangeFrame(0)
@@ -696,6 +697,7 @@ void UIBase::Finalize()
 // XV
 void UIBase::Update()
 {
+	mnPreSelectNumber = mnSelectNumber;
 	if (mnUINumber == Master::mpGameManager->GetNowUINumber()) {
 		UIUpdate();
 		if (mpFsm != nullptr)

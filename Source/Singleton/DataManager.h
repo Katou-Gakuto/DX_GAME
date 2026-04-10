@@ -7,6 +7,7 @@
 #include "SceneEnum.h"
 #include "GameDatas.h"
 #include "Status.h"
+#include "Vector2.h"
 
 enum class MapType;
 struct TileData;
@@ -200,15 +201,62 @@ public:
 	/*--------------------*/
 	/*【コンフィグデータ】*/
 	/*--------------------*/
-	private:
-	
-// bool imguiSetFlag_Config = true;
-// Vector2 pos_Config = Vector2(0.37f, 0.17f);
-// float posMove_Config = 0.1f;
-// float centerPos_Config = 0.5f;
-// Vector2 size_Config = Vector2(0.24f, 0.02f);
-// Vector2 buttonSize_Config = Vector2(0.01f, 0.02f);
-// DisplaySize graphSize_Config = { Vector2(3221.0f, 218.0f), 0.0f };
+private:
+	// ミニマップ感知範囲
+	float MiniMapSensedRange;
+	// ミニマップ画面描画サイズ
+	float MiniMapScreenDrawSize;
+	// サウンドの音量
+	int mnSeVolume;
+	// バックグラウンドミュージックの音量
+	int mnBgmVolume;
+	// 画面の明るさ
+	int mnScreenBrightness;
+	// 画面のサイズ
+	Vector2_Int mstScreenSize;
 
-	public:
+public:
+	/*--------*/
+	/*【取得】*/
+	/*--------*/
+	/*ミニマップ感知範囲取得*/
+	inline float GetMiniMapSensedRange() const { return MiniMapSensedRange; }
+	/*ミニマップ感知範囲取得*/
+	inline float* GetMiniMapSensedRangePointer() { return &MiniMapSensedRange; }
+	/*ミニマップ画面描画サイズ取得*/
+	inline float GetMiniMapScreenDrawSize() const { return MiniMapScreenDrawSize; }
+	/*ミニマップ画面描画サイズ取得*/
+	inline float* GetMiniMapScreenDrawSizePointer() { return &MiniMapScreenDrawSize; }
+	/*サウンドの音量取得*/
+	inline int GetSeVolume() const { return mnSeVolume; }
+	/*サウンドの音量取得*/
+	inline int* GetSeVolumePointer() { return &mnSeVolume; }
+	/*バックグラウンドミュージックの音量取得*/
+	inline int GetBgmVolume() const { return mnBgmVolume; }
+	/*バックグラウンドミュージックの音量取得*/
+	inline int* GetBgmVolumePointer() { return &mnBgmVolume; }
+	/*画面の明るさ取得*/
+	inline int GetScreenBrightness() const { return mnScreenBrightness; }
+	/*画面の明るさ取得*/
+	inline int* GetScreenBrightnessPointer() { return &mnScreenBrightness; }
+	/*画面のサイズ取得*/
+	inline Vector2_Int GetScreenSize() const { return mstScreenSize; }
+	/*画面のサイズ取得*/
+	inline Vector2_Int* GetScreenSizePointer() { return &mstScreenSize; }
+
+	/*--------*/
+	/*【設定】*/
+	/*--------*/
+	/*ミニマップ感知範囲設定*/
+	inline void SetMiniMapSensedRange(float range) { MiniMapSensedRange = range; }
+	/*ミニマップ画面描画サイズ設定*/
+	inline void SetMiniMapScreenDrawSize(float size) { MiniMapScreenDrawSize = size; }
+	/*サウンドの音量設定*/
+	inline void SetSeVolume(int volume) { mnSeVolume = volume; }
+	/*バックグラウンドミュージックの音量設定*/
+	inline void SetBgmVolume(int volume) { mnBgmVolume = volume; }
+	/*画面の明るさ設定*/
+	inline void SetScreenBrightness(int brightness) { mnScreenBrightness = brightness; }
+	/*画面のサイズ設定*/
+	inline void SetScreenSize(Vector2_Int size) { mstScreenSize = size; }
 };

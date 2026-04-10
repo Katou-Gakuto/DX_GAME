@@ -67,9 +67,10 @@ static float testSize = 50.0f;
 void MapManager::Initilize()
 {
     mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Sky/SkySphere.mv1");
-    //MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 200.0f));
-    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 50.0f));
+    MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 200.0f));
     mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
+    MV1SetMaterialDrawBlendMode(mnMapBackHandle, 0, DX_BLENDMODE_ALPHA);
+    MV1SetMaterialDrawBlendParam(mnMapBackHandle, 0, 200);
 
     Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
         { &testSize },
@@ -77,7 +78,7 @@ void MapManager::Initilize()
         0.1f,
         0.1f,
         0.0f,
-        50.0f,
+        250.0f,
         "TEST_SIZE_BACK_",
         "%f",
         0,

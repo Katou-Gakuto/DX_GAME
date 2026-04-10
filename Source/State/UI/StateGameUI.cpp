@@ -94,6 +94,7 @@ StartGameUIState::StartGameUIState()
 : GameUIProcess()
 , mnElapsedTime(0)
 , mbFadeInFlag(false)
+, mbMenuFlag(false)
 {
     mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
 }
@@ -117,18 +118,33 @@ void StartGameUIState::OnExit(UIBase* ui)
 // çXêV
 int StartGameUIState::Update(UIBase* ui)
 {
-    if (mnElapsedTime < Master::mpTimeManager->GetGameTime())
+    if (IsMenuKeyPressed())
     {
-        if (!mbFadeInFlag &&
-            !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+        mbMenuFlag = true;
+    }
+    else if (!mbMenuFlag && !(mnElapsedTime < Master::mpTimeManager->GetGameTime()))
+    {
+        return mStateNumber;
+    }
+
+    if (!mbFadeInFlag &&
+        !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+    {
+        ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+    }
+    else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+    {
+        mbFadeInFlag = true;
+    }
+    else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+    {
+        if (mbMenuFlag)
         {
-            ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+            ui->SetSelectNumber(GAME_UI_SELECT_NUKMBER::STOP_GAME);
+            ui->Decision();
+            return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
         }
-        else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
-        {
-            mbFadeInFlag = true;
-        }
-        else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+        else
         {
             return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
         }

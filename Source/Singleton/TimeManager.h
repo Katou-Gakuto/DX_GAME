@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 
-// TODO: long long int ˆÈã‘Î‰‚Ì\‘¢‘Ì‚ğì‚é
+// TODO: long long int ˆÈã‘Î‰‚Ì\‘¢‘Ì‚ğì‚é ”»’è‚ğŠÖ”‰»‚µ‚Äó‚¯æ‚ç‚¹‚È‚¢(loop‘Îô)
 class TimeManager
 {
 private:

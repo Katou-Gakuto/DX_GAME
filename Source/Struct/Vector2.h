@@ -62,8 +62,8 @@ struct Vector2_Int
 	{
 		Vector2_Int vec;
 
-		vec.x = this->x * src;
-		vec.y = this->y * src;
+		vec.x = static_cast<int>(static_cast<float>(this->x) * src);
+		vec.y = static_cast<int>(static_cast<float>(this->y) * src);
 
 		return vec;
 	}

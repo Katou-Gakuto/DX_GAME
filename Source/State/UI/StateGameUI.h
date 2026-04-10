@@ -101,6 +101,9 @@ private:
     // 字幕表示時間
     const int SUBTITLE_TIME = 17 * 230;
 
+    // メニューフラグ
+    bool mbMenuFlag;
+
 public:
     StartGameUIState();
     ~StartGameUIState() = default;

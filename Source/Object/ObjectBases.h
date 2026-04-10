@@ -28,7 +28,7 @@ class FSMAnimation;
 class FSMCharacter;
 class FSMUI;
 
-extern class ObjectBase;
+class ObjectBase;
 bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check = false);
 
 /*--------------------------------------------------------*/
@@ -774,6 +774,7 @@ protected:
 
     // 選択ナンバー
     int mnSelectNumber;
+    int mnPreSelectNumber;
     // 選択ステップ数
     int mnSelectStepNumber;
 
@@ -884,6 +885,8 @@ public:
 
     /*選択数取得*/
     inline int GetSelectNumber() const { return mnSelectNumber; }
+    /// <summary>前の選択数取得</summary>
+    inline int GetPreSelectnumber() const { return mnPreSelectNumber; }
 
     /// <summary>キー取得</summary>
     /// <returns>キーステート</returns>
@@ -893,19 +896,19 @@ public:
     inline int* GetGraphHandles() { return mnGraphHandles; }
 
     /// <summary>画像ハンドル数を取得</summary>
-    inline int GetGraphHandleCount() { return mnGraphCount; }
+    inline int GetGraphHandleCount() const { return mnGraphCount; }
 
     /// <summary>動画ハンドル達を取得</summary>
     inline int* GetMovieHandles() { return mnMovieHandles; }
 
     /// <summary>動画ハンドル数を取得</summary>
-    inline int GetMovieHandleCount() { return mnMovieCount; }
+    inline int GetMovieHandleCount() const { return mnMovieCount; }
 
     /// <summary>描画モデル情報全取得</summary>
     inline std::vector<UIDrawModel> GetDrawModels() { return mstUIDrawModels; }
 
     /// <summary>モデル数取得</summary>
-    inline int GetModelCount() { return mstUIDrawModels.size(); }
+    inline int GetModelCount() { return static_cast<int>(mstUIDrawModels.size()); }
 
     /// <summary>モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
@@ -922,7 +925,7 @@ public:
     inline bool GetSelectExceededFlag(SELECT_NUMBER_FLAG_ENUM enumBit) { return mstSelectNumberFlag.GetFlag_Bit(enumBit); }
 
     /// <summary>選択ナンバー関連フラグ取得</summary>
-    inline BIT_FLAG<unsigned short> GetSelectNumberFlag() { return mstSelectNumberFlag; }
+    inline BIT_FLAG<unsigned short> GetSelectNumberFlag() const { return mstSelectNumberFlag; }
 
     /*------------------------*/
     /*【継承オブジェクト処理】*/

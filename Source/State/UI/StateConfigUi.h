@@ -67,6 +67,11 @@ public:
         this->intPointer = src;
         this->intRateValue = max - min;
         this->intLowestValue = min;
+        if (this->intRateValue == 0)
+        {
+            this->rate = 0.0f;
+            return;
+        }
         this->rate = static_cast<float>(*this->intPointer - this->intLowestValue) / this->intRateValue;
     }
 
@@ -80,6 +85,11 @@ public:
         this->floatPointer = src;
         this->floatRateValue = max - min;
         this->floatLowestValue = min;
+        if (this->floatRateValue <= 0.001f)
+        {
+            this->rate = 0.0f;
+            return;
+        }
         this->rate = static_cast<float>(*this->floatPointer - this->floatLowestValue) / this->floatRateValue;
     }
 

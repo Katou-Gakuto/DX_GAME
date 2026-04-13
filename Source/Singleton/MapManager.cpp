@@ -71,6 +71,7 @@ void MapManager::Initilize()
     mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
     MV1SetMaterialDrawBlendMode(mnMapBackHandle, 0, DX_BLENDMODE_ALPHA);
     MV1SetMaterialDrawBlendParam(mnMapBackHandle, 0, 200);
+    MV1SetTextureGraphHandle(mnMapBackHandle, 0, mnMapBackResourceHandle, FALSE);
 
     Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
         { &testSize },
@@ -465,7 +466,6 @@ void MapManager::Draw()
         SetUseLighting(FALSE);
         MV1SetPosition(mnMapBackHandle, backGroundDrawPlayer->GetPos());
         Master::mpResourceManager->MovieLoop(mnMapBackResourceHandle);
-        MV1SetTextureGraphHandle(mnMapBackHandle, 0, mnMapBackResourceHandle, FALSE);
         Master::mpResourceManager->DrawModelHandle(mnMapBackHandle);
         SetUseLighting(TRUE);
     }

@@ -180,12 +180,8 @@ private:
     // 描画情報種類
     enum CONFIG_DRAW_DATA_TYPE
     {
-        RETURN = 0,
-        MINIMAP,
-        SOUND,
-        CAMERA,
 
-        SLIDER_1_LEFT,
+        SLIDER_1_LEFT = 0,
         SLIDER_1_RIGHT,
         SLIDER_1_BUTTON,
         
@@ -195,7 +191,14 @@ private:
 
         SLIDER_MAX,
 
-        MAX = static_cast<int>(SLIDER_MAX) -1
+        RETURN = static_cast<int>(SLIDER_MAX),
+        MINIMAP,
+        SOUND,
+        CAMERA,
+
+        TYPE_MAX,
+
+        MAX = static_cast<int>(TYPE_MAX)
     };
 
     // 前のConfig以外のステートナンバー
@@ -218,7 +221,7 @@ public:
 private:
 
     /*全コンフィグ描画をセッティングする*/
-    void AllConfigDrawSetting(UIBase* ui);
+    void AllConfigDrawSetting(UIBase* ui, bool setFlag = false);
 };
 
 /*----------------------*/

@@ -3381,6 +3381,12 @@ floatのImgui情報設定
 初期化
    </explanations>
    </member>
+   <member className="ImguiManager">
+   <functionName>DxInit</functionName>
+   <explanations>
+ImguiのDxLib初期設定
+   </explanations>
+   </member>
    <member className="CONFIG_VARIABLE_POINTER">
    <functionName>ChangeVariable</functionName>
    <explanations>
@@ -3803,7 +3809,7 @@ int変数設定
    <member className="DrawManager">
    <functionName>AddDrawData</functionName>
    <explanations>
-描画情報追加
+描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグる
    </explanations>
    <returnExplanation>
 描画情報ID

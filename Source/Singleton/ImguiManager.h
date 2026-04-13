@@ -26,7 +26,7 @@ public:
     ImguiManager();
     ~ImguiManager();
 
-    
+    /// <summary>Imgui‚ÌDxLib‰Šúİ’è</summary>
     void DxInit();
 
     /// <summary>‰Šú‰»</summary>

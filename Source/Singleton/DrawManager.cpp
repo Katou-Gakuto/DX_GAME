@@ -98,7 +98,15 @@ bool DrawManager::ChangeDrawOrder(int changeDataID, int orderNumber)
 // •`‰æî•ñ’Ç‰Á
 int DrawManager::AddDrawData(DRAW_DATA *drawData, int orderNumber)
 {
+    if ((orderNumber < 0) ||
+        (DRAW_ORDER_MAX <= orderNumber))
+    {
+        orderNumber = DRAW_ORDER_CENTER;
+    }
+
     // •`‰æî•ñ’Ç‰Áˆ—
+
+
     drawData->drawID = mnDrawDataID;
     mnDrawDataID += 1;
     mstDrawData[orderNumber].push_back(drawData);

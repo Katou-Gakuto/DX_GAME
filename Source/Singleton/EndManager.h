@@ -12,6 +12,7 @@ enum class END_FLAG_NUMBER
 	HANDLE_FLAG,	// ハンドルコンテナ
 	BIT_FLAG,	// ビットフラグ
 	FILE_FLAG,	// ファイルフラグ
+	NO_DATA_FLAG,// データ無しフラグ
 };
 
 class EndManager

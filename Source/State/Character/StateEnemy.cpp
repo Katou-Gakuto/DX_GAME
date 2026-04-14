@@ -63,6 +63,8 @@ void EnemyProcess::PlayerTargetAngle(CharacterBase* character)
 // 死亡
 void EnemyProcess::EnemyDeath(CharacterBase* character)
 {
+	Master::mpDataManager->AddAcquisitionExp(character->GetStatus()->exp);
+
 	if (mbBossFlag)
 	{
 		// TODO: ダンジョンリザルトに移動

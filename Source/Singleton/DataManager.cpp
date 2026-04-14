@@ -28,6 +28,7 @@ DataManager::DataManager()
 , mpEndManger(nullptr)
 , mnDungeonDeleteCharacterData(DELETE_CHARACTER_DATA())
 , mnTownDeleteCharacterData(DELETE_CHARACTER_DATA())
+, mnAcquisitionExp(0)
 {
 	mwMsg = {};
 
@@ -120,7 +121,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "1";
 			setCharacterData.typeNumber = 2;
-			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 5, 1, 1, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)7;
 			setCharacterData.position = VGet(-150.0f, 0.0f, 500.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -129,7 +130,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "ROBOT_ENEMY_2";
 			setCharacterData.typeNumber = 2;
-			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 5, 1, 1, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)7;
 			setCharacterData.position = VGet(800.0f, 0.0f, 1000.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -148,7 +149,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "ROBOT_ENEMY1";
 			setCharacterData.typeNumber = 3;
-			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(20, 20, 1, 5, 1, 1, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)12;
 			setCharacterData.position = VGet(-150.0f, 0.0f, 300.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -157,7 +158,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "ROBOT_ENEMY2";
 			setCharacterData.typeNumber = 3;
-			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 5, 1, 1, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)12;
 			setCharacterData.position = VGet(1000.0f, 0.0f, 2000.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -166,7 +167,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "ROBOT_ENEMY3";
 			setCharacterData.typeNumber = 3;
-			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 0, 1, 1, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(20, 20, 10, 5, 1, 1, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)12;
 			setCharacterData.position = VGet(2000.0f, 0.0f, 500.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -185,7 +186,7 @@ void DataManager::Initilize()
 			setCharacterData.survivalFlag = true;
 			setCharacterData.name = "ROBOT_BOSS";
 			setCharacterData.typeNumber = 4;
-			setCharacterData.status = STATUS::SetStatus(30, 30, 1, 0, 3, 2, CHARACTER_TYPE::ROBOT);
+			setCharacterData.status = STATUS::SetStatus(30, 30, 1, 15, 3, 2, CHARACTER_TYPE::ROBOT);
 			setCharacterData.mapType = (SCENE)13;
 			setCharacterData.position = VGet(3000.0f, 0.0f, 3500.0f);
 			setCharacterData.angle = VGet(0.0f, 3.14f, 0.0f);
@@ -193,6 +194,28 @@ void DataManager::Initilize()
 
 			mstBaseData.oneDatas.push_back(setBaseData);
 			setBaseData.datas.characterDatas.clear();
+		}
+		// ƒŒƒxƒ‹ 1
+		{
+			setBaseData.dataChangeFlag = false;
+			setBaseData.typeNumber = (int)DATA_TYPE::LEVEL;
+			setBaseData.name = "GameData/LevelDatas/LevelData.txt";
+
+			LEVEL_DATA levelData;
+			levelData.characterType = (int)CHARACTER_TYPE::ROBOT;
+			for (int i = 0; i < 20; i++)
+			{
+				levelData.levelNumber.push_back(i + 1);
+				levelData.levelUpExpNumber.push_back(10);
+			}
+			levelData.upStatsMagnification = 1.0f;
+			levelData.upStatus = STATUS::SetStatus(100, 100, 1, 0, 10, 1, CHARACTER_TYPE::ROBOT);
+			levelData.maxLevelNumber = levelData.levelNumber.size();
+			setBaseData.datas.levelData = levelData;
+
+			mstBaseData.oneDatas.push_back(setBaseData);
+			setBaseData.datas.levelData.levelNumber.clear();
+			setBaseData.datas.levelData.levelUpExpNumber.clear();
 		}
 		mstBaseData.dataFlag = true;
 	}
@@ -287,7 +310,7 @@ void DataManager::Initilize()
 				enemyData.survivalFlag = true;
 				enemyData.name = "ROBOT_ENEMY1";
 				enemyData.typeNumber = 3;
-				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 0, (1 + 19) * i, 1, CHARACTER_TYPE::ROBOT);
+				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 5, (1 + 19) * i, 1, CHARACTER_TYPE::ROBOT);
 				enemyData.mapType = SCENE::BATTLE_LOOP;
 				enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
 

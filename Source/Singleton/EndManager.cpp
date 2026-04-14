@@ -53,7 +53,7 @@ bool EndManager::EndFlag()
 #endif
 
 		endFlag = true;
-		ErrorLogFmtAdd("%llu", mullEndFlag);
+		ErrorLogFmtAdd("ERROR %llu", mullEndFlag);
 	}
 
 	return endFlag;

@@ -73,6 +73,9 @@ private:
 	// 町の削除キャラクター情報
 	DELETE_CHARACTER_DATA mnTownDeleteCharacterData;
 
+	// 獲得経験値
+	int mnAcquisitionExp;
+
 public:
 
 	/*--------*/
@@ -149,6 +152,23 @@ public:
 
 	/*マップデータ取得*/
 	std::vector<std::vector<TileData>> GetMapData(MapType tileType);
+
+	/// <summary>獲得経験値取得</summary>
+	inline int GetAcquisitionExpQuantity() { return mnAcquisitionExp; }
+
+	/*--------*/
+	/*【追加】*/
+	/*--------*/
+
+	/// <summary>獲得経験値リセット</summary>
+	inline void ResetAcquisitionExp() { mnAcquisitionExp = 0; }
+
+	/*------------*/
+	/*【リセット】*/
+	/*------------*/
+
+	/// <summary>獲得経験値増やす</summary>
+	inline void AddAcquisitionExp(int addExp) { mnAcquisitionExp += addExp; }
 
 private:
 	/// <summary>

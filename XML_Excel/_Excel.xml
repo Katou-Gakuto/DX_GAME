@@ -3537,6 +3537,24 @@ int変数設定
    <variable0>ベースファイルのファイル名があるファイル</variable0>
    </member>
    <member className="DataManager">
+   <functionName>AddAcquisitionExp</functionName>
+   <explanations>
+獲得経験値増やす
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>ResetAcquisitionExp</functionName>
+   <explanations>
+獲得経験値リセット
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetAcquisitionExpQuantity</functionName>
+   <explanations>
+獲得経験値取得
+   </explanations>
+   </member>
+   <member className="DataManager">
    <functionName>SetCharacterID</functionName>
    <explanations>
 キャラクターID設定
@@ -3694,6 +3712,12 @@ int変数設定
    <variable0>アニメーション情報</variable0>
    <variable1>モデル</variable1>
    </member>
+   <member className="PlayerData">
+   <functionName>LevelUpProcess</functionName>
+   <explanations>
+レベルアップ処理
+   </explanations>
+   </member>
    <member className="CoinData">
    <functionName>IncreaseCoin</functionName>
    <explanations>
@@ -3809,7 +3833,7 @@ int変数設定
    <member className="DrawManager">
    <functionName>AddDrawData</functionName>
    <explanations>
-描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグる
+描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後が理想
    </explanations>
    <returnExplanation>
 描画情報ID

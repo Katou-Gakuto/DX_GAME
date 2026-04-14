@@ -1,4 +1,9 @@
 #pragma once
+#include <vector>
+
+#include "GenericEnum.h"
+#include "DrawData.h"
+#include "Status.h"
 
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -17,6 +22,38 @@ enum class RESULT_UI_STATE
 /*----------------------*/
 class StartResultUIState : public IStateUI
 {
+private:
+	enum RESULT_DRAW_NUMBER_TYPE
+	{
+		PRE_HP = 0,
+		PRE_MAX_HP,
+		PRE_ATTACK,
+		PRE_SPEED,
+		PRE_LEVEL,
+		PRE_EXP,
+
+		HP,
+		MAX_HP,
+		ATTACK,
+		SPEED,
+		LEVEL,
+		EXP,
+
+		MAX
+	};
+
+	// ”š•`‰æî•ñ
+	DRAW_DATA mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::MAX];
+
+	// •`‰æ‚·‚é”šƒ|ƒCƒ“ƒ^[
+	int mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::MAX];
+
+	// ‰æ‘œ‚Ì•`‰æŒÂŠ
+	Vector2_Int mstNumberDrawGraphPos[NUMBERS_ENUM::NUMBERS_ENUM_MAX];
+
+	// •`‰æî•ñ
+	std::vector<DRAW_DATA> mstDrawDatas;
+
 public:
 	StartResultUIState();
 	~StartResultUIState() = default;
@@ -34,4 +71,11 @@ public:
 
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
+
+private:
+	/*”š•`‰æ*/
+	void DrawNumber();
+
+	/*“ñŒ…ˆÈã‚Ì”š‚ğ“n‚µ‚½‚ç¶‚É’Ç‰Á•`‰æ‚·‚é*/
+	void DrawNumberAddDraw(DRAW_DATA numberDrawData, int number);
 };

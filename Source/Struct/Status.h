@@ -30,6 +30,18 @@ public:
 		status.baseAttckPower 	= (int)((float)this->baseAttckPower * number);
 		status.baseSpeed      	= (int)((float)this->baseSpeed      * number);
 							  
+		return status;
+	}
+	
+	STATUS operator +(STATUS src) const
+	{
+		STATUS status = *this;
+
+		status.hp         		+= src.hp;
+		status.maxHp      		+= src.maxHp;
+		status.baseAttckPower 	+= src.baseAttckPower;
+		status.baseSpeed      	+= src.baseSpeed;
+							  
 		return status;		  
 	}
 

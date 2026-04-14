@@ -169,6 +169,9 @@ protected:
 
     /*コンフィグ描画をセッティングする*/
     void ConfigDrawSetting(UIBase* ui);
+
+    /*コンフィグ別スライダー設定*/
+    void SetConfigSlider(CONFIG_UI_STATE configType);
 };
 
 /*----------------------*/

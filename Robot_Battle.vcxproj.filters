@@ -356,7 +356,7 @@
     <ClCompile Include="Source\State\UI\StateConfigUi.cpp">
       <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Struct\DrawData.cpp">
+    <ClCompile Include="Source\Struct\GameDatas.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
   </ItemGroup>
@@ -651,6 +651,9 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\DrawData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\GenericEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,12 @@
+#include "GameDataEnum.h"
 #include "CameraData.h"
+#include "GameDatas.h"
 #include "ResourceData.h"
+#include "Status.h"
 
 #include "Master.h"
 
+#include "DataManager.h"
 #include "FSM.h"
 #include "ImguiManager.h"
 #include "ResourceManager.h"
@@ -39,7 +43,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
 void UI_Result::UIInitilize()
 {
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
-    
+
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
@@ -51,7 +55,7 @@ void UI_Result::UIInitilize()
         setDrawDatas.push_back(drawData);
     }
 
-    for (int i = 0; i < TEST_NUMBER; i++)
+    for (int i = 0; i < /*TEST_NUMBER*/1; i++)
     {
         setDrawDatas[0].pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(TestPos[i]);
         setDrawDatas[0].size = ResourceManager::mstDisplaySize.LeftUp_Ratio(TestSize[i]);

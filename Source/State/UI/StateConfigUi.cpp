@@ -218,6 +218,70 @@ void ConfigUIProcess::ConfigDrawSetting(UIBase* ui)
     }
 }
 
+// コンフィグ別スライダー設定
+void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
+{
+    CONFIG_VARIABLE_POINTER setConfigVariable;
+    DRAW_DATA drawData;
+    mstConfigVariables.clear();
+
+    switch (configType)
+    {
+    // 戻る
+    case CONFIG_UI_STATE::SELECT_CONFIG_STATE:
+        {
+        }
+        break;
+        
+    // ミニマップ
+    case CONFIG_UI_STATE::MINIMAP_CONFIG_STATE:
+        {
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
+            mstConfigVariables.push_back(setConfigVariable);
+
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapScreenDrawSizePointer(), 0.0f, 0.0f);
+            mstConfigVariables.push_back(setConfigVariable);
+        }
+        break;
+        
+    // サウンド
+    case CONFIG_UI_STATE::SOUND_CONFIG_STATE:
+        {
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetInt(Master::mpDataManager->GetSeVolumePointer(), 0, 0);
+            mstConfigVariables.push_back(setConfigVariable);
+
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetInt(Master::mpDataManager->GetBgmVolumePointer(), 0, 0);
+            mstConfigVariables.push_back(setConfigVariable);
+        }
+        break;
+        
+    // カメラ
+    case CONFIG_UI_STATE::CAMERA_CONFIG_STATE:
+        {
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetInt(&Master::mpDataManager->GetScreenSizePointer()->x, 0, 0);
+            mstConfigVariables.push_back(setConfigVariable);
+
+            drawData.drawGraphData.handle = -1;
+            setConfigVariable.drawData = drawData;
+            setConfigVariable.SetInt(&Master::mpDataManager->GetScreenSizePointer()->y, 0, 0);
+            mstConfigVariables.push_back(setConfigVariable);
+        break;
+    }
+}
+
 /*----------------------*/
 /*【コンフィグ選択ステート】*/
 /*----------------------*/

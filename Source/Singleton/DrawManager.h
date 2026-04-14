@@ -40,7 +40,7 @@ public:
     /// <returns>失敗フラグ</returns>
     bool ChangeDrawOrder(int changeDataID, int orderNumber = DRAW_ORDER_CENTER);
 
-    /// <summary>描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグる</summary>
+    /// <summary>描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後が理想</summary>
     /// <param name="drawData">追加する描画情報</param>
     /// <param name="orderNumber">描画順(0以上DRAW_ORDER_MAX未満)</param>
     /// <returns>描画情報ID</returns>

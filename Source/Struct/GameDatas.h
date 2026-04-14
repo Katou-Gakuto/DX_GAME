@@ -10,6 +10,7 @@
 #include "DxLib.h"
 
 enum class SCENE;
+struct LevelData;
 
 // 種類と名前のデータ
 typedef struct TypeAndNameData
@@ -108,6 +109,10 @@ typedef struct PlayerData : public CHARACTER_DATA
 	SCORE_RANK scoreRank;	// スコア評価
 	
 	bool dataFlag;	// データが存在するかどうか
+
+	/// <summary>レベルアップ処理</summary>
+	void LevelUpProcess(LevelData levelData, int addExp);
+
 }PLAYER_DATA;
 
 // レベルデータ
@@ -119,6 +124,7 @@ typedef struct LevelData
 
 	int characterType;	// キャラクターの種類
 	STATUS upStatus;	// 成長倍率
+	float upStatsMagnification; // 追加ステータス倍率
 
 
 	bool operator==(LevelData src)

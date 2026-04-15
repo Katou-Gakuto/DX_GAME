@@ -26,8 +26,8 @@
 /*----------------------*/
 
 
-Vector2 numberLeftUp = Vector2(0.200f, 0.156f); // 数字左上
-Vector2 numberDistance = Vector2(0.200f, 0.110f);   // 数字同氏の間隔
+Vector2 numberLeftUp = Vector2(0.312f, 0.156f); // 数字左上
+Vector2 numberDistance = Vector2(0.280f, 0.111111f);   // 数字同氏の間隔
 Vector2 oneNumberSize = Vector2(0.044f, 0.090f);    // 数字一つの大きさ
 Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
 
@@ -90,6 +90,12 @@ StartResultUIState::StartResultUIState()
     dataManager->SetPlayPlayerStatus(playerData.status);
     dataManager->ResetAcquisitionExp();
 
+    // UNDONE: 元に戻す箇所
+    TEST();
+    TEST_2();
+}
+void StartResultUIState::TEST()
+{
     // 数字
     {
         DRAW_DATA drawData;
@@ -235,18 +241,83 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
             Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
-
+}
+void StartResultUIState::TEST_2()
+{
     // 描画情報
     {
         mstDrawDatas.clear();
+        DRAW_DATA drawData;
 
-        // HP
+        // 共通描画情報
         {
+            drawData.drawFlag = true;
+            drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
+            drawData.drawGraphData.transFlag = TRUE;
+        }
+
+        // ステータス
+        {
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.09f, 0.157f));
+            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.2f, 0.67f));
+            drawData.drawGraphData.graphPos = Vector2_Int(340, 975);
+            drawData.drawGraphData.graphSize = Vector2_Int(1362, 3578);
+            mstDrawDatas.push_back(drawData);
+        }
+
+        // 選択肢
+        {
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.700f, 0.655f));
+            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.22f, 0.15f));
+            drawData.drawGraphData.graphPos = Vector2_Int(4640, 4975);
+            drawData.drawGraphData.graphSize = Vector2_Int(1765, 380);
+            mstDrawDatas.push_back(drawData);
+        }
+
+        // キャラ画像
+        {
+            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.drawGraphData.transFlag = FALSE;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png");
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.700f, 0.165f));
+            int graphSize = displaySize.Left_RatioWidth(0.21f);
+            drawData.drawGraphData.size = Vector2_Int(graphSize, graphSize);
+            mstDrawDatas.push_back(drawData);
         }
 
         for (int i = 0; i < mstDrawDatas.size(); i++)
         {
             Master::mpDrawManager->AddDrawData(&mstDrawDatas[i]);
+            
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstDrawDatas[i].drawGraphData.pos.x, &mstDrawDatas[i].drawGraphData.pos.y, &mstDrawDatas[i].drawGraphData.size.x, &mstDrawDatas[i].drawGraphData.size.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "DRAW_DATA_POS_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstDrawDatas[i].drawGraphData.graphPos.x, &mstDrawDatas[i].drawGraphData.graphPos.y, &mstDrawDatas[i].drawGraphData.graphSize.x, &mstDrawDatas[i].drawGraphData.graphSize.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "DRAW_DATA_GRAPH_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
         }
     }
 }
@@ -394,6 +465,7 @@ void StartResultUIState::OnExit(UIBase* ui)
 // 更新
 int StartResultUIState::Update(UIBase* ui)
 {
+    TEST();
 	ui->DefaultDecision();
 
 	return mStateNumber;

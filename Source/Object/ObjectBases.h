@@ -7,6 +7,7 @@
 #include "AttackData.h"
 #include "BitFlag.h"
 #include "CollisionData.h"
+#include "DrawData.h"
 #include "Status.h"
 #include "ResourceData.h"// TODO: 消す
 
@@ -327,6 +328,9 @@ protected:
     // 攻撃オブジェクト
     AttackBase* mpAttack;
 
+    // ステート用描画情報
+    std::vector<DRAW_DATA> mstStateDrawData;
+
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
     ~CharacterBase();
@@ -448,6 +452,9 @@ public:
     /// <returns>攻撃オブジェクト</returns>
     AttackBase* GetAttack();
 
+    /// <summary>ステート用描画情報取得</summary>
+    std::vector<DRAW_DATA> GetStateDrawData() { return mstStateDrawData; }
+
     /*--------*/
     /*【設定】*/
     /*--------*/
@@ -466,6 +473,9 @@ public:
     inline void SetVec(const VECTOR& vec) { mvVec = vec; }
     /*方向設定*/
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
+    
+    /// <summary>ステート用描画情報設定</summary>
+    inline void SetStateDrawData(std::vector<DRAW_DATA> drawDatas) { mstStateDrawData = drawDatas; }
 
     /*上移動設定*/
     inline void SetUpMove() { munActionflags.SetXorBit(ACTION_FLAG::UP_ACTION); }

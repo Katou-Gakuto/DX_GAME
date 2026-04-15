@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include "DrawData.h"
 
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -28,6 +30,14 @@ enum class PLAYER_STATE
 class PlayerProcess
 {
 protected:
+	enum PLAYER_DRAW_TYPE
+	{
+		HP_FRAME,
+		HP_RIGHT,
+		HP_LEFT,
+		PLAYER_DRAW_MAX
+	};
+
 	// キーステート
 	KeyState* mpKeyState;
 
@@ -38,9 +48,11 @@ protected:
 	// ターゲット番号
 	static int mnTargetNumber;
 
-	const Vector2 HP_LEFT_UP = Vector2(0.01f, 0.01f);
-	const Vector2 HP_RIGHT_DOWN = Vector2(0.4f, 0.06f);
-	const Vector2 HP_FRAME_SIZE = Vector2(0.005f, 0.005f);
+	const Vector2 HP_FRAME_SIZE = Vector2(0.015f, 0.005f);
+	const Vector2 HP_LEFT_UP = Vector2(0.01f + HP_FRAME_SIZE.x, 0.01f + HP_FRAME_SIZE.y);
+	const Vector2 HP_RIGHT_DOWN = Vector2(0.4f + HP_FRAME_SIZE.x, 0.06f + HP_FRAME_SIZE.y);
+
+	const Vector2_Int HP_GRAPH_SIZE = Vector2_Int(2151, 83);
 
 protected:
 	PlayerProcess();
@@ -72,6 +84,9 @@ protected:
 
 	/*ターゲットアリのカメラ処理*/
 	void TargetCameraProcess(CharacterBase* character);
+
+	/*HP描画情報設定*/
+	void HpDrawInfoSetup(CharacterBase* character);	
 
 	/*描画*/
 	void PlayerProcessDraw(CharacterBase* character);

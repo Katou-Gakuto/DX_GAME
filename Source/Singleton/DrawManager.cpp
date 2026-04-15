@@ -47,21 +47,24 @@ void DrawManager::Draw()
     {
         for (auto drawData : mstDrawData[orderIt])
         {
-            if (!drawData->drawFlag)
-            {
-                continue;
-            }
 
-            switch (drawData->drawManagerDrawType)
-            {
-            case DRAW_MANAGER_DRAW_TYPE::GRAPH:
-                SetDrawBlendMode(drawData->drawConfigData.blendMode, drawData->drawConfigData.blendParameter);
+            // •`‰æ
+            DrawData_Draw(drawData);
+            // if (!drawData->drawFlag)
+            // {
+            //     continue;
+            // }
 
-                Master::mpResourceManager->DrawData_Graph(drawData->drawGraphData);
+            // switch (drawData->drawManagerDrawType)
+            // {
+            // case DRAW_MANAGER_DRAW_TYPE::GRAPH:
+            //     SetDrawBlendMode(drawData->drawConfigData.blendMode, drawData->drawConfigData.blendParameter);
 
-                SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-                break;
-            }
+            //     Master::mpResourceManager->DrawData_Graph(drawData->drawGraphData);
+
+            //     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+            //     break;
+            // }
         }
     }
 }
@@ -133,4 +136,25 @@ void DrawManager::DeleteDrawData()
     }
 
     mnDrawDataID = 0;
+}
+
+
+// •`‰æî•ñ‚ð•`‰æ
+void DrawManager::DrawData_Draw(DRAW_DATA *drawData, bool absoluteDrawFlag)
+{
+    if (!drawData->drawFlag && !absoluteDrawFlag)
+    {
+        return;
+    }
+
+    switch (drawData->drawManagerDrawType)
+    {
+    case DRAW_MANAGER_DRAW_TYPE::GRAPH:
+        SetDrawBlendMode(drawData->drawConfigData.blendMode, drawData->drawConfigData.blendParameter);
+
+        Master::mpResourceManager->DrawData_Graph(drawData->drawGraphData);
+
+        SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+        break;
+    }
 }

@@ -81,6 +81,7 @@ IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene)
 // この状態に入った時の処理
 void IdleMapEnemyState::OnEnter(CharacterBase* character)
 {
+	EnemyGraphDataInitialize(character);
     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
     {
     case SCENE::TOWN:
@@ -117,6 +118,7 @@ void IdleMapEnemyState::Update(CharacterBase* character)
 // 最終更新
 void IdleMapEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -185,6 +187,7 @@ void TelopMapEnemyState::Update(CharacterBase* character)
 // 最終更新
 void TelopMapEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画

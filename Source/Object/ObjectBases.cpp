@@ -1,6 +1,7 @@
 #include <map>
 
 #include "AttackEnum.h"
+#include "DrawData.h"
 #include "ResourceData.h"
 
 #include "Master.h"
@@ -8,6 +9,7 @@
 #include "AnimationBase.h"
 #include "AttackManager.h"
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "FSM.h"
 #include "GameManager.h"
 #include "ModelsControllerBase.h"
@@ -67,6 +69,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mpAttack(nullptr)
 {
 	mmCharacterAttackDatas.clear();
+	mstStateDrawData.clear();
 }
 
 CharacterBase::~CharacterBase()
@@ -165,6 +168,11 @@ void CharacterBase::Finalize()
 			}
 		}
 	}
+
+	for (int i = 0; i < mstStateDrawData.size(); i++)
+	{
+		Master::mpResourceManager->ReduceGraphHandle(mstStateDrawData[i].drawGraphData.handle);
+	}
 }
 
 // XV
@@ -219,6 +227,12 @@ void CharacterBase::Draw()
 	
 	// ƒ‚ƒfƒ‹•`‰æ
 	mpModelController->DrawModels();
+
+	
+	for (auto drawData : mstStateDrawData)
+	{
+		Master::mpDrawManager->DrawData_Draw(&drawData);
+	}
 }
 
 /*----------------------*/

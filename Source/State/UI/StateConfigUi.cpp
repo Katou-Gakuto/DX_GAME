@@ -208,9 +208,9 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 0].drawFlag = false;
     mstDrawData[index + 0].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
     mstDrawData[index + 0].drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-    mstDrawData[index + 0].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-    mstDrawData[index + 0].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate, size_Config.y), true);
-    mstDrawData[index + 0].drawGraphData.graphSize = graphSize_Config.LeftUp_Ratio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 1.0f));
+    //mstDrawData[index + 0].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+    //mstDrawData[index + 0].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x, pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate, size_Config.y), true);
+    //mstDrawData[index + 0].drawGraphData.graphSize = graphSize_Config.LeftUp_Ratio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 1.0f));
     mstDrawData[index + 0].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 0].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 0].drawGraphData.turnFlag.y = 0;
@@ -219,10 +219,10 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 1].drawFlag = false;
     mstDrawData[index + 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
     mstDrawData[index + 1].drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-    mstDrawData[index + 1].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-    mstDrawData[index + 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x - (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), size_Config.y), true);
-    mstDrawData[index + 1].drawGraphData.graphPos = graphSize_Config.LeftUp_Ratio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 0.0f));
-    mstDrawData[index + 1].drawGraphData.graphSize = graphSize_Config.LeftUp_SeparateRatio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 0.0f), Vector2(1.0f - /*centerPos_Config*/mstConfigVariables[index].rate, 1.0f));
+    //mstDrawData[index + 1].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+    //mstDrawData[index + 1].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], Vector2(size_Config.x - (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), size_Config.y), true);
+    //mstDrawData[index + 1].drawGraphData.graphPos = graphSize_Config.LeftUp_Ratio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 0.0f));
+    //mstDrawData[index + 1].drawGraphData.graphSize = graphSize_Config.LeftUp_SeparateRatio(Vector2(/*centerPos_Config*/mstConfigVariables[index].rate, 0.0f), Vector2(1.0f - /*centerPos_Config*/mstConfigVariables[index].rate, 1.0f));
     mstDrawData[index + 1].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 1].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 1].drawGraphData.turnFlag.y = 0;
@@ -232,8 +232,8 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 2].drawFlag = false;
     mstDrawData[index + 2].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
     mstDrawData[index + 2].drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
-    mstDrawData[index + 2].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate) - (buttonSize_Config.x * 0.5f), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
-    mstDrawData[index + 2].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], buttonSize_Config, true);
+    //mstDrawData[index + 2].drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate) - (buttonSize_Config.x * 0.5f), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP]);
+    //mstDrawData[index + 2].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[index].rate), pos_Config.y + (posMove_Config * index)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], buttonSize_Config, true);
     mstDrawData[index + 2].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 2].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 2].drawGraphData.turnFlag.y = 0;
@@ -518,11 +518,6 @@ ConfigSelectState::ConfigSelectState()
         // mstDrawData[i + 2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
     }
 
-    for (int i = 0; i < mstDrawData.size(); i++)
-    {
-        Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
-    }
-
     // ”wŒiì¬
     {
         DRAW_DATA drawData;
@@ -541,28 +536,36 @@ ConfigSelectState::ConfigSelectState()
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
         }
 
         // ƒ~ƒjƒ}ƒbƒv
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
         }
 
         // ƒTƒEƒ“ƒh
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
         }
 
         // ƒJƒƒ‰
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
+        }
+    }
+
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        if (CONFIG_SLIDER_TYPE::ALL_CONFIG_SLIDER_MAX <= i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i], 0);
+        }
+        else
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
         }
     }
 }
@@ -753,11 +756,6 @@ MinimapConfigState::MinimapConfigState()
         InitSetSlider(i);
     }
 
-    for (int i = 0; i < mstDrawData.size(); i++)
-    {
-        Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
-    }
-
     // ”wŒiì¬
     {
         DRAW_DATA drawData;
@@ -776,7 +774,18 @@ MinimapConfigState::MinimapConfigState()
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
+        }
+    }
+
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        if (CONFIG_SLIDER_TYPE::ALL_CONFIG_SLIDER_MAX <= i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i], 0);
+        }
+        else if ((mstConfigVariables.size() * CONFIG_SLIDER_TYPE::CONFIG_SLIDER_TYPE_MAX) < i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
         }
     }
 }
@@ -839,11 +848,6 @@ SoundConfigState::SoundConfigState()
         InitSetSlider(i);
     }
 
-    for (int i = 0; i < mstDrawData.size(); i++)
-    {
-        Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
-    }
-
     // ”wŒiì¬
     {
         DRAW_DATA drawData;
@@ -862,7 +866,18 @@ SoundConfigState::SoundConfigState()
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
+        }
+    }
+
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        if (CONFIG_SLIDER_TYPE::ALL_CONFIG_SLIDER_MAX <= i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i], 0);
+        }
+        else if ((mstConfigVariables.size() * CONFIG_SLIDER_TYPE::CONFIG_SLIDER_TYPE_MAX) < i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
         }
     }
 }
@@ -925,11 +940,6 @@ CameraConfigState::CameraConfigState()
         InitSetSlider(i);
     }
 
-    for (int i = 0; i < mstDrawData.size(); i++)
-    {
-        Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
-    }
-
     // ”wŒiì¬
     {
         DRAW_DATA drawData;
@@ -948,7 +958,18 @@ CameraConfigState::CameraConfigState()
         {
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             mstDrawData.push_back(drawData);
-            Master::mpDrawManager->AddDrawData(&mstDrawData[mstDrawData.size() - 1], 0);
+        }
+    }
+
+    for (int i = 0; i < mstDrawData.size(); i++)
+    {
+        if (CONFIG_SLIDER_TYPE::ALL_CONFIG_SLIDER_MAX <= i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i], 0);
+        }
+        else if ((mstConfigVariables.size() * CONFIG_SLIDER_TYPE::CONFIG_SLIDER_TYPE_MAX) < i)
+        {
+            Master::mpDrawManager->AddDrawData(&mstDrawData[i]);
         }
     }
 }

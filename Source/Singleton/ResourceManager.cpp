@@ -225,7 +225,7 @@ void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
 		break;
 
 	case DRAW_GRAPH_TYPE::RECT_EXTEND:
-		failureFlag = DrawRectExtendGraph(drawData.pos.x, drawData.pos.y, drawData.size.x, drawData.size.y, drawData.graphPos.x, drawData.graphPos.y, drawData.graphSize.x, drawData.graphSize.y, drawData.handle, drawData.transFlag);
+		failureFlag = DrawRectExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.graphPos.x, drawData.graphPos.y, drawData.graphSize.x, drawData.graphSize.y, drawData.handle, drawData.transFlag);
 		break;
 
 	case DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE:

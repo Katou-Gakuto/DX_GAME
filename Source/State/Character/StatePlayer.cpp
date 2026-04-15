@@ -6,6 +6,7 @@
 #include "Master.h"
 
 #include "CameraManager.h"
+#include "DrawManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
@@ -31,6 +32,34 @@ PlayerProcess::PlayerProcess()
 , mpCameraManager(Master::mpGameManager->GetCameraManager())
 {
 	mnTargetNumber = -1;
+
+	// for (int i = 0; i < PLAYER_DRAW_TYPE::PLAYER_DRAW_MAX; i++)
+	// {
+	// 	Master::mpDrawManager->AddDrawData(&mstPlayerDataDraw[i]);
+	// }
+
+	// // HP
+	// {
+	// 	DRAW_DATA drawData = DRAW_DATA();
+	// 	drawData.drawFlag = true;
+	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
+	// 	drawData.drawGraphData.graphPos = Vector2_Int(0, 0);
+	// 	drawData.drawGraphData.graphSize = HP_GRAPH_SIZE;
+	// 	drawData.drawGraphData.transFlag = TRUE;
+
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+
+	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
+
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+
+	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
+
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+	// }
 }
 
 // 移動共通処理
@@ -145,28 +174,57 @@ void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 	SetMoveDir_Camera(character);
 }
 
+// HP描画情報設定
+void PlayerProcess::HpDrawInfoSetup(CharacterBase* character)
+{
+	std::vector<DRAW_DATA> drawDatas = character->GetStateDrawData();
 
-// HACK: 仮実装
-#include "SceneEnum.h"
+	Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
+	Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
+	Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
 
-#include "UtilChange.h"
+	drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.pos = Vector2_Int(leftUp.x - frameSize.x, leftUp.y - frameSize.y);
+	drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.extPos = Vector2_Int(rightDown.x + frameSize.x, rightDown.y + frameSize.y);
+
+	float hpRate = ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp);
+
+	drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.pos = Vector2_Int(leftUp.x, leftUp.y);
+	drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.extPos = Vector2_Int((int)(leftUp.x + ((rightDown.x - leftUp.x) * hpRate)), rightDown.y);
+	drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.graphSize.x = HP_GRAPH_SIZE.x * hpRate;
+
+	drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.pos = Vector2_Int(leftUp.x, leftUp.y);
+	drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.extPos = Vector2_Int(rightDown.x, rightDown.y);
+
+	character->SetStateDrawData(drawDatas);
+}
+
 // 描画
 void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
-	// HACK: 仮実装
-	if ((UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE) ||
-		(UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE_LOOP))
-	{
-		// HACK: これを更新のモデル描画前に移動させる
-		Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
-		Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
-		Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
+	// // HACK: 仮実装
+	// if ((UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE) ||
+	// 	(UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE_LOOP))
+	// {
+	// 	// HACK: これを更新のモデル描画前に移動させる
+	// 	Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
+	// 	Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
+	// 	Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
 
-		DrawBox(leftUp.x - frameSize.x, leftUp.y - frameSize.y, rightDown.x + frameSize.x, rightDown.y + frameSize.y, GetColor(0, 0, 0), TRUE);
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.pos = Vector2_Int(leftUp.x - frameSize.x, leftUp.y - frameSize.y);
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.extPos = Vector2_Int(rightDown.x + frameSize.x, rightDown.y + frameSize.y);
+	// 	//DrawBox(leftUp.x - frameSize.x, leftUp.y - frameSize.y, rightDown.x + frameSize.x, rightDown.y + frameSize.y, GetColor(0, 0, 0), TRUE);
 
-		DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(100, 100, 100), TRUE);
-		DrawBox(leftUp.x, leftUp.y, leftUp.x + ((rightDown.x - leftUp.x) * ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp)) , rightDown.y, GetColor(255, 255, 255), TRUE);	
-	}
+	// 	float hpRate = ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp);
+
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.pos = Vector2_Int(leftUp.x, leftUp.y);
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.extPos = Vector2_Int((int)(leftUp.x + ((rightDown.x - leftUp.x) * hpRate)), rightDown.y);
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.graphSize.x = HP_GRAPH_SIZE.x * hpRate;
+
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.pos = Vector2_Int(leftUp.x, leftUp.y);
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.extPos = Vector2_Int(rightDown.x, rightDown.y);
+	// 	//DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(100, 100, 100), TRUE);
+	// 	//DrawBox(leftUp.x, leftUp.y, leftUp.x + ((rightDown.x - leftUp.x) * ((float)character->GetStatus()->hp / (float)character->GetStatus()->maxHp)), rightDown.y, GetColor(255, 255, 255), TRUE);	
+	// }
 
 	// VECTOR pos1;
 	// VECTOR pos2;
@@ -225,6 +283,38 @@ IdlePlayerState::IdlePlayerState()
 // この状態に入った時の処理
 void IdlePlayerState::OnEnter(CharacterBase* character)
 {
+	if (character->GetStateDrawData().size() <= 0)
+	{
+		std::vector<DRAW_DATA> drawDatas;
+		drawDatas.resize(PLAYER_DRAW_TYPE::PLAYER_DRAW_MAX);
+			
+		// HP
+		{
+			DRAW_DATA drawData = DRAW_DATA();
+			drawData.drawFlag = true;
+			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
+			drawData.drawGraphData.graphPos = Vector2_Int(0, 0);
+			drawData.drawGraphData.graphSize = HP_GRAPH_SIZE;
+			drawData.drawGraphData.transFlag = TRUE;
+
+			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
+			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+
+			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
+
+			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
+			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+
+			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
+
+			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
+			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+		}
+
+		character->SetStateDrawData(drawDatas);
+		
+		HpDrawInfoSetup(character);
+	}
 }
 
 // この状態を出る時の処理
@@ -260,6 +350,7 @@ void IdlePlayerState::Update(CharacterBase* character)
 // 最終更新
 void IdlePlayerState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -315,6 +406,7 @@ void MovePlayerState::Update(CharacterBase* character)
 // 最終更新
 void MovePlayerState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -374,6 +466,7 @@ void NormalAttackPlayerState::Update(CharacterBase* character)
 // 最終更新
 void NormalAttackPlayerState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -435,6 +528,7 @@ void SpceialAttackPlayerState::Update(CharacterBase* character)
 // 最終更新
 void SpceialAttackPlayerState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画

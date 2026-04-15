@@ -143,6 +143,7 @@ IdleEnemyState::IdleEnemyState(bool bossFlag)
 // この状態に入った時の処理
 void IdleEnemyState::OnEnter(CharacterBase* character)
 {
+	EnemyGraphDataInitialize(character);
 }
 
 // この状態を出る時の処理
@@ -164,6 +165,7 @@ void IdleEnemyState::Update(CharacterBase* character)
 // 最終更新
 void IdleEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -213,6 +215,7 @@ void MoveEnemyState::Update(CharacterBase* character)
 // 最終更新
 void MoveEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -290,6 +293,7 @@ void AttackInEnemyState::Update(CharacterBase* character)
 // 最終更新
 void AttackInEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -345,6 +349,7 @@ void AttackEnemyState::Update(CharacterBase* character)
 // 最終更新
 void AttackEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画
@@ -404,6 +409,7 @@ void EscapeEnemyState::Update(CharacterBase* character)
 // 最終更新
 void EscapeEnemyState::LastUpdate(CharacterBase* character)
 {
+	HpDrawInfoSetup(character);
 }
 
 // 描画

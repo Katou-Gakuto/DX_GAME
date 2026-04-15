@@ -40,7 +40,7 @@ public:
     /// <returns>失敗フラグ</returns>
     bool ChangeDrawOrder(int changeDataID, int orderNumber = DRAW_ORDER_CENTER);
 
-    /// <summary>描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後が理想</summary>
+    /// <summary>描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後にやる</summary>
     /// <param name="drawData">追加する描画情報</param>
     /// <param name="orderNumber">描画順(0以上DRAW_ORDER_MAX未満)</param>
     /// <returns>描画情報ID</returns>
@@ -48,4 +48,7 @@ public:
 
     /// <summary>全描画情報削除</summary>
     void DeleteDrawData();
+
+    /// <summary>描画情報を描画</summary>
+    void DrawData_Draw(DRAW_DATA *drawData, bool absoluteDrawFlag = false);
 };

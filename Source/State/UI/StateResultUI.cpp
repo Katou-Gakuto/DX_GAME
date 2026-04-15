@@ -12,6 +12,7 @@
 #include "DrawManager.h"
 #include "EndManager.h"
 #include "GameManager.h"
+#include "ImguiManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateResultUI.h"
@@ -24,20 +25,49 @@
 /*【開始画面UIステート】*/
 /*----------------------*/
 
+
+Vector2 numberLeftUp = Vector2(0.200f, 0.156f); // 数字左上
+Vector2 numberDistance = Vector2(0.200f, 0.110f);   // 数字同氏の間隔
+Vector2 oneNumberSize = Vector2(0.044f, 0.090f);    // 数字一つの大きさ
+Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
+
+
+DisplaySize displaySize;
+
+// データ取得
+DataManager* dataManager;
+PLAYER_DATA playerData;
+std::vector<ONE_DATA> allData;
+LEVEL_DATA *levelData = nullptr;
+
+// 変更前ステータス
+STATUS preStatus;
+
 StartResultUIState::StartResultUIState()
 {
 	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
-
-    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    
+    displaySize = ResourceManager::mstDisplaySize;
 
     // データ取得
-    DataManager* dataManager = Master::mpDataManager;
-    PLAYER_DATA playerData = dataManager->GetPlayPlayerData();
-    std::vector<ONE_DATA> allData = dataManager->GetAllData(true);
-    LEVEL_DATA *levelData = nullptr;
+    dataManager = Master::mpDataManager;
+    playerData = dataManager->GetPlayPlayerData();
+    allData = dataManager->GetAllData(true);
+    levelData = nullptr;
 	
     // 変更前ステータス
-	STATUS preStatus = playerData.status;
+	preStatus = playerData.status;
+
+    // DisplaySize displaySize = ResourceManager::mstDisplaySize;
+
+    // // データ取得
+    // DataManager* dataManager = Master::mpDataManager;
+    // PLAYER_DATA playerData = dataManager->GetPlayPlayerData();
+    // std::vector<ONE_DATA> allData = dataManager->GetAllData(true);
+    // LEVEL_DATA *levelData = nullptr;
+	
+    // // 変更前ステータス
+	// STATUS preStatus = playerData.status;
 
     for (int i = 0; i < allData.size(); i++)
     {
@@ -64,10 +94,10 @@ StartResultUIState::StartResultUIState()
     {
         DRAW_DATA drawData;
 
-        Vector2 numberLeftUp = Vector2(0.080f, 0.156f); // 数字左上
-        Vector2 numberDistance = Vector2(0.200f, 0.155f);   // 数字同氏の間隔
-        Vector2 oneNumberSize = Vector2(0.050f, 0.050f);    // 数字一つの大きさ
-        Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
+        // Vector2 numberLeftUp = Vector2(0.080f, 0.156f); // 数字左上
+        // Vector2 numberDistance = Vector2(0.200f, 0.155f);   // 数字同氏の間隔
+        // Vector2 oneNumberSize = Vector2(0.050f, 0.050f);    // 数字一つの大きさ
+        // Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
 
         int numberHeightCount = 0;
 
@@ -77,16 +107,21 @@ StartResultUIState::StartResultUIState()
             drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
             drawData.drawGraphData.size = displaySize.LeftUp_Ratio(oneNumberSize);
+            drawData.drawGraphData.graphSize = oneNumberGraphSize;
             drawData.drawGraphData.transFlag = TRUE;
         }
 
+
         // 数字描画個所取得
         {
-            for (int y = 0; y < 2; y++)
+            int xMaxSize = 5;
+            int yMaxSize = 2;
+
+            for (int y = 0; y < yMaxSize; y++)
             {
-                for (int x = 0; x < 5; x++)
+                for (int x = 0; x < xMaxSize; x++)
                 {
-                    mstNumberDrawGraphPos[0] = Vector2_Int(oneNumberGraphSize.x * x, oneNumberGraphSize.y * y);
+                    mstNumberDrawGraphPos[(y * xMaxSize) + x] = Vector2_Int(oneNumberGraphSize.x * x, oneNumberGraphSize.y * y);
                 }
             }
         }
@@ -135,12 +170,12 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         
         // LEVEL
         {
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = preStatus.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = preStatus.level;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = drawData;
 
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] = playerData.status.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] = playerData.status.level;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::LEVEL] = drawData;
@@ -150,12 +185,12 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         
         // EXP 
         {
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = preStatus.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = preStatus.exp;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = drawData;
 
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] = playerData.status.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] = playerData.status.exp;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::EXP] = drawData;
@@ -165,12 +200,12 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         
         // ATTACK 
         {
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = preStatus.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = preStatus.baseAttckPower;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = drawData;
 
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] = playerData.status.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] = playerData.status.baseAttckPower;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::ATTACK] = drawData;
@@ -180,12 +215,12 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         
         // SPEED 
         {
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = preStatus.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = preStatus.baseSpeed;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = drawData;
 
-            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] = playerData.status.maxHp;
+            mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] = playerData.status.baseSpeed;
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] % 10];
             mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::SPEED] = drawData;
@@ -196,8 +231,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // 描画設定
         for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::MAX; i++)
         {
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize = oneNumberGraphSize;
+            mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
             Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
@@ -220,6 +254,136 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
 // この状態に入った時の処理
 void StartResultUIState::OnEnter(UIBase* ui)
 {
+    for (int i  = RESULT_DRAW_NUMBER_TYPE::HP - 1; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
+    {
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "PRE_HP_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
+                                                
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "PRE_HP_GRAPH_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
+
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "HP_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
+                                                
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "HP_GRAPH_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER4
+                                                                            )
+                                                );
+                                            }
+                                                
+                                                
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &oneNumberGraphSize.x, &oneNumberGraphSize.y},
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "oneNumberGraphSize_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::SLIDER2
+                                                                            )
+                                                );
+
+                                                
+    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+        { &numberLeftUp.x, &numberLeftUp.y },
+        0.001f,
+        0.001f,
+        0.001f,
+        0.0f,
+        1.0f,
+        "numberLeftUp_",
+        "%f",
+        0,
+        IMGUI_TYPE::SLIDER2
+    )
+    );                        
+    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+        { &numberDistance.x, &numberDistance.y },
+        0.001f,
+        0.001f,
+        0.001f,
+        0.0f,
+        1.0f,
+        "numberDistance_",
+        "%f",
+        0,
+        IMGUI_TYPE::SLIDER2
+    )
+    );
+    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+        { &oneNumberSize.x, &oneNumberSize.y },
+        0.001f,
+        0.001f,
+        0.001f,
+        0.0f,
+        1.0f,
+        "oneNumberSize_",
+        "%f",
+        0,
+        IMGUI_TYPE::SLIDER2
+    )
+    );
+    //for (int i = 0; i < NUMBERS_ENUM::NUMBERS_ENUM_MAX; i++)
+    {
+        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+            { &mstNumberDrawGraphPos[0].x, &mstNumberDrawGraphPos[0].y },
+            1.0f,
+            1.0f,
+            1.0f,
+            0,
+            1000,
+            "mstNumberDrawGraphPos_",
+            "%d",
+            0,
+            IMGUI_TYPE::SLIDER2
+        )
+        );
+    }
 }
 
 // この状態を出る時の処理
@@ -286,6 +450,8 @@ void StartResultUIState::DrawNumberAddDraw(DRAW_DATA numberDrawData, int number)
     while (number >= 10)
     {
         number /= 10;
+
+        int test = number % 10;
 
         numberDrawData.drawGraphData.graphPos = mstNumberDrawGraphPos[number % 10];
         numberDrawData.drawGraphData.pos.x -= numberDrawData.drawGraphData.size.x;

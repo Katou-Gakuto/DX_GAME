@@ -25,7 +25,7 @@ private:
     
 	enum ENEMY_DRAW_TYPE
 	{
-        FRAME,
+        //RAME,
 
 		HP_FRAME,
 		HP_RIGHT,
@@ -42,11 +42,11 @@ private:
     int mnScreenHandle;
 
     const DisplaySize SCREEN_SIZES[(int)STATE_ENEMY_TYPE::MAX] = //{ {Vector2(70.0f, 40.0f), 0 }, {Vector2(70.0f, 80.0f), 0,}};
-                                                                 { {Vector2(70.0f, 30.0f), 0 }, {Vector2(70.0f, 80.0f), 0,}};
+                                                                 { {Vector2(70.0f, 40.0f), 0 }, {Vector2(110.0f, 30.0f), 0,}};
 
-	const Vector2_Int HP_FRAME_SIZE = Vector2_Int(3, 3);
+	const Vector2_Int HP_FRAME_SIZE = Vector2_Int(5, 3);
 	Vector2_Int mstHpLeftUp = Vector2_Int(0 + HP_FRAME_SIZE.x, 0 + HP_FRAME_SIZE.y);
-	Vector2_Int mstHpRightDown = Vector2_Int(40 + HP_FRAME_SIZE.x, 20 + HP_FRAME_SIZE.y);
+	Vector2_Int mstHpRightDown = Vector2_Int(100 + HP_FRAME_SIZE.x, 20 + HP_FRAME_SIZE.y);
 
 	const Vector2_Int HP_GRAPH_SIZE = Vector2_Int(2151, 83);
 

@@ -69,3 +69,35 @@ const char* label, float v[4], float v_min, float v_max, const char* format, ImG
 const char* label, float* v_rad, float v_degrees_min, float v_degrees_max, const char* format, ImGuiSliderFlags flags
 const char* label, float* v, float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags
 */
+
+/*使用例 1(float)
+    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+        { &testSize },
+        0.1f,
+        0.1f,
+        0.1f,
+        0.0f,
+        250.0f,
+        "TEST_SIZE_BACK_",
+        "%f",
+        0,
+        IMGUI_TYPE::SLIDER1
+    )
+    );
+*/
+/*使用例 2(int)
+    Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                     { &mstMinMapDrawGraphData[0].pos.x, &mstMinMapDrawGraphData[0].pos.y, &mstMinMapDrawGraphData[0].size.x, &mstMinMapDrawGraphData[0].size.y },
+                                                                     1.0f,
+                                                                     1.0f,
+                                                                     1.0f,
+                                                                     0,
+                                                                     1000,
+                                                                     "NONE_",
+                                                                     "%d",
+                                                                     0,
+                                                                     IMGUI_TYPE::SLIDER4
+                                                                    )
+                                        );
+
+*/

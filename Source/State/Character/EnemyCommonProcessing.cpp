@@ -148,8 +148,8 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 			drawData.drawGraphData.extPos = Vector2_Int(SCREEN_SIZES[(int)meEnemyType].x, SCREEN_SIZES[(int)meEnemyType].y);
 			drawData.drawGraphData.transFlag = TRUE;
 
-			drawDatas[ENEMY_DRAW_TYPE::HP_FRAME] = drawData;
-			drawDatas[ENEMY_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+			//drawDatas[ENEMY_DRAW_TYPE::FRAME] = drawData;
+			//drawDatas[ENEMY_DRAW_TYPE::FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
         }
 
 		enemy->SetStateDrawData(drawDatas);

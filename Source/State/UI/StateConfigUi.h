@@ -105,6 +105,11 @@ public:
 class ConfigUIProcess
 {
 protected:
+    
+    // スライダーのまとまりの数
+    constexpr static int SLIDER_CHUNK_NUMBER = 2;
+
+
     // コンフィグポジション種類
     enum CONFIG_POS_TYPE
     {
@@ -120,7 +125,9 @@ protected:
         SLIDER_RIGHT,
         SLIDER_BUTTON,
 
-        CONFIG_SLIDER_TYPE_MAX
+        CONFIG_SLIDER_TYPE_MAX,
+
+        ALL_CONFIG_SLIDER_MAX = SLIDER_CHUNK_NUMBER * (int)CONFIG_SLIDER_TYPE_MAX,
     };
 
     // 前に選択していた項目
@@ -167,6 +174,9 @@ protected:
     /*ステートを出た時の処理*/
     void ConfigOnExit(UIBase* ui);
 
+    /*Sliderワンセット初期設定*/
+    void InitSetSlider(int index);
+
     /*コンフィグ描画をセッティングする*/
     void ConfigDrawSetting(UIBase* ui);
 
@@ -181,7 +191,7 @@ class ConfigSelectState : public IStateUI, public ConfigUIProcess
 {
 private:
     // 描画情報種類
-    enum CONFIG_DRAW_DATA_TYPE
+    enum CONFIG_SELECT_DRAW_DATA_TYPE
     {
 
         SLIDER_1_LEFT = 0,
@@ -192,7 +202,7 @@ private:
         SLIDER_2_RIGHT,
         SLIDER_2_BUTTON,
 
-        SLIDER_MAX,
+        SLIDER_MAX = CONFIG_SLIDER_TYPE::ALL_CONFIG_SLIDER_MAX,
 
         RETURN = static_cast<int>(SLIDER_MAX),
         MINIMAP,

@@ -27,7 +27,7 @@
 
 
 Vector2 numberLeftUp = Vector2(0.312f, 0.156f); // êîéöç∂è„
-Vector2 numberDistance = Vector2(0.280f, 0.111111f);   // êîéöìØéÅÇÃä‘äu
+Vector2 numberDistance = Vector2(0.280f, 0.119048);   // êîéöìØéÅÇÃä‘äu
 Vector2 oneNumberSize = Vector2(0.044f, 0.090f);    // êîéöàÍÇ¬ÇÃëÂÇ´Ç≥
 Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // êîéöàÍÇ¬ÇÃâÊëúë§ÇÃëÂÇ´Ç≥
 
@@ -48,6 +48,9 @@ StartResultUIState::StartResultUIState()
 	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
     
     displaySize = ResourceManager::mstDisplaySize;
+    
+    // ï`âÊèÓïÒèâä˙âª
+    mstDrawDatas.clear();
 
     // ÉfÅ[É^éÊìæ
     dataManager = Master::mpDataManager;
@@ -147,14 +150,14 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // HP
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_HP] = preStatus.hp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_HP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_HP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::HP] = playerData.status.hp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::HP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::HP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP] = drawData;
 
             numberHeightCount++;
         }
@@ -162,14 +165,14 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         //MAX HP 
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_MAX_HP] = preStatus.maxHp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_MAX_HP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_MAX_HP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_MAX_HP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_MAX_HP] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::MAX_HP] = playerData.status.maxHp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::MAX_HP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::MAX_HP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::MAX_HP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::MAX_HP] = drawData;
 
             numberHeightCount++;
         }
@@ -177,14 +180,14 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // LEVEL
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = preStatus.level;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_LEVEL] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] = playerData.status.level;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::LEVEL] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::LEVEL] = drawData;
 
             numberHeightCount++;
         }
@@ -192,14 +195,14 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // EXP 
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = preStatus.exp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_EXP] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] = playerData.status.exp;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::EXP] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::EXP] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::EXP] = drawData;
 
             numberHeightCount++;
         }
@@ -207,14 +210,14 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // ATTACK 
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = preStatus.baseAttckPower;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_ATTACK] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] = playerData.status.baseAttckPower;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::ATTACK] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::ATTACK] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::ATTACK] = drawData;
 
             numberHeightCount++;
         }
@@ -222,21 +225,54 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // SPEED 
         {
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = preStatus.baseSpeed;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_SPEED] = drawData;
 
             mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] = playerData.status.baseSpeed;
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::SPEED] = drawData;
+            // drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * numberHeightCount)));
+            // drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::SPEED] % 10];
+            // mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::SPEED] = drawData;
 
             numberHeightCount++;
         }
 
+        // ï`âÊÉ|ÉWÉVÉáÉìê›íË
+        for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
+        {
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * i)));
+            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::HP + i] % 10];
+            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP + i] = drawData;
+
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * i)));
+            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[i] % 10];
+            mstNumberDrawData[i] = drawData;
+        }
+
+        // ï`âÊèÓïÒêîéöã§í ê›íË
+        {
+            drawData.drawFlag = true;
+            drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.drawGraphData.pos.x = displaySize.Left_RatioWidth(numberLeftUp.x) + displaySize.Left_RatioWidth(oneNumberSize.x * 1.5f);
+            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
+            drawData.drawGraphData.transFlag = TRUE;
+        }
+        
         // ï`âÊê›íË
         for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::MAX; i++)
         {
+            if (RESULT_DRAW_NUMBER_TYPE::HP > i)
+            {
+                if (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::HP])
+                {
+                    mstNumberDrawData[i].drawGraphData.handle = -1;
+                    continue;
+                }
+                drawData.drawGraphData.pos.y = mstNumberDrawData[i].drawGraphData.pos.y;
+                drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ChangeArrow.png");
+                mstDrawDatas.push_back(drawData);
+            }
             mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
             Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
@@ -246,22 +282,21 @@ void StartResultUIState::TEST_2()
 {
     // ï`âÊèÓïÒ
     {
-        mstDrawDatas.clear();
         DRAW_DATA drawData;
 
         // ã§í ï`âÊèÓïÒ
         {
             drawData.drawFlag = true;
             drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
-            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
             drawData.drawGraphData.transFlag = TRUE;
         }
 
         // ÉXÉeÅ[É^ÉX
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.09f, 0.157f));
-            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.2f, 0.67f));
+            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ResultStatus.png");
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.0625f, 0.15625f));
+            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.1859375f, 0.7125f));
             drawData.drawGraphData.graphPos = Vector2_Int(340, 975);
             drawData.drawGraphData.graphSize = Vector2_Int(1362, 3578);
             mstDrawDatas.push_back(drawData);
@@ -269,9 +304,10 @@ void StartResultUIState::TEST_2()
 
         // ëIëéà
         {
+            drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.700f, 0.655f));
-            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.22f, 0.15f));
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.75f));
+            drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.22f, 0.075f));
             drawData.drawGraphData.graphPos = Vector2_Int(4640, 4975);
             drawData.drawGraphData.graphSize = Vector2_Int(1765, 380);
             mstDrawDatas.push_back(drawData);
@@ -282,8 +318,8 @@ void StartResultUIState::TEST_2()
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.drawGraphData.transFlag = FALSE;
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png");
-            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.700f, 0.165f));
-            int graphSize = displaySize.Left_RatioWidth(0.21f);
+            drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.15f));
+            int graphSize = displaySize.Left_RatioWidth(0.23125f);
             drawData.drawGraphData.size = Vector2_Int(graphSize, graphSize);
             mstDrawDatas.push_back(drawData);
         }
@@ -302,7 +338,7 @@ void StartResultUIState::TEST_2()
                                                                             "DRAW_DATA_POS_",
                                                                             "%d",
                                                                             0,
-                                                                            IMGUI_TYPE::SLIDER4
+                                                                            IMGUI_TYPE::DRAG4
                                                                             )
                                                 );
             Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
@@ -315,7 +351,7 @@ void StartResultUIState::TEST_2()
                                                                             "DRAW_DATA_GRAPH_",
                                                                             "%d",
                                                                             0,
-                                                                            IMGUI_TYPE::SLIDER4
+                                                                            IMGUI_TYPE::DRAG4
                                                                             )
                                                 );
         }
@@ -465,7 +501,7 @@ void StartResultUIState::OnExit(UIBase* ui)
 // çXêV
 int StartResultUIState::Update(UIBase* ui)
 {
-    TEST();
+    //TEST();
 	ui->DefaultDecision();
 
 	return mStateNumber;
@@ -511,6 +547,10 @@ void StartResultUIState::DrawNumber()
 {
     for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::MAX; i++)
     {
+        if ((RESULT_DRAW_NUMBER_TYPE::HP > i) && (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::HP]))
+        {
+            continue;
+        }
         DrawNumberAddDraw(mstNumberDrawData[i], mnDrawNumbers[i]);
     }
 }

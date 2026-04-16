@@ -132,6 +132,9 @@
       <Extensions>
       </Extensions>
     </Filter>
+    <Filter Include="リソース ファイル\参考_AI回答\State">
+      <UniqueIdentifier>{c6ffdffe-9f46-41df-ac51-ab4b39082c89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -722,6 +725,27 @@
     </Text>
     <Text Include="..\Schedule\Text\UsageExample.txt">
       <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\■ 結論（改善の方向性）.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\これからステートの機能いるからそれぞれ提案して(足りないと思うものがあ.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\AスターAI.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\MoveToの最短経路処理の詳細を省いた中身を書いて.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\ステートの処理のみ書いて(関数).txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\前の会話が飛んだため適当に情報入力してます.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\参考_AI回答\State\壁に当たったら角へ（レイキャスト＋コーナー）書いて.txt">
+      <Filter>リソース ファイル\参考_AI回答\State</Filter>
     </Text>
   </ItemGroup>
 </Project>

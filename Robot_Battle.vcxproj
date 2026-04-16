@@ -211,6 +211,13 @@
     <Text Include="..\Schedule\Text\先生メモ.txt" />
     <Text Include="..\Schedule\Text\出力-デバッグ.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\PDFを開いたときに自動で何か動作させたい.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\AスターAI.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\MoveToの最短経路処理の詳細を省いた中身を書いて.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\■ 結論（改善の方向性）.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\これからステートの機能いるからそれぞれ提案して(足りないと思うものがあ.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\ステートの処理のみ書いて(関数).txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\前の会話が飛んだため適当に情報入力してます.txt" />
+    <Text Include="..\Schedule\Text\参考_AI回答\State\壁に当たったら角へ（レイキャスト＋コーナー）書いて.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\ゲーム性.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\ゲーム説明.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\ポートフォリオ.txt" />

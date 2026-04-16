@@ -25,7 +25,8 @@ UI_Game::~UI_Game()
 // UI初期化
 void UI_Game::UIInitilize()
 {
-    // INPROGRESS: 操作キーおよびHPを作成中 量表示用尾モデル(maxと現在地をポインタで持つモデル)作成
+    // INPROGRESS: ここにメニュー追加
+    // 操作キーおよびHPを作成中 量表示用尾モデル(maxと現在地をポインタで持つモデル)作成
     std::vector<DRAW_GRAPH_DATA> setDrawDatas;
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
 

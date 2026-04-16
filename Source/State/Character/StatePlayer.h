@@ -248,3 +248,14 @@ public:
 	/*ステート変更確認*/
 	int StateCheck(CharacterBase* character) override;
 };
+
+/*
+追加予定ステート
+ジャンプ
+怯み
+避け
+ガード(時間経過で解ける)
+倒れるモーション
+小攻撃
+横歩き
+*/

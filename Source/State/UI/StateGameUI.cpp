@@ -1,5 +1,7 @@
 #include <vector>
 
+#include "BitFlag.h"
+#include "DrawData.h"
 #include "MinMapData.h"
 #include "ResourceData.h"
 #include "Vector2.h"
@@ -9,6 +11,7 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "EndManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
@@ -70,12 +73,6 @@ void GameUIProcess::DrawMenuBackground(UIBase* ui)
 
     // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
     // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "メニュー", GetColor(0, 0, 0));
-}
-
-// ミニマップ表示
-void GameUIProcess::DrawMinMap()
-{
-    // INPROGRESS: 実装　あとエフェクトのエラー削除ファイルごとにやればいいらしい 2Dは影がいらないからstopマネージャーで描画処理自体を一回で済むようにする
 }
 
 // ミニマップポジションに変換する
@@ -162,7 +159,6 @@ int StartGameUIState::Decision(UIBase* ui)
 // 描画
 void StartGameUIState::Draw(UIBase* ui)
 {
-    DrawMinMap();
 }
 
 // 終了
@@ -222,7 +218,6 @@ int NormalGameUIState::Decision(UIBase* ui)
 // 描画
 void NormalGameUIState::Draw(UIBase* ui)
 {
-    DrawMinMap();
 }
 
 // 終了
@@ -238,6 +233,70 @@ PauseGameUIState::PauseGameUIState()
 : GameUIProcess()
 {
     mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+ 
+ 
+    DRAW_DATA drawData = DRAW_DATA();
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+    Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.275f, 0.275f));
+    Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.6f, 0.6f));
+    // 共通描画情報設定
+    {
+        drawData.drawFlag = false;
+        drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        drawData.drawGraphData.transFlag = TRUE;
+        drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.125f, 0.125f));
+        drawData.drawGraphData.transFlag = TRUE;
+    }
+
+    {
+        int menuIndexNumber = 0;
+
+        // 戻る
+        {
+            drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
+            mstMenuStringDrawData[menuIndexNumber] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
+            menuIndexNumber++;
+        }
+
+        // コンフィグ
+        {
+            drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            mstMenuStringDrawData[menuIndexNumber] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
+            menuIndexNumber++;
+        }
+        
+        // ステータス
+        {
+            drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
+            mstMenuStringDrawData[menuIndexNumber] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
+            menuIndexNumber++;
+        }
+        
+        // ゲーム終了
+        {
+            drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+            mstMenuStringDrawData[menuIndexNumber] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
+            menuIndexNumber++;
+        }
+    }
+
+    for (int i = 0; i < MENU_STRING_TYPE::MENU_STRING_MAX; i++)
+    {
+        Master::mpDrawManager->AddDrawData(&mstMenuStringDrawData[i]);
+    }
 }
 
 // この状態に入った時の処理
@@ -258,6 +317,11 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     {
         ui->SetSelectNumber(mnPreSelectNumber);
     }
+
+    for (int i = MENU_STRING_TYPE::RETURN_GAME; i < MENU_STRING_TYPE::PUSH_RETURN_GAME; i++)
+    {
+        mstMenuStringDrawData[i].drawFlag = true;
+    }
     // セーブテスト
     //Master::mpDataManager->Save(Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER));
 
@@ -271,6 +335,11 @@ void PauseGameUIState::OnEnter(UIBase* ui)
 void PauseGameUIState::OnExit(UIBase* ui)
 {
     mnPreSelectNumber = ui->GetSelectNumber();
+
+    for (int i = 0; i < MENU_STRING_TYPE::MENU_STRING_MAX; i++)
+    {
+        mstMenuStringDrawData[i].drawFlag = false;
+    }
 }
 
 // 更新
@@ -284,7 +353,20 @@ int PauseGameUIState::Update(UIBase* ui)
     ui->DefaultSelectProcess();
     ui->LeftRightSelectProcess();
 
-    
+    if (ui->GetSelectNumberFlag().Bool())
+    {
+        for (int i = 0; i < GAME_UI_SELECT_NUKMBER::PAUSE_SELECT_MAX; i++)
+        {
+            if (i == ui->GetSelectNumber())
+            {
+                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + ui->GetSelectNumber()].drawFlag = true;
+            }
+            else
+            {
+                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + ui->GetSelectNumber()].drawFlag = false;
+            }
+        }
+    }
 
     return mStateNumber;
 }
@@ -316,7 +398,6 @@ void PauseGameUIState::Draw(UIBase* ui)
 {
     clsDx();
     printfDx("%d : UInannba\n", ui->GetSelectNumber());
-    DrawMinMap();
 
     DrawMenuBackground(ui);
 }

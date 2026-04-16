@@ -132,10 +132,10 @@ void GameManager::Draw()
 
     Master::mpResourceManager->LastDraw();
 
-    Master::mpFadeManager->Draw();
-
     // TODO: ƒŠƒ\[ƒX‚Ì•`‰æˆ—‚±‚¿‚ç‚ÉˆÚ‚·
     Master::mpDrawManager->Draw();
+
+    Master::mpFadeManager->Draw();
 
     Master::mpResourceManager->DrawDataRelease();
 

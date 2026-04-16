@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+#include "DrawData.h"
+
 #include "ObjectBases.h"
 #include "StateBase.h"
 #include "UI_Check.h"
@@ -75,9 +77,6 @@ protected:
 
     /*メニューの背景描画*/
     void DrawMenuBackground(UIBase* ui);
-
-    /*ミニマップ表示*/
-    void DrawMinMap();
 
     /*ミニマップ座標に変換する*/
     VECTOR PosToMinMapPos(VECTOR pos);
@@ -159,6 +158,23 @@ public:
 class PauseGameUIState : public IStateUI, public GameUIProcess
 {
 private:
+    enum MENU_STRING_TYPE
+    {
+        RETURN_GAME = 0,
+        CONFIG_SET,
+        STATUS_DRAW,
+        GAME_END,
+
+        PUSH_RETURN_GAME,
+        PUSH_CONFIG_SET,
+        PUSH_STATUS_DRAW,
+        PUSH_GAME_END,
+        
+        MENU_STRING_MAX
+    };
+
+    DRAW_DATA mstMenuStringDrawData[MENU_STRING_TYPE::MENU_STRING_MAX];
+
 public:
     PauseGameUIState();
     ~PauseGameUIState() = default;

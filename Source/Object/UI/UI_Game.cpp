@@ -1,6 +1,8 @@
 #include "AnimationEnum.h"
 #include "SceneEnum.h"
 #include "ResourceData.h"
+#include "Vector2.h"
+
 
 #include "Master.h"
 
@@ -34,7 +36,7 @@ void UI_Game::UIInitilize()
     {
         setDrawDatas.clear();
         DRAW_GRAPH_DATA drawData;
-        // 操作キー
+        // 描画情報
         {
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.transFlag = TRUE;
@@ -85,6 +87,38 @@ void UI_Game::UIInitilize()
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.105f, 0.07f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_Arrow.png");
             setDrawDatas.push_back(drawData);
+
+            // // メニュー選択し描画
+            // {
+            //     Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.275f, 0.275f));
+            //     Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.6f, 0.6f));
+            //     // 共通描画情報設定
+            //     {
+            //         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            //         drawData.transFlag = TRUE;
+            //         drawData.size = displaySize.LeftUp_Ratio(Vector2(0.125f, 0.125f));
+            //     }
+
+            //     // 戻る
+            //     drawData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
+            //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
+            //     setDrawDatas.push_back(drawData);
+                
+            //     // コンフィグ
+            //     drawData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
+            //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            //     setDrawDatas.push_back(drawData);
+                
+            //     // ステータス
+            //     drawData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
+            //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
+            //     setDrawDatas.push_back(drawData);
+                
+            //     // ゲーム終了
+            //     drawData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
+            //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+            //     setDrawDatas.push_back(drawData);
+            // }
         }
         
         // モデル追加

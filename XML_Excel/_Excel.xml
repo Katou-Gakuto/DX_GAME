@@ -3,346 +3,6 @@
     <assembly>
     Robot_Battle
     </assembly>
-   <member className="UtilFileLoading">
-   <functionName>LoadingBitMapFile</functionName>
-   <explanations>
-ビットマップファイル読み込み
-   </explanations>
-   </member>
-   <member className="CONFIG_VARIABLE_POINTER">
-   <functionName>ChangeVariable</functionName>
-   <explanations>
-設定変数変更
-   </explanations>
-   <variable0>変更割合量</variable0>
-   </member>
-   <member className="CONFIG_VARIABLE_POINTER">
-   <functionName>SetFloat</functionName>
-   <explanations>
-float変数設定
-   </explanations>
-   <variable0>変更変数</variable0>
-   <variable1>最大値</variable1>
-   <variable2>最低値</variable2>
-   </member>
-   <member className="CONFIG_VARIABLE_POINTER">
-   <functionName>SetInt</functionName>
-   <explanations>
-int変数設定
-   </explanations>
-   <variable0>変更変数</variable0>
-   <variable1>最大値</variable1>
-   <variable2>最低値</variable2>
-   </member>
-   <member className="StateDOTweenAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateDOTweenAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateDOTweenAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateDOTweenAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateFadeGraphAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateFadeGraphAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateFadeGraphAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateFadeGraphAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMovieAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMovieAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateMovieAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMovieAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateGraphAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateGraphAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateGraphAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateGraphAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateEffectAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateEffectAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateEffectAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateEffectAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOperationAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOperationAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOperationAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOnlyAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOnlyAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateMVOneOnlyAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneOnlyAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateMVOneAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateMVOneAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateNoneAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateNoneAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StateNoneAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="StateNoneAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理(何もしない)
-   </explanations>
-   <variable0>アニメーション</variable0>
-   <variable1>アニメーション情報</variable1>
-   </member>
-   <member className="ModelEffect">
-   <functionName>GetHandlePointer</functionName>
-   <explanations>
-エフェクトハンドル取得
-   </explanations>
-   </member>
-   <member className="ModelEffect">
-   <functionName>ModelDraw</functionName>
-   <explanations>
-モデル描画
-   </explanations>
-   </member>
-   <member className="ModelEffect">
-   <functionName>PositionUpdate</functionName>
-   <explanations>
-ポジション更新
-   </explanations>
-   </member>
-   <member className="ModelEffect">
-   <functionName>GameInit</functionName>
-   <explanations>
-ゲーム中初期化
-   </explanations>
-   </member>
-   <member className="ModelEffect">
-   <functionName>ModelFinalize</functionName>
-   <explanations>
-継承モデル終了
-   </explanations>
-   </member>
-   <member className="ModelEffect">
-   <functionName>ModelInitilize</functionName>
-   <explanations>
-継承モデル初期化
-   </explanations>
-   </member>
-   <member className="ModelMV1">
-   <functionName>GetHandle</functionName>
-   <explanations>
-ハンドル取得
-   </explanations>
-   <returnExplanation>
-モデルハンドル
-   </returnExplanation>
-   </member>
    <member className="StateSpceialAttackOutAnimationController">
    <functionName>CheckState</functionName>
    <explanations>
@@ -547,273 +207,6 @@ int変数設定
 この状態に入った時の処理
    </explanations>
    </member>
-   <member className="AttackManager">
-   <functionName>GetAllAttack</functionName>
-   <explanations>
-攻撃全取得
-   </explanations>
-   </member>
-   <member className="AttackManager">
-   <functionName>GetAttacData</functionName>
-   <explanations>
-攻撃情報取得
-   </explanations>
-   </member>
-   <member className="MapManager">
-   <functionName>DrawMinMap</functionName>
-   <explanations>
-ミニマップ描画
-   </explanations>
-   </member>
-   <member className="MapManager">
-   <functionName>SetMinMapDrawLength</functionName>
-   <explanations>
-ミニマップ描画長さ変更
-   </explanations>
-   <returnExplanation>
-成功フラグ
-   </returnExplanation>
-   </member>
-   <member className="MapManager">
-   <functionName>SetMinMapSize_And_CreateHandle</functionName>
-   <explanations>
-ミニマップサイス変更(0.0f～1.0f)
-   </explanations>
-   </member>
-   <member className="MapManager">
-   <functionName>Release</functionName>
-   <explanations>
-データ解放
-   </explanations>
-   </member>
-   <member className="MapManager">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="MapManager">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="GameEndState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="ConfigChangeState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="DrawPlayerDataState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="PauseGameUIState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="NormalGameUIState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
    <member className="WinMain(HINSTANCE__*,HINSTANCE__*,System">
    <functionName>SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)</functionName>
    <explanations>
@@ -827,74 +220,274 @@ int
    <variable2>LPSTR</variable2>
    <variable3>int</variable3>
    </member>
-   <member className="DrawManager">
-   <functionName>DrawData_Draw</functionName>
+   <member className="StateDOTweenAnimation">
+   <functionName>Update</functionName>
    <explanations>
-描画情報を描画
+更新
    </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
    </member>
-   <member className="DrawManager">
-   <functionName>DeleteDrawData</functionName>
-   <explanations>
-全描画情報削除
-   </explanations>
-   </member>
-   <member className="DrawManager">
-   <functionName>AddDrawData</functionName>
-   <explanations>
-描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後にやる
-   </explanations>
-   <returnExplanation>
-描画情報ID
-   </returnExplanation>
-   <variable0>追加する描画情報</variable0>
-   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
-   </member>
-   <member className="DrawManager">
-   <functionName>ChangeDrawOrder</functionName>
-   <explanations>
-描画順を変更する
-   </explanations>
-   <returnExplanation>
-失敗フラグ
-   </returnExplanation>
-   <variable0>変更する描画情報ID</variable0>
-   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
-   </member>
-   <member className="DrawManager">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="DrawManager">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="DrawManager">
+   <member className="StateDOTweenAnimation">
    <functionName>Finalize</functionName>
    <explanations>
 終了
    </explanations>
    </member>
-   <member className="DrawManager">
-   <functionName>Initilize</functionName>
+   <member className="StateDOTweenAnimation">
+   <functionName>OnExit</functionName>
    <explanations>
-初期化
+この状態を出る時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateDOTweenAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateFadeGraphAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateFadeGraphAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
    </explanations>
    </member>
-   <member className="StopManager">
-   <functionName>GetStopFlag</functionName>
+   <member className="StateFadeGraphAnimation">
+   <functionName>OnExit</functionName>
    <explanations>
-ストップフラグ取得
+この状態を出る時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateFadeGraphAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMovieAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMovieAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
    </explanations>
    </member>
-   <member className="StopManager">
-   <functionName>Initilize</functionName>
+   <member className="StateMovieAnimation">
+   <functionName>OnExit</functionName>
    <explanations>
-初期化
+この状態を出る時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMovieAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateGraphAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateGraphAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StateGraphAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateGraphAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateEffectAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateEffectAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StateEffectAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateEffectAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOperationAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOperationAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOperationAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOnlyAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOnlyAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StateMVOneOnlyAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneOnlyAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateMVOneAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateNoneAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateNoneAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StateNoneAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="StateNoneAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理(何もしない)
+   </explanations>
+   <variable0>アニメーション</variable0>
+   <variable1>アニメーション情報</variable1>
+   </member>
+   <member className="UtilFileLoading">
+   <functionName>LoadingBitMapFile</functionName>
+   <explanations>
+ビットマップファイル読み込み
    </explanations>
    </member>
    <member className="ModelGraph">
@@ -930,147 +523,6 @@ int
 描画情報追加
    </explanations>
    </member>
-   <member className="UtilFactorys">
-   <functionName>SetModelPosition</functionName>
-   <explanations>
-モデル位置設定
-   </explanations>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>AttackDataFactory</functionName>
-   <explanations>
-攻撃データ作成
-   </explanations>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>ModelFactory</functionName>
-   <explanations>
-モデル作成
-   </explanations>
-   <returnExplanation>
-モデルベース
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
-   <variable1>モデルファイル座標</variable1>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>FSMCameraFactory</functionName>
-   <explanations>
-全アニメーションとモデル設定
-   </explanations>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>CharacterAttackDataFactory</functionName>
-   <explanations>
-キャラクタ攻撃情報作成
-   </explanations>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>LoadAnimationDataFactory</functionName>
-   <explanations>
-読み込み用アニメーションデータ作成
-   </explanations>
-   <variable0>アニメーション</variable0>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>AnimationDataFactory</functionName>
-   <explanations>
-アニメーションデータ作成
-   </explanations>
-   <returnExplanation>
-アニメーションデータ
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
-   </member>
-   <member className="UtilFactorys">
-   <functionName>FSMAnimationFactory</functionName>
-   <explanations>
-アニメーション有限状態マシン作成
-   </explanations>
-   <returnExplanation>
-有限状態マシン
-   </returnExplanation>
-   <variable0>アニメーション情報</variable0>
-   <variable1>モデル</variable1>
-   </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_YZ</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(yz)
-   </explanations>
-   </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_XZ</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(xz)
-   </explanations>
-   </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_XY</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(xy)
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>AddDrawImgui</functionName>
-   <explanations>
-Imgui追加描画
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>AddDrawImgui</functionName>
-   <explanations>
-Imgui追加描画
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>DeleteImguiData</functionName>
-   <explanations>
-Imgui情報削除
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>SetIntImgui</functionName>
-   <explanations>
-intのImgui情報設定
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>SetFloatImgui</functionName>
-   <explanations>
-floatのImgui情報設定
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="ImguiManager">
-   <functionName>DxInit</functionName>
-   <explanations>
-ImguiのDxLib初期設定
-   </explanations>
-   </member>
    <member className="LoadingManager">
    <functionName>GetLoadingFlag</functionName>
    <explanations>
@@ -1087,291 +539,83 @@ ImguiのDxLib初期設定
    </explanations>
    <variable0>フラグのビット数</variable0>
    </member>
-   <member className="FadeManager">
-   <functionName>SetFadeSpeed</functionName>
+   <member className="AttackManager">
+   <functionName>GetAllAttack</functionName>
    <explanations>
-フェード速度設定
+攻撃全取得
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>GetFadeSpeed</functionName>
+   <member className="AttackManager">
+   <functionName>GetAttacData</functionName>
    <explanations>
-フェード速度取得
+攻撃情報取得
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>GetFadeRatio</functionName>
+   <member className="ModelEffect">
+   <functionName>GetHandlePointer</functionName>
    <explanations>
-フェード率取得
+エフェクトハンドル取得
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>GetFadeFlag</functionName>
+   <member className="ModelEffect">
+   <functionName>ModelDraw</functionName>
    <explanations>
-フェードフラグ取得
+モデル描画
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>FadeEnd</functionName>
+   <member className="ModelEffect">
+   <functionName>PositionUpdate</functionName>
    <explanations>
-フェード終了
+ポジション更新
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>FadeProcess</functionName>
+   <member className="ModelEffect">
+   <functionName>GameInit</functionName>
    <explanations>
-フェード処理
+ゲーム中初期化
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>FadeIn</functionName>
+   <member className="ModelEffect">
+   <functionName>ModelFinalize</functionName>
    <explanations>
-フェードイン開始(出)
+継承モデル終了
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>FadeOut</functionName>
+   <member className="ModelEffect">
+   <functionName>ModelInitilize</functionName>
    <explanations>
-フェードアウト開始(入り)
+継承モデル初期化
    </explanations>
    </member>
-   <member className="FadeManager">
-   <functionName>Draw</functionName>
+   <member className="DotWeenManager">
+   <functionName>DeleteDotWeenData</functionName>
    <explanations>
-描画
+DotWeen情報削除
    </explanations>
    </member>
-   <member className="FadeManager">
+   <member className="DotWeenManager">
+   <functionName>SetDotWeen</functionName>
+   <explanations>
+DotWenn情報設定
+   </explanations>
+   </member>
+   <member className="DotWeenManager">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="DotWeenManager">
    <functionName>Finailize</functionName>
    <explanations>
 終了
    </explanations>
    </member>
-   <member className="FadeManager">
+   <member className="DotWeenManager">
    <functionName>Initilize</functionName>
    <explanations>
 初期化
    </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetWaveEnemy</functionName>
-   <explanations>
-ウェーブのエネミーデータ取得
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>InitWave</functionName>
-   <explanations>
-ウェーブ初期化
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>SetNextWave</functionName>
-   <explanations>
-ウェーブ進行
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetSceneFileNames</functionName>
-   <explanations>
-シーンに合ったファイル名を取得
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>SetBaseFile</functionName>
-   <explanations>
-ベースファイル設定
-   </explanations>
-   <variable0>ベースファイルのファイル名があるファイル</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>AddAcquisitionExp</functionName>
-   <explanations>
-獲得経験値増やす
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>ResetAcquisitionExp</functionName>
-   <explanations>
-獲得経験値リセット
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetAcquisitionExpQuantity</functionName>
-   <explanations>
-獲得経験値取得
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>SetCharacterID</functionName>
-   <explanations>
-キャラクターID設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>SetTownDeleteCharacterID</functionName>
-   <explanations>
-町の削除キャラクターID取得
-   </explanations>
-   <variable0>ID情報</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>SetDungeonDeleteCharacterID</functionName>
-   <explanations>
-ダンジョンの削除キャラクターID取得
-   </explanations>
-   <variable0>ID情報</variable0>
-   </member>
-   <member className="DataManager">
-   <functionName>SetPlayPlayerStatus</functionName>
-   <explanations>
-プレイ中ステータス設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>DeleteEnemyData</functionName>
-   <explanations>
-エネミーデータ削除
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>SetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ設定
-   </explanations>
-   </member>
-   <member className="DataManager">
-   <functionName>GetMsg</functionName>
-   <explanations>
-ウィンドウメッセージ取得
-   </explanations>
-   </member>
-   <member className="PlayerData">
-   <functionName>LevelUpProcess</functionName>
-   <explanations>
-レベルアップ処理
-   </explanations>
-   </member>
-   <member className="CoinData">
-   <functionName>IncreaseCoin</functionName>
-   <explanations>
-増やす
-   </explanations>
-   <returnExplanation>
-失敗フラグ(コイン数上限を上回っている)
-   </returnExplanation>
-   <variable0>値段</variable0>
-   <variable1>個数</variable1>
-   </member>
-   <member className="CoinData">
-   <functionName>ReduceCoin</functionName>
-   <explanations>
-減らす
-   </explanations>
-   <returnExplanation>
-失敗フラグ(マイナスのコイン数になってる)
-   </returnExplanation>
-   <variable0>値段</variable0>
-   <variable1>個数</variable1>
-   </member>
-   <member className="CoinData">
-   <functionName>SetMax</functionName>
-   <explanations>
-最大値設定
-   </explanations>
-   </member>
-   <member className="CoinData">
-   <functionName>SetMin</functionName>
-   <explanations>
-最小値設定
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>DeleteHandle</functionName>
-   <explanations>
-ハンドル削除
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>RegisterHandle</functionName>
-   <explanations>
-ハンドルを登録する
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>RegisterHandle</functionName>
-   <explanations>
-ハンドルを登録する
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>CheckFileName</functionName>
-   <explanations>
-同名のファイルがあるかを確認する
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>SetHandleFlag</functionName>
-   <explanations>
-ハンドルフラグ設定
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>GetHandleCount</functionName>
-   <explanations>
-ハンドルカウント取得
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>GetHandleMap</functionName>
-   <explanations>
-ハンドルマップ取得
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>GetHandles</functionName>
-   <explanations>
-ハンドル取得
-   </explanations>
-   </member>
-   <member className="HandleContainer">
-   <functionName>GetHandleFileName</functionName>
-   <explanations>
-ハンドルファイル名取得
-   </explanations>
-   </member>
-   <member className="EndManager">
-   <functionName>GetBitEndflag</functionName>
-   <explanations>
-ビットのエンドフラグ取得
-   </explanations>
-   <returnExplanation>
-ビットフラグ
-   </returnExplanation>
-   </member>
-   <member className="EndManager">
-   <functionName>SetDeleteObject</functionName>
-   <explanations>
-削除オブジェクト設定
-   </explanations>
-   <variable0>終了時に削除するオブジェクト</variable0>
-   </member>
-   <member className="EndManager">
-   <functionName>SetEndFlag</functionName>
-   <explanations>
-終了フラグ設定
-   </explanations>
-   <variable0>設定フラグ</variable0>
-   <variable1>設定する終了フラグのビット数</variable1>
-   </member>
-   <member className="EndManager">
-   <functionName>EndFlag</functionName>
-   <explanations>
-終了フラグ
-   </explanations>
-   <returnExplanation>
-どれかの終了フラグが有効なら「true」
-   </returnExplanation>
    </member>
    <member className="Effkseer_DeviceRestore(System">
    <functionName>Void*)</functionName>
@@ -3804,6 +3048,316 @@ ImguiのDxLib初期設定
 不透明
    </explanations>
    </member>
+   <member className="ModelMV1">
+   <functionName>GetHandle</functionName>
+   <explanations>
+ハンドル取得
+   </explanations>
+   <returnExplanation>
+モデルハンドル
+   </returnExplanation>
+   </member>
+   <member className="GameEndState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="GameEndState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="GameEndState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="GameEndState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="GameEndState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="GameEndState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="ConfigChangeState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="DrawPlayerDataState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="PauseGameUIState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="NormalGameUIState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>Cloce</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>Decision</functionName>
+   <explanations>
+決定
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="StartGameUIState">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>AddDrawImgui</functionName>
+   <explanations>
+Imgui追加描画
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>AddDrawImgui</functionName>
+   <explanations>
+Imgui追加描画
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>DeleteImguiData</functionName>
+   <explanations>
+Imgui情報削除
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>SetIntImgui</functionName>
+   <explanations>
+intのImgui情報設定
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>SetFloatImgui</functionName>
+   <explanations>
+floatのImgui情報設定
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="ImguiManager">
+   <functionName>DxInit</functionName>
+   <explanations>
+ImguiのDxLib初期設定
+   </explanations>
+   </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>ChangeVariable</functionName>
+   <explanations>
+設定変数変更
+   </explanations>
+   <variable0>変更割合量</variable0>
+   </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>SetFloat</functionName>
+   <explanations>
+float変数設定
+   </explanations>
+   <variable0>変更変数</variable0>
+   <variable1>最大値</variable1>
+   <variable2>最低値</variable2>
+   </member>
+   <member className="CONFIG_VARIABLE_POINTER">
+   <functionName>SetInt</functionName>
+   <explanations>
+int変数設定
+   </explanations>
+   <variable0>変更変数</variable0>
+   <variable1>最大値</variable1>
+   <variable2>最低値</variable2>
+   </member>
    <member className="TelopManager">
    <functionName>DrawTelop_Position3D</functionName>
    <explanations>
@@ -3846,91 +3400,374 @@ ImguiのDxLib初期設定
 終了
    </explanations>
    </member>
-   <member className="GameManager">
-   <functionName>GetTargetManager</functionName>
+   <member className="UtilChange">
+   <functionName>ChangeVector_YZ</functionName>
    <explanations>
-ターゲットマネージャー取得
+ベクトルをベクトル2に変換(yz)
+   </explanations>
+   </member>
+   <member className="UtilChange">
+   <functionName>ChangeVector_XZ</functionName>
+   <explanations>
+ベクトルをベクトル2に変換(xz)
+   </explanations>
+   </member>
+   <member className="UtilChange">
+   <functionName>ChangeVector_XY</functionName>
+   <explanations>
+ベクトルをベクトル2に変換(xy)
+   </explanations>
+   </member>
+   <member className="EndManager">
+   <functionName>GetBitEndflag</functionName>
+   <explanations>
+ビットのエンドフラグ取得
    </explanations>
    <returnExplanation>
-ターゲットマネージャー
+ビットフラグ
    </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetSceneManager</functionName>
+   <member className="EndManager">
+   <functionName>SetDeleteObject</functionName>
    <explanations>
-シーンマネージャー取得
+削除オブジェクト設定
+   </explanations>
+   <variable0>終了時に削除するオブジェクト</variable0>
+   </member>
+   <member className="EndManager">
+   <functionName>SetEndFlag</functionName>
+   <explanations>
+終了フラグ設定
+   </explanations>
+   <variable0>設定フラグ</variable0>
+   <variable1>設定する終了フラグのビット数</variable1>
+   </member>
+   <member className="EndManager">
+   <functionName>EndFlag</functionName>
+   <explanations>
+終了フラグ
    </explanations>
    <returnExplanation>
-シーンマネージャー
+どれかの終了フラグが有効なら「true」
    </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetObjectManager</functionName>
+   <member className="DataManager">
+   <functionName>GetWaveEnemy</functionName>
    <explanations>
-オブジェクトマネージャー取得
+ウェーブのエネミーデータ取得
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>InitWave</functionName>
+   <explanations>
+ウェーブ初期化
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetNextWave</functionName>
+   <explanations>
+ウェーブ進行
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetSceneFileNames</functionName>
+   <explanations>
+シーンに合ったファイル名を取得
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetBaseFile</functionName>
+   <explanations>
+ベースファイル設定
+   </explanations>
+   <variable0>ベースファイルのファイル名があるファイル</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>AddAcquisitionExp</functionName>
+   <explanations>
+獲得経験値増やす
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>ResetAcquisitionExp</functionName>
+   <explanations>
+獲得経験値リセット
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetAcquisitionExpQuantity</functionName>
+   <explanations>
+獲得経験値取得
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetCharacterID</functionName>
+   <explanations>
+キャラクターID設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetTownDeleteCharacterID</functionName>
+   <explanations>
+町の削除キャラクターID取得
+   </explanations>
+   <variable0>ID情報</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetDungeonDeleteCharacterID</functionName>
+   <explanations>
+ダンジョンの削除キャラクターID取得
+   </explanations>
+   <variable0>ID情報</variable0>
+   </member>
+   <member className="DataManager">
+   <functionName>SetPlayPlayerStatus</functionName>
+   <explanations>
+プレイ中ステータス設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>DeleteEnemyData</functionName>
+   <explanations>
+エネミーデータ削除
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>SetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ設定
+   </explanations>
+   </member>
+   <member className="DataManager">
+   <functionName>GetMsg</functionName>
+   <explanations>
+ウィンドウメッセージ取得
+   </explanations>
+   </member>
+   <member className="StopManager">
+   <functionName>GetStopFlag</functionName>
+   <explanations>
+ストップフラグ取得
+   </explanations>
+   </member>
+   <member className="StopManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="MapManager">
+   <functionName>DrawMinMap</functionName>
+   <explanations>
+ミニマップ描画
+   </explanations>
+   </member>
+   <member className="MapManager">
+   <functionName>SetMinMapDrawLength</functionName>
+   <explanations>
+ミニマップ描画長さ変更
    </explanations>
    <returnExplanation>
-オブジェクトマネージャー
+成功フラグ
    </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetMapManager</functionName>
+   <member className="MapManager">
+   <functionName>SetMinMapSize_And_CreateHandle</functionName>
    <explanations>
-マップマネージャー取得
+ミニマップサイス変更(0.0f～1.0f)
    </explanations>
-   <returnExplanation>
-マップマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetDotWeenManager</functionName>
+   <member className="MapManager">
+   <functionName>Release</functionName>
    <explanations>
-DotWeenマネージャー取得
+データ解放
    </explanations>
-   <returnExplanation>
-DotWeenマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetCollisionManager</functionName>
+   <member className="MapManager">
+   <functionName>Finalize</functionName>
    <explanations>
-コリジョンマネージャー取得
+終了
    </explanations>
-   <returnExplanation>
-コリジョンマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetCameraManager</functionName>
+   <member className="MapManager">
+   <functionName>Initilize</functionName>
    <explanations>
-カメラマネージャー取得
+初期化
    </explanations>
-   <returnExplanation>
-カメラマネージャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetAttackManager</functionName>
+   <member className="UtilFactorys">
+   <functionName>SetModelPosition</functionName>
    <explanations>
-攻撃マネジャー取得
+モデル位置設定
    </explanations>
-   <returnExplanation>
-攻撃マネジャー
-   </returnExplanation>
    </member>
-   <member className="GameManager">
-   <functionName>GetNowUINumber</functionName>
+   <member className="UtilFactorys">
+   <functionName>AttackDataFactory</functionName>
    <explanations>
-UIナンバー取得
+攻撃データ作成
+   </explanations>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>ModelFactory</functionName>
+   <explanations>
+モデル作成
    </explanations>
    <returnExplanation>
-現在処理するUIナンバー
+モデルベース
    </returnExplanation>
+   <variable0>モデル種類</variable0>
+   <variable1>モデルファイル座標</variable1>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>FSMCameraFactory</functionName>
+   <explanations>
+全アニメーションとモデル設定
+   </explanations>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>CharacterAttackDataFactory</functionName>
+   <explanations>
+キャラクタ攻撃情報作成
+   </explanations>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>LoadAnimationDataFactory</functionName>
+   <explanations>
+読み込み用アニメーションデータ作成
+   </explanations>
+   <variable0>アニメーション</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>AnimationDataFactory</functionName>
+   <explanations>
+アニメーションデータ作成
+   </explanations>
+   <returnExplanation>
+アニメーションデータ
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   </member>
+   <member className="UtilFactorys">
+   <functionName>FSMAnimationFactory</functionName>
+   <explanations>
+アニメーション有限状態マシン作成
+   </explanations>
+   <returnExplanation>
+有限状態マシン
+   </returnExplanation>
+   <variable0>アニメーション情報</variable0>
+   <variable1>モデル</variable1>
+   </member>
+   <member className="PlayerData">
+   <functionName>LevelUpProcess</functionName>
+   <explanations>
+レベルアップ処理
+   </explanations>
+   </member>
+   <member className="CoinData">
+   <functionName>IncreaseCoin</functionName>
+   <explanations>
+増やす
+   </explanations>
+   <returnExplanation>
+失敗フラグ(コイン数上限を上回っている)
+   </returnExplanation>
+   <variable0>値段</variable0>
+   <variable1>個数</variable1>
+   </member>
+   <member className="CoinData">
+   <functionName>ReduceCoin</functionName>
+   <explanations>
+減らす
+   </explanations>
+   <returnExplanation>
+失敗フラグ(マイナスのコイン数になってる)
+   </returnExplanation>
+   <variable0>値段</variable0>
+   <variable1>個数</variable1>
+   </member>
+   <member className="CoinData">
+   <functionName>SetMax</functionName>
+   <explanations>
+最大値設定
+   </explanations>
+   </member>
+   <member className="CoinData">
+   <functionName>SetMin</functionName>
+   <explanations>
+最小値設定
+   </explanations>
    </member>
    <member className="ObjectManager">
    <functionName>ObjectSceneLastInitilize</functionName>
    <explanations>
 オブジェクトシーン最終初期化
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>SetFadeSpeed</functionName>
+   <explanations>
+フェード速度設定
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>GetFadeSpeed</functionName>
+   <explanations>
+フェード速度取得
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>GetFadeRatio</functionName>
+   <explanations>
+フェード率取得
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>GetFadeFlag</functionName>
+   <explanations>
+フェードフラグ取得
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>FadeEnd</functionName>
+   <explanations>
+フェード終了
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>FadeProcess</functionName>
+   <explanations>
+フェード処理
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>FadeIn</functionName>
+   <explanations>
+フェードイン開始(出)
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>FadeOut</functionName>
+   <explanations>
+フェードアウト開始(入り)
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>Finailize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="FadeManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
    </explanations>
    </member>
    <member className="UIBase">
@@ -4392,6 +4229,62 @@ UI座標情報設定
    </explanations>
    </member>
    <member className="ResourceManager">
+   <functionName>Set3DListenerPosition</functionName>
+   <explanations>
+3Dのリスナー位置を設定
+   </explanations>
+   <variable0>現在地</variable0>
+   <variable1>向いてる方向</variable1>
+   </member>
+   <member className="ResourceManager">
+   <functionName>SetPlay3DSound</functionName>
+   <explanations>
+3Dサウンド再生設定
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>SetPlaySound</functionName>
+   <explanations>
+サウンド再生設定
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>SoundUpdate</functionName>
+   <explanations>
+サウンド更新
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>SetBackSoundHandle</functionName>
+   <explanations>
+バックグラウンドハンドル設定
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>Reduce3DSoundHandle</functionName>
+   <explanations>
+3Dサウンドカウントを減らす
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>Get3DSoundHandle</functionName>
+   <explanations>
+3Dサウンドハンドル取得
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>ReduceSoundHandle</functionName>
+   <explanations>
+サウンドカウントを減らす
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>GetSoundHandle</functionName>
+   <explanations>
+サウンドハンドル取得
+   </explanations>
+   </member>
+   <member className="ResourceManager">
    <functionName>MovieLoop</functionName>
    <explanations>
 動画ループ
@@ -4473,6 +4366,18 @@ UI座標情報設定
    <functionName>StartDraw</functionName>
    <explanations>
 開始描画
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="ResourceManager">
+   <functionName>Finailize</functionName>
+   <explanations>
+終了
    </explanations>
    </member>
    <member className="ResourceManager">
@@ -4721,6 +4626,149 @@ float同士がの誤差範囲内なら「true」を返す
 初期化
    </explanations>
    </member>
+   <member className="FSMUI">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="FSMDotWeen">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="FSMDotWeen">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="FSMCharacter">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>NewStateSetting</functionName>
+   <explanations>
+説明
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>CheckNowStateSameType</functionName>
+   <explanations>
+現在のステートと同じ種類かを確認する
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>SetNextState</functionName>
+   <explanations>
+次のステート設定
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>SetAnimationStateDatas</functionName>
+   <explanations>
+アニメーションステート情報設定
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="FSMAnimation">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
+   <member className="IStateUI">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>CheckSameType</functionName>
+   <explanations>
+同分類の種類かを確認する
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>CheckState</functionName>
+   <explanations>
+ステート変更確認
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="IStateAnimationController">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>SetModelBase</functionName>
+   <explanations>
+モデル設定
+   </explanations>
+   <variable0>モデル</variable0>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>CheckSimilarModelType</functionName>
+   <explanations>
+モデル種類が同類なら「true」を返す
+   </explanations>
+   <returnExplanation>
+同類か
+   </returnExplanation>
+   <variable0>モデル種類</variable0>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>Update</functionName>
+   <explanations>
+更新
+   </explanations>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>OnExit</functionName>
+   <explanations>
+この状態を出る時の処理
+   </explanations>
+   </member>
+   <member className="IStateAnimation">
+   <functionName>OnEnter</functionName>
+   <explanations>
+この状態に入った時の処理
+   </explanations>
+   </member>
+   <member className="IStateCharacter">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
    <member className="ModelsControllerBase">
    <functionName>SetModelDrawFlag</functionName>
    <explanations>
@@ -4930,6 +4978,145 @@ UIモデル描画フラグ設定
 現在の速度を取得
    </explanations>
    </member>
+   <member className="GameManager">
+   <functionName>GetTargetManager</functionName>
+   <explanations>
+ターゲットマネージャー取得
+   </explanations>
+   <returnExplanation>
+ターゲットマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetSceneManager</functionName>
+   <explanations>
+シーンマネージャー取得
+   </explanations>
+   <returnExplanation>
+シーンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetObjectManager</functionName>
+   <explanations>
+オブジェクトマネージャー取得
+   </explanations>
+   <returnExplanation>
+オブジェクトマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetMapManager</functionName>
+   <explanations>
+マップマネージャー取得
+   </explanations>
+   <returnExplanation>
+マップマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetDotWeenManager</functionName>
+   <explanations>
+DotWeenマネージャー取得
+   </explanations>
+   <returnExplanation>
+DotWeenマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCollisionManager</functionName>
+   <explanations>
+コリジョンマネージャー取得
+   </explanations>
+   <returnExplanation>
+コリジョンマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetCameraManager</functionName>
+   <explanations>
+カメラマネージャー取得
+   </explanations>
+   <returnExplanation>
+カメラマネージャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetAttackManager</functionName>
+   <explanations>
+攻撃マネジャー取得
+   </explanations>
+   <returnExplanation>
+攻撃マネジャー
+   </returnExplanation>
+   </member>
+   <member className="GameManager">
+   <functionName>GetNowUINumber</functionName>
+   <explanations>
+UIナンバー取得
+   </explanations>
+   <returnExplanation>
+現在処理するUIナンバー
+   </returnExplanation>
+   </member>
+   <member className="DrawManager">
+   <functionName>DrawData_Draw</functionName>
+   <explanations>
+描画情報を描画
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>DeleteDrawData</functionName>
+   <explanations>
+全描画情報削除
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>AddDrawData</functionName>
+   <explanations>
+描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後にやる
+   </explanations>
+   <returnExplanation>
+描画情報ID
+   </returnExplanation>
+   <variable0>追加する描画情報</variable0>
+   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
+   </member>
+   <member className="DrawManager">
+   <functionName>ChangeDrawOrder</functionName>
+   <explanations>
+描画順を変更する
+   </explanations>
+   <returnExplanation>
+失敗フラグ
+   </returnExplanation>
+   <variable0>変更する描画情報ID</variable0>
+   <variable1>描画順(0以上DRAW_ORDER_MAX未満)</variable1>
+   </member>
+   <member className="DrawManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Draw</functionName>
+   <explanations>
+描画
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Finalize</functionName>
+   <explanations>
+終了
+   </explanations>
+   </member>
+   <member className="DrawManager">
+   <functionName>Initilize</functionName>
+   <explanations>
+初期化
+   </explanations>
+   </member>
    <member className="DisplaySize">
    <functionName>RightDown_SeparateFloatRatio</functionName>
    <explanations>
@@ -5072,179 +5259,6 @@ UIモデル描画フラグ設定
    <functionName>Left_RatioWidth</functionName>
    <explanations>
 左を起点にした割合(0～1)から横軸の座標を取得
-   </explanations>
-   </member>
-   <member className="DotWeenManager">
-   <functionName>DeleteDotWeenData</functionName>
-   <explanations>
-DotWeen情報削除
-   </explanations>
-   </member>
-   <member className="DotWeenManager">
-   <functionName>SetDotWeen</functionName>
-   <explanations>
-DotWenn情報設定
-   </explanations>
-   </member>
-   <member className="DotWeenManager">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="DotWeenManager">
-   <functionName>Finailize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="DotWeenManager">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="FSMUI">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="FSMDotWeen">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="FSMDotWeen">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="FSMCharacter">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>NewStateSetting</functionName>
-   <explanations>
-説明
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>CheckNowStateSameType</functionName>
-   <explanations>
-現在のステートと同じ種類かを確認する
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>SetNextState</functionName>
-   <explanations>
-次のステート設定
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>SetAnimationStateDatas</functionName>
-   <explanations>
-アニメーションステート情報設定
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>Initilize</functionName>
-   <explanations>
-初期化
-   </explanations>
-   </member>
-   <member className="IStateUI">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="IStateAnimationController">
-   <functionName>CheckSameType</functionName>
-   <explanations>
-同分類の種類かを確認する
-   </explanations>
-   </member>
-   <member className="IStateAnimationController">
-   <functionName>CheckState</functionName>
-   <explanations>
-ステート変更確認
-   </explanations>
-   </member>
-   <member className="IStateAnimationController">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="IStateAnimationController">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>SetModelBase</functionName>
-   <explanations>
-モデル設定
-   </explanations>
-   <variable0>モデル</variable0>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>CheckSimilarModelType</functionName>
-   <explanations>
-モデル種類が同類なら「true」を返す
-   </explanations>
-   <returnExplanation>
-同類か
-   </returnExplanation>
-   <variable0>モデル種類</variable0>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="IStateAnimation">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
-   <member className="IStateCharacter">
-   <functionName>Finalize</functionName>
-   <explanations>
-終了
    </explanations>
    </member>
 </doc>

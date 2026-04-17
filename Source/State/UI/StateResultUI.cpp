@@ -26,51 +26,23 @@
 /*----------------------*/
 
 
-Vector2 numberLeftUp = Vector2(0.312f, 0.156f); // 数字左上
-Vector2 numberDistance = Vector2(0.280f, 0.119048);   // 数字同氏の間隔
-Vector2 oneNumberSize = Vector2(0.044f, 0.090f);    // 数字一つの大きさ
-Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
-
-
-DisplaySize displaySize;
-
-// データ取得
-DataManager* dataManager;
-PLAYER_DATA playerData;
-std::vector<ONE_DATA> allData;
-LEVEL_DATA *levelData = nullptr;
-
-// 変更前ステータス
-STATUS preStatus;
-
 StartResultUIState::StartResultUIState()
 {
 	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
     
-    displaySize = ResourceManager::mstDisplaySize;
-    
     // 描画情報初期化
     mstDrawDatas.clear();
 
+    DisplaySize displaySize = ResourceManager::mstDisplaySize;
+
     // データ取得
-    dataManager = Master::mpDataManager;
-    playerData = dataManager->GetPlayPlayerData();
-    allData = dataManager->GetAllData(true);
-    levelData = nullptr;
+    DataManager* dataManager = Master::mpDataManager;
+    PLAYER_DATA playerData = dataManager->GetPlayPlayerData();
+    std::vector<ONE_DATA> allData = dataManager->GetAllData(true);
+    LEVEL_DATA *levelData = nullptr;
 	
     // 変更前ステータス
-	preStatus = playerData.status;
-
-    // DisplaySize displaySize = ResourceManager::mstDisplaySize;
-
-    // // データ取得
-    // DataManager* dataManager = Master::mpDataManager;
-    // PLAYER_DATA playerData = dataManager->GetPlayPlayerData();
-    // std::vector<ONE_DATA> allData = dataManager->GetAllData(true);
-    // LEVEL_DATA *levelData = nullptr;
-	
-    // // 変更前ステータス
-	// STATUS preStatus = playerData.status;
+	STATUS preStatus = playerData.status;
 
     for (int i = 0; i < allData.size(); i++)
     {
@@ -93,20 +65,14 @@ StartResultUIState::StartResultUIState()
     dataManager->SetPlayPlayerStatus(playerData.status);
     dataManager->ResetAcquisitionExp();
 
-    // UNDONE: 元に戻す箇所
-    TEST();
-    TEST_2();
-}
-void StartResultUIState::TEST()
-{
     // 数字
     {
         DRAW_DATA drawData;
 
-        // Vector2 numberLeftUp = Vector2(0.080f, 0.156f); // 数字左上
-        // Vector2 numberDistance = Vector2(0.200f, 0.155f);   // 数字同氏の間隔
-        // Vector2 oneNumberSize = Vector2(0.050f, 0.050f);    // 数字一つの大きさ
-        // Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
+        Vector2 numberLeftUp = Vector2(0.312f, 0.156f); // 数字左上
+        Vector2 numberDistance = Vector2(0.280f, 0.119048);   // 数字同氏の間隔
+        Vector2 oneNumberSize = Vector2(0.044f, 0.090f);    // 数字一つの大きさ
+        Vector2_Int oneNumberGraphSize = Vector2_Int(320, 600);   // 数字一つの画像側の大きさ
 
         int numberHeightCount = 0;
 
@@ -277,9 +243,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
             Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
-}
-void StartResultUIState::TEST_2()
-{
+    
     // 描画情報
     {
         DRAW_DATA drawData;
@@ -361,136 +325,136 @@ void StartResultUIState::TEST_2()
 // この状態に入った時の処理
 void StartResultUIState::OnEnter(UIBase* ui)
 {
-    for (int i  = RESULT_DRAW_NUMBER_TYPE::HP - 1; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
-    {
-            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.y },
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            0,
-                                                                            1000,
-                                                                            "PRE_HP_",
-                                                                            "%d",
-                                                                            0,
-                                                                            IMGUI_TYPE::SLIDER4
-                                                                            )
-                                                );
-                                                
-            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.y },
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            0,
-                                                                            1000,
-                                                                            "PRE_HP_GRAPH_",
-                                                                            "%d",
-                                                                            0,
-                                                                            IMGUI_TYPE::SLIDER4
-                                                                            )
-                                                );
+    //for (int i  = RESULT_DRAW_NUMBER_TYPE::HP - 1; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
+    //{
+    //        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //                                                                        { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.size.y },
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        0,
+    //                                                                        1000,
+    //                                                                        "PRE_HP_",
+    //                                                                        "%d",
+    //                                                                        0,
+    //                                                                        IMGUI_TYPE::SLIDER4
+    //                                                                        )
+    //                                            );
+    //                                            
+    //        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //                                                                        { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::PRE_HP].drawGraphData.graphSize.y },
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        0,
+    //                                                                        1000,
+    //                                                                        "PRE_HP_GRAPH_",
+    //                                                                        "%d",
+    //                                                                        0,
+    //                                                                        IMGUI_TYPE::SLIDER4
+    //                                                                        )
+    //                                            );
 
-            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.y },
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            0,
-                                                                            1000,
-                                                                            "HP_",
-                                                                            "%d",
-                                                                            0,
-                                                                            IMGUI_TYPE::SLIDER4
-                                                                            )
-                                                );
-                                                
-            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                            { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.y },
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            0,
-                                                                            1000,
-                                                                            "HP_GRAPH_",
-                                                                            "%d",
-                                                                            0,
-                                                                            IMGUI_TYPE::SLIDER4
-                                                                            )
-                                                );
-                                            }
-                                                
-                                                
-            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                            { &oneNumberGraphSize.x, &oneNumberGraphSize.y},
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            1.0f,
-                                                                            0,
-                                                                            1000,
-                                                                            "oneNumberGraphSize_",
-                                                                            "%d",
-                                                                            0,
-                                                                            IMGUI_TYPE::SLIDER2
-                                                                            )
-                                                );
+    //        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //                                                                        { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.pos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.size.y },
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        0,
+    //                                                                        1000,
+    //                                                                        "HP_",
+    //                                                                        "%d",
+    //                                                                        0,
+    //                                                                        IMGUI_TYPE::SLIDER4
+    //                                                                        )
+    //                                            );
+    //                                            
+    //        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //                                                                        { &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphPos.y, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.x, &mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP].drawGraphData.graphSize.y },
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        0,
+    //                                                                        1000,
+    //                                                                        "HP_GRAPH_",
+    //                                                                        "%d",
+    //                                                                        0,
+    //                                                                        IMGUI_TYPE::SLIDER4
+    //                                                                        )
+    //                                            );
+    //                                        }
+    //                                            
+    //                                            
+    //        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //                                                                        { &oneNumberGraphSize.x, &oneNumberGraphSize.y},
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        1.0f,
+    //                                                                        0,
+    //                                                                        1000,
+    //                                                                        "oneNumberGraphSize_",
+    //                                                                        "%d",
+    //                                                                        0,
+    //                                                                        IMGUI_TYPE::SLIDER2
+    //                                                                        )
+    //                                            );
 
-                                                
-    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
-        { &numberLeftUp.x, &numberLeftUp.y },
-        0.001f,
-        0.001f,
-        0.001f,
-        0.0f,
-        1.0f,
-        "numberLeftUp_",
-        "%f",
-        0,
-        IMGUI_TYPE::SLIDER2
-    )
-    );                        
-    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
-        { &numberDistance.x, &numberDistance.y },
-        0.001f,
-        0.001f,
-        0.001f,
-        0.0f,
-        1.0f,
-        "numberDistance_",
-        "%f",
-        0,
-        IMGUI_TYPE::SLIDER2
-    )
-    );
-    Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
-        { &oneNumberSize.x, &oneNumberSize.y },
-        0.001f,
-        0.001f,
-        0.001f,
-        0.0f,
-        1.0f,
-        "oneNumberSize_",
-        "%f",
-        0,
-        IMGUI_TYPE::SLIDER2
-    )
-    );
-    //for (int i = 0; i < NUMBERS_ENUM::NUMBERS_ENUM_MAX; i++)
-    {
-        Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-            { &mstNumberDrawGraphPos[0].x, &mstNumberDrawGraphPos[0].y },
-            1.0f,
-            1.0f,
-            1.0f,
-            0,
-            1000,
-            "mstNumberDrawGraphPos_",
-            "%d",
-            0,
-            IMGUI_TYPE::SLIDER2
-        )
-        );
-    }
+    //                                            
+    //Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+    //    { &numberLeftUp.x, &numberLeftUp.y },
+    //    0.001f,
+    //    0.001f,
+    //    0.001f,
+    //    0.0f,
+    //    1.0f,
+    //    "numberLeftUp_",
+    //    "%f",
+    //    0,
+    //    IMGUI_TYPE::SLIDER2
+    //)
+    //);                        
+    //Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+    //    { &numberDistance.x, &numberDistance.y },
+    //    0.001f,
+    //    0.001f,
+    //    0.001f,
+    //    0.0f,
+    //    1.0f,
+    //    "numberDistance_",
+    //    "%f",
+    //    0,
+    //    IMGUI_TYPE::SLIDER2
+    //)
+    //);
+    //Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
+    //    { &oneNumberSize.x, &oneNumberSize.y },
+    //    0.001f,
+    //    0.001f,
+    //    0.001f,
+    //    0.0f,
+    //    1.0f,
+    //    "oneNumberSize_",
+    //    "%f",
+    //    0,
+    //    IMGUI_TYPE::SLIDER2
+    //)
+    //);
+    ////for (int i = 0; i < NUMBERS_ENUM::NUMBERS_ENUM_MAX; i++)
+    //{
+    //    Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+    //        { &mstNumberDrawGraphPos[0].x, &mstNumberDrawGraphPos[0].y },
+    //        1.0f,
+    //        1.0f,
+    //        1.0f,
+    //        0,
+    //        1000,
+    //        "mstNumberDrawGraphPos_",
+    //        "%d",
+    //        0,
+    //        IMGUI_TYPE::SLIDER2
+    //    )
+    //    );
+    //}
 }
 
 // この状態を出る時の処理
@@ -501,7 +465,6 @@ void StartResultUIState::OnExit(UIBase* ui)
 // 更新
 int StartResultUIState::Update(UIBase* ui)
 {
-    //TEST();
 	ui->DefaultDecision();
 
 	return mStateNumber;

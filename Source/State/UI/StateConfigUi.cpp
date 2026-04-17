@@ -314,12 +314,12 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
             //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
-            setConfigVariable.SetInt(Master::mpDataManager->GetSeVolumePointer(), 0, 0);
+            setConfigVariable.SetInt(Master::mpDataManager->GetSeVolumePointer(), 255, 0);
             mstConfigVariables.push_back(setConfigVariable);
 
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
-            setConfigVariable.SetInt(Master::mpDataManager->GetBgmVolumePointer(), 0, 0);
+            setConfigVariable.SetInt(Master::mpDataManager->GetBgmVolumePointer(), 255, 0);
             mstConfigVariables.push_back(setConfigVariable);
         }
         break;

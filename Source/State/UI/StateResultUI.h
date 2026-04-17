@@ -22,8 +22,6 @@ enum class RESULT_UI_STATE
 /*----------------------*/
 class StartResultUIState : public IStateUI
 {
-void TEST();
-void TEST_2();
 private:
 	enum RESULT_DRAW_NUMBER_TYPE
 	{

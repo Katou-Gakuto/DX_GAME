@@ -106,6 +106,8 @@ void GameManager::Update()
     mpObjectManager->ObjectLastUpdate();
 
 	mpSceneManager->Update();
+
+    Master::mpResourceManager->Update();
 }
 
 // •K—v‚Å‚ ‚ê‚Îíœ‚·‚é

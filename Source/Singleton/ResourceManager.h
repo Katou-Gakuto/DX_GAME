@@ -8,7 +8,11 @@
 #include "Vector2.h"
 #include "UtilCalc.h"
 
+#include "DxLib.h"
+
+template<typename QUOTE_SOURCE>
 class HandleContainer;
+class DataManager;
 
 class ResourceManager
 {
@@ -28,8 +32,11 @@ public:
 
 	/// <summary>初期化</summary>
 	void Initilize();
-	/*終了*/
+	/// <summary>終了</summary>
 	void Finailize();
+
+	/// <summary>更新</summary>
+	void Update();
 
 	/// <summary>開始描画</summary>
 	void StartDraw();
@@ -88,7 +95,7 @@ public:
 	/*------------*/
 private:
 	// 3Dモデルハンドルコンテナ
-	HandleContainer* mp3DModelHandleContainer;
+	HandleContainer<std::string>* mp3DModelHandleContainer;
 
 	// // 3Dモデルハンドル
 	// std::map<std::string, std::vector<int>> mmModelHandle;
@@ -108,7 +115,7 @@ public:
 	/*--------*/
 private:
 	// 画像ハンドルコンテナ
-	HandleContainer* mpGraphHandleContainer;
+	HandleContainer<std::string>* mpGraphHandleContainer;
 
 	// // 画像ハンドル
 	// std::map<std::string, int> mmGraphHandle;
@@ -136,7 +143,7 @@ public:
 	/*--------*/
 private:
 	// 動画ハンドルコンテナ
-	HandleContainer* mpMovieHandleContainer;
+	HandleContainer<std::string>* mpMovieHandleContainer;
 
 	// // 動画ハンドル
 	// std::map<std::string, std::vector<int>> mmMovieHandle;
@@ -159,14 +166,60 @@ public:
 	/// <summary>動画ループ</summary>
 	void MovieLoop(int handle);
 
-	/*動画音の設定が必要なら作る
-	*/
-
 	/*------------*/
 	/*【サウンド】*/
 	/*------------*/
 private:
+	// デーマネージャー
+	DataManager* mpDataManager;
+
+	// サウンドハンドル
+	HandleContainer<std::string>* mpSoundHandleContainer;
+	// 再生中サウンドハンドル
+	HandleContainer<int>* mpPlaySoundHandleContainer;
+	// サウンドボリューム
+	int mnSoundVolume;
+
+	// 3Dサウンドハンドル
+	HandleContainer<std::string>* mp3DSoundHandleContainer;
+	// 再生中3Dサウンドハンドル
+	HandleContainer<int>* mpPlay3DSoundHandleContainer;
+	// 3Dサウンドボリューム
+	int mn3DSoundVolume;
+
+	// 再生中バックサウンドハンドル
+	int mnPlayBackSoundHandle = -1;
+	// バックサウンドボリューム
+	int mnBackSoundVolume = -1;
+
+
 public:
+	/// <summary>サウンドハンドル取得</summary>
+	int GetSoundHandle(std::string fileName);
+	/// <summary>サウンドカウントを減らす</summary>
+	void ReduceSoundHandle(int handle);
+
+	/// <summary>3Dサウンドハンドル取得</summary>
+	int Get3DSoundHandle(std::string fileName);
+	/// <summary>3Dサウンドカウントを減らす</summary>
+	void Reduce3DSoundHandle(int handle);
+
+	/// <summary>バックグラウンドハンドル設定</summary>
+	void SetBackSoundHandle(int handle);
+
+	/// <summary>サウンド更新</summary>
+	void SoundUpdate();
+
+	/// <summary>サウンド再生設定</summary>
+	void SetPlaySound(int handle, int volume = -1);
+
+	/// <summary>3Dサウンド再生設定</summary>
+	void SetPlay3DSound(int handle, VECTOR position, int volume = -1);
+
+	/// <summary>3Dのリスナー位置を設定</summary>
+	/// <param name="position">現在地</param>
+	/// <param name="frontPosition">向いてる方向</param>
+	void Set3DListenerPosition(VECTOR position, VECTOR frontPosition) { Set3DSoundListenerPosAndFrontPos_UpVecY(position, frontPosition); }
 
 	/*----------*/
 	/*【エフェクト】
@@ -174,7 +227,7 @@ public:
 	// FIXME: フェードで非同期している影響でハンドル取得時エラーが出る
 private:
 	// エフェクトハンドルコンテナ
-	HandleContainer* mpEffectHandleContainer;
+	HandleContainer<std::string>* mpEffectHandleContainer;
 
 	// // エフェクトハンドル
 	// std::map<std::string, std::vector<int>> mmEffectHandle;

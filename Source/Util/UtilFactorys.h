@@ -140,4 +140,4 @@ namespace UtilFactorys
 
 	/// <summary>ÉÇÉfÉãà íuê›íË</summary>
 	void SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size);
-};
+}

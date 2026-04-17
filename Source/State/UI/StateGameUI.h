@@ -161,13 +161,13 @@ private:
     enum MENU_STRING_TYPE
     {
         RETURN_GAME = 0,
-        CONFIG_SET,
         STATUS_DRAW,
+        CONFIG_SET,
         GAME_END,
 
         PUSH_RETURN_GAME,
-        PUSH_CONFIG_SET,
         PUSH_STATUS_DRAW,
+        PUSH_CONFIG_SET,
         PUSH_GAME_END,
         
         MENU_STRING_MAX

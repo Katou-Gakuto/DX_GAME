@@ -34,6 +34,8 @@ public:
 
     IMGUI_TYPE ImguiType = IMGUI_TYPE::SLIDER1; // Imgui種類
 
+    bool AddNumberDrawFlag = true; // 追加Imguiナンバー用フラグ
+
 #endif
     IMGUI_TEMPLATE_DATA()
 #ifdef _DEBUG
@@ -48,6 +50,7 @@ public:
     , ImguiType(IMGUI_TYPE::SLIDER1)
     , PreVariable()
     , ChangeVariable()
+    , AddNumberDrawFlag(true)
 #endif
     {
 #ifdef _DEBUG
@@ -67,7 +70,8 @@ public:
                         std::string label = "NONE",
                         std::string format = "%.6f",
                         ImGuiSliderFlags flag = 0,
-                        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+                        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1,
+                        bool addNumberFlag = true
                         )
 #ifdef _DEBUG
     : Speed(speed)
@@ -80,6 +84,7 @@ public:
     , Flag(flag)
     , ImguiType(imguiType)
     , VariableDatas(variableDatas)
+    ,AddNumberDrawFlag(addNumberFlag)
 #endif
     {
 #ifdef _DEBUG
@@ -171,6 +176,14 @@ public:
         ImguiType = imguiType;    
 #endif
     }
+
+    /// <summary>追加Imguiナンバー用フラグ設定</summary>
+    void SetAddNumberFlag(bool addNumberDrawFlag)
+    {
+#ifdef _DEBUG
+        AddNumberDrawFlag = addNumberDrawFlag;
+#endif
+    }
 };
 
 // float
@@ -186,7 +199,8 @@ struct IMGUI_FLOAT_DATA : public IMGUI_TEMPLATE_DATA<float>
         std::string label = "NONE",
         std::string format = "%.6f",
         ImGuiSliderFlags flag = 0,
-        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1,
+        bool addNumberDrawFlag = true
     )
     {
         IMGUI_FLOAT_DATA imguiData;
@@ -201,6 +215,7 @@ struct IMGUI_FLOAT_DATA : public IMGUI_TEMPLATE_DATA<float>
         imguiData.Format = format;
         imguiData.Flag = flag;
         imguiData.ImguiType = imguiType;
+        imguiData.AddNumberDrawFlag = addNumberDrawFlag;
 #endif
         return imguiData;
     }
@@ -219,7 +234,8 @@ struct IMGUI_INT_DATA : public IMGUI_TEMPLATE_DATA<int>
         std::string label = "NONE",
         std::string format = "%d",
         ImGuiSliderFlags flag = 0,
-        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1
+        IMGUI_TYPE imguiType = IMGUI_TYPE::SLIDER1,
+        bool addNumberDrawFlag = true
     )
     {
         IMGUI_INT_DATA imguiData;
@@ -234,6 +250,7 @@ struct IMGUI_INT_DATA : public IMGUI_TEMPLATE_DATA<int>
         imguiData.Format = format;
         imguiData.Flag = flag;
         imguiData.ImguiType = imguiType;
+        imguiData.AddNumberDrawFlag = addNumberDrawFlag;
 #endif
         return imguiData;
     }

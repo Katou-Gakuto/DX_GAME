@@ -237,65 +237,87 @@ PauseGameUIState::PauseGameUIState()
  
     DRAW_DATA drawData = DRAW_DATA();
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
-    Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.275f, 0.275f));
-    Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.6f, 0.6f));
+    Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.15625f, 0.2125f));
+    Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.53125f, 0.5375f));
     // 共通描画情報設定
     {
         drawData.drawFlag = false;
         drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
         drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.drawGraphData.transFlag = TRUE;
-        drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.125f, 0.125f));
+        drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.30625f, 0.2625f));
         drawData.drawGraphData.transFlag = TRUE;
     }
 
     {
-        int menuIndexNumber = 0;
-
         // 戻る
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
-            mstMenuStringDrawData[menuIndexNumber] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
-            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
-            menuIndexNumber++;
+            mstMenuStringDrawData[MENU_STRING_TYPE::RETURN_GAME] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_BackPush.png");
+            mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
         }
 
         // コンフィグ
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
-            mstMenuStringDrawData[menuIndexNumber] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
-            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
-            menuIndexNumber++;
+            mstMenuStringDrawData[MENU_STRING_TYPE::CONFIG_SET] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_ConfigPush.png");
+            mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_CONFIG_SET] = drawData;
         }
         
         // ステータス
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
-            mstMenuStringDrawData[menuIndexNumber] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
-            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
-            menuIndexNumber++;
+            mstMenuStringDrawData[MENU_STRING_TYPE::STATUS_DRAW] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_StatusPush.png");
+            mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_STATUS_DRAW] = drawData;
         }
         
         // ゲーム終了
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
-            mstMenuStringDrawData[menuIndexNumber] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
-            mstMenuStringDrawData[menuIndexNumber + MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
-            menuIndexNumber++;
+            mstMenuStringDrawData[MENU_STRING_TYPE::GAME_END] = drawData;
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEndPush.png");
+            mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_GAME_END] = drawData;
         }
     }
 
     for (int i = 0; i < MENU_STRING_TYPE::MENU_STRING_MAX; i++)
     {
         Master::mpDrawManager->AddDrawData(&mstMenuStringDrawData[i]);
+        
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstMenuStringDrawData[i].drawGraphData.pos.x, &mstMenuStringDrawData[i].drawGraphData.pos.y, &mstMenuStringDrawData[i].drawGraphData.size.x, &mstMenuStringDrawData[i].drawGraphData.size.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "CONFIG_SELECT_STRING_DRAW_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::DRAG4,
+                                                                            false
+                                                                            )
+                                                );
+            Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
+                                                                            { &mstMenuStringDrawData[i].drawGraphData.pos.x, &mstMenuStringDrawData[i].drawGraphData.pos.y, &mstMenuStringDrawData[i].drawGraphData.size.x, &mstMenuStringDrawData[i].drawGraphData.size.y },
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            1.0f,
+                                                                            0,
+                                                                            1000,
+                                                                            "CONFIG_SELECT_STRING_DRAW_",
+                                                                            "%d",
+                                                                            0,
+                                                                            IMGUI_TYPE::DRAG4
+                                                                            )
+                                                );
     }
 }
 
@@ -359,11 +381,11 @@ int PauseGameUIState::Update(UIBase* ui)
         {
             if (i == ui->GetSelectNumber())
             {
-                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + ui->GetSelectNumber()].drawFlag = true;
+                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + i].drawFlag = true;
             }
             else
             {
-                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + ui->GetSelectNumber()].drawFlag = false;
+                mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME + i].drawFlag = false;
             }
         }
     }

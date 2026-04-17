@@ -83,4 +83,4 @@ namespace UtilCalc
 
 	///*ŽlŠp“¯Žm‚Ì“–‚½‚è”»’è*/
 	//bool BoxCollision(VECTOR srcTopLeft, VECTOR srcBottomRight, VECTOR dstTopLeft, VECTOR dstBottomRight);
-};
+}

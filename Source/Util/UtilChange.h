@@ -27,4 +27,4 @@ namespace UtilChange
 	Vector2 ChangeVector_XZ(VECTOR src);
 	/// <summary>ベクトルをベクトル2に変換(yz)</summary>
 	Vector2 ChangeVector_YZ(VECTOR src);
-};
+}

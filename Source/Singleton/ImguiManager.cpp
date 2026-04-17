@@ -264,7 +264,10 @@ std::string ImguiManager::SetFloatImgui(IMGUI_FLOAT_DATA imguiFloatData)
         imguiFloatData.ChangeVariable[i] = *(imguiFloatData.VariableDatas[i]);
         imguiFloatData.PreVariable[i] = *(imguiFloatData.VariableDatas[i]);
     }
-    imguiFloatData.Label = imguiFloatData.Label + std::to_string(mstImguiFloatDatas.size());
+    if (imguiFloatData.AddNumberDrawFlag == true)
+    {
+        imguiFloatData.Label = imguiFloatData.Label + std::to_string(mstImguiFloatDatas.size());
+    }
     mstImguiFloatDatas.push_back(imguiFloatData);
     return imguiFloatData.Label;
 #endif
@@ -281,7 +284,10 @@ std::string ImguiManager::SetIntImgui(IMGUI_INT_DATA imguiIntData)
         imguiIntData.ChangeVariable[i] = *(imguiIntData.VariableDatas[i]);
         imguiIntData.PreVariable[i] = *(imguiIntData.VariableDatas[i]);
     }
-    imguiIntData.Label = imguiIntData.Label + std::to_string(mstImguiIntDatas.size());
+    if (imguiIntData.AddNumberDrawFlag == true)
+    {
+        imguiIntData.Label = imguiIntData.Label + std::to_string(mstImguiIntDatas.size());
+    }
     mstImguiIntDatas.push_back(imguiIntData);
     return imguiIntData.Label;
 #endif
@@ -325,7 +331,10 @@ void ImguiManager::DeleteImguiData(std::string labelName)
 void ImguiManager::AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData)
 {
 #ifdef _DEBUG
-    imguiFloatData.Label = imguiFloatData.Label + "_" + std::to_string(mnAddNumber);
+    if (imguiFloatData.AddNumberDrawFlag == true)
+    {
+        imguiFloatData.Label = imguiFloatData.Label + "_" + std::to_string(mnAddNumber);
+    }
     ++mnAddNumber;
     DrawFloatImgui(imguiFloatData);
 #endif
@@ -334,7 +343,10 @@ void ImguiManager::AddDrawImgui(IMGUI_FLOAT_DATA imguiFloatData)
 void ImguiManager::AddDrawImgui(IMGUI_INT_DATA imguiIntData)
 {
 #ifdef _DEBUG
-    imguiIntData.Label = imguiIntData.Label + "_" + std::to_string(mnAddNumber);
+    if (imguiIntData.AddNumberDrawFlag == true)
+    {
+        imguiIntData.Label = imguiIntData.Label + "_" + std::to_string(mnAddNumber);
+    }
     ++mnAddNumber;
     DrawIntImgui(imguiIntData);
 #endif

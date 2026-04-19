@@ -17,7 +17,7 @@
 #include "ResourceManager.h"
 
 #if _DEBUG
-#include "Debug/Debug.h"
+#include "DebugLogs/DebugLog.h"
 #endif
 
 std::string ResourceManager::msResourceFile = "Resource/";

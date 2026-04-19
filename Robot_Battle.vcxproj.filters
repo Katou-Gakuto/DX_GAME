@@ -368,7 +368,7 @@
     <ClCompile Include="Source\Struct\GameDatas.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Debug\Debug.cpp">
+    <ClCompile Include="Source\DebugLogs\DebugLog.cpp">
       <Filter>ソース ファイル\Debug</Filter>
     </ClCompile>
   </ItemGroup>
@@ -667,7 +667,7 @@
     <ClInclude Include="Source\Enum\GenericEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Debug\Debug.h">
+    <ClInclude Include="Source\DebugLogs\DebugLog.h">
       <Filter>ヘッダー ファイル\Debug</Filter>
     </ClInclude>
   </ItemGroup>

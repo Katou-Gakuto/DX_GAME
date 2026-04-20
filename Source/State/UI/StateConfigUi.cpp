@@ -295,7 +295,7 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
     // ミニマップ
     case CONFIG_UI_STATE::MINIMAP_CONFIG_STATE:
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
@@ -367,7 +367,7 @@ ConfigSelectState::ConfigSelectState()
     //         mstDrawData.push_back(mstDrawData[0]);
     //     }
     //     mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
-    //     mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+    //     mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
     //     mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
     //     mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
     // }
@@ -417,7 +417,7 @@ ConfigSelectState::ConfigSelectState()
         
         // ミニマップ
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
@@ -540,7 +540,7 @@ ConfigSelectState::ConfigSelectState()
 
         // ミニマップ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             mstDrawData.push_back(drawData);
         }
 
@@ -772,7 +772,7 @@ MinimapConfigState::MinimapConfigState()
 
         // ミニマップ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMinMap.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             mstDrawData.push_back(drawData);
         }
     }
@@ -795,7 +795,7 @@ void MinimapConfigState::OnEnter(UIBase* ui)
     ConfigOnEnter(ui);
 
     ui->SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM::CHANGE_BOUNDARY_STOP);
-    ui->SetSelectMaxNumber(MIN_MAP_CONFIG_TYPE::MAX);
+    ui->SetSelectMaxNumber(MINI_MAP_CONFIG_TYPE::MAX);
     ui->SetSelectNumber(mnPreSelectNumber);
 }
 

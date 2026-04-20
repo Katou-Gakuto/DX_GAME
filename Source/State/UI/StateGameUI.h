@@ -79,7 +79,7 @@ protected:
     void DrawMenuBackground(UIBase* ui);
 
     /*ミニマップ座標に変換する*/
-    VECTOR PosToMinMapPos(VECTOR pos);
+    VECTOR PosToMiniMapPos(VECTOR pos);
 };
 
 /*------------------------*/
@@ -234,7 +234,7 @@ private:
     enum CONFIG_SELECT_TYPE
     {
         BACK_TO_MENU = 0,   // メニューに戻る
-        MIN_MAP,    // ミニマップ操作
+        MINI_MAP,    // ミニマップ操作
         MAX
     };
 public:

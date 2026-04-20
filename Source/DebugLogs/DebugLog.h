@@ -3,7 +3,7 @@
 
 namespace DEBUG
 {
-	static std::string LogFileString;
+	static std::string LogFileString = "LogDebug/debug_0.txt";
 
 	void DebugCreateLogFileName();
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "MinMapData.h"
+#include "MiniMapData.h"
 #include "ResourceData.h"
 #include "TileData.h"
 #include "Vector2.h"
@@ -73,18 +73,19 @@ public:
 	/*--------------*/
 private:
 	// ミニマップ画像種類
-	enum MIN_MAP_DRAW_GRAPH_TYPE
+	enum MINI_MAP_DRAW_GRAPH_TYPE
 	{
 		BACK_GROUND = 0,	// 背景
 		FRAME,				// 枠
-		MIN_MAP_OUTSIDE_CHARACTER,	// ミニマップ外キャラクター
-		MIN_MAP_WITHIN_CHARACTER,	// ミニマップ内キャラクター
+		//FRAME_RADAR,		// 枠レーダー
+		MINI_MAP_OUTSIDE_CHARACTER,	// ミニマップ外キャラクター
+		MINI_MAP_WITHIN_CHARACTER,	// ミニマップ内キャラクター
 		PLAYER,						// プレイヤー
 		MAX
 	};
 
 	// HACK: 戻す
-	/*const*/ Vector2 MIN_MAP_LEFT_UP_POS = Vector2(0.8f, 0.1f);
+	/*const*/ Vector2 MINI_MAP_LEFT_UP_POS = Vector2(0.8f, 0.1f);
 
 	// ディスプレイサイズ
 	DisplaySize* mstDisplaySize;
@@ -93,23 +94,30 @@ private:
 	DisplaySize mstPreDisplaySize;
 
 	// ミニマップ描画サイズ
-	DisplaySize mstMinMapSize;
+	DisplaySize mstMiniMapSize;
 
 	// ミニマップ中央ポジション
-	DisplaySize mstMinMapCenterPos;
+	DisplaySize mstMiniMapCenterPos;
 
 	// ミニマップ描画距離(x:距離 y:ミニマップ割合)
-	Vector2 mstMinMapDrawDistance;
+	Vector2 mstMiniMapDrawDistance;
 	// ミニマップ最大描画距離
-	static constexpr float MIN_MAP_DRAW_MAX_DISTANCE = 10000.0f;
+	static constexpr float MINI_MAP_DRAW_MAX_DISTANCE = 100000.0f;
 	// ミニマップ最小描画距離
-	static constexpr float MIN_MAP_DRAW_MIN_DISTANCE = 1000.0f;
+	static constexpr float MINI_MAP_DRAW_MIN_DISTANCE = 1000.0f;
+	// キャラクター最大サイズ倍率
+	static constexpr float MINI_MAP_CHARACTER_MAX_SIZE_MAGNIFICATION = 0.4f;
+		// キャラクター減少サイズ倍率
+	static constexpr float MINI_MAP_CHARACTER_DECREASE_SIZE_MAGNIFICATION = 0.7f;
 
     // ミニマップ表示用スクリーンハンドル
-    int mnDrawMinMapScreenHandle;
+    int mnDrawMiniMapScreenHandle;
+
+	// ミニマップ枠外サイズ(半分)
+	Vector2_Int mstMiniMapOutsideFrameSizeHalf;
 	
 	// ミニマップ描画　画像　情報
-	DRAW_GRAPH_DATA mstMinMapDrawGraphData[MIN_MAP_DRAW_GRAPH_TYPE::MAX];
+	DRAW_GRAPH_DATA mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MAX];
 
 	struct MASK_DATA
 	{
@@ -123,21 +131,21 @@ private:
 
 public:
 	/// <summary>ミニマップサイス変更(0.0f～1.0f)</summary>
-	void SetMinMapSize_And_CreateHandle(Vector2 minMapSize);
+	void SetMiniMapSize_And_CreateHandle(Vector2 minMapSize);
 
 	/// <summary>ミニマップ描画長さ変更</summary>
 	/// <returns>成功フラグ</returns>
-	bool SetMinMapDrawLength(float minMapDrawLength);
+	bool SetMiniMapDrawLength(float minMapDrawLength);
 
 	/// <summary>ミニマップ描画</summary>
-	void DrawMinMap();
+	void DrawMiniMap();
 
 private:
 	/*必要ならミニマップスクリーンハンドル作成する*/
-	void CreateMinMapScreenHandle(bool createRequiredFlag = false);
+	void CreateMiniMapScreenHandle(bool createRequiredFlag = false);
 
 	/*ミニマップ表示ポジション取得*/
-	ALL_MIN_MAP_DRAW_DATA GetMinMapDrawPos();
+	ALL_MINI_MAP_DRAW_DATA GetMiniMapDrawPos();
 
 	/*マスクリセット*/
 	void ReSetMask(int width, int height);

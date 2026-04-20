@@ -244,9 +244,9 @@ class MinimapConfigState : public IStateUI, public ConfigUIProcess
 {
 private:
     // ミニマップ設定種類
-    enum MIN_MAP_CONFIG_TYPE
+    enum MINI_MAP_CONFIG_TYPE
     {
-        MIN_MAP_SIZE = 0,   // マップサイズ
+        MINI_MAP_SIZE = 0,   // マップサイズ
         MAX
     };
 public:

@@ -67,6 +67,16 @@ struct Vector2_Int
 
 		return vec;
 	}
+
+	Vector2_Int operator *(int src)
+	{
+		Vector2_Int vec;
+
+		vec.x = this->x * src;
+		vec.y = this->y * src;
+
+		return vec;
+	}
 };
 
 

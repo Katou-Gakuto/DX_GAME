@@ -46,6 +46,7 @@
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Game.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_StageStart.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
     <ClCompile Include="Source\Singleton\AttackManager.cpp" />
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Source\Object\UI\UI_Check.h" />
     <ClInclude Include="Source\Object\UI\UI_Game.h" />
     <ClInclude Include="Source\Object\UI\UI_Result.h" />
+    <ClInclude Include="Source\Object\UI\UI_StageStart.h" />
     <ClInclude Include="Source\Object\UI\UI_Title.h" />
     <ClInclude Include="Source\Singleton\AttackManager.h" />
     <ClInclude Include="Source\Singleton\CameraManager.h" />
@@ -184,7 +186,7 @@
     <ClInclude Include="Source\Struct\FileLoadingData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
     <ClInclude Include="Source\Struct\ImguiData.h" />
-    <ClInclude Include="Source\Struct\MinMapData.h" />
+    <ClInclude Include="Source\Struct\MiniMapData.h" />
     <ClInclude Include="Source\Struct\ResourceData.h" />
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Struct\TargetData.h" />

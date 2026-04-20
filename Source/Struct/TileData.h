@@ -12,8 +12,11 @@ class MapManager;
 enum class MapType
 {
 	None = 0,			// 何もない
-	Normal = 1,			// 通常マップ
-	Battle = 2,			// 戦闘マップ
+	Normal,			// 通常マップ
+	Battle,			// 戦闘マップ
+
+	Ring,	// リングマップ
+	CheckerBoard,	// 市松模様
 };
 
 enum class TileType

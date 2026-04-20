@@ -257,7 +257,7 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	{
 		return;
 	}
-	Master::mpGameManager->GetMapManager()->DrawMinMap();
+	Master::mpGameManager->GetMapManager()->DrawMiniMap();
 }
 
 // Ž€–S
@@ -265,6 +265,51 @@ void PlayerProcess::PlayerDeath(CharacterBase* character)
 {
 	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_TYPE::PLAYER);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_OVER);
+}
+
+// LRƒL[•`‰æî•ñÝ’è
+void PlayerProcess::L_R_KeyDrawDataSetUp(int keyStatusNumber)
+{
+	std::string lGraphString;
+	std::string rGraphString;
+	// ‰æ‘œƒtƒ@ƒCƒ‹Žæ“¾
+	switch (keyStatusNumber)
+	{
+	case 0:
+		lGraphString = ResourceManager::msResourceFile + "2D/.png";
+		rGraphString = ResourceManager::msResourceFile + "2D/.png";
+		break;
+		
+	case 1:
+		lGraphString = ResourceManager::msResourceFile + "2D/.png";
+		rGraphString = ResourceManager::msResourceFile + "2D/.png";
+		break;
+	}
+
+	DRAW_DATA drawData = DRAW_DATA();
+	DisplaySize displaySize = ResourceManager::mstDisplaySize;
+	
+	// ‹¤’Ê•`‰æÝ’è
+	{
+        drawData.drawFlag = false;
+        drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
+        drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        drawData.drawGraphData.transFlag = TRUE;
+        drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.30625f, 0.2625f));
+        drawData.drawGraphData.transFlag = TRUE;
+	}
+
+	// L‰æ‘œÝ’è
+	{
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(lGraphString);
+		mstLKeyDraw = drawData;
+	}
+
+	// R‰æ‘œÝ’è
+	{
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(rGraphString);
+		mstRKeyDraw = drawData;
+	}
 }
 
 /*--------------------------*/

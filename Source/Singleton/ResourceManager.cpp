@@ -65,7 +65,7 @@ ResourceManager::~ResourceManager()
 void ResourceManager::Initilize()
 {
 #if _DEBUG
-	DEBUG::DebugCreateLogFileName();
+	//DEBUG::DebugCreateLogFileName();
 #endif
 
 	// 3Dƒ‚ƒfƒ‹

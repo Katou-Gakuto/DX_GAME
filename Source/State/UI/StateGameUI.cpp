@@ -2,7 +2,7 @@
 
 #include "BitFlag.h"
 #include "DrawData.h"
-#include "MinMapData.h"
+#include "MiniMapData.h"
 #include "ResourceData.h"
 #include "Vector2.h"
 
@@ -52,7 +52,7 @@ GameUIProcess::GameUIProcess()
 //     msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
 
 //     mnMapDrawHandle = MakeScreen(msMapSide.x + (mnMapFrameDreadth * 2), msMapSide.y + (mnMapFrameDreadth * 2), TRUE);
-//     mnDrawMinMapScreenHandle = MakeScreen();
+//     mnDrawMiniMapScreenHandle = MakeScreen();
 }
 
 // メニューキーを押したか返す
@@ -76,7 +76,7 @@ void GameUIProcess::DrawMenuBackground(UIBase* ui)
 }
 
 // ミニマップポジションに変換する
-VECTOR GameUIProcess::PosToMinMapPos(VECTOR pos)
+VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 {
     VECTOR minMapPos;
 
@@ -528,7 +528,7 @@ int ConfigChangeState::Decision(UIBase* ui)
     case CONFIG_SELECT_TYPE::BACK_TO_MENU:
         return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
 
-    case CONFIG_SELECT_TYPE::MIN_MAP:
+    case CONFIG_SELECT_TYPE::MINI_MAP:
         break;
     }
 

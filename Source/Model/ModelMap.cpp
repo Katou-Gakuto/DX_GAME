@@ -84,6 +84,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
                     }
                     // HACK: ècÇ∆ÇËÇ†Ç¶Ç∏Ç¢ÇÍÇƒÇÈ
                     MV1SetPosition(setTileModel.modelHandle, VGet(mapMinPos.x + ((tileHalfSize.x + tileHalfSize.x) * x), mapMinPos.y + 50.0f, mapMinPos.z + ((tileHalfSize.z + tileHalfSize.z) * z)));
+                    MV1SetScale(setTileModel.modelHandle, VGet(0.85f, 1.0f, 0.85f));
                 break;
             }
             setTileModelLine.push_back(setTileModel);

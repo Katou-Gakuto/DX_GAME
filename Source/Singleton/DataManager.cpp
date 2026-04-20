@@ -297,6 +297,16 @@ void DataManager::Initilize()
 	{
 		mnWaveNumber = -1;
 		mstWaveEnemyData.clear();
+		meWaveMapData.clear();
+		std::vector<MapType> mapDatas = {
+											MapType::Ring,
+											MapType::Battle,
+											MapType::Normal,
+											MapType::CheckerBoard,
+											MapType::Ring,
+											MapType::Ring,
+										};
+
 
 		// TODO: ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
 		for (int i = 1; i < 7; i++)
@@ -320,6 +330,8 @@ void DataManager::Initilize()
 			enemyDatas[1].position = VGet(2700.0f, 0.0f, 2000.0f);
 
 			mstWaveEnemyData.push_back(enemyDatas);
+
+			meWaveMapData.push_back(mapDatas[i - 1]);
 		}
 	}
 }

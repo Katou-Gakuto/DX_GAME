@@ -371,6 +371,9 @@
     <ClCompile Include="Source\DebugLogs\DebugLog.cpp">
       <Filter>ソース ファイル\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Object\UI\UI_StageStart.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -649,7 +652,7 @@
     <ClInclude Include="Source\Singleton\DrawManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Struct\MinMapData.h">
+    <ClInclude Include="Source\Struct\MiniMapData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
     <ClInclude Include="Source\Util\UtilFileLoading.h">
@@ -669,6 +672,9 @@
     </ClInclude>
     <ClInclude Include="Source\DebugLogs\DebugLog.h">
       <Filter>ヘッダー ファイル\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UI\UI_StageStart.h">
+      <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

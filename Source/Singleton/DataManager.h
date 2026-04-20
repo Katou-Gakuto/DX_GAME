@@ -7,6 +7,7 @@
 #include "SceneEnum.h"
 #include "GameDatas.h"
 #include "Status.h"
+#include "TileData.h"
 #include "Vector2.h"
 
 enum class MapType;
@@ -190,6 +191,9 @@ private:
 	// ウェーブ別エネミーデータ
 	std::vector<std::vector<CHARACTER_DATA>> mstWaveEnemyData;
 
+	// ウェーブ別マップデータ
+	std::vector<MapType> meWaveMapData;
+
 public:
 
 	/// <summary>ウェーブ進行</summary>
@@ -200,6 +204,8 @@ public:
 	/// <summary>ウェーブのエネミーデータ取得</summary>
 	std::vector<CHARACTER_DATA> GetWaveEnemy();
 
+	/// <summary>ウェーブのマップ種類取得</summary>
+	inline MapType GetWaveMapData() { return meWaveMapData[mnWaveNumber]; }
 
 	/*--------------------------*/
 	/*     【マップデータ】     */

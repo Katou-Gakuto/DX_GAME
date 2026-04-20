@@ -22,6 +22,24 @@ enum class PLAYER_STATE
 	MOVE_PLAYER_STATE,
 	NORMAL_ATTACK_PLAYER_STATE,
 	SPCEIAL_ATTACK_PLAYER_STATE,
+	
+	FLINCH_PLAYER_STATE,	// 怯み
+	AVOID_PLAYER_STATE,	// 避ける
+	GUARD_PLAYER_STATE,	// ガード
+	FALL_DOWN_PLAYER_STATE,	// 倒れる
+	LITTLE_ATTACK_PLAYER_STATE,	// 小攻撃
+
+/*
+怯み
+避け
+ガード(時間経過で解ける)
+倒れるモーション
+小攻撃
+
+追加予定ステート
+ジャンプ
+横歩き
+*/
 };
 
 /*------------------------*/
@@ -53,6 +71,11 @@ protected:
 	const Vector2 HP_RIGHT_DOWN = Vector2(0.4f + HP_FRAME_SIZE.x, 0.06f + HP_FRAME_SIZE.y);
 
 	const Vector2_Int HP_GRAPH_SIZE = Vector2_Int(2151, 83);
+
+	// Rキー描画情報
+	DRAW_DATA mstRKeyDraw;
+	// Lキー描画情報
+	DRAW_DATA mstLKeyDraw;
 
 protected:
 	PlayerProcess();
@@ -93,6 +116,9 @@ protected:
 
 	/*死亡*/
 	void PlayerDeath(CharacterBase* character);
+
+	/*LRキー描画情報設定*/
+	void L_R_KeyDrawDataSetUp(int keyStatusNumber);
 };
 
 /*--------------------------*/
@@ -219,6 +245,44 @@ public:
 	void Death(CharacterBase* character) override;
 };
 
+
+/*------------------------------------*/
+/*【プレイヤーステート】*/
+/*------------------------------------*/
+class PlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	PlayerState();
+	~PlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+	/*
+	Flinch,	// 怯み
+	Avoid,	// 避ける
+	Guard,	// ガード
+	FallDown,	// 倒れる
+	LittleAttack,	// 小攻撃
+	*/
+};
+
 /*--------------------------*/
 /*     【派生ステート】     */
 /*--------------------------*/
@@ -248,14 +312,3 @@ public:
 	/*ステート変更確認*/
 	int StateCheck(CharacterBase* character) override;
 };
-
-/*
-追加予定ステート
-ジャンプ
-怯み
-避け
-ガード(時間経過で解ける)
-倒れるモーション
-小攻撃
-横歩き
-*/

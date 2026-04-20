@@ -685,7 +685,7 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 	{
 		mpMapManager = Master::mpGameManager->GetMapManager();
 	}
-	mpMapManager->SetMapData(MapType::Battle);
+	mpMapManager->SetMapData(Master::mpDataManager->GetWaveMapData());
 
 	StageOnEnter(sceneManager);
 

@@ -87,7 +87,7 @@ const char* label, float* v, float v_speed, float v_min, float v_max, const char
 */
 /*Žg—p—á 2(int)
     Master::mpImguiManager->SetIntImgui(IMGUI_INT_DATA::GetImguiData(
-                                                                     { &mstMinMapDrawGraphData[0].pos.x, &mstMinMapDrawGraphData[0].pos.y, &mstMinMapDrawGraphData[0].size.x, &mstMinMapDrawGraphData[0].size.y },
+                                                                     { &mstMiniMapDrawGraphData[0].pos.x, &mstMiniMapDrawGraphData[0].pos.y, &mstMiniMapDrawGraphData[0].size.x, &mstMiniMapDrawGraphData[0].size.y },
                                                                      1.0f,
                                                                      1.0f,
                                                                      1.0f,

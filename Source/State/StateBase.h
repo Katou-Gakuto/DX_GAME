@@ -154,7 +154,10 @@ public:
 	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) = 0;
 
 	/// <summary>“¯•ª—Þ‚ÌŽí—Þ‚©‚ðŠm”F‚·‚é</summary>
-	virtual bool CheckSameType(ANIMATION_TYPE animationType) { return mStateNumber == animationType; }
+	virtual bool CheckSameType(ANIMATION_TYPE animationType)
+	{
+		return mStateNumber == animationType;
+	}
 };
 
 /*-------------------------*/

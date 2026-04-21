@@ -16,8 +16,8 @@ class TargetManager;
 
 enum class GAME_UI_STATE
 {
-    START_GAME_UI_STAE = 0, // ゲーム開始
-    NORMAL_GAME_UI_STATE,   // 通常
+    //START_GAME_UI_STAE = 0, // ゲーム開始
+    NORMAL_GAME_UI_STATE = 0,   // 通常
     PAUSE_GAME_UI_STATE,	// ポーズ
 
     DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
@@ -85,45 +85,45 @@ protected:
 /*------------------------*/
 /*【ゲーム開始UIステート】*/
 /*------------------------*/
-class StartGameUIState : public IStateUI, public GameUIProcess
-{
-private:
-    // 経過時間
-    int mnElapsedTime;
+// class StartGameUIState : public IStateUI, public GameUIProcess
+// {
+// private:
+//     // 経過時間
+//     int mnElapsedTime;
 
-    // フェードインフラグ
-    bool mbFadeInFlag;
+//     // フェードインフラグ
+//     bool mbFadeInFlag;
 
-    // モデルコントローラの添え字
-    const int MODEL_CONTROLLER_INDEX = 1;
+//     // モデルコントローラの添え字
+//     const int MODEL_CONTROLLER_INDEX = 1;
 
-    // 字幕表示時間
-    const int SUBTITLE_TIME = 17 * 230;
+//     // 字幕表示時間
+//     const int SUBTITLE_TIME = 17 * 230;
 
-    // メニューフラグ
-    bool mbMenuFlag;
+//     // メニューフラグ
+//     bool mbMenuFlag;
 
-public:
-    StartGameUIState();
-    ~StartGameUIState() = default;
+// public:
+//     StartGameUIState();
+//     ~StartGameUIState() = default;
 
-    /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
-    /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+//     /// <summary>この状態に入った時の処理</summary>
+//     void OnEnter(UIBase* ui) override;
+//     /// <summary>この状態を出る時の処理</summary>
+//     void OnExit(UIBase* ui) override;
 
-    /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+//     /// <summary>更新</summary>
+//     int Update(UIBase* ui) override;
 
-    /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+//     /// <summary>決定</summary>
+//     int Decision(UIBase* ui) override;
 
-    /// <summary>描画</summary>
-    void Draw(UIBase* ui) override;
+//     /// <summary>描画</summary>
+//     void Draw(UIBase* ui) override;
 
-	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
-};
+// 	/// <summary>終了</summary>
+// 	int Cloce(UIBase* ui) override;
+// };
 
 /*----------------------*/
 /*【通常ゲームUIステート】*/

@@ -67,8 +67,6 @@ void GameManager::Initilize()
     mpMapManager->Initilize();
     mpTargetManager = new TargetManager();
 
-
-
     SetDrawScreen(DX_SCREEN_BACK);
 }
 

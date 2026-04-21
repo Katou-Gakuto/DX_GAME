@@ -1,15 +1,21 @@
 #include "CameraData.h"
+#include "DrawData.h"
 
 #include "Master.h"
 
 #include "CameraManager.h"
+#include "DrawManager.h"
 #include "GameManager.h"
 #include "SceneManager.h"
+#include "TimeManager.h"
 #include "UI_StageStart.h"
+#include "UtilFactorys.h"
 
 UI_StageStart::UI_StageStart()
 : UIBase(true, 1, true)
 , mnCameraID(-1)
+, mnSurvivalTime(0)
+, mbFadeInFlag(false)
 {
 }
 
@@ -20,30 +26,129 @@ UI_StageStart::~UI_StageStart()
 // UI初期化
 void UI_StageStart::UIInitilize()
 {
+	mnSurvivalTime = Master::mpTimeManager->GetTime() + SURVIVAL_TIME;
 
+    // ゲーム開始時字幕
+    {
+		std::vector<DRAW_GRAPH_DATA> setDrawDatas;
+		DisplaySize displaySize = ResourceManager::mstDisplaySize;
+
+        setDrawDatas.clear();
+        DRAW_GRAPH_DATA drawData;
+        drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.0f, 0.1f));
+        drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
+        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/White.png");
+        drawData.transFlag = TRUE;
+        setDrawDatas.push_back(drawData);
+
+
+        int stringNumber = 0;
+        switch (Master::mpGameManager->GetSceneManager()->GetNowScene())
+        {
+        case SCENE::TOWN_1:
+            stringNumber++;
+        case SCENE::TOWN_2:
+            stringNumber++;
+        case SCENE::TOWN_3:
+            stringNumber++;
+            drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.15f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.2f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TownString_" + std::to_string(stringNumber) + ".png");
+            drawData.transFlag = TRUE;
+            setDrawDatas.push_back(drawData);
+            break;
+
+        case SCENE::DUNGEON_1:
+            stringNumber++;
+        case SCENE::DUNGEON_2:
+            stringNumber++;
+        case SCENE::DUNGEON_3:
+            stringNumber++;
+            drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.3f, 0.15f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/DungeonString_" + std::to_string(stringNumber) + ".png");
+            drawData.transFlag = TRUE;
+            setDrawDatas.push_back(drawData);
+            break;
+
+        case SCENE::BATTLE_LOOP:
+            stringNumber = -3;
+        case SCENE::BATTLE_1:
+            stringNumber++;
+        case SCENE::BATTLE_2:
+            stringNumber++;
+        case SCENE::BATTLE_3:
+            stringNumber++;
+            drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
+            drawData.transFlag = TRUE;
+            setDrawDatas.push_back(drawData);
+            break;
+        }
+
+        // モデル追加
+        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+
+        // アニメーション設定
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { });
+    }
+	GetAnimation(0)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 }
 
 // UIシーン最終初期化
 void UI_StageStart::UISceneLastInitilize()
 {
-	CameraData cmeraData = CameraData();
-	cmeraData.cameraMode = CAMERA_MODE::FIXED;
-
-
-	mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cmeraData);
-	Master::mpGameManager->GetCameraManager()->SetCameraMode(mnCameraID);
 }
 
 // UI終了
 void UI_StageStart::UIFinalize()
 {
-	Master::mpGameManager->GetCameraManager()->SetCameraMode(Master::mpGameManager->GetSceneManager()->GetSceneCameraID());
-	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnCameraID);
 }
 
 // UI更新
 void UI_StageStart::UIUpdate()
 {
+	// 初期化でやると切り替え時に一瞬白飛びする
+	if (mnCameraID == -1)
+	{
+		CameraData cmeraData = CameraData();
+		cmeraData.cameraMode = CAMERA_MODE::MOVE;
+		// INPROGRESS: カメラ設定(ステートも)
+		cmeraData.cameraMode = CAMERA_MODE::FIXED;
+
+
+		mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cmeraData);
+		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnCameraID);
+	}
+
+	if (!mbFadeInFlag && 
+			(
+				((mnSurvivalTime - FADE_IN_TIME) < Master::mpTimeManager->GetTime())
+			)
+		)
+	{
+		DecisionProcess();
+	}
+	else if (!mbFadeInFlag &&
+			(
+				(CheckDecision()) ||
+				(Master::mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::X))
+			)
+		)
+	{
+		mnSurvivalTime = Master::mpTimeManager->GetTime() + FADE_IN_TIME;
+		DecisionProcess();
+	}
+	else if (mnSurvivalTime < Master::mpTimeManager->GetTime())
+	{
+		CloceProcess();
+	}
+
 }
 
 // UI最終更新
@@ -54,10 +159,19 @@ void UI_StageStart::UILastUpdate()
 // UI描画
 void UI_StageStart::UIDraw()
 {
-
 }
 
 // 選択決定時処理
 void UI_StageStart::DecisionProcess()
 {
+	GetAnimation(0)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+	mbFadeInFlag = true;
+}
+
+// 削除処理
+void UI_StageStart::CloceProcess()
+{
+	SetDeleteFlag(true);
+	Master::mpGameManager->GetCameraManager()->SetCameraMode(Master::mpGameManager->GetSceneManager()->GetSceneCameraID());
+	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnCameraID);
 }

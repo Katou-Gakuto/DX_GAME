@@ -61,7 +61,7 @@ private:
 	enum TILE_DIRECTION_TYPE
 	{
 		X_DIRECTION = 0,
-		Y_DIRECTION,
+		Z_DIRECTION,
 		MAX
 	};
 

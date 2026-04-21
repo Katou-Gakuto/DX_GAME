@@ -38,7 +38,7 @@ ObjectBase::ObjectBase(OBJECT_TYPE objectType, bool isActiveFlag, bool nextScene
 	mpInheritClassNextObject = nullptr;
 	mpInheritClassPrevObject = nullptr;
 
-	mllFlags.Init();
+	mullFlags.Init();
 
 	munID = Master::mpGameManager->GetObjectManager()->Add(this, objectType);
 
@@ -308,6 +308,11 @@ bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 void CharacterBase::Damage(int damage)
 {
 	//printfDx("Hit\n");
+	if (mullFlags.GetFlag_BitShift(CHARACTER_OBJECT_BIT_FLAG_NUBER::INVINCIBLE))
+	{
+		return;
+	}
+
 	mstStatus.hp -= damage;
 	if (mstStatus.hp <= 0)
 	{
@@ -1336,6 +1341,7 @@ bool UIBase::CheckFrame(int frameNumber)
 
 
 
+#ifdef _DEBUG
 #include <cassert>
 bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check)
 {
@@ -1361,3 +1367,4 @@ bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check)
 
 	return false;
 }
+#endif

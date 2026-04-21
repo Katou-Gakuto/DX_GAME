@@ -773,7 +773,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	case UI_FACTORY_NUMBER::TOWN:
 	case UI_FACTORY_NUMBER::DUNGEON:
 	case UI_FACTORY_NUMBER::BATTLE:
-		fsmUI->RegisterState(new StartGameUIState());
+		//fsmUI->RegisterState(new StartGameUIState());
 		fsmUI->RegisterState(new NormalGameUIState());
 		fsmUI->RegisterState(new PauseGameUIState());
 		fsmUI->RegisterState(new DrawPlayerDataState());
@@ -786,7 +786,8 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::CAMERA_CONFIG_STATE, new CameraConfigState());
 		
 
-		fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
+		//fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
+		fsmUI->SetCurrentState((int)GAME_UI_STATE::NORMAL_GAME_UI_STATE, ui);
 		break;
 
 	case UI_FACTORY_NUMBER::RESULT:

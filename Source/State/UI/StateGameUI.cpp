@@ -84,88 +84,88 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
     return minMapPos;
 }
 
-/*------------------------*/
-/*【ゲーム開始UIステート】*/
-/*------------------------*/
-StartGameUIState::StartGameUIState()
-: GameUIProcess()
-, mnElapsedTime(0)
-, mbFadeInFlag(false)
-, mbMenuFlag(false)
-{
-    mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
-}
+// /*------------------------*/
+// /*【ゲーム開始UIステート】*/
+// /*------------------------*/
+// StartGameUIState::StartGameUIState()
+// : GameUIProcess()
+// , mnElapsedTime(0)
+// , mbFadeInFlag(false)
+// , mbMenuFlag(false)
+// {
+//     mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
+// }
 
-// この状態に入った時の処理
-void StartGameUIState::OnEnter(UIBase* ui)
-{
-    mbFadeInFlag = false;
-    mnElapsedTime = Master::mpTimeManager->GetGameTime() + SUBTITLE_TIME;
+// // この状態に入った時の処理
+// void StartGameUIState::OnEnter(UIBase* ui)
+// {
+//     mbFadeInFlag = false;
+//     mnElapsedTime = Master::mpTimeManager->GetGameTime() + SUBTITLE_TIME;
     
-    ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+//     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
-    ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
-}
+//     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+// }
 
-// この状態を出る時の処理
-void StartGameUIState::OnExit(UIBase* ui)
-{
-}
+// // この状態を出る時の処理
+// void StartGameUIState::OnExit(UIBase* ui)
+// {
+// }
 
-// 更新
-int StartGameUIState::Update(UIBase* ui)
-{
-    if (IsMenuKeyPressed())
-    {
-        mbMenuFlag = true;
-    }
-    else if (!mbMenuFlag && !(mnElapsedTime < Master::mpTimeManager->GetGameTime()))
-    {
-        return mStateNumber;
-    }
+// // 更新
+// int StartGameUIState::Update(UIBase* ui)
+// {
+//     if (IsMenuKeyPressed())
+//     {
+//         mbMenuFlag = true;
+//     }
+//     else if (!mbMenuFlag && !(mnElapsedTime < Master::mpTimeManager->GetGameTime()))
+//     {
+//         return mStateNumber;
+//     }
 
-    if (!mbFadeInFlag &&
-        !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
-    {
-        ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
-    }
-    else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
-    {
-        mbFadeInFlag = true;
-    }
-    else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
-    {
-        if (mbMenuFlag)
-        {
-            ui->SetSelectNumber(GAME_UI_SELECT_NUKMBER::STOP_GAME);
-            ui->Decision();
-            return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
-        }
-        else
-        {
-            return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
-        }
-    }
+//     if (!mbFadeInFlag &&
+//         !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//     {
+//         ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+//     }
+//     else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//     {
+//         mbFadeInFlag = true;
+//     }
+//     else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//     {
+//         if (mbMenuFlag)
+//         {
+//             ui->SetSelectNumber(GAME_UI_SELECT_NUKMBER::STOP_GAME);
+//             ui->Decision();
+//             return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+//         }
+//         else
+//         {
+//             return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+//         }
+//     }
 
-    return mStateNumber;
-}
+//     return mStateNumber;
+// }
 
-// 決定
-int StartGameUIState::Decision(UIBase* ui)
-{
-    return mStateNumber;
-}
+// // 決定
+// int StartGameUIState::Decision(UIBase* ui)
+// {
+//     return mStateNumber;
+// }
 
-// 描画
-void StartGameUIState::Draw(UIBase* ui)
-{
-}
+// // 描画
+// void StartGameUIState::Draw(UIBase* ui)
+// {
+// }
 
-// 終了
-int StartGameUIState::Cloce(UIBase* ui)
-{
-    return mStateNumber;
-}
+// // 終了
+// int StartGameUIState::Cloce(UIBase* ui)
+// {
+//     return mStateNumber;
+// }
 
 /*----------------------*/
 /*【通常ゲームUIステート】*/

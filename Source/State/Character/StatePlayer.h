@@ -27,7 +27,7 @@ enum class PLAYER_STATE
 	AVOID_PLAYER_STATE,	// 避ける
 	GUARD_PLAYER_STATE,	// ガード
 	FALL_DOWN_PLAYER_STATE,	// 倒れる
-	LITTLE_ATTACK_PLAYER_STATE,	// 小攻撃
+	SMALL_ATTACK_PLAYER_STATE,	// 小攻撃
 
 /*
 怯み
@@ -54,6 +54,12 @@ protected:
 		HP_RIGHT,
 		HP_LEFT,
 		PLAYER_DRAW_MAX
+	};
+
+	enum PLAYER_DRAW_KEY_TYPE
+	{
+		PLAYER_DRAW_KEY_INVALID = 0,	// 無効
+		PLAYER_DRAW_KEY_VALID,	// 有効
 	};
 
 	// キーステート
@@ -118,7 +124,12 @@ protected:
 	void PlayerDeath(CharacterBase* character);
 
 	/*LRキー描画情報設定*/
-	void L_R_KeyDrawDataSetUp(int keyStatusNumber);
+	void L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber);
+
+	/*プレイヤー共通処理 この状態に入った時*/
+	void PlayerProcessOnEnter(CharacterBase* character);
+	/*プレイヤー共通処理 この状態に出る時*/
+	void PlayerProcessOnExit(CharacterBase* character);
 };
 
 /*--------------------------*/
@@ -245,15 +256,14 @@ public:
 	void Death(CharacterBase* character) override;
 };
 
-
-/*------------------------------------*/
-/*【プレイヤーステート】*/
-/*------------------------------------*/
-class PlayerState : public IStateCharacter, public PlayerProcess
+/*--------------------------*/
+/*【怯みプレイヤーステート】*/
+/*--------------------------*/
+class FlinchPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	PlayerState();
-	~PlayerState() = default;
+	FlinchPlayerState();
+	~FlinchPlayerState() = default;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;
@@ -274,13 +284,126 @@ public:
 
 	/*死亡*/
 	void Death(CharacterBase* character) override;
-	/*
-	Flinch,	// 怯み
-	Avoid,	// 避ける
-	Guard,	// ガード
-	FallDown,	// 倒れる
-	LittleAttack,	// 小攻撃
-	*/
+};
+
+/*----------------------------*/
+/*【避けるプレイヤーステート】*/
+/*----------------------------*/
+class AvoidPlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	AvoidPlayerState();
+	~AvoidPlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
+
+/*----------------------------*/
+/*【ガードプレイヤーステート】*/
+/*----------------------------*/
+class GuardPlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	GuardPlayerState();
+	~GuardPlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
+
+/*----------------------------*/
+/*【倒れるプレイヤーステート】*/
+/*----------------------------*/
+class FallDownPlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	FallDownPlayerState();
+	~FallDownPlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
+};
+
+/*----------------------------*/
+/*【小攻撃プレイヤーステート】*/
+/*----------------------------*/
+class SmallAttackPlayerState : public IStateCharacter, public PlayerProcess
+{
+public:
+	SmallAttackPlayerState();
+	~SmallAttackPlayerState() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(CharacterBase* character) override;
+	/*この状態を出る時の処理*/
+	void OnExit(CharacterBase* character) override;
+
+	/*ステート変更確認*/
+	virtual int StateCheck(CharacterBase* character) override;
+
+	/*更新*/
+	void Update(CharacterBase* character) override;
+
+	/*最終更新*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*描画*/
+	void Draw(CharacterBase* character) override;
+
+	/*死亡*/
+	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/

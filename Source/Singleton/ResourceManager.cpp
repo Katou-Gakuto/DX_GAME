@@ -16,7 +16,7 @@
 #include "HandleContainer.h"
 #include "ResourceManager.h"
 
-#if _DEBUG
+#ifdef _DEBUG
 #include "DebugLogs/DebugLog.h"
 #endif
 
@@ -64,7 +64,7 @@ ResourceManager::~ResourceManager()
 // 初期化
 void ResourceManager::Initilize()
 {
-#if _DEBUG
+#ifdef _DEBUG
 	//DEBUG::DebugCreateLogFileName();
 #endif
 
@@ -99,6 +99,9 @@ void ResourceManager::Initilize()
     GetScreenState(&setDisplaySize.x, &setDisplaySize.y, &mstDisplaySize.colorBit);
 	mstDisplaySize = setDisplaySize;
 
+	// 明るさ
+	SetGlobalAmbientLight(GetColorF(0.3f, 0.3f, 0.3f, 1.0f));
+
 	ShadowMapInit();
 
 	EffectInit();
@@ -125,7 +128,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < graphHandle.second.size(); i++)
 			{
 				DeleteGraph(graphHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("画像ハンドル削除(最終) : " + std::to_string(graphHandle.second[i]) + " : " + graphHandle.first + '\n');
 #endif
 			}
@@ -140,7 +143,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < divHandle.second.allNum; i++)
 			{
 				DeleteGraph(*(divHandle.second.handle + i));
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("DIV画像ハンドル削除(最終) : " + std::to_string(*(divHandle.second.handle + i)) + '\n');
 #endif
 			}
@@ -155,7 +158,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < moveiHandle.second.size(); i++)
 			{
 				DeleteGraph(moveiHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("動画ハンドル削除(最終) : " + std::to_string(moveiHandle.second[i]) + " : " + moveiHandle.first + '\n');
 #endif
 			}
@@ -169,7 +172,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < soundHandle.second.size(); i++)
 			{
 				DeleteSoundMem(soundHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("サウンド(原本)ハンドル削除(最終) : " + std::to_string(soundHandle.second[i]) + " : " + soundHandle.first + '\n');
 #endif
 			}
@@ -181,7 +184,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < playSoundHandle.second.size(); i++)
 			{
 				DeleteSoundMem(playSoundHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("サウンドハンドル削除(最終) : " + std::to_string(playSoundHandle.second[i]) + " : " + std::to_string(playSoundHandle.first) + '\n');
 #endif
 			}
@@ -193,7 +196,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < sound3DHandle.second.size(); i++)
 			{
 				DeleteSoundMem(sound3DHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("3Dサウンド(原本)ハンドル削除(最終) : " + std::to_string(sound3DHandle.second[i]) + " : " + sound3DHandle.first + '\n');
 #endif
 			}
@@ -205,7 +208,7 @@ void ResourceManager::Finailize()
 			for (int i = 0; i < playSound3DHandle.second.size(); i++)
 			{
 				DeleteSoundMem(playSound3DHandle.second[i]);
-#if _DEBUG
+#ifdef _DEBUG
 				DEBUG::SaveText("3Dサウンドハンドル削除(最終) : " + std::to_string(playSound3DHandle.second[i]) + " : " + std::to_string(playSound3DHandle.first) + '\n');
 #endif
 			}
@@ -327,12 +330,12 @@ void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
 void ResourceManager::ShadowMapInit()
 {
 	// シャドウマップハンドル作成
-	mnShadowMapHandle = MakeShadowMap(1024, 1024);
+	mnShadowMapHandle = MakeShadowMap(4096, 4096);
 	// シャドウマップが想定するライトの方向もセット
 	SetShadowMapLightDirection(mnShadowMapHandle, VGet( 0.5f, -0.5f, 0.5f));
 
 	// シャドウマップに描画する範囲を設定
-	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-10000.0f, -1.0f, -10000.0f), VGet(10000.0f, 10000.0f, 10000.0f));
+	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-400.0f, -1.0f, -400.0f), VGet(10000.0f, 10000.0f, 10000.0f));
 }
 
 // 描画情報取得
@@ -509,7 +512,7 @@ int ResourceManager::GetModelHandle(std::string fileName)
 		handle = mp3DModelHandleContainer->GetHandles(fileName)[0];
 
 		mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
-#if _DEBUG
+#ifdef _DEBUG
 		int resultHandle = mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));
 		DEBUG::SaveText("モデルハンドル取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 		return resultHandle;
@@ -520,12 +523,12 @@ int ResourceManager::GetModelHandle(std::string fileName)
 		
 	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
 	handle = mp3DModelHandleContainer->RegisterHandle(MV1LoadModel(fileName.c_str()), false);
-#if _DEBUG
+#ifdef _DEBUG
 		DEBUG::SaveText("モデルハンドル(原本)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 #endif
 	
 	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
-#if _DEBUG
+#ifdef _DEBUG
 	handle = mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));
 	DEBUG::SaveText("モデルハンドル(一つ目)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 	return handle;
@@ -539,7 +542,7 @@ void ResourceManager::ReduceModelHandle(int handle)
 	mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
 	std::vector<int> deleteHnadle = mp3DModelHandleContainer->DeleteHandle(handle);
 
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "モデルハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHnadle.size(); i++)
 	{
@@ -594,7 +597,7 @@ int ResourceManager::GetGraphHandle(std::string fileName)
 		return mpGraphHandleContainer->RegisterHandle(0/*何も指定しない*/);
 	}
 
-#if _DEBUG
+#ifdef _DEBUG
 	int handle = mpGraphHandleContainer->RegisterHandle(LoadGraph(fileName.c_str()));
 	DEBUG::SaveText("画像ハンドル(原本)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 	return handle;
@@ -607,7 +610,7 @@ void ResourceManager::ReduceGraphHandle(int handle)
 {
 	std::vector<int> deleteHandle = mpGraphHandleContainer->DeleteHandle(handle);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "画像ハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -685,7 +688,7 @@ void ResourceManager::ReduceDivGraphHandle(int number)
 int ResourceManager::GetMovieHandle(std::string fileName)
 {
 
-#if _DEBUG
+#ifdef _DEBUG
 	int handle = mpMovieHandleContainer->RegisterHandle(LoadGraph(fileName.c_str()), fileName);
 	DEBUG::SaveText("動画ハンドル取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 	return handle;
@@ -714,7 +717,7 @@ void ResourceManager::ReduceMovie(int handle)
 {
 	std::vector<int> deleteHandle =  mpMovieHandleContainer->DeleteHandle(handle);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "動画ハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -791,7 +794,7 @@ int ResourceManager::GetSoundHandle(std::string fileName)
 		return mpSoundHandleContainer->RegisterHandle(0/*何も指定しない*/);
 	}
 
-#if _DEBUG
+#ifdef _DEBUG
 	int handle = mpSoundHandleContainer->RegisterHandle(LoadSoundMem(fileName.c_str()));
 	DEBUG::SaveText("サウンドハンドル(原本)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 	return handle;
@@ -804,7 +807,7 @@ void ResourceManager::ReduceSoundHandle(int handle)
 {
 	std::vector<int> deleteHandle =  mpSoundHandleContainer->DeleteHandle(handle);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "サウンドハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -829,7 +832,7 @@ int ResourceManager::Get3DSoundHandle(std::string fileName)
 	}
 
 	int handle = mp3DSoundHandleContainer->RegisterHandle(LoadSoundMem(fileName.c_str()));
-#if _DEBUG
+#ifdef _DEBUG
 	DEBUG::SaveText("3Dサウンドハンドル(原本)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 #endif
 	return handle;
@@ -840,7 +843,7 @@ void ResourceManager::Reduce3DSoundHandle(int handle)
 {
 	std::vector<int> deleteHandle =  mp3DSoundHandleContainer->DeleteHandle(handle);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "3Dサウンドハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -920,7 +923,7 @@ void ResourceManager::SoundUpdate()
 				StopSoundMem(playSoundHandle.second[i]);
 				std::vector<int> deleteHandle = mpPlaySoundHandleContainer->DeleteHandle(playSoundHandle.second[i]);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "プレイサウンドハンドル削除 : " + std::to_string(playSoundHandle.second[i]) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -942,7 +945,7 @@ void ResourceManager::SoundUpdate()
 				StopSoundMem(play3DSoundHandle.second[i]);
 				std::vector<int> deleteHandle = mpPlay3DSoundHandleContainer->DeleteHandle(play3DSoundHandle.second[i]);
 	
-	#if _DEBUG
+	#ifdef _DEBUG
 	std::string text = "プレイ3Dサウンドハンドル削除 : " + std::to_string(play3DSoundHandle.second[i]) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -961,7 +964,7 @@ void ResourceManager::SoundUpdate()
 void ResourceManager::SetPlaySound(int handle, int volume)
 {
 	int soundHandle = mpPlaySoundHandleContainer->RegisterHandle(DuplicateSoundMem(handle), handle);
-#if _DEBUG
+#ifdef _DEBUG
 	DEBUG::SaveText((std::string)"サウンドハンドル取得 : " + (std::string)"なし" + (std::string)" : " + std::to_string(soundHandle) + '\n');
 #endif
 
@@ -976,7 +979,7 @@ void ResourceManager::SetPlay3DSound(int handle, VECTOR position, int volume)
 	SetCreate3DSoundFlag(TRUE);	
 
 	int soundHandle = mpPlay3DSoundHandleContainer->RegisterHandle(DuplicateSoundMem(handle), handle);
-#if _DEBUG
+#ifdef _DEBUG
 	DEBUG::SaveText((std::string)"3Dサウンドハンドル取得 : " + (std::string)"なし" + (std::string)" : " + std::to_string(soundHandle) + '\n');
 #endif
 
@@ -1004,7 +1007,7 @@ int ResourceManager::GetEffectResource(std::string fileName, float size)
 		return mpEffectHandleContainer->RegisterHandle(0/*何も指定しない*/);
 	}
 
-#if _DEBUG
+#ifdef _DEBUG
 	int handle = mpEffectHandleContainer->RegisterHandle(LoadEffekseerEffect(fileName.c_str(), size));
 	DEBUG::SaveText("エフェクトハンドル(原本)取得 : " + fileName + " : " + std::to_string(handle) + '\n');
 	return handle;
@@ -1047,7 +1050,7 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 				// 交換する
 				std::vector<int> deleteHandle = mpEffectHandleContainer->DeleteHandle(oldHandle, false);
 	
-#if _DEBUG
+#ifdef _DEBUG
 	std::string text = "オルドサウンドハンドル削除 : " + std::to_string(oldHandle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -1057,7 +1060,7 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 	DEBUG::SaveText(text);
 #endif
 
-#if _DEBUG
+#ifdef _DEBUG
 	handle = mpEffectHandleContainer->RegisterHandle(PlayEffekseer3DEffect(handle), effectHandle.first, false);
 	DEBUG::SaveText("エフェクトハンドル(交換)取得 : " + std::to_string(handle) + '\n');
 	return handle;
@@ -1066,7 +1069,7 @@ int ResourceManager::GetEffectHandle(int handle, int oldHandle)
 			}
 			else
 			{
-#if _DEBUG
+#ifdef _DEBUG
 	handle = mpEffectHandleContainer->RegisterHandle(PlayEffekseer3DEffect(handle), effectHandle.first, false);
 	DEBUG::SaveText("エフェクトハンドル取得 : " + std::to_string(handle) + '\n');
 	return handle;
@@ -1088,7 +1091,7 @@ void ResourceManager::DeletePlayEffectHandle(int handle)
 	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
 	std::vector<int> deleteHandle = mpEffectHandleContainer->DeleteHandle(handle, false);
 	
-#if _DEBUG
+#ifdef _DEBUG
 	std::string text = "プレイエフェクトハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{
@@ -1117,7 +1120,7 @@ void ResourceManager::ReduceEffectDataHandle(int handle)
 	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
 	std::vector<int> deleteHandle = mpEffectHandleContainer->DeleteHandle(handle);
 	
-#if _DEBUG
+#ifdef _DEBUG
 	std::string text = "エフェクトハンドル削除 : " + std::to_string(handle) + "(NOT_DELETE)";
 	for (int i = 0; i < deleteHandle.size(); i++)
 	{

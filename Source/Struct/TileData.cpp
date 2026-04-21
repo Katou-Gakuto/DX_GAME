@@ -106,7 +106,7 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 				checkPos.x = this->tilePos.x;
 				break;
 
-			case TILE_DIRECTION_TYPE::Y_DIRECTION:
+			case TILE_DIRECTION_TYPE::Z_DIRECTION:
 				checkPos.z = this->tilePos.z;
 				break;
 			}
@@ -117,6 +117,14 @@ TilePos TileData::TileProcess(CharacterBase* character, MapManager* mapManager)
 				{
 					if (*(this->adjacentData[i].tileFlag) & 0b1ull)
 					{
+
+						VECTOR norm = VGet((float)(this->adjacentData[i].x - pos.x), 0.0f, (float)(this->adjacentData[i].z - pos.z));
+
+						// 進行ベクトルと、壁の法線ベクトルの内情の逆を係数aとしておく
+						float a = -VDot(character->GetVec(), norm);
+
+						character->SetVec(VAdd(VAdd(character->GetVec(), VScale(norm, a)), VScale(norm, 0.001f)));
+
 						pos = this->adjacentData[i];
 						return pos;
 					}

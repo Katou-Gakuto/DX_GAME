@@ -9,6 +9,8 @@ enum class CAMERA_MODE
 	NONE = -1,// ない
 
 	FIXED = 0,	// 固定視点
+	MOVE,	// 移動視点
+
 	CHARACTER,	// キャラクター視点
 	PLAYER,	// プレイヤー視点
 };

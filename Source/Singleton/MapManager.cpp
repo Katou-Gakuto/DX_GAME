@@ -331,14 +331,19 @@ void MapManager::SetMapData(MapType mapType)
 
     case MapType::Ring:
         mstMapData = {
-            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
-            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) ,TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) ,TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(),     TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) ,TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
+            { TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) ,TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true), TileData(true) },
         };
         break;
 

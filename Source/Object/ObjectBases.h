@@ -30,7 +30,9 @@ class FSMCharacter;
 class FSMUI;
 
 class ObjectBase;
+#ifdef _DEBUG
 bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check = false);
+#endif
 
 /*--------------------------------------------------------*/
 /*               【オブジェクトベース関連】               */
@@ -56,6 +58,12 @@ enum class OBJECT_TYPE
 
 class ObjectBase
 {
+public:
+    enum class OBJECT_BIT_FLAG_NUBER
+    {
+        OBJECT_BIT_MAX = 0
+    };
+
 private:
     // 前オブジェクトへのポインタ
     ObjectBase* mpPrevObject;
@@ -90,7 +98,7 @@ protected:
     SCENE meObjectScene;
 
     // フラグ
-    BIT_FLAG<unsigned long long> mllFlags;
+    BIT_FLAG<unsigned long long> mullFlags;
 
 public:
 
@@ -203,6 +211,8 @@ public:
     /*オブジェクトのシーン設定*/
     inline void SetObjectScene(SCENE objectScene) { meObjectScene = objectScene; }
 
+    inline BIT_FLAG<unsigned long long> GetObjectBitFlag() const { return mullFlags; }
+
     /*--------------------------*/
     /*【継承処理キャスト省略用】*/
     /*--------------------------*/
@@ -290,6 +300,12 @@ enum class CHECK_ACTION_FLAG
 ;// TODO: 消す
 class CharacterBase : public ObjectBase
 {
+public:
+    enum class CHARACTER_OBJECT_BIT_FLAG_NUBER
+    {
+        INVINCIBLE = ObjectBase::OBJECT_BIT_FLAG_NUBER::OBJECT_BIT_MAX,
+        CHARACTER_OBJECT_BIT_MAX
+    };
 
 protected:
     // 前のポジション
@@ -368,7 +384,6 @@ public:
 
     /*ダメージ*/
     virtual void Damage(int damage);
-
 
 protected:
     /*キャラクター初期化*/
@@ -497,6 +512,9 @@ public:
 
     /// <summary>行動フラグ設定</summary>
     inline void SetMoveActionFlag(ACTION_FLAG flagBit) { munActionflags.SetXorBit(flagBit); }
+
+    /// <summary>オブジェクトビットフラグ設定</summary>
+    inline void SetObjectBitFlag(bool flag, CHARACTER_OBJECT_BIT_FLAG_NUBER bitNumber) { mullFlags.SetFlag(flag, bitNumber); }
 };
 
 /*--------------------------------------------------------*/
@@ -506,9 +524,14 @@ public:
 /*------------------------------------------*/
 /*          【ビルディングベース】          */
 /*------------------------------------------*/
-// TODO: いろいろ調整
 class BuildingBase : public ObjectBase
 {
+public:
+    enum class BUILDING_OBJECT_BIT_FLAG_NUBER
+    {
+        BUILDING_OBJECT_BIT_MAX = ObjectBase::OBJECT_BIT_FLAG_NUBER::OBJECT_BIT_MAX
+    };
+
 protected:
     // ポジション
     VECTOR mvPosition;
@@ -566,6 +589,12 @@ protected:
 
 class AttackBase : public ObjectBase
 {
+public:
+    enum class ATTACK_OBJECT_BIT_FLAG_NUBER
+    {
+        ATTACK_OBJECT_BIT_MAX = ObjectBase::OBJECT_BIT_FLAG_NUBER::OBJECT_BIT_MAX
+    };
+
 protected:
     // ポジション
     VECTOR mvPosition;
@@ -759,6 +788,12 @@ struct UIDrawModel// TODO: 一旦UIを表示させた後にこれに置き換える
 // TODO: Downでの変更間隔をフレーム1つにするのと長押しの間隔を調整する
 class UIBase : public ObjectBase
 {
+public:
+    enum class UI_OBJECT_BIT_FLAG_NUBER
+    {
+        UI_OBJECT_BIT_MAX = ObjectBase::OBJECT_BIT_FLAG_NUBER::OBJECT_BIT_MAX
+    };
+
 private:
     // 自分のUIナンバー
     int mnUINumber;
@@ -926,7 +961,9 @@ public:
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
-    inline AnimationBase* GetAnimation(int index) { return  mstUIDrawModels[index].mpAnimation; }
+    inline AnimationBase* GetAnimation(int index) {
+        return  mstUIDrawModels[index].mpAnimation;
+    }
 
     /// <summary>UI座標情報設定</summary>
     inline std::vector<std::map<int, VECTOR>> GetUIPositionData(int state) { return mmUIPositionData[state]; }

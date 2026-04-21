@@ -3237,42 +3237,6 @@ int
 この状態に入った時の処理
    </explanations>
    </member>
-   <member className="StartGameUIState">
-   <functionName>Cloce</functionName>
-   <explanations>
-終了
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Draw</functionName>
-   <explanations>
-描画
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Decision</functionName>
-   <explanations>
-決定
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>Update</functionName>
-   <explanations>
-更新
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>OnExit</functionName>
-   <explanations>
-この状態を出る時の処理
-   </explanations>
-   </member>
-   <member className="StartGameUIState">
-   <functionName>OnEnter</functionName>
-   <explanations>
-この状態に入った時の処理
-   </explanations>
-   </member>
    <member className="ImguiManager">
    <functionName>AddDrawImgui</functionName>
    <explanations>
@@ -3997,6 +3961,12 @@ UI座標情報設定
    </explanations>
    </member>
    <member className="CharacterBase">
+   <functionName>SetObjectBitFlag</functionName>
+   <explanations>
+オブジェクトビットフラグ設定
+   </explanations>
+   </member>
+   <member className="CharacterBase">
    <functionName>SetMoveActionFlag</functionName>
    <explanations>
 行動フラグ設定
@@ -4654,12 +4624,6 @@ float同士がの誤差範囲内なら「true」を返す
    <functionName>Finalize</functionName>
    <explanations>
 終了
-   </explanations>
-   </member>
-   <member className="FSMAnimation">
-   <functionName>NewStateSetting</functionName>
-   <explanations>
-説明
    </explanations>
    </member>
    <member className="FSMAnimation">

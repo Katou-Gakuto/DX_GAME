@@ -16,12 +16,13 @@
 #include "MapManager.h"
 #include "ModelsControllerBase.h"
 #include "ObjectBases.h"
-#include "UI_Result.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "StateScene.h"
 #include "TargetManager.h"
 #include "UI_Game.h"
+#include "UI_Result.h"
+#include "UI_StageStart.h"
 #include "UI_Title.h"
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
@@ -761,6 +762,9 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 		UI_Game* gameUI = new UI_Game();
 		gameUI->Initilize();
 		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
+		
+		UI_StageStart* StageStartUI = new UI_StageStart();
+		StageStartUI->Initilize();
 	}
 }
 

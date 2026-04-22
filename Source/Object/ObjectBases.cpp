@@ -716,6 +716,11 @@ void UIBase::Finalize()
 // 更新
 void UIBase::Update()
 {
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
+	{
+		return;
+	}
+
 	mnPreSelectNumber = mnSelectNumber;
 	if (mnUINumber == Master::mpGameManager->GetNowUINumber()) {
 		UIUpdate();
@@ -729,6 +734,11 @@ void UIBase::Update()
 // 最終更新
 void UIBase::LastUpdate()
 {
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
+	{
+		return;
+	}
+
 	if (mnUINumber == Master::mpGameManager->GetNowUINumber()) {
 		UILastUpdate();
 	}

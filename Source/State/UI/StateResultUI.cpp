@@ -240,7 +240,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
                 mstDrawDatas.push_back(drawData);
             }
             mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
-            Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
+            //Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
     
@@ -514,13 +514,16 @@ void StartResultUIState::DrawNumber()
         {
             continue;
         }
-        DrawNumberAddDraw(mstNumberDrawData[i], mnDrawNumbers[i]);
+        NumberDataDraw(mstNumberDrawData[i], mnDrawNumbers[i]);
     }
 }
 
-// “ñŒ…ˆÈã‚Ì”Žš‚ð“n‚µ‚½‚ç¶‚É’Ç‰Á•`‰æ‚·‚é
-void StartResultUIState::DrawNumberAddDraw(DRAW_DATA numberDrawData, int number)
+// ”Žšî•ñ‚ð•`‰æ‚·‚é
+void StartResultUIState::NumberDataDraw(DRAW_DATA numberDrawData, int number)
 {
+    // ˆêŒ…–Ú•`‰æ
+    Master::mpResourceManager->DrawData_Graph(numberDrawData.drawGraphData);
+
     // 2Œ…ˆÈã‚È‚ç
     while (number >= 10)
     {

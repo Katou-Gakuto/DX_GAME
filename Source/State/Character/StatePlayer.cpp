@@ -11,6 +11,7 @@
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectBases.h"
+#include "ObjectManager.h"
 #include "SceneManager.h"
 #include "StatePlayer.h"
 #include "StopManager.h"
@@ -412,6 +413,21 @@ void IdlePlayerState::Update(CharacterBase* character)
 	{
 		SetTargetCamera(character);
 	}
+
+#if _DEBUG || true
+	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_PUSH))
+	{
+		CharacterBase* characterWorkObject = dynamic_cast<CharacterBase*>(Master::mpGameManager->GetObjectManager()->GetTypeObject(OBJECT_TYPE::CHARACTER_BASE));
+		do
+		{
+			if (!characterWorkObject->IsDeleteFlag() && characterWorkObject->IsActiveFlag() && (character != characterWorkObject))
+			{
+				characterWorkObject->Damage(10000);
+			}
+			characterWorkObject = dynamic_cast<CharacterBase*>(characterWorkObject->GetNextObject(false));
+		} while (characterWorkObject != nullptr);
+	}
+#endif
 }
 
 // 最終更新
@@ -843,17 +859,17 @@ void FallDownPlayerState::Death(CharacterBase* character)
 	//PlayerDeath(character);
 }
 
-/*--------------------------*/
-/*【小攻撃プレイヤーステート】*/
-/*--------------------------*/
-SmallAttackPlayerState::SmallAttackPlayerState()
+/*--------------------------------*/
+/*【ジャンプ攻撃プレイヤーステート】*/
+/*--------------------------------*/
+JumpAttackPlayerState::JumpAttackPlayerState()
 : PlayerProcess()
 {
-	mStateNumber = (int)PLAYER_STATE::SMALL_ATTACK_PLAYER_STATE;
+	mStateNumber = (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
-void SmallAttackPlayerState::OnEnter(CharacterBase* character)
+void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	// character->StartAttck(ATTACK_METHOD_TYPE::SMALL);
@@ -861,13 +877,13 @@ void SmallAttackPlayerState::OnEnter(CharacterBase* character)
 }
 
 // この状態を出る時の処理
-void SmallAttackPlayerState::OnExit(CharacterBase* character)
+void JumpAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
 // ステート変更確認
-int SmallAttackPlayerState::StateCheck(CharacterBase* character)
+int JumpAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
@@ -883,24 +899,24 @@ int SmallAttackPlayerState::StateCheck(CharacterBase* character)
 }
 
 // 更新
-void SmallAttackPlayerState::Update(CharacterBase* character)
+void JumpAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
 // 最終更新
-void SmallAttackPlayerState::LastUpdate(CharacterBase* character)
+void JumpAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
 // 描画
-void SmallAttackPlayerState::Draw(CharacterBase* character)
+void JumpAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
 // 死亡
-void SmallAttackPlayerState::Death(CharacterBase* character)
+void JumpAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }

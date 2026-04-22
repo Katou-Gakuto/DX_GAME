@@ -27,19 +27,7 @@ enum class PLAYER_STATE
 	AVOID_PLAYER_STATE,	// 避ける
 	GUARD_PLAYER_STATE,	// ガード
 	FALL_DOWN_PLAYER_STATE,	// 倒れる
-	SMALL_ATTACK_PLAYER_STATE,	// 小攻撃
-
-/*
-怯み
-避け
-ガード(時間経過で解ける)
-倒れるモーション
-小攻撃
-
-追加予定ステート
-ジャンプ
-横歩き
-*/
+	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
 };
 
 /*------------------------*/
@@ -376,14 +364,14 @@ public:
 	void Death(CharacterBase* character) override;
 };
 
-/*----------------------------*/
-/*【小攻撃プレイヤーステート】*/
-/*----------------------------*/
-class SmallAttackPlayerState : public IStateCharacter, public PlayerProcess
+/*----------------------------------*/
+/*【ジャンプ攻撃プレイヤーステート】*/
+/*----------------------------------*/
+class JumpAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	SmallAttackPlayerState();
-	~SmallAttackPlayerState() = default;
+	JumpAttackPlayerState();
+	~JumpAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character) override;

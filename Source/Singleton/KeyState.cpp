@@ -171,6 +171,9 @@ void KeyState::SetKey()
 			SetNowKey_Controller((getKey['Y'] & 0x80) != 0, CONTROLLER_KEY_TYPE::Y);
 
 			SetNowKey_Controller((getKey[VK_BACK] & 0x80) != 0, CONTROLLER_KEY_TYPE::B);	// バックスペース
+
+
+			SetNowKey_Controller((getKey['P'] & 0x80) != 0, CONTROLLER_KEY_TYPE::LEFT_STICK_PUSH);	// バックスペース
 		}
 
 		// キーボードの状態を取得

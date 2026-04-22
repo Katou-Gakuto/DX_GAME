@@ -7,6 +7,7 @@ enum class STOP_FLAG_TYPE
 {
     NODE = 0,
     GAME_OBJECT,
+    UI_OBJECT,
     UI_MODEL,
     BACK_GROUND,
 };

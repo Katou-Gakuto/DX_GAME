@@ -116,13 +116,15 @@ void UI_StageStart::UIUpdate()
 	// 初期化でやると切り替え時に一瞬白飛びする
 	if (mnCameraID == -1)
 	{
-		CameraData cmeraData = CameraData();
-		cmeraData.cameraMode = CAMERA_MODE::MOVE;
-		// INPROGRESS: カメラ設定(ステートも)
-		cmeraData.cameraMode = CAMERA_MODE::FIXED;
+		CameraData cameraData = CameraData();
+		cameraData.cameraMode = CAMERA_MODE::MOVE;
+        cameraData.position = VGet(0.0f, 200.0f, 0.0f);
+        cameraData.moveDistance = VGet(10.0f, 0.0f, 10.0f);
+        cameraData.plusPosition = VGet(-50.0f, -10.0f, -100.0f);
+        cameraData.targetPosition = VGet(1000.0f, 200.0f, 1000.0f);
 
 
-		mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cmeraData);
+		mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);
 		Master::mpGameManager->GetCameraManager()->SetCameraMode(mnCameraID);
 	}
 

@@ -76,6 +76,26 @@ protected:
 /*------------------------------*/
 class IStateCharacter : public StateBase<int>
 {
+protected:
+	// 共通キャラクターステート
+	enum COMMON_CHARACTER_STATE
+	{
+		IDEL_COMMON_CHARACTER_STATE = 0,	// 通常
+		MOVE_COMMON_CHARACTER_STATE,	// 移動
+		FLINCH_COMMON_CHARACTER_STATE,	// 怯み
+		AVOID_COMMON_CHARACTER_STATE,	// 回避
+		GUARD_COMMON_CHARACTER_STATE,	// ガード
+		FALL_DOWN_COMMON_CHARACTER_STATE,	// 倒れる
+
+		ATTACK_COMMON_CHARACTER_STATE,	// 攻撃
+		NORMAL_ATTACK_COMMON_CHARACTER_STATE,	// 通常攻撃
+		SPCEIAL_ONE_ATTACK_COMMON_CHARACTER_STATE,	// 特殊攻撃 1
+		SPCEIAL_TWO_ATTACK_COMMON_CHARACTER_STATE,	// 特殊攻撃 1
+
+		COMMON_CHARACTER_STATE_MAX	// 共通キャラクターステート最大数
+	};
+	// INPROGRESS: ステート条件金曜過ぎたら変更
+
 public:
 	IStateCharacter() = default;
 	virtual ~IStateCharacter() = default;

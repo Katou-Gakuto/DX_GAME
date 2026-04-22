@@ -639,6 +639,7 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 	FSMCamera* fsnCamera = new FSMCamera();
 
 	fsnCamera->RegisterState(new StateFixedCamera());
+	fsnCamera->RegisterState(new StateMoveCamera());
 	fsnCamera->RegisterState(new StateCharacterCamera());
 	fsnCamera->RegisterState(new StatePlayerCamera());
 

@@ -5042,6 +5042,12 @@ UIナンバー取得
    </explanations>
    </member>
    <member className="DrawManager">
+   <functionName>DeleteDrawData_ID</functionName>
+   <explanations>
+描画情報ID指定削除
+   </explanations>
+   </member>
+   <member className="DrawManager">
    <functionName>AddDrawData</functionName>
    <explanations>
 描画情報追加※vcectorで再確保すると変数の保存場所がずれるためバグるため「push_back」が終わった後にやる

@@ -38,6 +38,7 @@
     <ClCompile Include="Source\Model\ModelMV1.cpp" />
     <ClCompile Include="Source\Model\ModelPolygonIndexed.cpp" />
     <ClCompile Include="Source\Model\ModelsController\ModelsControllerBase.cpp" />
+    <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_RobotSpceial.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_Shot.cpp" />
     <ClCompile Include="Source\Object\Building\Building_Wall.cpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="Source\Singleton\TelopManager.cpp" />
     <ClCompile Include="Source\Singleton\TimeManager.cpp" />
     <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp" />
+    <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp" />
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
@@ -128,6 +130,7 @@
     <ClInclude Include="Source\Model\ModelMV1.h" />
     <ClInclude Include="Source\Model\ModelPolygonIndexed.h" />
     <ClInclude Include="Source\Model\ModelsController\ModelsControllerBase.h" />
+    <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h" />
     <ClInclude Include="Source\Object\Attack\Attack_RobotSpceial.h" />
     <ClInclude Include="Source\Object\Attack\Attack_Shot.h" />
     <ClInclude Include="Source\Object\Building\Building_Wall.h" />
@@ -161,6 +164,7 @@
     <ClInclude Include="Source\Singleton\TelopManager.h" />
     <ClInclude Include="Source\Singleton\TimeManager.h" />
     <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h" />
+    <ClInclude Include="Source\State\Character\StateCharacter_Robot.h" />
     <ClInclude Include="Source\State\Character\StateEnemy.h" />
     <ClInclude Include="Source\State\Character\StateMapEnemy.h" />
     <ClInclude Include="Source\State\Character\StatePlayer.h" />
@@ -225,6 +229,7 @@
     <Text Include="..\Schedule\Text\参考_AI回答\ゲーム性.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\ゲーム説明.txt" />
     <Text Include="..\Schedule\Text\参考_AI回答\ポートフォリオ.txt" />
+    <Text Include="..\Schedule\Text\山本氏相談結果.txt" />
     <Text Include="..\Schedule\Text\工夫した.txt" />
     <Text Include="..\Schedule\Text\必要素材.txt" />
     <Text Include="..\Schedule\Text\思考まとめ.txt" />

@@ -76,6 +76,6 @@ private:
 	/*”š•`‰æ*/
 	void DrawNumber();
 
-	/*“ñŒ…ˆÈã‚Ì”š‚ğ“n‚µ‚½‚ç¶‚É’Ç‰Á•`‰æ‚·‚é*/
-	void DrawNumberAddDraw(DRAW_DATA numberDrawData, int number);
+	/*”šî•ñ‚ğ•`‰æ‚·‚é*/
+	void NumberDataDraw(DRAW_DATA numberDrawData, int number);
 };

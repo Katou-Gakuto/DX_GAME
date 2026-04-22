@@ -108,13 +108,39 @@ int DrawManager::AddDrawData(DRAW_DATA *drawData, int orderNumber)
     }
 
     // •`‰æî•ñ’Ç‰Áˆ—
-
-
     drawData->drawID = mnDrawDataID;
     mnDrawDataID += 1;
     mstDrawData[orderNumber].push_back(drawData);
 
     return mnDrawDataID - 1;
+}
+
+// •`‰æî•ñIDw’èíœ
+void DrawManager::DeleteDrawData_ID(int id)
+{
+    // •`‰æî•ñíœ
+    for (auto& oneOrderData : mstDrawData)
+    {
+        for (auto it = oneOrderData.begin(); it != oneOrderData.end(); )
+        {
+            if ((*it)->drawID == id)
+            {
+                switch ((*it)->drawManagerDrawType)
+                {
+                case DRAW_MANAGER_DRAW_TYPE::GRAPH:
+                    Master::mpResourceManager->ReduceGraphHandle((*it)->drawGraphData.handle);
+                    break;
+                }
+
+                it = oneOrderData.erase(it);
+                return;
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
 }
 
 // ‘S•`‰æî•ñíœ

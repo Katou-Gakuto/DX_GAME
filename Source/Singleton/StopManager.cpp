@@ -44,6 +44,10 @@ bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
         stopflag |= mpTimeManager->GetStopFlag();
         stopflag |= mpFadeManager->GetFadeFlag();
         break;
+
+    case STOP_FLAG_TYPE::UI_OBJECT:
+        stopflag |= mpFadeManager->GetFadeFlag();
+        break;
     
     case STOP_FLAG_TYPE::UI_MODEL:
         stopflag |= mpResourceManager->GetShadowMapDrawFlag();

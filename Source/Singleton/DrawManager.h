@@ -46,6 +46,9 @@ public:
     /// <returns>•`‰æî•ñID</returns>
     int AddDrawData(DRAW_DATA *drawData, int orderNumber = DRAW_ORDER_CENTER);
 
+    /// <summary>•`‰æî•ñIDw’èíœ</summary>
+    void DeleteDrawData_ID(int id);
+
     /// <summary>‘S•`‰æî•ñíœ</summary>
     void DeleteDrawData();
 

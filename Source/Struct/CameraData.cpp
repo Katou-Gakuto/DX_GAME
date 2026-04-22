@@ -13,6 +13,9 @@ CameraData::CameraData()
 	plusPosition = UtilCalc::VZero;
 	angle = UtilCalc::VZero;
 
+	moveDistance = UtilCalc::VZero;
+	prePosition = UtilCalc::VZero;
+
 	twoDPosition = UtilCalc::VZero;
 
 	cameraMode = CAMERA_MODE::NONE;
@@ -26,6 +29,8 @@ CameraData::CameraData()
 
 	cameraDistance = 250.0f;
 
+	processFlag = true;
+
 	cameraID = -1;
 }
 
@@ -38,6 +43,10 @@ VECTOR CameraData::GetDirection()
 	{
 	case CAMERA_MODE::FIXED:
 		direction = VSub(targetPosition, position);
+		break;
+
+	case CAMERA_MODE::MOVE:
+		direction = VSub(plusPosition, position);
 		break;
 
 	case CAMERA_MODE::CHARACTER:

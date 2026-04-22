@@ -374,6 +374,12 @@
     <ClCompile Include="Source\Object\UI\UI_StageStart.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp">
+      <Filter>ソース ファイル\Object\Attack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -676,6 +682,12 @@
     <ClInclude Include="Source\Object\UI\UI_StageStart.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\State\Character\StateCharacter_Robot.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h">
+      <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Schedule\Text\Memo.txt">
@@ -764,6 +776,9 @@
     </Text>
     <Text Include="..\Schedule\Text\参考_AI回答\State\壁に当たったら角へ（レイキャスト＋コーナー）書いて.txt">
       <Filter>リソース ファイル\参考_AI回答\State</Filter>
+    </Text>
+    <Text Include="..\Schedule\Text\山本氏相談結果.txt">
+      <Filter>リソース ファイル</Filter>
     </Text>
   </ItemGroup>
 </Project>

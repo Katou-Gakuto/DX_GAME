@@ -47,6 +47,62 @@ void StateFixedCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 }
 
 
+/*--------------------*/
+/*【移動視点ステート】*/
+/*--------------------*/
+StateMoveCamera::StateMoveCamera()
+{
+	mStateNumber = CAMERA_MODE::MOVE;
+}
+
+// この状態に入った時の処理
+void StateMoveCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
+{
+	CommonSetCamera(cameraData, preThreeDFlag);
+
+	cameraData.prePosition = VSub(cameraData.position, cameraData.moveDistance);
+}
+
+// この状態を出る時の処理
+void StateMoveCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
+{
+}
+
+// 初期化
+void StateMoveCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
+{
+}
+
+// 更新
+void StateMoveCamera::Update(CameraManager* cameraManager, CameraData cameraData)
+{
+	if (!cameraData.processFlag)
+	{
+		return;
+	}
+
+	if (UtilCalc::VDiff(cameraData.prePosition, cameraData.targetPosition) >= UtilCalc::VDiff(cameraData.position, cameraData.targetPosition))
+	{
+		cameraData.prePosition = cameraData.position;
+		cameraData.position = VAdd(cameraData.position, cameraData.moveDistance);
+		
+		if (UtilCalc::VDiff(cameraData.prePosition, cameraData.targetPosition) < UtilCalc::VDiff(cameraData.position, cameraData.targetPosition))
+		{
+			cameraData.processFlag = false;
+			cameraData.position = VSub(cameraData.position, cameraData.moveDistance);
+		}
+	}
+
+	cameraManager->SetCameraData(cameraData);
+}
+
+// 描画
+void StateMoveCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
+{
+	// カメラ位置を反映する
+	SetCameraPositionAndTarget_UpVecY(cameraData.position, VAdd(cameraData.position, cameraData.plusPosition));
+}
+
 /*----------------------------*/
 /*【キャラクター視点ステート】*/
 /*----------------------------*/
@@ -115,6 +171,11 @@ void StatePlayerCamera::Initilize(CameraManager* cameraManager, CameraData camer
 // 更新
 void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraData)
 {
+	if (!cameraData.processFlag)
+	{
+		return;
+	}
+
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
 	{
 		// カメラの設置だけやる

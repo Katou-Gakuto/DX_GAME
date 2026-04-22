@@ -87,6 +87,9 @@ protected:
 	/*特殊攻撃キーを押していれば「true」*/
 	bool GetPlayerSpceialAttackFlag();
 
+	/*ジャンプ攻撃キーを押していれば「true」*/
+	bool GetPlayerJumpAttackFlag();
+
 	/*ターゲット変更キーを押していれば「true」*/
 	bool GetTargetChangeFlag();
 

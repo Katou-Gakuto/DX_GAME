@@ -47,6 +47,11 @@ void AttackManager::CreateAttack(ATTACK_TYPE attackType)
 		mstAllAttack.push_back(new Attack_RobotSpceial());
 		mmAttacks[attackType].push_back(mstAllAttack.back());
 		break;
+
+	case ATTACK_TYPE::JUMP_ATTACK:
+		mstAllAttack.push_back(new Attack_RobotJump());
+		mmAttacks[attackType].push_back(mstAllAttack.back());
+		break;
 	}
 }
 

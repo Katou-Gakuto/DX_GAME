@@ -464,6 +464,69 @@ ANIMATION_TYPE StateSpceialAttackOutAnimationController::CheckState(AnimationBas
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+
+/*----------------------------------------------------------------ジャンプ攻撃------------------------------------------------------------------*/
+/*----------*/
+/*【ジャンプ攻撃開始アニメションコントローラーステート】
+/*----------*/
+StateJumpAttackInAnimationController::StateJumpAttackInAnimationController()
+: StateAttackInAnimationController()
+{
+    mStateNumber = ANIMATION_TYPE::JUMP_ATTACK_IN;
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateJumpAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return ANIMATION_TYPE::JUMP_ATTACK;
+    }
+    
+    return mStateNumber;
+}
+/*----------*/
+/*【ジャンプ攻撃アニメションコントローラーステート】
+/*----------*/
+StateJumpAttackAnimationController::StateJumpAttackAnimationController()
+: StateAttackAnimationController()
+{
+    mStateNumber = ANIMATION_TYPE::JUMP_ATTACK;
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateJumpAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return ANIMATION_TYPE::JUMP_ATTACK_OUT;
+    }
+    
+    return mStateNumber;
+}
+
+/*----------*/
+/*【ジャンプ攻撃終了アニメションコントローラーステート】
+/*----------*/
+StateJumpAttackOutAnimationController::StateJumpAttackOutAnimationController()
+: StateAttackOutAnimationController()
+{
+    mStateNumber = ANIMATION_TYPE::JUMP_ATTACK_OUT;
+}
+
+// ステート変更確認
+ANIMATION_TYPE StateJumpAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_TYPE nextState)
+{
+    if (ChackEndTime())
+    {
+        return nextState;
+    }
+    
+    return mStateNumber;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
+
 /*----------*/
 /*【攻撃専用待機アニメーションステート】
 /*----------*/

@@ -90,7 +90,7 @@ void CharacterBase::Initilize()
 
 	// UŒ‚‰Šú‰»
 	for (auto attackData : mmCharacterAttackDatas)
-	{
+	{// INPROGRESS: ì‹Æ’†
 		attackData.second.animation->Initilize();
 
 		attackData.second.modelController->Initilize();

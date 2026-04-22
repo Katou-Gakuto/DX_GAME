@@ -69,8 +69,11 @@ void MapManager::Initilize()
     MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 170.0f));
     mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
     MV1SetMaterialDrawBlendMode(mnMapBackHandle, 0, DX_BLENDMODE_ALPHA);
+    MV1SetMaterialDrawBlendMode(mnMapBackHandle, 1, DX_BLENDMODE_ALPHA);
     MV1SetMaterialDrawBlendParam(mnMapBackHandle, 0, 200);
+    MV1SetMaterialDrawBlendParam(mnMapBackHandle, 1, 200);
     MV1SetTextureGraphHandle(mnMapBackHandle, 0, mnMapBackResourceHandle, FALSE);
+    MV1SetTextureGraphHandle(mnMapBackHandle, 1, mnMapBackResourceHandle, FALSE);
 
     Master::mpImguiManager->SetFloatImgui(IMGUI_FLOAT_DATA::GetImguiData(
         { &testSize },

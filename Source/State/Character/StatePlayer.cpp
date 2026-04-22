@@ -115,6 +115,12 @@ bool PlayerProcess::GetPlayerSpceialAttackFlag()
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::R);
 }
 
+// ジャンプ攻撃キーを押していれば「true」
+bool PlayerProcess::GetPlayerJumpAttackFlag()
+{
+	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::RT);
+}
+
 // ターゲット変更キーを押していれば「true」
 bool PlayerProcess::GetTargetChangeFlag()
 {
@@ -872,8 +878,8 @@ JumpAttackPlayerState::JumpAttackPlayerState()
 void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
-	// character->StartAttck(ATTACK_METHOD_TYPE::SMALL);
-	// character->SetAnimation(ANIMATION_TYPE::SMALL_ATTACK_IN);
+	character->StartAttck(ATTACK_METHOD_TYPE::JUMP);
+	character->SetAnimation(ANIMATION_TYPE::JUMP_ATTACK_IN);
 }
 
 // この状態を出る時の処理
@@ -901,6 +907,7 @@ int JumpAttackPlayerState::StateCheck(CharacterBase* character)
 // 更新
 void JumpAttackPlayerState::Update(CharacterBase* character)
 {
+	SetPlayerMove(character);
 }
 
 // 最終更新
@@ -947,6 +954,11 @@ int IdleBattlePlayerState::StateCheck(CharacterBase* character)
 		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
+	if (GetPlayerJumpAttackFlag())
+	{
+		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
+	}
+
 	if (GetPlayerMoveFlag())
 	{
 		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
@@ -975,6 +987,11 @@ int MoveBattlePlayerState::StateCheck(CharacterBase* character)
 	if (GetPlayerSpceialAttackFlag())
 	{
 		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+	}
+
+	if (GetPlayerJumpAttackFlag())
+	{
+		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
 	}
 
 	if (!GetPlayerMoveFlag())

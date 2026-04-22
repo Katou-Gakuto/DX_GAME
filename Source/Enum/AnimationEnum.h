@@ -28,6 +28,10 @@ enum class ANIMATION_TYPE
     SPCEIAL_ATTACK,      // スペシャル攻撃
     SPCEIAL_ATTACK_OUT,  // スペシャル攻撃終了
 
+    JUMP_ATTACK_IN,   // ジャンプ攻撃開始
+    JUMP_ATTACK,      // ジャンプ攻撃
+    JUMP_ATTACK_OUT,  // ジャンプ攻撃終了
+
     DISPLAY_MOVE,   // 画面移動
 
     FADE_OUT,   // フェードアウト

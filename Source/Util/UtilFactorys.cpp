@@ -103,6 +103,9 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 			fsm->RegisterState(new StateSpceialAttackAnimationController());
 			fsm->RegisterState(new StateSpceialAttackOutAnimationController());
 
+			fsm->RegisterState(new StateJumpAttackInAnimationController());
+			fsm->RegisterState(new StateJumpAttackOutAnimationController());
+
 			fsm->RegisterState(new StateNormalAttackInAnimationController());
 			fsm->RegisterState(new StateNormalAttackOutAnimationController());
 			break;
@@ -113,6 +116,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		switch (ladoAnimationDataFactorynumber)
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
+		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
 			fsm->RegisterState(new StateAttackIdleAnimationController());
 
@@ -364,7 +368,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		break;
 
 	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 9; i++)
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
@@ -401,6 +405,14 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[6].animationLoopFlag = false;
 		loadAnimationData[6].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
+		loadAnimationData[7].animationType = ANIMATION_TYPE::JUMP_ATTACK_IN;
+		loadAnimationData[7].animationLoopFlag = false;
+		loadAnimationData[7].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@閉じる.mv1";
+
+		loadAnimationData[8].animationType = ANIMATION_TYPE::JUMP_ATTACK_OUT;
+		loadAnimationData[8].animationLoopFlag = false;
+		loadAnimationData[8].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@開く.mv1";
+
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
@@ -414,6 +426,9 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_OUT, 1632);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);// INPROGRESS: 作業中
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -442,6 +457,39 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
+			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
+		}
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK:
+		for (int i = 0; i < 4; i++)
+		{
+			LoadAnimationData loadAnimaData;
+			loadAnimaData.animationIndex = i;
+			loadAnimaData.animationLoopFlag = false;
+			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.animationPath = "";
+			loadAnimationData.push_back(loadAnimaData);
+		}
+		// HACK: データマネージャーから取得できるようにする
+		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		
+		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[1].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
+		
+		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
+		
+		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		
+		if (animation != nullptr)
+		{
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
@@ -604,6 +652,15 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 			break;
 		}
 		break;
+	
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK:
+		switch (factoryNumberModelType)
+		{
+		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+			modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
+			break;
+		}
+		break;
 	}
 
 	// アニメーション設定
@@ -625,6 +682,18 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL));
 			// アニメーション有限状態マシン設定
 			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL, setcharacterLoadAnimationData));
+			break;
+		}
+		break;
+	
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK:
+		switch (factoryNumberModelType)
+		{
+		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		 	// 読み込み用アニメーションデータ設定
+			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK));
+			// アニメーション有限状態マシン設定
+			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK, setcharacterLoadAnimationData));
 			break;
 		}
 		break;
@@ -676,6 +745,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		fsmCharacter->RegisterState(new MoveBattlePlayerState());
 		fsmCharacter->RegisterState(new NormalAttackPlayerState());
 		fsmCharacter->RegisterState(new SpceialAttackPlayerState());
+		fsmCharacter->RegisterState(new JumpAttackPlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
 
@@ -873,6 +943,7 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 	case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
 		attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackCharacter = nullptr;
 		attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackCharacter = nullptr;
+		attackDatas[ATTACK_METHOD_TYPE::JUMP].attackCharacter = nullptr;
 
 		switch (objectAttackTypeFactoryNumber)
 		{
@@ -884,6 +955,11 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackMethdType = ATTACK_METHOD_TYPE::SPCEIAL;
 			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackTime = 5696;
 			attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackType = ATTACK_TYPE::UNIQUE_ROBOT;
+			
+
+			attackDatas[ATTACK_METHOD_TYPE::JUMP].attackMethdType = ATTACK_METHOD_TYPE::JUMP;
+			attackDatas[ATTACK_METHOD_TYPE::JUMP].attackTime = 5696;
+			attackDatas[ATTACK_METHOD_TYPE::JUMP].attackType = ATTACK_TYPE::JUMP_ATTACK;
 			break;
 		}
 		break;

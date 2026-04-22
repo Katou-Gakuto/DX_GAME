@@ -273,6 +273,46 @@ public:
 };
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+/*----------------------------------------------------------------ジャンプ攻撃------------------------------------------------------------------*/
+/*----------*/
+/*【ジャンプ攻撃開始アニメションコントローラーステート】
+/*----------*/
+class StateJumpAttackInAnimationController : public StateAttackInAnimationController
+{
+public:
+	StateJumpAttackInAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------*/
+/*【ジャンプ攻撃アニメションコントローラーステート】
+/*----------*/
+class StateJumpAttackAnimationController : public StateAttackAnimationController
+{
+public:
+	StateJumpAttackAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+
+/*----------*/
+/*【ジャンプ攻撃終了アニメションコントローラーステート】
+/*----------*/
+class StateJumpAttackOutAnimationController : public StateAttackOutAnimationController
+{
+public:
+	StateJumpAttackOutAnimationController();
+
+	/// <summary>ステート変更確認</summary>
+	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+};
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 /*----------*/
 /*【攻撃専用待機アニメーションステート】
 /*----------*/

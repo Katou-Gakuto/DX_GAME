@@ -163,6 +163,7 @@ void KeyState::SetKey()
 
 			SetNowKey_Controller((getKey['L'] & 0x80) != 0, CONTROLLER_KEY_TYPE::L);
 			SetNowKey_Controller((getKey['R'] & 0x80) != 0, CONTROLLER_KEY_TYPE::R);
+			SetNowKey_Controller((getKey['T'] & 0x80) != 0, CONTROLLER_KEY_TYPE::RT);
 
 			SetNowKey_Controller((getKey[VK_RETURN] & 0x80) != 0, CONTROLLER_KEY_TYPE::A);// エンターキー
 

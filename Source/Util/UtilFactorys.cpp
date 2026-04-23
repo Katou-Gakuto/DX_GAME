@@ -104,9 +104,12 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 			fsm->RegisterState(new StateSpceialAttackOutAnimationController());
 
 			fsm->RegisterState(new StateJumpAttackInAnimationController());
+			fsm->RegisterState(new StateJumpAttackAnimationController());
 			fsm->RegisterState(new StateJumpAttackOutAnimationController());
 
-			fsm->RegisterState(new StateNormalAttackInAnimationController());
+			StateNormalAttackInAnimationController* stateNormalAttackInAnimationController = new StateNormalAttackInAnimationController();
+			fsm->RegisterState(stateNormalAttackInAnimationController);
+			stateNormalAttackInAnimationController->SetAddEndTime(1000);// TODO: 何かし形を変える
 			fsm->RegisterState(new StateNormalAttackOutAnimationController());
 			break;
 		}
@@ -290,7 +293,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 
 		case MODEL_TYPE::EFFECT:
 			// エフェクトリソース取得
-			animationData.number = Master::mpResourceManager->GetEffectResource(loadAnimationData[i].animationPath);
+			animationData.number = Master::mpResourceManager->GetEffectResource(loadAnimationData[i].animationPath, loadAnimationData[i].size);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
 
@@ -368,7 +371,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		break;
 
 	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
@@ -407,11 +410,15 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 
 		loadAnimationData[7].animationType = ANIMATION_TYPE::JUMP_ATTACK_IN;
 		loadAnimationData[7].animationLoopFlag = false;
-		loadAnimationData[7].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@閉じる.mv1";
+		loadAnimationData[7].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_close.mv1";
 
-		loadAnimationData[8].animationType = ANIMATION_TYPE::JUMP_ATTACK_OUT;
+		loadAnimationData[8].animationType = ANIMATION_TYPE::JUMP_ATTACK;
 		loadAnimationData[8].animationLoopFlag = false;
-		loadAnimationData[8].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@開く.mv1";
+		loadAnimationData[8].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
+
+		loadAnimationData[9].animationType = ANIMATION_TYPE::JUMP_ATTACK_OUT;
+		loadAnimationData[9].animationLoopFlag = false;
+		loadAnimationData[9].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
 
 		if (animation != nullptr)
 		{
@@ -427,7 +434,8 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
 			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);// INPROGRESS: 作業中
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK, 1088/*(48 / 0.5) * 17*/);
 			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
@@ -447,10 +455,10 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
 		
 		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[1].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
 		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
-		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
-		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
 		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
 		
@@ -458,8 +466,8 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 2088);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 3650);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
@@ -479,21 +487,20 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
 		
 		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
-		loadAnimationData[1].modelType = MODEL_TYPE::EFFECT;
-		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
 		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
-		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
-		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
 		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		loadAnimationData[3].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[3].size = 50.0f;
+		loadAnimationData[3].animationPath = ResourceManager::msResourceFile + "Effect/StairBroken.efkefc";
 		
 		if (animation != nullptr)
 		{
 			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
 			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 17 * 50);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -501,7 +508,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
 		for (int i = 0; i < 4; i++)
 		{
-			LoadAnimationData loadAnimaData;
+			LoadAnimationData loadAnimaData = LoadAnimationData();
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
 			loadAnimaData.modelType = MODEL_TYPE::NONE;
@@ -514,6 +521,9 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
 		
 		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[2].size = 10.0f;
+		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/drill.efkefc";
 		
 		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
 		

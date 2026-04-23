@@ -870,6 +870,7 @@ void FallDownPlayerState::Death(CharacterBase* character)
 /*--------------------------------*/
 JumpAttackPlayerState::JumpAttackPlayerState()
 : PlayerProcess()
+, mfUpDownSpeed(10.0f)
 {
 	mStateNumber = (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
 }
@@ -886,6 +887,7 @@ void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 void JumpAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // ステート変更確認
@@ -895,7 +897,7 @@ int JumpAttackPlayerState::StateCheck(CharacterBase* character)
 	{
 		if (GetPlayerMoveFlag())
 		{
-			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			//return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
 		}
 
 		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
@@ -907,7 +909,25 @@ int JumpAttackPlayerState::StateCheck(CharacterBase* character)
 // 更新
 void JumpAttackPlayerState::Update(CharacterBase* character)
 {
+	// 攻撃方向下向かせる
+	VECTOR position = character ->GetPos();
+	CameraData cameraData = Master::mpGameManager->GetCameraManager()->GetCameraData();
+	cameraData.angle.y = -UtilCalc::VDegChange(UtilCalc::VMoveVecToAngle(VSub(position, VAdd(position, UtilCalc::VAngleToVec(character->GetAngle()))), UtilCalc::VZero, UtilCalc::PiTwo)).y + UtilCalc::RadPi;
+	cameraData.angle.x = 45.0f;
+	Master::mpGameManager->GetCameraManager()->SetCameraData(cameraData);
+
 	SetPlayerMove(character);
+
+    if (character->CheckAnimationType(ANIMATION_TYPE::ATTACK_IN))
+	{
+		character->SetUpMove();
+	}
+	else if (character->CheckAnimationType(ANIMATION_TYPE::ATTACK_OUT))
+    {
+		character->SetDownMove();
+    }
+    
+
 }
 
 // 最終更新

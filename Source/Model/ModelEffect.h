@@ -17,6 +17,9 @@ protected:
     // 描画設定用サイズ
     VECTOR mvDrawSize;
 
+    // 前のモデルコントローラーのポジション
+    VECTOR mvPreModelControllerPos;
+
 public:
     ModelEffect();
     ~ModelEffect();

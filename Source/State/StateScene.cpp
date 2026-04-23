@@ -17,6 +17,7 @@
 #include "ModelsControllerBase.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
+#include "StageDataManager.h"
 #include "StateBase.h"
 #include "StateScene.h"
 #include "TargetManager.h"
@@ -156,6 +157,8 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();
+
+    Master::mpStageDataManager->Init();
 
 	{// プレイヤーデータ設定
 		// プレイヤーデータ取得
@@ -299,6 +302,8 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();
+
+    Master::mpStageDataManager->Init();
 
 	{// プレイヤーデータを設定
 		// プレイヤーデータ取得
@@ -450,6 +455,8 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();
+
+    Master::mpStageDataManager->Init();
 	
 	{// プレイヤーデータ設定
 		// プレイヤーデータ取得
@@ -690,6 +697,8 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 	StageOnEnter(sceneManager);
 
 	mStateNumber = sceneManager->GetNowScene();
+
+    Master::mpStageDataManager->Init();
 	
 	{// プレイヤーデータ設定
 		// プレイヤーデータ取得
@@ -711,11 +720,16 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
 		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 
-		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas = UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT);
+		attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackPower = Master::mpDataManager->GetPlayPlayerData().status.GetNowAttckPower() * 2;
+
+		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, attackDatas);
 		player->Initilize();
-		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
-		player->SetAngle(VGet(0.0f, 0.0f, 0.0f));
+		player->SetPos(Master::mpDataManager->GetPlayPlayerData().position);
+		player->SetAngle(Master::mpDataManager->GetPlayPlayerData().angle);
+		player->GetModelsController()->SetModelSize(Master::mpDataManager->GetPlayPlayerData().size);
 	}
 		break;
 	}
@@ -745,6 +759,7 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 			std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
 			enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 			enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+			enemyAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
 
 			Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 			enemy->Initilize();

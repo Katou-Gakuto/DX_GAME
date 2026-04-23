@@ -8,6 +8,7 @@
 Attack_RobotSpceial::Attack_RobotSpceial()
 : AttackBase()
 {
+	munPreCharacterHitTime.clear();
 }
 
 Attack_RobotSpceial::~Attack_RobotSpceial()
@@ -77,6 +78,14 @@ void Attack_RobotSpceial::HitCheck(CollisionData& collisionData)
 	{
 		if (mnHiObjID[i] == collisionData.objID)
 		{
+			if (munPreCharacterHitTime[i] > (Master::mpTimeManager->GetGameTime() + 1000u/*ˆê•b*/))
+			{
+				if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f))
+				{
+					munPreCharacterHitTime[i] = Master::mpTimeManager->GetGameTime();
+					collisionData.collisionFlag = true;
+				}
+			}
 			return;
 		}
 	}
@@ -84,6 +93,7 @@ void Attack_RobotSpceial::HitCheck(CollisionData& collisionData)
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f))
 	{
 		mnHiObjID.push_back(collisionData.objID);
+		munPreCharacterHitTime.push_back(Master::mpTimeManager->GetGameTime());
 		collisionData.collisionFlag = true;
 	}
 }

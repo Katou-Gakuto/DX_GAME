@@ -93,11 +93,13 @@ ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* char
 	{
 		return ENEMY_COMMAND_NUMBER::SHORT_RANGE;
 	}
-	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 2000.0f)
+	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
 	{
 		return ENEMY_COMMAND_NUMBER::MEDIUM_RANGE;
 	}
-	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
+	// UNDONE: もとに戻す
+	//else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
+	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 4000.0f)
 	{
 		return ENEMY_COMMAND_NUMBER::LONG_RANGE;
 	}
@@ -160,6 +162,8 @@ int IdleEnemyState::StateCheck(CharacterBase* character)
 // 更新
 void IdleEnemyState::Update(CharacterBase* character)
 {
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // 最終更新
@@ -210,6 +214,8 @@ int MoveEnemyState::StateCheck(CharacterBase* character)
 void MoveEnemyState::Update(CharacterBase* character)
 {
 	PlayerTargetMove(character);
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // 最終更新
@@ -288,6 +294,8 @@ int AttackInEnemyState::StateCheck(CharacterBase* character)
 void AttackInEnemyState::Update(CharacterBase* character)
 {
 	PlayerTargetMove(character);
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // 最終更新
@@ -344,6 +352,8 @@ int AttackEnemyState::StateCheck(CharacterBase* character)
 // 更新
 void AttackEnemyState::Update(CharacterBase* character)
 {
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // 最終更新
@@ -404,6 +414,8 @@ int EscapeEnemyState::StateCheck(CharacterBase* character)
 void EscapeEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 // 最終更新
@@ -449,6 +461,8 @@ void LeftAvoidEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
 	character->SetLeftMove();
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 /*--------------------------*/
@@ -472,4 +486,6 @@ void RightAvoidEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
 	character->SetRightMove();
+	// UNDONE: もとに戻す
+	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }

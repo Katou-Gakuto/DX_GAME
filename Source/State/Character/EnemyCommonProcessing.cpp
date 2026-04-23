@@ -9,6 +9,7 @@
 #include "EnemyCommonProcessing.h"
 #include "GameManager.h"
 #include "ObjectBases.h"
+#include "StopManager.h"
 
 EnemyCommonProcessing::EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType)
 {
@@ -161,6 +162,12 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 // HP•`‰æî•ñÝ’è
 void EnemyCommonProcessing::HpDrawInfoSetup(CharacterBase *enemy)
 {
+	// ƒ‚ƒfƒ‹‚Í•`‰æ‚µ‚½‚¢‚½‚ß‚»‚êˆÈŠO‚ð–³Œø‰»‚·‚é
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT_UI_DRAW))
+	{
+		return;
+	}
+
 	std::vector<DRAW_DATA> drawDatas = enemy->GetStateDrawData();
 
 	Vector2_Int frameSize = HP_FRAME_SIZE;

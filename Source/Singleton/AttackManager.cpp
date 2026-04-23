@@ -6,6 +6,7 @@
 #include "Master.h"
 
 #include "AttackManager.h"
+#include "Attack_RobotJump.h"
 #include "Attack_RobotSpceial.h"
 #include "Attack_Shot.h"
 #include "GameManager.h"

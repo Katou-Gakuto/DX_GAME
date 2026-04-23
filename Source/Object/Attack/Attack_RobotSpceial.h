@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "ObjectBases.h"
 
 class Attack_RobotSpceial : public AttackBase
@@ -7,6 +9,8 @@ public:
     Attack_RobotSpceial();
 	~Attack_RobotSpceial();
 
+    // 前回攻撃ヒット時間
+    std::vector<unsigned int> munPreCharacterHitTime;
 
 private:
     /*アタック初期化*/

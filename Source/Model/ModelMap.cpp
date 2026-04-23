@@ -74,7 +74,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
                     setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
 
-                    //MV1SetTextureGraphHandle(setTileModel.modelHandle, 0, mnGroundModelGraphHandle, FALSE);
+                    MV1SetTextureGraphHandle(setTileModel.modelHandle, 0, mnGroundModelGraphHandle, FALSE);
                     MV1SetWriteZBuffer(setTileModel.modelHandle, FALSE);
                     int materialNumber = MV1GetMaterialNum(setTileModel.modelHandle);
                     for (int i = 0; i < materialNumber; i++)

@@ -9,6 +9,7 @@
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
+#include "StageDataManager.h"
 #include "StopManager.h"
 #include "TelopManager.h"
 #include "TimeManager.h"
@@ -34,6 +35,7 @@ void Master::AllDelete()
 	delete mpKeyState;
 	delete mpLoadingManager;
 	delete mpResourceManager;
+	delete mpStageDataManager;
 	delete mpStopManager;
 	delete mpTelopManager;
 	delete mpTimeManager;

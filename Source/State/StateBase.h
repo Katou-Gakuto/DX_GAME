@@ -161,6 +161,10 @@ public:
 /*----------*/
 class IStateAnimationController : public StateBase<ANIMATION_TYPE>
 {
+protected:
+	// ’Ç‰ÁI—¹ŠÔ
+	int mnAddEndTime;
+	
 public:
 	IStateAnimationController() = default;
 	virtual ~IStateAnimationController() = default;
@@ -178,6 +182,10 @@ public:
 	{
 		return mStateNumber == animationType;
 	}
+
+	/// <summary>’Ç‰ÁI—¹ŠÔİ’è</summary>
+	void SetAddEndTime(int addEndTime) 
+	{ mnAddEndTime = addEndTime; }
 };
 
 /*-------------------------*/

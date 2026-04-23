@@ -372,6 +372,10 @@ public:
 /*----------------------------------*/
 class JumpAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
+private:
+	// è„â∫ë¨ìx
+	float mfUpDownSpeed;
+
 public:
 	JumpAttackPlayerState();
 	~JumpAttackPlayerState() = default;

@@ -17,7 +17,7 @@ struct AttackData
 
 	int attackTime;	// UŒ‚ŠÔ
 
-	int attackPower; // UŒ‚—Í
+	int attackPower = -1; // UŒ‚—Í
 };
 
 // ƒLƒƒƒ‰ƒNƒ^[UŒ‚î•ñ

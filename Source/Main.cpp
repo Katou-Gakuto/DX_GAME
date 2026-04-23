@@ -13,6 +13,7 @@
 #include "KeyState.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
+#include "StageDataManager.h"
 #include "StopManager.h"
 #include "TelopManager.h"
 #include "TimeManager.h"
@@ -31,6 +32,7 @@ ImguiManager* Master::mpImguiManager = new ImguiManager();
 KeyState* Master::mpKeyState = new KeyState();
 LoadingManager* Master::mpLoadingManager = new LoadingManager();
 ResourceManager* Master::mpResourceManager = new ResourceManager();
+StageDataManager* Master::mpStageDataManager = new StageDataManager();
 StopManager* Master::mpStopManager = new StopManager();
 TelopManager* Master::mpTelopManager = new TelopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
@@ -67,8 +69,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// DirectX11を使用するようにする
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
-	// TODO: 変更できるようにする
-	 SetGraphMode(1280, 960, 32);
+#ifndef _DEBUG
+	// 画面サイズ
+	SetGraphMode(1280, 960, 32);
+#endif
 
 #ifdef _DEBUG
 	Master::mpImguiManager->DxInit();

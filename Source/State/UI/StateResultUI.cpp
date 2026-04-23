@@ -204,11 +204,11 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         }
 
         // ï`âÊÉ|ÉWÉVÉáÉìê›íË
-        for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
+        for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::LEVEL; i++)
         {
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x,                    numberLeftUp.y + (numberDistance.y * i)));
-            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::HP + i] % 10];
-            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::HP + i] = drawData;
+            drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[RESULT_DRAW_NUMBER_TYPE::LEVEL + i] % 10];
+            mstNumberDrawData[RESULT_DRAW_NUMBER_TYPE::LEVEL + i] = drawData;
 
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(numberLeftUp.x + numberDistance.x, numberLeftUp.y + (numberDistance.y * i)));
             drawData.drawGraphData.graphPos = mstNumberDrawGraphPos[mnDrawNumbers[i] % 10];
@@ -228,9 +228,9 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // ï`âÊê›íË
         for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::MAX; i++)
         {
-            if (RESULT_DRAW_NUMBER_TYPE::HP > i)
+            if (RESULT_DRAW_NUMBER_TYPE::LEVEL > i)
             {
-                if (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::HP])
+                if (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::LEVEL])
                 {
                     mstNumberDrawData[i].drawGraphData.handle = -1;
                     continue;
@@ -510,7 +510,7 @@ void StartResultUIState::DrawNumber()
 {
     for (int i = 0; i < RESULT_DRAW_NUMBER_TYPE::MAX; i++)
     {
-        if ((RESULT_DRAW_NUMBER_TYPE::HP > i) && (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::HP]))
+        if ((RESULT_DRAW_NUMBER_TYPE::LEVEL > i) && (mnDrawNumbers[i] == mnDrawNumbers[i + RESULT_DRAW_NUMBER_TYPE::LEVEL]))
         {
             continue;
         }

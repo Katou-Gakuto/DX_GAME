@@ -19,9 +19,9 @@ StateAnimationControllerProcess::StateAnimationControllerProcess()
 }
 
 // 終了時間設定
-void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMATION_TYPE state)
+void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMATION_TYPE state, int addEndTime)
 {
-    mnEndTime = animation->GetAnimationTime(state) + Master::mpTimeManager->GetGameTime();
+    mnEndTime = animation->GetAnimationTime(state) + Master::mpTimeManager->GetGameTime() + addEndTime;
 }
 
 // 終了時間確認(一定時間経っていれば「true」を返す)
@@ -105,7 +105,7 @@ StateAttackInAnimationController::StateAttackInAnimationController()
 // この状態に入った時の処理
 void StateAttackInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理
@@ -150,7 +150,7 @@ StateAttackAnimationController::StateAttackAnimationController()
 // この状態に入った時の処理
 void StateAttackAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理
@@ -194,7 +194,7 @@ StateAttackOutAnimationController::StateAttackOutAnimationController()
 // この状態に入った時の処理
 void StateAttackOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理
@@ -239,7 +239,7 @@ State2DMoveAnimationController::State2DMoveAnimationController()
 // この状態に入った時の処理
 void State2DMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理
@@ -271,7 +271,7 @@ StateFadeOutAnimationController::StateFadeOutAnimationController()
 // この状態に入った時の処理
 void StateFadeOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理
@@ -303,7 +303,7 @@ StateFadeInAnimationController::StateFadeInAnimationController()
 // この状態に入った時の処理
 void StateFadeInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_TYPE oldState)
 {
-    SetEndTime(animation, mStateNumber);
+    SetEndTime(animation, mStateNumber, mnAddEndTime);
 }
 
 // この状態を出る時の処理

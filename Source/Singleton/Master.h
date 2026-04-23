@@ -9,6 +9,7 @@ class ImguiManager;
 class KeyState;
 class LoadingManager;
 class ResourceManager;
+class StageDataManager;
 class StopManager;
 class TelopManager;
 class TimeManager;
@@ -25,6 +26,7 @@ public:
 	static KeyState* mpKeyState;	// キーステート
 	static LoadingManager* mpLoadingManager;	// ローディングマネージャー
 	static ResourceManager* mpResourceManager;	// リソースマネージャー
+	static StageDataManager* mpStageDataManager;	// ステージデータマネージャー
 	static StopManager* mpStopManager;	// ストップマネージャー
 	static TelopManager* mpTelopManager;	// テロップマネージャー
 	static TimeManager* mpTimeManager;	// タイムマネージャー

@@ -11,7 +11,7 @@ private:
     int mnAttackStartTime;
 
     // 設定用攻撃開始時間
-    const int ATTACK_START_TIME = 1088;
+    const int ATTACK_START_TIME = 2329;
 
     // 攻撃サイズ
     VECTOR mvAttackSize;

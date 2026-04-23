@@ -380,6 +380,9 @@
     <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp">
       <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Singleton\StageDataManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -687,6 +690,9 @@
     </ClInclude>
     <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h">
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\StageDataManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

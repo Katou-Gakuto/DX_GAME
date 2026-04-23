@@ -42,6 +42,7 @@ void ModelEffect::GameInit()
     mvDrawAngle = VGet(mvDrawAngle.x, mvDrawAngle.y - UtilCalc::Pi, mvDrawAngle.z); 
 
     mvDrawPosition = mpModelsController->GetModelPosition();
+    mvPreModelControllerPos = mvDrawPosition;
     mvDrawPosition = VAdd(mvDrawPosition, UtilCalc::VSphericalMovePos(mvPosition.x * mvDrawSize.x, VGet(mvDrawAngle.x, -mvDrawAngle.y - (UtilCalc::Pi * 0.5f), mvDrawAngle.z)));
     mvDrawPosition = VAdd(mvDrawPosition, UtilCalc::VSphericalMovePos(mvPosition.z * mvDrawSize.z, VGet(mvDrawAngle.x, -mvDrawAngle.y, mvDrawAngle.z)));
     mvDrawPosition.y += mvPosition.y * mvDrawSize.y;
@@ -52,6 +53,9 @@ void ModelEffect::PositionUpdate()
 {
     if (mnEffectHandle != -1)
     {
+        mvDrawPosition = VAdd(mvDrawPosition, VSub(mpModelsController->GetModelPosition(), mvPreModelControllerPos));
+        mvPreModelControllerPos = mpModelsController->GetModelPosition();
+        
         Master::mpResourceManager->DrawEffect(mnEffectHandle, mvDrawPosition, mvDrawAngle, mvDrawSize);
     }
 }

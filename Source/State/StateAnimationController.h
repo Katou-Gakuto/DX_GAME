@@ -14,11 +14,12 @@ class StateAnimationControllerProcess
 protected:
 	// 終了時間
 	int mnEndTime;
+
 protected:
 	StateAnimationControllerProcess();
 
 	/*終了時間設定*/
-	void SetEndTime(AnimationBase* animation, ANIMATION_TYPE state);
+	void SetEndTime(AnimationBase* animation, ANIMATION_TYPE state, int addEndTime);
 
 	/*終了時間確認(一定時間経っていれば「true」を返す)*/
 	bool ChackEndTime();

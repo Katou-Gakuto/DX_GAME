@@ -1,6 +1,10 @@
+#include "CameraData.h"
+
 #include "Master.h"
 
 #include "Attack_RobotJump.h"
+#include "CameraManager.h"
+#include "GameManager.h"
 #include "ObjectBases.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
@@ -40,14 +44,6 @@ void Attack_RobotJump::AttackFinalize()
 void Attack_RobotJump::AttackUpdate()
 {
 	mvPosition = mpAttackCharacter->GetPos();
-    if (!mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK_IN) &&
-        !mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK_OUT) &&
-        mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK))
-    {
-        // INPROGRESS: çÏã∆íÜ
-        //mpAttackCharacter->SetMoveActionFlag(ACTION_FLAG::DASH);
-        // çUåÇï˚å¸â∫å¸Ç©ÇπÇÈ
-    }
 
 	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
 	{
@@ -76,6 +72,11 @@ void Attack_RobotJump::AttackDraw()
 // ìñÇΩÇËîªíË
 void Attack_RobotJump::HitCheck(CollisionData& collisionData)
 {
+	if (!mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK_OUT))
+	{
+		return;
+	}
+
 	if (mpAttackCharacter->GetID() == collisionData.objID)
 	{
 		return;
@@ -89,7 +90,7 @@ void Attack_RobotJump::HitCheck(CollisionData& collisionData)
 		}
 	}
 
-	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f))
+	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f * 1.5f))
 	{
 		mnHiObjID.push_back(collisionData.objID);
 		collisionData.collisionFlag = true;

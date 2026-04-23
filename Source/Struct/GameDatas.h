@@ -67,6 +67,8 @@ typedef struct CharacterData : public NAME_TYPE_DATA
 
 	VECTOR angle;	// 方向
 
+	VECTOR size = VGet(1.0f, 1.0f, 1.0f);	// 大きさ
+
 	// TODO: 残しておかないと町に戻るときにバグる可能性あり
 	int objectID;	// オブジェクトID
 

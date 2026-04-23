@@ -25,19 +25,19 @@ class StartResultUIState : public IStateUI
 private:
 	enum RESULT_DRAW_NUMBER_TYPE
 	{
-		PRE_HP = 0,
+		PRE_LEVEL = 0,
+		PRE_EXP,
 		PRE_MAX_HP,
+		PRE_HP,
 		PRE_ATTACK,
 		PRE_SPEED,
-		PRE_LEVEL,
-		PRE_EXP,
 
-		HP,
-		MAX_HP,
-		ATTACK,
-		SPEED,
 		LEVEL,
 		EXP,
+		MAX_HP,
+		HP,
+		ATTACK,
+		SPEED,
 
 		MAX
 	};

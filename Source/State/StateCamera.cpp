@@ -61,6 +61,8 @@ void StateMoveCamera::OnEnter(CameraManager* cameraManager, CameraData cameraDat
 	CommonSetCamera(cameraData, preThreeDFlag);
 
 	cameraData.prePosition = VSub(cameraData.position, cameraData.moveDistance);
+
+	cameraManager->SetCameraData(cameraData);
 }
 
 // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—

@@ -4,9 +4,11 @@
 #include "Master.h"
 
 #include "CameraManager.h"
+#include "DataManager.h"
 #include "DrawManager.h"
 #include "GameManager.h"
 #include "SceneManager.h"
+#include "StageDataManager.h"
 #include "TimeManager.h"
 #include "UI_StageStart.h"
 #include "UtilFactorys.h"
@@ -26,6 +28,8 @@ UI_StageStart::~UI_StageStart()
 // UI初期化
 void UI_StageStart::UIInitilize()
 {
+    Master::mpStageDataManager->SetStageStartPeriodFlag(true);
+
 	mnSurvivalTime = Master::mpTimeManager->GetTime() + SURVIVAL_TIME;
 
     // ゲーム開始時字幕
@@ -74,8 +78,6 @@ void UI_StageStart::UIInitilize()
             setDrawDatas.push_back(drawData);
             break;
 
-        case SCENE::BATTLE_LOOP:
-            stringNumber = -3;
         case SCENE::BATTLE_1:
             stringNumber++;
         case SCENE::BATTLE_2:
@@ -86,6 +88,15 @@ void UI_StageStart::UIInitilize()
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
+            drawData.transFlag = TRUE;
+            setDrawDatas.push_back(drawData);
+            break;
+
+        case SCENE::BATTLE_LOOP:
+            drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+            drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
+            drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
+            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/WaveString_" + std::to_string(Master::mpDataManager->GetWaveNumber() + 1) + ".png");
             drawData.transFlag = TRUE;
             setDrawDatas.push_back(drawData);
             break;
@@ -108,6 +119,7 @@ void UI_StageStart::UISceneLastInitilize()
 // UI終了
 void UI_StageStart::UIFinalize()
 {
+    Master::mpStageDataManager->SetStageStartPeriodFlag(false);
 }
 
 // UI更新
@@ -118,10 +130,37 @@ void UI_StageStart::UIUpdate()
 	{
 		CameraData cameraData = CameraData();
 		cameraData.cameraMode = CAMERA_MODE::MOVE;
-        cameraData.position = VGet(0.0f, 200.0f, 0.0f);
-        cameraData.moveDistance = VGet(10.0f, 0.0f, 10.0f);
-        cameraData.plusPosition = VGet(-50.0f, -10.0f, -100.0f);
-        cameraData.targetPosition = VGet(1000.0f, 200.0f, 1000.0f);
+
+        {// R_F
+            cameraData.position =       VGet(    0.0f,  350.0f,    0.0f);   // ポジション
+            cameraData.moveDistance =   VGet(   20.0f,    0.0f,    0.0f);   // 移動量
+            cameraData.plusPosition =   VGet(    0.0f,   -1.0f,   10.0f);   // 向く地点
+            cameraData.targetPosition = VGet( 4400.0f,  350.0f,    0.0f);   // 目標越智店
+        }
+        // {// F_F
+        //     cameraData.position =       VGet( 2000.0f,  350.0f,    0.0f);   // ポジション
+        //     cameraData.moveDistance =   VGet(    0.0f,    0.0f,   20.0f);   // 移動量
+        //     cameraData.plusPosition =   VGet(    0.0f,   -1.0f,   10.0f);   // 向く地点
+        //     cameraData.targetPosition = VGet( 2000.0f,  350.0f, 4400.0f);   // 目標越智店
+        // }
+        // {// F_B
+        //     cameraData.position =       VGet( 2000.0f,  350.0f,    0.0f);   // ポジション
+        //     cameraData.moveDistance =   VGet(    0.0f,    0.0f,   20.0f);   // 移動量
+        //     cameraData.plusPosition =   VGet(    0.0f,   -1.0f,  -10.0f);   // 向く地点
+        //     cameraData.targetPosition = VGet( 2000.0f,  350.0f, 4400.0f);   // 目標越智店
+        // }        
+        // {// B_B
+        //     cameraData.position =       VGet( 2000.0f,  350.0f, 4400.0f);   // ポジション
+        //     cameraData.moveDistance =   VGet(    0.0f,    0.0f,  -20.0f);   // 移動量
+        //     cameraData.plusPosition =   VGet(    0.0f,   -1.0f,  -10.0f);   // 向く地点
+        //     cameraData.targetPosition = VGet( 2000.0f,  350.0f,    0.0f);   // 目標越智店
+        // }
+        // {// B_F
+        //     cameraData.position =       VGet( 2000.0f,  350.0f, 4400.0f);   // ポジション
+        //     cameraData.moveDistance =   VGet(    0.0f,    0.0f,  -20.0f);   // 移動量
+        //     cameraData.plusPosition =   VGet(    0.0f,   -1.0f,   10.0f);   // 向く地点
+        //     cameraData.targetPosition = VGet( 2000.0f,  350.0f,    0.0f);   // 目標越智店
+        // }
 
 
 		mnCameraID = Master::mpGameManager->GetCameraManager()->NewCamera(cameraData);

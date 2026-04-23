@@ -262,7 +262,7 @@ void DataManager::Initilize()
 		setPlayer.sceneData[DATA_SCENE::DUNGEON].scenePos = UtilCalc::VZero;
 		setPlayer.sceneData[DATA_SCENE::DUNGEON].sceneAngle = VGet(0.0f, UtilCalc::Pi * -1.5f, 0.0f);
 		setPlayer.preMap = SCENE::NONE;
-		setPlayer.position = UtilCalc::VZero;
+		setPlayer.position = VGet(2000.0f, 0.0f, 500.0f);
 		setPlayer.angle = UtilCalc::VZero;
 		setPlayer.dataFlag = true;
 		setPlayer.survivalFlag = 1;
@@ -299,12 +299,12 @@ void DataManager::Initilize()
 		mstWaveEnemyData.clear();
 		meWaveMapData.clear();
 		std::vector<MapType> mapDatas = {
-											MapType::Ring,
 											MapType::Battle,
-											MapType::Normal,
-											MapType::CheckerBoard,
-											MapType::Ring,
-											MapType::Ring,
+											MapType::Battle,
+											MapType::Battle,
+											MapType::Battle,
+											MapType::Battle,
+											MapType::Battle,
 										};
 
 
@@ -314,20 +314,97 @@ void DataManager::Initilize()
 			std::vector<CHARACTER_DATA> enemyDatas;
 			enemyDatas.clear();
 
-			for (int l = 0; l < 2; l++)
+			CHARACTER_DATA enemyData = CHARACTER_DATA();
+			
 			{
-				CHARACTER_DATA enemyData;
 				enemyData.survivalFlag = true;
 				enemyData.name = "ROBOT_ENEMY1";
 				enemyData.typeNumber = 3;
-				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 5, (1 + 19) * i, 1, CHARACTER_TYPE::ROBOT);
+				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 5, (1 + 19) * i, ((1 * i) * 0.5) + 1, CHARACTER_TYPE::ROBOT);
 				enemyData.mapType = SCENE::BATTLE_LOOP;
-				enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
+				enemyData.angle = VGet(0.0f, -2.6166667f, 0.0f);
+				switch (i)
+				{
+				case 1:
+				case 3:
+				case 5:
+					enemyData.position = VGet(2500.0f, 0.0f, 2500.0f);
+					break;
+					
+					
+				case 6:
+					enemyData.position = VGet(3000.0f, 0.0f, 2000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(2500.0f, 0.0f, 3000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(3250.0f, 0.0f, 3500.0f);
+					break;
+					
+				case 2:
+				case 4:
+					enemyData.position = VGet(3200.0f, 0.0f, 2000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(2600.0f, 0.0f, 2500.0f);
+					break;
+				}
 
 				enemyDatas.push_back(enemyData);
 			}
-			enemyDatas[0].position = VGet(2000.0f, 0.0f, 2700.0f);
-			enemyDatas[1].position = VGet(2700.0f, 0.0f, 2000.0f);
+
+			{
+				enemyData.status = STATUS::SetStatus(20 * i, 20 * i, 1 * i, 5, (1 + 19) * i, ((1 * i) * 0.5) + 1, CHARACTER_TYPE::ROBOT);
+				enemyData.mapType = SCENE::BATTLE_LOOP;
+				enemyData.angle = VGet(0.0f, 2.6166667f, 0.0f);
+				switch (i)
+				{
+				case 1:
+				case 3:
+				case 5:
+					enemyData.position = VGet(1500.0f, 0.0f, 2500.0f);
+					break;
+					
+				case 6:
+					enemyData.position = VGet(1000.0f, 0.0f, 2000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(1500.0f, 0.0f, 3000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(750.0f, 0.0f, 3500.0f);
+					break;
+					
+				case 2:
+				case 4:
+					enemyData.position = VGet(800.0f, 0.0f, 2000.0f);
+					enemyDatas.push_back(enemyData);
+					enemyData.position = VGet(1400.0f, 0.0f, 2500.0f);
+					break;
+				}
+
+				enemyDatas.push_back(enemyData);
+
+				switch (i)
+				{
+				case 2:
+					enemyData.name == "BOSS";
+					enemyData.typeNumber = 3;
+					enemyData.status = STATUS::SetStatus(1000, 1000, 15, 40, 200, 5, CHARACTER_TYPE::ROBOT);
+					enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
+					enemyData.position = VGet(2000.0f, 0.0f, 3750.0f);
+
+					enemyDatas.push_back(enemyData);
+					break;
+
+				case 4:
+					enemyData.name == "BOSS";
+					enemyData.typeNumber = 3;
+					enemyData.status = STATUS::SetStatus(3000, 3000, 30, 70, 400, 10, CHARACTER_TYPE::ROBOT);
+					enemyData.angle = VGet(0.0f, 3.14f, 0.0f);
+					enemyData.position = VGet(2000.0f, 0.0f, 3750.0f);
+
+					enemyDatas.push_back(enemyData);
+					break;
+				}
+			}
+
 
 			mstWaveEnemyData.push_back(enemyDatas);
 

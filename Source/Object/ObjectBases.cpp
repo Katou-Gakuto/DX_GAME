@@ -90,7 +90,7 @@ void CharacterBase::Initilize()
 
 	// UŒ‚‰Šú‰»
 	for (auto attackData : mmCharacterAttackDatas)
-	{// INPROGRESS: ì‹Æ’†
+	{
 		attackData.second.animation->Initilize();
 
 		attackData.second.modelController->Initilize();
@@ -228,7 +228,14 @@ void CharacterBase::Draw()
 	// ƒ‚ƒfƒ‹•`‰æ
 	mpModelController->DrawModels();
 
-	
+
+
+	// ƒ‚ƒfƒ‹‚Í•`‰æ‚µ‚½‚¢‚½‚ß‚»‚êˆÈŠO‚ð–³Œø‰»‚·‚é
+	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT_UI_DRAW))
+	{
+		return;
+	}
+
 	for (auto drawData : mstStateDrawData)
 	{
 		Master::mpDrawManager->DrawData_Draw(&drawData);

@@ -207,6 +207,9 @@ public:
 	/// <summary>ウェーブのマップ種類取得</summary>
 	inline MapType GetWaveMapData() { return meWaveMapData[mnWaveNumber]; }
 
+	/// <summary>ウェーブ数取得</summary>
+	int GetWaveNumber() { return mnWaveNumber; }
+
 	/*--------------------------*/
 	/*     【マップデータ】     */
 	/*--------------------------*/

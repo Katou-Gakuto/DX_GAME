@@ -2,6 +2,7 @@
 
 #include "FadeManager.h"
 #include "ResourceManager.h"
+#include "StageDataManager.h"
 #include "StopManager.h"
 #include "TimeManager.h"
 
@@ -11,6 +12,8 @@
 
 StopManager::StopManager()
 : mpFadeManager(nullptr)
+, mpResourceManager(nullptr)
+, mpStageDataManager(nullptr)
 , mpTimeManager(nullptr)
 {
 }
@@ -25,6 +28,8 @@ void StopManager::Initilize()
     mpFadeManager = Master::mpFadeManager;
 
     mpResourceManager = Master::mpResourceManager;
+
+    mpStageDataManager = Master::mpStageDataManager;
 
     mpTimeManager = Master::mpTimeManager;
 }
@@ -43,6 +48,10 @@ bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
     case STOP_FLAG_TYPE::GAME_OBJECT:
         stopflag |= mpTimeManager->GetStopFlag();
         stopflag |= mpFadeManager->GetFadeFlag();
+        break;
+
+    case STOP_FLAG_TYPE::GAME_OBJECT_UI_DRAW:
+        stopflag |= mpStageDataManager->GetStageStartPeriodFlag();
         break;
 
     case STOP_FLAG_TYPE::UI_OBJECT:

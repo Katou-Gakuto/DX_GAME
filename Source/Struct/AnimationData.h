@@ -24,6 +24,8 @@ struct LoadAnimationData
 
     int blendMode;      // ブレンドモード（画像用）
     int blendParameter; // ブレンドパラメーター（画像用)
+
+    float size = 1.0f;
 };
 
 /*----------*/

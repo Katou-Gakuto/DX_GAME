@@ -102,7 +102,7 @@ void StateMoveCamera::Update(CameraManager* cameraManager, CameraData cameraData
 void StateMoveCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
-	SetCameraPositionAndTarget_UpVecY(cameraData.position, VAdd(cameraData.position, cameraData.plusPosition));
+	SetCameraPos(cameraData.position, VAdd(cameraData.position, cameraData.plusPosition));
 }
 
 /*----------------------------*/
@@ -139,7 +139,7 @@ void StateCharacterCamera::Update(CameraManager* cameraManager, CameraData camer
 void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
-	SetCameraPositionAndTarget_UpVecY(
+	SetCameraPos(
 		VAdd(VAdd(VScale(UtilCalc::VSignInversion(cameraData.targetCharacter->GetVec()), cameraData.cameraDistance), cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
 		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
 	);
@@ -240,7 +240,7 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 void StatePlayerCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
-	SetCameraPositionAndTarget_UpVecY(
+	SetCameraPos(
 		VAdd(VAdd(cameraData.position, cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
 		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
 	);

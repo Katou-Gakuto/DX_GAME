@@ -68,6 +68,8 @@ void UI_Title::UIInitilize()
             AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
             // アニメーション設定
             AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::START_TITLE_UI_STATE, (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+            
+            setDrawDatas.clear();
         }
 
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.4f));
@@ -121,12 +123,11 @@ void UI_Title::UIInitilize()
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+        setDrawDatas.clear();
     }
 
     // 移動画像設定
     {
-        setDrawDatas.clear();
-        
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.135f, 0.48f));
         drawData.size = displaySize.LeftUp_Ratio(Vector2(0.36f, 0.15f));
         drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/SelectString_1.png");
@@ -136,6 +137,7 @@ void UI_Title::UIInitilize()
         AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+        setDrawDatas.clear();
 
         setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // モデル数分確保
         // setUIPosData[mpUIModelController->GetModelList().size() - 1][0] = VGet(0.135f, 0.48f, 0.0f);

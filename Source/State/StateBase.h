@@ -69,6 +69,9 @@ public:
 protected:
 	/*カメラの共通設定をする*/
 	void CommonSetCamera(CameraData cameraData, int& preThreeDFlag);
+
+	/*カメラポジション設置*/
+	void SetCameraPos(VECTOR cameraPos, VECTOR cameraLookPos);
 };
 
 /*------------------------------*/

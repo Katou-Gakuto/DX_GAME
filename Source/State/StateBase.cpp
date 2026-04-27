@@ -1,10 +1,13 @@
 #include "CameraData.h"
 
+#include "DxLib.h"
+
 #include "Master.h"
 
 #include "CameraManager.h"
 #include "GameManager.h"
 #include "ModelBase.h"
+#include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "TargetManager.h"
@@ -32,7 +35,7 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 			SetWriteZBufferFlag(TRUE);
 
 			// カメラ位置を反映する
-			SetCameraPositionAndTarget_UpVecY(cameraData.position, cameraData.targetPosition);
+			SetCameraPos(cameraData.position, cameraData.targetPosition);
 		}
 		else
 		{
@@ -50,8 +53,17 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 	else if (cameraData.threeDFlag)
 	{
 		// カメラ位置を反映する
-		SetCameraPositionAndTarget_UpVecY(cameraData.position, cameraData.targetPosition);
+		SetCameraPos(cameraData.position, cameraData.targetPosition);
 	}
+}
+
+/*カメラポジション設置*/
+void IStateCamera::SetCameraPos(VECTOR cameraPos, VECTOR cameraLookPos)
+{
+	Master::mpResourceManager->Set3DListenerPosition(cameraPos, cameraLookPos);
+
+	// カメラ位置を反映する
+	SetCameraPositionAndTarget_UpVecY(cameraPos, cameraLookPos);
 }
 
 /*----------*/

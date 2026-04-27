@@ -514,7 +514,7 @@ int ResourceManager::GetModelHandle(std::string fileName)
 		mp3DModelHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_EXCEPT_LOOK);
 #ifdef _DEBUG
 		int resultHandle = mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));
-		DEBUG::SaveText("モデルハンドル取得 : " + fileName + " : " + std::to_string(handle) + '\n');
+		DEBUG::SaveText("モデルハンドル取得 : " + fileName + " : " + std::to_string(resultHandle) + '\n');
 		return resultHandle;
 #endif
 		return mp3DModelHandleContainer->RegisterHandle(MV1DuplicateModel(handle));

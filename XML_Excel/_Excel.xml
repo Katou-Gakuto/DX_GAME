@@ -3388,6 +3388,19 @@ int変数設定
 終了
    </explanations>
    </member>
+   <member className="SoundManager">
+   <functionName>DrawBackSoundVolumeRate</functionName>
+   <explanations>
+   </explanations>
+   </member>
+   <member className="SoundManager">
+   <functionName>Set3DListenerPosition</functionName>
+   <explanations>
+3Dのリスナー位置を設定
+   </explanations>
+   <variable0>現在地</variable0>
+   <variable1>向いてる方向</variable1>
+   </member>
    <member className="UtilChange">
    <functionName>ChangeVector_YZ</functionName>
    <explanations>

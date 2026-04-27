@@ -66,6 +66,7 @@
     <ClCompile Include="Source\Singleton\ObjectManager.cpp" />
     <ClCompile Include="Source\Singleton\ResourceManager.cpp" />
     <ClCompile Include="Source\Singleton\SceneManager.cpp" />
+    <ClCompile Include="Source\Singleton\SoundManager.cpp" />
     <ClCompile Include="Source\Singleton\StageDataManager.cpp" />
     <ClCompile Include="Source\Singleton\StopManager.cpp" />
     <ClCompile Include="Source\Singleton\TargetManager.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Source\Singleton\ObjectManager.h" />
     <ClInclude Include="Source\Singleton\ResourceManager.h" />
     <ClInclude Include="Source\Singleton\SceneManager.h" />
+    <ClInclude Include="Source\Singleton\SoundManager.h" />
     <ClInclude Include="Source\Singleton\StageDataManager.h" />
     <ClInclude Include="Source\Singleton\StopManager.h" />
     <ClInclude Include="Source\Singleton\TargetManager.h" />

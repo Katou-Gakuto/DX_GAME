@@ -383,6 +383,9 @@
     <ClCompile Include="Source\Singleton\StageDataManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Singleton\SoundManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -692,6 +695,9 @@
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton\StageDataManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\SoundManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>

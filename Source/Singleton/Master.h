@@ -14,6 +14,9 @@ class StopManager;
 class TelopManager;
 class TimeManager;
 
+// 変える
+class SoundManager;
+
 class Master
 {
 public:
@@ -30,6 +33,8 @@ public:
 	static StopManager* mpStopManager;	// ストップマネージャー
 	static TelopManager* mpTelopManager;	// テロップマネージャー
 	static TimeManager* mpTimeManager;	// タイムマネージャー
+
+	static SoundManager* mpSoundManager;	// タイムマネージャー
 
 	/*マスター所持物全削除処理*/
 	static void AllDelete();

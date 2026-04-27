@@ -5,6 +5,8 @@
 #include "TimeManager.h"
 #include "UtilCalc.h"
 
+#include "SoundManager.h"
+
 Attack_Shot::Attack_Shot()
 : AttackBase()
 , mnAttackStartTime(0)
@@ -26,6 +28,9 @@ void Attack_Shot::AttackInitilize()
 	mnAttackStartTime = Master::mpTimeManager->GetGameTime() + ATTACK_START_TIME;
 
 	SetActiveFlag(true);
+
+	
+	Master::mpSoundManager->Set3DSound(SOUND_3D::BEAM_CANNON_CHARGE, mvPosition);
 }
 
 // アタックシーン最終初期化

@@ -22,6 +22,8 @@
 #include "XmlArrange.h"
 #endif
 
+#include "SoundManager.h"
+
 // マスター静的メンバ変数初期化
 DataManager* Master::mpDataManager = new DataManager();
 DrawManager* Master::mpDrawManager = new DrawManager();
@@ -36,6 +38,8 @@ StageDataManager* Master::mpStageDataManager = new StageDataManager();
 StopManager* Master::mpStopManager = new StopManager();
 TelopManager* Master::mpTelopManager = new TelopManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
+
+SoundManager* Master::mpSoundManager = new SoundManager();
 
 /// <summary>
 /// メイン
@@ -91,6 +95,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// 初期化
 	Master::mpGameManager->Initilize();
 
+	Master::mpSoundManager->Initilize();
 
 	// ループ
 	while (!Master::mpEndManager->EndFlag()) {

@@ -6,6 +6,8 @@
 #include "StateBase.h"
 #include "TimeManager.h"
 
+#include "SoundManager.h"
+
 /*--------------------*/
 /*     【ベースアニメーションコントローラーステート】
 /*--------------------*/
@@ -374,6 +376,7 @@ ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase*
 {
     if (ChackEndTime())
     {
+        Master::mpSoundManager->Set3DSound(SOUND_3D::BEAM_CANNON_SHOT, animation->GetModelsController()->GetModelPosition());
         return ANIMATION_TYPE::NORMAL_ATTACK_OUT;
     }
     
@@ -418,6 +421,7 @@ ANIMATION_TYPE StateSpceialAttackInAnimationController::CheckState(AnimationBase
 {
     if (ChackEndTime())
     {
+	Master::mpSoundManager->Set3DSound(SOUND_3D::ROBOT_EYES_GLOW, animation->GetModelsController()->GetModelPosition());
         return ANIMATION_TYPE::SPCEIAL_ATTACK;
     }
     

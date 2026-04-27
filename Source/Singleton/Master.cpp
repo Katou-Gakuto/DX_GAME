@@ -14,6 +14,8 @@
 #include "TelopManager.h"
 #include "TimeManager.h"
 
+#include "SoundManager.h"
+
 // マスター所持物全削除処理
 void Master::AllDelete()
 {
@@ -24,6 +26,8 @@ void Master::AllDelete()
 	mpImguiManager->Finalize();
 	mpResourceManager->Finailize();
 	mpTelopManager->Finalize();
+
+	mpSoundManager->Finalize();
 	
 	// 削除
 	delete mpDataManager;
@@ -39,4 +43,6 @@ void Master::AllDelete()
 	delete mpStopManager;
 	delete mpTelopManager;
 	delete mpTimeManager;
+
+	delete mpSoundManager;
 }

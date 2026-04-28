@@ -177,7 +177,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 	std::string attackString = "ATTACK : " + std::to_string(status.baseAttckPower);
 	std::string speedString  = "SPEED  : " + std::to_string(status.baseSpeed);
 	
-	std::string mapName     =  "MAP    : " + UtilChange::Name(mapType);	// マップ名
+	std::string mapName     =  "MAP    : " + UtilChange::SceneTypeToString(mapType);	// マップ名
 
 	// リソースマネージャー
 	ResourceManager* resourceMnaager = Master::mpResourceManager;

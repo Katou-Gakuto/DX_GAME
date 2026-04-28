@@ -1,0 +1,274 @@
+画像ハンドル(原本)取得 : Resource/Effect/Background.png : 67633153
+
+画像ハンドル(原本)取得 : Resource/2D/Floor.png : 67895298
+
+モデルハンドル(原本)取得 : Resource/3D/Sky/SkySphere.mv1 : 939786240
+
+モデルハンドル(一つ目)取得 : Resource/3D/Sky/SkySphere.mv1 : 940048385
+
+動画ハンドル取得 : Resource/Movie/TitleBack_1.mp4 : 68419588
+
+画像ハンドル(原本)取得 : Resource/2D/Green.png : 69206023
+
+画像ハンドル(原本)取得 : Resource/2D/MiniMapWindow.png : 69468168
+
+画像ハンドル(原本)取得 : Resource/2D/MiniMapRadar.png : 69730313
+
+画像ハンドル(原本)取得 : Resource/2D/RobotSphere.png : 69992458
+
+動画ハンドル取得 : Resource/Movie/TitleBack_1.mp4 : 70254603
+
+画像ハンドル(原本)取得 : Resource/2D/TitleString.png : 71041038
+
+画像ハンドル(原本)取得 : Resource/2D/TitleSelectBase.png : 71303183
+
+画像ハンドル(原本)取得 : Resource/2D/StringBack_Close.png : 71565328
+
+画像ハンドル(原本)取得 : Resource/2D/StringBack.png : 71827473
+
+画像ハンドル(原本)取得 : Resource/2D/NewData_String.png : 72089618
+
+画像ハンドル(原本)取得 : Resource/2D/DataSelect_String.png : 72351763
+
+画像ハンドル(原本)取得 : Resource/2D/Tutorial_String.png : 72613908
+
+画像ハンドル(原本)取得 : Resource/2D/Setting_String.png : 72876053
+
+画像ハンドル(原本)取得 : Resource/2D/SelectString_1.png : 73138198
+
+画像ハンドル(原本)取得 : Resource/2D/TitleDataBase.png : 73400343
+
+画像ハンドル(原本)取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+
+画像ハンドル削除 : 69992458(NOT_DELETE)
+
+動画ハンドル削除 : 70254603(NOT_DELETE) : 70254603
+
+画像ハンドル削除 : 71041038(NOT_DELETE) : 71041038
+
+画像ハンドル削除 : 71041038(NOT_DELETE)
+
+画像ハンドル削除 : 71303183(NOT_DELETE) : 71303183
+
+画像ハンドル削除 : 71565328(NOT_DELETE)
+
+画像ハンドル削除 : 71827473(NOT_DELETE) : 71827473
+
+画像ハンドル削除 : 71565328(NOT_DELETE)
+
+画像ハンドル削除 : 71565328(NOT_DELETE) : 71565328
+
+画像ハンドル削除 : 72089618(NOT_DELETE) : 72089618
+
+画像ハンドル削除 : 72351763(NOT_DELETE) : 72351763
+
+画像ハンドル削除 : 72613908(NOT_DELETE) : 72613908
+
+画像ハンドル削除 : 72876053(NOT_DELETE) : 72876053
+
+画像ハンドル削除 : 73138198(NOT_DELETE) : 73138198
+
+モデルハンドル(原本)取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル(一つ目)取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940572675
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+
+エフェクトハンドル(原本)取得 : Resource/Effect/Laser.efkefc : 0
+
+画像ハンドル(原本)取得 : Resource/2D/HpBack.png : 83099708
+
+画像ハンドル(原本)取得 : Resource/2D/HpBar.png : 83361853
+
+画像ハンドル(原本)取得 : Resource/2D/HpBarRed.png : 83623998
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/robotSphere.mv1 : 953155635
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/robotSphere.mv1 : 953417780
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 953679925
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 953942070
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 954204215
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 954466360
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 954728505
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 954990650
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 955252795
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 955514940
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 956039230
+
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 956301375
+
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 956563520
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+モデルハンドル取得 : Resource/3D/Robot/robotSphere.mv1 : 953155635
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 953679925
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 954204215
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 954728505
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 955252795
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 956301375
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+モデルハンドル取得 : Resource/3D/Robot/robotSphere.mv1 : 953155635
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 953679925
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 954204215
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 954728505
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 955252795
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 956301375
+
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 955777085
+
+画像ハンドル(原本)取得 : Resource/2D/Enter.png : 87818318
+
+画像ハンドル(原本)取得 : Resource/2D/Button_WASD.png : 88080463
+
+画像ハンドル(原本)取得 : Resource/2D/Button_Arrow.png : 88342608
+
+画像ハンドル(原本)取得 : Resource/2D/White.png : 88604753
+
+画像ハンドル(原本)取得 : Resource/2D/BattleString_0.png : 88866898
+
+画像ハンドル(原本)取得 : Resource/2D/TitleSelectBase.png : 89129043
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Back.png : 89391188
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_BackPush.png : 89653333
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Config.png : 89915478
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_ConfigPush.png : 90177623
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Status.png : 90439768
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_StatusPush.png : 90701913
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_GameEnd.png : 90964058
+
+画像ハンドル(原本)取得 : Resource/2D/MenuString_GameEndPush.png : 91226203
+
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderLeft.png : 91488348
+
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderRight.png : 91750493
+
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderButton.png : 92012638
+
+画像ハンドル(原本)取得 : Resource/2D/ConfigUIReturn.png : 92274783
+

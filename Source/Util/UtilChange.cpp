@@ -51,7 +51,7 @@ SCENE UtilChange::SceneState(SCENE scene)
 }
 
 // シーンの名前を取得
-std::string UtilChange::Name(SCENE scene)
+std::string UtilChange::SceneTypeToString(SCENE scene)
 {
 	switch (scene)
 	{
@@ -93,7 +93,18 @@ std::string UtilChange::Name(SCENE scene)
 		return "バトル2";
 	case SCENE::BATTLE_3:
 		return "バトル3";
+
+	case SCENE::BATTLE_LOOP:
+		return "BATTLE_LOOP";
+
+	case SCENE::GAME_LOOP:
+		return "GAME_LOOP";
+
+	case SCENE::BATTLR_RESULT:
+		return "BATTLE_RESULT";
 	}
+
+	return "OTHER";
 }
 
 // キャラクターの名前に変換

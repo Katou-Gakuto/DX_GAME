@@ -7,6 +7,10 @@
 
 #include "EndManager.h"
 
+#ifdef _DEBUG
+#include "DebugLogs/DebugLog.h"
+#endif
+
 enum class HANDLE_FLAG
 {
     NONE = 0,
@@ -185,6 +189,11 @@ public:
     /// <summary>ハンドル削除</summary>
     std::vector<int> DeleteHandle(int handle, bool countFlag = true)
     {
+        if (handle == -1)
+        {
+            return {};
+        }
+
         // HACK: 変数名紛らわしいから変更
         for (auto myHandle : mmHandles)
         {
@@ -196,6 +205,7 @@ public:
                     // 0以外なら何もしない
                     if (i != 0)
                     {
+                        i = myHandle.second.size();
                         break;
                     }
                     
@@ -318,6 +328,12 @@ public:
                 }
             }
         }
+
+        Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
+
+#ifdef _DEBUG
+        DEBUG::SaveText("\nハンドル未発見 : " + std::to_string(handle) + " <= ");
+#endif
 
         return {};
         /*

@@ -389,7 +389,7 @@ void StateEffectAnimation::Finalize(AnimationBase* animation, AnimationDatas* an
         if (animationData.second.number != (-1))
         {
             deleteAnimationType.push_back(animationData.first);
-            Master::mpResourceManager->ReduceEffectDataHandle(animationData.second.number);
+             Master::mpResourceManager->ReduceEffectDataHandle(animationData.second.number);
         }
     }
 

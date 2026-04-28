@@ -8,6 +8,11 @@
 #include "TimeManager.h"
 #include "UtilFactorys.h"
 
+#ifdef _DEBUG
+#include "DebugLogs/DebugLog.h"
+#include "UtilChange.h"
+#endif
+
 SceneManager::SceneManager()
 : mpFSMScene(nullptr)
 , meNextScene(SCENE::START)
@@ -43,6 +48,11 @@ void SceneManager::NextScene()
 
 	// オブジェクト最終更新
 	Master::mpGameManager->GetObjectManager()->ObjectSceneLastInitilize();
+
+
+#ifdef _DEBUG
+	DEBUG::SaveText("\nNEXT SCENE : " + UtilChange::SceneTypeToString(GetNowScene()) + "\n\n");
+#endif
 }
 
 // 次のシーンを設定

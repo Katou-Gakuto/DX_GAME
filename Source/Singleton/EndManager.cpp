@@ -6,6 +6,10 @@
 
 #include "EndManager.h"
 
+#ifdef _DEBUG
+#include "DebugLogs/DebugLog.h"
+#endif
+
 EndManager::EndManager()
 : mullEndFlag(BIT_FLAG<unsigned long long>())
 , mpDeleteObject(nullptr)
@@ -54,6 +58,11 @@ bool EndManager::EndFlag()
 
 		endFlag = true;
 		ErrorLogFmtAdd("ERROR %llu", mullEndFlag);
+
+		
+#ifdef _DEBUG
+		DEBUG::SaveText("\nã≠êßèIóπ : " + std::to_string(mullEndFlag) + "\n\n");
+#endif
 	}
 
 	return endFlag;

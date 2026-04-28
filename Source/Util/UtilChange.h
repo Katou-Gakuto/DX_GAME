@@ -16,7 +16,7 @@ namespace UtilChange
 
 	// TODO: 後で関数名変更
 	/*シーンの名前を取得*/
-	std::string Name(SCENE scene);
+	std::string SceneTypeToString(SCENE scene);
 
 	/*キャラクターの名前に変換*/
 	std::string CharacterTypeToString(CHARACTER_TYPE characterType);

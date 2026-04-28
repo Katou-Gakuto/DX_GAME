@@ -3401,24 +3401,6 @@ int変数設定
    <variable0>現在地</variable0>
    <variable1>向いてる方向</variable1>
    </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_YZ</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(yz)
-   </explanations>
-   </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_XZ</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(xz)
-   </explanations>
-   </member>
-   <member className="UtilChange">
-   <functionName>ChangeVector_XY</functionName>
-   <explanations>
-ベクトルをベクトル2に変換(xy)
-   </explanations>
-   </member>
    <member className="EndManager">
    <functionName>GetBitEndflag</functionName>
    <explanations>
@@ -3594,6 +3576,51 @@ int変数設定
    <functionName>Initilize</functionName>
    <explanations>
 初期化
+   </explanations>
+   </member>
+   <member className="UtilChange">
+   <functionName>ChangeVector_YZ</functionName>
+   <explanations>
+ベクトルをベクトル2に変換(yz)
+   </explanations>
+   </member>
+   <member className="UtilChange">
+   <functionName>ChangeVector_XZ</functionName>
+   <explanations>
+ベクトルをベクトル2に変換(xz)
+   </explanations>
+   </member>
+   <member className="UtilChange">
+   <functionName>ChangeVector_XY</functionName>
+   <explanations>
+ベクトルをベクトル2に変換(xy)
+   </explanations>
+   </member>
+   <member className="DEBUG">
+   <functionName>FunctionCallHistoryAcquisition</functionName>
+   <explanations>
+関数名を取得
+   </explanations>
+   <returnExplanation>
+関数(ファイル名.行数)/関数(ファイル名.行数)
+   </returnExplanation>
+   </member>
+   <member className="DEBUG">
+   <functionName>SaveText</functionName>
+   <explanations>
+文字列をファイルに追加する
+   </explanations>
+   </member>
+   <member className="DEBUG">
+   <functionName>DebugCreateLogFileName</functionName>
+   <explanations>
+デバッグ出力先を新しいファイルにする
+   </explanations>
+   </member>
+   <member className="DEBUG">
+   <functionName>DebugInitialization</functionName>
+   <explanations>
+デバッグ初期化
    </explanations>
    </member>
    <member className="UtilFactorys">

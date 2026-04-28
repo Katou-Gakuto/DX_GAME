@@ -20,6 +20,8 @@
 
 #ifdef _DEBUG
 #include "XmlArrange.h"
+
+#include "DebugLogs/DebugLog.h"
 #endif
 
 #include "SoundManager.h"
@@ -57,6 +59,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	XmlArrange* pXmlArrange = new XmlArrange();
 	pXmlArrange->Arrange();
 	delete pXmlArrange;
+	
+	// デバッグ初期化
+	DEBUG::DebugInitialization();
+	// デバッグテキストの出力先を新しいファイルにする
+	DEBUG::DebugCreateLogFileName();
 #endif
 
 #ifndef _DEBUG

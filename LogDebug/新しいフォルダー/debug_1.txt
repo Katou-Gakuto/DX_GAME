@@ -1,0 +1,40 @@
+画像ハンドル(原本)取得 : Resource/Effect/Background.png : 67633153
+
+画像ハンドル(原本)取得 : Resource/2D/Floor.png : 67895298
+
+モデルハンドル(原本)取得 : Resource/3D/Sky/SkySphere.mv1 : 939786240
+
+モデルハンドル(一つ目)取得 : Resource/3D/Sky/SkySphere.mv1 : 940048385
+
+動画ハンドル取得 : Resource/Movie/TitleBack_1.mp4 : 68419588
+
+画像ハンドル(原本)取得 : Resource/2D/Red.png : 69206023
+
+画像ハンドル(原本)取得 : Resource/2D/MiniMapWindow.png : 69468168
+
+画像ハンドル(原本)取得 : Resource/2D/RobotSphere.png : 69730313
+
+動画ハンドル取得 : Resource/Movie/TitleBack_1.mp4 : 69992458
+
+画像ハンドル(原本)取得 : Resource/2D/TitleString.png : 70778893
+
+画像ハンドル(原本)取得 : Resource/2D/TitleSelectBase.png : 71041038
+
+画像ハンドル(原本)取得 : Resource/2D/StringBack_Close.png : 71303183
+
+画像ハンドル(原本)取得 : Resource/2D/StringBack.png : 71565328
+
+画像ハンドル(原本)取得 : Resource/2D/NewData_String.png : 71827473
+
+画像ハンドル(原本)取得 : Resource/2D/DataSelect_String.png : 72089618
+
+画像ハンドル(原本)取得 : Resource/2D/Tutorial_String.png : 72351763
+
+画像ハンドル(原本)取得 : Resource/2D/Setting_String.png : 72613908
+
+画像ハンドル(原本)取得 : Resource/2D/SelectString_1.png : 72876053
+
+画像ハンドル(原本)取得 : Resource/2D/TitleDataBase.png : 73138198
+
+画像ハンドル(原本)取得 : Resource/2D/TitleDataSelectBase.png : 73400343
+

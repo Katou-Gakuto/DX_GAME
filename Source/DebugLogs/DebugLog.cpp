@@ -4,14 +4,22 @@
 #include <fstream>
 #include <filesystem>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
+#include "Master.h"
+
+#include "TimeManager.h"
+
+#ifdef _DEBUG
 #include "DebugLog.h"
-
-
+#endif
 
 #pragma comment(lib, "dbghelp.lib")
+
+#ifdef _DEBUG
 
 // デバッグ初期化
 void DEBUG::DebugInitialization()
@@ -19,39 +27,146 @@ void DEBUG::DebugInitialization()
     DEBUG::DebugProcessHandle = GetCurrentProcess();
     SymInitialize(DEBUG::DebugProcessHandle, NULL, TRUE);
     SymSetOptions(SYMOPT_LOAD_LINES);
+
+    PlusLogFileData.clear();
+
+    DEBUG::LogFileString = "LogDebug/debug_0.txt";
+    DEBUG::LogFileProcess.clear();
 }
 
 // デバッグ出力先を新しいファイルにする
-void DEBUG::DebugCreateLogFileName()
+void DEBUG::DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType, std::string plusFileName)
 {
-    int count = 1;
-    std::string filename;
-
-    while (true) {
-        filename = "LogDebug/debug_" + std::to_string(count) + ".txt";
-        if (!std::filesystem::exists(filename)) {
-            break;
+    switch (debugMapType)
+    {
+    case DEBUG_MAP_TYPE::DEBUG_BASE:
+    {
+        int count = 1;
+        std::string filename;
+        while (true)
+        {
+            filename = "LogDebug/debug_" + std::to_string(count) + ".txt";
+            if (!std::filesystem::exists(filename)) {
+                break;
+            }
+            count++;
         }
-        count++;
+        DEBUG::LogFileString = filename;
+    }
+        break;
+
+    default:
+    {
+        DEBUG_FILE_DATA debugFileData;
+        debugFileData.debugType.clear();
+        debugFileData.plusFileName = plusFileName;
+        DEBUG::PlusLogFileData[debugMapType] = debugFileData;
+    }
+        break;
+    }
+}
+
+// デバッグ出力情報追加
+void DEBUG::DebugLogAddData(DEBUG_PROCESS_TYPE debugProcessType, DEBUG_MAP_TYPE debugMapType)
+{
+    switch (debugMapType)
+    {
+    case DEBUG_MAP_TYPE::DEBUG_BASE:
+        DEBUG::LogFileProcess.push_back(debugProcessType);
+        break;
+
+    default:
+        if (DEBUG::PlusLogFileData.find(debugMapType) != DEBUG::PlusLogFileData.end())
+        {
+            DEBUG::PlusLogFileData[debugMapType].debugType.push_back(debugProcessType);
+        }
+        break;
+    }
+}
+
+// デバッグ出力情報削除
+void DEBUG::DebugLogSubData(DEBUG_PROCESS_TYPE debugProcessType, DEBUG_MAP_TYPE debugMapType)
+{
+    switch (debugMapType)
+    {
+    case DEBUG_MAP_TYPE::DEBUG_BASE:
+    {
+        auto& baseLogProcessType = DEBUG::LogFileProcess;
+        auto baseIterator = std::find(baseLogProcessType.begin(), baseLogProcessType.end(), debugProcessType);
+        if (baseIterator != baseLogProcessType.end())
+        {
+            baseLogProcessType.erase(baseIterator);
+        }
+        break;
     }
 
-    DEBUG::LogFileString = filename;
+    default:
+        if (DEBUG::PlusLogFileData.find(debugMapType) != DEBUG::PlusLogFileData.end())
+        {
+            auto& logProcessType = DEBUG::PlusLogFileData[debugMapType].debugType;
+            auto plusIterator = std::find(logProcessType.begin(), logProcessType.end(), debugProcessType);
+            if (plusIterator != logProcessType.end())
+            {
+                logProcessType.erase(plusIterator);
+            }
+        }
+        break;
+    }
 }
 
 // 文字列をファイルに追加する
-void DEBUG::SaveText(std::string logString)
+void DEBUG::SaveText(std::string logString, DEBUG_MAP_TYPE debugMapType)
 {
-    std::ofstream file(DEBUG::LogFileString, std::ios::app);
-
-    if (!file) {
-        return;
+    // 共通情報設定
+    DEBUG_SAVE_TEXT_FUNCTION_DATA debugSaveTextFunctionData;
+    {
+        // 時間
+        debugSaveTextFunctionData.timeString = DEBUG::TimeToString();
     }
 
-    file << logString;
+    // 基本ファイル出力
+    {
+        std::ofstream baseFile(DEBUG::LogFileString, std::ios::app);
+
+        if (!baseFile) {
+            return;
+        }
+    
+        baseFile << logString;
+        for (int i = 0; i < DEBUG::LogFileProcess.size(); i++)
+        {
+            ProcessByDebugType(&baseFile, DEBUG::LogFileProcess[i], debugSaveTextFunctionData);
+        }
+    }
+    
+    if (DEBUG::PlusLogFileData.find(debugMapType) != DEBUG::PlusLogFileData.end())
+    {
+        std::ofstream plusFile(DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + DEBUG::PlusLogFileData[debugMapType].plusFileName + ".txt", std::ios::app);
+
+        plusFile << logString;
+        for (int i = 0; i < DEBUG::PlusLogFileData[debugMapType].debugType.size(); i++)
+        {
+            ProcessByDebugType(&plusFile, DEBUG::PlusLogFileData[debugMapType].debugType[i], debugSaveTextFunctionData);
+        }
+    }
+}
+
+// デバッグ種類別の処理
+void DEBUG::ProcessByDebugType(std::ofstream *file, DEBUG_PROCESS_TYPE debugProcessType, DEBUG_SAVE_TEXT_FUNCTION_DATA debugSaveTextFunctionData)
+{
+    switch (debugProcessType)
+    {
+    case DEBUG_PROCESS_TYPE::FUNCTION_CALL:
+        *file << DEBUG::FunctionCallHistoryAcquisition(2);
+        break;
+    case DEBUG_PROCESS_TYPE::TIME:
+        *file << debugSaveTextFunctionData.timeString;
+        break;
+    }
 }
 
 // 関数名を取得
-std::string DEBUG::FunctionCallHistoryAcquisition()
+std::string DEBUG::FunctionCallHistoryAcquisition(int deleteNumber)
 {
     // スタックフレームから関数名取得
     void* stack[50];
@@ -73,7 +188,7 @@ std::string DEBUG::FunctionCallHistoryAcquisition()
     /*------------------------------*/
 
     // 関数名などに変換(この関数を抜いて処理する)
-    for (USHORT i = 1; i < stackFrames; i++)
+    for (USHORT i = deleteNumber; i < stackFrames; i++)
     {
         DWORD64 address = (DWORD64)stack[i];
         std::ostringstream oneFunctionCallHistoryString;
@@ -118,5 +233,13 @@ std::string DEBUG::FunctionCallHistoryAcquisition()
     free(symbol);
 
     // 関数名たちを返す
-    return "\n    " + functionCallHistoryString;
+    return "    " + functionCallHistoryString + '\n';
 }
+
+// 時間文字列取得
+std::string DEBUG::TimeToString()
+{
+    return "    TIME : " + std::to_string(Master::mpTimeManager->GetTime()) + '\n';
+}
+
+#endif

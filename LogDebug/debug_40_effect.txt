@@ -1,0 +1,246 @@
+エフェクトハンドル(原本)取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:721) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476647368
+エフェクトハンドル(原本)取得 : Resource/Effect/drill.efkefc; HANDLE : 1; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:722) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476647408
+エフェクトハンドル(原本)取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:723) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476647425
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; HANDLE(原本) : 0; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652768
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 1; HANDLE(原本) : 1; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652778
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; HANDLE(原本) : 2; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652787
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; HANDLE(原本) : 0; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652932
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 1; HANDLE(原本) : 1; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652943
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; HANDLE(原本) : 2; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476652953
+エフェクトプレイハンドル取得 : 0
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476661467
+エフェクトプレイハンドル取得 : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476661538
+エフェクトプレイハンドル取得 : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476661550
+エフェクトハンドル(交換)取得 : 3
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476680054
+エフェクトプレイハンドル取得 : 4
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476682249
+エフェクトハンドル(交換)取得 : 5
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476682957
+エフェクトハンドル削除 : 0(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476683188
+プレイエフェクトハンドル削除 : 3(NOT_DELETE) : 3
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476683206
+エフェクトハンドル削除 : 1(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476683221
+エフェクトハンドル削除 : 2(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476683232
+エフェクトハンドル(交換)取得 : 6
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691086
+エフェクトハンドル削除 : 0(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691913
+プレイエフェクトハンドル削除 : 0(NOT_DELETE) : 0; COUNT : 1
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691926
+エフェクトハンドル削除 : 1(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691937
+プレイエフェクトハンドル削除 : 6(NOT_DELETE) : 6
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691950
+エフェクトハンドル削除 : 2(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476691962
+エフェクトハンドル削除 : 0(NOT_DELETE) : 0 : 5
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476692109
+プレイエフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476692133
+エフェクトハンドル削除 : 1(NOT_DELETE) : 1
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476692145
+エフェクトハンドル削除 : 2(NOT_DELETE) : 2
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476692157
+エフェクトハンドル(原本)取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:721) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476701479
+エフェクトハンドル(原本)取得 : Resource/Effect/drill.efkefc; HANDLE : 4; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:722) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476701500
+エフェクトハンドル(原本)取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; COUNT : 1
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:723) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476701522
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; HANDLE(原本) : 3; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705755
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 4; HANDLE(原本) : 4; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705765
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; HANDLE(原本) : 5; COUNT : 2
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705774
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; HANDLE(原本) : 3; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705878
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 4; HANDLE(原本) : 4; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705886
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; HANDLE(原本) : 5; COUNT : 3
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705896
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; HANDLE(原本) : 3; COUNT : 4
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476705998
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 4; HANDLE(原本) : 4; COUNT : 4
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706008
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; HANDLE(原本) : 5; COUNT : 4
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706020
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; HANDLE(原本) : 3; COUNT : 5
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706122
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 4; HANDLE(原本) : 4; COUNT : 5
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706134
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; HANDLE(原本) : 5; COUNT : 5
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706147
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 3; HANDLE(原本) : 3; COUNT : 6
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706255
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 4; HANDLE(原本) : 4; COUNT : 6
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706269
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 5; HANDLE(原本) : 5; COUNT : 6
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476706279
+エフェクトプレイハンドル取得 : 7
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707230
+エフェクトプレイハンドル取得 : 8
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707241
+エフェクトプレイハンドル取得 : 9
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707253
+エフェクトプレイハンドル取得 : 10
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707267
+エフェクトプレイハンドル取得 : 11
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707276
+エフェクトプレイハンドル取得 : 12
+    WinMain(Main.cpp:125) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:50) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476707293
+エフェクトハンドル(交換)取得 : 13
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476722527
+エフェクトハンドル(交換)取得 : 14
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476729381
+エフェクトハンドル(交換)取得 : 15
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1071) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476731167
+エフェクトプレイハンドル取得 : 16
+    WinMain(Main.cpp:137) -> GameManager::Update(GameManager.cpp:104) -> ObjectManager::ObjectLastUpdate(ObjectManager.cpp:87) -> AttackBase::LastUpdate(ObjectBases.cpp:588) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476732051
+エフェクトハンドル削除 : 3(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733181
+プレイエフェクトハンドル削除 : 15(NOT_DELETE) : 15
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733195
+エフェクトハンドル削除 : 4(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733209
+エフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733224
+エフェクトハンドル削除 : 3(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733360
+プレイエフェクトハンドル削除 : 14(NOT_DELETE) : 14
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733375
+エフェクトハンドル削除 : 4(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733389
+エフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:140) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476733404
+エフェクトハンドル削除 : 3(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738349
+プレイエフェクトハンドル削除 : 7(NOT_DELETE) : 7
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738365
+エフェクトハンドル削除 : 4(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738375
+プレイエフェクトハンドル削除 : 16(NOT_DELETE) : 16
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738387
+エフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738402
+エフェクトハンドル削除 : 3(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738520
+プレイエフェクトハンドル削除 : 8(NOT_DELETE) : 8
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738537
+エフェクトハンドル削除 : 4(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738551
+エフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738569
+エフェクトハンドル削除 : 3(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738693
+プレイエフェクトハンドル削除 : 9(NOT_DELETE) : 9
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738706
+エフェクトハンドル削除 : 4(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738719
+エフェクトハンドル削除 : 5(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738731
+エフェクトハンドル削除 : 3(NOT_DELETE) : 3 : 12
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738898
+プレイエフェクトハンドル削除 : 12(NOT_DELETE)
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:147) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelEffect::ModelFinalize(ModelEffect.cpp:31) -> ResourceManager::DeletePlayEffectHandle(ResourceManager.cpp:1114) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738920
+エフェクトハンドル削除 : 4(NOT_DELETE) : 4
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738933
+エフェクトハンドル削除 : 5(NOT_DELETE) : 5
+    WinMain(Main.cpp:148) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:77) -> ObjectManager::Finalize(ObjectManager.cpp:35) -> ObjectManager::DeleteAll(ObjectManager.cpp:367) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:143) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateEffectAnimation::Finalize(StateAnimation.cpp:392) -> ResourceManager::ReduceEffectDataHandle(ResourceManager.cpp:1143) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 476738946

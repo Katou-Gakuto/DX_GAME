@@ -28,7 +28,7 @@ void ModelEffect::ModelFinalize()
 {
     if (mnEffectHandle != -1)
     {
-        Master::mpResourceManager->ReduceEffectDataHandle(mnEffectHandle);
+        Master::mpResourceManager->DeletePlayEffectHandle(mnEffectHandle);
     }
 }
 

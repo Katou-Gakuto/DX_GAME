@@ -82,6 +82,9 @@ public:
 
     /// <summary>ハンドルカウント取得</summary>
     int GetHandleCount(int handle) { return mmHandleCounts[handle]; }
+    
+    /// <summary>ハンドルカウントマップ取得</summary>
+    std::map<int, int> GetHandleCountMap() const { return mmHandleCounts; }
 
     /*--------*/
     /*【設定】*/
@@ -329,10 +332,11 @@ public:
             }
         }
 
-        Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
+        
 
 #ifdef _DEBUG
-        DEBUG::SaveText("\nハンドル未発見 : " + std::to_string(handle) + " <= ");
+    //Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
+    DEBUG::SaveText("\nハンドル未発見 : " + std::to_string(handle) + " <= ", DEBUG::DEBUG_MAP_TYPE::DEBUG_UNDISCOVERED);
 #endif
 
         return {};

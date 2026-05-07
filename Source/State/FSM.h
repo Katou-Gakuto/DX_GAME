@@ -189,6 +189,9 @@ public:
 
 	/*カメラID取得*/
 	int GetSceneCameraID();
+
+	/*ステートマップ取得*/
+	inline std::map<SCENE, IStateScene*> GetStateMap() { return mmStateMap; }
 };
 
 /*----------*/

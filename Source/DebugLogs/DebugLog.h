@@ -17,6 +17,7 @@ namespace DEBUG
 		DEBUG_UNDISCOVERED,
 		DEBUG_GRAPH,
 		DEBUG_3D_MODEL,
+		DEBUG_SCENE_TITLE,
 	};
 
 	// デバッグ用処理種類
@@ -25,6 +26,7 @@ namespace DEBUG
 		NONE = -1,
 		FUNCTION_CALL,
 		TIME,
+    	ALL_FILE_OUTPUT,
 	};
 
 	// デバッグ用追加ファイル別データ
@@ -39,7 +41,11 @@ namespace DEBUG
 	struct DEBUG_SAVE_TEXT_FUNCTION_DATA
 	{
 		std::string timeString;
+		std::string logString;
+		int debugMapType;
 	};
+
+	static bool DebugOutputFileFlag;
 
 	static std::string LogFileString;
 	static std::vector<DEBUG_PROCESS_TYPE> LogFileProcess;
@@ -49,7 +55,7 @@ namespace DEBUG
 	static HANDLE DebugProcessHandle;
 
 	/// <summary>デバッグ初期化</summary>
-	void DebugInitialization();
+	void DebugInitialization(bool debugOutputFlag);
 
 	/// <summary>デバッグ出力先を追加する(上書き)</summary>
 	void DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType = DEBUG_MAP_TYPE::DEBUG_BASE, std::string plusFileName = "");

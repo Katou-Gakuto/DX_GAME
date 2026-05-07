@@ -35,4 +35,6 @@ enum class SCENE
 
 	GAME_LOOP,	// ゲームループ
 	BATTLE_LOOP,	// バトルループ
+
+	GAME_CLEAR,// ゲームクリア
 };

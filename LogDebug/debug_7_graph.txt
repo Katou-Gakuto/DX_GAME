@@ -1,0 +1,614 @@
+画像ハンドル(原本)取得 : Resource/Effect/Background.png : 67633153
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:53) -> ResourceManager::Initilize(ResourceManager.cpp:103) -> ResourceManager::EffectInit(ResourceManager.cpp:1270) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679675
+画像ハンドル(原本)取得 : Resource/2D/Floor.png : 67895298
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:66) -> MapManager::MapManager(MapManager.cpp:53) -> ModelBase::Initilize(ModelBase.cpp:23) -> ModelMap::ModelInitilize(ModelMap.cpp:24) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679691
+画像ハンドル(原本)取得 : Resource/2D/Green.png : 69468168
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:108) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679935
+画像ハンドル(原本)取得 : Resource/2D/MiniMapWindow.png : 69730313
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:115) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679940
+画像ハンドル(原本)取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:172) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679969
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:180) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679970
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:188) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949679971
+画像ハンドル(原本)取得 : Resource/2D/TitleString.png : 71041038
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:65) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683953
+画像ハンドル(原本)取得 : Resource/2D/TitleSelectBase.png : 71303183
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:77) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683963
+画像ハンドル(原本)取得 : Resource/2D/StringBack_Close.png : 71565328
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:84) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683965
+画像ハンドル(原本)取得 : Resource/2D/StringBack.png : 71827473
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:88) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683967
+画像ハンドル取得 : Resource/2D/StringBack_Close.png : 71565328
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:93) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683968
+画像ハンドル取得 : Resource/2D/StringBack_Close.png : 71565328
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:97) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683968
+画像ハンドル(原本)取得 : Resource/2D/NewData_String.png : 72089618
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:105) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683972
+画像ハンドル(原本)取得 : Resource/2D/DataSelect_String.png : 72351763
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:109) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683975
+画像ハンドル(原本)取得 : Resource/2D/Tutorial_String.png : 72613908
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:114) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683979
+画像ハンドル(原本)取得 : Resource/2D/Setting_String.png : 72876053
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:118) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683982
+画像ハンドル(原本)取得 : Resource/2D/SelectString_1.png : 73138198
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:133) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683984
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:112) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Title::UIInitilize(UI_Title.cpp:188) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683985
+画像ハンドル(原本)取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:836) -> StartTitleUIState::StartTitleUIState(StateTitleUI.cpp:277) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949683993
+画像ハンドル(原本)取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:836) -> StartTitleUIState::StartTitleUIState(StateTitleUI.cpp:277) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684003
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:837) -> SelectTitleUIState::SelectTitleUIState(StateTitleUI.cpp:333) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684007
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:837) -> SelectTitleUIState::SelectTitleUIState(StateTitleUI.cpp:333) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684008
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:839) -> NewDataCheckTitleUIState::NewDataCheckTitleUIState(StateTitleUI.cpp:443) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684012
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:839) -> NewDataCheckTitleUIState::NewDataCheckTitleUIState(StateTitleUI.cpp:443) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684013
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:840) -> DataSelectTitleUIState::DataSelectTitleUIState(StateTitleUI.cpp:499) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684019
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:840) -> DataSelectTitleUIState::DataSelectTitleUIState(StateTitleUI.cpp:499) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684020
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:841) -> TutorialTitleUIState::TutorialTitleUIState(StateTitleUI.cpp:576) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684026
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:841) -> TutorialTitleUIState::TutorialTitleUIState(StateTitleUI.cpp:576) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684028
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:842) -> SettingTitleUIState::SettingTitleUIState(StateTitleUI.cpp:632) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684033
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:842) -> SettingTitleUIState::SettingTitleUIState(StateTitleUI.cpp:632) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684034
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:844) -> CharacterSelectTitleUIState::CharacterSelectTitleUIState(StateTitleUI.cpp:698) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684038
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:844) -> CharacterSelectTitleUIState::CharacterSelectTitleUIState(StateTitleUI.cpp:698) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684040
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:845) -> PlayerNameTitleUIState::PlayerNameTitleUIState(StateTitleUI.cpp:753) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684044
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:845) -> PlayerNameTitleUIState::PlayerNameTitleUIState(StateTitleUI.cpp:753) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684045
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:846) -> InputCheckTitleUIState::InputCheckTitleUIState(StateTitleUI.cpp:808) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684050
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:846) -> InputCheckTitleUIState::InputCheckTitleUIState(StateTitleUI.cpp:808) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684051
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:848) -> ScreenSizeTitleUIState::ScreenSizeTitleUIState(StateTitleUI.cpp:864) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684055
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:848) -> ScreenSizeTitleUIState::ScreenSizeTitleUIState(StateTitleUI.cpp:864) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684057
+画像ハンドル取得 : Resource/2D/TitleDataBase.png : 73400343
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:849) -> VolumeTitleUIState::VolumeTitleUIState(StateTitleUI.cpp:919) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:38) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684062
+画像ハンドル取得 : Resource/2D/TitleDataSelectBase.png : 73662488
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> TitleScene::OnEnter(StateScene.cpp:113) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:849) -> VolumeTitleUIState::VolumeTitleUIState(StateTitleUI.cpp:919) -> TitleUIStateProcess::TitleUIStateProcess(StateTitleUI.cpp:39) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949684063
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:691) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770254
+画像ハンドル削除 : 71041038(NOT_DELETE) : 71041038
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770283
+画像ハンドル削除 : 71303183(NOT_DELETE) : 71303183
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770285
+画像ハンドル削除 : 71565328(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770285
+画像ハンドル削除 : 71827473(NOT_DELETE) : 71827473
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770287
+画像ハンドル削除 : 71565328(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770287
+画像ハンドル削除 : 71565328(NOT_DELETE) : 71565328
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770288
+画像ハンドル削除 : 72089618(NOT_DELETE) : 72089618
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770288
+画像ハンドル削除 : 72351763(NOT_DELETE) : 72351763
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770289
+画像ハンドル削除 : 72613908(NOT_DELETE) : 72613908
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770290
+画像ハンドル削除 : 72876053(NOT_DELETE) : 72876053
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770290
+画像ハンドル削除 : 73138198(NOT_DELETE) : 73138198
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949770291
+画像ハンドル(原本)取得 : Resource/2D/Button_L_3.png : 83099708
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:754) -> IdleBattlePlayerState::IdleBattlePlayerState(StatePlayer.cpp:961) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:312) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771415
+画像ハンドル(原本)取得 : Resource/2D/Button_R_3.png : 83361853
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:754) -> IdleBattlePlayerState::IdleBattlePlayerState(StatePlayer.cpp:961) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:319) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771418
+画像ハンドル取得 : Resource/2D/Button_L_3.png : 83099708
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:755) -> MoveBattlePlayerState::MoveBattlePlayerState(StatePlayer.cpp:996) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:312) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771419
+画像ハンドル取得 : Resource/2D/Button_R_3.png : 83361853
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:755) -> MoveBattlePlayerState::MoveBattlePlayerState(StatePlayer.cpp:996) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:319) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771420
+画像ハンドル(原本)取得 : Resource/2D/Button_L_2.png : 83623998
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:756) -> NormalAttackPlayerState::NormalAttackPlayerState(StatePlayer.cpp:522) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:312) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771422
+画像ハンドル(原本)取得 : Resource/2D/Button_R_2.png : 83886143
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:756) -> NormalAttackPlayerState::NormalAttackPlayerState(StatePlayer.cpp:522) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:319) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771424
+画像ハンドル取得 : Resource/2D/Button_L_2.png : 83623998
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:757) -> SpceialAttackPlayerState::SpceialAttackPlayerState(StatePlayer.cpp:585) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:312) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771425
+画像ハンドル取得 : Resource/2D/Button_R_2.png : 83886143
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:757) -> SpceialAttackPlayerState::SpceialAttackPlayerState(StatePlayer.cpp:585) -> PlayerProcess::L_R_KeyDrawDataSetUp(StatePlayer.cpp:319) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771426
+画像ハンドル(原本)取得 : Resource/2D/HpBack.png : 84148288
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:760) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdlePlayerState::OnEnter(StatePlayer.cpp:374) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771428
+画像ハンドル(原本)取得 : Resource/2D/HpBar.png : 84410433
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:760) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdlePlayerState::OnEnter(StatePlayer.cpp:379) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771430
+画像ハンドル(原本)取得 : Resource/2D/HpBarRed.png : 84672578
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:736) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:760) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdlePlayerState::OnEnter(StatePlayer.cpp:384) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771434
+画像ハンドル取得 : Resource/2D/HpBack.png : 84148288
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:130) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771941
+画像ハンドル取得 : Resource/2D/HpBar.png : 84410433
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:135) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771947
+画像ハンドル取得 : Resource/2D/HpBarRed.png : 84672578
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:140) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771948
+画像ハンドル取得 : Resource/2D/HpBack.png : 84148288
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:130) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771957
+画像ハンドル取得 : Resource/2D/HpBar.png : 84410433
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:135) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771958
+画像ハンドル取得 : Resource/2D/HpBarRed.png : 84672578
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:768) -> UtilFactorys::FSMCharacterFactory(UtilFactorys.cpp:783) -> FSMCharacter::SetCurrentState(FSM.cpp:206) -> IdleEnemyState::OnEnter(StateEnemy.cpp:148) -> EnemyCommonProcessing::EnemyGraphDataInitialize(EnemyCommonProcessing.cpp:140) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771959
+画像ハンドル(原本)取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771972
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771974
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771974
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771975
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771975
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771976
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771977
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771977
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771977
+画像ハンドル取得 : Resource/2D/TitleSelectBase.png : 88866898
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:777) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_Game::UIInitilize(UI_Game.cpp:215) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771978
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Back.png : 89129043
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:256) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771987
+画像ハンドル(原本)取得 : Resource/2D/MenuString_BackPush.png : 89391188
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:258) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949771996
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Config.png : 89653333
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:265) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772004
+画像ハンドル(原本)取得 : Resource/2D/MenuString_ConfigPush.png : 89915478
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:267) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772012
+画像ハンドル(原本)取得 : Resource/2D/MenuString_Status.png : 90177623
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:274) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772020
+画像ハンドル(原本)取得 : Resource/2D/MenuString_StatusPush.png : 90439768
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:276) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772029
+画像ハンドル(原本)取得 : Resource/2D/MenuString_GameEnd.png : 90701913
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:283) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772037
+画像ハンドル(原本)取得 : Resource/2D/MenuString_GameEndPush.png : 90964058
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:859) -> PauseGameUIState::PauseGameUIState(StateGameUI.cpp:285) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772046
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772051
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772058
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772060
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772061
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772061
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:485) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772062
+画像ハンドル(原本)取得 : Resource/2D/ConfigUIReturn.png : 92012638
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:537) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772259
+画像ハンドル(原本)取得 : Resource/2D/ConfigUIMiniMap.png : 92274783
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:543) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772444
+画像ハンドル(原本)取得 : Resource/2D/ConfigUISound.png : 92536928
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:549) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772619
+画像ハンドル(原本)取得 : Resource/2D/ConfigUICamera.png : 92799073
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:864) -> ConfigSelectState::ConfigSelectState(StateConfigUi.cpp:555) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772794
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772795
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772796
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772797
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772797
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772798
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:756) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772799
+画像ハンドル取得 : Resource/2D/ConfigUIMiniMap.png : 92274783
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:865) -> MinimapConfigState::MinimapConfigState(StateConfigUi.cpp:775) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772799
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772800
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772800
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772801
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772802
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772802
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:848) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772803
+画像ハンドル取得 : Resource/2D/ConfigUISound.png : 92536928
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:866) -> SoundConfigState::SoundConfigState(StateConfigUi.cpp:867) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772803
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772804
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772805
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772805
+画像ハンドル取得 : Resource/2D/ConfigUISliderLeft.png : 91226203
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:217) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772806
+画像ハンドル取得 : Resource/2D/ConfigUISliderRight.png : 91488348
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:229) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772807
+画像ハンドル取得 : Resource/2D/ConfigUISliderButton.png : 91750493
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:940) -> ConfigUIProcess::InitSetSlider(StateConfigUi.cpp:240) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772807
+画像ハンドル取得 : Resource/2D/ConfigUICamera.png : 92799073
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:778) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:867) -> CameraConfigState::CameraConfigState(StateConfigUi.cpp:959) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772807
+画像ハンドル(原本)取得 : Resource/2D/White.png : 93061218
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:781) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_StageStart::UIInitilize(UI_StageStart.cpp:45) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772830
+画像ハンドル(原本)取得 : Resource/2D/WaveString_1.png : 93323363
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:781) -> UIBase::Initilize(ObjectBases.cpp:664) -> UI_StageStart::UIInitilize(UI_StageStart.cpp:99) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949772833
+画像ハンドル削除 : 93061218(NOT_DELETE) : 93061218
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949774655
+画像ハンドル削除 : 93323363(NOT_DELETE) : 93323363
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949774656
+画像ハンドル削除 : 84148288(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949782762
+画像ハンドル削除 : 84672578(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949782763
+画像ハンドル削除 : 84410433(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949782763
+画像ハンドル削除 : 84148288(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783163
+画像ハンドル削除 : 84672578(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783163
+画像ハンドル削除 : 84410433(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783164
+画像ハンドル削除 : 84148288(NOT_DELETE) : 84148288
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783177
+画像ハンドル削除 : 84672578(NOT_DELETE) : 84672578
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783177
+画像ハンドル削除 : 84410433(NOT_DELETE) : 84410433
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:174) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783178
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783179
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783180
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783181
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783182
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783183
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783184
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783185
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783186
+画像ハンドル削除 : 88866898(NOT_DELETE)
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783187
+画像ハンドル削除 : 88866898(NOT_DELETE) : 88866898
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> UIBase::Finalize(ObjectBases.cpp:709) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelGraph::ModelFinalize(ModelGraph.cpp:58) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949783188
+
+ハンドル未発見 : 101318678 <= 画像ハンドル削除 : 101318678(NOT_DELETE)
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:45) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784068
+
+ハンドル未発見 : 101318678 <= 画像ハンドル削除 : 101318678(NOT_DELETE)
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:45) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784069
+
+ハンドル未発見 : 101384234 <= 画像ハンドル削除 : 101384234(NOT_DELETE)
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:45) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784070
+
+ハンドル未発見 : 1672183870 <= 画像ハンドル削除 : 1672183870(NOT_DELETE)
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:45) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784070
+
+ハンドル未発見 : 1671397450 <= 画像ハンドル削除 : 1671397450(NOT_DELETE)
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:45) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784071
+画像ハンドル(原本)取得 : Resource/2D/ChangeArrow.png : 95158378
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:239) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784138
+画像ハンドル(原本)取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784151
+画像ハンドル取得 : Resource/2D/ChangeArrow.png : 95158378
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:239) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784152
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784152
+画像ハンドル取得 : Resource/2D/ChangeArrow.png : 95158378
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:239) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784153
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784154
+画像ハンドル取得 : Resource/2D/ChangeArrow.png : 95158378
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:239) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784154
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784155
+画像ハンドル取得 : Resource/2D/ChangeArrow.png : 95158378
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:239) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784155
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784156
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784157
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784157
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784158
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784158
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784159
+画像ハンドル取得 : Resource/2D/Numbers.png : 95420523
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:242) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784160
+画像ハンドル(原本)取得 : Resource/2D/ResultStatus.png : 95682668
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:261) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784336
+画像ハンドル(原本)取得 : Resource/2D/Result2.png : 95944813
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:272) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784515
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> ResultScene::OnEnter(StateScene.cpp:607) -> UtilFactorys::FSMUIFactory(UtilFactorys.cpp:875) -> StartResultUIState::StartResultUIState(StateResultUI.cpp:284) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949784516
+画像ハンドル削除 : 95158378(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798615
+画像ハンドル削除 : 95158378(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798617
+画像ハンドル削除 : 95158378(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798618
+画像ハンドル削除 : 95158378(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798618
+画像ハンドル削除 : 95158378(NOT_DELETE) : 95158378
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798619
+画像ハンドル削除 : 95682668(NOT_DELETE) : 95682668
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798620
+画像ハンドル削除 : 95944813(NOT_DELETE) : 95944813
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798620
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:23) -> DrawManager::Finalize(DrawManager.cpp:40) -> DrawManager::DeleteDrawData(DrawManager.cpp:156) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798621
+画像ハンドル削除 : 69468168(NOT_DELETE) : 69468168
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798652
+画像ハンドル削除 : 69730313(NOT_DELETE) : 69730313
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798653
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798654
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798655
+画像ハンドル削除 : 69992458(NOT_DELETE) : 69992458
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798655
+画像ハンドル削除(最終) : 83623998 : Resource/2D/Button_L_2.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798718
+画像ハンドル削除(最終) : 83099708 : Resource/2D/Button_L_3.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798718
+画像ハンドル削除(最終) : 83886143 : Resource/2D/Button_R_2.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798719
+画像ハンドル削除(最終) : 83361853 : Resource/2D/Button_R_3.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798719
+画像ハンドル削除(最終) : 92799073 : Resource/2D/ConfigUICamera.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798720
+画像ハンドル削除(最終) : 92274783 : Resource/2D/ConfigUIMiniMap.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798720
+画像ハンドル削除(最終) : 92012638 : Resource/2D/ConfigUIReturn.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798721
+画像ハンドル削除(最終) : 91750493 : Resource/2D/ConfigUISliderButton.png : HandleNumber <=8
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798721
+画像ハンドル削除(最終) : 91226203 : Resource/2D/ConfigUISliderLeft.png : HandleNumber <=8
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798722
+画像ハンドル削除(最終) : 91488348 : Resource/2D/ConfigUISliderRight.png : HandleNumber <=8
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798722
+画像ハンドル削除(最終) : 92536928 : Resource/2D/ConfigUISound.png : HandleNumber <=2
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798724
+画像ハンドル削除(最終) : 67895298 : Resource/2D/Floor.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798724
+画像ハンドル削除(最終) : 89129043 : Resource/2D/MenuString_Back.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798725
+画像ハンドル削除(最終) : 89391188 : Resource/2D/MenuString_BackPush.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798725
+画像ハンドル削除(最終) : 89653333 : Resource/2D/MenuString_Config.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798725
+画像ハンドル削除(最終) : 89915478 : Resource/2D/MenuString_ConfigPush.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798726
+画像ハンドル削除(最終) : 90701913 : Resource/2D/MenuString_GameEnd.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798726
+画像ハンドル削除(最終) : 90964058 : Resource/2D/MenuString_GameEndPush.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798726
+画像ハンドル削除(最終) : 90177623 : Resource/2D/MenuString_Status.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798727
+画像ハンドル削除(最終) : 90439768 : Resource/2D/MenuString_StatusPush.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798727
+画像ハンドル削除(最終) : 95420523 : Resource/2D/Numbers.png : HandleNumber <=11
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798728
+画像ハンドル削除(最終) : 73400343 : Resource/2D/TitleDataBase.png : HandleNumber <=11
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798728
+画像ハンドル削除(最終) : 73662488 : Resource/2D/TitleDataSelectBase.png : HandleNumber <=11
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798730
+画像ハンドル削除(最終) : 67633153 : Resource/Effect/Background.png : HandleNumber <=1
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:27) -> ResourceManager::Finailize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:151) -> 
+    TIME : 949798730

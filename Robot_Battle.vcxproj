@@ -27,7 +27,6 @@
     <ClCompile Include="Imgui\imgui_tables.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Animation\AnimationBase.cpp" />
-    <ClCompile Include="Source\Container\HandleContainer.cpp" />
     <ClCompile Include="Source\DebugLogs\DebugLog.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Model\ModelBase.cpp" />
@@ -46,6 +45,7 @@
     <ClCompile Include="Source\Object\Character\Character_Shot.cpp" />
     <ClCompile Include="Source\Object\ObjectBases.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Game.cpp" />
+    <ClCompile Include="Source\Object\UI\UI_GameClear.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="Source\Object\UI\UI_StageStart.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
@@ -124,6 +124,7 @@
     <ClInclude Include="Source\Enum\ResourceEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
     <ClInclude Include="Source\Enum\TelopEnum.h" />
+    <ClInclude Include="Source\Enum\TimeEnum.h" />
     <ClInclude Include="Source\Model\ModelBase.h" />
     <ClInclude Include="Source\Model\ModelEffect.h" />
     <ClInclude Include="Source\Model\ModelGraph.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Source\Object\ObjectBases.h" />
     <ClInclude Include="Source\Object\UI\UI_Check.h" />
     <ClInclude Include="Source\Object\UI\UI_Game.h" />
+    <ClInclude Include="Source\Object\UI\UI_GameClear.h" />
     <ClInclude Include="Source\Object\UI\UI_Result.h" />
     <ClInclude Include="Source\Object\UI\UI_StageStart.h" />
     <ClInclude Include="Source\Object\UI\UI_Title.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="Source\Struct\TargetData.h" />
     <ClInclude Include="Source\Struct\TelopData.h" />
     <ClInclude Include="Source\Struct\TileData.h" />
+    <ClInclude Include="Source\Struct\TimeData.h" />
     <ClInclude Include="Source\Struct\Vector2.h" />
     <ClInclude Include="Source\Util\UtilCalc.h" />
     <ClInclude Include="Source\Util\UtilChange.h" />

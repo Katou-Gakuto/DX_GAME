@@ -26,10 +26,6 @@ void ModelEffect::ModelInitilize()
 // Œp³ƒ‚ƒfƒ‹I—¹
 void ModelEffect::ModelFinalize()
 {
-    if (mnEffectHandle != -1)
-    {
-        Master::mpResourceManager->DeletePlayEffectHandle(mnEffectHandle);
-    }
 }
 
 // ƒQ[ƒ€’†‰Šú‰»

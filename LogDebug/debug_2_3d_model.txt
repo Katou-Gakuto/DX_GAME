@@ -1,0 +1,961 @@
+モデルハンドル(原本)取得 : Resource/3D/Sky/SkySphere.mv1 : 939786240
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:68) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947449298
+モデルハンドル(一つ目)取得 : Resource/3D/Sky/SkySphere.mv1 : 940048385
+    WinMain(Main.cpp:119) -> GameManager::Initilize(GameManager.cpp:67) -> MapManager::Initilize(MapManager.cpp:68) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947449299
+モデルハンドル(原本)取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940310530
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456620
+モデルハンドル(一つ目)取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940572675
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456622
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 940834820
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456624
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 941096965
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456625
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 941359110
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456626
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 941621255
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456627
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 941883400
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456627
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 942145545
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456628
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 942407690
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456629
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 942669835
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456629
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 942931980
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456630
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 943194125
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456630
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 943456270
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456631
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 943718415
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456632
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 943980560
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456632
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 944242705
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456632
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 944504850
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456633
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 944766995
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456634
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 945029140
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456634
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 945291285
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456635
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 945553430
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456636
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 945815575
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456637
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 946077720
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456637
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 946339865
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456638
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 946602010
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456638
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 946864155
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456639
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 947126300
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456640
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 947388445
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456640
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 947650590
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456641
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 947912735
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456641
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 948174880
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456642
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 948437025
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456642
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 948699170
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456643
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 948961315
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456644
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 949223460
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456644
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 949485605
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456644
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 949747750
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456645
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 950009895
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456645
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 950272040
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456647
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 950534185
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456648
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 950796330
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456648
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 951058475
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456649
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 951320620
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456649
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 951582765
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456650
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 951844910
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456650
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 952107055
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456651
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 952369200
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456652
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 952631345
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456652
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 952893490
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456653
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 953155635
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456653
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 953417780
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456654
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 953679925
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456655
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 953942070
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456655
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 954204215
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456656
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 954466360
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456656
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 954728505
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456657
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 954990650
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456658
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 955252795
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456658
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 955514940
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456659
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 955777085
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456659
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 956039230
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456660
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 956301375
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456660
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 956563520
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456661
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 956825665
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456662
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 957087810
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456662
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 957349955
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456663
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 957612100
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456664
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 957874245
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456664
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 958136390
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456665
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 958398535
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456666
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 958660680
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456666
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 958922825
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456667
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 959184970
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456668
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 959447115
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456668
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 959709260
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456669
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 959971405
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456669
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 960233550
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456670
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 960495695
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456671
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 960757840
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456671
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 961019985
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456672
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 961282130
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456672
+モデルハンドル取得 : Resource/3D/Floor/Ceiling_Closed.mv1 : 961544275
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:695) -> MapManager::SetMapData(MapManager.cpp:387) -> ModelMap::LoadMapData(ModelMap.cpp:74) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947456673
+モデルハンドル(原本)取得 : Resource/3D/Robot/robotSphere.mv1 : 961806420
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:42) -> UtilFactorys::ModelFactory(UtilFactorys.cpp:902) -> ModelMV1::SetModelHandle(ModelMV1.cpp:122) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457225
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/robotSphere.mv1 : 962068565
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:42) -> UtilFactorys::ModelFactory(UtilFactorys.cpp:902) -> ModelMV1::SetModelHandle(ModelMV1.cpp:122) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457226
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 962330710
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457227
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 962592855
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457228
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 962855000
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457229
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 963117145
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457230
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 963379290
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457230
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 963641435
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457232
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 963903580
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457233
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 964165725
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457234
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 964427870
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457235
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 964690015
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457236
+モデルハンドル(原本)取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 964952160
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:523) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457237
+モデルハンドル(一つ目)取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 965214305
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:529) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457237
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 965476450
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457239
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 965738595
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457239
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 966000740
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457240
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 966262885
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:738) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457241
+モデルハンドル取得 : Resource/3D/Robot/robotSphere.mv1 : 966525030
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:42) -> UtilFactorys::ModelFactory(UtilFactorys.cpp:902) -> ModelMV1::SetModelHandle(ModelMV1.cpp:122) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457248
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 966787175
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457249
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 967049320
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457250
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 967311465
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457251
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 967573610
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457251
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 967835755
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457252
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 968097900
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457253
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 968360045
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457253
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 968622190
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457254
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 968884335
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457255
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 969146480
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457256
+モデルハンドル取得 : Resource/3D/Robot/robotSphere.mv1 : 969408625
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:42) -> UtilFactorys::ModelFactory(UtilFactorys.cpp:902) -> ModelMV1::SetModelHandle(ModelMV1.cpp:122) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457262
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1 : 969670770
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457263
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1 : 969932915
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457264
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1 : 970195060
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457264
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 970457205
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457264
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 970719350
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457265
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 970981495
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457267
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1 : 971243640
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457268
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_close.mv1 : 971505785
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457269
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 971767930
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457269
+モデルハンドル取得 : Resource/3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1 : 972030075
+    WinMain(Main.cpp:130) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:47) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:770) -> SceneStateProcess::CharacterModelSetting(StateScene.cpp:49) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:440) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:286) -> ResourceManager::GetModelHandle(ResourceManager.cpp:513) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947457270
+モデルハンドル削除 : 966525030(NOT_DELETE) : 966525030
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:131) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelMV1::ModelFinalize(ModelMV1.cpp:30) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482714
+モデルハンドル削除 : 966787175(NOT_DELETE) : 966787175
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482716
+モデルハンドル削除 : 967049320(NOT_DELETE) : 967049320
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482717
+モデルハンドル削除 : 968097900(NOT_DELETE) : 968097900
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482718
+モデルハンドル削除 : 968360045(NOT_DELETE) : 968360045
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482719
+モデルハンドル削除 : 967311465(NOT_DELETE) : 967311465
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482720
+モデルハンドル削除 : 967573610(NOT_DELETE) : 967573610
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482720
+モデルハンドル削除 : 967835755(NOT_DELETE) : 967835755
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482721
+モデルハンドル削除 : 968622190(NOT_DELETE) : 968622190
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482722
+モデルハンドル削除 : 968884335(NOT_DELETE) : 968884335
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482722
+モデルハンドル削除 : 969146480(NOT_DELETE) : 969146480
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:347) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947482723
+モデルハンドル削除 : 940572675(NOT_DELETE) : 940572675
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533887
+モデルハンドル削除 : 940834820(NOT_DELETE) : 940834820
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533888
+モデルハンドル削除 : 941096965(NOT_DELETE) : 941096965
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533889
+モデルハンドル削除 : 941359110(NOT_DELETE) : 941359110
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533889
+モデルハンドル削除 : 941621255(NOT_DELETE) : 941621255
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533890
+モデルハンドル削除 : 941883400(NOT_DELETE) : 941883400
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533890
+モデルハンドル削除 : 942145545(NOT_DELETE) : 942145545
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533892
+モデルハンドル削除 : 942407690(NOT_DELETE) : 942407690
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533892
+モデルハンドル削除 : 942669835(NOT_DELETE) : 942669835
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533893
+モデルハンドル削除 : 942931980(NOT_DELETE) : 942931980
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533893
+モデルハンドル削除 : 943194125(NOT_DELETE) : 943194125
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533894
+モデルハンドル削除 : 943456270(NOT_DELETE) : 943456270
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533894
+モデルハンドル削除 : 943718415(NOT_DELETE) : 943718415
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533895
+モデルハンドル削除 : 943980560(NOT_DELETE) : 943980560
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533895
+モデルハンドル削除 : 944242705(NOT_DELETE) : 944242705
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533896
+モデルハンドル削除 : 944504850(NOT_DELETE) : 944504850
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533896
+モデルハンドル削除 : 944766995(NOT_DELETE) : 944766995
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533897
+モデルハンドル削除 : 945029140(NOT_DELETE) : 945029140
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533897
+モデルハンドル削除 : 945291285(NOT_DELETE) : 945291285
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533898
+モデルハンドル削除 : 945553430(NOT_DELETE) : 945553430
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533898
+モデルハンドル削除 : 945815575(NOT_DELETE) : 945815575
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533899
+モデルハンドル削除 : 946077720(NOT_DELETE) : 946077720
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533900
+モデルハンドル削除 : 946339865(NOT_DELETE) : 946339865
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533900
+モデルハンドル削除 : 946602010(NOT_DELETE) : 946602010
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533901
+モデルハンドル削除 : 946864155(NOT_DELETE) : 946864155
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533901
+モデルハンドル削除 : 947126300(NOT_DELETE) : 947126300
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533902
+モデルハンドル削除 : 947388445(NOT_DELETE) : 947388445
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533902
+モデルハンドル削除 : 947650590(NOT_DELETE) : 947650590
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533903
+モデルハンドル削除 : 947912735(NOT_DELETE) : 947912735
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533903
+モデルハンドル削除 : 948174880(NOT_DELETE) : 948174880
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533905
+モデルハンドル削除 : 948437025(NOT_DELETE) : 948437025
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533905
+モデルハンドル削除 : 948699170(NOT_DELETE) : 948699170
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533906
+モデルハンドル削除 : 948961315(NOT_DELETE) : 948961315
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533906
+モデルハンドル削除 : 949223460(NOT_DELETE) : 949223460
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533907
+モデルハンドル削除 : 949485605(NOT_DELETE) : 949485605
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533907
+モデルハンドル削除 : 949747750(NOT_DELETE) : 949747750
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533908
+モデルハンドル削除 : 950009895(NOT_DELETE) : 950009895
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533908
+モデルハンドル削除 : 950272040(NOT_DELETE) : 950272040
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533909
+モデルハンドル削除 : 950534185(NOT_DELETE) : 950534185
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533909
+モデルハンドル削除 : 950796330(NOT_DELETE) : 950796330
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533910
+モデルハンドル削除 : 951058475(NOT_DELETE) : 951058475
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533911
+モデルハンドル削除 : 951320620(NOT_DELETE) : 951320620
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533911
+モデルハンドル削除 : 951582765(NOT_DELETE) : 951582765
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533912
+モデルハンドル削除 : 951844910(NOT_DELETE) : 951844910
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533912
+モデルハンドル削除 : 952107055(NOT_DELETE) : 952107055
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533913
+モデルハンドル削除 : 952369200(NOT_DELETE) : 952369200
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533913
+モデルハンドル削除 : 952631345(NOT_DELETE) : 952631345
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533914
+モデルハンドル削除 : 952893490(NOT_DELETE) : 952893490
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533914
+モデルハンドル削除 : 953155635(NOT_DELETE) : 953155635
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533915
+モデルハンドル削除 : 953417780(NOT_DELETE) : 953417780
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533916
+モデルハンドル削除 : 953679925(NOT_DELETE) : 953679925
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533916
+モデルハンドル削除 : 953942070(NOT_DELETE) : 953942070
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533917
+モデルハンドル削除 : 954204215(NOT_DELETE) : 954204215
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533917
+モデルハンドル削除 : 954466360(NOT_DELETE) : 954466360
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533918
+モデルハンドル削除 : 954728505(NOT_DELETE) : 954728505
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533918
+モデルハンドル削除 : 954990650(NOT_DELETE) : 954990650
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533918
+モデルハンドル削除 : 955252795(NOT_DELETE) : 955252795
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533919
+モデルハンドル削除 : 955514940(NOT_DELETE) : 955514940
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533919
+モデルハンドル削除 : 955777085(NOT_DELETE) : 955777085
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533920
+モデルハンドル削除 : 956039230(NOT_DELETE) : 956039230
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533921
+モデルハンドル削除 : 956301375(NOT_DELETE) : 956301375
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533922
+モデルハンドル削除 : 956563520(NOT_DELETE) : 956563520
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533922
+モデルハンドル削除 : 956825665(NOT_DELETE) : 956825665
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533923
+モデルハンドル削除 : 957087810(NOT_DELETE) : 957087810
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533924
+モデルハンドル削除 : 957349955(NOT_DELETE) : 957349955
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533924
+モデルハンドル削除 : 957612100(NOT_DELETE) : 957612100
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533924
+モデルハンドル削除 : 957874245(NOT_DELETE) : 957874245
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533925
+モデルハンドル削除 : 958136390(NOT_DELETE) : 958136390
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533925
+モデルハンドル削除 : 958398535(NOT_DELETE) : 958398535
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533927
+モデルハンドル削除 : 958660680(NOT_DELETE) : 958660680
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533927
+モデルハンドル削除 : 958922825(NOT_DELETE) : 958922825
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533928
+モデルハンドル削除 : 959184970(NOT_DELETE) : 959184970
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533929
+モデルハンドル削除 : 959447115(NOT_DELETE) : 959447115
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533929
+モデルハンドル削除 : 959709260(NOT_DELETE) : 959709260
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533930
+モデルハンドル削除 : 959971405(NOT_DELETE) : 959971405
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533930
+モデルハンドル削除 : 960233550(NOT_DELETE) : 960233550
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533931
+モデルハンドル削除 : 960495695(NOT_DELETE) : 960495695
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533931
+モデルハンドル削除 : 960757840(NOT_DELETE) : 960757840
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533932
+モデルハンドル削除 : 961019985(NOT_DELETE) : 961019985
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533933
+モデルハンドル削除 : 961282130(NOT_DELETE) : 961282130
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533933
+モデルハンドル削除 : 961544275(NOT_DELETE) : 940310530 : 961544275
+    WinMain(Main.cpp:142) -> GameManager::Update(GameManager.cpp:106) -> SceneManager::Update(SceneManager.cpp:36) -> FSMScene::Update(FSM.cpp:298) -> BattleLoopScene::OnExit(StateScene.cpp:793) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533934
+モデルハンドル削除 : 962068565(NOT_DELETE) : 962068565
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:131) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelMV1::ModelFinalize(ModelMV1.cpp:30) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533934
+モデルハンドル削除 : 962592855(NOT_DELETE) : 962592855
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533936
+モデルハンドル削除 : 963117145(NOT_DELETE) : 963117145
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533936
+モデルハンドル削除 : 965214305(NOT_DELETE) : 965214305
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533937
+モデルハンドル削除 : 965476450(NOT_DELETE) : 965476450
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533937
+モデルハンドル削除 : 963641435(NOT_DELETE) : 963641435
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533938
+モデルハンドル削除 : 964165725(NOT_DELETE) : 964165725
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533939
+モデルハンドル削除 : 964690015(NOT_DELETE) : 964690015
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533939
+モデルハンドル削除 : 965738595(NOT_DELETE) : 965738595
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533939
+モデルハンドル削除 : 966000740(NOT_DELETE) : 966000740
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533941
+モデルハンドル削除 : 966262885(NOT_DELETE) : 966262885
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947533942
+モデルハンドル削除 : 969408625(NOT_DELETE) : 961806420 : 969408625
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:131) -> ModelsControllerBase::Finalize(ModelsControllerBase.cpp:36) -> ModelBase::Finalize(ModelBase.cpp:29) -> ModelMV1::ModelFinalize(ModelMV1.cpp:30) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536472
+モデルハンドル削除 : 969670770(NOT_DELETE) : 962330710 : 969670770
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536477
+モデルハンドル削除 : 969932915(NOT_DELETE) : 962855000 : 969932915
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536478
+モデルハンドル削除 : 970981495(NOT_DELETE) : 970981495
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536479
+モデルハンドル削除 : 971243640(NOT_DELETE) : 971243640
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536480
+モデルハンドル削除 : 970195060(NOT_DELETE) : 963379290 : 970195060
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536481
+モデルハンドル削除 : 970457205(NOT_DELETE) : 970457205
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536481
+モデルハンドル削除 : 970719350(NOT_DELETE) : 964427870 : 970719350
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536482
+モデルハンドル削除 : 971505785(NOT_DELETE) : 964952160 : 971505785
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536483
+モデルハンドル削除 : 971767930(NOT_DELETE) : 971767930
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536483
+モデルハンドル削除 : 972030075(NOT_DELETE) : 963903580 : 972030075
+    WinMain(Main.cpp:145) -> GameManager::DeleteAllIfNeeded(GameManager.cpp:114) -> ObjectManager::DeleteAllIfNeeded(ObjectManager.cpp:387) -> ObjectManager::Delete(ObjectManager.cpp:316) -> CharacterBase::Finalize(ObjectBases.cpp:136) -> AnimationBase::Finalize(AnimationBase.cpp:34) -> FSMAnimation::Finalize(FSM.cpp:70) -> StateMVOneOnlyAnimation::Finalize(StateAnimation.cpp:243) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947536484
+
+ハンドル未発見 : 16777227 <= モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539060
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539060
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539061
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539062
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539062
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539063
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539063
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539064
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539064
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539064
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539065
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539065
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539066
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539066
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539067
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539067
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539068
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539068
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539069
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539069
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539070
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539070
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539071
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539071
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539072
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539073
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539073
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539074
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539074
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539076
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539076
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539076
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539077
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539078
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539078
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539079
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539080
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539080
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539081
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539081
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539082
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539082
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539083
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539084
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539084
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539084
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539086
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539087
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539087
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539088
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539089
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539089
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539090
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539090
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539091
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539091
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539092
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539092
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539093
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539093
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539094
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539094
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539095
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539095
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539096
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539096
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539096
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539097
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539098
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539098
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539099
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539099
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539100
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539100
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539101
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539102
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539102
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539103
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539103
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539104
+モデルハンドル削除 : -1(NOT_DELETE)
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:281) -> MapManager::Release(MapManager.cpp:292) -> ModelMap::ReleaseMapModel(ModelMap.cpp:107) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539104
+モデルハンドル削除 : 940048385(NOT_DELETE) : 939786240 : 940048385
+    WinMain(Main.cpp:153) -> Master::AllDelete(Master.cpp:25) -> GameManager::Finailize(GameManager.cpp:79) -> MapManager::Finalize(MapManager.cpp:284) -> ResourceManager::ReduceModelHandle(ResourceManager.cpp:548) -> DEBUG::SaveText(DebugLog.cpp:149) -> 
+    TIME : 947539104

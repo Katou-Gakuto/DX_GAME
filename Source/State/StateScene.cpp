@@ -663,7 +663,7 @@ void GameLoopScene::OnEnter(SceneManager* sceneManager)
 	if (!Master::mpDataManager->SetNextWave())
 	{
 		// ゲーム終了
-		sceneManager->SetNextScene(SCENE::TITLE);
+		sceneManager->SetNextScene(SCENE::GAME_CLEAR);
 		return;
 	}
 
@@ -798,4 +798,23 @@ void BattleLoopScene::OnExit(SceneManager* sceneManager)
 
 	// 攻撃削除
 	Master::mpGameManager->GetAttackManager()->SetDelete();
+}
+
+/*------------------------------*/
+/*【ゲームクリアシーンステート】*/
+/*------------------------------*/
+GameClearScene::GameClearScene()
+: IStateScene()
+, SceneStateProcess()
+{
+	mStateNumber = SCENE::GAME_CLEAR;
+}
+
+void GameClearScene::OnEnter(SceneManager* sceneManager)
+{
+	sceneManager->SetNextScene(SCENE::TITLE);
+}
+
+void GameClearScene::OnExit(SceneManager* sceneManager)
+{
 }

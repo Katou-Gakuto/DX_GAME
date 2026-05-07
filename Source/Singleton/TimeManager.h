@@ -1,6 +1,9 @@
 #pragma once
 #include <windows.h>
 
+#include "TimeEnum.h"
+#include "TimeData.h"
+
 // TODO: long long int 以上対応の構造体を作る 判定を関数化して受け取らせない(loop対策)
 class TimeManager
 {
@@ -14,8 +17,22 @@ private:
     unsigned int munPreviousTime;
     // ストップタイム
     unsigned int munStopTime;
-    // 1フレームの秒数
+    // 最低1フレームの秒数
     unsigned int munOneFrame;
+    /*
+// 開始時間
+// 前回の時間
+// 現在時間
+// 現在ゲーム時間
+// フレーム時間
+
+// 累積一時停止時間（絶対時間からこれを引いてゲーム時間を出す）
+// タイムスケール（0.5でスロー、2.0で倍速などの倍率）
+// 実時間でのデルタタイム（スロー中もUI演出などを等速で動かす用）
+// シーン開始からの経過フレーム数
+// アプリケーションがバックグラウンドに回っていた時間
+// フレームレートの移動平均（デバッグ表示用のFPS）
+    */
 
     // ストップフラグ
     bool mbStopFlag;

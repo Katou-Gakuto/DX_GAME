@@ -305,11 +305,11 @@ int StartTitleUIState::Update(UIBase* ui)
 // Œˆ’è
 int StartTitleUIState::Decision(UIBase* ui)
 {
-	// HACK: ‰¼ŽÀ‘•
 	Master::mpDataManager->SetPlayPlayer(0);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
 
-	return (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
+	return mStateNumber;
+	//return (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
 }
 
 // •`‰æ

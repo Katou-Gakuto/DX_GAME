@@ -820,6 +820,8 @@ FSMScene* UtilFactorys::FSMSceneFactory(SceneManager* sceneManager)
 	fsmScene->RegisterState(new GameLoopScene());
 	fsmScene->RegisterState(new BattleLoopScene());
 
+	fsmScene->RegisterState(new GameClearScene());
+
 	fsmScene->SetCurrentState(SCENE::START, sceneManager);
 
 	return fsmScene;

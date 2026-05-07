@@ -384,6 +384,11 @@ void StateEffectAnimation::Finalize(AnimationBase* animation, AnimationDatas* an
     deleteAnimationType.clear();
     deleteAnimationType.reserve(animationDatas->animDatas.size());
 
+    if (mpModelBase->GetHandle() != -1)
+    {
+        Master::mpResourceManager->DeletePlayEffectHandle(mpModelBase->GetHandle());
+    }
+
     for (auto& animationData : animationDatas->animDatas)
     {
         if (animationData.second.number != (-1))

@@ -22,8 +22,10 @@
 #ifdef _DEBUG
 
 // デバッグ初期化
-void DEBUG::DebugInitialization()
+void DEBUG::DebugInitialization(bool debugOutputFlag)
 {
+    DEBUG::DebugOutputFileFlag = debugOutputFlag;
+
     DEBUG::DebugProcessHandle = GetCurrentProcess();
     SymInitialize(DEBUG::DebugProcessHandle, NULL, TRUE);
     SymSetOptions(SYMOPT_LOAD_LINES);
@@ -117,11 +119,18 @@ void DEBUG::DebugLogSubData(DEBUG_PROCESS_TYPE debugProcessType, DEBUG_MAP_TYPE 
 // 文字列をファイルに追加する
 void DEBUG::SaveText(std::string logString, DEBUG_MAP_TYPE debugMapType)
 {
+    if (!DEBUG::DebugOutputFileFlag)
+    {
+        return;
+    }
+
     // 共通情報設定
     DEBUG_SAVE_TEXT_FUNCTION_DATA debugSaveTextFunctionData;
     {
         // 時間
         debugSaveTextFunctionData.timeString = DEBUG::TimeToString();
+        debugSaveTextFunctionData.logString = logString;
+        debugSaveTextFunctionData.debugMapType = debugMapType;
     }
 
     // 基本ファイル出力
@@ -161,6 +170,44 @@ void DEBUG::ProcessByDebugType(std::ofstream *file, DEBUG_PROCESS_TYPE debugProc
         break;
     case DEBUG_PROCESS_TYPE::TIME:
         *file << debugSaveTextFunctionData.timeString;
+        break;
+
+    case DEBUG_PROCESS_TYPE::ALL_FILE_OUTPUT:
+    {
+        std::vector<std::string> outPutFiles;
+        outPutFiles.clear();
+        std::string nextFileName;
+        for (auto pludFileData : DEBUG::PlusLogFileData)
+        {
+            if (pludFileData.first == debugSaveTextFunctionData.debugMapType)
+            {
+                continue;
+            }
+
+            nextFileName = (DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + pludFileData.second.plusFileName + ".txt");
+
+            bool outPutFileFlag = false;
+            for (int i = 0; i < outPutFiles.size(); i++)
+            {
+                if (outPutFiles[i] == nextFileName)
+                {
+                    outPutFileFlag = true;
+                    break;
+                }
+            }
+            if (outPutFileFlag)
+            {
+                continue;
+            }
+
+            // ファイル出力
+            std::ofstream plusFile(nextFileName, std::ios::app);
+            plusFile << debugSaveTextFunctionData.logString;
+
+            // ファイル名保存
+            outPutFiles.push_back(nextFileName);
+        }
+    }
         break;
     }
 }

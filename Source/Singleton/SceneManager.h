@@ -13,6 +13,9 @@ private:
 	// 次のシーン
 	SCENE meNextScene;
 
+	// 前のシーン
+	SCENE mePreScene;
+
 public:
 	SceneManager();
 	~SceneManager();
@@ -29,14 +32,19 @@ public:
 	*/
 	/*次のシーンを設定*/
 	void SetNextScene(SCENE nextScene);
+
+	/*前のシーン設定*/
+	inline void SetPreScene(SCENE preScene) { mePreScene = preScene; }
 	
 	/*--------------------------------------------------
 	* 【取得】
 	*/
-	/*今のシーンを取得*/
+	/// <summary>今のシーン取得</summary>
 	inline SCENE GetNowScene() const { return mpFSMScene->GetCurrentState(); }
-	/*次のシーンを取得*/
+	/// <summary>次のシーン取得</summary>
 	inline SCENE GetNextScene() const { return meNextScene; }
+	/// <summary>前のシーン取得</summary>
+	inline SCENE GetPreScene() const { return mePreScene; }
 
 	/*有限状態マシン取得*/
 	inline FSMScene* GetFSMScene() const { return mpFSMScene; }

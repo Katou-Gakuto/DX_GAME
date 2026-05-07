@@ -38,6 +38,9 @@ public:
 	/// <summary>モデル描画</summary>
 	virtual void ModelDraw() override;
 
-    /// <summary>エフェクトハンドル取得</summary>
+    /// <summary>エフェクトハンドルポインター取得</summary>
     int *GetHandlePointer() override { return &mnEffectHandle; }
+
+    /// <summary>エフェクトハンドル取得</summary>
+    int GetHandle() const override { return mnEffectHandle; }
 };

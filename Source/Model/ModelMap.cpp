@@ -105,6 +105,7 @@ void ModelMap::ReleaseMapModel()
             {
                 case  TILE_MODEL_TYPE::HANDLE:
                     Master::mpResourceManager->ReduceModelHandle(mstTileModelDatas[z][x].modelHandle);
+                    mstTileModelDatas[z][x].modelHandle = -1;
                 break;
                 
                 case  TILE_MODEL_TYPE::INDEXED:
@@ -113,10 +114,12 @@ void ModelMap::ReleaseMapModel()
                         if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::GRAPH))
                         {
                             Master::mpResourceManager->ReduceGraphHandle(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
+                            mstTileModelDatas[z][x].modelVertex[i].textureHandle = -1;
                         }
                         else if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::MOVIE))
                         {
                             Master::mpResourceManager->ReduceMovie(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
+                            mstTileModelDatas[z][x].modelVertex[i].textureHandle = -1;
                         }
                     }
                 break;

@@ -7,15 +7,16 @@
 #include "SceneManager.h"
 #include "TimeManager.h"
 #include "UtilFactorys.h"
+#include "UtilChange.h"
 
 #ifdef _DEBUG
 #include "DebugLogs/DebugLog.h"
-#include "UtilChange.h"
 #endif
 
 SceneManager::SceneManager()
 : mpFSMScene(nullptr)
 , meNextScene(SCENE::START)
+, mePreScene(SCENE::START)
 {
 
 }
@@ -41,6 +42,9 @@ void SceneManager::NextScene()
 {
 	Master::mpTimeManager->SetNewSceneTimeFlag(true);
 
+	mpFSMScene->GetStateMap()[UtilChange::SceneState(mePreScene)]->OnExit(this);
+	Master::mpGameManager->GetObjectManager()->DeleteSetScene(mePreScene);
+
 	// •`‰æî•ñíœ
 	Master::mpDrawManager->DeleteDrawData();
 
@@ -51,7 +55,7 @@ void SceneManager::NextScene()
 
 
 #ifdef _DEBUG
-	DEBUG::SaveText("\nNEXT SCENE : " + UtilChange::SceneTypeToString(GetNowScene()) + "\n\n");
+	DEBUG::SaveText("\nNEXT SCENE : " + UtilChange::SceneTypeToString(GetNowScene()) + "\n\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_SCENE_TITLE);
 #endif
 }
 

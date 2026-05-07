@@ -295,8 +295,7 @@ void FSMScene::Update(SceneManager* sceneManager)
 	if (mnCurrentState != ret)
 	{
 		Master::mpLoadingManager->SetLoadingFlag(LOADING_NUMBER::SCENE);
-		stateScene->OnExit(sceneManager);
-		Master::mpGameManager->GetObjectManager()->DeleteSetScene((SCENE)mnCurrentState);
+		sceneManager->SetPreScene((SCENE)mnCurrentState);
 		mnCurrentState = ret;
 	}
 }

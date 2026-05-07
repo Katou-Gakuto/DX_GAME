@@ -333,9 +333,9 @@ public:
         }
 
         
+    Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
 
 #ifdef _DEBUG
-    //Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
     DEBUG::SaveText("\nƒnƒ“ƒhƒ‹–¢”­Œ© : " + std::to_string(handle) + " <= ", DEBUG::DEBUG_MAP_TYPE::DEBUG_UNDISCOVERED);
 #endif
 

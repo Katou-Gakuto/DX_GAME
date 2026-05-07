@@ -159,3 +159,18 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(SceneManager* sceneManager) override;
 };
+
+/*------------------------------*/
+/*【ゲームクリアシーンステート】*/
+/*------------------------------*/
+class GameClearScene : public IStateScene, public SceneStateProcess
+{
+public:
+	GameClearScene();
+	~GameClearScene() = default;
+
+	/*この状態に入った時の処理*/
+	void OnEnter(SceneManager* sceneManager) override;
+	/*この状態を出る時の処理*/
+	void OnExit(SceneManager* sceneManager) override;
+};

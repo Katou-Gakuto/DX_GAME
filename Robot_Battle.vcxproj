@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -212,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Schedule\Text\Memo.txt" />
-    <Text Include="..\Schedule\Text\Terms.txt" />
     <Text Include="..\Schedule\Text\UI画像構想.txt" />
     <Text Include="..\Schedule\Text\UsageExample.txt" />
     <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt" />
@@ -241,6 +240,7 @@
     <Text Include="..\Schedule\Text\必要素材.txt" />
     <Text Include="..\Schedule\Text\思考まとめ.txt" />
     <Text Include="..\Schedule\Text\進級制作メモ.txt" />
+    <Text Include="Text\Terms.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

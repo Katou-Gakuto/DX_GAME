@@ -26,6 +26,19 @@ struct TIME_DATA
         return timeData;
     }
 
+    TIME_DATA& operator+=(unsigned int time)
+    {
+        unsigned long preTime = this->Time;
+        this->Time += time;
+
+        if (this->Time < preTime)
+        {
+            this->Count++;
+        }
+
+        return *this;
+    }
+
     TIME_DATA operator+(const TIME_DATA& time) const
     {
         TIME_DATA timeData = *this;
@@ -40,6 +53,50 @@ struct TIME_DATA
         }
 
         return timeData;
+    }
+
+    bool operator<(const TIME_DATA& time) const
+    {
+        if (this->Count < time.Count)
+        {
+            return true;
+        }
+        else if (this->Count == time.Count)
+        {
+            if (this->Time < time.Time)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool operator>(const TIME_DATA& time) const
+    {
+        if (this->Count > time.Count)
+        {
+            return true;
+        }
+        else if (this->Count == time.Count)
+        {
+            if (this->Time > time.Time)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool operator==(const TIME_DATA& time) const
+    {
+        if ((this->Count == time.Count) && (this->Time == time.Time))
+        {
+            return true;
+        }
+
+        return false;
     }
 };
 

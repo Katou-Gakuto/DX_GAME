@@ -20,6 +20,12 @@
 #include "TargetManager.h"
 #include "TimeManager.h"
 
+#ifdef _DEBUG
+#include "DebugLogs/DebugLog.h"
+#endif
+
+LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 // コンストラクタ
 GameManager::GameManager()
 : mpAttackManager(nullptr)
@@ -36,6 +42,34 @@ GameManager::GameManager()
 // デストラクタ
 GameManager::~GameManager()
 {
+}
+
+// DxLib_Init前初期化
+void GameManager::DxLib_PreInit()
+{
+
+#ifndef _DEBUG
+	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
+	SetEnableXAudioFlag(TRUE);
+
+	// log.txtを生成しない
+	SetOutApplicationLogValidFlag(FALSE);
+#endif
+
+	// DirectX11を使用するようにする
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+	// ウインドウモードで起動
+	ChangeWindowMode(true);
+
+    SetHookWinProc(WndProc);
+    SetAlwaysRunFlag(TRUE);
+
+
+#ifndef _DEBUG
+	// 画面サイズ
+	SetGraphMode(1280, 960, 32);
+#endif
 }
 
 // 初期化
@@ -145,6 +179,29 @@ void GameManager::Draw()
 
     ScreenFlip();
 }
+/*----------------------------------*/
+/*【ウィンドウプロシージャ使用関数】*/
+/*----------------------------------*/
+
+// 別アプリ移動
+void GameManager::OnDeactivate()
+{
+    // エフェクト
+    Master::mpResourceManager->StopAllEfect();
+
+    // 時間
+    Master::mpTimeManager->OnEnterBackground();
+}
+
+// 別アプリからこのアプリに移動
+void GameManager::OnActivate()
+{
+    // エフェクト
+    Master::mpResourceManager->PlayAllEfect();
+
+    // 時間
+    Master::mpTimeManager->OnReturnForeground();
+}
 
 /*----------*/
 /*【UI処理】*/
@@ -156,7 +213,7 @@ int GameManager::IncreaseUINumber()
     mnUINumber += 1;
     if (mnUINumber == 1) {
         // 時間を止める
-        Master::mpTimeManager->SetStopFlag(true);
+        Master::mpTimeManager->SetGameStopFlag(true);
     }
     return mnUINumber;
 }
@@ -169,6 +226,88 @@ void GameManager::DecreaseUINumber()
         mnUINumber = 0;
 
         // 時間を動かす
-        Master::mpTimeManager->SetStopFlag(false);
+        Master::mpTimeManager->SetGameStopFlag(false);
     }
+}
+
+// ウィンドウプロシージャの定義
+LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+#ifdef _DEBUG
+    DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+
+    switch (msg)
+    {
+    case WM_ACTIVATEAPP:
+    {
+        if (wParam == FALSE)
+        {
+            // =========================
+            // 別アプリへ切り替わった
+            // Alt+Tab など
+            // =========================
+            Master::mpGameManager->OnDeactivate();
+#ifdef _DEBUG
+            DEBUG::SaveText("別アプリへ切り替わった\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+        }
+        else
+        {
+            // =========================
+            // アプリへ戻ってきた
+            // =========================
+            Master::mpGameManager->OnActivate();
+#ifdef _DEBUG
+            DEBUG::SaveText("アプリへ戻ってきた\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+        }
+    }
+    break;
+
+    case WM_ACTIVATE:
+    {
+        if (LOWORD(wParam) == WA_INACTIVE)
+        {
+            // 非アクティブ
+#ifdef _DEBUG
+            DEBUG::SaveText("非アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+        }
+        else
+        {
+            // アクティブ
+#ifdef _DEBUG
+            DEBUG::SaveText("アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+        }
+    }
+    break;
+
+    case WM_KILLFOCUS:
+    {
+        // フォーカス失った
+#ifdef _DEBUG
+            DEBUG::SaveText("フォーカス失った\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+    }
+    break;
+
+    case WM_SETFOCUS:
+    {
+        // フォーカス取得
+#ifdef _DEBUG
+            DEBUG::SaveText("フォーカス取得\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+#endif
+    }
+    break;
+
+    case WM_DESTROY:
+    {
+        PostQuitMessage(0);
+        return 0;
+    }
+    }
+
+    return DefWindowProc(hWnd, msg, wParam, lParam);
 }

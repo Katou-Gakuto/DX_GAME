@@ -85,32 +85,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		DEBUG::DebugCreateLogFileName(DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL, "_3d_model");
 		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::FUNCTION_CALL, DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
 		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::TIME, DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);//*/
+
+/**/
+		DEBUG::DebugCreateLogFileName(DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC, "_GameManager");
+		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::FUNCTION_CALL, DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
+		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::TIME, DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);//*/
 	}
-#endif
-
-#ifndef _DEBUG
-	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
-	SetEnableXAudioFlag(TRUE);
-
-	// log.txtを生成しない
-	SetOutApplicationLogValidFlag(FALSE);
-#else
-#endif
-	// DirectX11を使用するようにする
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
-
-	// ウインドウモードで起動
-	ChangeWindowMode(true);
-
-
-#ifndef _DEBUG
-	// 画面サイズ
-	SetGraphMode(1280, 960, 32);
 #endif
 
 #ifdef _DEBUG
 	Master::mpImguiManager->DxInit();
 #endif
+
+	// DxLib_Init前初期化
+	Master::mpGameManager->DxLib_PreInit();
 
 	// DXライブラリ初期化処理
 	if(DxLib_Init() == -1)

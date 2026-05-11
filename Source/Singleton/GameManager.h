@@ -42,6 +42,9 @@ public:
 	GameManager();
 	~GameManager();
 
+	// DxLib_Init前初期化
+	void DxLib_PreInit();
+
 	// 初期化
 	void Initilize();
 	// 終了
@@ -53,6 +56,15 @@ public:
 	void DeleteAllIfNeeded();
 	// 描画
 	void Draw();
+	
+	/*----------------------------------*/
+	/*【ウィンドウプロシージャ使用関数】*/
+	/*----------------------------------*/
+
+	/// <summary>別アプリ移動</summary>
+	void OnDeactivate();
+	/// <summary>別アプリからこのアプリに移動</summary>
+	void OnActivate();
 
 	/*------*/
 	/*【UI】*/

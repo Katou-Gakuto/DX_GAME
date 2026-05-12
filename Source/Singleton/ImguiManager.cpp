@@ -13,7 +13,7 @@
 #include "ImguiManager.h"
 #include "UtilCalc.h"
 
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+LRESULT WINAPI ImguiWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 ImguiManager::ImguiManager()
 : mpMode(1)
@@ -33,7 +33,7 @@ void ImguiManager::DxInit()
 #ifdef _DEBUG
     if (mpMode == 1)
     {
-        DxLib::SetHookWinProc(WndProc);
+        DxLib::SetHookWinProc(ImguiWndProc);
         //DxLib::SetAlwaysRunFlag(TRUE);
     }
 #endif
@@ -585,7 +585,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application, or clear/overwrite your copy of the mouse data.
 // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application, or clear/overwrite your copy of the keyboard data.
 // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT WINAPI ImguiWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     //if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
     //    return true;

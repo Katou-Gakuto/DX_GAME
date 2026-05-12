@@ -48,7 +48,7 @@ void Attack_RobotSpceial::AttackUpdate()
         mpAttackCharacter->SetMoveActionFlag(ACTION_FLAG::DASH);
     }
 
-	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
         mpAttackCharacter->GetStatus()->SubSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 2);
 		SetActiveFlag(false);
@@ -78,11 +78,11 @@ void Attack_RobotSpceial::HitCheck(CollisionData& collisionData)
 	{
 		if (mnHiObjID[i] == collisionData.objID)
 		{
-			if (munPreCharacterHitTime[i] > (Master::mpTimeManager->GetGameTime() + 1000u/*ˆê•b*/))
+			if (munPreCharacterHitTime[i] > (Master::mpTimeManager->GetGameElapsedTime().Full + 1000u/*ˆê•b*/))
 			{
 				if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f))
 				{
-					munPreCharacterHitTime[i] = Master::mpTimeManager->GetGameTime();
+					munPreCharacterHitTime[i] = Master::mpTimeManager->GetGameElapsedTime();
 					collisionData.collisionFlag = true;
 				}
 			}
@@ -93,7 +93,7 @@ void Attack_RobotSpceial::HitCheck(CollisionData& collisionData)
 	if (UtilCalc::SphereCollision(collisionData.position, collisionData.size, mvPosition, 200.0f))
 	{
 		mnHiObjID.push_back(collisionData.objID);
-		munPreCharacterHitTime.push_back(Master::mpTimeManager->GetGameTime());
+		munPreCharacterHitTime.push_back(Master::mpTimeManager->GetGameElapsedTime());
 		collisionData.collisionFlag = true;
 	}
 }

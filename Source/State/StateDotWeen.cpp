@@ -12,7 +12,7 @@
 /*--------------------------*/
 void StateOutBounce::Update(DOT_WEEN_DATA dotWeenData)
 {
-    float ratio = (((dotWeenData.GameTimeFlag ? Master::mpTimeManager->GetGameTime() : Master::mpTimeManager->GetTime()) - dotWeenData.StartTime) / dotWeenData.DotWeenTime);
+    float ratio = dotWeenData.DotWeenElapsedTime / dotWeenData.DotWeenTotalTime;
 
     *dotWeenData.ChangeData = ((ratio) * (dotWeenData.EndData - dotWeenData.StartData)) + dotWeenData.StartData;
     return;

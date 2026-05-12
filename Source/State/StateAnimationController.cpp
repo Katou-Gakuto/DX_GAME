@@ -16,20 +16,20 @@
 /*【アニメションコントローラーステート共通処理用】
 /*----------*/
 StateAnimationControllerProcess::StateAnimationControllerProcess()
-: mnEndTime(0)
+: mstEndTime(0)
 {
 }
 
 // 終了時間設定
 void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMATION_TYPE state, int addEndTime)
 {
-    mnEndTime = animation->GetAnimationTime(state) + Master::mpTimeManager->GetGameTime() + addEndTime;
+    mstEndTime = Master::mpTimeManager->GetGameElapsedTime() + animation->GetAnimationTime(state) + addEndTime;
 }
 
 // 終了時間確認(一定時間経っていれば「true」を返す)
 bool StateAnimationControllerProcess::ChackEndTime()
 {
-    return mnEndTime < Master::mpTimeManager->GetGameTime();
+    return mstEndTime < Master::mpTimeManager->GetGameElapsedTime();
 }
 // 変更確認
 ANIMATION_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* animation, ANIMATION_TYPE nextState)

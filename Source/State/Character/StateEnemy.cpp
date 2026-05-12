@@ -243,7 +243,7 @@ AttackInEnemyState::AttackInEnemyState(bool bossFlag)
 : IStateCharacter()
 , EnemyProcess(bossFlag)
 , mbLeftMoveFlag(false)
-, mnPreAttackTime(0)
+, mstPreAttackTime(0)
 {
 	mStateNumber = (int)ENEMY_STATE::ATTACK_IN_ENEMY_STATE;
 }
@@ -261,7 +261,7 @@ void AttackInEnemyState::OnExit(CharacterBase* character)
 // ステート変更確認
 int AttackInEnemyState::StateCheck(CharacterBase* character)
 {
-	if (Master::mpTimeManager->GetGameTime() <= (mnPreAttackTime + (ESCAPE_TIME * 5)))
+	if (Master::mpTimeManager->GetGameElapsedTime() <= (mstPreAttackTime + (ESCAPE_TIME * 5)))
 	{
 		if (character->GetStatus()->hp < (int)((float)character->GetStatus()->maxHp * 0.5f))
 		{
@@ -283,7 +283,7 @@ int AttackInEnemyState::StateCheck(CharacterBase* character)
 
 	if (UtilCalc::AngleDiff(UtilCalc::VVecToAngle(VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos())). y, character->GetAngle().y) < 0.1f)
 	{
-		mnPreAttackTime = Master::mpTimeManager->GetGameTime();
+		mstPreAttackTime = Master::mpTimeManager->GetGameElapsedTime();
 		return (int)ENEMY_STATE::ATTACK_ENEMY_STATE;
 	}
 
@@ -380,7 +380,7 @@ void AttackEnemyState::Death(CharacterBase* character)
 EscapeEnemyState::EscapeEnemyState(bool bossFlag)
 : IStateCharacter()
 , EnemyProcess(bossFlag)
-, mnEscapeTime(0)
+, mstEscapeTime(0)
 {
 	mStateNumber = (int)ENEMY_STATE::ESCAPE_ENEMY_STATE;
 }
@@ -391,7 +391,7 @@ void EscapeEnemyState::OnEnter(CharacterBase* character)
 	VECTOR setVec = VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos());
 	character->SetMoveDir(VGet(-setVec.x, -setVec.y, -setVec.z));
 
-	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
 // この状態を出る時の処理
@@ -402,7 +402,7 @@ void EscapeEnemyState::OnExit(CharacterBase* character)
 // ステート変更確認
 int EscapeEnemyState::StateCheck(CharacterBase* character)
 {
-	if (Master::mpTimeManager->GetGameTime() > mnEscapeTime)
+	if (Master::mpTimeManager->GetGameElapsedTime() > mstEscapeTime)
 	{
 		return TemplateNextState(character, mStateNumber);
 	}
@@ -453,7 +453,7 @@ LeftAvoidEnemyState::LeftAvoidEnemyState(bool bossFlag)
 void LeftAvoidEnemyState::OnEnter(CharacterBase* character)
 {
 	PlayerTargetAngle(character);
-	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
 // 更新
@@ -478,7 +478,7 @@ RightAvoidEnemyState::RightAvoidEnemyState(bool bossFlag)
 void RightAvoidEnemyState::OnEnter(CharacterBase* character)
 {
 	PlayerTargetAngle(character);
-	mnEscapeTime = Master::mpTimeManager->GetGameTime() + ESCAPE_TIME;
+	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
 // 更新

@@ -1,0 +1,45 @@
+
+NEXT SCENE : TITLE
+
+
+NEXT SCENE : GAME_LOOP
+
+エフェクトハンドル(原本)取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; COUNT : 1
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:721) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル(原本)取得 : Resource/Effect/drill.efkefc; HANDLE : 1; COUNT : 1
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:722) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル(原本)取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; COUNT : 1
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:723) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1018) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; HANDLE(原本) : 0; COUNT : 2
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 1; HANDLE(原本) : 1; COUNT : 2
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; HANDLE(原本) : 2; COUNT : 2
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/Laser.efkefc; HANDLE : 0; HANDLE(原本) : 0; COUNT : 3
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:760) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:682) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:472) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/drill.efkefc; HANDLE : 1; HANDLE(原本) : 1; COUNT : 3
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:761) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:692) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:537) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトハンドル取得 : Resource/Effect/StairBroken.efkefc; HANDLE : 2; HANDLE(原本) : 2; COUNT : 3
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> BattleLoopScene::OnEnter(StateScene.cpp:762) -> UtilFactorys::CharacterAttackDataFactory(UtilFactorys.cpp:704) -> UtilFactorys::LoadAnimationDataFactory(UtilFactorys.cpp:504) -> UtilFactorys::AnimationDataFactory(UtilFactorys.cpp:296) -> ResourceManager::GetEffectResource(ResourceManager.cpp:1010) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトプレイハンドル取得 : 0
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:54) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトプレイハンドル取得 : 1
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:54) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+エフェクトプレイハンドル取得 : 2
+    WinMain(Main.cpp:123) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:54) -> ObjectManager::ObjectSceneLastInitilize(ObjectManager.cpp:49) -> CharacterBase::SceneLastInitilize(ObjectBases.cpp:117) -> AnimationBase::SceneLastInitilize(AnimationBase.cpp:26) -> AnimationBase::Update(AnimationBase.cpp:47) -> FSMAnimation::Update(FSM.cpp:116) -> FSMAnimation::ChangeState(FSM.cpp:139) -> FSMAnimation::NewStateSetting(FSM.cpp:127) -> StateEffectAnimation::OnEnter(StateAnimation.cpp:365) -> ResourceManager::GetEffectHandle(ResourceManager.cpp:1080) -> DEBUG::SaveText(DebugLog.cpp:158) -> 
+    TIME : 3587
+
+NEXT SCENE : BATTLE_LOOP
+

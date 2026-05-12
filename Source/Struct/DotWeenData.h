@@ -9,8 +9,8 @@ public:
 
     DOT_WEEN_TYPE DotWeenType;  // 種類
 
-    float StartTime;      // 開始時間(ミリ秒)
-    float DotWeenTime;    // 使用時間(ミリ秒)
+    float DotWeenElapsedTime;   // 現在経過時間
+    float DotWeenTotalTime;     // 使用総時間
 
     float StartData;    // 開始時の値
     float EndData;      // 終了時の値

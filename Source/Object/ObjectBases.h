@@ -9,6 +9,7 @@
 #include "CollisionData.h"
 #include "DrawData.h"
 #include "Status.h"
+#include "TimeData.h"
 #include "ResourceData.h"// TODO: 消す
 
 #include "DxLib.h"
@@ -629,7 +630,7 @@ protected:
     //int mnAttackRecoilTime;
 
     // 攻撃時間
-    int mnAttackTime;
+    TIME_DATA mstAttackTime;
 
 public:
     AttackBase();
@@ -681,7 +682,7 @@ public:
     inline void SetAttackNumber(int number) { mnAttackNumber = number; }
 
     /*攻撃時間設定*/
-    inline void SetAttackTime(int time) { mnAttackTime = time; }
+    inline void SetAttackTime(TIME_DATA time) { mstAttackTime = time; }
 
     /*移動方向設定*/
     inline void SetMoveDir(VECTOR moveDir) { mvMoveDir = moveDir; }
@@ -830,7 +831,7 @@ protected:
     int mnSelectBoundaryValue;
 
     // 前回選択変更フレーム
-    int mnSelectChangeFrame;
+    FRAME_DATA mstSelectChangeFrame;
 
     // 選択変更の間隔
     int mnSetChangeIntervalFrame;

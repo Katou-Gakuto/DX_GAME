@@ -706,15 +706,9 @@
     <ClInclude Include="Source\Struct\TimeData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enum\TimeEnum.h">
-      <Filter>ヘッダー ファイル\Enum</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Schedule\Text\Memo.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\Terms.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
     <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt">
@@ -801,5 +795,6 @@
     <Text Include="..\Schedule\Text\山本氏相談結果.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
+    <Text Include="Text\Terms.txt" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "CameraData.h"
+#include "TimeData.h"
 
 #include "Master.h"
 
@@ -45,7 +46,7 @@ void Attack_RobotJump::AttackUpdate()
 {
 	mvPosition = mpAttackCharacter->GetPos();
 
-	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
         mpAttackCharacter->GetStatus()->SubSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 2);
         mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
@@ -57,7 +58,7 @@ void Attack_RobotJump::AttackUpdate()
 void Attack_RobotJump::AttackLastUpdate()
 {
 	mvPosition = mpAttackCharacter->GetPos();
-	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
         mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
 	}

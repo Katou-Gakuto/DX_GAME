@@ -25,7 +25,7 @@ void Attack_Shot::AttackInitilize()
 
 	mvPosition = mpAttackCharacter->GetPos();
 
-	mnAttackStartTime = Master::mpTimeManager->GetGameTime() + ATTACK_START_TIME;
+	mnAttackStartTime = Master::mpTimeManager->GetGameElapsedTime().Full + ATTACK_START_TIME;
 
 	SetActiveFlag(true);
 
@@ -48,7 +48,7 @@ void Attack_Shot::AttackUpdate()
 {
 	//mvPosition = VAdd(VScale(mvMoveDir, 10.0f), mvPosition);
 
-	if (mnAttackTime <= Master::mpTimeManager->GetGameTime())
+	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
 		SetActiveFlag(false);
 	}
@@ -69,7 +69,7 @@ void Attack_Shot::AttackDraw()
 // “–‚½‚è”»’è
 void Attack_Shot::HitCheck(CollisionData& collisionData)
 {
-	if (Master::mpTimeManager->GetGameTime() <= mnAttackStartTime)
+	if (Master::mpTimeManager->GetGameElapsedTime() <= mnAttackStartTime)
 	{
 		return;
 	}

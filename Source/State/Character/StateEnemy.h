@@ -1,5 +1,7 @@
 #pragma once
 
+#include "TimeData.h"
+
 #include "EnemyCommonProcessing.h"
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -157,7 +159,7 @@ private:
 	bool mbLeftMoveFlag;
 
 	// ‘O‰ñUŒ‚ŠÔ
-	int mnPreAttackTime;
+	TIME_DATA mstPreAttackTime;
 
 public:
 	AttackInEnemyState(bool bossFlag = false);
@@ -224,7 +226,8 @@ public:
 class EscapeEnemyState : public IStateCharacter, public EnemyProcess
 {
 protected:
-	int mnEscapeTime;
+	// “¦‚°ŠÔ
+	TIME_DATA mstEscapeTime;
 
 public:
 	EscapeEnemyState(bool bossFlag = false);

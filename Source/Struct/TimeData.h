@@ -1,111 +1,141 @@
 #pragma once
+#include <cstdint>
 
 // 時間情報
 struct TIME_DATA
 {
-    TIME_DATA()
-    : Time(0lu)
-    , Count(0u)
+    constexpr TIME_DATA()
+    : Full(0llu)
+    {}
+    constexpr TIME_DATA(uint64_t full)
+    : Full(full)
     {}
 
-    unsigned long Time;  // 時間
-    unsigned int Count; // カウント
+    union
+    {
+        struct
+        {
+            unsigned long Time;  // 時間
+            unsigned int Count; // カウント
+        };
+
+        uint64_t Full;
+    };
 
     TIME_DATA operator+(unsigned int time) const
     {
-        TIME_DATA timeData = *this;
-
-        unsigned long preTime = timeData.Time;
-        timeData.Time += time;
-
-        if (timeData.Time < preTime)
-        {
-            timeData.Count++;
-        }
-
-        return timeData;
+        return TIME_DATA(this->Full + time);
     }
-
     TIME_DATA& operator+=(unsigned int time)
     {
-        unsigned long preTime = this->Time;
-        this->Time += time;
-
-        if (this->Time < preTime)
-        {
-            this->Count++;
-        }
-
+        this->Full += time;
         return *this;
     }
 
     TIME_DATA operator+(const TIME_DATA& time) const
     {
-        TIME_DATA timeData = *this;
-        timeData.Count += time.Count;
+        return TIME_DATA(this->Full + time.Full);
+    }
+    TIME_DATA& operator+=(const TIME_DATA& time)
+    {
+        this->Full += time.Full;
+        return * this;
+    }
 
-        unsigned long preTime = timeData.Time;
-        timeData.Time += time.Time;
 
-        if (timeData.Time < preTime)
-        {
-            timeData.Count++;
-        }
+    TIME_DATA operator-(unsigned int time) const
+    {
+        return TIME_DATA(this->Full - time);
+    }
+    TIME_DATA& operator-=(unsigned int time)
+    {
+        this->Full -= time;
+        return *this;
+    }
 
-        return timeData;
+    TIME_DATA operator-(const TIME_DATA& time) const
+    {
+        return TIME_DATA(this->Full - time.Full);
+    }
+    TIME_DATA& operator-=(const TIME_DATA& time)
+    {
+        this->Full -= time.Full;
+        return *this;
     }
 
     bool operator<(const TIME_DATA& time) const
     {
-        if (this->Count < time.Count)
-        {
-            return true;
-        }
-        else if (this->Count == time.Count)
-        {
-            if (this->Time < time.Time)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return this->Full < time.Full;
+    }
+    bool operator<=(const TIME_DATA& time) const
+    {
+        return this->Full <= time.Full;
     }
 
     bool operator>(const TIME_DATA& time) const
     {
-        if (this->Count > time.Count)
-        {
-            return true;
-        }
-        else if (this->Count == time.Count)
-        {
-            if (this->Time > time.Time)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return this->Full > time.Full;
+    }
+    bool operator>=(const TIME_DATA& time) const
+    {
+        return this->Full >= time.Full;
     }
 
     bool operator==(const TIME_DATA& time) const
     {
-        if ((this->Count == time.Count) && (this->Time == time.Time))
-        {
-            return true;
-        }
-
-        return false;
+        return this->Full == time.Full;
     }
 };
 
 // フレーム情報
 struct FRAME_DATA
 {
-    FRAME_DATA()
+    constexpr FRAME_DATA()
     : Frame(0u)
     {}
+    constexpr FRAME_DATA(unsigned int frame)
+    : Frame(frame)
+    {
+    }
     
     unsigned int Frame; // フレーム
+
+    FRAME_DATA& operator++()
+    {
+        ++this->Frame;
+        return *this;
+    }
+
+    FRAME_DATA operator+(unsigned int frame) const
+    {
+        return FRAME_DATA(this->Frame + frame);
+    }
+    FRAME_DATA& operator+=(unsigned int frame)
+    {
+        this->Frame += frame;
+        return *this;
+    }
+
+    bool operator<(const FRAME_DATA& time) const
+    {
+        return this->Frame < time.Frame;
+    }
+    bool operator<=(const FRAME_DATA& time) const
+    {
+        return this->Frame <= time.Frame;
+    }
+
+    bool operator>(const FRAME_DATA& time) const
+    {
+        return this->Frame > time.Frame;
+    }
+    bool operator>=(const FRAME_DATA& time) const
+    {
+        return this->Frame >= time.Frame;
+    }
+
+    bool operator==(const FRAME_DATA& time) const
+    {
+        return this->Frame == time.Frame;
+    }
 };

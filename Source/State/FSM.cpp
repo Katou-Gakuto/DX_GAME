@@ -258,7 +258,8 @@ void FSMDotWeen::Update(std::vector<DOT_WEEN_DATA>& dotWeenData)
 {
 	for (int i  = 0; i < dotWeenData.size(); i++)
 	{
-		if ((dotWeenData[i].StartTime + dotWeenData[i].DotWeenTime) <= (dotWeenData[i].GameTimeFlag ? Master::mpTimeManager->GetGameTime() : Master::mpTimeManager->GetTime()))
+		dotWeenData[i].DotWeenElapsedTime += Master::mpTimeManager->GetDeltaTime();
+		if (dotWeenData[i].DotWeenElapsedTime >= dotWeenData[i].DotWeenTotalTime)
 		{
 			*dotWeenData[i].ChangeData = dotWeenData[i].EndData;
 			dotWeenData.erase(dotWeenData.begin() + i);

@@ -1,4 +1,6 @@
 #pragma once
+#include "TimeData.h"
+
 #include "ObjectBases.h"
 
 class UI_StageStart : public UIBase
@@ -8,7 +10,7 @@ private:
     int mnCameraID;
 
     // 生存時間
-    int mnSurvivalTime;
+    TIME_DATA mstSurvivalTime;
 
     // フェードイン時間
     const int FADE_IN_TIME = 17 * 25;

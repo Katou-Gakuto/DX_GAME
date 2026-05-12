@@ -38,6 +38,9 @@ private:
 	// UIナンバー
 	int mnUINumber;
 
+	// 未初期化フラグ
+	bool mbUninitializedFlag;
+
 public:
 	GameManager();
 	~GameManager();
@@ -88,48 +91,57 @@ public:
 	/// <summary>
 	/// 攻撃マネジャー取得
 	/// </summary>
-	/// <returns>攻撃マネジャー</returns>
+	/// <returns>マネージャー</returns>
 	inline AttackManager* GetAttackManager() { return mpAttackManager; }
 
 	/// <summary>
 	/// カメラマネージャー取得
 	/// </summary>
-	/// <returns>カメラマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline CameraManager* GetCameraManager() { return mpCameraManager; }
 
 	/// <summary>
 	/// コリジョンマネージャー取得
 	/// </summary>
-	/// <returns>コリジョンマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline CollisionManager* GetCollisionManager() { return mpCollisionManager; }
 
 	/// <summary>
 	/// DotWeenマネージャー取得
 	/// </summary>
-	/// <returns>DotWeenマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline DotWeenManager* GetDotWeenManager() { return mpDotWeenManager; }
 
 	/// <summary>
 	/// マップマネージャー取得
 	/// </summary>
-	/// <returns>マップマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline MapManager* GetMapManager() { return mpMapManager; }
 
 	/// <summary>
 	/// オブジェクトマネージャー取得
 	/// </summary>
-	/// <returns>オブジェクトマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline ObjectManager* GetObjectManager() { return mpObjectManager; }
 
 	/// <summary>
 	/// シーンマネージャー取得
 	/// </summary>
-	/// <returns>シーンマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline SceneManager* GetSceneManager() { return mpSceneManager; }
 
 	/// <summary>
 	/// ターゲットマネージャー取得
 	/// </summary>
-	/// <returns>ターゲットマネージャー</returns>
+	/// <returns>マネージャー</returns>
 	inline TargetManager* GetTargetManager() { return mpTargetManager; }
+
+	/*------------------*/
+	/*【フラグ取得】*/
+	/*------------------*/
+	/// <summary>
+	/// 未初期化フラグ取得
+	/// </summary>
+	/// <returns>フラグ</returns>
+	inline bool GetUninitializedFlag() { return mbUninitializedFlag; }
 };

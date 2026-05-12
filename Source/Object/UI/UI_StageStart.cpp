@@ -16,7 +16,7 @@
 UI_StageStart::UI_StageStart()
 : UIBase(true, 1, true)
 , mnCameraID(-1)
-, mnSurvivalTime(0)
+, mstSurvivalTime(0)
 , mbFadeInFlag(false)
 {
 }
@@ -30,7 +30,7 @@ void UI_StageStart::UIInitilize()
 {
     Master::mpStageDataManager->SetStageStartPeriodFlag(true);
 
-	mnSurvivalTime = Master::mpTimeManager->GetTime() + SURVIVAL_TIME;
+    mstSurvivalTime = Master::mpTimeManager->GetElapsedTime() + SURVIVAL_TIME;
 
     // ÉQÅ[ÉÄäJénéûéöñã
     {
@@ -169,7 +169,7 @@ void UI_StageStart::UIUpdate()
 
 	if (!mbFadeInFlag && 
 			(
-				((mnSurvivalTime - FADE_IN_TIME) < Master::mpTimeManager->GetTime())
+				(Master::mpTimeManager->GetElapsedTime() > (mstSurvivalTime.Full - FADE_IN_TIME))
 			)
 		)
 	{
@@ -182,10 +182,10 @@ void UI_StageStart::UIUpdate()
 			)
 		)
 	{
-		mnSurvivalTime = Master::mpTimeManager->GetTime() + FADE_IN_TIME;
+        mstSurvivalTime = Master::mpTimeManager->GetElapsedTime() + FADE_IN_TIME;
 		DecisionProcess();
 	}
-	else if (mnSurvivalTime < Master::mpTimeManager->GetTime())
+	else if (mstSurvivalTime < Master::mpTimeManager->GetElapsedTime())
 	{
 		CloceProcess();
 	}

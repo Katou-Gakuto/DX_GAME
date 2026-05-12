@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "TelopData.h"
+#include "TimeData.h"
 
 class TelopManager
 {
@@ -12,7 +13,7 @@ private:
     std::vector<std::string> msTelopStrings;
 
     // 最終テロップ描画時間
-    int mnPreTelopDrawTime;
+    TIME_DATA mstPreTelopDrawTime;
 
     static constexpr int TELOP_TIME = 1700;
 

@@ -24,7 +24,7 @@
 #include "DebugLogs/DebugLog.h"
 #endif
 
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+LRESULT WINAPI GameManagerWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // コンストラクタ
 GameManager::GameManager()
@@ -37,6 +37,7 @@ GameManager::GameManager()
 , mpSceneManager(nullptr)
 , mpTargetManager(nullptr)
 , mnUINumber(0)
+, mbUninitializedFlag(true)
 {
 }
 // デストラクタ
@@ -62,8 +63,7 @@ void GameManager::DxLib_PreInit()
 	// ウインドウモードで起動
 	ChangeWindowMode(true);
 
-    SetHookWinProc(WndProc);
-    SetAlwaysRunFlag(TRUE);
+    SetHookWinProc(GameManagerWndProc);
 
 
 #ifndef _DEBUG
@@ -102,6 +102,8 @@ void GameManager::Initilize()
     mpTargetManager = new TargetManager();
 
     SetDrawScreen(DX_SCREEN_BACK);
+
+    mbUninitializedFlag = false;
 }
 
 // 終了処理
@@ -231,11 +233,15 @@ void GameManager::DecreaseUINumber()
 }
 
 // ウィンドウプロシージャの定義
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT WINAPI GameManagerWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 #ifdef _DEBUG
-    DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+    DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
+    if (Master::mpGameManager->GetUninitializedFlag())
+    {
+        return 0;
+    }
 
     switch (msg)
     {
@@ -249,7 +255,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             // =========================
             Master::mpGameManager->OnDeactivate();
 #ifdef _DEBUG
-            DEBUG::SaveText("別アプリへ切り替わった\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //DEBUG::SaveText("別アプリへ切り替わった\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
         }
         else
@@ -259,7 +265,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             // =========================
             Master::mpGameManager->OnActivate();
 #ifdef _DEBUG
-            DEBUG::SaveText("アプリへ戻ってきた\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //DEBUG::SaveText("アプリへ戻ってきた\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
         }
     }
@@ -271,14 +277,14 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         {
             // 非アクティブ
 #ifdef _DEBUG
-            DEBUG::SaveText("非アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //DEBUG::SaveText("非アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
         }
         else
         {
             // アクティブ
 #ifdef _DEBUG
-            DEBUG::SaveText("アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //::SaveText("アクティブ\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
         }
     }
@@ -288,7 +294,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
         // フォーカス失った
 #ifdef _DEBUG
-            DEBUG::SaveText("フォーカス失った\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //DEBUG::SaveText("フォーカス失った\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
     }
     break;
@@ -297,7 +303,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
         // フォーカス取得
 #ifdef _DEBUG
-            DEBUG::SaveText("フォーカス取得\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
+            //DEBUG::SaveText("フォーカス取得\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
     }
     break;
@@ -309,5 +315,5 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
     }
 
-    return DefWindowProc(hWnd, msg, wParam, lParam);
+    return 0;
 }

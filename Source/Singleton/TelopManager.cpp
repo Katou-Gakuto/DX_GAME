@@ -10,7 +10,7 @@
 #include "TimeManager.h"
 
 TelopManager::TelopManager()
-: mnPreTelopDrawTime(0)
+: mstPreTelopDrawTime(0)
 {
     msTelopStrings.clear();
 }
@@ -27,7 +27,7 @@ void TelopManager::Finalize()
 // 更新
 void TelopManager::Update()
 {
-    if ((mnPreTelopDrawTime < Master::mpTimeManager->GetTime()) && (msTelopStrings.size() > 0))
+    if ((mstPreTelopDrawTime < Master::mpTimeManager->GetElapsedTime()) && (msTelopStrings.size() > 0))
     {
         DeleteTelop();
     }
@@ -53,7 +53,7 @@ void TelopManager::DrawTelop(TELOP_DATA& telopData)
 void TelopManager::AddTelop(std::string telop)
 {
     msTelopStrings.push_back(telop);
-    mnPreTelopDrawTime = Master::mpTimeManager->GetTime() + TELOP_TIME;
+    mstPreTelopDrawTime = Master::mpTimeManager->GetElapsedTime() + TELOP_TIME;
 }
 
 // テロップ削除

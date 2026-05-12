@@ -3,6 +3,7 @@
 
 #include "BitFlag.h"
 #include "ResourceData.h"
+#include "TimeData.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -99,13 +100,13 @@ void FadeManager::FadeProcess(float fadeSpeed)
     {
         mbFadeDrawFlag = true;
     }
-    int preTime = mpTimeManager->GetTime();
+    TIME_DATA preTime = mpTimeManager->GetElapsedTime();
 
     while (mbFadeFlag && ((0.0f <= mfFadeAlpha) && (mfFadeAlpha <= 255.1f)))
     {
-        if ((preTime + 17) < mpTimeManager->GetTime())
+        if ((preTime + 17) < mpTimeManager->GetElapsedTime())
         {
-            preTime = mpTimeManager->GetTime();
+            preTime = mpTimeManager->GetElapsedTime();
             mfFadeAlpha += fadeSpeed;
         }
     }

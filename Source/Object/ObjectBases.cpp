@@ -525,7 +525,7 @@ AttackBase::AttackBase()
 , mpAttackCharacter(nullptr)
 , mnAttackNumber(-1)
 //, mnAttackRecoilTime(0)
-, mnAttackTime(0)
+, mstAttackTime(TIME_DATA())
 , mvMoveDir(UtilCalc::VZero)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
@@ -616,7 +616,7 @@ UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, b
 , mnPreSelectNumber(0)
 , mnSelectMaxNumber(maxMenuSelect)
 , mnSelectBoundaryValue(-1)
-, mnSelectChangeFrame(0)
+, mstSelectChangeFrame(0)
 , mnSetChangeIntervalFrame(30)
 , mnUINumber(0)
 , mpTimeManager(nullptr)
@@ -1281,10 +1281,10 @@ bool UIBase::CheckUp_Frame()
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::UP, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_UP, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_UP)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		(CheckFrame(0) || (mstSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::UP, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_UP, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_UP))
 	{
-		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
+		mstSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}
 	return false;
@@ -1296,10 +1296,10 @@ bool UIBase::CheckDown_Frame()
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::DOWN, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_DOWN)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		(CheckFrame(0) || (mstSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::DOWN, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_DOWN))
 	{
-		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
+		mstSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}
 	return false;
@@ -1311,10 +1311,10 @@ bool UIBase::CheckRight_Frame()
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::RIGHT, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_RIGHT)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		(CheckFrame(0) || (mstSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::RIGHT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_RIGHT))
 	{
-		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
+		mstSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}
 	return false;
@@ -1326,11 +1326,11 @@ bool UIBase::CheckLeft_Frame()
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT, false) ||
 		mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) ||
 		mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_LEFT)) &&
-		(CheckFrame(0) || (mnSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
+		(CheckFrame(0) || (mstSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
 		// TODO: ˆ—‚ð‚·‚éêŠ‚ÉˆÚ“®(‘¼‚Ì‚à)
-		mnSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
+		mstSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}
 	return false;
@@ -1348,7 +1348,7 @@ bool UIBase::CheckFrame(int frameNumber)
 	switch (frameNumber)
 	{
 	case 0:
-		return mnSelectChangeFrame < mpTimeManager->GetFrame();
+		return mstSelectChangeFrame < mpTimeManager->GetFrame();
 		break;
 	}
 

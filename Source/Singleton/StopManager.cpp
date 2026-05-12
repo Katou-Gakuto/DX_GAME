@@ -46,7 +46,7 @@ bool StopManager::GetStopFlag(STOP_FLAG_TYPE stopType)
         break;
 
     case STOP_FLAG_TYPE::GAME_OBJECT:
-        stopflag |= mpTimeManager->GetStopFlag();
+        stopflag |= mpTimeManager->GetGameStopFlag();
         stopflag |= mpFadeManager->GetFadeFlag();
         break;
 

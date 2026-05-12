@@ -4,6 +4,8 @@
 #include <map>
 #endif
 
+#include "TimeData.h"
+
 #include "DxLib.h"
 
 #include "TimeManager.h"
@@ -40,12 +42,26 @@ void TimeManager::Initilize()
 {
     timeBeginPeriod(1); // タイマーの分解量の設定を1msにする (1ミリ秒/1000秒)にする
     mstStartTime.Time = timeGetTime();
+    mstElapsedTime = mstStartTime;
 }
 
 // 更新
 bool TimeManager::GetNextUpdateFlag()
 {
     unsigned long nowTime = timeGetTime();
+
+    // バックグラウンド処理
+    if (mstUnprocessedBackgroundTime.Full != 0)
+    {
+        // バックグラウンド時間を経過時間に加算する
+        mstElapsedTime += mstUnprocessedBackgroundTime;
+        
+        // バックグラウンド時間をゲーム停止時間に加算する
+        mstGameStopTime += mstUnprocessedBackgroundTime;
+
+        // 処理したためリセット
+        mstUnprocessedBackgroundTime = TIME_DATA();
+    }
 
     // 経過時間差分
     unsigned long timeDiff = nowTime - mstElapsedTime.Time;    
@@ -65,6 +81,7 @@ bool TimeManager::GetNextUpdateFlag()
 
         mstFrameCount.Frame++;
 
+        // 時間停止時処理
         if (mbGameStopFlag) {
             mstGameStopTime += timeDiff;
 
@@ -82,6 +99,7 @@ bool TimeManager::GetNextUpdateFlag()
             mstGameElapsedTime += munLowestOneFrameSeconds;
 #else
             mstGameElapsedTime += timeDiff;
+            //mstGameElapsedTime += static_cast<unsigned long>(timeDiff * mfTimeScale);
 #endif
         }
 
@@ -109,55 +127,6 @@ void TimeManager::OnEnterBackground()
 void TimeManager::OnReturnForeground()
 {
     unsigned long backgroundTime = timeGetTime() - mulBackgroundStartTime;
-    mstUnprocessedBackgroundTime = TIME_DATA();
     mstUnprocessedBackgroundTime += backgroundTime;
     mstBackgroundTime += backgroundTime;
-}
-
-// 時間比較
-bool TimeManager::IsOverTime(TIME_DATA comparisonTime, TIME_PROCESSING_TYPE timeProcessingType)
-{
-    TIME_DATA targetTime;
-
-    switch (timeProcessingType)
-    {
-    case TIME_PROCESSING_TYPE::ELAPSED:
-        targetTime = mstElapsedTime;
-        break;
-    case TIME_PROCESSING_TYPE::GAME_ELAPSED:
-        targetTime = mstGameElapsedTime;
-        break;
-    case TIME_PROCESSING_TYPE::STOP:
-        targetTime = mstGameStopTime;
-        break;
-    case TIME_PROCESSING_TYPE::BACKGROUND:
-        targetTime = mstBackgroundTime;
-        break;
-    default:
-        return false;
-    }
-
-    // 現在の時間が比較対象の時間を超えているか
-    return targetTime > comparisonTime;
-}
-
-// フレーム数比較
-bool TimeManager::IsOverFrame(FRAME_DATA comparisonFrame, FRAME_PROCESSING_TYPE frameProcessingType)
-{
-    unsigned int targetFrame = 0;
-
-    switch (frameProcessingType)
-    {
-    case FRAME_PROCESSING_TYPE::TOTAL:
-        targetFrame = mstFrameCount.Frame;
-        break;
-    case FRAME_PROCESSING_TYPE::GAME:
-        targetFrame = mstGameFrameCount.Frame;
-        break;
-    default:
-        return false;
-    }
-
-    // 現在のフレーム数が比較対象を超えているか
-    return targetFrame > comparisonFrame.Frame;
 }

@@ -2,6 +2,7 @@
 #include <string>
 
 #include "ResourceData.h"
+#include "TimeData.h"
 
 #include "DxLib.h"
 
@@ -43,7 +44,7 @@ private:
 	int mnCheckHandle;	// チェック文字ハンドル
 	int mnSelectHandle;	// 選択文字ハンドル
 
-    int mnStartframe;   // 開始フレーム
+    FRAME_DATA mstStartframe;   // 開始フレーム
 
 public:
     UI_Check(void* yesArgument, void* noArgument, void(T::*yesExecuteMemberFunction)(void*), void(T::*noExecuteMemberFunction)(void*), T* yesFunctionPointer, T* noFunctionPointer, std::string messageWord, std::string yesWord = "YES", std::string noWord = "NO")
@@ -57,7 +58,7 @@ public:
     , msMessageWord(messageWord)
     , msYesWord(yesWord)
     , msNoWord(noWord)
-    , mnStartframe(Master::mpTimeManager->GetFrame() + 1/*1フレーム分ずらす*/)
+    , mstStartframe(Master::mpTimeManager->GetFrame() + 1/*1フレーム分ずらす*/)
     {
         printfDx("確認\n");
     }
@@ -116,7 +117,7 @@ private:
     void UIUpdate() override
     {
         LeftRightSelectProcess();
-        if (mnStartframe <= Master::mpTimeManager->GetFrame())
+        if (mstStartframe <= Master::mpTimeManager->GetFrame())
         {
             DefaultDecision();
         }

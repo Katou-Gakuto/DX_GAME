@@ -1,4 +1,7 @@
 #pragma once
+
+#include "TimeData.h"
+
 #include "AnimationBase.h"
 #include "StateBase.h"
 
@@ -13,7 +16,7 @@ class StateAnimationControllerProcess
 {
 protected:
 	// èIóπéûä‘
-	int mnEndTime;
+	TIME_DATA mstEndTime;
 
 protected:
 	StateAnimationControllerProcess();

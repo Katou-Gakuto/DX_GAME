@@ -9,10 +9,6 @@
 #include <string>
 #include <vector>
 
-#include "Master.h"
-
-#include "TimeManager.h"
-
 #ifdef _DEBUG
 #include "DebugLog.h"
 #endif
@@ -286,7 +282,7 @@ std::string DEBUG::FunctionCallHistoryAcquisition(int deleteNumber)
 // ŽžŠÔ•¶Žš—ñŽæ“¾
 std::string DEBUG::TimeToString()
 {
-    return "    TIME : " + std::to_string(Master::mpTimeManager->GetTime()) + '\n';
+    return "    TIME : " + std::to_string(timeGetTime()) + '\n';
 }
 
 #endif

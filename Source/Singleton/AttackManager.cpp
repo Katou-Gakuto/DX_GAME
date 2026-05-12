@@ -75,7 +75,7 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 			{
 				// UŒ‚î•ñİ’è
 				attack->SetAttackCharacter(mstAttackDatas[attackDataNumber].attackCharacter);
-				attack->SetAttackTime(mstAttackDatas[attackDataNumber].attackTime + Master::mpTimeManager->GetGameTime()/*+ (17 * 300)*/);
+				attack->SetAttackTime(Master::mpTimeManager->GetGameElapsedTime() + mstAttackDatas[attackDataNumber].attackTime /*+ (17 * 300)*/);
 				attack->SetMoveDir(UtilCalc::VAngleToVec(mstAttackDatas[attackDataNumber].attackCharacter->GetAngle()));
 				attack->SetAttackPower(mstAttackDatas[attackDataNumber].attackPower);
 				attack->SetAttackNumber(attackDataNumber);

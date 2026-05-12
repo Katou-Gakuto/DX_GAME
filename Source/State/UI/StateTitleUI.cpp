@@ -137,8 +137,8 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 				DOT_WEEN_DATA dotWeenData;
 				dotWeenData.DotWeenType = DOT_WEEN_TYPE::OUT_BOUNCE;
 				dotWeenData.ChangeData = &ui->GetModelsController(i)->GetModelPositionPointer()->x;
-				dotWeenData.DotWeenTime = 170 - 68;
-				dotWeenData.StartTime = Master::mpTimeManager->GetTime();
+				dotWeenData.DotWeenTotalTime = 5.0f;
+				dotWeenData.DotWeenElapsedTime = 0.0f;
 				dotWeenData.EndData = uiPositionData[i][ui->GetSelectNumber()].x;
 				dotWeenData.StartData = *dotWeenData.ChangeData;
 				Master::mpGameManager->GetDotWeenManager()->SetDotWeen(dotWeenData);

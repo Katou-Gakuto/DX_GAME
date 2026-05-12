@@ -124,7 +124,6 @@
     <ClInclude Include="Source\Enum\ResourceEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
     <ClInclude Include="Source\Enum\TelopEnum.h" />
-    <ClInclude Include="Source\Enum\TimeEnum.h" />
     <ClInclude Include="Source\Model\ModelBase.h" />
     <ClInclude Include="Source\Model\ModelEffect.h" />
     <ClInclude Include="Source\Model\ModelGraph.h" />

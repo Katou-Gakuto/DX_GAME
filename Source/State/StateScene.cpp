@@ -21,6 +21,7 @@
 #include "StateBase.h"
 #include "StateScene.h"
 #include "TargetManager.h"
+#include "UI_GameClear.h"
 #include "UI_Game.h"
 #include "UI_Result.h"
 #include "UI_StageStart.h"
@@ -812,7 +813,7 @@ GameClearScene::GameClearScene()
 
 void GameClearScene::OnEnter(SceneManager* sceneManager)
 {
-	sceneManager->SetNextScene(SCENE::TITLE);
+	UI_GameClear* uiGameCler = new UI_GameClear();
 }
 
 void GameClearScene::OnExit(SceneManager* sceneManager)

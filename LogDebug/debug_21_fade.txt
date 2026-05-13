@@ -1,0 +1,12 @@
+FadeOut    WinMain(Main.cpp:117) -> GameManager::Initilize(GameManager.cpp:94) -> SceneManager::Initilize(SceneManager.cpp:31) -> UtilFactorys::FSMSceneFactory(UtilFactorys.cpp:825) -> FSMScene::SetCurrentState(FSM.cpp:288) -> StartScene::OnEnter(StateScene.cpp:85) -> SceneManager::SetNextScene(SceneManager.cpp:65) -> FadeManager::FadeOut(FadeManager.cpp:85) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+
+NEXT SCENE : TITLE
+
+FadeOut    WinMain(Main.cpp:140) -> GameManager::Update(GameManager.cpp:135) -> ObjectManager::ObjectUpdate(ObjectManager.cpp:68) -> UIBase::Update(ObjectBases.cpp:736) -> FSMUI::Update(FSM.cpp:348) -> StartTitleUIState::Update(StateTitleUI.cpp:300) -> UIBase::DefaultDecision(ObjectBases.cpp:1251) -> UI_Title::DecisionProcess(UI_Title.cpp:244) -> FSMUI::Decision(FSM.cpp:362) -> StartTitleUIState::Decision(StateTitleUI.cpp:309) -> SceneManager::SetNextScene(SceneManager.cpp:65) -> FadeManager::FadeOut(FadeManager.cpp:85) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+FadeOut    WinMain(Main.cpp:128) -> LoadingManager::Loading(LoadingManager.cpp:38) -> SceneManager::NextScene(SceneManager.cpp:51) -> FSMScene::NextScene(FSM.cpp:307) -> GameLoopScene::OnEnter(StateScene.cpp:672) -> SceneManager::SetNextScene(SceneManager.cpp:65) -> FadeManager::FadeOut(FadeManager.cpp:85) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+
+NEXT SCENE : GAME_LOOP
+
+
+NEXT SCENE : BATTLE_LOOP
+

@@ -51,7 +51,7 @@ public:
 	// ‰Šú‰»
 	void Initilize();
 	// I—¹
-	void Finailize();
+	void Finalize();
 
 	// XV
 	void Update();

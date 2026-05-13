@@ -19,6 +19,7 @@ namespace DEBUG
 		DEBUG_3D_MODEL,
 		DEBUG_SCENE_TITLE,
 		DEBUG_GAME_MANAGER_WND_PROC,
+		DEBUG_FADE,
 	};
 
 	// デバッグ用処理種類

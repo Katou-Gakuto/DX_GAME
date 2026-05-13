@@ -26,7 +26,7 @@ void DotWeenManager::Initilize()
 }
 
 // èIóπ
-void DotWeenManager::Finailize()
+void DotWeenManager::Finalize()
 {
     mstDotWeenDatas.clear();
 }

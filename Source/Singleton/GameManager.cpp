@@ -18,6 +18,7 @@
 #include "SceneManager.h"
 #include "StopManager.h"
 #include "TargetManager.h"
+#include "ThreadManager.h"
 #include "TimeManager.h"
 
 #ifdef _DEBUG
@@ -50,8 +51,7 @@ void GameManager::DxLib_PreInit()
 {
 
 #ifndef _DEBUG
-	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
-	SetEnableXAudioFlag(TRUE);
+	//SetUseDirect3DVersion(DX_DIRECT3D_9EX);
 
 	// log.txtを生成しない
 	SetOutApplicationLogValidFlag(FALSE);
@@ -59,6 +59,7 @@ void GameManager::DxLib_PreInit()
 
 	// DirectX11を使用するようにする
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
+	SetEnableXAudioFlag(TRUE);
 
 	// ウインドウモードで起動
 	ChangeWindowMode(true);
@@ -107,9 +108,9 @@ void GameManager::Initilize()
 }
 
 // 終了処理
-void GameManager::Finailize()
+void GameManager::Finalize()
 {
-    mpDotWeenManager->Finailize();
+    mpDotWeenManager->Finalize();
     mpObjectManager->Finalize();
     
     mpMapManager->Finalize();
@@ -148,6 +149,8 @@ void GameManager::Update()
 void GameManager::DeleteAllIfNeeded()
 {
     mpObjectManager->DeleteAllIfNeeded();
+
+    Master::mpThreadManager->CleanupReadyTasks();
 }
 
 // 描画
@@ -236,7 +239,7 @@ void GameManager::DecreaseUINumber()
 LRESULT WINAPI GameManagerWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 #ifdef _DEBUG
-    DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
+    //DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
     if (Master::mpGameManager->GetUninitializedFlag())
     {

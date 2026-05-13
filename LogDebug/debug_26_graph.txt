@@ -1,0 +1,42 @@
+画像ハンドル(原本)取得 : Resource/Effect/Background.png : 67633153
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:88) -> ResourceManager::Initilize(ResourceManager.cpp:103) -> ResourceManager::EffectInit(ResourceManager.cpp:1270) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850608
+画像ハンドル(原本)取得 : Resource/2D/Floor.png : 67895298
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:101) -> MapManager::MapManager(MapManager.cpp:53) -> ModelBase::Initilize(ModelBase.cpp:23) -> ModelMap::ModelInitilize(ModelMap.cpp:24) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850629
+画像ハンドル(原本)取得 : Resource/2D/Green.png : 69468168
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:108) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850843
+画像ハンドル(原本)取得 : Resource/2D/MiniMapWindow.png : 69730313
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:115) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850847
+画像ハンドル(原本)取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:172) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850877
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:180) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850878
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:188) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850879
+画像ハンドル削除 : 69468168(NOT_DELETE) : 69468168
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:26) -> GameManager::Finalize(GameManager.cpp:116) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855327
+画像ハンドル削除 : 69730313(NOT_DELETE) : 69730313
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:26) -> GameManager::Finalize(GameManager.cpp:116) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855328
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:26) -> GameManager::Finalize(GameManager.cpp:116) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855329
+画像ハンドル削除 : 69992458(NOT_DELETE)
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:26) -> GameManager::Finalize(GameManager.cpp:116) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855330
+画像ハンドル削除 : 69992458(NOT_DELETE) : 69992458
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:26) -> GameManager::Finalize(GameManager.cpp:116) -> MapManager::Finalize(MapManager.cpp:272) -> ResourceManager::ReduceGraphHandle(ResourceManager.cpp:621) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855330
+画像ハンドル削除(最終) : 67895298 : Resource/2D/Floor.png : HandleNumber <=1
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:28) -> ResourceManager::Finalize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855366
+画像ハンドル削除(最終) : 67633153 : Resource/Effect/Background.png : HandleNumber <=1
+    WinMain(Main.cpp:152) -> Master::AllDelete(Master.cpp:28) -> ResourceManager::Finalize(ResourceManager.cpp:128) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101855367

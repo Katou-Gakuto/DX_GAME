@@ -386,6 +386,9 @@
     <ClCompile Include="Source\Object\UI\UI_GameClear.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Singleton\ThreadManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -705,6 +708,9 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\TimeData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ThreadManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

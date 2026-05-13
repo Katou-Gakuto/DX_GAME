@@ -33,7 +33,7 @@ public:
 	/// <summary>初期化</summary>
 	void Initilize();
 	/// <summary>終了</summary>
-	void Finailize();
+	void Finalize();
 
 	/// <summary>更新</summary>
 	void Update();
@@ -273,7 +273,7 @@ private:
 	void EffectInit();
 
 	/// <summary>エフェクト終了</summary>
-	void EffectFinailize();
+	void EffectFinalize();
 
 	/// <summary>エフェクト描画処理</summary>
 	void EffectDrawProcess();

@@ -97,6 +97,9 @@ void SoundManager::Finalize()
 	for (int i = 0; i < MAX_SOUND_NUMBER; i++) {
 		DeleteSoundMem(mnSoundHandle[i]);
 	}
+	for (int i = 0; i < MAX_SOUND_NUMBER; i++) {
+		DeleteSoundMem(mn3DSoundHandle[i]);
+	}
 }
 
 /*

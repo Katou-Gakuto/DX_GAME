@@ -1,0 +1,21 @@
+画像ハンドル(原本)取得 : Resource/Effect/Background.png : 67633153
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:88) -> ResourceManager::Initilize(ResourceManager.cpp:103) -> ResourceManager::EffectInit(ResourceManager.cpp:1270) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92760904
+画像ハンドル(原本)取得 : Resource/2D/Floor.png : 67895298
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:101) -> MapManager::MapManager(MapManager.cpp:53) -> ModelBase::Initilize(ModelBase.cpp:23) -> ModelMap::ModelInitilize(ModelMap.cpp:24) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92760922
+画像ハンドル(原本)取得 : Resource/2D/Green.png : 69468168
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:108) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92761164
+画像ハンドル(原本)取得 : Resource/2D/MiniMapWindow.png : 69730313
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:115) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92761168
+画像ハンドル(原本)取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:172) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:603) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92761198
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:180) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92761198
+画像ハンドル取得 : Resource/2D/RobotSphere.png : 69992458
+    WinMain(Main.cpp:114) -> GameManager::Initilize(GameManager.cpp:102) -> MapManager::Initilize(MapManager.cpp:188) -> ResourceManager::GetGraphHandle(ResourceManager.cpp:595) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 92761200

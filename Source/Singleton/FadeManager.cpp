@@ -14,7 +14,13 @@
 #include "FadeManager.h"
 #include "LoadingManager.h"
 #include "ResourceManager.h"
+#include "ThreadManager.h"
 #include "TimeManager.h"
+
+#ifdef _DEBUG
+#include "DebugLogs/DebugLog.h"
+#endif
+
 
 /*----------------------*/
 /*【フェードマネージャー】*/
@@ -28,7 +34,6 @@ FadeManager::FadeManager()
 , mbFadeInFlag(false)
 , mpDataManager(nullptr)
 , mpTimeManager(nullptr)
-, mfuFadeTask()
 , mfFadeSpeed(5.0f)
 {
 }
@@ -45,7 +50,7 @@ void FadeManager::Initilize()
 }
 
 // 終了
-void FadeManager::Finailize()
+void FadeManager::Finalize()
 {
     mbFadeFlag = false;
 }
@@ -76,8 +81,12 @@ void FadeManager::FadeOut()
     mbFadeFlag = true;
     mbFadeOutFlag = true;
 
+#ifdef _DEBUG
+    DEBUG::SaveText("FadeOut\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_FADE);
+#endif
+
     /*フェードアウト開始*/
-    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, mfFadeSpeed);
+    Master::mpThreadManager->AddThread(std::async(std::launch::async, &FadeManager::FadeProcess, this, mfFadeSpeed));
 }
 
 // フェードイン開始
@@ -89,9 +98,13 @@ void FadeManager::FadeIn()
     }
     mbFadeFlag = true;
     mbFadeInFlag = true;
+
+#ifdef _DEBUG
+    DEBUG::SaveText("FadeIn\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_FADE);
+#endif
     
     /*フェードイン開始*/
-   mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, -mfFadeSpeed);
+    Master::mpThreadManager->AddThread(std::async(std::launch::async, &FadeManager::FadeProcess, this, -mfFadeSpeed));
 }
 
 void FadeManager::FadeProcess(float fadeSpeed)
@@ -104,7 +117,7 @@ void FadeManager::FadeProcess(float fadeSpeed)
 
     while (mbFadeFlag && ((0.0f <= mfFadeAlpha) && (mfFadeAlpha <= 255.1f)))
     {
-        if ((preTime + 17) < mpTimeManager->GetElapsedTime())
+        if ((preTime + 17u) < Master::mpTimeManager->GetElapsedTime())
         {
             preTime = mpTimeManager->GetElapsedTime();
             mfFadeAlpha += fadeSpeed;
@@ -128,6 +141,4 @@ void FadeManager::FadeEnd()
 {
     mbFadeOutFlag = false;
     mbFadeInFlag = false;
-
-    mfuFadeTask.get();
 }

@@ -16,6 +16,7 @@
 #include "StageDataManager.h"
 #include "StopManager.h"
 #include "TelopManager.h"
+#include "ThreadManager.h"
 #include "TimeManager.h"
 
 #ifdef _DEBUG
@@ -39,6 +40,7 @@ ResourceManager* Master::mpResourceManager = new ResourceManager();
 StageDataManager* Master::mpStageDataManager = new StageDataManager();
 StopManager* Master::mpStopManager = new StopManager();
 TelopManager* Master::mpTelopManager = new TelopManager();
+ThreadManager* Master::mpThreadManager = new ThreadManager();
 TimeManager* Master::mpTimeManager = new TimeManager();
 
 SoundManager* Master::mpSoundManager = new SoundManager();
@@ -61,7 +63,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	delete pXmlArrange;
 	
 	// デバッグ初期化
-	DEBUG::DebugInitialization(/**/true/*/false/**/);
+	DEBUG::DebugInitialization(/*/true/*/false/**/);
 	
 	// デバッグテキストの出力先を新しいファイルにする
 	{
@@ -85,6 +87,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		DEBUG::DebugCreateLogFileName(DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL, "_3d_model");
 		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::FUNCTION_CALL, DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);
 		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::TIME, DEBUG::DEBUG_MAP_TYPE::DEBUG_3D_MODEL);//*/
+		/**/
+		DEBUG::DebugCreateLogFileName(DEBUG::DEBUG_MAP_TYPE::DEBUG_FADE, "_fade");
+		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::FUNCTION_CALL, DEBUG::DEBUG_MAP_TYPE::DEBUG_FADE);
+		DEBUG::DebugLogAddData(DEBUG::DEBUG_PROCESS_TYPE::TIME, DEBUG::DEBUG_MAP_TYPE::DEBUG_FADE);//*/
 
 /*/
 		DEBUG::DebugCreateLogFileName(DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC, "_GameManager");//*/

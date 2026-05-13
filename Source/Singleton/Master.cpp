@@ -12,6 +12,7 @@
 #include "StageDataManager.h"
 #include "StopManager.h"
 #include "TelopManager.h"
+#include "ThreadManager.h"
 #include "TimeManager.h"
 
 #include "SoundManager.h"
@@ -21,11 +22,12 @@ void Master::AllDelete()
 {
 	// I—¹ˆ—
 	mpDrawManager->Finalize();
-	mpFadeManager->Finailize();
-	mpGameManager->Finailize();
+	mpFadeManager->Finalize();
+	mpGameManager->Finalize();
 	mpImguiManager->Finalize();
-	mpResourceManager->Finailize();
+	mpResourceManager->Finalize();
 	mpTelopManager->Finalize();
+	mpThreadManager->Finalize();
 
 	mpSoundManager->Finalize();
 	
@@ -42,6 +44,7 @@ void Master::AllDelete()
 	delete mpStageDataManager;
 	delete mpStopManager;
 	delete mpTelopManager;
+	delete mpThreadManager;
 	delete mpTimeManager;
 
 	delete mpSoundManager;

@@ -1,0 +1,3 @@
+FadeOut
+    WinMain(Main.cpp:118) -> GameManager::Initilize(GameManager.cpp:94) -> SceneManager::Initilize(SceneManager.cpp:31) -> UtilFactorys::FSMSceneFactory(UtilFactorys.cpp:825) -> FSMScene::SetCurrentState(FSM.cpp:288) -> StartScene::OnEnter(StateScene.cpp:85) -> SceneManager::SetNextScene(SceneManager.cpp:65) -> FadeManager::FadeOut(FadeManager.cpp:85) -> DEBUG::SaveText(DebugLog.cpp:154) -> 
+    TIME : 101850624

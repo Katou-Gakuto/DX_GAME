@@ -104,7 +104,7 @@ void ResourceManager::Initilize()
 }
 
 // 終了
-void ResourceManager::Finailize()
+void ResourceManager::Finalize()
 {
 	{// シャドウマップ
 		DeleteShadowMap(mnShadowMapHandle);
@@ -213,7 +213,7 @@ void ResourceManager::Finailize()
 	}
 
 	{// エフェクト
-		EffectFinailize();
+		EffectFinalize();
 	}
 }
 
@@ -1271,7 +1271,7 @@ void ResourceManager::EffectInit()
 }
 
 // エフェクト終了
-void ResourceManager::EffectFinailize()
+void ResourceManager::EffectFinalize()
 {
     for (auto &handle : mpEffectHandleContainer->GetHandleMap())
     {

@@ -32,9 +32,6 @@ private:
     // タイムマネジャー
     TimeManager* mpTimeManager;
 
-    // 非同期返り値
-    std::future<void> mfuFadeTask;
-
 public:
     FadeManager();
     ~FadeManager();
@@ -43,7 +40,7 @@ public:
     void Initilize();
 
     /// <summary>終了</summary>
-    void Finailize();
+    void Finalize();
 
     /// <summary>描画</summary>
     void Draw();

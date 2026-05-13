@@ -23,7 +23,7 @@ public:
     /// <summary>‰Šú‰»</summary>
     void Initilize();
     /// <summary>I—¹</summary>
-    void Finailize();
+    void Finalize();
     /// <summary>XV</summary>
 	void Update();
 

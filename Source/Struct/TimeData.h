@@ -67,6 +67,7 @@ struct TIME_DATA
     {
         return this->Full < time.Full;
     }
+
     bool operator<=(const TIME_DATA& time) const
     {
         return this->Full <= time.Full;
@@ -76,6 +77,7 @@ struct TIME_DATA
     {
         return this->Full > time.Full;
     }
+
     bool operator>=(const TIME_DATA& time) const
     {
         return this->Full >= time.Full;

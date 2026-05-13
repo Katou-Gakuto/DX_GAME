@@ -71,6 +71,7 @@
     <ClCompile Include="Source\Singleton\StopManager.cpp" />
     <ClCompile Include="Source\Singleton\TargetManager.cpp" />
     <ClCompile Include="Source\Singleton\TelopManager.cpp" />
+    <ClCompile Include="Source\Singleton\ThreadManager.cpp" />
     <ClCompile Include="Source\Singleton\TimeManager.cpp" />
     <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp" />
     <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Source\Singleton\StopManager.h" />
     <ClInclude Include="Source\Singleton\TargetManager.h" />
     <ClInclude Include="Source\Singleton\TelopManager.h" />
+    <ClInclude Include="Source\Singleton\ThreadManager.h" />
     <ClInclude Include="Source\Singleton\TimeManager.h" />
     <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h" />
     <ClInclude Include="Source\State\Character\StateCharacter_Robot.h" />

@@ -12,6 +12,7 @@ class ResourceManager;
 class StageDataManager;
 class StopManager;
 class TelopManager;
+class ThreadManager;
 class TimeManager;
 
 // 変える
@@ -32,6 +33,7 @@ public:
 	static StageDataManager* mpStageDataManager;	// ステージデータマネージャー
 	static StopManager* mpStopManager;	// ストップマネージャー
 	static TelopManager* mpTelopManager;	// テロップマネージャー
+	static ThreadManager* mpThreadManager;	// スレッドマネージャー
 	static TimeManager* mpTimeManager;	// タイムマネージャー
 
 	static SoundManager* mpSoundManager;	// タイムマネージャー

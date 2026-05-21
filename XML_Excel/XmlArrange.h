@@ -3,6 +3,17 @@
 #include <string>
 #include <vector>
 
+/*// 【使用方法】
+//以下をmainすぐに置く
+
+#ifdef _DEBUG
+    // Excel用XMLファイルを生成
+    XmlArrange* pXmlArrange = new XmlArrange();
+    pXmlArrange->Arrange();
+    delete pXmlArrange;
+#endif
+*/
+
 // xmlファイルを整理するクラス
 class XmlArrange
 {

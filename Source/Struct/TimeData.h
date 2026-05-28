@@ -15,8 +15,8 @@ struct TIME_DATA
     {
         struct
         {
-            unsigned long Time;  // 時間
-            unsigned int Count; // カウント
+            uint32_t Time;  // 時間
+            uint32_t Count; // カウント
         };
 
         uint64_t Full;

@@ -1,0 +1,135 @@
+1位：タイトル UI のフォント未解放
+場所： Source\State\UI\StateTitleUI.cpp（TitleUIStateProcess）、Source\Util\UtilFactorys.cpp（FSMUIFactory）
+
+理由： CreateFontToHandle は ResourceManager 管理外。DxLib_End は未削除フォントで失敗しやすい。
+
+問題内容： タイトル用 11 ステートが登録されるたびに基底 ctor でフォント 3 つ＋画像 2 つを取得。ProcessOnExit は空で、フォント用 DeleteFontToHandle が一切ない。
+
+	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphHandle(...);
+	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphHandle(...);
+	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
+	mnSaveDataDrawFontHandle_PlayerName = CreateFontToHandle(NULL, 22, 8);
+	mnSaveDataDrawFontHandle_Other = CreateFontToHandle(NULL, 18, 8);
+		fsmUI->RegisterState(new StartTitleUIState());
+		fsmUI->RegisterState(new SelectTitleUIState());
+		// ... 計 11 ステート（各 ctor で上記が実行）
+修正案： 解放を ProcessOnExit、または TitleUIStateProcess のデストラクタに集約。
+
+修正コード例：
+
+TitleUIStateProcess::~TitleUIStateProcess()
+{
+    if (mnSaveDataDrawFontHandle_SaveData != -1)
+        DeleteFontToHandle(mnSaveDataDrawFontHandle_SaveData);
+  // PlayerName / Other も同様
+    if (mnSaveDataDrawBackHandle != -1)
+        Master::mpResourceManager->ReduceGraphHandle(mnSaveDataDrawBackHandle);
+  // DelectBack も同様
+}
+2位：StateEffectAnimation::OnExit の条件逆転
+場所： Source\State\StateAnimation.cpp
+
+理由： 再生中エフェクト（PlayEffekseer3DEffect）がステート遷移で止まらず、Effkseer_End 時に残る。
+
+問題内容： ハンドルが有効なとき return しており、削除分支に入らない。
+
+void StateEffectAnimation::OnExit(...)
+{
+    if (*mnEffectHandle != -1)
+    {
+        return;  // ← 有効時に早期 return（意図と逆）
+    }
+    Master::mpResourceManager->DeletePlayEffectHandle(*mnEffectHandle);
+    *mnEffectHandle = -1;
+}
+修正案： 条件を == -1 にするか、常に DeletePlayEffectHandle を呼ぶ。
+
+if (*mnEffectHandle != -1)
+{
+    Master::mpResourceManager->DeletePlayEffectHandle(*mnEffectHandle);
+    *mnEffectHandle = -1;
+}
+3位：UIBase::Finalize が動画を画像として解放
+場所： Source\Object\ObjectBases.cpp
+
+理由： GetMovieHandle は mpMovieHandleContainer 登録。ReduceGraphHandle では見つからず、参照カウントが狂う／再生中動画が残る。
+
+		for (int i = 0; i < mnMovieCount; i++)
+		{
+			mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);  // 誤り
+		}
+修正案： ReduceMovie(mnMovieHandles[i]) に変更。
+
+4位：EffectFinalize が再生インスタンスを停止しない
+場所： ResourceManager::EffectFinalize
+
+理由： DeleteEffekseerEffect はリソース [0] のみ。vector[1..] の再生ハンドルに StopEffekseer3DEffect なし。
+
+void ResourceManager::EffectFinalize()
+{
+    for (auto &handle : mpEffectHandleContainer->GetHandleMap())
+        DeleteEffekseerEffect(handle.second[0]);
+    delete mpEffectHandleContainer;
+    Effkseer_End();
+}
+修正案： 削除前に i >= 1 を StopEffekseer3DEffect（ReduceEffectDataHandle と同様）。
+
+5位：ModelMap の地面テクスチャ未 Reduce
+場所： ModelMap.cpp
+
+問題： ModelInitilize で GetGraphHandle、ModelFinalize は空。終了時は RM の一括削除で救済されるが、マップ再読み込み時に参照が残る。
+
+6位：_DEBUG 時の GetGraphHandle 二重ロード
+場所： ResourceManager::GetGraphHandle 601–606 行付近
+
+問題： RegisterHandle(LoadGraph) を登録と return で二度呼び、1 ハンドルがコンテナ外にリークしうる。
+
+7位：mnPlayBackSoundHandle の終了処理欠如
+場所： ResourceManager（SetBackSoundHandle のみ使用、呼び出し元なし）
+
+問題： 使われれば Finalize で漏れる。現状は未使用の可能性が高い。
+
+8位：SoundManager::~SoundManager の InitSoundMem()
+場所： SoundManager.cpp 29–31 行
+
+問題： Finalize 後の再初期化。通常は二重削除ではないが、終了直前のサウンド系状態を不安定にしうる。
+
+5. DxLib_End() 時点で未解放・不正になりうるリソース
+リソース	根拠	深刻度
+タイトル UI フォント（最大 33）
+11 ステート × 3、DeleteFontToHandle なし
+高
+Effekseer 再生ハンドル
+OnExit バグ + EffectFinalize で未 Stop
+高
+UI 動画（再生コピー）
+ReduceGraphHandle 誤用
+中（RM Finalize で原本は消えるがカウント不整合）
+ModelMap 地面画像
+ReduceGraphHandle なし
+低（終了一括で削除）
+mnPlayBackSoundHandle
+Finalize 未実装
+低（未使用なら無関係）
+DEBUG 時の余分な LoadGraph
+二重ロード
+中（DEBUG のみ）
+ResourceManager::Finalize で一括削除されるもの：通常画像・動画・サウンド（RM 経由）・Effekseer リソース [0]・シャドウマップ。
+フォントと Effekseer 再生インスタンスはこの一括処理の外。
+
+6. 最も可能性が高い単一原因
+原因：TitleUIStateProcess で CreateFontToHandle したフォントを、DeleteFontToHandle せずに DxLib_End() していること。
+
+根拠：
+
+コード上、フォント解放があるのは UI_Check::UIFinalize のみで、タイトル UI 11 ステート分は解放経路がない。
+FSMUIFactory がタイトル表示時に 11 個すべて RegisterState(new …) するため、タイトルに一度でも入ると 最大 33 フォント がプロセス終了まで残る（UtilFactorys.cpp 837–851 行）。
+画像は ResourceManager::Finalize で回収されるが、フォントは RM 管理外のため、DxLib_End 直前まで残る。
+DxLib では未削除のフォント／画像／サウンドが残った状態での DxLib_End 失敗は典型的なパターンで、本プロジェクトの症状（プレイ中は正常・終了時のみエラー）と一致する。
+LoadingManager の「エフェクトがバグる」コメントと StateEffectAnimation::OnExit の問題は、シーン遷移時の話であり、アプリ終了時の DxLib_End 単体としては、常に生成されるタイトル FSM フォントの方が再現性が高い。
+推奨する修正順序
+TitleUIStateProcess にデストラクタ（または ProcessOnExit）で DeleteFontToHandle + ReduceGraphHandle
+StateEffectAnimation::OnExit の条件修正
+UIBase::Finalize の ReduceMovie 化
+EffectFinalize で再生エフェクトをすべて Stop してから DeleteEffekseerEffect / Effkseer_End
+必要であれば、上記 1〜4 を実際のパッチとして適用できます。

@@ -46,6 +46,33 @@ TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 	mnSaveDataDrawFontHandle_Other = CreateFontToHandle(NULL, 18, 8);
 }
 
+// 終了処理
+void TitleUIStateProcess::StateProcessFinalize()
+{
+	if (mnSaveDataDrawFontHandle_SaveData != -1)
+	{
+		DeleteFontToHandle(mnSaveDataDrawFontHandle_SaveData);
+	}
+	if (mnSaveDataDrawFontHandle_PlayerName != -1)
+	{
+		DeleteFontToHandle(mnSaveDataDrawFontHandle_PlayerName);
+	}
+	if (mnSaveDataDrawFontHandle_Other != -1)
+	{
+		DeleteFontToHandle(mnSaveDataDrawFontHandle_Other);
+	}
+
+	if (mnSaveDataDrawBackHandle != -1)
+	{
+		Master::mpResourceManager->ReduceGraphHandle(mnSaveDataDrawBackHandle);
+	}
+
+	if (mnSaveDataDrawDelectBackHandle != -1)
+	{
+		Master::mpResourceManager->ReduceGraphHandle(mnSaveDataDrawDelectBackHandle);
+	}
+}
+
 // 背景描画
 void TitleUIStateProcess::DrawBackground(UIBase* ui, std::vector<std::string> str)
 {
@@ -279,6 +306,12 @@ StartTitleUIState::StartTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::START_TITLE_UI_STATE;
 }
 
+// 終了
+void StartTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void StartTitleUIState::OnEnter(UIBase* ui)
 {
@@ -333,6 +366,12 @@ SelectTitleUIState::SelectTitleUIState()
 , TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
+}
+
+// 終了
+void SelectTitleUIState::Finalize()
+{
+	StateProcessFinalize();
 }
 
 // この状態に入った時の処理
@@ -445,6 +484,12 @@ NewDataCheckTitleUIState::NewDataCheckTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
 }
 
+// 終了
+void NewDataCheckTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 {
@@ -500,6 +545,12 @@ DataSelectTitleUIState::DataSelectTitleUIState()
 , mnDrawDataPos(0)
 {
 	mStateNumber = (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
+}
+
+// 終了
+void DataSelectTitleUIState::Finalize()
+{
+	StateProcessFinalize();
 }
 
 // この状態に入った時の処理
@@ -578,6 +629,12 @@ TutorialTitleUIState::TutorialTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
 }
 
+// 終了
+void TutorialTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void TutorialTitleUIState::OnEnter(UIBase* ui)
 {
@@ -632,6 +689,12 @@ SettingTitleUIState::SettingTitleUIState()
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
+}
+
+// 終了
+void SettingTitleUIState::Finalize()
+{
+	StateProcessFinalize();
 }
 
 // この状態に入った時の処理
@@ -700,6 +763,12 @@ CharacterSelectTitleUIState::CharacterSelectTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
+// 終了
+void CharacterSelectTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void CharacterSelectTitleUIState::OnEnter(UIBase* ui)
 {
@@ -755,6 +824,12 @@ PlayerNameTitleUIState::PlayerNameTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
+// 終了
+void PlayerNameTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void PlayerNameTitleUIState::OnEnter(UIBase* ui)
 {
@@ -808,6 +883,12 @@ InputCheckTitleUIState::InputCheckTitleUIState()
 , TitleUIStateProcess(TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
+}
+
+// 終了
+void InputCheckTitleUIState::Finalize()
+{
+	StateProcessFinalize();
 }
 
 // この状態に入った時の処理
@@ -866,6 +947,12 @@ ScreenSizeTitleUIState::ScreenSizeTitleUIState()
 	mStateNumber = (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
 }
 
+// 終了
+void ScreenSizeTitleUIState::Finalize()
+{
+	StateProcessFinalize();
+}
+
 // この状態に入った時の処理
 void ScreenSizeTitleUIState::OnEnter(UIBase* ui)
 {
@@ -919,6 +1006,12 @@ VolumeTitleUIState::VolumeTitleUIState()
 , TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
+}
+
+// 終了
+void VolumeTitleUIState::Finalize()
+{
+	StateProcessFinalize();
 }
 
 // この状態に入った時の処理

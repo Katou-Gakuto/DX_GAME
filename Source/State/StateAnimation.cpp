@@ -368,7 +368,7 @@ void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *n
 // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
 void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType)
 {
-    if (*mnEffectHandle != -1)
+    if (*mnEffectHandle == -1)
     {
         return;
     }

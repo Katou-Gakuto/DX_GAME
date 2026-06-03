@@ -69,6 +69,9 @@ public:
 	TitleUIStateProcess(TITLE_UI_STATE preUiState);
 
 protected:
+	/*終了処理*/
+	void StateProcessFinalize();
+
 	/*背景描画*/
 	void DrawBackground(UIBase* ui, std::vector<std::string> str);
 
@@ -105,6 +108,9 @@ public:
 	StartTitleUIState();
 	~StartTitleUIState() = default;
 
+	/*終了*/
+	void Finalize() override;
+
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
 	/*この状態を出る時の処理*/
@@ -128,6 +134,9 @@ class SelectTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	SelectTitleUIState();
 	~SelectTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
@@ -154,6 +163,9 @@ class NewDataCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	NewDataCheckTitleUIState();
 	~NewDataCheckTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
@@ -184,6 +196,9 @@ public:
 	DataSelectTitleUIState();
 	~DataSelectTitleUIState() = default;
 
+	/*終了*/
+	void Finalize() override;
+
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
 	/*この状態を出る時の処理*/
@@ -209,6 +224,9 @@ class TutorialTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	TutorialTitleUIState();
 	~TutorialTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
@@ -236,6 +254,9 @@ public:
 	SettingTitleUIState();
 	~SettingTitleUIState() = default;
 
+	/*終了*/
+	void Finalize() override;
+
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
 	/*この状態を出る時の処理*/
@@ -261,6 +282,9 @@ class CharacterSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	CharacterSelectTitleUIState();
 	~CharacterSelectTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
@@ -288,6 +312,9 @@ public:
 	PlayerNameTitleUIState();
 	~PlayerNameTitleUIState() = default;
 
+	/*終了*/
+	void Finalize() override;
+
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
 	/*この状態を出る時の処理*/
@@ -313,6 +340,9 @@ class InputCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	InputCheckTitleUIState();
 	~InputCheckTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
@@ -340,6 +370,9 @@ public:
 	ScreenSizeTitleUIState();
 	~ScreenSizeTitleUIState() = default;
 
+	/*終了*/
+	void Finalize() override;
+
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;
 	/*この状態を出る時の処理*/
@@ -365,6 +398,9 @@ class VolumeTitleUIState : public IStateUI, public TitleUIStateProcess
 public:
 	VolumeTitleUIState();
 	~VolumeTitleUIState() = default;
+
+	/*終了*/
+	void Finalize() override;
 
 	/*この状態に入った時の処理*/
 	void OnEnter(UIBase* ui) override;

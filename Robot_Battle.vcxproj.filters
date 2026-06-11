@@ -389,6 +389,9 @@
     <ClCompile Include="Source\Singleton\ThreadManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Util\UtilStateConditionFunction.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -711,6 +714,15 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\ThreadManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\UtilStateConditionFunction.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\StateData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\StateEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

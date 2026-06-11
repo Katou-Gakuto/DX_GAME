@@ -13,6 +13,7 @@ enum class END_FLAG_NUMBER
 	BIT_FLAG,	// ビットフラグ
 	FILE_FLAG,	// ファイルフラグ
 	NO_DATA_FLAG,// データ無しフラグ
+	STATE_NULL_FUNCTION_FLAG,	// ステート関数ヌルポインタフラグ
 };
 
 class EndManager

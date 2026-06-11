@@ -212,35 +212,6 @@
     <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Schedule\Text\Memo.txt" />
-    <Text Include="..\Schedule\Text\UI画像構想.txt" />
-    <Text Include="..\Schedule\Text\UsageExample.txt" />
-    <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt" />
-    <Text Include="..\Schedule\Text\テスト用\------------.txt" />
-    <Text Include="..\Schedule\Text\テスト用\エフェクト.txt" />
-    <Text Include="..\Schedule\Text\テスト用\ハンドル.txt" />
-    <Text Include="..\Schedule\Text\テスト用\ハンドルマネージャーメモ.txt" />
-    <Text Include="..\Schedule\Text\テスト用\動画.txt" />
-    <Text Include="..\Schedule\Text\テスト用\画像.txt" />
-    <Text Include="..\Schedule\Text\リザルト要素.txt" />
-    <Text Include="..\Schedule\Text\先生メモ.txt" />
-    <Text Include="..\Schedule\Text\出力-デバッグ.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\PDFを開いたときに自動で何か動作させたい.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\AスターAI.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\MoveToの最短経路処理の詳細を省いた中身を書いて.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\■ 結論（改善の方向性）.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\これからステートの機能いるからそれぞれ提案して(足りないと思うものがあ.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\ステートの処理のみ書いて(関数).txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\前の会話が飛んだため適当に情報入力してます.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\State\壁に当たったら角へ（レイキャスト＋コーナー）書いて.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム性.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム説明.txt" />
-    <Text Include="..\Schedule\Text\参考_AI回答\ポートフォリオ.txt" />
-    <Text Include="..\Schedule\Text\山本氏相談結果.txt" />
-    <Text Include="..\Schedule\Text\工夫した.txt" />
-    <Text Include="..\Schedule\Text\必要素材.txt" />
-    <Text Include="..\Schedule\Text\思考まとめ.txt" />
-    <Text Include="..\Schedule\Text\進級制作メモ.txt" />
     <Text Include="Text\Terms.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

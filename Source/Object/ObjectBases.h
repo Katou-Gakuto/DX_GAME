@@ -348,6 +348,12 @@ protected:
     // ステート用描画情報
     std::vector<DRAW_DATA> mstStateDrawData;
 
+	// 重力
+	static constexpr float MAP_GRAVITY = 0.147f;
+
+    // 重量
+    float mfGravity;
+
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
     ~CharacterBase();

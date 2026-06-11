@@ -67,6 +67,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
 , mpAttack(nullptr)
+, mfGravity()
 {
 	mmCharacterAttackDatas.clear();
 	mstStateDrawData.clear();
@@ -414,6 +415,13 @@ void CharacterBase::TemplateActionProcess()
 void CharacterBase::MoveProcess()
 {
 	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed()));
+	mfGravity -= MAP_GRAVITY;
+	mvPosition.y += mfGravity;
+	if (0.0f > mvPosition.y)
+	{
+		mfGravity = 0.0f;
+		mvPosition.y = 0.0f;
+	}
 }
 
 // €–Sˆ—
@@ -698,7 +706,7 @@ void UIBase::Finalize()
 		// “®‰æíœ
 		for (int i = 0; i < mnMovieCount; i++)
 		{
-			mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
+			mpResourceManager->ReduceMovie(mnMovieHandles[i]);
 		}
 		free(mnMovieHandles);
 	}

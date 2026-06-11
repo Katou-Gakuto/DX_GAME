@@ -26,7 +26,7 @@ void Attack_RobotJump::AttackInitilize()
 
 	mvPosition = mpAttackCharacter->GetPos();
 
-    mpAttackCharacter->GetStatus()->AddSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 2);
+    mpAttackCharacter->GetStatus()->AddSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 3);
 
 	SetActiveFlag(true);
 }
@@ -44,23 +44,27 @@ void Attack_RobotJump::AttackFinalize()
 // アタック更新
 void Attack_RobotJump::AttackUpdate()
 {
-	mvPosition = mpAttackCharacter->GetPos();
+	//mvPosition = mpAttackCharacter->GetPos();
 
 	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
-        mpAttackCharacter->GetStatus()->SubSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 2);
-        mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
+        mpAttackCharacter->GetStatus()->SubSpeed(mpAttackCharacter->GetStatus()->baseSpeed * 3);
+        //mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
 		SetActiveFlag(false);
+	}
+	else
+	{
+		mpAttackCharacter->SetUpMove();
 	}
 }
 
 // アタック最終更新
 void Attack_RobotJump::AttackLastUpdate()
 {
-	mvPosition = mpAttackCharacter->GetPos();
 	if (mstAttackTime <= Master::mpTimeManager->GetGameElapsedTime())
 	{
-        mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
+		//mvPosition = mpAttackCharacter->GetPos();
+        //mpAttackCharacter->SetPos(VGet(mvPosition.x, 0.0f, mvPosition.z));
 	}
 }
 

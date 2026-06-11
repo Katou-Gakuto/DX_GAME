@@ -112,17 +112,6 @@
     <Filter Include="ヘッダー ファイル\Container">
       <UniqueIdentifier>{4a99fcc0-cd43-4b07-bc06-8ff800f93506}</UniqueIdentifier>
     </Filter>
-    <Filter Include="リソース ファイル\テスト用">
-      <UniqueIdentifier>{32361acc-2582-4f09-aef9-b6a8507a97e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="リソース ファイル\参考_AI回答">
-      <UniqueIdentifier>{aa42ea15-c9f4-4061-95a1-cdd1623540b7}</UniqueIdentifier>
-      <Extensions>
-      </Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル\参考_AI回答\State">
-      <UniqueIdentifier>{c6ffdffe-9f46-41df-ac51-ab4b39082c89}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Debug">
       <UniqueIdentifier>{5f48c63c-9acc-4f99-98cd-78fa3a464017}</UniqueIdentifier>
     </Filter>
@@ -714,93 +703,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Schedule\Text\Memo.txt">
+    <Text Include="Text\Terms.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
-    <Text Include="..\Schedule\Text\コンテンツへとスキップする.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\工夫した.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\思考まとめ.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\出力-デバッグ.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\進級制作メモ.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\先生メモ.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\必要素材.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\------------.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\エフェクト.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\ハンドル.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\ハンドルマネージャーメモ.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\画像.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\テスト用\動画.txt">
-      <Filter>リソース ファイル\テスト用</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\PDFを開いたときに自動で何か動作させたい.txt">
-      <Filter>リソース ファイル\参考_AI回答</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム性.txt">
-      <Filter>リソース ファイル\参考_AI回答</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\ゲーム説明.txt">
-      <Filter>リソース ファイル\参考_AI回答</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\ポートフォリオ.txt">
-      <Filter>リソース ファイル\参考_AI回答</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\リザルト要素.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\UI画像構想.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\UsageExample.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\■ 結論（改善の方向性）.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\これからステートの機能いるからそれぞれ提案して(足りないと思うものがあ.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\AスターAI.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\MoveToの最短経路処理の詳細を省いた中身を書いて.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\ステートの処理のみ書いて(関数).txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\前の会話が飛んだため適当に情報入力してます.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\参考_AI回答\State\壁に当たったら角へ（レイキャスト＋コーナー）書いて.txt">
-      <Filter>リソース ファイル\参考_AI回答\State</Filter>
-    </Text>
-    <Text Include="..\Schedule\Text\山本氏相談結果.txt">
-      <Filter>リソース ファイル</Filter>
-    </Text>
-    <Text Include="Text\Terms.txt" />
   </ItemGroup>
 </Project>

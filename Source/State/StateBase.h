@@ -2,8 +2,16 @@
 #include <map>
 #include <vector>
 
+#include "StateEnum.h"
 #include "AnimationData.h"
 #include "CameraData.h"
+#include "StateData.h"
+
+#ifdef _DEBUG
+#include "Master.h"
+#include "EndManager.h"
+#include "DebugLogs/DebugLog.h"
+#endif
 
 enum class MODEL_TYPE;
 enum class CAMERA_MODE;
@@ -25,31 +33,71 @@ class UIBase;
 /*------------------*/
 /*【ステートベース】*/
 /*------------------*/
-template<typename number>
+template<typename number, typename conditionData>
 class StateBase
 {
 protected:
 	// ステートナンバー
 	number mStateNumber = (number) - 1;
+
+	// ステート変更条件
+	std::vector<STATE_CHANGE_CRITERIA_DATA<number, conditionData>> mfpStateChangeCriterias;
 public:
-	StateBase() = default;
+	StateBase(number stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<number, conditionData>> stateChangeCriterias)
+	: mStateNumber(stateNumber)
+	, mfpStateChangeCriterias(stateChangeCriterias)
+	{
+	}
+
 	virtual ~StateBase() = default;
 
+	/// <summary>ステート取得</summary>
 	inline number GetStateNumber() const { return mStateNumber; }
+
+	/// <summary>ステート設定</summary>
+	/// <param name="stateNumber">設定ステートナンバー</param>
 	inline void SetStatenumber(number stateNumber) { mStateNumber = stateNumber; }
+
+	// TODOｆｓｍbaseでやる
+	/// <summary>次のステートを取得する</summary>
+	inline number GetNextState()
+	{
+		for (auto& stateChangeCriteriaData : mfpStateChangeCriterias)
+		{
+#ifdef _DEBUG
+			if (stateChangeCriteriaData.ChangeFlag == nullptr)
+			{
+				Master::mpEndManager.SetEndFlag(true, END_FLAG_NUMBER::STATE_NULL_FUNCTION_FLAG);
+				DEBUG::SaveText("ステート未設定", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
+				return mStateNumber;
+			}
+#endif
+			if (stateChangeCriteriaData.ChangeFlag())
+			{
+				if (mStateNumber == stateChangeCriteriaData.ChangeNumber)
+				{
+					return;
+				}
+				return stateChangeCriteriaData.ChangeNumber;
+			}
+		}
+	}
 };
 
 /*------------------------*/
 /*【カメラステートベース】*/
 /*------------------------*/
-class IStateCamera : public StateBase<CAMERA_MODE>
+class IStateCamera : public StateBase<CAMERA_MODE, void>
 {
 protected:
 	// カメラ1フレーム移動量
 	const float CAMERA_ONE_FRAME_AMOUNT = 3.0f;
 
 public:
-	IStateCamera() = default;
+	IStateCamera(CAMERA_MODE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias)
+	: StateBase<CAMERA_MODE, void>(stateNumber, stateChangeCriterias)
+	{
+	}
 	virtual ~IStateCamera() = default;
 
 	/*この状態に入った時の処理*/
@@ -77,7 +125,7 @@ protected:
 /*------------------------------*/
 /*【キャラクターステートベース】*/
 /*------------------------------*/
-class IStateCharacter : public StateBase<int>
+class IStateCharacter : public StateBase<STATE_TYPE_CHARACTER, void>
 {
 protected:
 	// 共通キャラクターステート
@@ -100,7 +148,10 @@ protected:
 	// INPROGRESS: ステート条件金曜過ぎたら変更
 
 public:
-	IStateCharacter() = default;
+	IStateCharacter(STATE_TYPE_CHARACTER stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+	: StateBase<STATE_TYPE_CHARACTER, void>(stateNumber, stateChangeCriterias)
+	{
+	}
 	virtual ~IStateCharacter() = default;
 
 	/// <summary>終了</summary>
@@ -112,7 +163,7 @@ public:
 	virtual void OnExit(CharacterBase* character) = 0;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) = 0;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) = 0;
 	/*更新*/
 	virtual void Update(CharacterBase* character) = 0;
 	/*最終更新*/
@@ -128,14 +179,17 @@ public:
 /*----------*/
 /*【アニメーションステートベース】
 /*----------*/
-class IStateAnimation : public StateBase<MODEL_TYPE>
+class IStateAnimation : public StateBase<MODEL_TYPE, void>
 {
 protected:
 	// モデルベース
 	ModelBase* mpModelBase;
 
 public:
-	IStateAnimation() = default;
+	IStateAnimation(MODEL_TYPE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+	: StateBase<MODEL_TYPE, void>(stateNumber, stateChangeCriterias)
+	{
+	}
 	virtual ~IStateAnimation() = default;
 
 	/// <summary>この状態に入った時の処理</summary>
@@ -162,14 +216,17 @@ public:
 /*----------*/
 /*【アニメション操作ステートベース】
 /*----------*/
-class IStateAnimationController : public StateBase<ANIMATION_TYPE>
+class IStateAnimationController : public StateBase<ANIMATION_TYPE, void>
 {
 protected:
 	// 追加終了時間
 	int mnAddEndTime;
 	
 public:
-	IStateAnimationController() = default;
+	IStateAnimationController(ANIMATION_TYPE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+	: StateBase<ANIMATION_TYPE, void>(stateNumber, stateChangeCriterias)
+	{
+	}
 	virtual ~IStateAnimationController() = default;
 	
 	/// <summary>この状態に入った時の処理</summary>
@@ -194,16 +251,21 @@ public:
 /*-------------------------*/
 /*【DotWeenステートベース】*/
 /*-------------------------*/
-class IStateDotWeen : public StateBase<DOT_WEEN_TYPE>
+class IStateDotWeen : public StateBase<DOT_WEEN_TYPE, void>
 {
 public:
+	IStateDotWeen()
+	: StateBase<DOT_WEEN_TYPE, void>(DOT_WEEN_TYPE::NONE, std::vector<STATE_CHANGE_CRITERIA_DATA<DOT_WEEN_TYPE, void>>{})
+	{
+	}
+
 	virtual void Update(DOT_WEEN_DATA dotWeenData) = 0;
 };
 
 /*------------------------*/
 /*【シーンステートベース】*/
 /*------------------------*/
-class IStateScene : public StateBase<SCENE>
+class IStateScene : public StateBase<SCENE, void>
 {
 protected:
 	// ターゲットマネージャー
@@ -216,7 +278,7 @@ protected:
 	int mnSceneCameraID;
 
 public:
-	IStateScene();
+	IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>> stateChangeCriterias);
 	virtual ~IStateScene() = default;
 
 	/*この状態に入った時の処理*/
@@ -237,10 +299,13 @@ public:
 /*--------------------*/
 /*【UIステートベース】*/
 /*--------------------*/
-class IStateUI : public StateBase<int>
+class IStateUI : public StateBase<STATE_TYPE_UI, void>
 {
 public:
-	IStateUI() = default;
+	IStateUI(STATE_TYPE_UI stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+	: StateBase<STATE_TYPE_UI, void>(stateNumber, stateChangeCriterias)
+	{
+	}
 	virtual ~IStateUI() = default;
 
 	/// <summary>終了</summary>
@@ -252,21 +317,21 @@ public:
 	virtual void OnExit(UIBase* ui) = 0;
 
 	/*更新*/
-	virtual int Update(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Update(UIBase* ui) { return mStateNumber; }
 
 	/*決定*/
-	virtual int Decision(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Decision(UIBase* ui) { return mStateNumber; }
 	/*終了*/
-	virtual int Cloce(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Cloce(UIBase* ui) { return mStateNumber; }
 
 	/*マウス*/
-	virtual int Mouse(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Mouse(UIBase* ui) { return mStateNumber; }
 	/*キーボード*/
-	virtual int Keyboard(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Keyboard(UIBase* ui) { return mStateNumber; }
 	/*コントローラー*/
-	virtual int Controller(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Controller(UIBase* ui) { return mStateNumber; }
 	/*キーボードとコントローラー*/
-	virtual int Keyboard_Controller(UIBase* ui) { return mStateNumber; }
+	virtual STATE_TYPE_UI Keyboard_Controller(UIBase* ui) { return mStateNumber; }
 
 	/*描画*/
 	virtual void Draw(UIBase* ui) = 0;

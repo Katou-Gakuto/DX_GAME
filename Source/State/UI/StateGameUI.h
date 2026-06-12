@@ -131,7 +131,8 @@ protected:
 class NormalGameUIState : public IStateUI, public GameUIProcess
 {
 public:
-    NormalGameUIState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
     ~NormalGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -140,16 +141,16 @@ public:
     void OnExit(UIBase* ui) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
-	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    /// <summary>終了</summary>
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -176,7 +177,8 @@ private:
     DRAW_DATA mstMenuStringDrawData[MENU_STRING_TYPE::MENU_STRING_MAX];
 
 public:
-    PauseGameUIState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
     ~PauseGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -185,16 +187,16 @@ public:
     void OnExit(UIBase* ui) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 
@@ -204,7 +206,8 @@ public:
 class DrawPlayerDataState : public IStateUI, public GameUIProcess
 {
 public:
-    DrawPlayerDataState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
     ~DrawPlayerDataState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -213,16 +216,16 @@ public:
     void OnExit(UIBase* ui) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 /*--------------------*/
@@ -238,7 +241,8 @@ private:
         MAX
     };
 public:
-    ConfigChangeState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
     ~ConfigChangeState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -247,16 +251,16 @@ public:
     void OnExit(UIBase* ui) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -277,10 +281,10 @@ public:
     void OnExit(UIBase* ui) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
@@ -292,5 +296,5 @@ public:
     void GameEnd(void *null);
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };

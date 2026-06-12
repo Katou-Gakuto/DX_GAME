@@ -111,7 +111,8 @@ private:
 class StateMVOneAnimation : public IStateAnimation, public StateAnimationProcess
 {
 public:
-    StateMVOneAnimation(int modelHandle, std::string fileName);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateMVOneAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -142,7 +143,8 @@ private:
 class StateMVOneOnlyAnimation : public IStateAnimation, public StateAnimationProcess
 {
 public:
-    StateMVOneOnlyAnimation(int modelHandle);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateMVOneOnlyAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -195,7 +197,8 @@ private:
     VECTOR mvSize;
 
 public:
-    StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias, int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
     ~StateMVOneOperationAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -228,7 +231,8 @@ private:
     int* mnEffectHandle;
 
 public:
-    StateEffectAnimation(int* effectHandle);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateEffectAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
@@ -261,7 +265,8 @@ private:
 class StateGraphAnimation : public IStateAnimation
 {
 public:
-    StateGraphAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateGraphAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
@@ -294,7 +299,8 @@ private:
 class StateMovieAnimation : public IStateAnimation
 {
 public:
-    StateMovieAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateMovieAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
@@ -326,7 +332,8 @@ private:
 class StateFadeGraphAnimation : public IStateAnimation
 {
 public:
-    StateFadeGraphAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateFadeGraphAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
@@ -361,7 +368,8 @@ private:
 class StateDOTweenAnimation : public IStateAnimation
 {
 public:
-    StateDOTweenAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
     ~StateDOTweenAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>

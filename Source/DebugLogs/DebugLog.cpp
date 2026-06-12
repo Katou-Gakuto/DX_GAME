@@ -33,7 +33,7 @@ void DEBUG::DebugInitialization(bool debugOutputFlag)
 }
 
 // デバッグ出力先を新しいファイルにする
-void DEBUG::DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType, std::string plusFileName)
+void DEBUG::DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType, std::vector<std::string> plusFileName)
 {
     switch (debugMapType)
     {
@@ -146,12 +146,22 @@ void DEBUG::SaveText(std::string logString, DEBUG_MAP_TYPE debugMapType)
     
     if (DEBUG::PlusLogFileData.find(debugMapType) != DEBUG::PlusLogFileData.end())
     {
-        std::ofstream plusFile(DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + DEBUG::PlusLogFileData[debugMapType].plusFileName + ".txt", std::ios::app);
-
-        plusFile << logString;
-        for (int i = 0; i < DEBUG::PlusLogFileData[debugMapType].debugType.size(); i++)
+        for (std::string& plusFileName : DEBUG::PlusLogFileData[debugMapType].plusFileName)
         {
-            ProcessByDebugType(&plusFile, DEBUG::PlusLogFileData[debugMapType].debugType[i], debugSaveTextFunctionData);
+            std::ofstream plusFile(DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + plusFileName + ".txt", std::ios::app);
+
+            plusFile << logString;
+            for (int i = 0; i < DEBUG::PlusLogFileData[debugMapType].debugType.size(); i++)
+            {
+                if (DEBUG::PlusLogFileData[debugMapType].debugType[i] == DEBUG::DEBUG_PROCESS_TYPE::ALL_FILE_OUTPUT)
+                {
+                    if (plusFileName != DEBUG::PlusLogFileData[debugMapType].plusFileName[0])
+                    {
+                        continue;
+                    }
+                }
+                ProcessByDebugType(&plusFile, DEBUG::PlusLogFileData[debugMapType].debugType[i], debugSaveTextFunctionData);
+            }
         }
     }
 }
@@ -180,28 +190,31 @@ void DEBUG::ProcessByDebugType(std::ofstream *file, DEBUG_PROCESS_TYPE debugProc
                 continue;
             }
 
-            nextFileName = (DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + pludFileData.second.plusFileName + ".txt");
-
-            bool outPutFileFlag = false;
-            for (int i = 0; i < outPutFiles.size(); i++)
+            for (std::string& plusFileName : pludFileData.second.plusFileName)
             {
-                if (outPutFiles[i] == nextFileName)
+                nextFileName = (DEBUG::LogFileString.substr(0, DEBUG::LogFileString.size() - 4) + plusFileName + ".txt");
+
+                bool outPutFileFlag = false;
+                for (int i = 0; i < outPutFiles.size(); i++)
                 {
-                    outPutFileFlag = true;
-                    break;
+                    if (outPutFiles[i] == nextFileName)
+                    {
+                        outPutFileFlag = true;
+                        break;
+                    }
                 }
-            }
-            if (outPutFileFlag)
-            {
-                continue;
-            }
+                if (outPutFileFlag)
+                {
+                    continue;
+                }
 
-            // ファイル出力
-            std::ofstream plusFile(nextFileName, std::ios::app);
-            plusFile << debugSaveTextFunctionData.logString;
+                // ファイル出力
+                std::ofstream plusFile(nextFileName, std::ios::app);
+                plusFile << debugSaveTextFunctionData.logString;
 
-            // ファイル名保存
-            outPutFiles.push_back(nextFileName);
+                // ファイル名保存
+                outPutFiles.push_back(nextFileName);
+            }
         }
     }
         break;

@@ -100,6 +100,7 @@
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
     <ClCompile Include="Source\Util\UtilFileLoading.cpp" />
+    <ClCompile Include="Source\Util\UtilStateConditionFunction.cpp" />
     <ClCompile Include="XML_Excel\XmlArrange.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +125,7 @@
     <ClInclude Include="Source\Enum\ImguiEnum.h" />
     <ClInclude Include="Source\Enum\ResourceEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
+    <ClInclude Include="Source\Enum\StateEnum.h" />
     <ClInclude Include="Source\Enum\TelopEnum.h" />
     <ClInclude Include="Source\Model\ModelBase.h" />
     <ClInclude Include="Source\Model\ModelEffect.h" />
@@ -199,6 +201,7 @@
     <ClInclude Include="Source\Struct\ImguiData.h" />
     <ClInclude Include="Source\Struct\MiniMapData.h" />
     <ClInclude Include="Source\Struct\ResourceData.h" />
+    <ClInclude Include="Source\Struct\StateData.h" />
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Struct\TargetData.h" />
     <ClInclude Include="Source\Struct\TelopData.h" />
@@ -209,6 +212,7 @@
     <ClInclude Include="Source\Util\UtilChange.h" />
     <ClInclude Include="Source\Util\UtilFactorys.h" />
     <ClInclude Include="Source\Util\UtilFileLoading.h" />
+    <ClInclude Include="Source\Util\UtilStateConditionFunction.h" />
     <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <ItemGroup>

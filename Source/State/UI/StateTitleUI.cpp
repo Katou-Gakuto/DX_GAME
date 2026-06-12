@@ -299,8 +299,8 @@ void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize,
 /*【開始画面UIステート】*/
 /*----------------------*/
 
-StartTitleUIState::StartTitleUIState()
-: IStateUI()
+StartTitleUIState::StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::START_TITLE_UI_STATE;
@@ -328,7 +328,7 @@ void StartTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int StartTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI StartTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 
@@ -336,7 +336,7 @@ int StartTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int StartTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI StartTitleUIState::Decision(UIBase* ui)
 {
 	Master::mpDataManager->SetPlayPlayer(0);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
@@ -361,8 +361,8 @@ void StartTitleUIState::Draw(UIBase* ui)
 /*【選択画面UIステート】*/
 /*----------------------*/
 
-SelectTitleUIState::SelectTitleUIState()
-: IStateUI()
+SelectTitleUIState::SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
@@ -411,7 +411,7 @@ void SelectTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int SelectTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI SelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->LeftRightSelectProcess();
@@ -423,7 +423,7 @@ int SelectTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int SelectTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI SelectTitleUIState::Decision(UIBase* ui)
 {
 	/*/
 	switch (ui->GetSelectNumber())
@@ -457,9 +457,9 @@ int SelectTitleUIState::Decision(UIBase* ui)
 }
 
 // 戻る
-int SelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI SelectTitleUIState::Cloce(UIBase* ui)
 {
-	return GetPreUiState();
+	return mStateNumber;
 }
 
 // 描画
@@ -477,8 +477,8 @@ void SelectTitleUIState::Draw(UIBase* ui)
 /*【新しいデータの入る場所があるか確認UIステート】*/
 /*------------------------------------------------*/
 
-NewDataCheckTitleUIState::NewDataCheckTitleUIState()
-: IStateUI()
+NewDataCheckTitleUIState::NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
@@ -505,7 +505,7 @@ void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int NewDataCheckTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI NewDataCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -516,13 +516,13 @@ int NewDataCheckTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int NewDataCheckTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI NewDataCheckTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
+	return TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
 // 戻る
-int NewDataCheckTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI NewDataCheckTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -539,8 +539,8 @@ void NewDataCheckTitleUIState::Draw(UIBase* ui)
 /*【データ選択画面UIステート】*/
 /*----------------------------*/
 
-DataSelectTitleUIState::DataSelectTitleUIState()
-: IStateUI()
+DataSelectTitleUIState::DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 , mnDrawDataPos(0)
 {
@@ -573,7 +573,7 @@ void DataSelectTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int DataSelectTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI DataSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
@@ -593,14 +593,14 @@ int DataSelectTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int DataSelectTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI DataSelectTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
 // 戻る
-int DataSelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI DataSelectTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -622,8 +622,8 @@ void DataSelectTitleUIState::Draw(UIBase* ui)
 /*【チュートリアルUIステート】*/
 /*----------------------------*/
 
-TutorialTitleUIState::TutorialTitleUIState()
-: IStateUI()
+TutorialTitleUIState::TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
@@ -649,7 +649,7 @@ void TutorialTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int TutorialTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI TutorialTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -660,14 +660,14 @@ int TutorialTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int TutorialTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI TutorialTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
 // 戻る
-int TutorialTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI TutorialTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -684,8 +684,8 @@ void TutorialTitleUIState::Draw(UIBase* ui)
 /*【セッティングUIステート】*/
 /*--------------------------*/
 
-SettingTitleUIState::SettingTitleUIState()
-: IStateUI()
+SettingTitleUIState::SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
@@ -713,7 +713,7 @@ void SettingTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int SettingTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI SettingTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->DefaultCloce();
@@ -724,7 +724,7 @@ int SettingTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int SettingTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI SettingTitleUIState::Decision(UIBase* ui)
 {
 	switch (ui->GetSelectNumber())
 	{
@@ -739,7 +739,7 @@ int SettingTitleUIState::Decision(UIBase* ui)
 }
 
 // 戻る
-int SettingTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI SettingTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -756,8 +756,8 @@ void SettingTitleUIState::Draw(UIBase* ui)
 /*【キャラクター種類選択UIステート】*/
 /*----------------------------*/
 
-CharacterSelectTitleUIState::CharacterSelectTitleUIState()
-: IStateUI()
+CharacterSelectTitleUIState::CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
@@ -783,7 +783,7 @@ void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int CharacterSelectTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI CharacterSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -794,13 +794,13 @@ int CharacterSelectTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int CharacterSelectTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI CharacterSelectTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
 // 戻る
-int CharacterSelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI CharacterSelectTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -817,8 +817,8 @@ void CharacterSelectTitleUIState::Draw(UIBase* ui)
 /*【プレイヤー名設定UIステート】*/
 /*----------------------------*/
 
-PlayerNameTitleUIState::PlayerNameTitleUIState()
-: IStateUI()
+PlayerNameTitleUIState::PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
@@ -844,7 +844,7 @@ void PlayerNameTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int PlayerNameTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI PlayerNameTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -855,13 +855,13 @@ int PlayerNameTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int PlayerNameTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI PlayerNameTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
 }
 
 // 戻る
-int PlayerNameTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI PlayerNameTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -878,8 +878,8 @@ void PlayerNameTitleUIState::Draw(UIBase* ui)
 /*【入力情報の最終確認UIステート】*/
 /*----------------------------*/
 
-InputCheckTitleUIState::InputCheckTitleUIState()
-: IStateUI()
+InputCheckTitleUIState::InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
@@ -905,7 +905,7 @@ void InputCheckTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int InputCheckTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI InputCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -916,16 +916,16 @@ int InputCheckTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int InputCheckTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI InputCheckTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
 	return mStateNumber;
 }
 
 // 戻る
-int InputCheckTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI InputCheckTitleUIState::Cloce(UIBase* ui)
 {
-	return GetPreUiState();
+	return mStateNumber;
 }
 
 // 描画
@@ -940,8 +940,8 @@ void InputCheckTitleUIState::Draw(UIBase* ui)
 /*【画面サイズ調整UIステート】*/
 /*----------------------------*/
 
-ScreenSizeTitleUIState::ScreenSizeTitleUIState()
-: IStateUI()
+ScreenSizeTitleUIState::ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
@@ -967,7 +967,7 @@ void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int ScreenSizeTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI ScreenSizeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -978,13 +978,13 @@ int ScreenSizeTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int ScreenSizeTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI ScreenSizeTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
 // 戻る
-int ScreenSizeTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI ScreenSizeTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -1001,8 +1001,8 @@ void ScreenSizeTitleUIState::Draw(UIBase* ui)
 /*【音量調整UIステート】*/
 /*----------------------------*/
 
-VolumeTitleUIState::VolumeTitleUIState()
-: IStateUI()
+VolumeTitleUIState::VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
 , TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
@@ -1028,7 +1028,7 @@ void VolumeTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int VolumeTitleUIState::Update(UIBase* ui)
+STATE_TYPE_UI VolumeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultCloce();
@@ -1039,13 +1039,13 @@ int VolumeTitleUIState::Update(UIBase* ui)
 }
 
 // 決定
-int VolumeTitleUIState::Decision(UIBase* ui)
+STATE_TYPE_UI VolumeTitleUIState::Decision(UIBase* ui)
 {
 	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
 // 戻る
-int VolumeTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI VolumeTitleUIState::Cloce(UIBase* ui)
 {
 	return GetPreUiState();
 }

@@ -1,0 +1,3 @@
+SCREEN SIZE: (640, 480)
+    WinMain(main.cpp:69) -> DEBUG::SaveText(DebugLog.cpp:143) -> 
+    TIME : 693788441

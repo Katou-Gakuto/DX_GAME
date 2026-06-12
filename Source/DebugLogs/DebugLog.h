@@ -20,6 +20,7 @@ namespace DEBUG
 		DEBUG_SCENE_TITLE,
 		DEBUG_GAME_MANAGER_WND_PROC,
 		DEBUG_FADE,
+		DEBUG_FAILURE_LOG,
 	};
 
 	// デバッグ用処理種類
@@ -36,7 +37,7 @@ namespace DEBUG
 	{
 		std::vector<DEBUG_PROCESS_TYPE> debugType;
 		
-		std::string plusFileName;
+		std::vector<std::string> plusFileName;
 	};
 
 	// デバッグ用SaveText関数内データ
@@ -60,7 +61,7 @@ namespace DEBUG
 	void DebugInitialization(bool debugOutputFlag);
 
 	/// <summary>デバッグ出力先を追加する(上書き)</summary>
-	void DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType = DEBUG_MAP_TYPE::DEBUG_BASE, std::string plusFileName = "");
+	void DebugCreateLogFileName(DEBUG_MAP_TYPE debugMapType = DEBUG_MAP_TYPE::DEBUG_BASE, std::vector<std::string> plusFileName = {});
 
 	/// <summary>デバッグ出力情報追加</summary>
 	void DebugLogAddData(DEBUG_PROCESS_TYPE debugProcessType, DEBUG_MAP_TYPE debugMapType = DEBUG_MAP_TYPE::DEBUG_BASE);

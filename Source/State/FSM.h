@@ -1,8 +1,10 @@
 #pragma once
-
+#include <iostream>
 #include <map>
+#include <type_traits>
 #include <vector>
 
+#include "StateEnum.h"
 #include "StateBase.h"
 
 enum class CAMERA_MODE;
@@ -20,7 +22,7 @@ class UIBase;
 /*----------*/
 /*【継承用有限状態マシン】*/
 /*----------*/
-template<typename subscript, typename state>
+template<typename subscript, typename conditionData, typename state, typename = typename std::enable_if<std::is_base_of<StateBase<subscript, conditionData>, state>::value>::type>
 class FSMBase
 {
 protected:
@@ -61,6 +63,12 @@ public:
 		mnCurrentState = mnNextState;
 	}
 
+	/*ステート変更確認*/
+	void CheckChangeState()
+	{
+		// TOFO: ここで回すのは次のステート確認
+	}
+
 	/*実行状態取得*/
 	inline subscript GetCurrentState() const { return mnCurrentState; }
 };
@@ -69,7 +77,7 @@ public:
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<ANIMATION_TYPE, IStateAnimationController>
+class FSMAnimation : public FSMBase<ANIMATION_TYPE, void, IStateAnimationController>
 {
 private:
 	// アニメーションステート達
@@ -111,7 +119,7 @@ private:
 /*----------*/
 /*【カメラ有限状態マシン】*/
 /*----------*/
-class FSMCamera : public FSMBase<CAMERA_MODE, IStateCamera>
+class FSMCamera : public FSMBase<CAMERA_MODE, void, IStateCamera>
 {
 public:
 	FSMCamera();
@@ -132,7 +140,7 @@ public:
 /*----------*/
 /*【キャラクター有限状態マシン】*/
 /*----------*/
-class FSMCharacter : public FSMBase<int, IStateCharacter>
+class FSMCharacter : public FSMBase<STATE_TYPE_CHARACTER, void, IStateCharacter>
 {
 public:
 	FSMCharacter();
@@ -158,7 +166,7 @@ public:
 /*-------------------------*/
 /*【DotWeen有限状態マシン】*/
 /*-------------------------*/
-class FSMDotWeen : public FSMBase<DOT_WEEN_TYPE, IStateDotWeen>
+class FSMDotWeen : public FSMBase<DOT_WEEN_TYPE, void, IStateDotWeen>
 {
 public:
 	FSMDotWeen();
@@ -173,7 +181,7 @@ public:
 /*----------*/
 /*【シーン有限状態マシン】*/
 /*----------*/
-class FSMScene : public FSMBase<SCENE, IStateScene>
+class FSMScene : public FSMBase<SCENE, void, IStateScene>
 {
 public:
 	FSMScene();
@@ -197,7 +205,7 @@ public:
 /*----------*/
 /*【UI有限状態マシン】*/
 /*----------*/
-class FSMUI : public FSMBase<int, IStateUI>
+class FSMUI : public FSMBase<STATE_TYPE_UI, void, IStateUI>
 {
 public:
 	FSMUI();
@@ -206,7 +214,7 @@ public:
 	void Finalize();
 
 	/*実行中状態をセットする*/
-	void SetCurrentState(int id, UIBase* ui);
+	void SetCurrentState(STATE_TYPE_UI id, UIBase* ui);
 
 	/*更新*/
 	void Update(UIBase* ui);
@@ -230,8 +238,8 @@ public:
 
 private:
 	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void SetState(int nextState, UIBase* ui);
+	void SetState(STATE_TYPE_UI nextState, UIBase* ui);
 
 	/*次のステートを開始する*/
-	void StartNextState(int nextState, UIBase* ui);
+	void StartNextState(STATE_TYPE_UI nextState, UIBase* ui);
 };

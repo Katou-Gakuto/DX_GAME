@@ -170,8 +170,9 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 /*----------------------*/
 /*【通常ゲームUIステート】*/
 /*----------------------*/
-NormalGameUIState::NormalGameUIState()
-: GameUIProcess()
+NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+, GameUIProcess()
 {
     mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
@@ -199,20 +200,20 @@ void NormalGameUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int NormalGameUIState::Update(UIBase* ui)
+STATE_TYPE_UI NormalGameUIState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
     {
-        return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+        return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
     }
 
     return mStateNumber;
 }
 
 // 決定
-int NormalGameUIState::Decision(UIBase* ui)
+STATE_TYPE_UI NormalGameUIState::Decision(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 // 描画
@@ -221,7 +222,7 @@ void NormalGameUIState::Draw(UIBase* ui)
 }
 
 // 終了
-int NormalGameUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI NormalGameUIState::Cloce(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -229,8 +230,9 @@ int NormalGameUIState::Cloce(UIBase* ui)
 /*----------------------*/
 /*【ポーズUIステート】*/
 /*----------------------*/
-PauseGameUIState::PauseGameUIState()
-: GameUIProcess()
+PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::PAUSE_GAME_UI_STATE, stateChangeCriterias)
+, GameUIProcess()
 {
     mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
  
@@ -365,11 +367,11 @@ void PauseGameUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int PauseGameUIState::Update(UIBase* ui)
+STATE_TYPE_UI PauseGameUIState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
     {
-        return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+        return STATE_TYPE_UI::NORMAL_GAME_UI_STATE;
     }
 
     ui->DefaultSelectProcess();
@@ -394,22 +396,22 @@ int PauseGameUIState::Update(UIBase* ui)
 }
 
 // 決定
-int PauseGameUIState::Decision(UIBase* ui)
+STATE_TYPE_UI PauseGameUIState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
     {
     case GAME_UI_SELECT_NUKMBER::UI_CLOSE:
-        return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+        return STATE_TYPE_UI::NORMAL_GAME_UI_STATE;
         
     case GAME_UI_SELECT_NUKMBER::UI_DRAW_PLAYER_DATA:
-        return (int)GAME_UI_STATE::DRAW_PLAYER_DATA_UI_STATE;
+        return STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE;
         
     case GAME_UI_SELECT_NUKMBER::UI_CONFIG_CHANGE:
         // return (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
-        return (int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SELECT_CONFIG_STATE;
+        return STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE; // FIXME: map complex config mapping if needed
         
     case GAME_UI_SELECT_NUKMBER::UI_GAME_END:
-        return (int)GAME_UI_STATE::GAME_END_UI_STATE;
+        return STATE_TYPE_UI::GAME_END_UI_STATE;
     }
 
     return mStateNumber;
@@ -425,7 +427,7 @@ void PauseGameUIState::Draw(UIBase* ui)
 }
 
 // 終了
-int PauseGameUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI PauseGameUIState::Cloce(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -433,8 +435,9 @@ int PauseGameUIState::Cloce(UIBase* ui)
 /*------------------------------*/
 /*【プレイヤー情報表示ステート】*/
 /*------------------------------*/
-DrawPlayerDataState::DrawPlayerDataState()
-: GameUIProcess()
+DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE, stateChangeCriterias)
+, GameUIProcess()
 {
     mStateNumber = (int)GAME_UI_STATE::DRAW_PLAYER_DATA_UI_STATE;
 }
@@ -450,11 +453,11 @@ void DrawPlayerDataState::OnExit(UIBase* ui)
 }
 
 // 更新
-int DrawPlayerDataState::Update(UIBase* ui)
+STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
     {
-        return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+        return STATE_TYPE_UI::NORMAL_GAME_UI_STATE;
     }
 
     ui->DefaultDecision();
@@ -465,9 +468,9 @@ int DrawPlayerDataState::Update(UIBase* ui)
 }
 
 // 決定
-int DrawPlayerDataState::Decision(UIBase* ui)
+STATE_TYPE_UI DrawPlayerDataState::Decision(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 // 描画
@@ -476,16 +479,17 @@ void DrawPlayerDataState::Draw(UIBase* ui)
 }
 
 // 終了
-int DrawPlayerDataState::Cloce(UIBase* ui)
+STATE_TYPE_UI DrawPlayerDataState::Cloce(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*--------------------*/
 /*【設定変更ステート】*/
 /*--------------------*/
-ConfigChangeState::ConfigChangeState()
-: GameUIProcess()
+ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
+: IStateUI(STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE, stateChangeCriterias)
+, GameUIProcess()
 {
     mStateNumber = (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
 }
@@ -504,11 +508,11 @@ void ConfigChangeState::OnExit(UIBase* ui)
 }
 
 // 更新
-int ConfigChangeState::Update(UIBase* ui)
+STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
     {
-        return (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
+        return STATE_TYPE_UI::NORMAL_GAME_UI_STATE;
     }
 
     ui->LeftRightSelectProcess();
@@ -521,12 +525,12 @@ int ConfigChangeState::Update(UIBase* ui)
 }
 
 // 決定
-int ConfigChangeState::Decision(UIBase* ui)
+STATE_TYPE_UI ConfigChangeState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
     {
     case CONFIG_SELECT_TYPE::BACK_TO_MENU:
-        return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+        return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 
     case CONFIG_SELECT_TYPE::MINI_MAP:
         break;
@@ -541,9 +545,9 @@ void ConfigChangeState::Draw(UIBase* ui)
 }
 
 // 終了
-int ConfigChangeState::Cloce(UIBase* ui)
+STATE_TYPE_UI ConfigChangeState::Cloce(UIBase* ui)
 {
-    return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+    return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*----------------------*/
@@ -574,18 +578,18 @@ void GameEndState::OnExit(UIBase* ui)
 }
 
 // 更新
-int GameEndState::Update(UIBase* ui)
+STATE_TYPE_UI GameEndState::Update(UIBase* ui)
 {
     if (mbReturnFlag)
     {
-        return (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
+        return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
     }
 
     return mStateNumber;
 }
 
 // 決定
-int GameEndState::Decision(UIBase* ui)
+STATE_TYPE_UI GameEndState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -608,7 +612,7 @@ void GameEndState::GameEnd(void *null)
 }
 
 // 終了
-int GameEndState::Cloce(UIBase* ui)
+STATE_TYPE_UI GameEndState::Cloce(UIBase* ui)
 {
     return mStateNumber;
 }

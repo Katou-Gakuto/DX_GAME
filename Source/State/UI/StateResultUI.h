@@ -64,10 +64,10 @@ public:
 	void OnExit(UIBase* ui) override;
 
 	/*XV*/
-	int Update(UIBase* ui) override;
+	STATE_TYPE_UI Update(UIBase* ui) override;
 
 	/*Œˆ’è*/
-	int Decision(UIBase* ui) override;
+	STATE_TYPE_UI Decision(UIBase* ui) override;
 
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;

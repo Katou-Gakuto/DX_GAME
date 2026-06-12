@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+#include "StateEnum.h"
 #include "DrawData.h"
 #include "Vector2.h"
 
@@ -154,15 +155,15 @@ protected:
     const DisplaySize CONFIG_GRAPHSIZE = { Vector2(3221.0f, 218.0f), 0 };
 
 private:
-    int* mnStatePointer;
+    STATE_TYPE_UI* mnStatePointer;
     int mnDefaultStateNumber;
 
 public:
-    ConfigUIProcess(int *statePointer, int defaultStateNumber);
+    ConfigUIProcess(STATE_TYPE_UI *statePointer, int defaultStateNumber);
 
 protected:
     /*ステートナンバー取得*/
-    int GetConfigStateNumber(int stateNumber);
+    //int GetConfigStateNumber(int stateNumber);
     
     /*値を上下の入力を元に変更する*/
     void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 10000);
@@ -226,10 +227,10 @@ public:
 
     void OnEnter(UIBase* ui) override;
     void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 
 private:
 
@@ -255,10 +256,10 @@ public:
 
     void OnEnter(UIBase* ui) override;
     void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -279,10 +280,10 @@ public:
 
     void OnEnter(UIBase* ui) override;
     void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -303,8 +304,8 @@ public:
 
     void OnEnter(UIBase* ui) override;
     void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    STATE_TYPE_UI Update(UIBase* ui) override;
+    STATE_TYPE_UI Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    STATE_TYPE_UI Cloce(UIBase* ui) override;
 };

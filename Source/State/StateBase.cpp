@@ -78,7 +78,7 @@ void IStateAnimation::SetModelBase(ModelBase* modelBase)
 /*------------------------*/
 /*【シーンステートベース】*/
 /*------------------------*/
-IStateScene::IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRIERIA_DATA<SCENE>> stateChangeCriterias)
+IStateScene::IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>> stateChangeCriterias)
 : StateBase(stateNumber, stateChangeCriterias)
 , mpMapManager(nullptr)
 , mpTargetManager(nullptr)

@@ -1,6 +1,7 @@
 #include <string>
 
 #include "AttackEnum.h"
+#include "StateEnum.h"
 #include "CameraData.h"
 
 #include "Master.h"
@@ -345,10 +346,10 @@ void PlayerProcess::PlayerProcessOnExit(CharacterBase* character)
 /*--------------------------*/
 /*【Idleプレイヤーステート】*/
 /*--------------------------*/
-IdlePlayerState::IdlePlayerState()
+IdlePlayerState::IdlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::IDLE_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::IDLE_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -397,11 +398,11 @@ void IdlePlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int IdlePlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER IdlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (GetPlayerMoveFlag())
 	{
-		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -457,10 +458,10 @@ void IdlePlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【移動プレイヤーステート】*/
 /*--------------------------*/
-MovePlayerState::MovePlayerState()
+MovePlayerState::MovePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::MOVE_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::MOVE_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -476,11 +477,11 @@ void MovePlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int MovePlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER MovePlayerState::StateCheck(CharacterBase* character)
 {
 	if (!GetPlayerMoveFlag())
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -515,10 +516,10 @@ void MovePlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【ノーマル攻撃プレイヤーステート】*/
 /*--------------------------*/
-NormalAttackPlayerState::NormalAttackPlayerState()
+NormalAttackPlayerState::NormalAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
@@ -537,16 +538,16 @@ void NormalAttackPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int NormalAttackPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER NormalAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
 		if (GetPlayerMoveFlag())
 		{
-			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -578,10 +579,10 @@ void NormalAttackPlayerState::Death(CharacterBase* character)
 /*------------------------------------*/
 /*【スペシャル攻撃プレイヤーステート】*/
 /*------------------------------------*/
-SpceialAttackPlayerState::SpceialAttackPlayerState()
+SpceialAttackPlayerState::SpceialAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
@@ -603,16 +604,16 @@ void SpceialAttackPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int SpceialAttackPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER SpceialAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
 		if (GetPlayerMoveFlag())
 		{
-			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -644,10 +645,10 @@ void SpceialAttackPlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【怯みプレイヤーステート】*/
 /*--------------------------*/
-FlinchPlayerState::FlinchPlayerState()
+FlinchPlayerState::FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::FLINCH_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::FLINCH_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -664,11 +665,11 @@ void FlinchPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int FlinchPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER FlinchPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::FLINCH))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -700,10 +701,10 @@ void FlinchPlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【避けプレイヤーステート】*/
 /*--------------------------*/
-AvoidPlayerState::AvoidPlayerState()
+AvoidPlayerState::AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::AVOID_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::AVOID_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -720,11 +721,11 @@ void AvoidPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int AvoidPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER AvoidPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::AVOID))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -756,10 +757,10 @@ void AvoidPlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【ガードプレイヤーステート】*/
 /*--------------------------*/
-GuardPlayerState::GuardPlayerState()
+GuardPlayerState::GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+ IStateCharacter(PLAYER_STATE::GUARD_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::GUARD_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -776,11 +777,11 @@ void GuardPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int GuardPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER GuardPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::GUARD))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -812,10 +813,10 @@ void GuardPlayerState::Death(CharacterBase* character)
 /*--------------------------*/
 /*【倒れプレイヤーステート】*/
 /*--------------------------*/
-FallDownPlayerState::FallDownPlayerState()
+FallDownPlayerState::FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::FALL_DOWN_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::FALL_DOWN_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -832,11 +833,11 @@ void FallDownPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int FallDownPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER FallDownPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::DOWN))
 	{
-		//return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		//return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -868,11 +869,11 @@ void FallDownPlayerState::Death(CharacterBase* character)
 /*--------------------------------*/
 /*【ジャンプ攻撃プレイヤーステート】*/
 /*--------------------------------*/
-JumpAttackPlayerState::JumpAttackPlayerState()
+JumpAttackPlayerState::JumpAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE, stateChangeCriterias)
 , mfUpDownSpeed(10.0f)
 {
-	mStateNumber = (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
 }
 
 // この状態に入った時の処理
@@ -891,16 +892,16 @@ void JumpAttackPlayerState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int JumpAttackPlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER JumpAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
 	{
 		if (GetPlayerMoveFlag())
 		{
-			//return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			//return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -955,33 +956,33 @@ void JumpAttackPlayerState::Death(CharacterBase* character)
 /*--------------------------------*/
 /*【Idleバトルプレイヤーステート】*/
 /*--------------------------------*/
-IdleBattlePlayerState::IdleBattlePlayerState()
-: IdlePlayerState()
+IdleBattlePlayerState::IdleBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: IdlePlayerState(stateChangeCriterias)
 {
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
 // ステート変更確認
-int IdleBattlePlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER IdleBattlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (GetPlayerNormalAttackFlag())
 	{
-		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::NORMAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerSpceialAttackFlag())
 	{
-		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerJumpAttackFlag())
 	{
-		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::JUMP_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerMoveFlag())
 	{
-		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
@@ -990,33 +991,33 @@ int IdleBattlePlayerState::StateCheck(CharacterBase* character)
 /*--------------------------------*/
 /*【移動バトルプレイヤーステート】*/
 /*--------------------------------*/
-MoveBattlePlayerState::MoveBattlePlayerState()
-: MovePlayerState()
+MoveBattlePlayerState::MoveBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: MovePlayerState(stateChangeCriterias)
 {
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
 // ステート変更確認
-int MoveBattlePlayerState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER MoveBattlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (GetPlayerNormalAttackFlag())
 	{
-		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::NORMAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerSpceialAttackFlag())
 	{
-		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
 	if (GetPlayerJumpAttackFlag())
 	{
-		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::JUMP_ATTACK_PLAYER_STATE;
 	}
 
 	if (!GetPlayerMoveFlag())
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;

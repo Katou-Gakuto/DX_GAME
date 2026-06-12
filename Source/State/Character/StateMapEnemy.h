@@ -1,5 +1,7 @@
 #pragma once
 
+#include "StateEnum.h"
+
 #include "EnemyCommonProcessing.h"
 #include "ObjectBases.h"
 #include "StateBase.h"
@@ -64,7 +66,8 @@ protected:
 class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	IdleMapEnemyState(SCENE mapScene);
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~IdleMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
@@ -75,7 +78,7 @@ public:
 	void OnExit(CharacterBase* character) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -96,7 +99,8 @@ public:
 class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	TelopMapEnemyState(SCENE mapScene);
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~TelopMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
@@ -107,7 +111,7 @@ public:
 	void OnExit(CharacterBase* character) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;

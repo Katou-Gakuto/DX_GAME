@@ -45,8 +45,8 @@ ANIMATION_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* anima
 /*----------*/
 /*【待機アニメションコントローラーステート】
 /*----------*/
-StateIdleAnimationController::StateIdleAnimationController()
-: IStateAnimationController()
+StateIdleAnimationController::StateIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::IDLE, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::IDLE;
@@ -71,8 +71,8 @@ ANIMATION_TYPE StateIdleAnimationController::CheckState(AnimationBase* animation
 /*----------*/
 /*【移動アニメションコントローラーステート】
 /*----------*/
-StateMoveAnimationController::StateMoveAnimationController()
-: IStateAnimationController()
+StateMoveAnimationController::StateMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::WALK, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::WALK;
@@ -97,8 +97,8 @@ ANIMATION_TYPE StateMoveAnimationController::CheckState(AnimationBase* animation
 /*----------*/
 /*【攻撃開始アニメションコントローラーステート】
 /*----------*/
-StateAttackInAnimationController::StateAttackInAnimationController()
-: IStateAnimationController()
+StateAttackInAnimationController::StateAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::ATTACK_IN, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::ATTACK_IN;
@@ -142,8 +142,8 @@ bool StateAttackInAnimationController::CheckSameType(ANIMATION_TYPE animationTyp
 /*----------*/
 /*【攻撃アニメションコントローラーステート】
 /*----------*/
-StateAttackAnimationController::StateAttackAnimationController()
-: IStateAnimationController()
+StateAttackAnimationController::StateAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::ATTACK, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::ATTACK;
@@ -186,8 +186,8 @@ bool StateAttackAnimationController::CheckSameType(ANIMATION_TYPE animationType)
 /*----------*/
 /*【攻撃終了アニメションコントローラーステート】
 /*----------*/
-StateAttackOutAnimationController::StateAttackOutAnimationController()
-: IStateAnimationController()
+StateAttackOutAnimationController::StateAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::ATTACK_OUT, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::ATTACK_OUT;
@@ -231,8 +231,8 @@ bool StateAttackOutAnimationController::CheckSameType(ANIMATION_TYPE animationTy
 /*----------*/
 /*【2D移動アニメーションコントローラーステート】
 /*----------*/
-State2DMoveAnimationController::State2DMoveAnimationController()
-: IStateAnimationController()
+State2DMoveAnimationController::State2DMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::DISPLAY_MOVE, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::DISPLAY_MOVE;
@@ -263,8 +263,8 @@ ANIMATION_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animati
 /*----------------------------------------------------*/
 /*【フェードアウトアニメーションコントローラーステート】*/
 /*----------------------------------------------------*/
-StateFadeOutAnimationController::StateFadeOutAnimationController()
-: IStateAnimationController()
+StateFadeOutAnimationController::StateFadeOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::FADE_OUT, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::FADE_OUT;
@@ -295,8 +295,8 @@ ANIMATION_TYPE StateFadeOutAnimationController::CheckState(AnimationBase* animat
 /*----------------------------------------------------*/
 /*【フェードインアニメーションコントローラーステート】*/
 /*----------------------------------------------------*/
-StateFadeInAnimationController::StateFadeInAnimationController()
-: IStateAnimationController()
+StateFadeInAnimationController::StateFadeInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: IStateAnimationController(ANIMATION_TYPE::FADE_IN, stateChangeCriterias)
 , StateAnimationControllerProcess()
 {
     mStateNumber = ANIMATION_TYPE::FADE_IN;
@@ -331,8 +331,8 @@ ANIMATION_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animati
 /*----------*/
 /*【攻撃中終了アニメーションステート】
 /*----------*/
-StateAttackEndAnimationController::StateAttackEndAnimationController()
-: StateAttackAnimationController()
+StateAttackEndAnimationController::StateAttackEndAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackAnimationController(stateChangeCriterias)
 {
 }
 
@@ -350,8 +350,8 @@ ANIMATION_TYPE StateAttackEndAnimationController::CheckState(AnimationBase* anim
 /*----------*/
 /*【攻撃停止アニメーションステート】
 /*----------*/
-StateAttackOutStopAnimationController::StateAttackOutStopAnimationController()
-: StateAttackOutAnimationController()
+StateAttackOutStopAnimationController::StateAttackOutStopAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackOutAnimationController(stateChangeCriterias)
 {
 }
 
@@ -365,8 +365,8 @@ ANIMATION_TYPE StateAttackOutStopAnimationController::CheckState(AnimationBase* 
 /*----------*/
 /*【通常攻撃開始アニメションコントローラーステート】
 /*----------*/
-StateNormalAttackInAnimationController::StateNormalAttackInAnimationController()
-: StateAttackInAnimationController()
+StateNormalAttackInAnimationController::StateNormalAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackInAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_IN;
 }
@@ -386,8 +386,8 @@ ANIMATION_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase*
 /*----------*/
 /*【通常攻撃終了アニメションコントローラーステート】
 /*----------*/
-StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController()
-: StateAttackOutAnimationController()
+StateNormalAttackOutAnimationController::StateNormalAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackOutAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
 }
@@ -410,8 +410,8 @@ ANIMATION_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase
 /*----------*/
 /*【特殊攻撃開始アニメションコントローラーステート】
 /*----------*/
-StateSpceialAttackInAnimationController::StateSpceialAttackInAnimationController()
-: StateAttackInAnimationController()
+StateSpceialAttackInAnimationController::StateSpceialAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackInAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK_IN;
 }
@@ -430,8 +430,8 @@ ANIMATION_TYPE StateSpceialAttackInAnimationController::CheckState(AnimationBase
 /*----------*/
 /*【特殊攻撃アニメションコントローラーステート】
 /*----------*/
-StateSpceialAttackAnimationController::StateSpceialAttackAnimationController()
-: StateAttackAnimationController()
+StateSpceialAttackAnimationController::StateSpceialAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK;
 }
@@ -450,8 +450,8 @@ ANIMATION_TYPE StateSpceialAttackAnimationController::CheckState(AnimationBase* 
 /*----------*/
 /*【特殊攻撃終了アニメションコントローラーステート】
 /*----------*/
-StateSpceialAttackOutAnimationController::StateSpceialAttackOutAnimationController()
-: StateAttackOutAnimationController()
+StateSpceialAttackOutAnimationController::StateSpceialAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackOutAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::SPCEIAL_ATTACK_OUT;
 }
@@ -474,8 +474,8 @@ ANIMATION_TYPE StateSpceialAttackOutAnimationController::CheckState(AnimationBas
 /*----------*/
 /*【ジャンプ攻撃開始アニメションコントローラーステート】
 /*----------*/
-StateJumpAttackInAnimationController::StateJumpAttackInAnimationController()
-: StateAttackInAnimationController()
+StateJumpAttackInAnimationController::StateJumpAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackInAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::JUMP_ATTACK_IN;
 }
@@ -493,8 +493,8 @@ ANIMATION_TYPE StateJumpAttackInAnimationController::CheckState(AnimationBase* a
 /*----------*/
 /*【ジャンプ攻撃アニメションコントローラーステート】
 /*----------*/
-StateJumpAttackAnimationController::StateJumpAttackAnimationController()
-: StateAttackAnimationController()
+StateJumpAttackAnimationController::StateJumpAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::JUMP_ATTACK;
 }
@@ -513,8 +513,8 @@ ANIMATION_TYPE StateJumpAttackAnimationController::CheckState(AnimationBase* ani
 /*----------*/
 /*【ジャンプ攻撃終了アニメションコントローラーステート】
 /*----------*/
-StateJumpAttackOutAnimationController::StateJumpAttackOutAnimationController()
-: StateAttackOutAnimationController()
+StateJumpAttackOutAnimationController::StateJumpAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateAttackOutAnimationController(stateChangeCriterias)
 {
     mStateNumber = ANIMATION_TYPE::JUMP_ATTACK_OUT;
 }
@@ -534,8 +534,8 @@ ANIMATION_TYPE StateJumpAttackOutAnimationController::CheckState(AnimationBase* 
 /*----------*/
 /*【攻撃専用待機アニメーションステート】
 /*----------*/
-StateAttackIdleAnimationController::StateAttackIdleAnimationController()
-: StateIdleAnimationController()
+StateAttackIdleAnimationController::StateAttackIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias)
+: StateIdleAnimationController(stateChangeCriterias)
 {
 }
 

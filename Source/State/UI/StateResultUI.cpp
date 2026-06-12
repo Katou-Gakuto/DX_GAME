@@ -463,7 +463,7 @@ void StartResultUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int StartResultUIState::Update(UIBase* ui)
+STATE_TYPE_UI StartResultUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 
@@ -471,7 +471,7 @@ int StartResultUIState::Update(UIBase* ui)
 }
 
 // 決定
-int StartResultUIState::Decision(UIBase* ui)
+STATE_TYPE_UI StartResultUIState::Decision(UIBase* ui)
 {
     /*// UNDONE: 元に戻す
     // シーン移動
@@ -486,7 +486,7 @@ int StartResultUIState::Decision(UIBase* ui)
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
 
 
-	return mStateNumber;
+    return mStateNumber;
 }
 
 // 描画

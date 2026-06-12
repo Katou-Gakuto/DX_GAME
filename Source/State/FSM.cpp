@@ -4,6 +4,7 @@
 
 #include "AnimationEnum.h"
 #include "DotWeenEnum.h"
+#include "StateEnum.h"
 #include "AnimationData.h"
 #include "DotWeenData.h"
 
@@ -332,7 +333,7 @@ void FSMUI::Finalize()
 }
 
 // 実行中状態をセットする
-void FSMUI::SetCurrentState(int id, UIBase* ui)
+void FSMUI::SetCurrentState(STATE_TYPE_UI id, UIBase* ui)
 {
 	mnCurrentState = id;
 	StartNextState(mnCurrentState, ui);
@@ -415,25 +416,25 @@ void FSMUI::Draw(UIBase* ui)
 }
 
 // 次のステートが現在のステートと違うならステート変更処理をする
-void FSMUI::SetState(int nextState, UIBase* ui)
+void FSMUI::SetState(STATE_TYPE_UI nextState, UIBase* ui)
 {
 	if (mnCurrentState != nextState)
 	{
 		mmStateMap[mnCurrentState]->OnExit(ui);//現在のStateの終了処理
 
-		StartNextState(nextState, ui);	// 新しいStateの開始処理
+		StartNextState(nextState, ui);    // 新しいStateの開始処理
 		mnNextState = nextState;//新しいStateを設定
 	}
 }
 
 // 次のステートを設定する
-void FSMUI::StartNextState(int nextState, UIBase* ui)
+void FSMUI::StartNextState(STATE_TYPE_UI nextState, UIBase* ui)
 {
 	// モデルを描画フラグを設定
 	for (int i = 0; i < ui->GetModelCount(); i++)
 	{
-		std::vector<int> drawNumber = ui->GetDrawModels()[i].mnDrawNumber;
-		ui->GetModelsController(i)->SetModelDrawFlag(std::find(drawNumber.begin(), drawNumber.end(), nextState) != drawNumber.end());
+	std::vector<int> drawNumber = ui->GetDrawModels()[i].mnDrawNumber;
+	ui->GetModelsController(i)->SetModelDrawFlag(std::find(drawNumber.begin(), drawNumber.end(), static_cast<int>(nextState)) != drawNumber.end());
 	}
 
 	mmStateMap[nextState]->OnEnter(ui);//新しいStateの開始処理

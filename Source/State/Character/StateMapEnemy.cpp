@@ -1,4 +1,5 @@
 #include "GameDataEnum.h"
+#include "StateEnum.h"
 #include "GameDatas.h"
 
 #include "Master.h"
@@ -71,11 +72,10 @@ void MapEnemyProcess::SetMapScene(CharacterBase* character)
 /*----------------------------*/
 /*【Idleマップエネミーテート】*/
 /*----------------------------*/
-IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene)
-: IStateCharacter()
+IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: IStateCharacter(MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, stateChangeCriterias)
 , MapEnemyProcess(mapScene)
 {
-    mStateNumber = (int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE;
 }
 
 // この状態に入った時の処理
@@ -100,11 +100,11 @@ void IdleMapEnemyState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int IdleMapEnemyState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER IdleMapEnemyState::StateCheck(CharacterBase* character)
 {
     if (PlayerTargetCheck(character, 300.0f))
     {
-        return (int)MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE;
+        return STATE_TYPE_CHARACTER::TELOP_MAP_ENEMY_STATE;
     }
 
     return mStateNumber;
@@ -136,11 +136,10 @@ void IdleMapEnemyState::Death(CharacterBase* character)
 /*--------------------------------*/
 /*【テロップマップエネミーテート】*/
 /*--------------------------------*/
-TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene)
-: IStateCharacter()
+TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: IStateCharacter(MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE, stateChangeCriterias)
 , MapEnemyProcess(mapScene)
 {
-    mStateNumber = (int)MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE;
 }
 
 // この状態に入った時の処理
@@ -164,11 +163,11 @@ void TelopMapEnemyState::OnExit(CharacterBase* character)
 }
 
 // ステート変更確認
-int TelopMapEnemyState::StateCheck(CharacterBase* character)
+STATE_TYPE_CHARACTER TelopMapEnemyState::StateCheck(CharacterBase* character)
 {
     if (!PlayerTargetCheck(character,300.0f))
     {
-        return (int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE;
+        return STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE;
     }
 
     return mStateNumber;

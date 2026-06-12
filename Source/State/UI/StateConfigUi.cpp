@@ -59,7 +59,7 @@ void CONFIG_VARIABLE_POINTER::ChangeVariable(float changeRateAmount)
 /*----------*/
 /*【コンフィグUI共通処理用】*/
 /*----------*/
-ConfigUIProcess::ConfigUIProcess(int *statePointer, int defaultStateNumber)
+ConfigUIProcess::ConfigUIProcess(STATE_TYPE_UI *statePointer, int defaultStateNumber)
 : mnPreSelectNumber(0)  
 , mnStatePointer(statePointer)
 , mnDefaultStateNumber(defaultStateNumber)
@@ -117,7 +117,7 @@ ConfigUIProcess::ConfigUIProcess(int *statePointer, int defaultStateNumber)
 // ステートナンバー取得
 int ConfigUIProcess::GetConfigStateNumber(int stateNumber)
 {
-    return *mnStatePointer + (stateNumber - mnDefaultStateNumber) ;
+    return static_cast<int>(*mnStatePointer) + (stateNumber - mnDefaultStateNumber) ;
 }
 
 // 値を左右の入力を元に変更する
@@ -619,7 +619,7 @@ void ConfigSelectState::OnExit(UIBase* ui)
     ConfigOnExit(ui);
 }
 
-int ConfigSelectState::Update(UIBase* ui)
+STATE_TYPE_UI ConfigSelectState::Update(UIBase* ui)
 {
     ui->LeftRightSelectProcess();
 
@@ -656,7 +656,7 @@ int ConfigSelectState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-int ConfigSelectState::Decision(UIBase* ui)
+STATE_TYPE_UI ConfigSelectState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
     {
@@ -673,7 +673,7 @@ void ConfigSelectState::Draw(UIBase* ui)
     printfDx("%d", ui->GetSelectNumber());
 }
 
-int ConfigSelectState::Cloce(UIBase* ui)
+STATE_TYPE_UI ConfigSelectState::Cloce(UIBase* ui)
 {
     return mnPreConfigExceptStateNumber;
 }
@@ -804,7 +804,7 @@ void MinimapConfigState::OnExit(UIBase* ui)
     ConfigOnExit(ui);
 }
 
-int MinimapConfigState::Update(UIBase* ui)
+STATE_TYPE_UI MinimapConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
 
@@ -814,7 +814,7 @@ int MinimapConfigState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-int MinimapConfigState::Decision(UIBase* ui)
+STATE_TYPE_UI MinimapConfigState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -825,7 +825,7 @@ void MinimapConfigState::Draw(UIBase* ui)
     printfDx("ミニマップ");
 }
 
-int MinimapConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI MinimapConfigState::Cloce(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
@@ -896,7 +896,7 @@ void SoundConfigState::OnExit(UIBase* ui)
     ConfigOnExit(ui);
 }
 
-int SoundConfigState::Update(UIBase* ui)
+STATE_TYPE_UI SoundConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
 
@@ -906,7 +906,7 @@ int SoundConfigState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-int SoundConfigState::Decision(UIBase* ui)
+STATE_TYPE_UI SoundConfigState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -917,7 +917,7 @@ void SoundConfigState::Draw(UIBase* ui)
     printfDx("サウンド");
 }
 
-int SoundConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI SoundConfigState::Cloce(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
@@ -988,7 +988,7 @@ void CameraConfigState::OnExit(UIBase* ui)
     ConfigOnExit(ui);
 }
 
-int CameraConfigState::Update(UIBase* ui)
+STATE_TYPE_UI CameraConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
     
@@ -998,7 +998,7 @@ int CameraConfigState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-int CameraConfigState::Decision(UIBase* ui)
+STATE_TYPE_UI CameraConfigState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -1009,7 +1009,7 @@ void CameraConfigState::Draw(UIBase* ui)
     printfDx("カメラ");
 }
 
-int CameraConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI CameraConfigState::Cloce(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }

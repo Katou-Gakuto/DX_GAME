@@ -69,7 +69,9 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateMoveAnimationController());
 			break;
 		}
@@ -80,7 +82,9 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateMoveAnimationController());
 			break;
 		}
@@ -90,26 +94,38 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		switch (ladoAnimationDataFactorynumber)
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateMoveAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateAttackEndAnimationController());
 			break;
 
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateMoveAnimationController());
 
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateSpceialAttackInAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateSpceialAttackAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateSpceialAttackOutAnimationController());
 
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateJumpAttackInAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateJumpAttackAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateJumpAttackOutAnimationController());
 
 			StateNormalAttackInAnimationController* stateNormalAttackInAnimationController = new StateNormalAttackInAnimationController();
 			fsm->RegisterState(stateNormalAttackInAnimationController);
 			stateNormalAttackInAnimationController->SetAddEndTime(1000);// TODO: ‰½‚©‚µŒ`‚ð•Ï‚¦‚é
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateNormalAttackOutAnimationController());
 			break;
 		}
@@ -121,10 +137,14 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateAttackIdleAnimationController());
 
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateAttackInAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateAttackAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateAttackEndAnimationController());
 			break;
 		}
@@ -135,16 +155,24 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 		{
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE:
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new State2DMoveAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateFadeOutAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateFadeInAnimationController());
 			break;
 
 		case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE:
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateIdleAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new State2DMoveAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateFadeOutAnimationController());
+			// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 			fsm->RegisterState(new StateFadeInAnimationController());
 			break;
 		}
@@ -717,9 +745,13 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 {
 	FSMCamera* fsnCamera = new FSMCamera();
 
+	// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 	fsnCamera->RegisterState(new StateFixedCamera());
+	// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 	fsnCamera->RegisterState(new StateMoveCamera());
+	// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 	fsnCamera->RegisterState(new StateCharacterCamera());
+	// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 	fsnCamera->RegisterState(new StatePlayerCamera());
 
 	return fsnCamera;
@@ -733,7 +765,9 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 	switch (number)
 	{
 	case CHARACTER_FACTORY_NUMBER::TOWN_PLAYER:
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new IdlePlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new MovePlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
@@ -742,7 +776,9 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new IdlePlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new MovePlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
@@ -751,10 +787,15 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new IdleBattlePlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new MoveBattlePlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new NormalAttackPlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new SpceialAttackPlayerState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new JumpAttackPlayerState());
 
 		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
@@ -772,12 +813,19 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 		break;
 
 	case CHARACTER_FACTORY_NUMBER::ENEMY:
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new IdleEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new MoveEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new AttackInEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new AttackEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new EscapeEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
+		// FIXME: •K—v‚È‚ç‘æ2ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmCharacter->RegisterState(new RightAvoidEnemyState());
 
 		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
@@ -835,48 +883,65 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	switch (number)
 	{
 	case UI_FACTORY_NUMBER::TITLE:
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new StartTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new SelectTitleUIState());
 
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new NewDataCheckTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new DataSelectTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new TutorialTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new SettingTitleUIState());
-		
+        
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new CharacterSelectTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new PlayerNameTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new InputCheckTitleUIState());
-		
+        
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new ScreenSizeTitleUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new VolumeTitleUIState());
 
-		fsmUI->SetCurrentState((int)TITLE_UI_STATE::START_TITLE_UI_STATE, ui);
+		fsmUI->SetCurrentState(static_cast<STATE_TYPE_UI>(TITLE_UI_STATE::START_TITLE_UI_STATE, ui);
 		break;
 
 	case UI_FACTORY_NUMBER::TOWN:
 	case UI_FACTORY_NUMBER::DUNGEON:
 	case UI_FACTORY_NUMBER::BATTLE:
 		//fsmUI->RegisterState(new StartGameUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new NormalGameUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new PauseGameUIState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new DrawPlayerDataState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new ConfigChangeState());
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new GameEndState());
 
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SELECT_CONFIG_STATE, new ConfigSelectState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::MINIMAP_CONFIG_STATE, new MinimapConfigState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SOUND_CONFIG_STATE, new SoundConfigState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::CAMERA_CONFIG_STATE, new CameraConfigState());
+		fsmUI->RegisterState(static_cast<STATE_TYPE_UI>((int)GAME_UI_STATE::MAX + (int)CONFIG_UI_STATE::SELECT_CONFIG_STATE), new ConfigSelectState());
+		fsmUI->RegisterState(static_cast<STATE_TYPE_UI>((int)GAME_UI_STATE::MAX + (int)CONFIG_UI_STATE::MINIMAP_CONFIG_STATE), new MinimapConfigState());
+		fsmUI->RegisterState(static_cast<STATE_TYPE_UI>((int)GAME_UI_STATE::MAX + (int)CONFIG_UI_STATE::SOUND_CONFIG_STATE), new SoundConfigState());
+		fsmUI->RegisterState(static_cast<STATE_TYPE_UI>((int)GAME_UI_STATE::MAX + (int)CONFIG_UI_STATE::CAMERA_CONFIG_STATE), new CameraConfigState());
 		
 
-		//fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
-		fsmUI->SetCurrentState((int)GAME_UI_STATE::NORMAL_GAME_UI_STATE, ui);
+		//fsmUI->SetCurrentState(static_cast<STATE_TYPE_UI>(GAME_UI_STATE::START_GAME_UI_STAE), ui);
+		fsmUI->SetCurrentState(static_cast<STATE_TYPE_UI>(GAME_UI_STATE::NORMAL_GAME_UI_STATE), ui);
 		break;
 
 	case UI_FACTORY_NUMBER::RESULT:
+		// FIXME: •K—v‚È‚ç‘æ1ˆø”‚É‘JˆÚðŒ‚ð“n‚·
 		fsmUI->RegisterState(new StartResultUIState());
 
-		fsmUI->SetCurrentState((int)RESULT_UI_STATE::START_RESULT_UI_STATE, ui);
+		fsmUI->SetCurrentState(static_cast<STATE_TYPE_UI>(RESULT_UI_STATE::START_RESULT_UI_STATE), ui);
 		break;
 	}
 

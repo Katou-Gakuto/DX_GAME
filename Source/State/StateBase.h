@@ -33,7 +33,7 @@ class UIBase;
 /*------------------*/
 /*【ステートベース】*/
 /*------------------*/
-template<typename number, typename conditionData>
+template<typename number, typename conditionData, typename enterAndExitData>
 class StateBase
 {
 protected:
@@ -50,6 +50,11 @@ public:
 	}
 
 	virtual ~StateBase() = default;
+	
+	/// <summary>この状態に入った時の処理</summary>
+	virtual void OnEnter(enterAndExitData* enterData, number preState) = 0;
+	/// <summary>この状態を出る時の処理</summary>
+	virtual void OnExit(enterAndExitData* exitData, number newState) = 0;	
 
 	/// <summary>ステート取得</summary>
 	inline number GetStateNumber() const { return mStateNumber; }
@@ -60,7 +65,7 @@ public:
 
 	// TODOｆｓｍbaseでやる
 	/// <summary>次のステートを取得する</summary>
-	inline number GetNextState()
+	inline number GetNextState(conditionData* changeConditionData)
 	{
 		for (auto& stateChangeCriteriaData : mfpStateChangeCriterias)
 		{
@@ -72,12 +77,8 @@ public:
 				return mStateNumber;
 			}
 #endif
-			if (stateChangeCriteriaData.ChangeFlag())
+			if (stateChangeCriteriaData.ChangeFlag(changeConditionData))
 			{
-				if (mStateNumber == stateChangeCriteriaData.ChangeNumber)
-				{
-					return;
-				}
 				return stateChangeCriteriaData.ChangeNumber;
 			}
 		}
@@ -87,7 +88,7 @@ public:
 /*------------------------*/
 /*【カメラステートベース】*/
 /*------------------------*/
-class IStateCamera : public StateBase<CAMERA_MODE, void>
+class IStateCamera : public StateBase<CAMERA_MODE, void, CameraManager>
 {
 protected:
 	// カメラ1フレーム移動量
@@ -125,7 +126,7 @@ protected:
 /*------------------------------*/
 /*【キャラクターステートベース】*/
 /*------------------------------*/
-class IStateCharacter : public StateBase<STATE_TYPE_CHARACTER, void>
+class IStateCharacter : public StateBase<STATE_TYPE_CHARACTER, void, CharacterBase>
 {
 protected:
 	// 共通キャラクターステート

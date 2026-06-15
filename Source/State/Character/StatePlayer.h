@@ -18,19 +18,19 @@ class KeyState;
 /*【プレイヤーステート】*/
 /*----------------------*/
 
-enum class PLAYER_STATE
-{
-	IDLE_PLAYER_STATE = 0,
-	MOVE_PLAYER_STATE,
-	NORMAL_ATTACK_PLAYER_STATE,
-	SPCEIAL_ATTACK_PLAYER_STATE,
+// enum class PLAYER_STATE
+// {
+// 	IDLE_PLAYER_STATE = 0,
+// 	MOVE_PLAYER_STATE,
+// 	NORMAL_ATTACK_PLAYER_STATE,
+// 	SPCEIAL_ATTACK_PLAYER_STATE,
 	
-	FLINCH_PLAYER_STATE,	// 怯み
-	AVOID_PLAYER_STATE,	// 避ける
-	GUARD_PLAYER_STATE,	// ガード
-	FALL_DOWN_PLAYER_STATE,	// 倒れる
-	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
-};
+// 	FLINCH_PLAYER_STATE,	// 怯み
+// 	AVOID_PLAYER_STATE,	// 避ける
+// 	GUARD_PLAYER_STATE,	// ガード
+// 	FALL_DOWN_PLAYER_STATE,	// 倒れる
+// 	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
+// };
 
 /*------------------------*/
 /*【プレイヤー共通処理用】*/
@@ -140,9 +140,9 @@ public:
 	~IdlePlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -171,9 +171,9 @@ public:
 	~MovePlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -202,9 +202,9 @@ public:
 	~NormalAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -233,9 +233,9 @@ public:
 	~SpceialAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -264,9 +264,9 @@ public:
 	~FlinchPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -295,9 +295,9 @@ public:
 	~AvoidPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -326,9 +326,9 @@ public:
 	~GuardPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -357,9 +357,9 @@ public:
 	~FallDownPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -392,9 +392,9 @@ public:
 	~JumpAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;

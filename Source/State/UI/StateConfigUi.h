@@ -15,15 +15,15 @@ class TargetManager;
 /*【コンフィグUIステート】*/
 /*----------------------*/
 
-enum CONFIG_UI_STATE
-{
-    SELECT_CONFIG_STATE = 0,// 選択コンフィグデータ
-    MINIMAP_CONFIG_STATE,   // ミニマップ設定
-    SOUND_CONFIG_STATE,     // サウンド設定
-    CAMERA_CONFIG_STATE,    // カメラ設定
+// enum CONFIG_UI_STATE
+// {
+//     SELECT_CONFIG_STATE = 0,// 選択コンフィグデータ
+//     MINIMAP_CONFIG_STATE,   // ミニマップ設定
+//     SOUND_CONFIG_STATE,     // サウンド設定
+//     CAMERA_CONFIG_STATE,    // カメラ設定
     
-    CONFIG_UI_STATE_MAX,
-};
+//     CONFIG_UI_STATE_MAX,
+// };
 
 /*------------------------*/
 /*【設定変数ポインタ種類】*/
@@ -181,8 +181,8 @@ protected:
     /*コンフィグ描画をセッティングする*/
     void ConfigDrawSetting(UIBase* ui);
 
-    /*コンフィグ別スライダー設定*/
-    void SetConfigSlider(CONFIG_UI_STATE configType);
+    /*コンフィグ別スライダー設定*/// TODO:ここintじゃね?
+    void SetConfigSlider(STATE_TYPE_UI configType);
 };
 
 /*----------------------*/
@@ -225,12 +225,13 @@ public:
     ConfigSelectState();
     ~ConfigSelectState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    STATE_TYPE_UI Update(UIBase* ui) override;
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 
 private:
 
@@ -254,12 +255,13 @@ public:
     MinimapConfigState();
     ~MinimapConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    STATE_TYPE_UI Update(UIBase* ui) override;
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -278,12 +280,13 @@ public:
     SoundConfigState();
     ~SoundConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    STATE_TYPE_UI Update(UIBase* ui) override;
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -302,10 +305,11 @@ public:
     CameraConfigState();
     ~CameraConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    STATE_TYPE_UI Update(UIBase* ui) override;
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };

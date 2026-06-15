@@ -17,27 +17,27 @@ struct Vector2_Int;
 /*【タイトルUIステート】*/
 /*----------------------*/
 
-enum class TITLE_UI_STATE
-{
-	START_TITLE_UI_STATE = 0,			// 開始画面
-	SELECT_TITLE_UI_STATE,				// 選択
+// enum class TITLE_UI_STATE
+// {
+// 	START_TITLE_UI_STATE = 0,			// 開始画面
+// 	SELECT_TITLE_UI_STATE,				// 選択
 
-	NEW_DATA_CHECK_TITLE_UI_STATE,		// 新しいデータの入る場所があるか確認する
-	DATA_SELECT_TITLE_UI_STATE,			// データ選択
-	TUTORIAL_TITLE_UI_STATE,			// チュートリアル開始
-	SETTING_TITLE_UI_STATE,				// セッティング
+// 	NEW_DATA_CHECK_TITLE_UI_STATE,		// 新しいデータの入る場所があるか確認する
+// 	DATA_SELECT_TITLE_UI_STATE,			// データ選択
+// 	TUTORIAL_TITLE_UI_STATE,			// チュートリアル開始
+// 	SETTING_TITLE_UI_STATE,				// セッティング
 
-	/*新データ関係*/
-	CHARACTER_SELECT_TITLE_UI_STATE,	// キャラクター種類選択
-	PLAYER_NAME_TITLE_UI_STATE,			// プレイヤー名設定
-	INPUT_CHECK_TITLE_UI_STATE,			// 入力情報の最終確認
+// 	/*新データ関係*/
+// 	CHARACTER_SELECT_TITLE_UI_STATE,	// キャラクター種類選択
+// 	PLAYER_NAME_TITLE_UI_STATE,			// プレイヤー名設定
+// 	INPUT_CHECK_TITLE_UI_STATE,			// 入力情報の最終確認
 
-	/*セッティング関係*/
-	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
-	VOLUME_TITLE_UI_STATE,				// 音量
+// 	/*セッティング関係*/
+// 	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
+// 	VOLUME_TITLE_UI_STATE,				// 音量
 
-	MAX									// 最大
-};
+// 	MAX									// 最大
+// };
 
 /*----------*/
 /*【タイトルUIステート共通処理用】
@@ -46,7 +46,7 @@ class TitleUIStateProcess
 {
 protected:
 	// 前段階のステート
-	TITLE_UI_STATE mePreviousSteptate;
+	STATE_TYPE_UI mePreviousSteptate;
 
 	// 前の選択数
 	int mnPreSelectNumber;
@@ -66,7 +66,7 @@ protected:
 	int mnSaveDataDrawFontHandle_Other;
 
 public:
-	TitleUIStateProcess(TITLE_UI_STATE preUiState);
+	TitleUIStateProcess(STATE_TYPE_UI preUiState);
 
 protected:
 	/*終了処理*/
@@ -88,7 +88,7 @@ protected:
 	void StartGame(UIBase* ui);
 
 	/*構造上一つ前のステートを取得する*/
-	inline TITLE_UI_STATE GetPreUiState() { return mePreviousSteptate; }
+	inline STATE_TYPE_UI GetPreUiState() { return mePreviousSteptate; }
 
 	/*セーブデータを描画*/
 	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType);
@@ -113,14 +113,14 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -141,16 +141,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -171,16 +171,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -204,16 +204,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -234,16 +234,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -264,16 +264,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -294,16 +294,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -324,16 +324,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -354,16 +354,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -384,16 +384,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -414,16 +414,16 @@ public:
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	STATE_TYPE_UI Cloce(UIBase* ui) override;
+	void Cloce(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };

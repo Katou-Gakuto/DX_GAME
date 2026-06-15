@@ -14,19 +14,19 @@ class TargetManager;
 /*【ゲームUIステート】*/
 /*----------------------*/
 
-enum class GAME_UI_STATE
-{
-    //START_GAME_UI_STAE = 0, // ゲーム開始
-    NORMAL_GAME_UI_STATE = 0,   // 通常
-    PAUSE_GAME_UI_STATE,	// ポーズ
+// enum class GAME_UI_STATE
+// {
+//     //START_GAME_UI_STAE = 0, // ゲーム開始
+//     NORMAL_GAME_UI_STATE = 0,   // 通常
+//     PAUSE_GAME_UI_STATE,	// ポーズ
 
-    DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
-    CONFIG_CHANGE_UI_STATE, // 設定変更
+//     DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
+//     CONFIG_CHANGE_UI_STATE, // 設定変更
 
-    GAME_END_UI_STATE,  // ゲーム終了
+//     GAME_END_UI_STATE,  // ゲーム終了
 
-    MAX
-};
+//     MAX
+// };
 
 /*----------------------------*/
 /*【ゲームUI選択ナンバーEnum】*/
@@ -136,21 +136,21 @@ public:
     ~NormalGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
     /// <summary>更新</summary>
-    STATE_TYPE_UI Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
     /// <summary>終了</summary>
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -182,21 +182,21 @@ public:
     ~PauseGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
     /// <summary>更新</summary>
-    STATE_TYPE_UI Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 
@@ -211,21 +211,21 @@ public:
     ~DrawPlayerDataState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
     /// <summary>更新</summary>
-    STATE_TYPE_UI Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 /*--------------------*/
@@ -246,21 +246,21 @@ public:
     ~ConfigChangeState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
     /// <summary>更新</summary>
-    STATE_TYPE_UI Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -276,15 +276,15 @@ public:
     ~GameEndState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
     /// <summary>更新</summary>
-    STATE_TYPE_UI Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    STATE_TYPE_UI Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
@@ -296,5 +296,5 @@ public:
     void GameEnd(void *null);
 
 	/// <summary>終了</summary>
-    STATE_TYPE_UI Cloce(UIBase* ui) override;
+    void Cloce(UIBase* ui) override;
 };

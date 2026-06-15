@@ -12,10 +12,10 @@
 /*【リザルトUIステート】*/
 /*----------------------*/
 
-enum class RESULT_UI_STATE
-{
-	START_RESULT_UI_STATE = 0,			// 開始画面
-};
+// enum class RESULT_UI_STATE
+// {
+// 	START_RESULT_UI_STATE = 0,			// 開始画面
+// };
 
 /*----------------------*/
 /*【開始画面UIステート】*/
@@ -59,15 +59,15 @@ public:
 	~StartResultUIState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
 
 	/*更新*/
-	STATE_TYPE_UI Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 
 	/*決定*/
-	STATE_TYPE_UI Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 
 	/*描画*/
 	void Draw(UIBase* ui) override;

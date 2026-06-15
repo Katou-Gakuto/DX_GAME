@@ -19,16 +19,16 @@ class TargetManager;
 /*【エネミーステート】*/
 /*--------------------*/
 
-enum class ENEMY_STATE
-{
-	IDLE_ENEMY_STATE = 0,
-	MOVE_ENEMY_STATE,
-	ATTACK_IN_ENEMY_STATE,
-	ATTACK_ENEMY_STATE,
-	RIGHT_AVOID_ENEMY_STATE,
-	LEFT_AVOID_ENEMY_STATE,
-	ESCAPE_ENEMY_STATE,
-};
+// enum class ENEMY_STATE
+// {
+// 	IDLE_ENEMY_STATE = 0,
+// 	MOVE_ENEMY_STATE,
+// 	ATTACK_IN_ENEMY_STATE,
+// 	ATTACK_ENEMY_STATE,
+// 	RIGHT_AVOID_ENEMY_STATE,
+// 	LEFT_AVOID_ENEMY_STATE,
+// 	ESCAPE_ENEMY_STATE,
+// };
 
 /*----------*/
 /*【エネミーコマンドナンバー】
@@ -97,9 +97,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -130,9 +130,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -170,9 +170,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -203,9 +203,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -240,9 +240,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -275,7 +275,7 @@ public:
 	~LeftAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;
@@ -292,7 +292,7 @@ public:
 	~RightAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;

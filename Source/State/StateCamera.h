@@ -10,21 +10,21 @@ class StateFixedCamera : public IStateCamera
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias);
+	StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias);
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
+	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
+	void OnExit(CameraData* cameraData, CAMERA_MODE newMode) override;
 
 	/*初期化*/
-	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
+	void Initilize(CameraData* cameraData) override;
 
 	/*更新*/
-	void Update(CameraManager* cameraManager, CameraData cameraData) override;
+	void Update(CameraData* cameraData) override;
 
 	/*描画*/
-	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
+	void Draw(CameraData* cameraData) override;
 };
 
 /*--------------------*/
@@ -37,18 +37,18 @@ public:
 	StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias);
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
+	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
+	void OnExit(CameraData* cameraData, CAMERA_MODE newMode) override;
 
 	/*初期化*/
-	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
+	void Initilize(CameraData* cameraData) override;
 
 	/*更新*/
-	void Update(CameraManager* cameraManager, CameraData cameraData) override;
+	void Update(CameraData* cameraData) override;
 
 	/*描画*/
-	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
+	void Draw(CameraData* cameraData) override;
 };
 
 /*----------------------------*/
@@ -61,18 +61,18 @@ public:
 	StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias);
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
+	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
+	void OnExit(CameraData* cameraData, CAMERA_MODE newMode) override;
 
 	/*初期化*/
-	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
+	void Initilize(CameraData* cameraData) override;
 
 	/*更新*/
-	void Update(CameraManager* cameraManager, CameraData cameraData) override;
+	void Update(CameraData* cameraData) override;
 
 	/*描画*/
-	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
+	void Draw(CameraData* cameraData) override;
 };
 
 /*--------------------------*/
@@ -91,16 +91,16 @@ public:
 	StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias);
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) override;
+	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CameraManager* cameraManager, CameraData cameraData) override;
+	void OnExit(CameraData* cameraData, CAMERA_MODE newMode) override;
 
 	/*初期化*/
-	void Initilize(CameraManager* cameraManager, CameraData cameraData) override;
+	void Initilize(CameraData* cameraData) override;
 
 	/*更新*/
-	void Update(CameraManager* cameraManager, CameraData cameraData) override;
+	void Update(CameraData* cameraData) override;
 
 	/*描画*/
-	void Draw(CameraManager* cameraManager, CameraData cameraData) override;
+	void Draw(CameraData* cameraData) override;
 };

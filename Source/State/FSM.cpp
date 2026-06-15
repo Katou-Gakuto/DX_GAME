@@ -24,19 +24,7 @@
 #include "StateDotWeen.h"
 #include "StateScene.h"
 #include "UtilChange.h"
-
-/*------------------------*/
-/*【継承用有限状態マシン】*/
-/*------------------------*/
-
-template<typename subscript, typename state>
-FSMBase<subscript, state>::FSMBase()
-{
-	mmStateMap.clear();
-	mCurrentState = (subscript) - 1;
-	mnNextState = (subscript)0;
-}
-
+// INPROGRESS:
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
@@ -293,7 +281,7 @@ void FSMScene::SetCurrentState(SCENE id, SceneManager* sceneManager)
 void FSMScene::Update(SceneManager* sceneManager)
 {
 	IStateScene* stateScene = mmStateMap[UtilChange::SceneState(mCurrentState)];
-	SCENE ret = stateScene->Update(sceneManager);
+	SCENE ret = sceneManager->GetNextScene();
 	if (mCurrentState != ret)
 	{
 		Master::mpLoadingManager->SetLoadingFlag(LOADING_NUMBER::SCENE);

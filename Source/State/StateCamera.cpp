@@ -15,14 +15,14 @@
 /*--------------------*/
 /*【固定視点ステート】*/
 /*--------------------*/
-StateFixedCamera::StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias)
+StateFixedCamera::StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
 : IStateCamera(CAMERA_MODE::FIXED, stateChangeCriterias)
 {
 	mStateNumber = CAMERA_MODE::FIXED;
 }
 
 // この状態に入った時の処理
-void StateFixedCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
+void StateFixedCamera::OnEnter(CameraData* cameraData, CAMERA_MODE preMode)
 {
 	CommonSetCamera(cameraData, preThreeDFlag);
 }

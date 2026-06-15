@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "StateEnum.h"
+#include "StateData.h"
+
 #include "StateBase.h"
 
 enum class CAMERA_MODE;
@@ -22,7 +24,7 @@ class UIBase;
 /*----------*/
 /*【継承用有限状態マシン】*/
 /*----------*/
-template<typename subscript, typename conditionData, typename enterAndExitData, typename state, typename = typename std::enable_if<std::is_base_of<StateBase<subscript, conditionData, enterAndExitData>, state>::value>::type>
+template<typename state, typename subscript, typename stateData, typename = typename std::enable_if<std::is_base_of<StateBase<subscript, stateData>, state>::value>::type>
 class FSMBase
 {
 protected:
@@ -31,12 +33,19 @@ protected:
 	// 現在実行中ステート
 	subscript mCurrentState;
 	// 次の実行ステート
-	//subscript mnNextState;
+	subscript mNextState;
 	// 前の実行ステート
 	subscript mPreState;
 
 public:
-	FSMBase();
+	FSMBase()
+	: mCurrentState((subscript) - 1)
+	, mNextState((subscript)0)
+	, mPreState((subscript) - 1)
+	{
+		mmStateMap.clear();
+	}
+	
 	~FSMBase()
 	{
 		//mapコンテナの解放
@@ -45,6 +54,9 @@ public:
 
 		mmStateMap.clear();
 	}
+
+    /// <summary>初期化</summary>
+    virtual void Initilize(stateData* stateData) {}// = 0;
 
 	/*ステート登録(ステートナンバー変更される)*/
 	inline void RegisterState(const subscript id, state* state)
@@ -59,41 +71,39 @@ public:
 		mmStateMap[state->GetStateNumber()] = state;
 	}
 
-	// /*初期化*/
-	// virtual void Init()
-	// {
-	// 	mCurrentState = mnNextState;
-	// }
-
 	/*ステート変更確認*/
-	void CheckChangeState(enterAndExitData* onDatas, conditionData* changeConditionData = nullptr)
+	void CheckChangeState(stateData* checkStateData)
 	{
 		// 変更確認
-		subscript changeState = mmStateMap[mCurrentState]->GetNextState(changeConditionData);
+		subscript changeState = mmStateMap[mCurrentState]->GetNextState(checkStateData);
 		if (changeState != mCurrentState)
 		{
 			mPreState = mCurrentState;
 			mCurrentState = changeState;
 
 			// 変更処理	
-			mmStateMap[mPreState]->OnExit(onDatas, mCurrentState);
-			mmStateMap[mCurrentState]->OnEnter(onDatas, mPreState);
+			mmStateMap[mPreState]->OnExit(checkStateData, mCurrentState);
+			mmStateMap[mCurrentState]->OnEnter(checkStateData, mPreState);
 		}
 	}
 
-	/*実行状態取得*/
+	/// <summary>現在の実行状態取得</summary>
 	inline subscript GetCurrentState() const { return mCurrentState; }
+	/// <summary>前の実行状態取得</summary>
+	inline subscript GetPreState() const { return mPreState; }
+	/// <summary>次の実行状態設定</summary>
+	inline void SetNextState(subscript nextState) { mNextState = nextState; }
 };
 
 // TODO: 1つのモデルに対して複数のアニメーションを後から適用できるようにする
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<ANIMATION_TYPE, void, AnimationBase, IStateAnimationController>
+class FSMAnimation : public FSMBase<IStateAnimation, ANIMATION_TYPE, STATE_ANEMATION_DATA>
 {
 private:
-	// アニメーションステート達
-	std::vector<std::map<MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
+	// // アニメーションステート達
+	// std::vector<std::map<MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
 public:
 	FSMAnimation();
 
@@ -116,7 +126,7 @@ public:
 	//inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
 	/// <summary>現在のステートと同じ種類かを確認する</summary>
-	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSameType(animationType); }
+	//bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSameType(animationType); }
 	
 private:
 	/*新しいステートを設定する*/
@@ -132,7 +142,7 @@ private:
 /*----------*/
 /*【カメラ有限状態マシン】*/
 /*----------*/
-class FSMCamera : public FSMBase<CAMERA_MODE, void, CameraManager, IStateCamera>
+class FSMCamera : public FSMBase<IStateCamera, CAMERA_MODE, CameraData>
 {
 public:
 	FSMCamera();
@@ -153,7 +163,7 @@ public:
 /*----------*/
 /*【キャラクター有限状態マシン】*/
 /*----------*/
-class FSMCharacter : public FSMBase<STATE_TYPE_CHARACTER, CharacterBase, void, IStateCharacter>
+class FSMCharacter : public FSMBase<IStateCharacter, STATE_TYPE_CHARACTER, CharacterBase>
 {
 public:
 	FSMCharacter();
@@ -179,7 +189,7 @@ public:
 /*-------------------------*/
 /*【DotWeen有限状態マシン】*/
 /*-------------------------*/
-class FSMDotWeen : public FSMBase<DOT_WEEN_TYPE, void, std::vector<DOT_WEEN_DATA>, IStateDotWeen>
+class FSMDotWeen : public FSMBase<IStateDotWeen, DOT_WEEN_TYPE, std::vector<DOT_WEEN_DATA>>
 {
 public:
 	FSMDotWeen();
@@ -194,7 +204,7 @@ public:
 /*----------*/
 /*【シーン有限状態マシン】*/
 /*----------*/
-class FSMScene : public FSMBase<SCENE, void, SceneManager, IStateScene>
+class FSMScene : public FSMBase<IStateScene, SCENE, SceneManager>
 {
 public:
 	FSMScene();
@@ -218,7 +228,7 @@ public:
 /*----------*/
 /*【UI有限状態マシン】*/
 /*----------*/
-class FSMUI : public FSMBase<STATE_TYPE_UI, void, UIBase, IStateUI>
+class FSMUI : public FSMBase<IStateUI, STATE_TYPE_UI, UIBase>
 {
 public:
 	FSMUI();
@@ -237,14 +247,14 @@ public:
 	/*終了 ※この処理の前にUIBaseでuiを削除する仕組みになっている*/
 	void Cloce(UIBase* ui);
 
-	/*マウス*/
-	void Mouse(UIBase* ui);
-	/*キーボード*/
-	void Keyboard(UIBase* ui);
-	/*コントローラー*/
-	void Controller(UIBase* ui);
-	/*キーボードとコントローラー*/
-	void Keyboard_Controller(UIBase* ui);
+	// /*マウス*/
+	// void Mouse(UIBase* ui);
+	// /*キーボード*/
+	// void Keyboard(UIBase* ui);
+	// /*コントローラー*/
+	// void Controller(UIBase* ui);
+	// /*キーボードとコントローラー*/
+	// void Keyboard_Controller(UIBase* ui);
 
 	/*描画*/
 	void Draw(UIBase* ui);

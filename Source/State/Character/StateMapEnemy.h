@@ -18,11 +18,11 @@ class TargetManager;
 /*【マップエネミーステート】*/
 /*--------------------------*/
 
-enum class MAP_ENEMY_STATE
-{
-	IDLE_MAP_ENEMY_STATE = 0,
-	TELOP_MAP_ENEMY_STATE,
-};
+// enum class MAP_ENEMY_STATE
+// {
+// 	IDLE_MAP_ENEMY_STATE = 0,
+// 	TELOP_MAP_ENEMY_STATE,
+// };
 
 /*----------------------------*/
 /*【マップエネミー共通処理用】*/
@@ -73,9 +73,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -106,9 +106,9 @@ public:
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;

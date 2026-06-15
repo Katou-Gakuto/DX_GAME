@@ -1,4 +1,10 @@
 #pragma once
+struct OneAnimationData;
+struct AnimationDatas;
+struct CameraData;
+
+class AnimationBase;
+class CameraManager;
 
 // ステート変更条件情報
 template<typename stateNumber, typename conditionData>
@@ -14,4 +20,11 @@ struct STATE_CHANGE_CRITERIA_DATA
     , ChangeFlag(changeFlag)
     {
     }
+};
+
+struct STATE_ANEMATION_DATA
+{
+    AnimationBase* StateAnimation;
+    OneAnimationData* StateOneAnimationData;
+    AnimationDatas* StateAnimationDatas;
 };

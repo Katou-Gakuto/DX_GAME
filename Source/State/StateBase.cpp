@@ -17,25 +17,26 @@
 /*------------------------*/
 /*【カメラステートベース】*/
 /*------------------------*/
+int IStateCamera::mnPreThreeDFlag = -1;
 // カメラの共通設定をする
-void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
+void IStateCamera::CommonSetCamera(CameraData *cameraData)
 {
-	if ((preThreeDFlag == -1) || ((preThreeDFlag == 1) != cameraData.threeDFlag))
+	if ((mnPreThreeDFlag == -1) || ((mnPreThreeDFlag == 1) != cameraData->threeDFlag))
 	{
-		if (cameraData.threeDFlag)
+		if (cameraData->threeDFlag)
 		{
 			// カメラのクリッピング距離を設定。(カメラが映せる上限範囲)
 			SetCameraNearFar(16.0f, /*/9999999.0f);//*/3800.0f);
 
 			// 背景の色を設定する
-			SetBackgroundColor(cameraData.red, cameraData.green, cameraData.blue, cameraData.alpha);
+			SetBackgroundColor(cameraData->red, cameraData->green, cameraData->blue, cameraData->alpha);
 
 			// Zバファに書き込む準備
 			SetUseZBufferFlag(TRUE);
 			SetWriteZBufferFlag(TRUE);
 
 			// カメラ位置を反映する
-			SetCameraPos(cameraData.position, cameraData.targetPosition);
+			SetCameraPos(cameraData->position, cameraData->targetPosition);
 		}
 		else
 		{
@@ -43,17 +44,17 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 			//SetCameraNearFar(16.f, 3800.0f);
 
 			// 背景の色を設定する
-			SetBackgroundColor(cameraData.red, cameraData.green, cameraData.blue, cameraData.alpha);
+			SetBackgroundColor(cameraData->red, cameraData->green, cameraData->blue, cameraData->alpha);
 
 			// Zバファに書き込む準備
 			SetUseZBufferFlag(FALSE);
 			SetWriteZBufferFlag(FALSE);
 		}
 	}
-	else if (cameraData.threeDFlag)
+	else if (cameraData->threeDFlag)
 	{
 		// カメラ位置を反映する
-		SetCameraPos(cameraData.position, cameraData.targetPosition);
+		SetCameraPos(cameraData->position, cameraData->targetPosition);
 	}
 }
 
@@ -69,16 +70,16 @@ void IStateCamera::SetCameraPos(VECTOR cameraPos, VECTOR cameraLookPos)
 /*----------*/
 /*【アニメーションベース】
 /*----------*/
-void IStateAnimation::SetModelBase(ModelBase* modelBase)
-{
-	mpModelBase = modelBase;
-}
+// void IStateAnimation::SetModelBase(ModelBase* modelBase)
+// {
+// 	mpModelBase = modelBase;
+// }
 
 
 /*------------------------*/
 /*【シーンステートベース】*/
 /*------------------------*/
-IStateScene::IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>> stateChangeCriterias)
+IStateScene::IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>> stateChangeCriterias)
 : StateBase(stateNumber, stateChangeCriterias)
 , mpMapManager(nullptr)
 , mpTargetManager(nullptr)
@@ -96,13 +97,14 @@ void IStateScene::StageOnEnter(SceneManager* sceneManager)
 	mpTargetManager->TargetInit((unsigned int)((1 << (int)TARGET_TYPE::PLAYER) | (1 << (int)TARGET_TYPE::ENEMY)));
 }
 
-// 更新
-SCENE IStateScene::Update(SceneManager* sceneManager)
-{
-	if (sceneManager->GetNextScene() != sceneManager->GetFSMScene()->GetCurrentState())
-	{
-		return sceneManager->GetNextScene();
-	}
+// // 更新
+// SCENE IStateScene::Update(SceneManager* sceneManager)
+// {
+// 	// TODO: シーン更新
+// 	// if (sceneManager->GetNextScene() != sceneManager->GetFSMScene()->GetCurrentState())
+// 	// {
+// 	// 	return sceneManager->GetNextScene();
+// 	// }
 
-	return sceneManager->GetFSMScene()->GetCurrentState();
-}
+// 	// return sceneManager->GetFSMScene()->GetCurrentState();
+// }

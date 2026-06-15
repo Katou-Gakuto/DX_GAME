@@ -49,6 +49,7 @@
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="Source\Object\UI\UI_StageStart.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
+    <ClCompile Include="Source\Singleton\AnimationStateManager.cpp" />
     <ClCompile Include="Source\Singleton\AttackManager.cpp" />
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Source\Object\UI\UI_Result.h" />
     <ClInclude Include="Source\Object\UI\UI_StageStart.h" />
     <ClInclude Include="Source\Object\UI\UI_Title.h" />
+    <ClInclude Include="Source\Singleton\AnimationStateManager.h" />
     <ClInclude Include="Source\Singleton\AttackManager.h" />
     <ClInclude Include="Source\Singleton\CameraManager.h" />
     <ClInclude Include="Source\Singleton\CollisionManager.h" />

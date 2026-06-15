@@ -130,6 +130,18 @@
     <Filter Include="ソース ファイル\Debug\Imgui\backends">
       <UniqueIdentifier>{d4b78ff0-c44c-4c00-906b-7d6519d00260}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\State\StateBase">
+      <UniqueIdentifier>{994486c2-007c-4863-96b6-470ded45c970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\Fsm">
+      <UniqueIdentifier>{d7feaef0-6713-4861-b65b-2206b1ea2986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\Fsm">
+      <UniqueIdentifier>{c3dc3175-20dc-467c-82f9-f674ccb19e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\StateBase">
+      <UniqueIdentifier>{4f940419-dad8-41ec-a526-9a5314ad4f0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -261,16 +273,10 @@
     <ClCompile Include="Source\Singleton\TimeManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\FSM.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
     <ClCompile Include="Source\State\StateAnimation.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\StateAnimationController.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateBase.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\StateCamera.cpp">
@@ -383,6 +389,48 @@
     </ClCompile>
     <ClCompile Include="Source\Singleton\AnimationStateManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSM.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateBase\StateBase.cpp">
+      <Filter>ソース ファイル\State\StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateBase\StateCameraBase.cpp">
+      <Filter>ソース ファイル\State\StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateBase\StateSceneBase.cpp">
+      <Filter>ソース ファイル\State\StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMAnimation.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMCamera.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMCharacter.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMDotWeen.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMScene.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMUI.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\BuildingBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\UIBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\AttackBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\CharacterBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -718,6 +766,60 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\AnimationStateManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSM.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateDotWeenBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateAnimationBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateCameraBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateCharacterBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateUIBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateSceneBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMAnimation.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMCamera.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMCharacter.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMDotWeen.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMScene.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMUI.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\UIBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\CharacterBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\AttackBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\BuildingBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

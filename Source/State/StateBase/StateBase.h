@@ -189,7 +189,7 @@ public:
 /*----------*/
 /*【アニメーションステートベース】
 /*----------*/
-class IStateAnimation : public StateBase<ANIMATION_TYPE, STATE_ANEMATION_DATA>
+class IStateAnimation : public StateBase<int, STATE_ANEMATION_DATA>
 {
 protected:
 	// アニメーションステート設定情報ナンバー
@@ -197,8 +197,9 @@ protected:
 // 	// モデルベース
 // 	ModelBase* mpModelBase;
 
+
 public:
-	IStateAnimation(ANIMATION_TYPE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, STATE_ANEMATION_DATA>> stateChangeCriterias)
+	IStateAnimation(int stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 	: StateBase(stateNumber, stateChangeCriterias)
 	{
 	}
@@ -213,7 +214,7 @@ public:
 	virtual void Initilize(AnimationBase* animation){}
 
 	/// <summary>終了</summary>
-	virtual void Finalize(AnimationBase* animation, AnimationDatas *nowAnimationData) = 0;
+	//virtual void Finalize(AnimationBase* animation, AnimationDatas *nowAnimationData) = 0;
 
 	/// <summary>更新</summary>
 	virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) = 0;

@@ -1,7 +1,30 @@
+#include <map>
+
 #include "AnimationData.h"
 
 #include "AnimationStateManager.h"
 #include "UtilCalc.h"
+
+AnimationStateManager::AnimationStateManager()
+: mstAnimationStateInfos()
+{
+}
+AnimationStateManager::~AnimationStateManager()
+{
+}
+
+// 終了処理
+void AnimationStateManager::Finalize()
+{
+	for (auto& animationStateInfos : mstAnimationStateInfos)
+	{
+		if (animationStateInfos.second.AnimationState != nullptr)
+		{
+			delete animationStateInfos.second.AnimationState;
+		}
+	}
+	mstAnimationStateInfos.clear();
+}
 
 // アニメーション情報入力
 int AnimationStateManager::AnimationInfoEntry(ANIMATION_STATE_INFO animationStateInfo)
@@ -45,11 +68,12 @@ int AnimationStateManager::AnimationInfoEntry(ANIMATION_STATE_INFO animationStat
 // アニメーション情報削除
 void AnimationStateManager::DeleteAnimationStateInfo(int key)
 {
-	auto animationStateInfoIt = mstAnimationStateInfos.find(key);
+	auto& animationStateInfoIt = mstAnimationStateInfos.find(key);
 	if (animationStateInfoIt == mstAnimationStateInfos.end())
 	{
 		return;
 	}
 
+	delete mstAnimationStateInfos[key].AnimationState;
 	mstAnimationStateInfos.erase(animationStateInfoIt);
 }

@@ -31,49 +31,45 @@
 FSMAnimation::FSMAnimation()
 : FSMBase()
 {
-	mCurrentState = ANIMATION_TYPE::NONE;
-	mnNextState = ANIMATION_TYPE::IDLE;
-
-	mmAnimationStates.clear();
 }
 
-// 初期化
-void FSMAnimation::Initilize(AnimationBase* animation)
-{
-	mCurrentState = ANIMATION_TYPE::IDLE;
+// // 初期化
+// void FSMAnimation::Initilize(AnimationBase* animation)
+// {
+// 	mCurrentState = 0;
 
-	// 新しいStateの開始処理
-	for (int i = 0; i < mmAnimationStates.size(); i++)
-	{
-		NewStateSetting(i, animation, MODEL_TYPE::NONE);
-	}
-}
+// 	// 新しいStateの開始処理
+// 	for (int i = 0; i < mmAnimationStates.size(); i++)
+// 	{
+// 		NewStateSetting(i, animation, MODEL_TYPE::NONE);
+// 	}
+// }
 
 // 終了
 void FSMAnimation::Finalize(AnimationBase* animation)
 {
-	for (int i = 0; i < mmAnimationStates.size(); i++)
-	{
-		for (auto animationState : mmAnimationStates[i])
-		{
-			animationState.second->Finalize(animation, animation->GetAnimationDatas()[i]);
-			delete animationState.second;
-		}
-	}
-	mmAnimationStates.clear();
+	// for (int i = 0; i < mmAnimationStates.size(); i++)
+	// {
+	// 	for (auto animationState : mmAnimationStates[i])
+	// 	{
+	// 		animationState.second->Finalize(animation, animation->GetAnimationDatas()[i]);
+	// 		delete animationState.second;
+	// 	}
+	// }
+	// mmAnimationStates.clear();
 }
 
-// サブ状態マップのサイズを増やす
-void FSMAnimation::IncreaseAnimationStateSize(int size)
-{
-	mmAnimationStates.resize(size);
-}
+// // サブ状態マップのサイズを増やす
+// void FSMAnimation::IncreaseAnimationStateSize(int size)
+// {
+// 	mmAnimationStates.resize(size);
+// }
 
-// アニメーションステート情報設定
-void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap)
-{
-	mmAnimationStates[animationStateIndex] = animationStateMap;
-}
+// // アニメーションステート情報設定
+// void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap)
+// {
+// 	mmAnimationStates[animationStateIndex] = animationStateMap;
+// }
 
 // 更新
 void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas)
@@ -148,11 +144,11 @@ void FSMCamera::SetCurrentState(CameraManager* cameraManager, int& preThreeDFlag
 {
 	if (mCurrentState != CAMERA_MODE::NONE)
 	{
-		mmStateMap[mCurrentState]->OnExit(cameraManager, cameraManager->GetCameraData());
+		mmStateMap[mCurrentState]->OnExit(&cameraManager->GetCameraData());
 	}
 
 	mCurrentState = cameraManager->GetCameraData().cameraMode;
-	mmStateMap[mCurrentState]->OnEnter(cameraManager, cameraManager->GetCameraData(), preThreeDFlag);
+	mmStateMap[mCurrentState]->OnEnter(&cameraManager->GetCameraData());
 }
 
 // 初期化

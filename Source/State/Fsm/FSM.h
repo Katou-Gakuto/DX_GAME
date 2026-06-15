@@ -55,8 +55,15 @@ public:
 		mmStateMap.clear();
 	}
 
-    /// <summary>初期化</summary>
-    virtual void Initilize(stateData* stateData) {}// = 0;
+	// TODO: 所持しているオブジェクトでシーン変更後この関数を呼び出すようにする
+    /// <summary>ステート初期化</summary>
+    virtual void StateInitilize(stateData* initilizeStateData)
+	{
+		for (auto& initilizeState : mmStateMap)
+		{
+			initilizeState.second->Initilize(initilizeStateData);
+		}
+	}
 
 	/*ステート登録(ステートナンバー変更される)*/
 	inline void RegisterState(const subscript id, state* state)
@@ -66,7 +73,7 @@ public:
 	}
 
 	/*ステート登録*/
-	inline void RegisterState(state* state)
+	virtual void RegisterState(state* state)
 	{
 		mmStateMap[state->GetStateNumber()] = state;
 	}
@@ -99,7 +106,7 @@ public:
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/
-class FSMAnimation : public FSMBase<IStateAnimation, ANIMATION_TYPE, STATE_ANEMATION_DATA>
+class FSMAnimation : public FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>
 {
 private:
 	// // アニメーションステート達
@@ -107,16 +114,22 @@ private:
 public:
 	FSMAnimation();
 
+    // 初期設定を限定するために呼び出せないようにする
+    void RegisterState(IStateAnimation* state) override
+	{
+		// HACK: これでエラーが出なければこの中で使用したらエラーを出させるようにする
+	}
+
     /// <summary>初期化</summary>
-    void Initilize(AnimationBase* animation);
+    //void Initilize(AnimationBase* animation);
 	/// <summary>終了</summary>
 	void Finalize(AnimationBase* animation);
 
-	/*アニメーション状態達のサイズを増やす*/
-	void IncreaseAnimationStateSize(int size);
+	// /*アニメーション状態達のサイズを増やす*/
+	// void IncreaseAnimationStateSize(int size);
 
-	/// <summary>アニメーションステート情報設定</summary>
-	void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
+	// /// <summary>アニメーションステート情報設定</summary>
+	// void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
 	/// <summary>更新</summary>
 	void Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas);

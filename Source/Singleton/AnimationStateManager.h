@@ -12,6 +12,12 @@ private:
 	std::map<int, ANIMATION_STATE_INFO> mstAnimationStateInfos;
 public:
 
+	AnimationStateManager()
+	~AnimationStateManager();
+
+	/// <summary>終了処理</summary>
+	void Finalize();
+
 	/// <summary>アニメーションステート取得</summary>
 	/// <param name="key">アニメーションのキー</param>
 	/// <returns>keyがサイズを超えていたらnullを返す</returns>

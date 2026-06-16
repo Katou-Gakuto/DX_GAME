@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 enum class SCENE;
 
@@ -24,6 +24,8 @@ private:
 
     // 設定用ID
     unsigned int munSetID;
+    // オブジェクト数
+    unsigned int munObjectCount;
 
 public:
     /*コンストラクタ*/
@@ -113,6 +115,13 @@ public:
     std::vector<ObjectBase*> FindsByTeam_vector(int team, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
     /*チームから複数オブジェクト取得(list)*/
     std::list<ObjectBase*> FindsByTeam_list(int team, OBJECT_TYPE typeNumber = OBJECT_TYPE::BASE, bool inactiveFlag = false, bool deleteGetFlag = false);
+
+    /*------------------*/
+    /*【オブジェクト数】*/
+    /*------------------*/
+    /// <summary>オブジェクト数取得</summary>
+    /// <returns>オブジェクトの最大数</returns>
+    inline unsigned int GetObjectCount() const { return munObjectCount; }
 
     /*------------------*/
     /*     【設定】     */

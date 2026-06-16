@@ -6,7 +6,7 @@
 
 #include "DxLib.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "ResourceManager.h"
 #include "UI_Check.h"
 

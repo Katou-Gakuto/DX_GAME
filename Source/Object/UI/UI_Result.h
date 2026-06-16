@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 class UI_Result : public UIBase
 {

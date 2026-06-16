@@ -142,6 +142,12 @@
     <Filter Include="ヘッダー ファイル\State\StateBase">
       <UniqueIdentifier>{4f940419-dad8-41ec-a526-9a5314ad4f0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Singleton\Resource">
+      <UniqueIdentifier>{937b66db-b836-4432-8ab0-09cc78f2b861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Singleton\Resource">
+      <UniqueIdentifier>{908c6470-75da-4935-bcbe-3622000764c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -192,7 +198,7 @@
     <ClCompile Include="Source\Model\ModelsController\ModelsControllerBase.cpp">
       <Filter>ソース ファイル\Model\ModelsController</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\ObjectBases.cpp">
+    <ClCompile Include="Source\Object\ObjectBase.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object\Attack\Attack_RobotSpceial.cpp">
@@ -256,9 +262,6 @@
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\ObjectManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\ResourceManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\SceneManager.cpp">
@@ -393,9 +396,6 @@
     <ClCompile Include="Source\State\Fsm\FSM.cpp">
       <Filter>ソース ファイル\State\Fsm</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\StateBase\StateBase.cpp">
-      <Filter>ソース ファイル\State\StateBase</Filter>
-    </ClCompile>
     <ClCompile Include="Source\State\StateBase\StateCameraBase.cpp">
       <Filter>ソース ファイル\State\StateBase</Filter>
     </ClCompile>
@@ -420,17 +420,38 @@
     <ClCompile Include="Source\State\Fsm\FSMUI.cpp">
       <Filter>ソース ファイル\State\Fsm</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\BuildingBase.cpp">
+    <ClCompile Include="Source\Object\ObjectBase_Building.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UIBase.cpp">
+    <ClCompile Include="Source\Object\ObjectBase_UI.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\AttackBase.cpp">
+    <ClCompile Include="Source\Object\ObjectBase_Attack.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\CharacterBase.cpp">
+    <ClCompile Include="Source\Object\ObjectBase_Character.cpp">
       <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\KeyStateInitialize_DxLib.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceManager.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\Resource3DModel.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceEffect.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceGraph.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceMovie.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceSound.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -500,7 +521,7 @@
     <ClInclude Include="Source\Model\ModelsController\ModelsControllerBase.h">
       <Filter>ヘッダー ファイル\Model\ModelsController</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\ObjectBases.h">
+    <ClInclude Include="Source\Object\ObjectBase.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object\Attack\Attack_RobotSpceial.h">
@@ -569,9 +590,6 @@
     <ClInclude Include="Source\Singleton\ObjectManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Singleton\ResourceManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Singleton\SceneManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
@@ -584,16 +602,10 @@
     <ClInclude Include="Source\Singleton\TimeManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Source\State\FSM.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
     <ClInclude Include="Source\State\StateAnimation.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
     <ClInclude Include="Source\State\StateAnimationController.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateBase.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
     <ClInclude Include="Source\State\StateCamera.h">
@@ -809,17 +821,41 @@
     <ClInclude Include="Source\State\Fsm\FSMUI.h">
       <Filter>ヘッダー ファイル\State\Fsm</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\UIBase.h">
+    <ClInclude Include="Source\Object\ObjectBase_UI.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\CharacterBase.h">
+    <ClInclude Include="Source\Object\ObjectBase_Character.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\AttackBase.h">
+    <ClInclude Include="Source\Object\ObjectBase_Attack.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\BuildingBase.h">
+    <ClInclude Include="Source\Object\ObjectBase_Building.h">
       <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\KeyStateEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceManager.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceBase.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\Resource3DModel.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceGraph.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceMovie.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceSound.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceEffect.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

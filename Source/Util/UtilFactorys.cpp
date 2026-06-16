@@ -19,7 +19,7 @@
 #include "ModelMovie.h"
 #include "ModelMV1.h"
 #include "ModelPolygonIndexed.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "SceneManager.h"
 #include "StateAnimation.h"
 #include "StateAnimationController.h"

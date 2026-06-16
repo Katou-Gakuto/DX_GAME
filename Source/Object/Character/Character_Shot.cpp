@@ -9,7 +9,7 @@
 #include "AttackManager.h"
 #include "Character_Shot.h"
 #include "GameManager.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "UtilCalc.h"
 
 Character_Shot::Character_Shot(bool nextSceneDeleteFlag, STATUS status, SHOT_TYPE shotType, std::map<ATTACK_METHOD_TYPE, CharacterAttackData> characterAttackData, std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas)

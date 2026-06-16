@@ -1,6 +1,6 @@
 #include "BitFlag.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "TargetData.h"
 #include "TargetManager.h"
 

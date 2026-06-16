@@ -4,7 +4,7 @@
 
 #include "FSM.h"
 #include "GameManager.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "SceneManager.h"
 #include "UI_GameClear.h"
 
@@ -17,27 +17,27 @@ UI_GameClear::~UI_GameClear()
 {
 }
 
-// UI初期化
+// UI揄期化
 void UI_GameClear::UIInitilize()
 {
 }
 
-// UIシーン最終初期化
+// UIシ拏ン敘扞揄期化
 void UI_GameClear::UISceneLastInitilize()
 {
 }
 
-// UI終了
+// UI扞了
 void UI_GameClear::UIFinalize()
 {
 }
 
-// UI更新
+// UI拗抃
 void UI_GameClear::UIUpdate()
 {
 }
 
-// UI最終更新
+// UI敘扞拗抃
 void UI_GameClear::UILastUpdate()
 {
 }
@@ -47,7 +47,7 @@ void UI_GameClear::UIDraw()
 {
 }
 
-// 選択決定時処理
+// 選択決定時揶理
 void UI_GameClear::DecisionProcess()
 {
     if (mpFsm != nullptr)

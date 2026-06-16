@@ -17,17 +17,17 @@ enum class HANDLE_FLAG
     ZERO_LOOK,
     ZERO_EXCEPT_LOOK,
 };
-
+// INPROGRESS: HANDLE_TYPEint以外も対応させる
 // TODO: 交換とswitchで似た処理を関数化する
-template<typename QUOTE_SOURCE>
+template<typename QUOTE_SOURCE, typename HANDLE_TYPE = int>
 class HandleContainer
 {
 private:
     // ハンドル
-    std::map<QUOTE_SOURCE, std::vector<int>> mmHandles;
+    std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>> mmHandles;
 
     // カウント
-    std::map<int, int> mmHandleCounts;
+    std::map<HANDLE_TYPE, int> mmHandleCounts;
 
     // 次のハンドル追加ファイル
     QUOTE_SOURCE msRegisterFileName;
@@ -54,9 +54,9 @@ public:
     /*【取得】*/
     /*--------*/
     /// <summary>ハンドルファイル名取得</summary>
-    QUOTE_SOURCE GetHandleQuoteSource(int handle)
+    QUOTE_SOURCE GetHandleQuoteSource(HANDLE_TYPE handle)
     {
-        for (std::pair<QUOTE_SOURCE, std::vector<int>> chaeckHandle : mmHandles)
+        for (std::pair<QUOTE_SOURCE, std::vector<HANDLE_TYPE>> chaeckHandle : mmHandles)
         {
             for (int i = 0; i < chaeckHandle.second.size(); i++)
             {
@@ -72,19 +72,19 @@ public:
     }
 
     /// <summary>ハンドル取得</summary>
-    std::vector<int> GetHandles(QUOTE_SOURCE fileName) { return mmHandles[fileName]; }
+    std::vector<HANDLE_TYPE> GetHandles(QUOTE_SOURCE fileName) { return mmHandles[fileName]; }
 
     /// <summary>ハンドルマップ取得</summary>
-    std::map<QUOTE_SOURCE, std::vector<int>> GetHandleMap() { return mmHandles; }
+    std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>> GetHandleMap() { return mmHandles; }
 
     /// <summary>ハンドルマップポインタ取得</summary>
-    std::map<QUOTE_SOURCE, std::vector<int>>* GetHandleMapPointer() { return &mmHandles; }
+    std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>>* GetHandleMapPointer() { return &mmHandles; }
 
     /// <summary>ハンドルカウント取得</summary>
-    int GetHandleCount(int handle) { return mmHandleCounts[handle]; }
+    int GetHandleCount(HANDLE_TYPE handle) { return mmHandleCounts[handle]; }
     
     /// <summary>ハンドルカウントマップ取得</summary>
-    std::map<int, int> GetHandleCountMap() const { return mmHandleCounts; }
+    std::map<HANDLE_TYPE, int> GetHandleCountMap() const { return mmHandleCounts; }
 
     /*--------*/
     /*【設定】*/
@@ -104,7 +104,7 @@ public:
     }
 
     /// <summary>ハンドルを登録する</summary>
-    int RegisterHandle(int handle, bool countFlag = true)
+    HANDLE_TYPE RegisterHandle(HANDLE_TYPE handle, bool countFlag = true)
     {
         // ハンドルが-1なら実行を終了させる
         if (handle == (-1))
@@ -116,7 +116,7 @@ public:
         // 設定されたファイル名が使われていないなら新しく設定する
         if (mmHandles.find(msRegisterFileName) == mmHandles.end())
         {
-            std::vector<int> enptyHandleList;
+            std::vector<HANDLE_TYPE> enptyHandleList;
             enptyHandleList.clear();
             mmHandles[msRegisterFileName] = enptyHandleList;
             
@@ -148,32 +148,6 @@ public:
         {
             mmHandleCounts[mmHandles[msRegisterFileName][0]] += 1;
         }
-        /*
-        
-        int handle = -1;
-        if (mmModelHandle.find(fileName) != mmModelHandle.end())
-        {
-            handle = mmModelHandle[fileName][0];
-            mmModelCount[handle] += 1;
-            int resultHandle = MV1DuplicateModel(handle);
-            mmModelHandle[fileName].push_back(resultHandle);
-            return resultHandle;
-        }
-
-        handle = MV1LoadModel(fileName.c_str());
-        if (handle == -1)
-        {
-            Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
-            return -1;
-        }
-        std::vector<int> setHandle;
-        setHandle.clear();
-        setHandle.reserve(2);
-        setHandle.push_back(handle);
-        setHandle.push_back(MV1DuplicateModel(handle));
-        mmModelHandle[fileName] = setHandle;
-        mmModelCount[handle] = 1;
-        */
 
         return handle;
     }
@@ -190,7 +164,7 @@ public:
     /*【削除】*/
     /*--------*/
     /// <summary>ハンドル削除</summary>
-    std::vector<int> DeleteHandle(int handle, bool countFlag = true)
+    std::vector<HANDLE_TYPE> DeleteHandle(HANDLE_TYPE handle, bool countFlag = true)
     {
         if (handle == -1)
         {
@@ -223,7 +197,7 @@ public:
                         }
 
                         // 削除ハンドル
-                        std::vector<int> deleteHandles;
+                        std::vector<HANDLE_TYPE> deleteHandles;
                         deleteHandles.clear();
 
                         if (mmHandleCounts[countHandle] <= 0)
@@ -259,7 +233,7 @@ public:
                         }
 
                         // 削除ハンドル
-                        std::vector<int> deleteHandles;
+                        std::vector<HANDLE_TYPE> deleteHandles;
                         deleteHandles.clear();
 
                         if (mmHandleCounts[countHandle] <= 0)
@@ -296,7 +270,7 @@ public:
                         }
 
                         // 削除ハンドル
-                        std::vector<int> deleteHandles;
+                        std::vector<HANDLE_TYPE> deleteHandles;
                         deleteHandles.clear();
 
                         if (mmHandleCounts[countHandle] <= 0)
@@ -367,8 +341,23 @@ public:
     /*【交換】*/
     /*--------*/
     /// <summary>ハンドルの値を交換する</summary>
-    void SwapHandle(int srcHandle, int destHandle)
+    void SwapHandle(HANDLE_TYPE srcHandle, HANDLE_TYPE destHandle)
     {
+        for (auto myHandle : mmHandles)
+        {
+            for (int i = 0; i < myHandle.second.size(); i++)
+            {
+                if (myHandle.second[i] == srcHandle)
+                {
+                    if (i == 0)
+                    {
+                        mmHandleCounts[destHandle] = mmHandleCounts[srcHandle];
+                        mmHandleCounts.erase(srcHandle);
+                    }
+                    mmHandles[myHandle.first][i] = destHandle;
+                }
+            }
+        }
     }
 };
 

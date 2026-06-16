@@ -26,7 +26,7 @@
 #include "ImguiManager.h"
 #include "MapManager.h"
 #include "ModelMap.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
 #include "TargetManager.h"

@@ -1,7 +1,7 @@
 #pragma once
 #include "TimeData.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 class UI_StageStart : public UIBase
 {

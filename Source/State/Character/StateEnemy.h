@@ -4,7 +4,7 @@
 #include "TimeData.h"
 
 #include "EnemyCommonProcessing.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "StateBase.h"
 
 class TargetManager;

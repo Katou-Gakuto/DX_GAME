@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 #include "ResourceEnum.h"
 #include "Vector2.h"
@@ -9,6 +10,8 @@
 struct DIV_GRAPH_DATA
 {
 public:
+	std::string fileName;
+
 	int* handle;
 
 	int allNum;

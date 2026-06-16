@@ -4,7 +4,7 @@
 
 #include "AttackData.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 /*UŒ‚í—Ş*/
 enum class ATTACK_TYPE;

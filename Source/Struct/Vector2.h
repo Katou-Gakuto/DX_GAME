@@ -86,6 +86,8 @@ struct Vector2
 	float x;
 	float y;
 
+	const static Vector2 Zero() { return Vector2(0.0f, 0.0f); }
+
 	Vector2()
 	{
 		this->x = 0.0f;
@@ -111,6 +113,24 @@ struct Vector2
 	{
 		this->x += src.x;
 		this->y += src.y;
+
+		return *this;
+	}
+
+	Vector2 operator -(Vector2 src) const
+	{
+		Vector2 vec;
+
+		vec.x = this->x - src.x;
+		vec.y = this->y - src.y;
+
+		return vec;
+	}
+
+	Vector2 operator -=(Vector2 src)
+	{
+		this->x -= src.x;
+		this->y -= src.y;
 
 		return *this;
 	}

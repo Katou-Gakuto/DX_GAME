@@ -6,7 +6,7 @@
 #include "DxLib.h"
 
 #include "MapManager.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "UtilCalc.h"
 
 // タイルデータ

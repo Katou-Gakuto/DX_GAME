@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 enum class ATTACK_METHOD_TYPE;
 

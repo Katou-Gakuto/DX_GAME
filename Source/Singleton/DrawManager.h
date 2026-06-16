@@ -44,7 +44,7 @@ public:
     /// <param name="drawData">’Ç‰Á‚·‚é•`‰æî•ñ</param>
     /// <param name="orderNumber">•`‰æ‡(0ˆÈãDRAW_ORDER_MAX–¢–)</param>
     /// <returns>•`‰æî•ñID</returns>
-    DRAW_DATA* AddDrawData(DRAW_DATA *drawData, int orderNumber = DRAW_ORDER_CENTER);
+    DRAW_DATA AddDrawData(DRAW_DATA *drawData, int orderNumber = DRAW_ORDER_CENTER);
 
     /// <summary>•`‰æî•ñIDw’èíœ</summary>
     void DeleteDrawData_ID(int id);
@@ -57,6 +57,11 @@ public:
 
     /// <summary>•`‰æî•ñæ“¾</summary>
     /// <param name="drawId">•`‰æID</param>
-    /// <returns>•`‰æî•ñƒ|ƒCƒ“ƒ^</returns>
-    DRAW_DATA* GetDrawData(int drawId);
+    /// <returns>•`‰æî•ñ</returns>
+    DRAW_DATA GetDrawData(int drawId);
+
+    /// <summary>•`‰æî•ñİ’è</summary>
+    /// <param name="drawData">•`‰æî•ñ</param>
+    /// <param name="drawId">•`‰æID</param>
+    void SetDrawData(DRAW_DATA* drawData, int drawId);
 };

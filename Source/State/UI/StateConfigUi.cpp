@@ -13,7 +13,7 @@
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "TargetManager.h"
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 #include "ImguiManager.h"
 bool imguiSetFlag_Config = true;

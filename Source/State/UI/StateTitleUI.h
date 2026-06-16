@@ -3,7 +3,7 @@
 
 #include "Status.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 #include "StateBase.h"
 
 enum class CHARACTER_TYPE;

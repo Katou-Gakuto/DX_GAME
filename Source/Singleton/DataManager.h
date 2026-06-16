@@ -64,7 +64,7 @@ private:
 	std::string msPlayerDatasFileName;
 
 	// 取得済みデータ場所保存用
-	std::map<SCENE, std::list<int>> mmGetFilePosNumbers;
+	std::map<SCENE, std::vector<int>> mmGetFilePosNumbers;
 
 	// アイテム作成後// 削除予定アイテム名
 

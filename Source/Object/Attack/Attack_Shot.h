@@ -1,7 +1,7 @@
 #pragma once
 #include "DxLib.h"
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
 
 class Attack_Shot : public AttackBase
 {

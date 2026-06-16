@@ -99,7 +99,7 @@ bool DrawManager::ChangeDrawOrder(int changeDataID, int orderNumber)
 }
 
 // •`‰æî•ñ’Ç‰Á
-DRAW_DATA* DrawManager::AddDrawData(DRAW_DATA *drawData, int orderNumber)
+DRAW_DATA DrawManager::AddDrawData(DRAW_DATA *drawData, int orderNumber)
 {
     if ((orderNumber < 0) ||
         (DRAW_ORDER_MAX <= orderNumber))
@@ -112,7 +112,7 @@ DRAW_DATA* DrawManager::AddDrawData(DRAW_DATA *drawData, int orderNumber)
     mnDrawDataID += 1;
     mstDrawData[orderNumber].push_back(*drawData);
 
-    return &mstDrawData[orderNumber][mstDrawData[orderNumber].size() - 1];
+    return mstDrawData[orderNumber][mstDrawData[orderNumber].size() - 1];
 }
 
 // •`‰æî•ñIDw’èíœ
@@ -186,17 +186,32 @@ void DrawManager::DrawData_Draw(DRAW_DATA *drawData, bool absoluteDrawFlag)
 }
 
 // •`‰æî•ñæ“¾
-DRAW_DATA* DrawManager::GetDrawData(int drawId)
+DRAW_DATA DrawManager::GetDrawData(int drawId)
 {
     for (int orderIt = 0; orderIt < DRAW_ORDER_MAX; ++orderIt) {
         for (int drawDataIndex = 0; drawDataIndex < mstDrawData[orderIt].size(); drawDataIndex++)
         {
             if (mstDrawData[orderIt][drawDataIndex].drawID == drawId)
             {
-                return &mstDrawData[orderIt][drawDataIndex];
+                return mstDrawData[orderIt][drawDataIndex];
             }
         }
     }
 
-    return nullptr;
+    return DRAW_DATA();
+}
+
+// •`‰æî•ñİ’è
+void DrawManager::SetDrawData(DRAW_DATA* drawData, int drawId)
+{
+    for (int orderIt = 0; orderIt < DRAW_ORDER_MAX; ++orderIt) {
+        for (int drawDataIndex = 0; drawDataIndex < mstDrawData[orderIt].size(); drawDataIndex++)
+        {
+            if (mstDrawData[orderIt][drawDataIndex].drawID == drawId)
+            {
+                mstDrawData[orderIt][drawDataIndex] = *drawData;
+                return;
+            }
+        }
+    }
 }

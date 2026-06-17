@@ -363,9 +363,9 @@ public:
     virtual void DecisionProcess() = 0;
 
     /*デフォルト終了確認処理*/
-    void DefaultCloce();
+    void DefaultClose();
     /*デフォルト終了処理*/
-    virtual void CloceProcess();
+    virtual void CloseProcess();
 
     /*上が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す*/
     bool CheckUp_Frame();

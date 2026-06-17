@@ -6,7 +6,7 @@
 #include "Master.h"
 
 #include "Character_Map.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "UtilCalc.h"
 
 Character_Map::Character_Map(STATUS status)

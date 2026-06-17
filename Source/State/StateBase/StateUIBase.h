@@ -36,7 +36,7 @@ public:
 	/*決定*/
 	virtual void Decision(UIBase* ui) { }
 	/*終了*/
-	virtual void Cloce(UIBase* ui) { }
+	virtual void Close(UIBase* ui) { }
 
 	// /*マウス*/
 	// virtual STATE_TYPE_UI Mouse(UIBase* ui) { return mStateNumber; }

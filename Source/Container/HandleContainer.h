@@ -6,6 +6,7 @@
 #include "Master.h"
 
 #include "EndManager.h"
+#include "TemplateType_Equal.h"
 
 #ifdef _DEBUG
 #include "DebugLogs/DebugLog.h"
@@ -18,8 +19,7 @@ enum class HANDLE_FLAG
     ZERO_EXCEPT_LOOK,
 };
 // INPROGRESS: HANDLE_TYPEint以外も対応させる
-// TODO: 交換とswitchで似た処理を関数化する
-template<typename QUOTE_SOURCE, typename HANDLE_TYPE = int>
+template<typename QUOTE_SOURCE, typename HANDLE_TYPE = int, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
 class HandleContainer
 {
 private:
@@ -27,7 +27,7 @@ private:
     std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>> mmHandles;
 
     // カウント
-    std::map<HANDLE_TYPE, int> mmHandleCounts;
+    std::map<int, int> mmHandleCounts;
 
     // 次のハンドル追加ファイル
     QUOTE_SOURCE msRegisterFileName;
@@ -81,10 +81,10 @@ public:
     std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>>* GetHandleMapPointer() { return &mmHandles; }
 
     /// <summary>ハンドルカウント取得</summary>
-    int GetHandleCount(HANDLE_TYPE handle) { return mmHandleCounts[handle]; }
+    int GetHandleCount(HANDLE_TYPE handle) { return mmHandleCounts[static_cast<int>(handle)]; }
     
     /// <summary>ハンドルカウントマップ取得</summary>
-    std::map<HANDLE_TYPE, int> GetHandleCountMap() const { return mmHandleCounts; }
+    std::map<int, int> GetHandleCountMap() const { return mmHandleCounts; }
 
     /*--------*/
     /*【設定】*/
@@ -107,10 +107,10 @@ public:
     HANDLE_TYPE RegisterHandle(HANDLE_TYPE handle, bool countFlag = true)
     {
         // ハンドルが-1なら実行を終了させる
-        if (handle == (-1))
+        if (static_cast<int>(handle) == (-1))
         {
             Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
-            return -1;
+            return handle;
         }
 
         // 設定されたファイル名が使われていないなら新しく設定する
@@ -120,7 +120,7 @@ public:
             enptyHandleList.clear();
             mmHandles[msRegisterFileName] = enptyHandleList;
             
-            mmHandleCounts[handle] = 0;
+            mmHandleCounts[static_cast<int>(handle)] = 0;
         }
         switch (meHandleFlag)
         {
@@ -146,14 +146,14 @@ public:
         // カウントフラグが「true」ならカウントを増やす
         if (countFlag)
         {
-            mmHandleCounts[mmHandles[msRegisterFileName][0]] += 1;
+            mmHandleCounts[static_cast<int>(mmHandles[msRegisterFileName][0])] += 1;
         }
 
         return handle;
     }
 
     /// <summary>ハンドルを登録する</summary>
-    int RegisterHandle(int handle, QUOTE_SOURCE fileName, bool countFlag = true)
+    HANDLE_TYPE RegisterHandle(HANDLE_TYPE handle, QUOTE_SOURCE fileName, bool countFlag = true)
     {
         msRegisterFileName = fileName;
 
@@ -166,13 +166,13 @@ public:
     /// <summary>ハンドル削除</summary>
     std::vector<HANDLE_TYPE> DeleteHandle(HANDLE_TYPE handle, bool countFlag = true)
     {
-        if (handle == -1)
+        if (static_cast<int>(handle) == -1)
         {
             return {};
         }
 
         // HACK: 変数名紛らわしいから変更
-        for (auto myHandle : mmHandles)
+        for (auto& myHandle : mmHandles)
         {
             for (int i = 0; i < myHandle.second.size(); i++)
             {
@@ -190,7 +190,7 @@ public:
                     if (myHandle.second[i] == handle)
                     { 
                         // カウント減少
-                        int countHandle = mmHandles[myHandle.first][0];
+                        int countHandle = static_cast<int>(mmHandles[myHandle.first][0]);
                         if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
                         {
                             mmHandleCounts[countHandle] -= 1;
@@ -226,7 +226,7 @@ public:
                     if (myHandle.second[i] == handle)
                     {
                         // カウント減少
-                        int countHandle = mmHandles[myHandle.first][0];
+                        int countHandle = static_cast<int>(mmHandles[myHandle.first][0]);
                         if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
                         {
                             mmHandleCounts[countHandle] -= 1;
@@ -263,7 +263,7 @@ public:
                     if (myHandle.second[i] == handle)
                     {
                         // カウント減少
-                        int countHandle = mmHandles[myHandle.first][0];
+                        int countHandle = static_cast<int>(mmHandles[myHandle.first][0]);
                         if (countFlag && (mmHandleCounts.find(countHandle) != mmHandleCounts.end()))
                         {
                             mmHandleCounts[countHandle] -= 1;
@@ -293,7 +293,7 @@ public:
                             // カウントが参照しているハンドルなら入れ替える
                             if (i == 0)
                             {
-                                mmHandleCounts[mmHandles[myHandle.first][0]] = mmHandleCounts[countHandle];
+                                mmHandleCounts[static_cast<int>(mmHandles[myHandle.first][0])] = mmHandleCounts[countHandle];
                                 mmHandleCounts.erase(countHandle);
                             }
                         }
@@ -310,7 +310,7 @@ public:
     Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::HANDLE_FLAG);
 
 #ifdef _DEBUG
-    DEBUG::SaveText("\nハンドル未発見 : " + std::to_string(handle) + " <= ", DEBUG::DEBUG_MAP_TYPE::DEBUG_UNDISCOVERED);
+    DEBUG::SaveText("\nハンドル未発見 : " + std::to_string(static_cast<int>(handle)) + " <= ", DEBUG::DEBUG_MAP_TYPE::DEBUG_UNDISCOVERED);
 #endif
 
         return {};
@@ -341,9 +341,9 @@ public:
     /*【交換】*/
     /*--------*/
     /// <summary>ハンドルの値を交換する</summary>
-    void SwapHandle(HANDLE_TYPE srcHandle, HANDLE_TYPE destHandle)
+    bool SwapHandle(HANDLE_TYPE srcHandle, HANDLE_TYPE destHandle)
     {
-        for (auto myHandle : mmHandles)
+        for (auto& myHandle : mmHandles)
         {
             for (int i = 0; i < myHandle.second.size(); i++)
             {
@@ -351,13 +351,15 @@ public:
                 {
                     if (i == 0)
                     {
-                        mmHandleCounts[destHandle] = mmHandleCounts[srcHandle];
-                        mmHandleCounts.erase(srcHandle);
+                        mmHandleCounts[static_cast<int>(destHandle)] = mmHandleCounts[static_cast<int>(srcHandle)];
+                        mmHandleCounts.erase(static_cast<int>(srcHandle));
                     }
                     mmHandles[myHandle.first][i] = destHandle;
+                    return true;
                 }
             }
         }
+        return false;
     }
 };
 

@@ -1,12 +1,12 @@
 #include <vector>
 
 #include "BitFlag.h"
-#include "TileData.h"
+#include "MapData.h"
 
 #include "DxLib.h"
 
 #include "MapManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "UtilCalc.h"
 
 // タイルデータ

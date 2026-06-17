@@ -3,7 +3,7 @@
 
 #include "AttackEnum.h"
 
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 
 enum class ATTACK_METHOD_TYPE;
 

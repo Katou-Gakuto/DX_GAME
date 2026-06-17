@@ -5,8 +5,8 @@
 #include "DrawData.h"
 #include "Status.h"
 
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 /*----------------------*/
 /*【リザルトUIステート】*/

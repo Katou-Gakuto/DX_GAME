@@ -7,7 +7,7 @@
 
 #include "AnimationBase.h"
 #include "ModelBase.h"
-#include "StateBase.h"
+#include "StateAnimationBase.h"
 #include "UtilCalc.h"
 
 /*----------*/

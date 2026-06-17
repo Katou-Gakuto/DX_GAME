@@ -8,7 +8,7 @@
 #include "DrawManager.h"
 #include "EnemyCommonProcessing.h"
 #include "GameManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "StopManager.h"
 
 EnemyCommonProcessing::EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType)

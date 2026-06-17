@@ -10,9 +10,12 @@
 struct DIV_GRAPH_DATA
 {
 public:
+	int Id = -1;
+	static int IdCount;
+
 	std::string fileName;
 
-	int* handle;
+	int* handle = nullptr;
 
 	int allNum;
 	
@@ -27,6 +30,9 @@ public:
 
 	DIV_GRAPH_DATA()
 	{
+		Id = IdCount;
+		IdCount += 1;
+
 		handle = nullptr;
 		allNum = 0;
 		xNum = 0;
@@ -40,6 +46,9 @@ public:
 	/*初期化用(ハンドルの配列と全画像の枚数のみ設定)*/
 	DIV_GRAPH_DATA(int allNumber)
 	{
+		Id = IdCount;
+		IdCount += 1;
+		
 		handle = (int *)malloc(sizeof(int) * allNumber);
 		allNum = allNumber;
 		xNum = 0;
@@ -48,6 +57,35 @@ public:
 		ySize = 0;
 		number = -1;
 		count = 0;
+	}
+	
+	void HandleDelete()
+	{
+		if (handle != nullptr)
+		{
+			free(handle);
+			handle = nullptr;
+		}
+	}
+
+	operator int() const
+    {
+		if (handle == nullptr)
+		{
+			return -1;
+		}
+
+		return Id;
+    }
+
+	bool operator==(const DIV_GRAPH_DATA& rhs) const
+	{
+		return Id == rhs.Id;
+	}
+
+	bool operator!=(const DIV_GRAPH_DATA& rhs) const
+	{
+		return Id != rhs.Id;
 	}
 };
 

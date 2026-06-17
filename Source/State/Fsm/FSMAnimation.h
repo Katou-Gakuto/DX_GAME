@@ -1,5 +1,9 @@
 #pragma once
+#include "AnimationData.h"
+#include "StateData.h"
 
+#include "FSM.h"
+#include "StateAnimation.h"
 
 // TODO: 1つのモデルに対して複数のアニメーションを後から適用できるようにする
 /*----------*/

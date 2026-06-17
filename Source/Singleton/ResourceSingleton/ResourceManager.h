@@ -6,12 +6,12 @@
 #include "ResourceEnum.h"
 #include "ResourceData.h"
 #include "Vector2.h"
-#include "UtilCalc.h"
 
 #include "DxLib.h"
 
-template<typename QUOTE_SOURCE>
-class HandleContainer;
+#include "HandleContainer.h"
+#include "UtilCalc.h"
+
 class DataManager;
 
 class ResourceManager

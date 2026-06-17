@@ -1,7 +1,7 @@
 #pragma once
 #include "CameraData.h"
 
-#include "StateBase.h"
+#include "StateCameraBase.h"
 
 /*--------------------*/
 /*【固定視点ステート】*/

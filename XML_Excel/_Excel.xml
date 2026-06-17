@@ -619,7 +619,7 @@ int変数設定
    </explanations>
    </member>
    <member className="GameEndState">
-   <functionName>Cloce</functionName>
+   <functionName>Close</functionName>
    <explanations>
 終了
    </explanations>
@@ -655,7 +655,7 @@ int変数設定
    </explanations>
    </member>
    <member className="ConfigChangeState">
-   <functionName>Cloce</functionName>
+   <functionName>Close</functionName>
    <explanations>
 終了
    </explanations>
@@ -691,7 +691,7 @@ int変数設定
    </explanations>
    </member>
    <member className="DrawPlayerDataState">
-   <functionName>Cloce</functionName>
+   <functionName>Close</functionName>
    <explanations>
 終了
    </explanations>
@@ -727,7 +727,7 @@ int変数設定
    </explanations>
    </member>
    <member className="PauseGameUIState">
-   <functionName>Cloce</functionName>
+   <functionName>Close</functionName>
    <explanations>
 終了
    </explanations>
@@ -763,7 +763,7 @@ int変数設定
    </explanations>
    </member>
    <member className="NormalGameUIState">
-   <functionName>Cloce</functionName>
+   <functionName>Close</functionName>
    <explanations>
 終了
    </explanations>

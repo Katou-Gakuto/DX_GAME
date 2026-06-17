@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
 
 class Attack_RobotJump : public AttackBase
 {

@@ -1,6 +1,7 @@
 #include <map>
 
 #include "AttackEnum.h"
+#include "SceneEnum.h"
 #include "DrawData.h"
 #include "ResourceData.h"
 
@@ -10,13 +11,12 @@
 #include "AttackManager.h"
 #include "DataManager.h"
 #include "DrawManager.h"
-#include "FSM.h"
+#include "FSMScene.h"
 #include "GameManager.h"
 #include "ModelsControllerBase.h"
 #include "ObjectBase.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
-#include "StateBase.h"
 #include "StopManager.h"
 #include "UtilCalc.h"
 #include "UtilFactorys.h"

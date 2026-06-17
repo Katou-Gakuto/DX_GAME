@@ -1,7 +1,7 @@
 #include "Master.h"
 
 #include "Attack_RobotSpceial.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
 

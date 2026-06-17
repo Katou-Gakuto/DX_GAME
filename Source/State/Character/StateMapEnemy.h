@@ -3,8 +3,8 @@
 #include "StateEnum.h"
 
 #include "EnemyCommonProcessing.h"
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 class KeyState;
 class SceneManager;

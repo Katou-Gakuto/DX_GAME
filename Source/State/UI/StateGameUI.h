@@ -3,8 +3,8 @@
 
 #include "DrawData.h"
 
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 #include "UI_Check.h"
 
 class MapManager;
@@ -122,7 +122,7 @@ protected:
 //     void Draw(UIBase* ui) override;
 
 // 	/// <summary>終了</summary>
-// 	int Cloce(UIBase* ui) override;
+// 	int Close(UIBase* ui) override;
 // };
 
 /*----------------------*/
@@ -150,7 +150,7 @@ public:
     void Draw(UIBase* ui) override;
 
     /// <summary>終了</summary>
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -196,7 +196,7 @@ public:
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 
@@ -225,7 +225,7 @@ public:
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*--------------------*/
@@ -260,7 +260,7 @@ public:
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -296,5 +296,5 @@ public:
     void GameEnd(void *null);
 
 	/// <summary>終了</summary>
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };

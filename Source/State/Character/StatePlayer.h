@@ -4,8 +4,8 @@
 #include "StateEnum.h"
 #include "DrawData.h"
 
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 class CameraManager;
 class KeyState;

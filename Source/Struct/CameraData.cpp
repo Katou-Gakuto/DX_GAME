@@ -1,6 +1,6 @@
 #include "CameraData.h"
 
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "UtilCalc.h"
 
 CameraData::CameraData()

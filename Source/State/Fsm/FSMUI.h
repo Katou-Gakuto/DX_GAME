@@ -1,5 +1,8 @@
 #pragma once
+#include "StateEnum.h"
 
+#include "FSM.h"
+#include "ObjectBase_UI.h"
 
 /*----------*/
 /*【UI有限状態マシン】*/
@@ -21,7 +24,7 @@ public:
 	/*決定 ※UIBaseに設置してない*/
 	void Decision(UIBase* ui);
 	/*終了 ※この処理の前にUIBaseでuiを削除する仕組みになっている*/
-	void Cloce(UIBase* ui);
+	void Close(UIBase* ui);
 
 	// /*マウス*/
 	// void Mouse(UIBase* ui);

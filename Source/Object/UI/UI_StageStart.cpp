@@ -187,7 +187,7 @@ void UI_StageStart::UIUpdate()
 	}
 	else if (mstSurvivalTime < Master::mpTimeManager->GetElapsedTime())
 	{
-		CloceProcess();
+		CloseProcess();
 	}
 
 }
@@ -210,7 +210,7 @@ void UI_StageStart::DecisionProcess()
 }
 
 // íœˆ—
-void UI_StageStart::CloceProcess()
+void UI_StageStart::CloseProcess()
 {
 	SetDeleteFlag(true);
 	Master::mpGameManager->GetCameraManager()->SetCameraMode(Master::mpGameManager->GetSceneManager()->GetSceneCameraID());

@@ -2,7 +2,7 @@
 #include <vector>
 #include "TimeData.h"
 
-#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
 
 class Attack_RobotSpceial : public AttackBase
 {

@@ -12,7 +12,7 @@
 #include "MiniMapData.h"
 #include "ResourceData.h"
 #include "TargetData.h"
-#include "TileData.h"
+#include "MapData.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -26,7 +26,7 @@
 #include "ImguiManager.h"
 #include "MapManager.h"
 #include "ModelMap.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
 #include "TargetManager.h"

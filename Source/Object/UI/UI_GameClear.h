@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 
 class UI_GameClear : public UIBase
 {

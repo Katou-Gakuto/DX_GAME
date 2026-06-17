@@ -148,6 +148,9 @@
     <Filter Include="ヘッダー ファイル\Singleton\Resource">
       <UniqueIdentifier>{908c6470-75da-4935-bcbe-3622000764c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\TemplateTypeRestriction">
+      <UniqueIdentifier>{38dc3c76-02b1-493c-a3b5-98ad00a6d854}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -318,9 +321,6 @@
     <ClCompile Include="Source\Struct\TargetData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Struct\TileData.cpp">
-      <Filter>ソース ファイル\Struct</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Util\UtilCalc.cpp">
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
@@ -393,9 +393,6 @@
     <ClCompile Include="Source\Singleton\AnimationStateManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\Fsm\FSM.cpp">
-      <Filter>ソース ファイル\State\Fsm</Filter>
-    </ClCompile>
     <ClCompile Include="Source\State\StateBase\StateCameraBase.cpp">
       <Filter>ソース ファイル\State\StateBase</Filter>
     </ClCompile>
@@ -452,6 +449,9 @@
     </ClCompile>
     <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceSound.cpp">
       <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Struct\MapData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -659,9 +659,6 @@
     <ClInclude Include="Source\Struct\TargetData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Struct\TileData.h">
-      <Filter>ヘッダー ファイル\Struct</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\Vector2.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -856,6 +853,12 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceEffect.h">
       <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TemplateTypeRestriction\TemplateType_Equal.h">
+      <Filter>ヘッダー ファイル\TemplateTypeRestriction</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\MapData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

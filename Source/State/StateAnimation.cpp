@@ -15,7 +15,7 @@
 #include "ModelsControllerBase.h"
 #include "ResourceManager.h"
 #include "StateAnimation.h"
-#include "StateBase.h"
+#include "StateAnimationBase.h"
 #include "UtilCalc.h"
 
 /*----------*/

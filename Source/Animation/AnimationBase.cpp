@@ -1,6 +1,6 @@
 #include "AnimationBase.h"
 
-#include "FSM.h"
+#include "FSMAnimation.h"
 
 AnimationBase::AnimationBase()
 : mpModelsController(nullptr)

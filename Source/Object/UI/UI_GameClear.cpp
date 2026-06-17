@@ -2,9 +2,9 @@
 
 #include "Master.h"
 
-#include "FSM.h"
+#include "FSMUI.h"
 #include "GameManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 #include "SceneManager.h"
 #include "UI_GameClear.h"
 

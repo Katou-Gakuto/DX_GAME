@@ -89,7 +89,6 @@
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
-    <ClCompile Include="Source\State\Fsm\FSM.cpp" />
     <ClCompile Include="Source\State\Fsm\FSMAnimation.cpp" />
     <ClCompile Include="Source\State\Fsm\FSMCamera.cpp" />
     <ClCompile Include="Source\State\Fsm\FSMCharacter.cpp" />
@@ -113,7 +112,7 @@
     <ClCompile Include="Source\Struct\ResourceData.cpp" />
     <ClCompile Include="Source\Struct\GameDatas.cpp" />
     <ClCompile Include="Source\Struct\TargetData.cpp" />
-    <ClCompile Include="Source\Struct\TileData.cpp" />
+    <ClCompile Include="Source\Struct\MapData.cpp" />
     <ClCompile Include="Source\Util\UtilCalc.cpp" />
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
@@ -247,9 +246,10 @@
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Struct\TargetData.h" />
     <ClInclude Include="Source\Struct\TelopData.h" />
-    <ClInclude Include="Source\Struct\TileData.h" />
+    <ClInclude Include="Source\Struct\MapData.h" />
     <ClInclude Include="Source\Struct\TimeData.h" />
     <ClInclude Include="Source\Struct\Vector2.h" />
+    <ClInclude Include="Source\TemplateTypeRestriction\TemplateType_Equal.h" />
     <ClInclude Include="Source\Util\UtilCalc.h" />
     <ClInclude Include="Source\Util\UtilChange.h" />
     <ClInclude Include="Source\Util\UtilFactorys.h" />
@@ -347,14 +347,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -366,13 +366,13 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

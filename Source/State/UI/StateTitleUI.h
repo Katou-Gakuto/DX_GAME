@@ -3,8 +3,8 @@
 
 #include "Status.h"
 
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 enum class CHARACTER_TYPE;
 enum class SCENE;
@@ -150,7 +150,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -180,7 +180,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -213,7 +213,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -243,7 +243,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -273,7 +273,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -303,7 +303,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -333,7 +333,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -363,7 +363,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -393,7 +393,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };
@@ -423,7 +423,7 @@ public:
 	/*Œˆ’è*/
 	void Decision(UIBase* ui) override;
 	/*–ß‚é*/
-	void Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*•`‰æ*/
 	void Draw(UIBase* ui) override;
 };

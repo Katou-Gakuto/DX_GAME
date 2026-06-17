@@ -7,7 +7,7 @@
 #include "SceneEnum.h"
 #include "GameDatas.h"
 #include "Status.h"
-#include "TileData.h"
+#include "MapData.h"
 #include "Vector2.h"
 
 enum class MapType;

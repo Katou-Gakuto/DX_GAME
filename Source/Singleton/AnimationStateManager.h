@@ -12,7 +12,7 @@ private:
 	std::map<int, ANIMATION_STATE_INFO> mstAnimationStateInfos;
 public:
 
-	AnimationStateManager()
+	AnimationStateManager();
 	~AnimationStateManager();
 
 	/// <summary>I—¹ˆ—</summary>

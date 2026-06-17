@@ -1,7 +1,7 @@
 #include "Master.h"
 
 #include "Attack_Shot.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
 

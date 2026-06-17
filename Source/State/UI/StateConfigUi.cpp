@@ -13,7 +13,7 @@
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "TargetManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 
 #include "ImguiManager.h"
 bool imguiSetFlag_Config = true;
@@ -627,7 +627,7 @@ STATE_TYPE_UI ConfigSelectState::Update(UIBase* ui)
     AllConfigDrawSetting(ui);
 
     ui->DefaultDecision();
-    ui->DefaultCloce();
+    ui->DefaultClose();
     if (ui->CheckDown_Frame())
     {
         ui->Decision();
@@ -673,7 +673,7 @@ void ConfigSelectState::Draw(UIBase* ui)
     printfDx("%d", ui->GetSelectNumber());
 }
 
-STATE_TYPE_UI ConfigSelectState::Cloce(UIBase* ui)
+STATE_TYPE_UI ConfigSelectState::Close(UIBase* ui)
 {
     return mnPreConfigExceptStateNumber;
 }
@@ -809,7 +809,7 @@ STATE_TYPE_UI MinimapConfigState::Update(UIBase* ui)
     ConfigDrawSetting(ui);
 
     ui->DefaultSelectProcess();
-    ui->DefaultCloce();
+    ui->DefaultClose();
 
     return mStateNumber;
 }
@@ -825,7 +825,7 @@ void MinimapConfigState::Draw(UIBase* ui)
     printfDx("ミニマップ");
 }
 
-STATE_TYPE_UI MinimapConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI MinimapConfigState::Close(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
@@ -901,7 +901,7 @@ STATE_TYPE_UI SoundConfigState::Update(UIBase* ui)
     ConfigDrawSetting(ui);
 
     ui->DefaultSelectProcess();
-    ui->DefaultCloce();
+    ui->DefaultClose();
 
     return mStateNumber;
 }
@@ -917,7 +917,7 @@ void SoundConfigState::Draw(UIBase* ui)
     printfDx("サウンド");
 }
 
-STATE_TYPE_UI SoundConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI SoundConfigState::Close(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
@@ -993,7 +993,7 @@ STATE_TYPE_UI CameraConfigState::Update(UIBase* ui)
     ConfigDrawSetting(ui);
     
     ui->DefaultSelectProcess();
-    ui->DefaultCloce();
+    ui->DefaultClose();
     
     return mStateNumber;
 }
@@ -1009,7 +1009,7 @@ void CameraConfigState::Draw(UIBase* ui)
     printfDx("カメラ");
 }
 
-STATE_TYPE_UI CameraConfigState::Cloce(UIBase* ui)
+STATE_TYPE_UI CameraConfigState::Close(UIBase* ui)
 {
     return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }

@@ -16,7 +16,7 @@
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
@@ -162,7 +162,7 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 // }
 
 // // 終了
-// int StartGameUIState::Cloce(UIBase* ui)
+// int StartGameUIState::Close(UIBase* ui)
 // {
 //     return mStateNumber;
 // }
@@ -222,7 +222,7 @@ void NormalGameUIState::Draw(UIBase* ui)
 }
 
 // 終了
-STATE_TYPE_UI NormalGameUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI NormalGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -427,7 +427,7 @@ void PauseGameUIState::Draw(UIBase* ui)
 }
 
 // 終了
-STATE_TYPE_UI PauseGameUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI PauseGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
@@ -462,7 +462,7 @@ STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
 
     ui->DefaultDecision();
 
-    ui->DefaultCloce();
+    ui->DefaultClose();
 
     return mStateNumber;
 }
@@ -479,7 +479,7 @@ void DrawPlayerDataState::Draw(UIBase* ui)
 }
 
 // 終了
-STATE_TYPE_UI DrawPlayerDataState::Cloce(UIBase* ui)
+STATE_TYPE_UI DrawPlayerDataState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
@@ -517,7 +517,7 @@ STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
 
     ui->LeftRightSelectProcess();
     ui->DefaultDecision();
-    ui->DefaultCloce();
+    ui->DefaultClose();
 
     printfDx("%d\n", ui->GetSelectNumber());
 
@@ -545,7 +545,7 @@ void ConfigChangeState::Draw(UIBase* ui)
 }
 
 // 終了
-STATE_TYPE_UI ConfigChangeState::Cloce(UIBase* ui)
+STATE_TYPE_UI ConfigChangeState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
@@ -612,7 +612,7 @@ void GameEndState::GameEnd(void *null)
 }
 
 // 終了
-STATE_TYPE_UI GameEndState::Cloce(UIBase* ui)
+STATE_TYPE_UI GameEndState::Close(UIBase* ui)
 {
     return mStateNumber;
 }

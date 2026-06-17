@@ -5,8 +5,8 @@
 #include "DrawData.h"
 #include "Vector2.h"
 
-#include "ObjectBase.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 class MapManager;
 class TargetManager;
@@ -231,7 +231,7 @@ public:
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 
 private:
 
@@ -261,7 +261,7 @@ public:
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -286,7 +286,7 @@ public:
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -311,5 +311,5 @@ public:
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    void Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };

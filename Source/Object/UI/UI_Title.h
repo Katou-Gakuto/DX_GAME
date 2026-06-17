@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 
 class UI_Title : public UIBase
 {
@@ -31,5 +31,5 @@ private:
     void DecisionProcess() override;
 
     /*èIóπèàóù*/
-    void CloceProcess() override;
+    void CloseProcess() override;
 };

@@ -4,7 +4,7 @@
 
 #include "ModelsControllerBase.h"
 
-#include "FSM.h"
+#include "FSMAnimation.h"
 
 class AnimationBase
 {

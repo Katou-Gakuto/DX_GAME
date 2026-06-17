@@ -51,11 +51,11 @@ void FSMUI::Decision(UIBase* ui)
 }
 
 // I—¹
-void FSMUI::Cloce(UIBase* ui)
+void FSMUI::Close(UIBase* ui)
 {
 	if (mCurrentState == mnNextState)
 	{
-		SetState(mmStateMap[mCurrentState]->Cloce(ui), ui);
+		SetState(mmStateMap[mCurrentState]->Close(ui), ui);
 	}
 }
 

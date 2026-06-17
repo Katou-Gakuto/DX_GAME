@@ -671,7 +671,7 @@ void UIBase::DefaultDecision()
 }
 
 // デフォルト終了確認処理
-void UIBase::DefaultCloce()
+void UIBase::DefaultClose()
 {
 	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ここ修正すべき
 		// ||
@@ -679,17 +679,17 @@ void UIBase::DefaultCloce()
 		// (mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z)))
 		)
 	{
-		CloceProcess();
+		CloseProcess();
 	}
 }
 
 // デフォルト終了処理
-void UIBase::CloceProcess()
+void UIBase::CloseProcess()
 {
 	SetDeleteFlag(true);
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }
 

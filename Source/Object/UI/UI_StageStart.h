@@ -1,7 +1,7 @@
 #pragma once
 #include "TimeData.h"
 
-#include "ObjectBase.h"
+#include "ObjectBase_UI.h"
 
 class UI_StageStart : public UIBase
 {
@@ -43,5 +43,5 @@ private:
     void DecisionProcess() override;
     
     /*íœˆ—*/
-    void CloceProcess() override;
+    void CloseProcess() override;
 };

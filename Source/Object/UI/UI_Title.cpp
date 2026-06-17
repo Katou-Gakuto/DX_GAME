@@ -8,7 +8,7 @@
 
 #include "Master.h"
 
-#include "FSM.h"
+#include "FSMUI.h"
 #include "ResourceManager.h"
 #include "StateTitleUI.h"
 #include "UI_Title.h"
@@ -245,10 +245,10 @@ void UI_Title::DecisionProcess()
 }
 
 // íœˆ—
-void UI_Title::CloceProcess()
+void UI_Title::CloseProcess()
 {
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }

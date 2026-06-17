@@ -3,7 +3,7 @@
 #include "GameDataEnum.h"
 #include "GameDatas.h"
 
-#include "StateBase.h"
+#include "StateSceneBase.h"
 
 enum class ANIMATION_FACTORY_NUMBER;
 

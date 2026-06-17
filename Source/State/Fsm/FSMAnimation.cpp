@@ -1,4 +1,11 @@
 
+#include "AnimationData.h"
+#include "StateData.h"
+
+#include "FSM.h"
+#include "FSMAnimation.h"
+#include "StateAnimation.h"
+
 /*----------*/
 /*【アニメーション有限状態マシン】
 /*----------*/

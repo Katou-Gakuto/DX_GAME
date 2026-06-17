@@ -12,8 +12,10 @@
 
 enum class MODEL_TYPE;
 
+class AnimationBase;
 class CameraManager;
 class CharacterBase;
+class FSMAnimation;
 class FSMCamera;
 class FSMCharacter;
 class FSMScene;

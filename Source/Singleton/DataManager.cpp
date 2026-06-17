@@ -11,7 +11,7 @@
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
 #include "GameDatas.h"
-#include "TileData.h"
+#include "MapData.h"
 
 #include "DxLib.h"
 
@@ -19,7 +19,7 @@
 
 #include "DataManager.h"
 #include "EndManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 #include "UtilCalc.h"
 #include "UtilChange.h"
 

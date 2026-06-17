@@ -6,7 +6,7 @@
 
 #include "Master.h"
 
-#include "FSM.h"
+#include "FSMUI.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -289,10 +289,10 @@ void UI_Game::DecisionProcess()
 }
 
 // íœˆ—
-void UI_Game::CloceProcess()
+void UI_Game::CloseProcess()
 {
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }

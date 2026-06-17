@@ -14,7 +14,7 @@
 
 #include "DataManager.h"
 #include "FadeManager.h"
-#include "FSM.h"
+#include "FSMUI.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -415,7 +415,7 @@ STATE_TYPE_UI SelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->LeftRightSelectProcess();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -457,7 +457,7 @@ STATE_TYPE_UI SelectTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI SelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI SelectTitleUIState::Close(UIBase* ui)
 {
 	return mStateNumber;
 }
@@ -508,7 +508,7 @@ void NewDataCheckTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI NewDataCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -522,7 +522,7 @@ STATE_TYPE_UI NewDataCheckTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI NewDataCheckTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI NewDataCheckTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -576,7 +576,7 @@ void DataSelectTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI DataSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -600,7 +600,7 @@ STATE_TYPE_UI DataSelectTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI DataSelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI DataSelectTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -652,7 +652,7 @@ void TutorialTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI TutorialTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -667,7 +667,7 @@ STATE_TYPE_UI TutorialTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI TutorialTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI TutorialTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -716,7 +716,7 @@ void SettingTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI SettingTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -739,7 +739,7 @@ STATE_TYPE_UI SettingTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI SettingTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI SettingTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -786,7 +786,7 @@ void CharacterSelectTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI CharacterSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -800,7 +800,7 @@ STATE_TYPE_UI CharacterSelectTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI CharacterSelectTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI CharacterSelectTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -847,7 +847,7 @@ void PlayerNameTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI PlayerNameTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -861,7 +861,7 @@ STATE_TYPE_UI PlayerNameTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI PlayerNameTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI PlayerNameTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -908,7 +908,7 @@ void InputCheckTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI InputCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -923,7 +923,7 @@ STATE_TYPE_UI InputCheckTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI InputCheckTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI InputCheckTitleUIState::Close(UIBase* ui)
 {
 	return mStateNumber;
 }
@@ -970,7 +970,7 @@ void ScreenSizeTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI ScreenSizeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -984,7 +984,7 @@ STATE_TYPE_UI ScreenSizeTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI ScreenSizeTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI ScreenSizeTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }
@@ -1031,7 +1031,7 @@ void VolumeTitleUIState::OnExit(UIBase* ui)
 STATE_TYPE_UI VolumeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-	ui->DefaultCloce();
+	ui->DefaultClose();
 
 	ProcessUpadate(ui);
 
@@ -1045,7 +1045,7 @@ STATE_TYPE_UI VolumeTitleUIState::Decision(UIBase* ui)
 }
 
 // –ß‚é
-STATE_TYPE_UI VolumeTitleUIState::Cloce(UIBase* ui)
+STATE_TYPE_UI VolumeTitleUIState::Close(UIBase* ui)
 {
 	return GetPreUiState();
 }

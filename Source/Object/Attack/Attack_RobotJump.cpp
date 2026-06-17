@@ -6,7 +6,7 @@
 #include "Attack_RobotJump.h"
 #include "CameraManager.h"
 #include "GameManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"
 

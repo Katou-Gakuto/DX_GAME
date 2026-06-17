@@ -4,7 +4,7 @@
 
 #include "GameManager.h"
 #include "MapManager.h"
-#include "ObjectBase.h"
+#include "ObjectBase_Character.h"
 
 CharacterTargetData::CharacterTargetData()
 {

@@ -2,15 +2,14 @@
 #include <string>
 
 #include "HandleContainer.h"
+#include "ResourceBase.h"
 #include "UtilCalc.h"
 
 class ResourceGraph;
 
-class ResourceEffect
+class ResourceEffect : public ResourceBase<int>
 {
 private:
-	HandleContainer<std::string>* mpEffectHandleContainer;
-
 	bool mbEffectDrawFlag;
 	int mnEffectDrawPreHandle;
 
@@ -33,5 +32,5 @@ public:
 	void PlayAllEfect();
 
 	void EffectDrawProcess();
-	void DrawDataRelease();
+	void EffectDrawFlagReset();
 };

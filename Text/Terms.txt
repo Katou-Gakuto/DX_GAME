@@ -164,20 +164,22 @@ i_役割
     後ろに型
     最後に役割
     {型の例
-    	char     → c
-    	int      → n
-    	unsigned → u
-    	bool     → b
-    	string   → s
-    	struct   → st
-    	long     → l
-    	enum     → e
-    	map      → m
-    	VECTOR   → v
-    	関数     → fn
-    	クラス   → p
-    	void*    → p
-    	future	 → fu
+    	char     			→ c
+    	int      			→ n
+    	unsigned 			→ u
+    	bool     			→ b
+    	string   			→ s
+    	struct   			→ st
+    	long     			→ l
+    	enum     			→ e
+    	map      			→ m
+    	VECTOR   			→ v
+    	関数     			→ fn
+    	クラスポインタ  	 → p
+		クラス非ポインタ	 → cl
+    	void*    			→ p
+    	future	 			→ fu
+		iterator			→ it
     
     	例外
     	template<typename T> struct → テンプレートTの型に準拠

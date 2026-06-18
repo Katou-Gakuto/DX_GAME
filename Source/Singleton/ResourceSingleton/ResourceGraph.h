@@ -6,10 +6,11 @@
 #include "ResourceData.h"
 #include "HandleContainer.h"
 
+template<typename HANDLE_TYPE = int>
 class ResourceGraph
 {
 private:
-	HandleContainer<std::string>* mpGraphHandleContainer;
+	HandleContainer<std::string, HANDLE_TYPE>* mpGraphHandleContainer;
 
 	std::map<std::string, DIV_GRAPH_DATA> mmDivGraphHandle;
 	std::vector<std::string> msDivGraphFileNames;
@@ -28,4 +29,8 @@ public:
 	void ReduceDivGraphHandle(int number);
 
 	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
+};
+
+class ResourceDivGraph : public ResourceGraph<DIV_GRAPH_DATA>
+{
 };

@@ -17,110 +17,148 @@ class ResourceManager
 	/*--------*/
 
 public:
+	// リソースファイルの名前
 	static std::string msResourceFile;
+	// ディスプレイサイズ
 	static DisplaySize mstDisplaySize;
 
 public:
 	ResourceManager();
 	~ResourceManager();
 
+	/// <summary>初期化</summary>
 	void Initilize();
+	/// <summary>終了</summary>
 	void Finalize();
+
+	/// <summary>更新</summary>
 	void Update();
 
+	/// <summary>開始描画</summary>
 	void StartDraw();
+	/// <summary>中間描画</summary>
 	void MiddleDraw();
+	/// <summary>最終描画</summary>
 	void LastDraw();
+
+	/// <summary>描画データ解放</summary>
 	void DrawDataRelease();
 
 	/*----------*/
 	/*【描画】*/
 	/*----------*/
 private:
+	// シャドウマップハンドル
 	int mnShadowMapHandle;
+	
+	// シャドウ描画中フラグ
 	bool mbDrawShadowMapFlag;
 
-	Resource3DModel* mp3DModel;
-	ResourceGraph* mpGraph;
-	ResourceMovie* mpMovie;
-	ResourceSound* mpSound;
-	ResourceEffect* mpEffect;
-
+private:
+	/// <summary>シャドウマップの初期化</summary>
 	void ShadowMapInit();
-
-public:
-	void DrawModelHandle(int modelHandle);
-	void DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag);
-	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
 
 	/*----------*/
 	/*【取得】*/
 	/*----------*/
-public:
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, int y);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, int y, int sizeX, int sizeY);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, int y, float sizeXRatio, float sizeYRatio);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, int sizeY);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size);
-	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
-
+	/// <summary>シャドウマップ描画フラグ</summary>
 	inline bool GetShadowMapDrawFlag() const { return mbDrawShadowMapFlag; }
 
 	/*------------*/
 	/*【3Dモデル】*/
 	/*------------*/
+private:
+	Resource3DModel* mp3DModelResource;
 public:
-	int GetModelHandle(std::string fileName);
-	void ReduceModelHandle(int handle);
+	/// <summary>3Dモデルリソース取得</summary>
+	Resource3DModel* Get3DModelResource() { return mp3DModelResource; }
+
+	// int GetModelHandle(std::string fileName);
+	// void ReduceModelHandle(int handle);
 
 	/*--------*/
 	/*【画像】*/
 	/*--------*/
 public:
-	int GetGraphHandle(std::string fileName);
-	void ReduceGraphHandle(int handle);
-	void GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData);
-	void ReduceDivGraphHandle(int number);
+
+private:
+	ResourceGraph* mpGraphResource;
+	ResourceDivGraph* mpDivGraphResource;
+
+
+public:
+	/// <summary>画像リソース取得</summary>
+	ResourceGraph* GetGraphResource() { return mpGraphResource; }
+	/// <summary>分割画像リソース取得</summary>
+	ResourceDivGraph* GetDivGraphResource() { return mpDivGraphResource; }
+	// int GetGraphHandle(std::string fileName);
+	// void ReduceGraphHandle(int handle);
+	// void GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData);
+	// void ReduceDivGraphHandle(int number);
 
 	/*--------*/
 	/*【動画】*/
 	/*--------*/
+private:
+	ResourceMovie* mpMovieResource;
+
 public:
-	int GetMovieHandle(std::string fileName);
-	void ReduceMovie(int handle);
-	void PlayMovie(int handle);
-	void StopMovie(int handle);
-	void MovieReset(int handle);
-	void MovieLoop(int handle);
+	/// <summary>動画リソース取得</summary>
+	ResourceMovie* GetMovieResource() { return mpMovieResource; }
+
+	// int GetMovieHandle(std::string fileName);
+	// void ReduceMovie(int handle);
+	// void PlayMovie(int handle);
+	// void StopMovie(int handle);
+	// void MovieReset(int handle);
+	// void MovieLoop(int handle);
 
 	/*------------*/
 	/*【サウンド】*/
 	/*------------*/
 public:
-	int GetSoundHandle(std::string fileName);
-	void ReduceSoundHandle(int handle);
-	int Get3DSoundHandle(std::string fileName);
-	void Reduce3DSoundHandle(int handle);
-	void SetBackSoundHandle(int handle);
-	void SoundUpdate();
-	void SetPlaySound(int handle, int volume = -1);
-	void SetPlay3DSound(int handle, VECTOR position, int volume = -1);
-	void Set3DListenerPosition(VECTOR position, VECTOR frontPosition);
+	enum SOUND_RESOURCE_TYPE
+	{
+		SOUND = 0,
+		SOUND_3D,
+		SOUND_RESOURCE_TYPE_MAX
+	};
+private:
+	ResourceSound* mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX];
+
+public:
+	/// <summary>サウンドリソース取得</summary>
+	ResourceSound* GetSoundResource() { return mpSoundResource[SOUND_RESOURCE_TYPE::SOUND]; }
+	/// <summary>3Dサウンドリソース取得</summary>
+	ResourceSound* GetSoundResource() { return mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D]; }
+
+	// int GetSoundHandle(std::string fileName);
+	// void ReduceSoundHandle(int handle);
+	// int Get3DSoundHandle(std::string fileName);
+	// void Reduce3DSoundHandle(int handle);
+	// void SetBackSoundHandle(int handle);
+	// void SoundUpdate();
+	// void SetPlaySound(int handle, int volume = -1);
+	// void SetPlay3DSound(int handle, VECTOR position, int volume = -1);
+	// void Set3DListenerPosition(VECTOR position, VECTOR frontPosition);
 
 	/*----------*/
 	/*【エフェクト】*/
 	/*----------*/
+private:
+	ResourceEffect* mpEffectResource;
+
 public:
-	int GetEffectResource(std::string fileName, float size = 1.0f);
-	int GetEffectHandle(int handle, int oldHandle);
-	void DeletePlayEffectHandle(int handle);
-	void ReduceEffectDataHandle(int handle);
-	void DrawEffect(int handle, VECTOR position, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
-	void StopEffect(int handle);
-	void PlayEffect(int handle, float speed);
-	void StopAllEfect();
-	void PlayAllEfect();
+	/// <summary>エフェクトリソース取得</summary>
+	ResourceEffect* GetEffectResource() { return mpEffectResource; }
+
+	// int GetEffectResource(std::string fileName, float size = 1.0f);
+	// int GetEffectHandle(int handle, int oldHandle);
+	// void DeletePlayEffectHandle(int handle);
+	// void ReduceEffectDataHandle(int handle);
+	// void DrawEffect(int handle, VECTOR position, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne);
+	// void StopEffect(int handle);
+	// void PlayEffect(int handle, float speed);
+	// void StopAllEfect();
+	// void PlayAllEfect();
 };

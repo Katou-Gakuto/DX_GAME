@@ -18,8 +18,8 @@ enum class HANDLE_FLAG
     ZERO_LOOK,
     ZERO_EXCEPT_LOOK,
 };
-// INPROGRESS: HANDLE_TYPEint以外も対応させる
-template<typename QUOTE_SOURCE, typename HANDLE_TYPE = int, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
+
+template<typename QUOTE_SOURCE, typename HANDLE_TYPE/* = int*/, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
 class HandleContainer
 {
 private:
@@ -32,6 +32,9 @@ private:
     // 次のハンドル追加ファイル
     QUOTE_SOURCE msRegisterFileName;
 
+    // 次のハンドル追加ファイルのイテレーター
+    std::map<QUOTE_SOURCE, std::vector<HANDLE_TYPE>>::iterator mitRegisterFileIterator;
+
     // ハンドルフラグ
     HANDLE_FLAG meHandleFlag;
 
@@ -42,6 +45,7 @@ public:
     {
         mmHandles.clear();
         mmHandleCounts.clear();
+        mitRegisterFileIterator = mmHandles.end();
     }
 
     ~HandleContainer()
@@ -99,8 +103,9 @@ public:
     bool CheckFileName(QUOTE_SOURCE fileName)
     {
         msRegisterFileName = fileName;
+        mitRegisterFileIterator = mmHandles.find(fileName);
 
-        return mmHandles.find(fileName) != mmHandles.end();
+        return mitRegisterFileIterator != mmHandles.end();
     }
 
     /// <summary>ハンドルを登録する</summary>
@@ -114,11 +119,12 @@ public:
         }
 
         // 設定されたファイル名が使われていないなら新しく設定する
-        if (mmHandles.find(msRegisterFileName) == mmHandles.end())
+        if (mitRegisterFileIterator == mmHandles.end())
         {
             std::vector<HANDLE_TYPE> enptyHandleList;
             enptyHandleList.clear();
             mmHandles[msRegisterFileName] = enptyHandleList;
+            mitRegisterFileIterator = mmHandles.find(msRegisterFileName);
             
             mmHandleCounts[static_cast<int>(handle)] = 0;
         }
@@ -126,27 +132,27 @@ public:
         {
         case HANDLE_FLAG::ZERO_LOOK:
             // 返すハンドルを設定する
-            if (mmHandles[msRegisterFileName].size() <= 0)
+            if (mitRegisterFileIterator->second.size() <= 0)
             {
-                mmHandles[msRegisterFileName].push_back(handle);
+                mitRegisterFileIterator->second.push_back(handle);
             }
             else
             {
-                handle = mmHandles[msRegisterFileName][0];
+                handle = mitRegisterFileIterator->second[0];
             }
             break;
 
         case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
         default:
             // ハンドルを追加する
-            mmHandles[msRegisterFileName].push_back(handle);
+            mitRegisterFileIterator->second.push_back(handle);
         break;
         }
 
         // カウントフラグが「true」ならカウントを増やす
         if (countFlag)
         {
-            mmHandleCounts[static_cast<int>(mmHandles[msRegisterFileName][0])] += 1;
+            mmHandleCounts[static_cast<int>(mitRegisterFileIterator->second[0])] += 1;
         }
 
         return handle;
@@ -156,6 +162,7 @@ public:
     HANDLE_TYPE RegisterHandle(HANDLE_TYPE handle, QUOTE_SOURCE fileName, bool countFlag = true)
     {
         msRegisterFileName = fileName;
+        mitRegisterFileIterator = mmHandles.find(fileName);
 
         return RegisterHandle(handle, countFlag);
     }

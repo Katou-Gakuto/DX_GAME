@@ -15,12 +15,16 @@ DisplaySize ResourceManager::mstDisplaySize = DisplaySize();
 ResourceManager::ResourceManager()
 : mnShadowMapHandle(-1)
 , mbDrawShadowMapFlag(false)
-, mp3DModel(nullptr)
-, mpGraph(nullptr)
-, mpMovie(nullptr)
-, mpSound(nullptr)
-, mpEffect(nullptr)
+, mp3DModelResource(nullptr)
+, mpGraphResource(nullptr)
+, mpDivGraphResource(nullptr)
+, mpMovieResource(nullptr)
+, mpEffectResource(nullptr)
 {
+	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
+	{
+		mpSoundResource[i] = nullptr;
+	}
 }
 
 ResourceManager::~ResourceManager()
@@ -29,20 +33,24 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::Initilize()
 {
-	mp3DModel = new Resource3DModel();
-	mp3DModel->Initilize();
+	mp3DModelResource = new Resource3DModel();
+	mp3DModelResource->Initilize();
 
-	mpGraph = new ResourceGraph();
-	mpGraph->Initilize();
+	mpGraphResource = new ResourceGraph();
+	mpGraphResource->Initilize();
+	mpDivGraphResource = new ResourceDivGraph();
+	mpDivGraphResource->Initilize();
 
-	mpMovie = new ResourceMovie();
-	mpMovie->Initilize();
+	mpMovieResource = new ResourceMovie();
+	mpMovieResource->Initilize();
 
-	mpSound = new ResourceSound();
-	mpSound->Initilize(Master::mpDataManager);
+	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND] = new ResourceSound();
+	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND]->Initilize(Master::mpDataManager);
+	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D] = new ResourceSound();
+	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D]->Initilize(Master::mpDataManager);
 
-	mpEffect = new ResourceEffect();
-	mpEffect->Initilize(mpGraph, msResourceFile);
+	mpEffectResource = new ResourceEffect();
+	mpEffectResource->Initilize(mpGraphResource, msResourceFile);
 
 	Vector2_Int setDisplaySize;
 	GetScreenState(&setDisplaySize.x, &setDisplaySize.y, &mstDisplaySize.colorBit);
@@ -57,49 +65,64 @@ void ResourceManager::Finalize()
 {
 	DeleteShadowMap(mnShadowMapHandle);
 
-	if (mp3DModel != nullptr)
+	if (mp3DModelResource != nullptr)
 	{
-		mp3DModel->Finalize();
-		delete mp3DModel;
-		mp3DModel = nullptr;
+		mp3DModelResource->Finalize();
+		delete mp3DModelResource;
+		mp3DModelResource = nullptr;
 	}
 
-	if (mpGraph != nullptr)
+	if (mpGraphResource != nullptr)
 	{
-		mpGraph->Finalize();
-		delete mpGraph;
-		mpGraph = nullptr;
+		mpGraphResource->Finalize();
+		delete mpGraphResource;
+		mpGraphResource = nullptr;
 	}
 
-	if (mpMovie != nullptr)
+	if (mpDivGraphResource != nullptr)
 	{
-		mpMovie->Finalize();
-		delete mpMovie;
-		mpMovie = nullptr;
+		mpDivGraphResource->Finalize();
+		delete mpDivGraphResource;
+		mpDivGraphResource = nullptr;
 	}
 
-	if (mpSound != nullptr)
+	if (mpMovieResource != nullptr)
 	{
-		mpSound->Finalize();
-		delete mpSound;
-		mpSound = nullptr;
+		mpMovieResource->Finalize();
+		delete mpMovieResource;
+		mpMovieResource = nullptr;
 	}
 
-	if (mpEffect != nullptr)
+	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
 	{
-		mpEffect->Finalize();
-		delete mpEffect;
-		mpEffect = nullptr;
+		if (mpSoundResource[i] != nullptr)
+		{
+			mpSoundResource[i]->Finalize();
+			delete mpSoundResource[i];
+			mpSoundResource[i] = nullptr;
+		}
+	}
+
+	if (mpEffectResource != nullptr)
+	{
+		mpEffectResource->Finalize();
+		delete mpEffectResource;
+		mpEffectResource = nullptr;
 	}
 }
 
 void ResourceManager::Update()
 {
-	mpSound->SoundUpdate();
+	// サウンドボリュームの更新
+	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
+	{
+		mpSoundResource[i]->SoundUpdate();
+	}
 }
 
 void ResourceManager::StartDraw()
 {
+	// シャドウマップへの描画の準備
 	ShadowMap_DrawSetup(mnShadowMapHandle);
 	mbDrawShadowMapFlag = true;
 }
@@ -113,29 +136,33 @@ void ResourceManager::MiddleDraw()
 
 void ResourceManager::LastDraw()
 {
-	mpEffect->EffectDrawProcess();
+	// エフェクト描画処理
+	mpEffectResource->EffectDrawProcess();
 }
 
 void ResourceManager::DrawDataRelease()
 {
+	// 描画に使用するシャドウマップの設定を解除
 	SetUseShadowMap(0, -1);
-	mpEffect->DrawDataRelease();
+	
+	// エフェクト描画フラグ無効化
+	mpEffectResource->EffectDrawFlagReset();
 }
 
-void ResourceManager::DrawModelHandle(int modelHandle)
-{
-	mp3DModel->DrawModelHandle(modelHandle);
-}
+// void ResourceManager::DrawModelHandle(int modelHandle)
+// {
+// 	mp3DModelResource->DrawModelHandle(modelHandle);
+// }
 
-void ResourceManager::DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag)
-{
-	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
-}
+// void ResourceManager::DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag)
+// {
+// 	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
+// }
 
-void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
-{
-	mpGraph->DrawData_Graph(drawData);
-}
+// void ResourceManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
+// {
+// 	mpGraphResource->DrawData_Graph(drawData);
+// }
 
 void ResourceManager::ShadowMapInit()
 {
@@ -144,282 +171,152 @@ void ResourceManager::ShadowMapInit()
 	SetShadowMapDrawArea(mnShadowMapHandle, VGet(-400.0f, -1.0f, -400.0f), VGet(10000.0f, 10000.0f, 10000.0f));
 }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-	return drawData;
-}
+// int ResourceManager::GetModelHandle(std::string fileName)
+// {
+// 	return mp3DModel->GetModelHandle(fileName);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, int sizeX, int sizeY)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-	drawData.size.x = sizeX;
-	drawData.size.y = sizeY;
-	return drawData;
-}
+// void ResourceManager::ReduceModelHandle(int handle)
+// {
+// 	mp3DModel->ReduceModelHandle(handle);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos.x = x;
-	drawData.pos.y = y;
-	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
-	return drawData;
-}
+// int ResourceManager::GetGraphHandle(std::string fileName)
+// {
+// 	return mpGraph->GetGraphHandle(fileName);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
-	return drawData;
-}
+// void ResourceManager::ReduceGraphHandle(int handle)
+// {
+// 	mpGraph->ReduceGraphHandle(handle);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
-	drawData.size.x = sizeX;
-	drawData.size.y = sizeY;
-	return drawData;
-}
+// void ResourceManager::GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData)
+// {
+// 	mpGraph->GetDivGraphHandle(fileName, graphData);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos = mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
-	drawData.size = mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
-	return drawData;
-}
+// void ResourceManager::ReduceDivGraphHandle(int number)
+// {
+// 	mpGraph->ReduceDivGraphHandle(number);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos = pos;
-	return drawData;
-}
+// int ResourceManager::GetMovieHandle(std::string fileName)
+// {
+// 	return mpMovie->GetMovieHandle(fileName);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.pos = pos;
-	drawData.size = size;
-	return drawData;
-}
+// void ResourceManager::ReduceMovie(int handle)
+// {
+// 	mpMovie->ReduceMovie(handle);
+// }
 
-DRAW_GRAPH_DATA ResourceManager::GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
-{
-	DRAW_GRAPH_DATA drawData;
-	drawData.drawType = DRAW_GRAPH_TYPE::FREE;
-	if (handle != -1)
-	{
-		drawData.handle = handle;
-	}
-	drawData.transFlag = TRUE;
-	drawData.upLeft = leftUp;
-	drawData.upRight = rightUp;
-	drawData.downLeft = leftDown;
-	drawData.downRight = rightDown;
-	return drawData;
-}
+// void ResourceManager::PlayMovie(int handle)
+// {
+// 	mpMovie->PlayMovie(handle);
+// }
 
-int ResourceManager::GetModelHandle(std::string fileName)
-{
-	return mp3DModel->GetModelHandle(fileName);
-}
+// void ResourceManager::StopMovie(int handle)
+// {
+// 	mpMovie->StopMovie(handle);
+// }
 
-void ResourceManager::ReduceModelHandle(int handle)
-{
-	mp3DModel->ReduceModelHandle(handle);
-}
+// void ResourceManager::MovieReset(int handle)
+// {
+// 	mpMovie->MovieReset(handle);
+// }
 
-int ResourceManager::GetGraphHandle(std::string fileName)
-{
-	return mpGraph->GetGraphHandle(fileName);
-}
+// void ResourceManager::MovieLoop(int handle)
+// {
+// 	mpMovie->MovieLoop(handle);
+// }
 
-void ResourceManager::ReduceGraphHandle(int handle)
-{
-	mpGraph->ReduceGraphHandle(handle);
-}
+// int ResourceManager::GetSoundHandle(std::string fileName)
+// {
+// 	return mpSound->GetSoundHandle(fileName);
+// }
 
-void ResourceManager::GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData)
-{
-	mpGraph->GetDivGraphHandle(fileName, graphData);
-}
+// void ResourceManager::ReduceSoundHandle(int handle)
+// {
+// 	mpSound->ReduceSoundHandle(handle);
+// }
 
-void ResourceManager::ReduceDivGraphHandle(int number)
-{
-	mpGraph->ReduceDivGraphHandle(number);
-}
+// int ResourceManager::Get3DSoundHandle(std::string fileName)
+// {
+// 	return mpSound->Get3DSoundHandle(fileName);
+// }
 
-int ResourceManager::GetMovieHandle(std::string fileName)
-{
-	return mpMovie->GetMovieHandle(fileName);
-}
+// void ResourceManager::Reduce3DSoundHandle(int handle)
+// {
+// 	mpSound->Reduce3DSoundHandle(handle);
+// }
 
-void ResourceManager::ReduceMovie(int handle)
-{
-	mpMovie->ReduceMovie(handle);
-}
+// void ResourceManager::SetBackSoundHandle(int handle)
+// {
+// 	mpSound->SetBackSoundHandle(handle);
+// }
 
-void ResourceManager::PlayMovie(int handle)
-{
-	mpMovie->PlayMovie(handle);
-}
+// void ResourceManager::SoundUpdate()
+// {
+// 	mpSound->SoundUpdate();
+// }
 
-void ResourceManager::StopMovie(int handle)
-{
-	mpMovie->StopMovie(handle);
-}
+// void ResourceManager::SetPlaySound(int handle, int volume)
+// {
+// 	mpSound->SetPlaySound(handle, volume);
+// }
 
-void ResourceManager::MovieReset(int handle)
-{
-	mpMovie->MovieReset(handle);
-}
+// void ResourceManager::SetPlay3DSound(int handle, VECTOR position, int volume)
+// {
+// 	mpSound->SetPlay3DSound(handle, position, volume);
+// }
 
-void ResourceManager::MovieLoop(int handle)
-{
-	mpMovie->MovieLoop(handle);
-}
+// void ResourceManager::Set3DListenerPosition(VECTOR position, VECTOR frontPosition)
+// {
+// 	mpSound->Set3DListenerPosition(position, frontPosition);
+// }
 
-int ResourceManager::GetSoundHandle(std::string fileName)
-{
-	return mpSound->GetSoundHandle(fileName);
-}
+// int ResourceManager::GetEffectResource(std::string fileName, float size)
+// {
+// 	return mpEffect->GetEffectResource(fileName, size);
+// }
 
-void ResourceManager::ReduceSoundHandle(int handle)
-{
-	mpSound->ReduceSoundHandle(handle);
-}
+// int ResourceManager::GetEffectHandle(int handle, int oldHandle)
+// {
+// 	return mpEffect->GetEffectHandle(handle, oldHandle);
+// }
 
-int ResourceManager::Get3DSoundHandle(std::string fileName)
-{
-	return mpSound->Get3DSoundHandle(fileName);
-}
+// void ResourceManager::DeletePlayEffectHandle(int handle)
+// {
+// 	mpEffect->DeletePlayEffectHandle(handle);
+// }
 
-void ResourceManager::Reduce3DSoundHandle(int handle)
-{
-	mpSound->Reduce3DSoundHandle(handle);
-}
+// void ResourceManager::ReduceEffectDataHandle(int handle)
+// {
+// 	mpEffect->ReduceEffectDataHandle(handle);
+// }
 
-void ResourceManager::SetBackSoundHandle(int handle)
-{
-	mpSound->SetBackSoundHandle(handle);
-}
+// void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECTOR size)
+// {
+// 	mpEffect->DrawEffect(handle, position, angle, size);
+// }
 
-void ResourceManager::SoundUpdate()
-{
-	mpSound->SoundUpdate();
-}
+// void ResourceManager::StopEffect(int handle)
+// {
+// 	mpEffect->StopEffect(handle);
+// }
 
-void ResourceManager::SetPlaySound(int handle, int volume)
-{
-	mpSound->SetPlaySound(handle, volume);
-}
+// void ResourceManager::PlayEffect(int handle, float speed)
+// {
+// 	mpEffect->PlayEffect(handle, speed);
+// }
 
-void ResourceManager::SetPlay3DSound(int handle, VECTOR position, int volume)
-{
-	mpSound->SetPlay3DSound(handle, position, volume);
-}
+// void ResourceManager::StopAllEfect()
+// {
+// 	mpEffect->StopAllEfect();
+// }
 
-void ResourceManager::Set3DListenerPosition(VECTOR position, VECTOR frontPosition)
-{
-	mpSound->Set3DListenerPosition(position, frontPosition);
-}
-
-int ResourceManager::GetEffectResource(std::string fileName, float size)
-{
-	return mpEffect->GetEffectResource(fileName, size);
-}
-
-int ResourceManager::GetEffectHandle(int handle, int oldHandle)
-{
-	return mpEffect->GetEffectHandle(handle, oldHandle);
-}
-
-void ResourceManager::DeletePlayEffectHandle(int handle)
-{
-	mpEffect->DeletePlayEffectHandle(handle);
-}
-
-void ResourceManager::ReduceEffectDataHandle(int handle)
-{
-	mpEffect->ReduceEffectDataHandle(handle);
-}
-
-void ResourceManager::DrawEffect(int handle, VECTOR position, VECTOR angle, VECTOR size)
-{
-	mpEffect->DrawEffect(handle, position, angle, size);
-}
-
-void ResourceManager::StopEffect(int handle)
-{
-	mpEffect->StopEffect(handle);
-}
-
-void ResourceManager::PlayEffect(int handle, float speed)
-{
-	mpEffect->PlayEffect(handle, speed);
-}
-
-void ResourceManager::StopAllEfect()
-{
-	mpEffect->StopAllEfect();
-}
-
-void ResourceManager::PlayAllEfect()
-{
-	mpEffect->PlayAllEfect();
-}
+// void ResourceManager::PlayAllEfect()
+// {
+// 	mpEffect->PlayAllEfect();
+// }

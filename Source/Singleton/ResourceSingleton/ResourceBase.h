@@ -4,15 +4,32 @@
 
 #include "HandleContainer.h"
 
-template<typename QUOTE_SOURCE>
+#ifdef _DEBUG
+#include "Master.h"
+#include "EndManager.h"
+#endif
+
+template<typename HANDLE_TYPE, typename QUOTE_SOURCE = std::string, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
 class ResourceBase
 {
-private:
+protected:
+    enum RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE
+    {
+        REDUCE_RESOURCE = 0,                // 減らす
+        GENERATION_RESOURCE,                // 生成
+        DUPLICATION_RESOURCE,               // 複製
+        RESOURCE_BASE_HANDLE_FLAG_TYPE_MAX  // 最大
+    };
+
     // ハンドルコンテナ
-    HandleContainer<QUOTE_SOURCE>* mpHandleContainer;
+    HandleContainer<QUOTE_SOURCE, HANDLE_TYPE> mclHandleContainer;
 
     // 処理別設定ハンドルフラグ
-    std::map<std::string, HANDLE_FLAG> mmSettingHandleFlagByProcess; 
+    std::map<int, HANDLE_FLAG> mmSettingHandleFlagByProcess;
+#ifdef _DEBUG
+    // ハンドル設定確認用変数
+    unsigned char mucHandleSetConfirmation = 0;
+#endif
 
 public:
     ResourceBase() = default;
@@ -23,34 +40,68 @@ public:
     /// <summary>終了</summary>
     virtual void Finalize() = 0;
 
-    /// <summary>リソース生成</summary>// TODO: 生成で複製をやる
-    QUOTE_SOURCE ResourceGeneration(std::string fileName) = 0;
-    /// <summary>リソース複製</summary>
-    QUOTE_SOURCE ResourceDuplication(std::string fileName) = 0;
-    /// <summary>リソース削除</summary>
-    QUOTE_SOURCE ResourceDelete(int handle) = 0;
-
     /// <summary>リソースハンドル取得</summary>
-	virtual QUOTE_SOURCE GetResourceHandle(std::string fileName)
+	virtual HANDLE_TYPE GetResourceHandle(QUOTE_SOURCE fileName)
     {
-        if (container->CheckFileName(fileName))
+        SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GET_RESOURCE);
+
+        if (mclHandleContainer.CheckFileName(fileName))
         {
-            return container->ResourceDuplication(ResourceDuplication(fileName));
+            return mclHandleContainer.RegisterHandle(ResourceDuplication(fileName));
         }
 
-        return container->RegisterHandle(ResourceGeneration(fileName));
+        return ResourceGeneration(fileName);
     }
 
 	/// <summary>リソースカウントを減らす</summary>
-	virtual void ReduceResourceHandle(QUOTE_SOURCE handle)
+	virtual void ReduceResourceHandle(HANDLE_TYPE handle)
     {
-        container->SetHandleFlag(mmSettingHandleFlagByProcess["Reduce"]);
+        SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::REDUCE_RESOURCE);
 
-        std::vector<int> deleteHandles = container->DeleteHandle(handle);
+        std::vector<HANDLE_TYPE> deleteHandles = mclHandleContainer.DeleteHandle(handle);
 
-        for (int handle : deleteHandles)
+        for (HANDLE_TYPE handle : deleteHandles)
         {
             ResourceDelete(handle);
+        }
+    }
+
+protected:
+    /// <summary>リソース生成</summary>
+    virtual HANDLE_TYPE ResourceGeneration(QUOTE_SOURCE fileName)
+    {
+        SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GENERATION_RESOURCE);
+        mclHandleContainer.RegisterHandle(CreateResource(fileName), false);
+        
+#ifdef _DEBUG
+        unsigned char preHandleSetConfirmation = mucHandleSetConfirmation;
+        HANDLE_TYPE result = mclHandleContainer.RegisterHandle(ResourceDuplication(fileName));
+        if (preHandleSetConfirmation == mucHandleSetConfirmation)
+        {
+            Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_BASE_FLAG);
+        }
+        return result;
+#endif
+        return mclHandleContainer.RegisterHandle(ResourceDuplication(fileName));
+        
+    }
+
+    /// <summary>リソース本体作成</summary>
+    virtual HANDLE_TYPE CreateResource(const QUOTE_SOURCE& fileName) = 0;
+    /// <summary>リソース複製</summary>
+    virtual HANDLE_TYPE ResourceDuplication(const QUOTE_SOURCE& fileName) = 0;
+    /// <summary>リソース削除</summary>
+    virtual void ResourceDelete(HANDLE_TYPE handle) = 0;
+
+    void SetHandleFlag(int settingType)
+    {
+#ifdef _DEBUG
+        mucHandleSetConfirmation += 1;
+#endif
+        auto settingHandleIt = mmSettingHandleFlagByProcess.find(settingType);
+        if (settingHandleIt != mmSettingHandleFlagByProcess.end())
+        {
+            mclHandleContainer.SetHandleFlag(settingHandleIt->second);
         }
     }
 };

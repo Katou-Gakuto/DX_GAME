@@ -215,3 +215,229 @@ void DrawManager::SetDrawData(DRAW_DATA* drawData, int drawId)
         }
     }
 }
+
+// ÉÇÉfÉãï`âÊ
+void DrawManager::DrawModelHandle(int modelHandle)
+{
+	MV1DrawModel(modelHandle);
+}
+
+// í∏ì_èÓïÒÇ…ÇÊÇÈï`âÊ
+void DrawManager::DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag)
+{
+	DrawPolygonIndexed3D(VertexArray, VertexNum, IndexArray, PolygonNum, GrHandle, TransFlag);
+}
+
+// âÊëúï`âÊ
+void DrawManager::DrawData_Graph(DRAW_GRAPH_DATA drawData)
+{
+	switch (drawData.drawType)
+	{
+	case DRAW_GRAPH_TYPE::NORMAL:
+		DrawGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::TURN:
+		DrawTurnGraph(drawData.pos.x, drawData.pos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::EXTEND:
+		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::SIZE:
+		DrawExtendGraph(drawData.pos.x, drawData.pos.y, drawData.pos.x + drawData.size.x, drawData.pos.y + drawData.size.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA:
+		DrawRotaGraph(drawData.pos.x, drawData.pos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA_CENTER:
+		DrawRotaGraph2(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.z, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::ROTA_EXTEND_XY:
+		DrawRotaGraph3(drawData.pos.x, drawData.pos.y, drawData.centerPos.x, drawData.centerPos.y, drawData.extRate.x, drawData.extRate.y, drawData.angle, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::FREE:
+		DrawModiGraph(drawData.upLeft.x, drawData.upLeft.y, drawData.upRight.x, drawData.upRight.y, drawData.downRight.x, drawData.downRight.y, drawData.downLeft.x, drawData.downLeft.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::RECT:
+		DrawRectGraph(drawData.pos.x, drawData.pos.y, drawData.graphPos.x, drawData.graphPos.y, drawData.size.x, drawData.size.y, drawData.handle, drawData.transFlag, drawData.turnFlag.x, drawData.turnFlag.y);
+		break;
+
+	case DRAW_GRAPH_TYPE::RECT_EXTEND:
+		DrawRectExtendGraph(drawData.pos.x, drawData.pos.y, drawData.extPos.x, drawData.extPos.y, drawData.graphPos.x, drawData.graphPos.y, drawData.graphSize.x, drawData.graphSize.y, drawData.handle, drawData.transFlag);
+		break;
+
+	case DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE:
+		DrawRectExtendGraph(drawData.pos.x, drawData.pos.y, drawData.pos.x + drawData.size.x, drawData.pos.y + drawData.size.y, drawData.graphPos.x, drawData.graphPos.y, drawData.graphSize.x, drawData.graphSize.y, drawData.handle, drawData.transFlag);
+		break;
+	}
+}
+
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, int x, int y)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, int x, int y, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, int x, int y, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos.x = x;
+	drawData.pos.y = y;
+
+	drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, float xRatio, float yRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, int sizeY)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
+
+	drawData.size.x = sizeX;
+	drawData.size.y = sizeY;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(xRatio, yRatio));
+
+	drawData.size = ResourceManager::mstDisplaySize.LeftUp_Ratio(Vector2(sizeXRatio, sizeYRatio));
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, Vector2_Int pos)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::NORMAL;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.pos = pos;
+
+	drawData.size = size;
+
+	return drawData;
+}
+
+// ï`âÊèÓïÒéÊìæ
+DRAW_GRAPH_DATA DrawManager::GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown)
+{
+	DRAW_GRAPH_DATA drawData;
+	drawData.drawType = DRAW_GRAPH_TYPE::FREE;
+	if (handle != -1)
+	{
+		drawData.handle = handle;
+	}
+	drawData.transFlag = TRUE;
+
+	drawData.upLeft = leftUp;
+	drawData.upRight = rightUp;
+	drawData.downLeft = leftDown;
+	drawData.downRight = rightDown;
+
+	return drawData;
+}

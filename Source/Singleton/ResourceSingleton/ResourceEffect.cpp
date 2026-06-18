@@ -11,8 +11,7 @@
 #endif
 
 ResourceEffect::ResourceEffect()
-: mpEffectHandleContainer(nullptr)
-, mbEffectDrawFlag(false)
+: mbEffectDrawFlag(false)
 , mnEffectDrawPreHandle(-1)
 {
 }
@@ -23,7 +22,12 @@ ResourceEffect::~ResourceEffect()
 
 void ResourceEffect::Initilize(ResourceGraph* graph, const std::string& resourceFile)
 {
-	mpEffectHandleContainer = new HandleContainer<std::string>();
+	mpHandleContainer = new HandleContainer<std::string, int>();
+
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GET_RESOURCE]         = HANDLE_FLAG::ZERO_LOOK;
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::REDUCE_RESOURCE]      = HANDLE_FLAG::ZERO_EXCEPT_LOOK;
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GENERATION_RESOURCE]  = HANDLE_FLAG::NONE;
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE] = HANDLE_FLAG::NONE;
 
 	if (Effekseer_Init(20000 * 10) == -1)
 	{
@@ -41,19 +45,19 @@ void ResourceEffect::Initilize(ResourceGraph* graph, const std::string& resource
 
 void ResourceEffect::Finalize()
 {
-	for (auto& handle : mpEffectHandleContainer->GetHandleMap())
+	for (auto& handle : mpHandleContainer->GetHandleMap())
 	{
 		DeleteEffekseerEffect(handle.second[0]);
 	}
 
-	delete mpEffectHandleContainer;
-	mpEffectHandleContainer = nullptr;
+	delete mpHandleContainer;
+	mpHandleContainer = nullptr;
 	Effkseer_End();
 }
 
 int ResourceEffect::GetEffectResource(std::string fileName, float size)
 {
-	mpEffectHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
+	mpHandleContainer->SetHandleFlag(HANDLE_FLAG::ZERO_LOOK);
 
 	if (mpEffectHandleContainer->CheckFileName(fileName))
 	{

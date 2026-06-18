@@ -64,4 +64,27 @@ public:
     /// <param name="drawData">•`‰æî•ñ</param>
     /// <param name="drawId">•`‰æID</param>
     void SetDrawData(DRAW_DATA* drawData, int drawId);
+
+    
+    /*--------*/
+    /*y•`‰æz*/
+    /*--------*/
+    
+	/// <summary>ƒ‚ƒfƒ‹•`‰æ</summary>
+	void DrawModelHandle(int modelHandle);
+	/// <summary>’¸“_î•ñ‚É‚æ‚é•`‰æ</summary>
+	void DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag);
+	/// <summary>‰æ‘œ•`‰æ</summary>
+	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
+
+    /// <summary>•`‰æî•ñæ“¾</summary>
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y, 	   int sizeX, 		 int sizeY);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, int x, 		 int y,		   float sizeXRatio, float sizeYRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, int sizeX, 		 int sizeY);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, float xRatio, float yRatio, float sizeXRatio, float sizeYRatio);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int pos, Vector2_Int size);
+	DRAW_GRAPH_DATA GetDrawGraphData(int handle, Vector2_Int leftUp, Vector2_Int rightUp, Vector2_Int leftDown, Vector2_Int rightDown);
 };

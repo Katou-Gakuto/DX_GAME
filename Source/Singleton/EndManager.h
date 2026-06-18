@@ -10,11 +10,19 @@ enum class END_FLAG_NUMBER
 	LOADING_FLAG,	// ローディングマネージャー
 	MAP_FLAG,	// マップマネージャー	
 	HANDLE_FLAG,	// ハンドルコンテナ
+	RESOURCE_BASE_FLAG,	// リソースベース
 	BIT_FLAG,	// ビットフラグ
 	FILE_FLAG,	// ファイルフラグ
 	NO_DATA_FLAG,// データ無しフラグ
 	STATE_NULL_FUNCTION_FLAG,	// ステート関数ヌルポインタフラグ
+
+	MAX_COUNT	// 最大値計測用
 };
+
+static_assert(
+    static_cast<int>(END_FLAG_NUMBER::MAX_COUNT) < 64,
+    "エンドマネージャーのenum classが規定外にまで及んだ"
+);
 
 class EndManager
 {

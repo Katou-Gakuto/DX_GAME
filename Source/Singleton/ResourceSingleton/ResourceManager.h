@@ -82,13 +82,13 @@ public:
 public:
 
 private:
-	ResourceGraph* mpGraphResource;
+	ResourceGraph<int>* mpGraphResource;
 	ResourceDivGraph* mpDivGraphResource;
 
 
 public:
 	/// <summary>画像リソース取得</summary>
-	ResourceGraph* GetGraphResource() { return mpGraphResource; }
+	ResourceGraph<int>* GetGraphResource() { return mpGraphResource; }
 	/// <summary>分割画像リソース取得</summary>
 	ResourceDivGraph* GetDivGraphResource() { return mpDivGraphResource; }
 	// int GetGraphHandle(std::string fileName);

@@ -12,6 +12,12 @@
 template<typename HANDLE_TYPE, typename QUOTE_SOURCE = std::string, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
 class ResourceBase
 {
+#ifdef _DEBUG
+private:
+    // ハンドル設定確認用変数
+    unsigned char mucHandleSetConfirmation = 0;
+#endif
+
 protected:
     enum RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE
     {
@@ -26,10 +32,6 @@ protected:
 
     // 処理別設定ハンドルフラグ
     std::map<int, HANDLE_FLAG> mmSettingHandleFlagByProcess;
-#ifdef _DEBUG
-    // ハンドル設定確認用変数
-    unsigned char mucHandleSetConfirmation = 0;
-#endif
 
 public:
     ResourceBase() = default;

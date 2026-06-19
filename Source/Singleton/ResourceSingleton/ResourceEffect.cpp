@@ -20,14 +20,11 @@ ResourceEffect::~ResourceEffect()
 {
 }
 
-void ResourceEffect::Initilize(ResourceGraph* graph, const std::string& resourceFile)
+void ResourceEffect::Initilize(ResourceGraph<int>* graph, const std::string& resourceFile)
 {
-	mpHandleContainer = new HandleContainer<std::string, int>();
-
-	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GET_RESOURCE]         = HANDLE_FLAG::ZERO_LOOK;
 	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::REDUCE_RESOURCE]      = HANDLE_FLAG::ZERO_EXCEPT_LOOK;
-	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GENERATION_RESOURCE]  = HANDLE_FLAG::NONE;
-	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE] = HANDLE_FLAG::NONE;
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GENERATION_RESOURCE]  = HANDLE_FLAG::ZERO_LOOK;
+	mmSettingHandleFlagByProcess[RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE] = HANDLE_FLAG::ZERO_LOOK;
 
 	if (Effekseer_Init(20000 * 10) == -1)
 	{

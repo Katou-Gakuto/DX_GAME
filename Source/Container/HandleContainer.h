@@ -178,7 +178,6 @@ public:
             return {};
         }
 
-        // HACK: 変数名紛らわしいから変更
         for (auto& myHandle : mmHandles)
         {
             for (int i = 0; i < myHandle.second.size(); i++)
@@ -321,27 +320,6 @@ public:
 #endif
 
         return {};
-        /*
-        
-        for (auto movieHandle : mmMovieHandle)
-        {
-            for (int i = 0; i < movieHandle.second.size(); i++)
-            {
-                if (movieHandle.second[i] == handle)
-                {
-                    if ((movieHandle.second.size() - 1) <= 0)
-                    {
-                        mmMovieHandle.erase(movieHandle.first);
-                    }
-                    else
-                    {
-                        mmMovieHandle[movieHandle.first].erase(mmMovieHandle[movieHandle.first].begin() + i);
-                    }
-                    return;
-                }
-            }
-        }
-        */
     }
 
     /*--------*/
@@ -369,29 +347,3 @@ public:
         return false;
     }
 };
-
-/*
-ハンドルマネージャーメモ
-
-カウント
-
-作成予定関数
-
-全部 0だけ見るもしくは見ないのも作る
-
-【追加】
-string走査&次の追加予定物にする
-
-追加(同じのがある場合は何もしない　カウントに追加するフラグを設定
--1が来たら終了
-追加したハンドルを返す
-
-stringを設定してから追加するのも作る
-
-
-【削除】
-
-削除
-カウント探してなければハンドルの方を探す　カウントを減らすフラグ設定
-削除したハンドルを返す
-*/

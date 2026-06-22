@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FSM.h"
+#include "StateCharacterBase.h"
 
 /*----------*/
 /*【キャラクター有限状態マシン】*/

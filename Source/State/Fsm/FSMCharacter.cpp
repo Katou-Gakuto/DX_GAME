@@ -1,4 +1,9 @@
+#include <map>
 
+#include "FSM.h"
+#include "FSMCharacter.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 /*------------------------------*/
 /*【キャラクター有限状態マシン】*/

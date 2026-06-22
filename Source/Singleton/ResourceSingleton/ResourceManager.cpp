@@ -20,11 +20,10 @@ ResourceManager::ResourceManager()
 , mpDivGraphResource(nullptr)
 , mpMovieResource(nullptr)
 , mpEffectResource(nullptr)
+, mpSoundResource(nullptr)
+, mpBackSoundResource(nullptr)
+, mp3DSoundResource(nullptr)
 {
-	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
-	{
-		mpSoundResource[i] = nullptr;
-	}
 }
 
 ResourceManager::~ResourceManager()
@@ -44,10 +43,12 @@ void ResourceManager::Initilize()
 	mpMovieResource = new ResourceMovie();
 	mpMovieResource->Initilize();
 
-	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND] = new ResourceSound();
-	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND]->Initilize(Master::mpDataManager);
-	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D] = new ResourceSound();
-	mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D]->Initilize(Master::mpDataManager);
+	mpSoundResource= new ResourceSound();
+	mpSoundResource->Initilize();
+	mpBackSoundResource= new ResourceBackSound();
+	mpBackSoundResource->Initilize();
+	mp3DSoundResource = new Resource3DSound();
+	mp3DSoundResource->Initilize();
 
 	mpEffectResource = new ResourceEffect();
 	mpEffectResource->Initilize(mpGraphResource, msResourceFile);
@@ -72,18 +73,20 @@ void ResourceManager::Finalize()
 		mp3DModelResource = nullptr;
 	}
 
-	if (mpGraphResource != nullptr)
 	{
-		mpGraphResource->Finalize();
-		delete mpGraphResource;
-		mpGraphResource = nullptr;
-	}
+		if (mpGraphResource != nullptr)
+		{
+			mpGraphResource->Finalize();
+			delete mpGraphResource;
+			mpGraphResource = nullptr;
+		}
 
-	if (mpDivGraphResource != nullptr)
-	{
-		mpDivGraphResource->Finalize();
-		delete mpDivGraphResource;
-		mpDivGraphResource = nullptr;
+		if (mpDivGraphResource != nullptr)
+		{
+			mpDivGraphResource->Finalize();
+			delete mpDivGraphResource;
+			mpDivGraphResource = nullptr;
+		}
 	}
 
 	if (mpMovieResource != nullptr)
@@ -93,13 +96,26 @@ void ResourceManager::Finalize()
 		mpMovieResource = nullptr;
 	}
 
-	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
+			
 	{
-		if (mpSoundResource[i] != nullptr)
+		if (mpSoundResource != nullptr)
 		{
-			mpSoundResource[i]->Finalize();
-			delete mpSoundResource[i];
-			mpSoundResource[i] = nullptr;
+			mpSoundResource->Finalize();
+			delete mpSoundResource;
+			mpSoundResource = nullptr;
+		}
+
+		if (mpBackSoundResource != nullptr)
+		{
+			mpBackSoundResource->Finalize();
+			delete mpBackSoundResource;
+			mpBackSoundResource = nullptr;
+		}
+		if (mp3DSoundResource != nullptr)
+		{
+			mp3DSoundResource->Finalize();
+			delete mp3DSoundResource;
+			mp3DSoundResource = nullptr;
 		}
 	}
 
@@ -114,9 +130,10 @@ void ResourceManager::Finalize()
 void ResourceManager::Update()
 {
 	// サウンドボリュームの更新
-	for (int i = 0; i < SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX; i++)
 	{
-		mpSoundResource[i]->SoundUpdate();
+		mpSoundResource->SoundUpdate();
+		mpBackSoundResource->SoundUpdate();
+		mp3DSoundResource->SoundUpdate();
 	}
 }
 

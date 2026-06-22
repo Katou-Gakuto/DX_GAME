@@ -1,4 +1,13 @@
+#include <vector>
 
+#include "DotWeenData.h"
+
+#include "Master.h"
+
+#include "FSM.h"
+#include "FSMDotWeen.h"
+#include "StateDotWeenBase.h"
+#include "TimeManager.h"
 
 
 /*-------------------------*/

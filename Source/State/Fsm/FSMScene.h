@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FSM.h"
+#include "StateSceneBase.h"
 
 /*----------*/
 /*【シーン有限状態マシン】*/

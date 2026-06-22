@@ -3,6 +3,7 @@
 
 #include "FSM.h"
 #include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 /*----------*/
 /*yUI—LŒÀó‘Ôƒ}ƒVƒ“z*/

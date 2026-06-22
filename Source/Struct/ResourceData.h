@@ -6,6 +6,8 @@
 
 #include "DxLib.h"
 
+#include "UtilCalc.h"
+
 // DIV画像データ
 struct DIV_GRAPH_DATA
 {
@@ -25,38 +27,45 @@ public:
 	int xSize;
 	int ySize;
 
-	int number;
-	int count;
-
 	DIV_GRAPH_DATA()
+	: allNum(0)
+	, xNum(0)
+	, yNum(0)
+	, xSize(0)
+	, ySize(0)
 	{
 		Id = IdCount;
-		IdCount += 1;
+		AddId();
 
 		handle = nullptr;
-		allNum = 0;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
 	}
 
 	/*初期化用(ハンドルの配列と全画像の枚数のみ設定)*/
 	DIV_GRAPH_DATA(int allNumber)
+	: allNum(allNumber)
+	, xNum(0)
+	, yNum(0)
+	, xSize(0)
+	, ySize(0)
 	{
+		if (-1 == allNumber)
+		{
+			Id = 0;
+			handle = nullptr;
+			return;
+		}
+
 		Id = IdCount;
-		IdCount += 1;
+		AddId();
 		
-		handle = (int *)malloc(sizeof(int) * allNumber);
-		allNum = allNumber;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
+		if (0 < allNumber)
+		{
+			handle = (int *)malloc(sizeof(int) * allNumber);
+		}
+		else
+		{
+			handle = nullptr;
+		}
 	}
 	
 	void HandleDelete()
@@ -86,6 +95,19 @@ public:
 	bool operator!=(const DIV_GRAPH_DATA& rhs) const
 	{
 		return Id != rhs.Id;
+	}
+
+private:
+	void AddId()
+	{
+		if (UtilCalc::IntMax != IdCount)
+		{
+			IdCount += 1;
+		}
+		else
+		{
+			IdCount = 0;
+		}
 	}
 };
 

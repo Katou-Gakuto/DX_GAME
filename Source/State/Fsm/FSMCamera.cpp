@@ -1,3 +1,7 @@
+#include "CameraManager.h"
+#include "FSM.h"
+#include "FSMCamera.h"
+#include "StateCameraBase.h"
 
 /*------------------------*/
 /*【カメラ有限状態マシン】*/

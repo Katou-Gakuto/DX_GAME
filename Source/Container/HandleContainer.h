@@ -332,6 +332,29 @@ public:
         {
             for (int i = 0; i < myHandle.second.size(); i++)
             {
+                switch (meHandleFlag)
+                {
+                case HANDLE_FLAG::ZERO_LOOK:
+                    // 0ˆÈŠO‚È‚ç‰½‚à‚µ‚È‚¢
+                    if (i != 0)
+                    {
+                        i = myHandle.second.size();
+                        continue;
+                    }
+                    break;
+                    
+                case HANDLE_FLAG::ZERO_EXCEPT_LOOK:
+                    // 0‚È‚ç‰½‚à‚µ‚È‚¢
+                    if (i == 0)
+                    {
+                        continue;
+                    }
+                    break;
+
+                default:
+                break;
+                }
+
                 if (myHandle.second[i] == srcHandle)
                 {
                     if (i == 0)

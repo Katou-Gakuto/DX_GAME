@@ -6,6 +6,7 @@
 
 #include "CameraManager.h"
 #include "ResourceManager.h"
+#include "ResourceSound.h"
 #include "StateCameraBase.h"
 
 // TODO: ここでZバッファフラグ切っても変わらないか確認
@@ -56,7 +57,7 @@ void IStateCamera::CommonSetCamera(CameraData *cameraData)
 /*カメラポジション設置*/
 void IStateCamera::SetCameraPos(VECTOR cameraPos, VECTOR cameraLookPos)
 {
-	Master::mpResourceManager->Set3DListenerPosition(cameraPos, cameraLookPos);
+	Master::mpResourceManager->Get3DSoundResource()->Set3DListenerPosition(cameraPos, cameraLookPos);
 
 	// カメラ位置を反映する
 	SetCameraPositionAndTarget_UpVecY(cameraPos, cameraLookPos);

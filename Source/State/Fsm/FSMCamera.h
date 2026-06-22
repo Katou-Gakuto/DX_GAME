@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FSM.h"
+#include "StateCameraBase.h"
 
 /*----------*/
 /*【カメラ有限状態マシン】*/

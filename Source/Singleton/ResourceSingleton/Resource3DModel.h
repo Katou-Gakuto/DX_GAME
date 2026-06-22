@@ -1,21 +1,22 @@
 #pragma once
 #include <string>
 
-#include "HandleContainer.h"
+#include "ResourceBase.h"
 
-class Resource3DModel
+class Resource3DModel : public ResourceBase<int>
 {
-private:
-	HandleContainer<std::string>* mp3DModelHandleContainer;
-
 public:
 	Resource3DModel();
 	~Resource3DModel();
 
 	void Initilize();
-	void Finalize();
+	void Finalize() override;
 
-	int GetModelHandle(std::string fileName);
-	void ReduceModelHandle(int handle);
-	void DrawModelHandle(int modelHandle);
+private:
+    /// <summary>リソース本体作成</summary>
+    int CreateResource(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース複製</summary>
+    int ResourceDuplication(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース削除</summary>
+    void ResourceDelete(const std::vector<int>& handles) override;
 };

@@ -4,10 +4,15 @@
 #include "ResourceData.h"
 #include "UtilCalc.h"
 
+
+
 class Resource3DModel;
 class ResourceGraph;
+class ResourceDivGraph;
 class ResourceMovie;
 class ResourceSound;
+class ResourceBackSound;
+class Resource3DSound;
 class ResourceEffect;
 
 class ResourceManager
@@ -79,16 +84,14 @@ public:
 	/*--------*/
 	/*【画像】*/
 	/*--------*/
-public:
-
 private:
-	ResourceGraph<int>* mpGraphResource;
+	ResourceGraph* mpGraphResource;
 	ResourceDivGraph* mpDivGraphResource;
 
 
 public:
 	/// <summary>画像リソース取得</summary>
-	ResourceGraph<int>* GetGraphResource() { return mpGraphResource; }
+	ResourceGraph* GetGraphResource() { return mpGraphResource; }
 	/// <summary>分割画像リソース取得</summary>
 	ResourceDivGraph* GetDivGraphResource() { return mpDivGraphResource; }
 	// int GetGraphHandle(std::string fileName);
@@ -116,21 +119,18 @@ public:
 	/*------------*/
 	/*【サウンド】*/
 	/*------------*/
-public:
-	enum SOUND_RESOURCE_TYPE
-	{
-		SOUND = 0,
-		SOUND_3D,
-		SOUND_RESOURCE_TYPE_MAX
-	};
 private:
-	ResourceSound* mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_RESOURCE_TYPE_MAX];
+	ResourceSound* mpSoundResource;
+	ResourceBackSound* mpBackSoundResource;
+	Resource3DSound* mp3DSoundResource;
 
 public:
 	/// <summary>サウンドリソース取得</summary>
-	ResourceSound* GetSoundResource() { return mpSoundResource[SOUND_RESOURCE_TYPE::SOUND]; }
+	ResourceSound* GetSoundResource() { return mpSoundResource; }
+	/// <summary>バックサウンドリソース取得</summary>
+	ResourceBackSound* GetBackSoundResource() { return mpBackSoundResource; }
 	/// <summary>3Dサウンドリソース取得</summary>
-	ResourceSound* GetSoundResource() { return mpSoundResource[SOUND_RESOURCE_TYPE::SOUND_3D]; }
+	Resource3DSound* Get3DSoundResource() { return mp3DSoundResource; }
 
 	// int GetSoundHandle(std::string fileName);
 	// void ReduceSoundHandle(int handle);

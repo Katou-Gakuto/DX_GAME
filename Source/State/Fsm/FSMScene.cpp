@@ -1,4 +1,13 @@
+#include <map>
 
+#include "Master.h"
+
+#include "FSM.h"
+#include "FSMScene.h"
+#include "LoadingManager.h"
+#include "SceneManager.h"
+#include "StateSceneBase.h"
+#include "UtilChange.h"
 
 /*------------------------*/
 /*【シーン有限状態マシン】*/

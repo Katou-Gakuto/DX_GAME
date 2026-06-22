@@ -1,25 +1,27 @@
 #pragma once
 #include <string>
 
-#include "HandleContainer.h"
+#include "ResourceBase.h"
 
-class ResourceMovie
+class ResourceMovie : public ResourceBase<int>
 {
-private:
-	HandleContainer<std::string>* mpMovieHandleContainer;
-
 public:
 	ResourceMovie();
 	~ResourceMovie();
 
 	void Initilize();
-	void Finalize();
-
-	int GetMovieHandle(std::string fileName);
-	void ReduceMovie(int handle);
+	void Finalize() override;
 
 	void PlayMovie(int handle);
 	void StopMovie(int handle);
 	void MovieReset(int handle);
 	void MovieLoop(int handle);
+
+private:
+    /// <summary>リソース本体作成</summary>
+    int CreateResource(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース複製</summary>
+    int ResourceDuplication(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース削除</summary>
+    void ResourceDelete(const std::vector<int>& handles) override;
 };

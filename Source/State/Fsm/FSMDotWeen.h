@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FSM.h"
+#include "StateDotWeenBase.h"
 
 /*-------------------------*/
 /*yDotWeen—LŒÀó‘Ôƒ}ƒVƒ“z*/

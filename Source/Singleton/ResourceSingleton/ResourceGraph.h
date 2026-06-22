@@ -1,36 +1,43 @@
 #pragma once
-#include <map>
 #include <string>
 #include <vector>
 
 #include "ResourceData.h"
-#include "HandleContainer.h"
 
-template<typename HANDLE_TYPE = int>
-class ResourceGraph
+#include "ResourceBase.h"
+
+class ResourceGraph : public ResourceBase<int>
 {
-private:
-	HandleContainer<std::string, HANDLE_TYPE>* mpGraphHandleContainer;
-
-	std::map<std::string, DIV_GRAPH_DATA> mmDivGraphHandle;
-	std::vector<std::string> msDivGraphFileNames;
-
 public:
 	ResourceGraph();
 	~ResourceGraph();
 
 	void Initilize();
-	void Finalize();
+	void Finalize() override;
 
-	int GetGraphHandle(std::string fileName);
-	void ReduceGraphHandle(int handle);
-
-	void GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData);
-	void ReduceDivGraphHandle(int number);
-
-	void DrawData_Graph(DRAW_GRAPH_DATA drawData);
+private:
+    /// <summary>リソース本体作成</summary>
+    int CreateResource(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース複製</summary>
+    int ResourceDuplication(const std::string& fileName, void* plusData = nullptr) override;
+    /// <summary>リソース削除</summary>
+    void ResourceDelete(const std::vector<int>& handles) override;
 };
 
-class ResourceDivGraph : public ResourceGraph<DIV_GRAPH_DATA>
+class ResourceDivGraph : public ResourceBase<DIV_GRAPH_DATA, std::string, DIV_GRAPH_DATA*>
 {
+public:
+	ResourceDivGraph();
+	~ResourceDivGraph();
+
+	void Initilize();
+	void Finalize() override;
+
+private:
+    /// <summary>リソース本体作成</summary>
+    DIV_GRAPH_DATA CreateResource(const std::string& fileName, DIV_GRAPH_DATA* plusData = nullptr) override;
+    /// <summary>リソース複製</summary>
+    DIV_GRAPH_DATA ResourceDuplication(const std::string& fileName, DIV_GRAPH_DATA* plusData = nullptr) override;
+    /// <summary>リソース削除</summary>
+    void ResourceDelete(const std::vector<DIV_GRAPH_DATA>& handles) override;
 };

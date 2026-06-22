@@ -1,4 +1,12 @@
+#include <map>
+#include <vector>
 
+#include "StateEnum.h"
+
+#include "FSM.h"
+#include "FSMUI.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 /*--------------------*/
 /*yUI—LŒÀó‘Ôƒ}ƒVƒ“z*/

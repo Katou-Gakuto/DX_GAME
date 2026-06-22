@@ -15,7 +15,7 @@
 #include "EndManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
-#include "MapManager.h"
+#include "MapManager.h
 #include "ObjectBase_UI.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
@@ -25,29 +25,31 @@
 #include "UI_Check.h"
 #include "UtilCalc.h"
 
+#include "UtilStateConditionFunction.h"
+
 /*--------------------------------*/
-/*     yƒQ[ƒ€UIƒXƒe[ƒgz     */
+/*     ã€ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*--------------------------------*/
 
 /*----------*/
-/*yƒQ[ƒ€UI‹¤’Êˆ——pz
+/*ã€ã‚²ãƒ¼ãƒ UIå…±é€šå‡¦ç†ç”¨ã€‘
 /*----------*/
 GameUIProcess::GameUIProcess()
 : mnPreSelectNumber(0)
 , mpMapManager(Master::mpGameManager->GetMapManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
 {
-//     // ‰æ–ÊƒTƒCƒYæ“¾
+//     // ç”»é¢ã‚µã‚¤ã‚ºå–å¾—
 //     COORDINATE_X_Y_INT set = XYGet_Int(0, 0);
 //     int colorBit = 0;
 //     GetScreenState(&set.x, &set.y, &colorBit);
 //     /*
-//     msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // ¶ã
-//     msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // ‰E‰º*/
+//     msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // å·¦ä¸Š
+//     msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // å³ä¸‹*/
 // //    /*
-//     msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // ¶ã
-//     msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // ‰E‰º*/
-//     msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // ˆê•Ó
+//     msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // å·¦ä¸Š
+//     msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // å³ä¸‹*/
+//     msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // ä¸€è¾º
 //     mnMapFrameDreadth = 5;
 //     msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
 
@@ -55,27 +57,27 @@ GameUIProcess::GameUIProcess()
 //     mnDrawMiniMapScreenHandle = MakeScreen();
 }
 
-// ƒƒjƒ…[ƒL[‚ğ‰Ÿ‚µ‚½‚©•Ô‚·
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹è¿”ã™
 bool GameUIProcess::IsMenuKeyPressed()
 {
-    // TODO: ƒL[‰¼İ’è
+    // TODO: ã‚­ãƒ¼ä»®è¨­å®š
     return Master::mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::X);
 }
 
-// ƒƒjƒ…[‚Ì”wŒi•`‰æ
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®èƒŒæ™¯æç”»
 void GameUIProcess::DrawMenuBackground(UIBase* ui)
 {
-    // // TODO: ‰æ‘œƒnƒ“ƒhƒ‹‚É•ÏX
+    // // TODO: ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´
     // DisplaySize displaySize = ResourceManager::mstDisplaySize;
     // Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
     // Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
     // DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 
     // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
-    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ƒƒjƒ…[", GetColor(0, 0, 0));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼", GetColor(0, 0, 0));
 }
 
-// ƒ~ƒjƒ}ƒbƒvƒ|ƒWƒVƒ‡ƒ“‚É•ÏŠ·‚·‚é
+// ãƒŸãƒ‹ãƒãƒƒãƒ—ãƒã‚¸ã‚·ãƒ§ãƒ³ã«å¤‰æ›ã™ã‚‹
 VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 {
     VECTOR minMapPos;
@@ -85,7 +87,7 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 }
 
 // /*------------------------*/
-// /*yƒQ[ƒ€ŠJnUIƒXƒe[ƒgz*/
+// /*ã€ã‚²ãƒ¼ãƒ é–‹å§‹UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 // /*------------------------*/
 // StartGameUIState::StartGameUIState()
 // : GameUIProcess()
@@ -96,7 +98,7 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 // void StartGameUIState::OnEnter(UIBase* ui)
 // {
 //     mbFadeInFlag = false;
@@ -107,12 +109,12 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 // void StartGameUIState::OnExit(UIBase* ui)
 // {
 // }
 
-// // XV
+// // æ›´æ–°
 // int StartGameUIState::Update(UIBase* ui)
 // {
 //     if (IsMenuKeyPressed())
@@ -150,25 +152,25 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     return mStateNumber;
 // }
 
-// // Œˆ’è
+// // æ±ºå®š
 // int StartGameUIState::Decision(UIBase* ui)
 // {
 //     return mStateNumber;
 // }
 
-// // •`‰æ
+// // æç”»
 // void StartGameUIState::Draw(UIBase* ui)
 // {
 // }
 
-// // I—¹
+// // çµ‚äº†
 // int StartGameUIState::Close(UIBase* ui)
 // {
 //     return mStateNumber;
 // }
 
 /*----------------------*/
-/*y’ÊíƒQ[ƒ€UIƒXƒe[ƒgz*/
+/*ã€é€šå¸¸ã‚²ãƒ¼ãƒ UIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
 : IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
@@ -177,10 +179,10 @@ NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
     mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
-    //printfDx("ƒeƒƒbƒvF’ÊíƒQ[ƒ€UI\n");
+    //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šé€šå¸¸ã‚²ãƒ¼ãƒ UI\n");
     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -192,17 +194,17 @@ void NormalGameUIState::OnEnter(UIBase* ui)
     ui->Decision();
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void NormalGameUIState::OnExit(UIBase* ui)
 {
     ui->SetSelectNumber(GAME_UI_SELECT_NUKMBER::STOP_GAME);
     ui->Decision();
 }
 
-// XV
+// æ›´æ–°
 STATE_TYPE_UI NormalGameUIState::Update(UIBase* ui)
 {
-    if (IsMenuKeyPressed())
+    if (UtilStateConditionFunction::IsMenuKeyPressed(ui))
     {
         return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
     }
@@ -210,25 +212,25 @@ STATE_TYPE_UI NormalGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 STATE_TYPE_UI NormalGameUIState::Decision(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
-// •`‰æ
+// æç”»
 void NormalGameUIState::Draw(UIBase* ui)
 {
 }
 
-// I—¹
+// çµ‚äº†
 STATE_TYPE_UI NormalGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
 
 /*----------------------*/
-/*yƒ|[ƒYUIƒXƒe[ƒgz*/
+/*ã€ãƒãƒ¼ã‚ºUIã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
 : IStateUI(STATE_TYPE_UI::PAUSE_GAME_UI_STATE, stateChangeCriterias)
@@ -241,7 +243,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
     Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.15625f, 0.2125f));
     Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.53125f, 0.5375f));
-    // ‹¤’Ê•`‰æî•ñİ’è
+    // å…±é€šæç”»æƒ…å ±è¨­å®š
     {
         drawData.drawFlag = false;
         drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -252,7 +254,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     }
 
     {
-        // –ß‚é
+        // æˆ»ã‚‹
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
@@ -261,7 +263,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
         }
 
-        // ƒRƒ“ƒtƒBƒO
+        // ã‚³ãƒ³ãƒ•ã‚£ã‚°
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
@@ -270,7 +272,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_CONFIG_SET] = drawData;
         }
         
-        // ƒXƒe[ƒ^ƒX
+        // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
@@ -279,7 +281,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_STATUS_DRAW] = drawData;
         }
         
-        // ƒQ[ƒ€I—¹
+        // ã‚²ãƒ¼ãƒ çµ‚äº†
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
             drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
@@ -323,10 +325,10 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     }
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void PauseGameUIState::OnEnter(UIBase* ui)
 {
-    //printfDx("ƒeƒƒbƒvFƒ|[ƒYUI\n");
+    //printfDx("ãƒ†ãƒ­ãƒƒãƒ—ï¼šãƒãƒ¼ã‚ºUI\n");
 
     ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 
@@ -346,7 +348,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     {
         mstMenuStringDrawData[i].drawFlag = true;
     }
-    // ƒZ[ƒuƒeƒXƒg
+    // ã‚»ãƒ¼ãƒ–ãƒ†ã‚¹ãƒˆ
     //Master::mpDataManager->Save(Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER));
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -355,7 +357,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     // }
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void PauseGameUIState::OnExit(UIBase* ui)
 {
     mnPreSelectNumber = ui->GetSelectNumber();
@@ -366,10 +368,10 @@ void PauseGameUIState::OnExit(UIBase* ui)
     }
 }
 
-// XV
+// æ›´æ–°
 STATE_TYPE_UI PauseGameUIState::Update(UIBase* ui)
 {
-    if (IsMenuKeyPressed())
+    if (UtilStateConditionFunction::IsMenuKeyPressed(ui))
     {
         return STATE_TYPE_UI::NORMAL_GAME_UI_STATE;
     }
@@ -395,7 +397,7 @@ STATE_TYPE_UI PauseGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 STATE_TYPE_UI PauseGameUIState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
@@ -417,7 +419,7 @@ STATE_TYPE_UI PauseGameUIState::Decision(UIBase* ui)
     return mStateNumber;
 }
 
-// •`‰æ
+// æç”»
 void PauseGameUIState::Draw(UIBase* ui)
 {
     clsDx();
@@ -426,14 +428,14 @@ void PauseGameUIState::Draw(UIBase* ui)
     DrawMenuBackground(ui);
 }
 
-// I—¹
+// çµ‚äº†
 STATE_TYPE_UI PauseGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
 
 /*------------------------------*/
-/*yƒvƒŒƒCƒ„[î•ñ•\¦ƒXƒe[ƒgz*/
+/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±è¡¨ç¤ºã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*------------------------------*/
 DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
 : IStateUI(STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE, stateChangeCriterias)
@@ -442,17 +444,17 @@ DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<
     mStateNumber = (int)GAME_UI_STATE::DRAW_PLAYER_DATA_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void DrawPlayerDataState::OnEnter(UIBase* ui)
 {
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void DrawPlayerDataState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -467,25 +469,25 @@ STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 STATE_TYPE_UI DrawPlayerDataState::Decision(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
-// •`‰æ
+// æç”»
 void DrawPlayerDataState::Draw(UIBase* ui)
 {
 }
 
-// I—¹
+// çµ‚äº†
 STATE_TYPE_UI DrawPlayerDataState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*--------------------*/
-/*yİ’è•ÏXƒXƒe[ƒgz*/
+/*ã€è¨­å®šå¤‰æ›´ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------*/
 ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
 : IStateUI(STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE, stateChangeCriterias)
@@ -494,7 +496,7 @@ ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
     mStateNumber = (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void ConfigChangeState::OnEnter(UIBase* ui)
 {
     ui->SetSelectNumber(mnPreSelectNumber);
@@ -502,12 +504,12 @@ void ConfigChangeState::OnEnter(UIBase* ui)
     ui->SetSelectBoundaryValue(1);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void ConfigChangeState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -524,7 +526,7 @@ STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 STATE_TYPE_UI ConfigChangeState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
@@ -539,19 +541,19 @@ STATE_TYPE_UI ConfigChangeState::Decision(UIBase* ui)
     return mStateNumber;
 }
 
-// •`‰æ
+// æç”»
 void ConfigChangeState::Draw(UIBase* ui)
 {
 }
 
-// I—¹
+// çµ‚äº†
 STATE_TYPE_UI ConfigChangeState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*----------------------*/
-/*yƒQ[ƒ€I—¹ƒXƒe[ƒgz*/
+/*ã€ã‚²ãƒ¼ãƒ çµ‚äº†ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*----------------------*/
 GameEndState::GameEndState()
 : GameUIProcess()
@@ -560,24 +562,24 @@ GameEndState::GameEndState()
     mStateNumber = (int)GAME_UI_STATE::GAME_END_UI_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void GameEndState::OnEnter(UIBase* ui)
 {
     mbReturnFlag = false;
 
     printfDx("TEST\n");
 
-    // Šm”FUI
-    UI_Check<GameEndState>* uiCheck = new UI_Check<GameEndState>(nullptr, nullptr, &GameEndState::GameEnd, &GameEndState::StateReturn, this, this, "I—¹‚µ‚Ü‚·‚©?");
+    // ç¢ºèªUI
+    UI_Check<GameEndState>* uiCheck = new UI_Check<GameEndState>(nullptr, nullptr, &GameEndState::GameEnd, &GameEndState::StateReturn, this, this, "çµ‚äº†ã—ã¾ã™ã‹?");
     uiCheck->Initilize();
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void GameEndState::OnExit(UIBase* ui)
 {
 }
 
-// XV
+// æ›´æ–°
 STATE_TYPE_UI GameEndState::Update(UIBase* ui)
 {
     if (mbReturnFlag)
@@ -588,30 +590,30 @@ STATE_TYPE_UI GameEndState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// Œˆ’è
+// æ±ºå®š
 STATE_TYPE_UI GameEndState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
 
-// •`‰æ
+// æç”»
 void GameEndState::Draw(UIBase* ui)
 {
 }
 
-// ƒXƒe[ƒg‚ğ–ß‚é
+// ã‚¹ãƒ†ãƒ¼ãƒˆã‚’æˆ»ã‚‹
 void GameEndState::StateReturn(void *null)
 {
     mbReturnFlag = true;
 }
 
-// I—¹‚·‚é
+// çµ‚äº†ã™ã‚‹
 void GameEndState::GameEnd(void *null)
 {
     Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::WITHIN_EXPECTATION_FLAG);
 }
 
-// I—¹
+// çµ‚äº†
 STATE_TYPE_UI GameEndState::Close(UIBase* ui)
 {
     return mStateNumber;

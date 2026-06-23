@@ -132,7 +132,7 @@ class NormalGameUIState : public IStateUI, public GameUIProcess
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+    NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~NormalGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -178,7 +178,7 @@ private:
 
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+    PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~PauseGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -207,7 +207,7 @@ class DrawPlayerDataState : public IStateUI, public GameUIProcess
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+    DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~DrawPlayerDataState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -242,7 +242,7 @@ private:
     };
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+    ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~ConfigChangeState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -272,7 +272,7 @@ private:
     // 戻るフラグ
     bool mbReturnFlag;
 public:
-    GameEndState();
+    GameEndState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~GameEndState() = default;
 
     /// <summary>この状態に入った時の処理</summary>

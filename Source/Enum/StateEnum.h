@@ -32,6 +32,8 @@ enum class STATE_TYPE_CHARACTER
 // ステート種類 UI
 enum class STATE_TYPE_UI
 {
+	NONE = -1,
+
     // StateGameUI
     NORMAL_GAME_UI_STATE = 0,   // 通常
     PAUSE_GAME_UI_STATE,	// ポーズ

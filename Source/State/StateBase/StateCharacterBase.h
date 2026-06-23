@@ -33,8 +33,8 @@ protected:
 	// // INPROGRESS: ステート条件金曜過ぎたら変更
 
 public:
-	IStateCharacter(STATE_TYPE_CHARACTER stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
-	: StateBase(stateNumber, stateChangeCriterias)
+	IStateCharacter(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias, STATE_TYPE_CHARACTER stateNumber)
+	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
 	virtual ~IStateCharacter() = default;

@@ -76,7 +76,7 @@ void SceneStateProcess::SetPlayerPosData(PLAYER_DATA* playerData, DATA_SCENE dat
 /*【スタートシーンステート】*/
 /*--------------------------*/
 StartScene::StartScene()
-: IStateScene(SCENE::START, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::START)
 , SceneStateProcess()
 {
 	mbStartFlag = false;
@@ -98,7 +98,7 @@ void StartScene::OnExit(SceneManager* sceneManager)
 /*【タイトルシーンステート】*/
 /*--------------------------*/
 TitleScene::TitleScene()
-: IStateScene(SCENE::TITLE, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::TITLE)
 , SceneStateProcess()
 {
 }
@@ -143,7 +143,7 @@ void TitleScene::OnExit(SceneManager* sceneManager)
 /*【町シーンステート】*/
 /*--------------------------*/
 TownScene::TownScene()
-: IStateScene(SCENE::TOWN, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::TOWN)
 , SceneStateProcess()
 {
 }
@@ -287,7 +287,7 @@ void TownScene::OnExit(SceneManager* sceneManager)
 /*【ダンジョンシーンステート】*/
 /*----------------------------*/
 DungeonScene::DungeonScene()
-: IStateScene(SCENE::DUNGEON, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::DUNGEON)
 , SceneStateProcess()
 {
 }
@@ -439,7 +439,7 @@ void DungeonScene::OnExit(SceneManager* sceneManager)
 /*【バトルシーンステート】*/
 /*------------------------*/
 BattleScene::BattleScene()
-: IStateScene(SCENE::BATTLE, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::BATTLE)
 , SceneStateProcess()
 {
 }
@@ -595,7 +595,7 @@ void BattleScene::OnExit(SceneManager* sceneManager)
 /*【リザルトシーンステート】*/
 /*--------------------------*/
 ResultScene::ResultScene()
-: IStateScene(SCENE::RESULT, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::RESULT)
 , SceneStateProcess()
 {
 }
@@ -628,7 +628,7 @@ void ResultScene::OnExit(SceneManager* sceneManager)
 /*【ゲームオーバーシーンステート】*/
 /*--------------------------------*/
 GameOverScene::GameOverScene()
-: IStateScene(SCENE::GAME_OVER, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{}, SCENE::GAME_OVER)
 , SceneStateProcess()
 {
 }
@@ -651,7 +651,7 @@ void GameOverScene::OnExit(SceneManager* sceneManager)
 /*【ゲームループシーンステート】*/
 /*--------------------------------*/
 GameLoopScene::GameLoopScene()
-: IStateScene(SCENE::GAME_LOOP, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::GAME_LOOP)
 , SceneStateProcess()
 {
 	mStateNumber = SCENE::GAME_LOOP;
@@ -678,7 +678,7 @@ void GameLoopScene::OnExit(SceneManager* sceneManager)
 /*【バトルループシーンステート】*/
 /*--------------------------------*/
 BattleLoopScene::BattleLoopScene()
-: IStateScene(SCENE::BATTLE_LOOP, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{})
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::BATTLE_LOOP)
 , SceneStateProcess()
 {
 }
@@ -802,10 +802,9 @@ void BattleLoopScene::OnExit(SceneManager* sceneManager)
 /*【ゲームクリアシーンステート】*/
 /*------------------------------*/
 GameClearScene::GameClearScene()
-: IStateScene()
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::GAME_CLEAR)
 , SceneStateProcess()
 {
-	mStateNumber = SCENE::GAME_CLEAR;
 }
 
 void GameClearScene::OnEnter(SceneManager* sceneManager)

@@ -23,7 +23,7 @@ protected:
 	// ステート変更条件
 	std::vector<STATE_CHANGE_CRITERIA_DATA<number, stateData>> mfpStateChangeCriterias;
 public:
-	StateBase(number stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<number, stateData>> stateChangeCriterias)
+	StateBase(std::vector<STATE_CHANGE_CRITERIA_DATA<number, stateData>> stateChangeCriterias, number stateNumber)
 	: mStateNumber(stateNumber)
 	, mfpStateChangeCriterias(stateChangeCriterias)
 	{
@@ -41,10 +41,6 @@ public:
 
 	/// <summary>ステート取得</summary>
 	inline number GetStateNumber() const { return mStateNumber; }
-
-	/// <summary>ステート設定</summary>
-	/// <param name="stateNumber">設定ステートナンバー</param>
-	inline void SetStatenumber(number stateNumber) { mStateNumber = stateNumber; }
 
 	/// <summary>次のステートを取得する</summary>
 	virtual number GetNextState(stateData* changeConditionData)
@@ -65,6 +61,14 @@ public:
 			}
 		}
 	}
+
+	/// <summary>ステート設定</summary>
+	/// <param name="stateNumber">設定ステートナンバー</param>
+	inline void SetStatenumber(number stateNumber) { mStateNumber = stateNumber; }
+
+	/// <summary>ステート変更条件設定</summary>
+	/// <param name="stateNumber">設定ステート変更条件</param>
+	inline void SetStateChangeCriterias(std::vector<STATE_CHANGE_CRITERIA_DATA<number, stateData>> stateChangeCriterias) { mfpStateChangeCriterias = stateChangeCriterias; }
 };
 
 // /*----------*/

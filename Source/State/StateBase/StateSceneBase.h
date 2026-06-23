@@ -25,7 +25,7 @@ protected:
 	int mnSceneCameraID;
 
 public:
-	IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>> stateChangeCriterias);
+	IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>> stateChangeCriterias, SCENE stateNumber);
 	virtual ~IStateScene() = default;
 
 	// /*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/

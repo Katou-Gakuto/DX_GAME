@@ -6,6 +6,7 @@
 
 #include "FSM.h"
 #include "FSMDotWeen.h"
+#include "StateDotWeen.h"
 #include "StateDotWeenBase.h"
 #include "TimeManager.h"
 

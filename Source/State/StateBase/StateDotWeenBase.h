@@ -15,7 +15,7 @@ class IStateDotWeen : public StateBase<DOT_WEEN_TYPE, std::vector<DOT_WEEN_DATA>
 {
 public:
 	IStateDotWeen()
-	: StateBase(DOT_WEEN_TYPE::NONE, std::vector<STATE_CHANGE_CRITERIA_DATA<DOT_WEEN_TYPE, std::vector<DOT_WEEN_DATA>>>{})
+	: StateBase(std::vector<STATE_CHANGE_CRITERIA_DATA<DOT_WEEN_TYPE, std::vector<DOT_WEEN_DATA>>>{}, DOT_WEEN_TYPE::NONE)
 	{
 	}
 	/// <summary>‰Šú‰»</summary>

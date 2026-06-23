@@ -9,6 +9,7 @@
 #include "ModelBase.h"
 #include "StateAnimationBase.h"
 #include "UtilCalc.h"
+// TODO: 3Dアニメーションと2Dアニメーションで分ける ステート設定時ナンバー設定
 
 /*----------*/
 /*【アニメーションステート共通処理】
@@ -25,8 +26,8 @@ protected:
     };
 
 protected:
-    // モデルハンドル
-    int mnModelHandle;
+    // // モデルハンドル
+    // int mnModelHandle;
     
     // 一つ前のアニメーション情報
     MVOneAnimationData mstPreAnimationData;
@@ -78,7 +79,7 @@ protected:
 class StateNoneAnimation : public IStateAnimation
 {
 public:
-    StateNoneAnimation() = default;
+    StateNoneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateNoneAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
@@ -114,7 +115,7 @@ class StateMVOneAnimation : public IStateAnimation, public StateAnimationProcess
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMVOneAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -146,7 +147,7 @@ class StateMVOneOnlyAnimation : public IStateAnimation, public StateAnimationPro
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMVOneOnlyAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -200,7 +201,7 @@ private:
 
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias, int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
+    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
     ~StateMVOneOperationAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -234,7 +235,7 @@ private:
 
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateEffectAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -268,7 +269,7 @@ class StateGraphAnimation : public IStateAnimation
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateGraphAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -302,7 +303,7 @@ class StateMovieAnimation : public IStateAnimation
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMovieAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -335,7 +336,7 @@ class StateFadeGraphAnimation : public IStateAnimation
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateFadeGraphAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>
@@ -370,7 +371,7 @@ class StateDOTweenAnimation : public IStateAnimation
 {
 public:
     // FIXME: コンストラクタでステート変更条件を渡せます
-    StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias);
+    StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateDOTweenAnimation() = default;
 
    /// <summary>この状態に入った時の処理</summary>

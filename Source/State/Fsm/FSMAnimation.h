@@ -1,4 +1,6 @@
 #pragma once
+#include <cassert>
+
 #include "AnimationData.h"
 #include "StateData.h"
 
@@ -20,6 +22,7 @@ public:
     // 初期設定を限定するために呼び出せないようにする
     void RegisterState(IStateAnimation* state) override
 	{
+		assert(false && " : 呼び出すな");
 		// HACK: これでエラーが出なければこの中で使用したらエラーを出させるようにする
 	}
 
@@ -44,13 +47,13 @@ public:
 	/// <summary>現在のステートと同じ種類かを確認する</summary>
 	//bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSameType(animationType); }
 	
-private:
-	/*新しいステートを設定する*/
-	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);
+// private:
+// 	/*新しいステートを設定する*/
+// 	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);
 
-	/*次のステートが現在のステートと違うならステート変更処理をする*/
-	void ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType);
+// 	/*次のステートが現在のステートと違うならステート変更処理をする*/
+// 	void ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType);
 
-	/*現在のステート取得*/
-	IStateAnimation* GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType);
+// 	/*現在のステート取得*/
+// 	IStateAnimation* GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType);
 };

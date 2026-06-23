@@ -154,16 +154,10 @@ protected:
     // コンフィグ画像サイズ
     const DisplaySize CONFIG_GRAPHSIZE = { Vector2(3221.0f, 218.0f), 0 };
 
-private:
-    STATE_TYPE_UI* mnStatePointer;
-    int mnDefaultStateNumber;
-
 public:
-    ConfigUIProcess(STATE_TYPE_UI *statePointer, int defaultStateNumber);
+    ConfigUIProcess();
 
 protected:
-    /*ステートナンバー取得*/
-    //int GetConfigStateNumber(int stateNumber);
     
     /*値を上下の入力を元に変更する*/
     void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 10000);
@@ -215,6 +209,8 @@ private:
         MAX = static_cast<int>(TYPE_MAX)
     };
 
+    static constexpr int CONFIG_UI_STATE_MAX = 4;
+
     // 前のConfig以外のステートナンバー
     int mnPreConfigExceptStateNumber;
     
@@ -222,7 +218,7 @@ private:
     std::vector<std::vector<CONFIG_VARIABLE_POINTER>> mstAllConfigVariables;
 
 public:
-    ConfigSelectState();
+    ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~ConfigSelectState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
@@ -252,7 +248,7 @@ private:
         MAX
     };
 public:
-    MinimapConfigState();
+    MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~MinimapConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
@@ -277,7 +273,7 @@ private:
         MAX
     };
 public:
-    SoundConfigState();
+    SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~SoundConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
@@ -302,7 +298,7 @@ private:
         MAX
     };
 public:
-    CameraConfigState();
+    CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~CameraConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;

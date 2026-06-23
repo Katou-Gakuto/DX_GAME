@@ -26,8 +26,8 @@ protected:
 
 
 public:
-	IStateAnimation(int stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
-	: StateBase(stateNumber, stateChangeCriterias)
+	IStateAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int stateNumber)
+	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
 	virtual ~IStateAnimation() = default;

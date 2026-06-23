@@ -12,32 +12,32 @@ FSMCamera::FSMCamera()
 {
 }
 
-// 実行中状態をセットする
-void FSMCamera::SetCurrentState(CameraManager* cameraManager, int& preThreeDFlag)
-{
-	if (mCurrentState != CAMERA_MODE::NONE)
-	{
-		mmStateMap[mCurrentState]->OnExit(&cameraManager->GetCameraData());
-	}
+// // 実行中状態をセットする
+// void FSMCamera::SetCurrentState(CameraManager* cameraManager, int& preThreeDFlag)
+// {
+// 	if (mCurrentState != CAMERA_MODE::NONE)
+// 	{
+// 		mmStateMap[mCurrentState]->OnExit(&cameraManager->GetCameraData());
+// 	}
 
-	mCurrentState = cameraManager->GetCameraData().cameraMode;
-	mmStateMap[mCurrentState]->OnEnter(&cameraManager->GetCameraData());
-}
+// 	mCurrentState = cameraManager->GetCameraData().cameraMode;
+// 	mmStateMap[mCurrentState]->OnEnter(&cameraManager->GetCameraData());
+// }
 
 // 初期化
 void FSMCamera::Initilize(CameraManager* cameraManager, int id)
 {
-	mmStateMap[cameraManager->GetCameraData(id).cameraMode]->Initilize(cameraManager, cameraManager->GetCameraData());
+	mmStateMap[cameraManager->GetCameraData(id).cameraMode]->Initilize(&cameraManager->GetCameraData());
 }
 
 // 更新
 void FSMCamera::Update(CameraManager* cameraManager)
 {
-	mmStateMap[mCurrentState]->Update(cameraManager, cameraManager->GetCameraData());
+	mmStateMap[mCurrentState]->Update(&cameraManager->GetCameraData());
 }
 
 // 描画
 void FSMCamera::Draw(CameraManager* cameraManager)
 {
-	mmStateMap[mCurrentState]->Draw(cameraManager, cameraManager->GetCameraData());
+	mmStateMap[mCurrentState]->Draw(&cameraManager->GetCameraData());
 }

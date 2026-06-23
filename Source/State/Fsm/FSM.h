@@ -66,16 +66,29 @@ public:
 	}
 
 	/*ステート登録(ステートナンバー変更される)*/
-	inline void RegisterState(const subscript id, state* state)
+	inline void RegisterState(const subscript id, state* State)
 	{
-		state->SetStatenumber(id);
-		mmStateMap[id] = state;
+		State->SetStatenumber(id);
+		mmStateMap[id] = State;
 	}
 
 	/*ステート登録*/
-	virtual void RegisterState(state* state)
+	virtual void RegisterState(state* State)
 	{
-		mmStateMap[state->GetStateNumber()] = state;
+		mmStateMap[State->GetStateNumber()] = State;
+	}
+
+	/*実行中状態をセットする*/
+	virtual void SetCurrentState(const subscript id, stateData* StateData)
+	{
+
+		mPreState = mCurrentState;
+		mCurrentState = id;
+		if ((subscript)-1 != id)
+		{
+			mmStateMap[mPreState]->OnExit(StateData, mCurrentState);
+		}
+		mmStateMap[mCurrentState]->OnEnter(StateData, mPreState);
 	}
 
 	/*ステート変更確認*/

@@ -26,10 +26,9 @@
 /*----------------------*/
 
 
-StartResultUIState::StartResultUIState()
-{
-	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
-    
+StartResultUIState::StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::START_RESULT_UI_STATE)
+{    
     // •`‰æî•ñ‰Šú‰»
     mstDrawDatas.clear();
 

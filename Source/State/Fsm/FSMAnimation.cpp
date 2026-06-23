@@ -55,58 +55,53 @@ void FSMAnimation::Finalize(AnimationBase* animation)
 // 更新
 void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas)
 {
-	// 古いアニメーション種類を一時的に保存しておく
-	ANIMATION_TYPE oldAnimationState = mCurrentState;
+	// TODO: アニメーションもうちょっと詰めてから
+	STATE_ANEMATION_DATA stateAnimationData;
+	stateAnimationData.StateAnimation = animation;
+	//stateAnimationData.StateOneAnimationData = ;
+	//stateAnimationData.StateAnimationDatas = ;
 
-	// アニメーションが変更されたか確認
-	mnNextState = mmStateMap[mCurrentState]->CheckState(animation, mnNextState);
-	if (mnNextState != mCurrentState)
-	{
-		mmStateMap[mCurrentState]->OnExit(animation, mnNextState);
+	CheckChangeState(&stateAnimationData);
 
-		mCurrentState = mnNextState;
-		mmStateMap[mCurrentState]->OnEnter(animation, oldAnimationState);
-	}
-	// TODO: この1行なくせるようにした(UIの方になるになる)
-	mnNextState = ANIMATION_TYPE::IDLE;
 
-	// 変更処理
-	for (int i = 0; i < mmAnimationStates.size(); i++)
-	{
-		// モデル取得
-//		ModelBase* model = animation->GetModelsController()->GetModelList()[i];
+	// TODO: アニメーションもうちょっと詰めてから
+// 	// 変更処理
+// 	for (int i = 0; i < mmAnimationStates.size(); i++)
+// 	{
+// 		// モデル取得
+// //		ModelBase* model = animation->GetModelsController()->GetModelList()[i];
 
-		// ステート変更
-		if (mCurrentState != oldAnimationState)
-		{
-			ChangeState(i, animation, oldAnimationState);
-		}
+// 		// ステート変更
+// 		if (mCurrentState != oldAnimationState)
+// 		{
+// 			ChangeState(i, animation, oldAnimationState);
+// 		}
 
-		// 更新
-		GetAnimationState(i, animation, mCurrentState)->Update(animation, &animationDatas[i]->animDatas[mCurrentState]);
-	}
+// 		// 更新
+// 		GetAnimationState(i, animation, mCurrentState)->Update(animation, &animationDatas[i]->animDatas[mCurrentState]);
+// 	}
 }
 
-// 新しいステートを設定する
-void FSMAnimation::NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType)
-{
-	GetAnimationState(animationIndex, animation, mCurrentState)->OnEnter(animation, &animation->GetAnimationDatas()[animationIndex]->animDatas[mCurrentState], animation->GetAnimationDatas()[animationIndex], oldModelType);
-}
+// // 新しいステートを設定する
+// void FSMAnimation::NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType)
+// {
+// 	GetAnimationState(animationIndex, animation, mCurrentState)->OnEnter(animation, &animation->GetAnimationDatas()[animationIndex]->animDatas[mCurrentState], animation->GetAnimationDatas()[animationIndex], oldModelType);
+// }
 
-// 次のステートが現在のステートと違うならステート変更処理をする
-void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType)
-{
-	AnimationDatas* animationDatas = animation->GetAnimationDatas()[animationStateIndex];
+// // 次のステートが現在のステートと違うならステート変更処理をする
+// void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType)
+// {
+// 	AnimationDatas* animationDatas = animation->GetAnimationDatas()[animationStateIndex];
 
-	// 現在のState終了処理
-	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, &animationDatas->animDatas[oldAnimationType], animationDatas, animationDatas->animDatas[mCurrentState].modelType);
+// 	// 現在のState終了処理
+// 	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, &animationDatas->animDatas[oldAnimationType], animationDatas, animationDatas->animDatas[mCurrentState].modelType);
 
-	// 新しいState設定
-	NewStateSetting(animationStateIndex, animation, animationDatas->animDatas[oldAnimationType].modelType);
-}
+// 	// 新しいState設定
+// 	NewStateSetting(animationStateIndex, animation, animationDatas->animDatas[oldAnimationType].modelType);
+// }
 
-// 現在のステート取得
-IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType)
-{
-	return mmAnimationStates[index][animation->GetAnimationDatas()[index]->animDatas[animationType].modelType];
-}
+// // 現在のステート取得
+// IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType)
+// {
+// 	return mmAnimationStates[index][animation->GetAnimationDatas()[index]->animDatas[animationType].modelType];
+// }

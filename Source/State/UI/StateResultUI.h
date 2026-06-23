@@ -55,7 +55,7 @@ private:
 	std::vector<DRAW_DATA> mstDrawDatas;
 
 public:
-	StartResultUIState();
+	StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
 	~StartResultUIState() = default;
 
 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/

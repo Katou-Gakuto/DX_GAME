@@ -10,8 +10,8 @@
 /*------------------------*/
 /*【シーンステートベース】*/
 /*------------------------*/
-IStateScene::IStateScene(SCENE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>> stateChangeCriterias)
-: StateBase(stateNumber, stateChangeCriterias)
+IStateScene::IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>> stateChangeCriterias, SCENE stateNumber)
+: StateBase(stateChangeCriterias, stateNumber)
 , mpMapManager(nullptr)
 , mpTargetManager(nullptr)
 , mnSceneCameraID(-1)

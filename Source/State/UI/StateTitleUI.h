@@ -106,7 +106,7 @@ class StartTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~StartTitleUIState() = default;
 
 	/*終了*/
@@ -134,7 +134,7 @@ class SelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~SelectTitleUIState() = default;
 
 	/*終了*/
@@ -164,7 +164,7 @@ class NewDataCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~NewDataCheckTitleUIState() = default;
 
 	/*終了*/
@@ -197,7 +197,7 @@ private:
 
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~DataSelectTitleUIState() = default;
 
 	/*終了*/
@@ -227,7 +227,7 @@ class TutorialTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~TutorialTitleUIState() = default;
 
 	/*終了*/
@@ -257,7 +257,7 @@ class SettingTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~SettingTitleUIState() = default;
 
 	/*終了*/
@@ -287,7 +287,7 @@ class CharacterSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~CharacterSelectTitleUIState() = default;
 
 	/*終了*/
@@ -317,7 +317,7 @@ class PlayerNameTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~PlayerNameTitleUIState() = default;
 
 	/*終了*/
@@ -347,7 +347,7 @@ class InputCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~InputCheckTitleUIState() = default;
 
 	/*終了*/
@@ -377,7 +377,7 @@ class ScreenSizeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~ScreenSizeTitleUIState() = default;
 
 	/*終了*/
@@ -407,7 +407,7 @@ class VolumeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~VolumeTitleUIState() = default;
 
 	/*終了*/

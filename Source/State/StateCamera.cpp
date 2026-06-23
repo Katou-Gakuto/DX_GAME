@@ -16,7 +16,7 @@
 /*【固定視点ステート】*/
 /*--------------------*/
 StateFixedCamera::StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-: IStateCamera(CAMERA_MODE::FIXED, stateChangeCriterias)
+: IStateCamera(stateChangeCriterias, CAMERA_MODE::FIXED)
 {
 	mStateNumber = CAMERA_MODE::FIXED;
 }
@@ -51,8 +51,8 @@ void StateFixedCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 /*--------------------*/
 /*【移動視点ステート】*/
 /*--------------------*/
-StateMoveCamera::StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias)
-: IStateCamera(CAMERA_MODE::MOVE, stateChangeCriterias)
+StateMoveCamera::StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
+: IStateCamera(stateChangeCriterias, CAMERA_MODE::MOVE)
 {
 	mStateNumber = CAMERA_MODE::MOVE;
 }
@@ -110,8 +110,8 @@ void StateMoveCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
 /*----------------------------*/
 /*【キャラクター視点ステート】*/
 /*----------------------------*/
-StateCharacterCamera::StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias)
-: IStateCamera(CAMERA_MODE::CHARACTER, stateChangeCriterias)
+StateCharacterCamera::StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
+: IStateCamera(stateChangeCriterias, CAMERA_MODE::CHARACTER)
 {
 	mStateNumber = CAMERA_MODE::CHARACTER;
 }
@@ -152,8 +152,8 @@ void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraD
 /*--------------------------*/
 /*【プレイヤー視点ステート】*/
 /*--------------------------*/
-StatePlayerCamera::StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, void>> stateChangeCriterias)
-: IStateCamera(CAMERA_MODE::PLAYER, stateChangeCriterias)
+StatePlayerCamera::StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
+: IStateCamera(stateChangeCriterias, CAMERA_MODE::PLAYER)
 {
 	mStateNumber = CAMERA_MODE::PLAYER;
 }

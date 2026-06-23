@@ -23,8 +23,8 @@
 /*----------*/
 
 StateAnimationProcess::StateAnimationProcess(int modelHandle)
-: mnModelHandle(modelHandle)
-, mfAnimBlendRate(0.0f)
+: /*mnModelHandle(modelHandle)
+, */mfAnimBlendRate(0.0f)
 , mfAnimBlendSpeed(0.1f)
 , mfAnimationSpeed(0.5f)
 , meAnimationType(ANIMATION_TYPE::IDLE)
@@ -153,7 +153,7 @@ void StateAnimationProcess::AdvanceAnimationTime(int animationHandle, float* ani
 /*【MV1モデルアニメーション】
 /*----------*/
 
-StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::MV1_MODEL, stateChangeCriterias)
 , StateAnimationProcess(modelHandle)
 {
@@ -209,7 +209,7 @@ bool StateMVOneAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*----------*/
 /*【MV1モデル　アニメーション無しモデル】
 /*----------*/
-StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::MV1_MODEL_ONLY, stateChangeCriterias)
 , StateAnimationProcess(modelHandle)
 {
@@ -286,7 +286,7 @@ void StateMVOneOnlyAnimation::AnimationAttach(AnimationBase* animation, OneAnima
 /*----------*/
 /*【MV1モデル モデル操作】
 /*----------*/
-: StateMVOneOperationAnimation::StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle, VECTOR changeSize, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+: StateMVOneOperationAnimation::StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle, VECTOR changeSize, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : StateMVOneOnlyAnimation(modelHandle, stateChangeCriterias)
 , mvChangeMove(changeVec)
 , mvMove(UtilCalc::VZero)
@@ -347,7 +347,7 @@ bool StateMVOneOperationAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*【エフェクトアニメーション】
 /*----------*/
 
-StateEffectAnimation::StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateEffectAnimation::StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::EFFECT, stateChangeCriterias)
 , mnEffectHandle(effectHandle)
 {
@@ -424,7 +424,7 @@ bool StateEffectAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*----------*/
 /*【画像アニメーション】
 /*----------*/
-StateGraphAnimation::StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateGraphAnimation::StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::GRAPH, stateChangeCriterias)
 {
     mStateNumber = MODEL_TYPE::GRAPH;
@@ -459,7 +459,7 @@ bool StateGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*----------*/
 /*【動画アニメーション】
 /*----------*/
-StateMovieAnimation::StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateMovieAnimation::StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::MOVIE, stateChangeCriterias)
 {
     mStateNumber = MODEL_TYPE::MOVIE;
@@ -495,7 +495,7 @@ bool StateMovieAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*------------------------------*/
 /*【フェード画像アニメーション】*/
 /*------------------------------*/
-StateFadeGraphAnimation::StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateFadeGraphAnimation::StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::FADE, stateChangeCriterias)
 {
     mStateNumber = MODEL_TYPE::FADE;
@@ -568,7 +568,7 @@ bool StateFadeGraphAnimation::CheckSimilarModelType(MODEL_TYPE modelType)
 /*----------*/
 /*【DOTweenアニメーション】*/
 /*----------*/
-StateDOTweenAnimation::StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<MODEL_TYPE, void>> stateChangeCriterias)
+StateDOTweenAnimation::StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(MODEL_TYPE::TOD_WEEN, stateChangeCriterias)
 {
     mStateNumber = MODEL_TYPE::TOD_WEEN;

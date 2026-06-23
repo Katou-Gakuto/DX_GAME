@@ -22,8 +22,8 @@ protected:
 	static int mnPreThreeDFlag;
 
 public:
-	IStateCamera(CAMERA_MODE stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-	: StateBase(stateNumber, stateChangeCriterias)
+	IStateCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias, CAMERA_MODE stateNumber)
+	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
 	virtual ~IStateCamera() = default;

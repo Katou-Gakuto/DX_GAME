@@ -299,8 +299,8 @@ void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize,
 /*【開始画面UIステート】*/
 /*----------------------*/
 
-StartTitleUIState::StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+StartTitleUIState::StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::START_TITLE_UI_STATE;
@@ -361,8 +361,8 @@ void StartTitleUIState::Draw(UIBase* ui)
 /*【選択画面UIステート】*/
 /*----------------------*/
 
-SelectTitleUIState::SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+SelectTitleUIState::SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
@@ -477,8 +477,8 @@ void SelectTitleUIState::Draw(UIBase* ui)
 /*【新しいデータの入る場所があるか確認UIステート】*/
 /*------------------------------------------------*/
 
-NewDataCheckTitleUIState::NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+NewDataCheckTitleUIState::NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
@@ -539,8 +539,8 @@ void NewDataCheckTitleUIState::Draw(UIBase* ui)
 /*【データ選択画面UIステート】*/
 /*----------------------------*/
 
-DataSelectTitleUIState::DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+DataSelectTitleUIState::DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 , mnDrawDataPos(0)
 {
@@ -622,8 +622,8 @@ void DataSelectTitleUIState::Draw(UIBase* ui)
 /*【チュートリアルUIステート】*/
 /*----------------------------*/
 
-TutorialTitleUIState::TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+TutorialTitleUIState::TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
@@ -684,8 +684,8 @@ void TutorialTitleUIState::Draw(UIBase* ui)
 /*【セッティングUIステート】*/
 /*--------------------------*/
 
-SettingTitleUIState::SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+SettingTitleUIState::SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
@@ -756,8 +756,8 @@ void SettingTitleUIState::Draw(UIBase* ui)
 /*【キャラクター種類選択UIステート】*/
 /*----------------------------*/
 
-CharacterSelectTitleUIState::CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+CharacterSelectTitleUIState::CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
@@ -817,8 +817,8 @@ void CharacterSelectTitleUIState::Draw(UIBase* ui)
 /*【プレイヤー名設定UIステート】*/
 /*----------------------------*/
 
-PlayerNameTitleUIState::PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+PlayerNameTitleUIState::PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
@@ -878,8 +878,8 @@ void PlayerNameTitleUIState::Draw(UIBase* ui)
 /*【入力情報の最終確認UIステート】*/
 /*----------------------------*/
 
-InputCheckTitleUIState::InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+InputCheckTitleUIState::InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
@@ -940,8 +940,8 @@ void InputCheckTitleUIState::Draw(UIBase* ui)
 /*【画面サイズ調整UIステート】*/
 /*----------------------------*/
 
-ScreenSizeTitleUIState::ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+ScreenSizeTitleUIState::ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
@@ -1001,8 +1001,8 @@ void ScreenSizeTitleUIState::Draw(UIBase* ui)
 /*【音量調整UIステート】*/
 /*----------------------------*/
 
-VolumeTitleUIState::VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+VolumeTitleUIState::VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
 {
 	mStateNumber = (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;

@@ -14,9 +14,6 @@ public:
 	/// <summary>終了</summary>
 	void Finalize(CharacterBase* character);
 
-	/*実行中状態をセットする*/
-	void SetCurrentState(int id, CharacterBase* character);
-
 	/*更新*/
 	void Update(CharacterBase* character);
 	/*最終更新*/

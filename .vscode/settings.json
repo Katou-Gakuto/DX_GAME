@@ -70,5 +70,10 @@
         "forward_list": "cpp",
         "iomanip": "cpp",
         "sstream": "cpp"
-    }
+    },
+
+    "todo-tree.filtering.excludeGlobs": [
+        "**/Imgui/**",
+        "**/imgui-master/**"
+    ]
 }

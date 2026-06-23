@@ -10,6 +10,7 @@
 #include "fsrm.h"
 #include "KeyState.h"
 #include "MapManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "TargetManager.h"
@@ -59,10 +60,8 @@ void CONFIG_VARIABLE_POINTER::ChangeVariable(float changeRateAmount)
 /*----------*/
 /*【コンフィグUI共通処理用】*/
 /*----------*/
-ConfigUIProcess::ConfigUIProcess(STATE_TYPE_UI *statePointer, int defaultStateNumber)
-: mnPreSelectNumber(0)  
-, mnStatePointer(statePointer)
-, mnDefaultStateNumber(defaultStateNumber)
+ConfigUIProcess::ConfigUIProcess()
+: mnPreSelectNumber(0)
 { 
     mstConfigVariables.clear();
     mstDrawData.clear();
@@ -112,12 +111,6 @@ ConfigUIProcess::ConfigUIProcess(STATE_TYPE_UI *statePointer, int defaultStateNu
     // mstDrawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
     // mstDrawData.drawGraphData.transFlag = TRUE;
     // Master::mpDrawManager->AddDrawData(&mstDrawData);
-}
-
-// ステートナンバー取得
-int ConfigUIProcess::GetConfigStateNumber(int stateNumber)
-{
-    return static_cast<int>(*mnStatePointer) + (stateNumber - mnDefaultStateNumber) ;
 }
 
 // 値を左右の入力を元に変更する
@@ -214,7 +207,7 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 0].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 0].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 0].drawGraphData.turnFlag.y = 0;
-    mstDrawData[index + 0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png");
+    mstDrawData[index + 0].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png", nullptr);
 
     mstDrawData[index + 1].drawFlag = false;
     mstDrawData[index + 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -226,7 +219,7 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 1].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 1].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 1].drawGraphData.turnFlag.y = 0;
-    mstDrawData[index + 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png");
+    mstDrawData[index + 1].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png", nullptr);
 
     
     mstDrawData[index + 2].drawFlag = false;
@@ -237,7 +230,7 @@ void ConfigUIProcess::InitSetSlider(int index)
     mstDrawData[index + 2].drawGraphData.transFlag = TRUE;
     mstDrawData[index + 2].drawGraphData.turnFlag.x = 0;
     mstDrawData[index + 2].drawGraphData.turnFlag.y = 0;
-    mstDrawData[index + 2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
+    mstDrawData[index + 2].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png", nullptr);
 }
 
 // コンフィグ描画をセッティングする
@@ -266,7 +259,7 @@ void ConfigUIProcess::ConfigDrawSetting(UIBase* ui)
 }
 
 // コンフィグ別スライダー設定
-void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
+void ConfigUIProcess::SetConfigSlider(STATE_TYPE_UI configType)
 {
     CONFIG_VARIABLE_POINTER setConfigVariable;
     DRAW_DATA drawData;
@@ -287,13 +280,13 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
     switch (configType)
     {
     // 戻る
-    case CONFIG_UI_STATE::SELECT_CONFIG_STATE:
+    case STATE_TYPE_UI::SELECT_CONFIG_STATE:
         {
         }
         break;
         
     // ミニマップ
-    case CONFIG_UI_STATE::MINIMAP_CONFIG_STATE:
+    case STATE_TYPE_UI::MINIMAP_CONFIG_STATE:
         {
             //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             drawData.drawGraphData.handle = -1;
@@ -309,7 +302,7 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
         break;
         
     // サウンド
-    case CONFIG_UI_STATE::SOUND_CONFIG_STATE:
+    case STATE_TYPE_UI::SOUND_CONFIG_STATE:
         {
             //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             drawData.drawGraphData.handle = -1;
@@ -325,7 +318,7 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
         break;
         
     // カメラ
-    case CONFIG_UI_STATE::CAMERA_CONFIG_STATE:
+    case STATE_TYPE_UI::CAMERA_CONFIG_STATE:
         {
             //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             drawData.drawGraphData.handle = -1;
@@ -345,11 +338,10 @@ void ConfigUIProcess::SetConfigSlider(CONFIG_UI_STATE configType)
 /*----------------------*/
 /*【コンフィグ選択ステート】*/
 /*----------------------*/
-ConfigSelectState::ConfigSelectState()
-: ConfigUIProcess(&mStateNumber, CONFIG_UI_STATE::SELECT_CONFIG_STATE)
+ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::SELECT_CONFIG_STATE)
+, ConfigUIProcess()
 {
-    mStateNumber = CONFIG_UI_STATE::SELECT_CONFIG_STATE;
-
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
 
     mstDrawData.reserve(CONFIG_SELECT_DRAW_DATA_TYPE::MAX - CONFIG_SELECT_DRAW_DATA_TYPE::SLIDER_MAX);
@@ -386,9 +378,9 @@ ConfigSelectState::ConfigSelectState()
             drawData.drawGraphData.transFlag = TRUE;
         }
 
-        for (int i = 0; i < (int)CONFIG_UI_STATE::CONFIG_UI_STATE_MAX; i++)
+        for (int i = 0; i < CONFIG_UI_STATE_MAX; i++)
         {
-            SetConfigSlider((CONFIG_UI_STATE)i);
+            SetConfigSlider((STATE_TYPE_UI)(i + (int)STATE_TYPE_UI::SELECT_CONFIG_STATE));
             mstAllConfigVariables.push_back(mstConfigVariables);
         }
 
@@ -742,8 +734,9 @@ void ConfigSelectState::AllConfigDrawSetting(UIBase* ui, bool setFlag)
 /*----------------------*/
 /*【ミニマップ設定ステート】*/
 /*----------------------*/
-MinimapConfigState::MinimapConfigState()
-: ConfigUIProcess(&mStateNumber, CONFIG_UI_STATE::MINIMAP_CONFIG_STATE)
+MinimapConfigState::MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::MINIMAP_CONFIG_STATE)
+, ConfigUIProcess()
 {
     mStateNumber = CONFIG_UI_STATE::MINIMAP_CONFIG_STATE;
     SetConfigSlider(CONFIG_UI_STATE::MINIMAP_CONFIG_STATE);
@@ -833,8 +826,9 @@ STATE_TYPE_UI MinimapConfigState::Close(UIBase* ui)
 /*----------------------*/
 /*【サウンド設定ステート】*/
 /*----------------------*/
-SoundConfigState::SoundConfigState()
-: ConfigUIProcess(&mStateNumber, CONFIG_UI_STATE::SOUND_CONFIG_STATE)
+SoundConfigState::SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::SOUND_CONFIG_STATE)
+, ConfigUIProcess()
 {
     mStateNumber = (int)CONFIG_UI_STATE::SOUND_CONFIG_STATE;
     SetConfigSlider(CONFIG_UI_STATE::SOUND_CONFIG_STATE);
@@ -925,8 +919,9 @@ STATE_TYPE_UI SoundConfigState::Close(UIBase* ui)
 /*----------------------*/
 /*【カメラ設定ステート】*/
 /*----------------------*/
-CameraConfigState::CameraConfigState()
-: ConfigUIProcess(&mStateNumber, CONFIG_UI_STATE::CAMERA_CONFIG_STATE)
+CameraConfigState::CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::CAMERA_CONFIG_STATE)
+, ConfigUIProcess()
 {
     mStateNumber = (int)CONFIG_UI_STATE::CAMERA_CONFIG_STATE;
     SetConfigSlider(CONFIG_UI_STATE::CAMERA_CONFIG_STATE);

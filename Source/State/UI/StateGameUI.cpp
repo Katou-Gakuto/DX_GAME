@@ -172,11 +172,10 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 /*----------------------*/
 /*【通常ゲームUIステート】*/
 /*----------------------*/
-NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, stateChangeCriterias)
+NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
 , GameUIProcess()
 {
-    mStateNumber = (int)GAME_UI_STATE::NORMAL_GAME_UI_STATE;
 }
 
 // この状態に入った時の処理
@@ -232,11 +231,10 @@ STATE_TYPE_UI NormalGameUIState::Close(UIBase* ui)
 /*----------------------*/
 /*【ポーズUIステート】*/
 /*----------------------*/
-PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::PAUSE_GAME_UI_STATE, stateChangeCriterias)
+PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::PAUSE_GAME_UI_STATE)
 , GameUIProcess()
 {
-    mStateNumber = (int)GAME_UI_STATE::PAUSE_GAME_UI_STATE;
  
  
     DRAW_DATA drawData = DRAW_DATA();
@@ -437,11 +435,10 @@ STATE_TYPE_UI PauseGameUIState::Close(UIBase* ui)
 /*------------------------------*/
 /*【プレイヤー情報表示ステート】*/
 /*------------------------------*/
-DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE, stateChangeCriterias)
+DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE)
 , GameUIProcess()
 {
-    mStateNumber = (int)GAME_UI_STATE::DRAW_PLAYER_DATA_UI_STATE;
 }
 
 // この状態に入った時の処理
@@ -489,11 +486,10 @@ STATE_TYPE_UI DrawPlayerDataState::Close(UIBase* ui)
 /*--------------------*/
 /*【設定変更ステート】*/
 /*--------------------*/
-ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias)
-: IStateUI(STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE, stateChangeCriterias)
+ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE)
 , GameUIProcess()
 {
-    mStateNumber = (int)GAME_UI_STATE::CONFIG_CHANGE_UI_STATE;
 }
 
 // この状態に入った時の処理
@@ -555,11 +551,11 @@ STATE_TYPE_UI ConfigChangeState::Close(UIBase* ui)
 /*----------------------*/
 /*【ゲーム終了ステート】*/
 /*----------------------*/
-GameEndState::GameEndState()
-: GameUIProcess()
+GameEndState::GameEndState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::GAME_END_UI_STATE)
+, GameUIProcess()
 , mbReturnFlag(false)
 {
-    mStateNumber = (int)GAME_UI_STATE::GAME_END_UI_STATE;
 }
 
 // この状態に入った時の処理

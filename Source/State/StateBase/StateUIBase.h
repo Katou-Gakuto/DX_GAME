@@ -13,8 +13,8 @@ class UIBase;
 class IStateUI : public StateBase<STATE_TYPE_UI, UIBase>
 {
 public:
-	IStateUI(STATE_TYPE_UI stateNumber, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
-	: StateBase(stateNumber, stateChangeCriterias)
+	IStateUI(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias, STATE_TYPE_UI stateNumber)
+	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
 	virtual ~IStateUI() = default;
@@ -38,14 +38,14 @@ public:
 	/*終了*/
 	virtual void Close(UIBase* ui) { }
 
-	// /*マウス*/
-	// virtual STATE_TYPE_UI Mouse(UIBase* ui) { return mStateNumber; }
-	// /*キーボード*/
-	// virtual STATE_TYPE_UI Keyboard(UIBase* ui) { return mStateNumber; }
-	// /*コントローラー*/
-	// virtual STATE_TYPE_UI Controller(UIBase* ui) { return mStateNumber; }
-	// /*キーボードとコントローラー*/
-	// virtual STATE_TYPE_UI Keyboard_Controller(UIBase* ui) { return mStateNumber; }
+	/*マウス*/
+	virtual void Mouse(UIBase* ui) { }
+	/*キーボード*/
+	virtual void Keyboard(UIBase* ui) { }
+	/*コントローラー*/
+	virtual void Controller(UIBase* ui) { }
+	/*キーボードとコントローラー*/
+	virtual void Keyboard_Controller(UIBase* ui) { }
 
 	/*描画*/
 	virtual void Draw(UIBase* ui) = 0;

@@ -9,6 +9,7 @@
 #include "StateSceneBase.h"
 #include "UtilChange.h"
 
+// TODO: シーン関連シーン周辺を見ながら再考
 /*------------------------*/
 /*【シーン有限状態マシン】*/
 /*------------------------*/
@@ -21,8 +22,9 @@ FSMScene::FSMScene()
 // 実行中状態をセットする
 void FSMScene::SetCurrentState(SCENE id, SceneManager* sceneManager)
 {
+	mPreState = mCurrentState;
 	mCurrentState = id;
-	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager);
+	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager, mPreState);
 }
 
 // 更新
@@ -38,11 +40,11 @@ void FSMScene::Update(SceneManager* sceneManager)
 	}
 }
 
-// 次のシーンへ移動する
-void FSMScene::NextScene(SceneManager* sceneManager)
-{
-	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager);
-}
+// // 次のシーンへ移動する
+// void FSMScene::NextScene(SceneManager* sceneManager)
+// {
+// 	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager);
+// }
 
 // カメラID取得
 int FSMScene::GetSceneCameraID()

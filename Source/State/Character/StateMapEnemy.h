@@ -1,12 +1,16 @@
 #pragma once
 
+#include "StateEnum.h"
+
 #include "EnemyCommonProcessing.h"
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 class KeyState;
 class SceneManager;
 class TargetManager;
+
+// TODO: UIでやる
 
 /*------------------*/
 /*     【共通】     */
@@ -16,11 +20,11 @@ class TargetManager;
 /*【マップエネミーステート】*/
 /*--------------------------*/
 
-enum class MAP_ENEMY_STATE
-{
-	IDLE_MAP_ENEMY_STATE = 0,
-	TELOP_MAP_ENEMY_STATE,
-};
+// enum class MAP_ENEMY_STATE
+// {
+// 	IDLE_MAP_ENEMY_STATE = 0,
+// 	TELOP_MAP_ENEMY_STATE,
+// };
 
 /*----------------------------*/
 /*【マップエネミー共通処理用】*/
@@ -64,18 +68,19 @@ protected:
 class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	IdleMapEnemyState(SCENE mapScene);
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~IdleMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -96,18 +101,19 @@ public:
 class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	TelopMapEnemyState(SCENE mapScene);
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~TelopMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;

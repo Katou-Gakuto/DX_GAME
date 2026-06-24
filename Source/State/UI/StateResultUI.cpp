@@ -26,10 +26,9 @@
 /*----------------------*/
 
 
-StartResultUIState::StartResultUIState()
-{
-	mStateNumber = (int)RESULT_UI_STATE::START_RESULT_UI_STATE;
-    
+StartResultUIState::StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::START_RESULT_UI_STATE)
+{    
     // 描画情報初期化
     mstDrawDatas.clear();
 
@@ -236,10 +235,10 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
                     continue;
                 }
                 drawData.drawGraphData.pos.y = mstNumberDrawData[i].drawGraphData.pos.y;
-                drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ChangeArrow.png");
+                drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ChangeArrow.png");
                 mstDrawDatas.push_back(drawData);
             }
-            mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
+            mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Numbers.png");
             //Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
@@ -258,7 +257,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // ステータス
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ResultStatus.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ResultStatus.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.0625f, 0.15625f));
             drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.1859375f, 0.7125f));
             drawData.drawGraphData.graphPos = Vector2_Int(340, 975);
@@ -269,7 +268,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // 選択肢
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Result2.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.75f));
             drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.22f, 0.075f));
             drawData.drawGraphData.graphPos = Vector2_Int(4640, 4975);
@@ -281,7 +280,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.drawGraphData.transFlag = FALSE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.15f));
             int graphSize = displaySize.Left_RatioWidth(0.23125f);
             drawData.drawGraphData.size = Vector2_Int(graphSize, graphSize);
@@ -463,7 +462,7 @@ void StartResultUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-int StartResultUIState::Update(UIBase* ui)
+STATE_TYPE_UI StartResultUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 
@@ -471,7 +470,7 @@ int StartResultUIState::Update(UIBase* ui)
 }
 
 // 決定
-int StartResultUIState::Decision(UIBase* ui)
+STATE_TYPE_UI StartResultUIState::Decision(UIBase* ui)
 {
     /*// UNDONE: 元に戻す
     // シーン移動
@@ -486,7 +485,7 @@ int StartResultUIState::Decision(UIBase* ui)
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
 
 
-	return mStateNumber;
+    return mStateNumber;
 }
 
 // 描画

@@ -22,15 +22,6 @@
     <Filter Include="ヘッダー ファイル\Struct">
       <UniqueIdentifier>{d8d08d04-168f-4707-a842-37d41e91ad62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\State">
-      <UniqueIdentifier>{64b43600-9ca1-4750-8d79-0ba60fda18be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\State\Character">
-      <UniqueIdentifier>{aeb4eaf9-8246-41b9-9eeb-12167b3b7d75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\State\UI">
-      <UniqueIdentifier>{afbf50bc-e609-4330-87f3-899bd0c9c96a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Singleton">
       <UniqueIdentifier>{1961dabb-d2e0-4c19-8878-305c1b8c07c3}</UniqueIdentifier>
     </Filter>
@@ -75,15 +66,6 @@
     </Filter>
     <Filter Include="ソース ファイル\Singleton">
       <UniqueIdentifier>{18461140-b680-435e-8105-1bc53d10dcd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\State">
-      <UniqueIdentifier>{a97ef6f8-0b60-4203-ab4d-523537395e2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\State\UI">
-      <UniqueIdentifier>{2dff9e73-172a-4063-8c87-27fa7fc12134}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\State\Character">
-      <UniqueIdentifier>{01f54a4d-3363-4eb0-8d8f-8d1debe28ca4}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Struct">
       <UniqueIdentifier>{3a5f515e-6870-4ba1-b5d4-a7b3aa872e3e}</UniqueIdentifier>
@@ -140,6 +122,36 @@
     </Filter>
     <Filter Include="ソース ファイル\Debug\Imgui\backends">
       <UniqueIdentifier>{d4b78ff0-c44c-4c00-906b-7d6519d00260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State">
+      <UniqueIdentifier>{2c68f713-fcfc-4f44-94f3-6c12b1f15f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\Character">
+      <UniqueIdentifier>{72eec421-cd67-4456-83d9-9c700f992be8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\UI">
+      <UniqueIdentifier>{b2c3de6f-e8ee-4c53-822e-b149a4ec5d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\Fsm">
+      <UniqueIdentifier>{93d7fda9-ddf3-44f0-8679-70e6c835d05c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\State\StateBase">
+      <UniqueIdentifier>{a8bf3fb7-bf5f-4ac9-b37c-3c712620b1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State">
+      <UniqueIdentifier>{26c8fe0a-193e-40ae-8732-fd30b1374339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\UI">
+      <UniqueIdentifier>{caf36736-be17-40f4-a8b2-66e6998e3401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\Character">
+      <UniqueIdentifier>{f9ebe773-f71e-4406-99d5-9b87896bcdd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\StateBase">
+      <UniqueIdentifier>{f3e13922-bb8c-4cc4-b136-d259654e6158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\State\Fsm">
+      <UniqueIdentifier>{9a430c88-f316-4cac-84e5-107976992b4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -272,42 +284,6 @@
     <ClCompile Include="Source\Singleton\TimeManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\FSM.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateAnimation.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateAnimationController.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateBase.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateCamera.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateScene.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\Character\StatePlayer.cpp">
-      <Filter>ソース ファイル\State\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\Character\StateEnemy.cpp">
-      <Filter>ソース ファイル\State\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\Character\StateMapEnemy.cpp">
-      <Filter>ソース ファイル\State\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\UI\StateGameUI.cpp">
-      <Filter>ソース ファイル\State\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\UI\StateResultUI.cpp">
-      <Filter>ソース ファイル\State\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\UI\StateTitleUI.cpp">
-      <Filter>ソース ファイル\State\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Struct\CameraData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
@@ -347,20 +323,11 @@
     <ClCompile Include="Source\Singleton\DotWeenManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\StateDotWeen.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp">
-      <Filter>ソース ファイル\State\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Singleton\DrawManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\UtilFileLoading.cpp">
       <Filter>ソース ファイル\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\UI\StateConfigUi.cpp">
-      <Filter>ソース ファイル\State\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Struct\GameDatas.cpp">
       <Filter>ソース ファイル\Struct</Filter>
@@ -370,9 +337,6 @@
     </ClCompile>
     <ClCompile Include="Source\Object\UI\UI_StageStart.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp">
-      <Filter>ソース ファイル\State\Character</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp">
       <Filter>ソース ファイル\Object\Attack</Filter>
@@ -388,6 +352,72 @@
     </ClCompile>
     <ClCompile Include="Source\Singleton\ThreadManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateAnimation.cpp">
+      <Filter>ソース ファイル\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateAnimationController.cpp">
+      <Filter>ソース ファイル\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateCamera.cpp">
+      <Filter>ソース ファイル\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateDotWeen.cpp">
+      <Filter>ソース ファイル\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateScene.cpp">
+      <Filter>ソース ファイル\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\UI\StateConfigUi.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\UI\StateGameUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\UI\StateResultUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\UI\StateTitleUI.cpp">
+      <Filter>ソース ファイル\State\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\StateEnemy.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\StateMapEnemy.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Character\StatePlayer.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateBase\StateCameraBase.cpp">
+      <Filter>ソース ファイル\State\StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\StateBase\StateSceneBase.cpp">
+      <Filter>ソース ファイル\State\StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMAnimation.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMCamera.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMCharacter.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMDotWeen.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMScene.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\State\Fsm\FSMUI.cpp">
+      <Filter>ソース ファイル\State\Fsm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -541,42 +571,6 @@
     <ClInclude Include="Source\Singleton\TimeManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Source\State\FSM.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateAnimation.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateAnimationController.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateBase.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateCamera.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateScene.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\Character\StateEnemy.h">
-      <Filter>ヘッダー ファイル\State\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\Character\StateMapEnemy.h">
-      <Filter>ヘッダー ファイル\State\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\Character\StatePlayer.h">
-      <Filter>ヘッダー ファイル\State\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\UI\StateGameUI.h">
-      <Filter>ヘッダー ファイル\State\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\UI\StateResultUI.h">
-      <Filter>ヘッダー ファイル\State\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\UI\StateTitleUI.h">
-      <Filter>ヘッダー ファイル\State\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\AnimationData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -658,12 +652,6 @@
     <ClInclude Include="Source\Enum\DirectionEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="Source\State\StateDotWeen.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h">
-      <Filter>ヘッダー ファイル\State\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Singleton\DrawManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
@@ -676,9 +664,6 @@
     <ClInclude Include="Source\Struct\FileLoadingData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Source\State\UI\StateConfigUi.h">
-      <Filter>ヘッダー ファイル\State\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\DrawData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -690,9 +675,6 @@
     </ClInclude>
     <ClInclude Include="Source\Object\UI\UI_StageStart.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\Character\StateCharacter_Robot.h">
-      <Filter>ヘッダー ファイル\State\Character</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h">
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
@@ -711,6 +693,96 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\ThreadManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateAnimation.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateAnimationController.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateCamera.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateDotWeen.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateScene.h">
+      <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateCharacter_Robot.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateEnemy.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateMapEnemy.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StatePlayer.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateConfigUi.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateGameUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateResultUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\UI\StateTitleUI.h">
+      <Filter>ヘッダー ファイル\State\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSM.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMAnimation.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMCamera.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMCharacter.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMDotWeen.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMScene.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Fsm\FSMUI.h">
+      <Filter>ヘッダー ファイル\State\Fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateAnimationBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateCameraBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateCharacterBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateDotWeenBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateSceneBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\StateBase\StateUIBase.h">
+      <Filter>ヘッダー ファイル\State\StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\StateData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\StateEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,17 +5,17 @@
 #include "DrawData.h"
 #include "Status.h"
 
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 /*----------------------*/
 /*【リザルトUIステート】*/
 /*----------------------*/
 
-enum class RESULT_UI_STATE
-{
-	START_RESULT_UI_STATE = 0,			// 開始画面
-};
+// enum class RESULT_UI_STATE
+// {
+// 	START_RESULT_UI_STATE = 0,			// 開始画面
+// };
 
 /*----------------------*/
 /*【開始画面UIステート】*/
@@ -55,19 +55,19 @@ private:
 	std::vector<DRAW_DATA> mstDrawDatas;
 
 public:
-	StartResultUIState();
+	StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
 	~StartResultUIState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 
 	/*描画*/
 	void Draw(UIBase* ui) override;

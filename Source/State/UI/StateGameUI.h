@@ -3,8 +3,8 @@
 
 #include "DrawData.h"
 
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 #include "UI_Check.h"
 
 class MapManager;
@@ -14,19 +14,19 @@ class TargetManager;
 /*【ゲームUIステート】*/
 /*----------------------*/
 
-enum class GAME_UI_STATE
-{
-    //START_GAME_UI_STAE = 0, // ゲーム開始
-    NORMAL_GAME_UI_STATE = 0,   // 通常
-    PAUSE_GAME_UI_STATE,	// ポーズ
+// enum class GAME_UI_STATE
+// {
+//     //START_GAME_UI_STAE = 0, // ゲーム開始
+//     NORMAL_GAME_UI_STATE = 0,   // 通常
+//     PAUSE_GAME_UI_STATE,	// ポーズ
 
-    DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
-    CONFIG_CHANGE_UI_STATE, // 設定変更
+//     DRAW_PLAYER_DATA_UI_STATE,  // プレイヤー情報描画
+//     CONFIG_CHANGE_UI_STATE, // 設定変更
 
-    GAME_END_UI_STATE,  // ゲーム終了
+//     GAME_END_UI_STATE,  // ゲーム終了
 
-    MAX
-};
+//     MAX
+// };
 
 /*----------------------------*/
 /*【ゲームUI選択ナンバーEnum】*/
@@ -122,7 +122,7 @@ protected:
 //     void Draw(UIBase* ui) override;
 
 // 	/// <summary>終了</summary>
-// 	int Cloce(UIBase* ui) override;
+// 	int Close(UIBase* ui) override;
 // };
 
 /*----------------------*/
@@ -131,25 +131,26 @@ protected:
 class NormalGameUIState : public IStateUI, public GameUIProcess
 {
 public:
-    NormalGameUIState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~NormalGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
-	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    /// <summary>終了</summary>
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -176,25 +177,26 @@ private:
     DRAW_DATA mstMenuStringDrawData[MENU_STRING_TYPE::MENU_STRING_MAX];
 
 public:
-    PauseGameUIState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~PauseGameUIState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 
@@ -204,25 +206,26 @@ public:
 class DrawPlayerDataState : public IStateUI, public GameUIProcess
 {
 public:
-    DrawPlayerDataState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~DrawPlayerDataState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*--------------------*/
@@ -238,25 +241,26 @@ private:
         MAX
     };
 public:
-    ConfigChangeState();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~ConfigChangeState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -268,19 +272,19 @@ private:
     // 戻るフラグ
     bool mbReturnFlag;
 public:
-    GameEndState();
+    GameEndState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~GameEndState() = default;
 
     /// <summary>この状態に入った時の処理</summary>
-    void OnEnter(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
-    int Update(UIBase* ui) override;
+    void Update(UIBase* ui) override;
 
     /// <summary>決定</summary>
-    int Decision(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
 
     /// <summary>描画</summary>
     void Draw(UIBase* ui) override;
@@ -292,5 +296,5 @@ public:
     void GameEnd(void *null);
 
 	/// <summary>終了</summary>
-	int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };

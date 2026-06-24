@@ -1,6 +1,7 @@
 #include <string>
 
 #include "AttackEnum.h"
+#include "StateEnum.h"
 #include "CameraData.h"
 
 #include "Master.h"
@@ -10,7 +11,7 @@
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h"
-#include "ObjectBases.h"
+#include "ObjectBase_Character.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
 #include "StatePlayer.h"
@@ -20,12 +21,14 @@
 #include "TimeManager.h"
 #include "UtilCalc.h"
 
+#include "UtilStateConditionFunction.h"
+
 /*------------------*/
-/*     y‹¤’Êz     */
+/*     ã€å…±é€šã€‘     */
 /*------------------*/
 
 /*------------------------*/
-/*yƒvƒŒƒCƒ„[‹¤’Êˆ——pz*/
+/*ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…±é€šå‡¦ç†ç”¨ã€‘*/
 /*------------------------*/
 int PlayerProcess::mnTargetNumber = -1;
 PlayerProcess::PlayerProcess()
@@ -49,21 +52,21 @@ PlayerProcess::PlayerProcess()
 	// 	drawData.drawGraphData.transFlag = TRUE;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
 	// }
 }
 
-// ˆÚ“®‹¤’Êˆ—
+// ç§»å‹•å…±é€šå‡¦ç†
 void PlayerProcess::SetPlayerMove(CharacterBase* character)
 {
 	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::W))
@@ -94,7 +97,7 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	 //}
 }
 
-// ˆÚ“®ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev
+// ç§»å‹•ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€
 bool PlayerProcess::GetPlayerMoveFlag()
 {
 	return mpKeyState->GetNowWordKeyFlags_Board() & (((unsigned long long)1 << (int)KEY_BOARD_WORD::W) |
@@ -103,37 +106,37 @@ bool PlayerProcess::GetPlayerMoveFlag()
 													 ((unsigned long long)1 << (int)KEY_BOARD_WORD::D));
 }
 
-// UŒ‚ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev
+// æ”»æ’ƒã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€
 bool PlayerProcess::GetPlayerNormalAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::L);
 }
 
-// “ÁêUŒ‚ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev
+// ç‰¹æ®Šæ”»æ’ƒã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€
 bool PlayerProcess::GetPlayerSpceialAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::R);
 }
 
-// ƒWƒƒƒ“ƒvUŒ‚ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev
+// ã‚¸ãƒ£ãƒ³ãƒ—æ”»æ’ƒã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€
 bool PlayerProcess::GetPlayerJumpAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::RT);
 }
 
-// ƒ^[ƒQƒbƒg•ÏXƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚ê‚Îutruev
+// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ã‚Œã°ã€Œtrueã€
 bool PlayerProcess::GetTargetChangeFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::Y);
 }
 
-// ƒJƒƒ‰‚É‡‚í‚¹‚ÄˆÚ“®•ûŒü‚ğİ’è
+// ã‚«ãƒ¡ãƒ©ã«åˆã‚ã›ã¦ç§»å‹•æ–¹å‘ã‚’è¨­å®š
 void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
 {
 	character->SetMoveDir(mpCameraManager->GetCameraData().GetDirection());
 }
 
-// ƒ^[ƒQƒbƒg•ÏX
+// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´
 void PlayerProcess::TargetChange()
 {
 	mnTargetNumber += 1;
@@ -144,7 +147,7 @@ void PlayerProcess::TargetChange()
 	}
 }
 
-// ƒ^[ƒQƒbƒg‚ÉƒJƒƒ‰‚ğŒü‚¯‚é
+// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã‚«ãƒ¡ãƒ©ã‚’å‘ã‘ã‚‹
 void PlayerProcess::SetTargetCamera(CharacterBase* character)
 {
 	if (Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() <= mnTargetNumber)
@@ -165,7 +168,7 @@ void PlayerProcess::SetTargetCamera(CharacterBase* character)
 	mpCameraManager->SetCameraData(cameraData);
 }
 
-// ƒ^[ƒQƒbƒgƒAƒŠ‚ÌƒJƒƒ‰ˆ—
+// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ãƒªã®ã‚«ãƒ¡ãƒ©å‡¦ç†
 void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 {
 	if (GetTargetChangeFlag())
@@ -181,7 +184,7 @@ void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 	SetMoveDir_Camera(character);
 }
 
-// HP•`‰æî•ñİ’è
+// HPæç”»æƒ…å ±è¨­å®š
 void PlayerProcess::HpDrawInfoSetup(CharacterBase* character)
 {
 	std::vector<DRAW_DATA> drawDatas = character->GetStateDrawData();
@@ -205,14 +208,14 @@ void PlayerProcess::HpDrawInfoSetup(CharacterBase* character)
 	character->SetStateDrawData(drawDatas);
 }
 
-// •`‰æ
+// æç”»
 void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
-	// // HACK: ‰¼À‘•
+	// // HACK: ä»®å®Ÿè£…
 	// if ((UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE) ||
 	// 	(UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE_LOOP))
 	// {
-	// 	// HACK: ‚±‚ê‚ğXV‚Ìƒ‚ƒfƒ‹•`‰æ‘O‚ÉˆÚ“®‚³‚¹‚é
+	// 	// HACK: ã“ã‚Œã‚’æ›´æ–°ã®ãƒ¢ãƒ‡ãƒ«æç”»å‰ã«ç§»å‹•ã•ã›ã‚‹
 	// 	Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
 	// 	Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
 	// 	Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
@@ -267,19 +270,19 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	Master::mpGameManager->GetMapManager()->DrawMiniMap();
 }
 
-// €–S
+// æ­»äº¡
 void PlayerProcess::PlayerDeath(CharacterBase* character)
 {
 	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_TYPE::PLAYER);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_OVER);
 }
 
-// LRƒL[•`‰æî•ñİ’è
+// LRã‚­ãƒ¼æç”»æƒ…å ±è¨­å®š
 void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 {
 	std::string lGraphString;
 	std::string rGraphString;
-	// ‰æ‘œƒtƒ@ƒCƒ‹æ“¾
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«å–å¾—
 	switch (keyStatusNumber)
 	{
 	case PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID:
@@ -296,7 +299,7 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 	DRAW_DATA drawData = DRAW_DATA();
 	DisplaySize displaySize = ResourceManager::mstDisplaySize;
 	
-	// ‹¤’Ê•`‰æİ’è
+	// å…±é€šæç”»è¨­å®š
 	{
         drawData.drawFlag = false;
         drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -307,16 +310,16 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
         drawData.drawGraphData.transFlag = TRUE;
 	}
 
-	// L‰æ‘œİ’è
+	// Lç”»åƒè¨­å®š
 	{
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(lGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((lGraphString);
 		mstLKeyDraw = drawData;
 	}
 
-	// R‰æ‘œİ’è
+	// Rç”»åƒè¨­å®š
 	{
         drawData.drawGraphData.pos.x += drawData.drawGraphData.size.x;
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(rGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((rGraphString);
 		mstRKeyDraw = drawData;
 	}
 
@@ -324,14 +327,14 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 	Master::mpDrawManager->AddDrawData(&mstRKeyDraw);
 }
 
-// ƒvƒŒƒCƒ„[‹¤’Êˆ— ‚±‚Ìó‘Ô‚É“ü‚Á‚½
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…±é€šå‡¦ç† ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚
 void PlayerProcess::PlayerProcessOnEnter(CharacterBase* character)
 {
 	mstLKeyDraw.drawFlag = true;
 	mstRKeyDraw.drawFlag = true;
 }
 
-// ƒvƒŒƒCƒ„[‹¤’Êˆ— ‚±‚Ìó‘Ô‚Éo‚é
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…±é€šå‡¦ç† ã“ã®çŠ¶æ…‹ã«å‡ºã‚‹æ™‚
 void PlayerProcess::PlayerProcessOnExit(CharacterBase* character)
 {
 	mstLKeyDraw.drawFlag = false;
@@ -339,19 +342,19 @@ void PlayerProcess::PlayerProcessOnExit(CharacterBase* character)
 }
 
 /*--------------------------*/
-/*     yŠî–{ƒXƒe[ƒgz     */
+/*     ã€åŸºæœ¬ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*--------------------------*/
 
 /*--------------------------*/
-/*yIdleƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€Idleãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-IdlePlayerState::IdlePlayerState()
+IdlePlayerState::IdlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::IDLE_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::IDLE_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void IdlePlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -371,17 +374,17 @@ void IdlePlayerState::OnEnter(CharacterBase* character)
 			drawData.drawGraphData.transFlag = TRUE;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
 		}
 
 		character->SetStateDrawData(drawDatas);
@@ -390,24 +393,24 @@ void IdlePlayerState::OnEnter(CharacterBase* character)
 	}
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void IdlePlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int IdlePlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER IdlePlayerState::StateCheck(CharacterBase* character)
 {
-	if (GetPlayerMoveFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToMove(character))
 	{
-		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void IdlePlayerState::Update(CharacterBase* character)
 {
 	if (GetTargetChangeFlag())
@@ -436,57 +439,57 @@ void IdlePlayerState::Update(CharacterBase* character)
 #endif
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void IdlePlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void IdlePlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void IdlePlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*yˆÚ“®ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ç§»å‹•ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-MovePlayerState::MovePlayerState()
+MovePlayerState::MovePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::MOVE_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::MOVE_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void MovePlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void MovePlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int MovePlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER MovePlayerState::StateCheck(CharacterBase* character)
 {
-	if (!GetPlayerMoveFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToIdle(character))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void MovePlayerState::Update(CharacterBase* character)
 {
 	TargetCameraProcess(character);
@@ -494,35 +497,35 @@ void MovePlayerState::Update(CharacterBase* character)
 	SetPlayerMove(character);
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void MovePlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void MovePlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void MovePlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*yƒm[ƒ}ƒ‹UŒ‚ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ãƒãƒ¼ãƒãƒ«æ”»æ’ƒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-NormalAttackPlayerState::NormalAttackPlayerState()
+NormalAttackPlayerState::NormalAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -530,62 +533,62 @@ void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void NormalAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int NormalAttackPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER NormalAttackPlayerState::StateCheck(CharacterBase* character)
 {
-	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
 	{
-		if (GetPlayerMoveFlag())
+		if (UtilStateConditionFunction::ShouldTransitionToMove(character))
 		{
-			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void NormalAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void NormalAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void NormalAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void NormalAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*------------------------------------*/
-/*yƒXƒyƒVƒƒƒ‹UŒ‚ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ã‚¹ãƒšã‚·ãƒ£ãƒ«æ”»æ’ƒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*------------------------------------*/
-SpceialAttackPlayerState::SpceialAttackPlayerState()
+SpceialAttackPlayerState::SpceialAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -596,286 +599,286 @@ void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::SPCEIAL_ATTACK_IN);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void SpceialAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int SpceialAttackPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER SpceialAttackPlayerState::StateCheck(CharacterBase* character)
 {
-	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
 	{
-		if (GetPlayerMoveFlag())
+		if (UtilStateConditionFunction::ShouldTransitionToMove(character))
 		{
-			return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void SpceialAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void SpceialAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void SpceialAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void SpceialAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*y‹¯‚İƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€æ€¯ã¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-FlinchPlayerState::FlinchPlayerState()
+FlinchPlayerState::FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::FLINCH_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::FLINCH_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void FlinchPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::FLINCH);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void FlinchPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int FlinchPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER FlinchPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::FLINCH))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void FlinchPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void FlinchPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void FlinchPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void FlinchPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*y”ğ‚¯ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€é¿ã‘ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-AvoidPlayerState::AvoidPlayerState()
+AvoidPlayerState::AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::AVOID_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::AVOID_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void AvoidPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::AVOID);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void AvoidPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int AvoidPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER AvoidPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::AVOID))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void AvoidPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void AvoidPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void AvoidPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void AvoidPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*yƒK[ƒhƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ã‚¬ãƒ¼ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-GuardPlayerState::GuardPlayerState()
+GuardPlayerState::GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+ IStateCharacter(PLAYER_STATE::GUARD_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::GUARD_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void GuardPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::GUARD);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void GuardPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int GuardPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER GuardPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::GUARD))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void GuardPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void GuardPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void GuardPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void GuardPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*y“|‚êƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€å€’ã‚Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------*/
-FallDownPlayerState::FallDownPlayerState()
+FallDownPlayerState::FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::FALL_DOWN_PLAYER_STATE, stateChangeCriterias)
 {
-	mStateNumber = (int)PLAYER_STATE::FALL_DOWN_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void FallDownPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::DOWN);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void FallDownPlayerState::OnExit(CharacterBase* character)
 {
 	//PlayerProcessOnExit(character);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int FallDownPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER FallDownPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::DOWN))
 	{
-		//return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		//return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void FallDownPlayerState::Update(CharacterBase* character)
 {
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void FallDownPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void FallDownPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void FallDownPlayerState::Death(CharacterBase* character)
 {
 	//PlayerDeath(character);
 }
 
 /*--------------------------------*/
-/*yƒWƒƒƒ“ƒvUŒ‚ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ã‚¸ãƒ£ãƒ³ãƒ—æ”»æ’ƒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
-JumpAttackPlayerState::JumpAttackPlayerState()
+JumpAttackPlayerState::JumpAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
+, IStateCharacter(PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE, stateChangeCriterias)
 , mfUpDownSpeed(10.0f)
 {
-	mStateNumber = (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -883,33 +886,33 @@ void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::JUMP_ATTACK_IN);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ã“ã®çŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦ç†
 void JumpAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int JumpAttackPlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER JumpAttackPlayerState::StateCheck(CharacterBase* character)
 {
-	if (!character->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
 	{
-		if (GetPlayerMoveFlag())
+		if (UtilStateConditionFunction::ShouldTransitionToMove(character))
 		{
-			//return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+			//return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 		}
 
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
-// XV
+// æ›´æ–°
 void JumpAttackPlayerState::Update(CharacterBase* character)
 {
-	// UŒ‚•ûŒü‰ºŒü‚©‚¹‚é
+	// æ”»æ’ƒæ–¹å‘ä¸‹å‘ã‹ã›ã‚‹
 	VECTOR position = character ->GetPos();
 	CameraData cameraData = Master::mpGameManager->GetCameraManager()->GetCameraData();
 	cameraData.angle.y = -UtilCalc::VDegChange(UtilCalc::VMoveVecToAngle(VSub(position, VAdd(position, UtilCalc::VAngleToVec(character->GetAngle()))), UtilCalc::VZero, UtilCalc::PiTwo)).y + UtilCalc::RadPi;
@@ -930,93 +933,93 @@ void JumpAttackPlayerState::Update(CharacterBase* character)
 
 }
 
-// ÅIXV
+// æœ€çµ‚æ›´æ–°
 void JumpAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// •`‰æ
+// æç”»
 void JumpAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// €–S
+// æ­»äº¡
 void JumpAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*----------------------------*/
-/*     yƒoƒgƒ‹ƒXƒe[ƒgz     */
+/*     ã€ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã€‘     */
 /*----------------------------*/
 
 /*--------------------------------*/
-/*yIdleƒoƒgƒ‹ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€Idleãƒãƒˆãƒ«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
-IdleBattlePlayerState::IdleBattlePlayerState()
-: IdlePlayerState()
+IdleBattlePlayerState::IdleBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: IdlePlayerState(stateChangeCriterias)
 {
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int IdleBattlePlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER IdleBattlePlayerState::StateCheck(CharacterBase* character)
 {
-	if (GetPlayerNormalAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToNormalAttack(character))
 	{
-		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::NORMAL_ATTACK_PLAYER_STATE;
 	}
 
-	if (GetPlayerSpceialAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToSpecialAttack(character))
 	{
-		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
-	if (GetPlayerJumpAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToJumpAttack(character))
 	{
-		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::JUMP_ATTACK_PLAYER_STATE;
 	}
 
-	if (GetPlayerMoveFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToMove(character))
 	{
-		return (int)PLAYER_STATE::MOVE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::MOVE_PLAYER_STATE;
 	}
 
 	return mStateNumber;
 }
 
 /*--------------------------------*/
-/*yˆÚ“®ƒoƒgƒ‹ƒvƒŒƒCƒ„[ƒXƒe[ƒgz*/
+/*ã€ç§»å‹•ãƒãƒˆãƒ«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã€‘*/
 /*--------------------------------*/
-MoveBattlePlayerState::MoveBattlePlayerState()
-: MovePlayerState()
+MoveBattlePlayerState::MoveBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
+: MovePlayerState(stateChangeCriterias)
 {
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
-// ƒXƒe[ƒg•ÏXŠm”F
-int MoveBattlePlayerState::StateCheck(CharacterBase* character)
+// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç¢ºèª
+STATE_TYPE_CHARACTER MoveBattlePlayerState::StateCheck(CharacterBase* character)
 {
-	if (GetPlayerNormalAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToNormalAttack(character))
 	{
-		return (int)PLAYER_STATE::NORMAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::NORMAL_ATTACK_PLAYER_STATE;
 	}
 
-	if (GetPlayerSpceialAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToSpecialAttack(character))
 	{
-		return (int)PLAYER_STATE::SPCEIAL_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::SPCEIAL_ATTACK_PLAYER_STATE;
 	}
 
-	if (GetPlayerJumpAttackFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToJumpAttack(character))
 	{
-		return (int)PLAYER_STATE::JUMP_ATTACK_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::JUMP_ATTACK_PLAYER_STATE;
 	}
 
-	if (!GetPlayerMoveFlag())
+	if (UtilStateConditionFunction::ShouldTransitionToIdle(character))
 	{
-		return (int)PLAYER_STATE::IDLE_PLAYER_STATE;
+		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
 
 	return mStateNumber;

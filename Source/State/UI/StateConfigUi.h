@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
 
+#include "StateEnum.h"
 #include "DrawData.h"
 #include "Vector2.h"
 
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 class MapManager;
 class TargetManager;
@@ -14,15 +15,15 @@ class TargetManager;
 /*【コンフィグUIステート】*/
 /*----------------------*/
 
-enum CONFIG_UI_STATE
-{
-    SELECT_CONFIG_STATE = 0,// 選択コンフィグデータ
-    MINIMAP_CONFIG_STATE,   // ミニマップ設定
-    SOUND_CONFIG_STATE,     // サウンド設定
-    CAMERA_CONFIG_STATE,    // カメラ設定
+// enum CONFIG_UI_STATE
+// {
+//     SELECT_CONFIG_STATE = 0,// 選択コンフィグデータ
+//     MINIMAP_CONFIG_STATE,   // ミニマップ設定
+//     SOUND_CONFIG_STATE,     // サウンド設定
+//     CAMERA_CONFIG_STATE,    // カメラ設定
     
-    CONFIG_UI_STATE_MAX,
-};
+//     CONFIG_UI_STATE_MAX,
+// };
 
 /*------------------------*/
 /*【設定変数ポインタ種類】*/
@@ -153,16 +154,10 @@ protected:
     // コンフィグ画像サイズ
     const DisplaySize CONFIG_GRAPHSIZE = { Vector2(3221.0f, 218.0f), 0 };
 
-private:
-    int* mnStatePointer;
-    int mnDefaultStateNumber;
-
 public:
-    ConfigUIProcess(int *statePointer, int defaultStateNumber);
+    ConfigUIProcess();
 
 protected:
-    /*ステートナンバー取得*/
-    int GetConfigStateNumber(int stateNumber);
     
     /*値を上下の入力を元に変更する*/
     void ValueLeftRightInputBasedOnChange(UIBase* ui, int *value, int changeSpeed = 1, int min = 0, int max = 10000);
@@ -180,8 +175,8 @@ protected:
     /*コンフィグ描画をセッティングする*/
     void ConfigDrawSetting(UIBase* ui);
 
-    /*コンフィグ別スライダー設定*/
-    void SetConfigSlider(CONFIG_UI_STATE configType);
+    /*コンフィグ別スライダー設定*/// TODO:ここintじゃね?
+    void SetConfigSlider(STATE_TYPE_UI configType);
 };
 
 /*----------------------*/
@@ -214,6 +209,8 @@ private:
         MAX = static_cast<int>(TYPE_MAX)
     };
 
+    static constexpr int CONFIG_UI_STATE_MAX = 4;
+
     // 前のConfig以外のステートナンバー
     int mnPreConfigExceptStateNumber;
     
@@ -221,15 +218,16 @@ private:
     std::vector<std::vector<CONFIG_VARIABLE_POINTER>> mstAllConfigVariables;
 
 public:
-    ConfigSelectState();
+    ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~ConfigSelectState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 
 private:
 
@@ -250,15 +248,16 @@ private:
         MAX
     };
 public:
-    MinimapConfigState();
+    MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~MinimapConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -274,15 +273,16 @@ private:
         MAX
     };
 public:
-    SoundConfigState();
+    SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~SoundConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };
 
 /*----------------------*/
@@ -298,13 +298,14 @@ private:
         MAX
     };
 public:
-    CameraConfigState();
+    CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
     ~CameraConfigState() = default;
 
-    void OnEnter(UIBase* ui) override;
-    void OnExit(UIBase* ui) override;
-    int Update(UIBase* ui) override;
-    int Decision(UIBase* ui) override;
+    void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
+
+    void Update(UIBase* ui) override;
+    void Decision(UIBase* ui) override;
     void Draw(UIBase* ui) override;
-    int Cloce(UIBase* ui) override;
+    void Close(UIBase* ui) override;
 };

@@ -7,8 +7,9 @@
 
 #include "AnimationBase.h"
 #include "ModelBase.h"
-#include "StateBase.h"
+#include "StateAnimationBase.h"
 #include "UtilCalc.h"
+// TODO: 3Dアニメーションと2Dアニメーションで分ける ステート設定時ナンバー設定
 
 /*----------*/
 /*【アニメーションステート共通処理】
@@ -25,8 +26,8 @@ protected:
     };
 
 protected:
-    // モデルハンドル
-    int mnModelHandle;
+    // // モデルハンドル
+    // int mnModelHandle;
     
     // 一つ前のアニメーション情報
     MVOneAnimationData mstPreAnimationData;
@@ -78,17 +79,19 @@ protected:
 class StateNoneAnimation : public IStateAnimation
 {
 public:
-    StateNoneAnimation() = default;
+    StateNoneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateNoneAnimation() = default;
 
     /// <summary>この状態に入った時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override {}
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    //virtual void OnEnter(STATE_ANEMATION_DATA* animationData, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override {}
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override {}
     /// <summary>この状態を出る時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override {}
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    //virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override {}
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override {}
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override {}
@@ -111,17 +114,18 @@ private:
 class StateMVOneAnimation : public IStateAnimation, public StateAnimationProcess
 {
 public:
-    StateMVOneAnimation(int modelHandle, std::string fileName);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMVOneAnimation() = default;
 
-    /// <summary>この状態に入った時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -142,17 +146,18 @@ private:
 class StateMVOneOnlyAnimation : public IStateAnimation, public StateAnimationProcess
 {
 public:
-    StateMVOneOnlyAnimation(int modelHandle);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMVOneOnlyAnimation() = default;
 
-    /// <summary>この状態に入った時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -195,17 +200,18 @@ private:
     VECTOR mvSize;
 
 public:
-    StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
     ~StateMVOneOperationAnimation() = default;
 
-    /// <summary>この状態に入った時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>更新</summary>
     /// <param name="animation">アニメーション</param>
@@ -228,17 +234,18 @@ private:
     int* mnEffectHandle;
 
 public:
-    StateEffectAnimation(int* effectHandle);
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateEffectAnimation() = default;
 
-    /// <summary>この状態に入った時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -261,17 +268,18 @@ private:
 class StateGraphAnimation : public IStateAnimation
 {
 public:
-    StateGraphAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateGraphAnimation() = default;
 
-    /// <summary>この状態に入った時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -294,17 +302,18 @@ private:
 class StateMovieAnimation : public IStateAnimation
 {
 public:
-    StateMovieAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMovieAnimation() = default;
 
-    /// <summary>この状態に入った時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -326,18 +335,18 @@ private:
 class StateFadeGraphAnimation : public IStateAnimation
 {
 public:
-    StateFadeGraphAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateFadeGraphAnimation() = default;
 
-    /// <summary>この状態に入った時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理(何もしない)</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
-
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
 
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
@@ -361,18 +370,19 @@ private:
 class StateDOTweenAnimation : public IStateAnimation
 {
 public:
-    StateDOTweenAnimation();
+    // FIXME: コンストラクタでステート変更条件を渡せます
+    StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateDOTweenAnimation() = default;
 
-    /// <summary>この状態に入った時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) override;
-    /// <summary>この状態を出る時の処理</summary>
-    /// <param name="animation">アニメーション</param>
-    /// <param name="animationDatas">アニメーション情報</param>
-    virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) override;
-
+   /// <summary>この状態に入った時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="preState">アニメーション種類</param>
+    virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE preState) override;
+  /// <summary>この状態を出る時の処理</summary>
+    /// <param name="animationData">アニメーション情報</param>
+    /// <param name="nextState">次のアニメーション種類</param>
+    virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_TYPE nextState) override;
+    
     /// <summary>終了</summary>
     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
 

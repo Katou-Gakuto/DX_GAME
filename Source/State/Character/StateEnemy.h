@@ -1,10 +1,11 @@
 #pragma once
 
+#include "StateEnum.h"
 #include "TimeData.h"
 
 #include "EnemyCommonProcessing.h"
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 class TargetManager;
 
@@ -18,16 +19,16 @@ class TargetManager;
 /*【エネミーステート】*/
 /*--------------------*/
 
-enum class ENEMY_STATE
-{
-	IDLE_ENEMY_STATE = 0,
-	MOVE_ENEMY_STATE,
-	ATTACK_IN_ENEMY_STATE,
-	ATTACK_ENEMY_STATE,
-	RIGHT_AVOID_ENEMY_STATE,
-	LEFT_AVOID_ENEMY_STATE,
-	ESCAPE_ENEMY_STATE,
-};
+// enum class ENEMY_STATE
+// {
+// 	IDLE_ENEMY_STATE = 0,
+// 	MOVE_ENEMY_STATE,
+// 	ATTACK_IN_ENEMY_STATE,
+// 	ATTACK_ENEMY_STATE,
+// 	RIGHT_AVOID_ENEMY_STATE,
+// 	LEFT_AVOID_ENEMY_STATE,
+// 	ESCAPE_ENEMY_STATE,
+// };
 
 /*----------*/
 /*【エネミーコマンドナンバー】
@@ -53,10 +54,8 @@ protected:
 	// ターゲットマネージャー
 	TargetManager* mpTargetManager;
 
-	bool mbBossFlag;
-
 protected:
-	EnemyProcess(bool bossFlag);
+	EnemyProcess();
 	~EnemyProcess() = default;
 
 	/*プレイヤーのステータス設定*/
@@ -78,7 +77,7 @@ protected:
 	virtual ENEMY_COMMAND_NUMBER GetPlayerDistance_Command(CharacterBase* character);
 
 	/*定型の次のステートを取得する*/
-	int TemplateNextState(CharacterBase* character, int myState);
+	STATE_TYPE_CHARACTER TemplateNextState(CharacterBase* character, STATE_TYPE_CHARACTER myState);
 };
 
 /*--------------------------*/
@@ -91,18 +90,19 @@ protected:
 class IdleEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	IdleEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	IdleEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~IdleEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -123,18 +123,19 @@ public:
 class MoveEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	MoveEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	MoveEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~MoveEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -162,18 +163,19 @@ private:
 	TIME_DATA mstPreAttackTime;
 
 public:
-	AttackInEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	AttackInEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~AttackInEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -194,18 +196,19 @@ public:
 class AttackEnemyState : public IStateCharacter, public EnemyProcess
 {
 public:
-	AttackEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~AttackEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -230,18 +233,19 @@ protected:
 	TIME_DATA mstEscapeTime;
 
 public:
-	EscapeEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	EscapeEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~EscapeEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;
@@ -266,11 +270,12 @@ public:
 class LeftAvoidEnemyState : public EscapeEnemyState
 {
 public:
-	LeftAvoidEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	LeftAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~LeftAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;
@@ -282,11 +287,12 @@ public:
 class RightAvoidEnemyState : public EscapeEnemyState
 {
 public:
-	RightAvoidEnemyState(bool bossFlag = false);
+	// FIXME: 呼び出し側で遷移条件を渡せます
+	RightAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~RightAvoidEnemyState() = default;
 
 	/*この状態に入った時の処理*/
-	virtual void OnEnter(CharacterBase* character) override;
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;

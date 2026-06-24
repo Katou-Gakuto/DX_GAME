@@ -1,9 +1,11 @@
 #pragma once
 #include <vector>
+
+#include "StateEnum.h"
 #include "DrawData.h"
 
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_Character.h"
+#include "StateCharacterBase.h"
 
 class CameraManager;
 class KeyState;
@@ -16,19 +18,19 @@ class KeyState;
 /*【プレイヤーステート】*/
 /*----------------------*/
 
-enum class PLAYER_STATE
-{
-	IDLE_PLAYER_STATE = 0,
-	MOVE_PLAYER_STATE,
-	NORMAL_ATTACK_PLAYER_STATE,
-	SPCEIAL_ATTACK_PLAYER_STATE,
+// enum class PLAYER_STATE
+// {
+// 	IDLE_PLAYER_STATE = 0,
+// 	MOVE_PLAYER_STATE,
+// 	NORMAL_ATTACK_PLAYER_STATE,
+// 	SPCEIAL_ATTACK_PLAYER_STATE,
 	
-	FLINCH_PLAYER_STATE,	// 怯み
-	AVOID_PLAYER_STATE,	// 避ける
-	GUARD_PLAYER_STATE,	// ガード
-	FALL_DOWN_PLAYER_STATE,	// 倒れる
-	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
-};
+// 	FLINCH_PLAYER_STATE,	// 怯み
+// 	AVOID_PLAYER_STATE,	// 避ける
+// 	GUARD_PLAYER_STATE,	// ガード
+// 	FALL_DOWN_PLAYER_STATE,	// 倒れる
+// 	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
+// };
 
 /*------------------------*/
 /*【プレイヤー共通処理用】*/
@@ -133,16 +135,17 @@ protected:
 class IdlePlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	IdlePlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	IdlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~IdlePlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -163,16 +166,17 @@ public:
 class MovePlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	MovePlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	MovePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~MovePlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -193,16 +197,17 @@ public:
 class NormalAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	NormalAttackPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	NormalAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~NormalAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -223,16 +228,17 @@ public:
 class SpceialAttackPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	SpceialAttackPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	SpceialAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~SpceialAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -253,16 +259,17 @@ public:
 class FlinchPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	FlinchPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~FlinchPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -283,16 +290,17 @@ public:
 class AvoidPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	AvoidPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~AvoidPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -313,16 +321,17 @@ public:
 class GuardPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	GuardPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~GuardPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -343,16 +352,17 @@ public:
 class FallDownPlayerState : public IStateCharacter, public PlayerProcess
 {
 public:
-	FallDownPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~FallDownPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -377,16 +387,17 @@ private:
 	float mfUpDownSpeed;
 
 public:
-	JumpAttackPlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	JumpAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~JumpAttackPlayerState() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character) override;
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
-	virtual int StateCheck(CharacterBase* character) override;
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
 	/*更新*/
 	void Update(CharacterBase* character) override;
@@ -411,11 +422,12 @@ public:
 class IdleBattlePlayerState : public IdlePlayerState
 {
 public:
-	IdleBattlePlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	IdleBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~IdleBattlePlayerState() = default;
 
 	/*ステート変更確認*/
-	int StateCheck(CharacterBase* character) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 };
 
 /*--------------------------------*/
@@ -424,9 +436,10 @@ public:
 class MoveBattlePlayerState : public MovePlayerState
 {
 public:
-	MoveBattlePlayerState();
+	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+	MoveBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
 	~MoveBattlePlayerState() = default;
 
 	/*ステート変更確認*/
-	int StateCheck(CharacterBase* character) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 };

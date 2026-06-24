@@ -3,7 +3,7 @@
 #include "GameDataEnum.h"
 #include "GameDatas.h"
 
-#include "StateBase.h"
+#include "StateSceneBase.h"
 
 enum class ANIMATION_FACTORY_NUMBER;
 
@@ -35,9 +35,9 @@ public:
 	~StartScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*--------------------------*/
@@ -50,9 +50,9 @@ public:
 	~TitleScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*--------------------*/
@@ -65,9 +65,9 @@ public:
 	~TownScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*----------------------------*/
@@ -80,9 +80,9 @@ public:
 	~DungeonScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*------------------------*/
@@ -95,9 +95,9 @@ public:
 	~BattleScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*--------------------------*/
@@ -110,9 +110,9 @@ public:
 	~ResultScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*--------------------------------*/
@@ -125,9 +125,9 @@ public:
 	~GameOverScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*------------------------------*/
@@ -140,9 +140,9 @@ public:
 	~GameLoopScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*------------------------------*/
@@ -155,9 +155,9 @@ public:
 	~BattleLoopScene() = default;
 	
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };
 
 /*------------------------------*/
@@ -170,7 +170,7 @@ public:
 	~GameClearScene() = default;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(SceneManager* sceneManager) override;
+	void OnEnter(SceneManager* sceneManager, SCENE preScene) override;
 	/*この状態を出る時の処理*/
-	void OnExit(SceneManager* sceneManager) override;
+	void OnExit(SceneManager* sceneManager, SCENE newScene) override;
 };

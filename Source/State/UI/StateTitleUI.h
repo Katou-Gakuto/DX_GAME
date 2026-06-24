@@ -3,8 +3,8 @@
 
 #include "Status.h"
 
-#include "ObjectBases.h"
-#include "StateBase.h"
+#include "ObjectBase_UI.h"
+#include "StateUIBase.h"
 
 enum class CHARACTER_TYPE;
 enum class SCENE;
@@ -17,27 +17,27 @@ struct Vector2_Int;
 /*【タイトルUIステート】*/
 /*----------------------*/
 
-enum class TITLE_UI_STATE
-{
-	START_TITLE_UI_STATE = 0,			// 開始画面
-	SELECT_TITLE_UI_STATE,				// 選択
+// enum class TITLE_UI_STATE
+// {
+// 	START_TITLE_UI_STATE = 0,			// 開始画面
+// 	SELECT_TITLE_UI_STATE,				// 選択
 
-	NEW_DATA_CHECK_TITLE_UI_STATE,		// 新しいデータの入る場所があるか確認する
-	DATA_SELECT_TITLE_UI_STATE,			// データ選択
-	TUTORIAL_TITLE_UI_STATE,			// チュートリアル開始
-	SETTING_TITLE_UI_STATE,				// セッティング
+// 	NEW_DATA_CHECK_TITLE_UI_STATE,		// 新しいデータの入る場所があるか確認する
+// 	DATA_SELECT_TITLE_UI_STATE,			// データ選択
+// 	TUTORIAL_TITLE_UI_STATE,			// チュートリアル開始
+// 	SETTING_TITLE_UI_STATE,				// セッティング
 
-	/*新データ関係*/
-	CHARACTER_SELECT_TITLE_UI_STATE,	// キャラクター種類選択
-	PLAYER_NAME_TITLE_UI_STATE,			// プレイヤー名設定
-	INPUT_CHECK_TITLE_UI_STATE,			// 入力情報の最終確認
+// 	/*新データ関係*/
+// 	CHARACTER_SELECT_TITLE_UI_STATE,	// キャラクター種類選択
+// 	PLAYER_NAME_TITLE_UI_STATE,			// プレイヤー名設定
+// 	INPUT_CHECK_TITLE_UI_STATE,			// 入力情報の最終確認
 
-	/*セッティング関係*/
-	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
-	VOLUME_TITLE_UI_STATE,				// 音量
+// 	/*セッティング関係*/
+// 	SCREEN_SIZE_TITLE_UI_STATE,			// 画面サイズ
+// 	VOLUME_TITLE_UI_STATE,				// 音量
 
-	MAX									// 最大
-};
+// 	MAX									// 最大
+// };
 
 /*----------*/
 /*【タイトルUIステート共通処理用】
@@ -45,8 +45,8 @@ enum class TITLE_UI_STATE
 class TitleUIStateProcess
 {
 protected:
-	// 前のステート
-	TITLE_UI_STATE mePreUiState;
+	// 前段階のステート
+	STATE_TYPE_UI mePreviousSteptate;
 
 	// 前の選択数
 	int mnPreSelectNumber;
@@ -66,7 +66,7 @@ protected:
 	int mnSaveDataDrawFontHandle_Other;
 
 public:
-	TitleUIStateProcess(TITLE_UI_STATE preUiState);
+	TitleUIStateProcess(STATE_TYPE_UI preUiState);
 
 protected:
 	/*終了処理*/
@@ -88,7 +88,7 @@ protected:
 	void StartGame(UIBase* ui);
 
 	/*構造上一つ前のステートを取得する*/
-	inline int GetPreUiState() { return (int)mePreUiState; }
+	inline STATE_TYPE_UI GetPreUiState() { return mePreviousSteptate; }
 
 	/*セーブデータを描画*/
 	void DrawSaveData(UIBase* ui, int displayPos, int playerGraphNumber, std::string name, int dataNumber, STATUS status, SCENE mapType);
@@ -105,21 +105,22 @@ protected:
 class StartTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	StartTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~StartTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -132,23 +133,24 @@ public:
 class SelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	SelectTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~SelectTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -161,23 +163,24 @@ public:
 class NewDataCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	NewDataCheckTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~NewDataCheckTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -193,23 +196,24 @@ private:
 	int mnDrawDataPos;
 
 public:
-	DataSelectTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~DataSelectTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -222,23 +226,24 @@ public:
 class TutorialTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	TutorialTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~TutorialTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -251,23 +256,24 @@ public:
 class SettingTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	SettingTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~SettingTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -280,23 +286,24 @@ public:
 class CharacterSelectTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	CharacterSelectTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~CharacterSelectTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -309,23 +316,24 @@ public:
 class PlayerNameTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	PlayerNameTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~PlayerNameTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -338,23 +346,24 @@ public:
 class InputCheckTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	InputCheckTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~InputCheckTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -367,23 +376,24 @@ public:
 class ScreenSizeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	ScreenSizeTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~ScreenSizeTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };
@@ -396,23 +406,24 @@ public:
 class VolumeTitleUIState : public IStateUI, public TitleUIStateProcess
 {
 public:
-	VolumeTitleUIState();
+	// FIXME: コンストラクタでステート変更条件を渡せます
+	VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~VolumeTitleUIState() = default;
 
 	/*終了*/
 	void Finalize() override;
 
 	/*この状態に入った時の処理*/
-	void OnEnter(UIBase* ui) override;
+	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(UIBase* ui) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*更新*/
-	int Update(UIBase* ui) override;
+	void Update(UIBase* ui) override;
 	/*決定*/
-	int Decision(UIBase* ui) override;
+	void Decision(UIBase* ui) override;
 	/*戻る*/
-	int Cloce(UIBase* ui) override;
+	void Close(UIBase* ui) override;
 	/*描画*/
 	void Draw(UIBase* ui) override;
 };

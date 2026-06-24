@@ -1,7 +1,7 @@
 #pragma once
 #include "DotWeenData.h"
 
-#include "StateBase.h"
+#include "StateDotWeenBase.h"
 
 /*----------------*/
 /*【共通ステート】*/

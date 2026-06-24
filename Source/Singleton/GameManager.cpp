@@ -66,6 +66,9 @@ void GameManager::DxLib_PreInit()
 
     SetHookWinProc(GameManagerWndProc);
 
+    // キーステート初期化(ウィンドウメッセージを渡してる)
+    Master::mpKeyState->Initialize();
+
 
 #ifndef _DEBUG
 	// 画面サイズ

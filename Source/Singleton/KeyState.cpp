@@ -1,12 +1,14 @@
 #include <iostream>
 #include <Windows.h>
+#include <Xinput.h>
 
+#include "KeyStateEnum.h"
 #include "BitFlag.h"
-
-#include "DxLib.h"
+#include "Vector2.h"
 
 #include "KeyState.h"
-#include "UtilCalc.h"
+
+#pragma comment(lib, "Xinput.lib")
 
 /*--------*/
 /*【共通】*/
@@ -16,6 +18,8 @@
 KeyState::KeyState()
 : mshWheelVolume(0)
 , mucToggleFlag(BIT_FLAG<unsigned char>())
+, mdxsMsg()
+, mbMsgSetFlag(false)
 {
 	// キーフラグ(コントローラー)
 	memset(munControllerKeyFlags, 0, sizeof(BIT_FLAG<unsigned int>) * (int)FLAG_TYPE::MAX * (int)CONTROLLER_KEY_NUMBER::MAX_CONTROLLER);
@@ -38,7 +42,7 @@ KeyState::KeyState()
 
 	for (int i = 0; i < (int)CURSOR_POSITION_TYPE::MAX; i++)
 	{
-		mvCursorPos[i] = UtilCalc::VZero;
+		mstCursorPos[i] = Vector2::Zero();
 	}
 }
 
@@ -80,63 +84,63 @@ void KeyState::SetKey()
 	// 【コントローラー】
 	for (int i = controllerNumber; i < (4 + controllerNumber); i++)
 	{
-		//XINPUT_STATE state;
-		//ZeroMemory(&state, sizeof(XINPUT_STATE));
+		XINPUT_STATE state;
+		ZeroMemory(&state, sizeof(XINPUT_STATE));
 
-		//// 取得
-		//unsigned long result = XInputGetState(i - controllerNumber, &state);
+		// 取得
+		unsigned long result = XInputGetState(i - controllerNumber, &state);
 
-		//// 接続がないなら何もしない
-		//if (result == ERROR_SUCCESS)
-		//{
-		//	SetNowKey_Controller(true, CONTROLLER_KEY_TYPE::EXISTENCE, i);
-		//	// ボタン取得
-		//	unsigned short buttons = state.Gamepad.wButtons;
+		// 接続がないなら何もしない
+		if (result == ERROR_SUCCESS)
+		{
+			SetNowKey_Controller(true, CONTROLLER_KEY_TYPE::EXISTENCE, i);
+			// ボタン取得
+			unsigned short buttons = state.Gamepad.wButtons;
 
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_A, CONTROLLER_KEY_TYPE::A, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_B, CONTROLLER_KEY_TYPE::B, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_X, CONTROLLER_KEY_TYPE::X, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_Y, CONTROLLER_KEY_TYPE::Y, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_A, CONTROLLER_KEY_TYPE::A, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_B, CONTROLLER_KEY_TYPE::B, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_X, CONTROLLER_KEY_TYPE::X, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_Y, CONTROLLER_KEY_TYPE::Y, i);
 
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_LEFT, CONTROLLER_KEY_TYPE::LEFT, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_RIGHT, CONTROLLER_KEY_TYPE::RIGHT, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_UP, CONTROLLER_KEY_TYPE::UP, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_DOWN, CONTROLLER_KEY_TYPE::DOWN, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_LEFT, CONTROLLER_KEY_TYPE::LEFT, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_RIGHT, CONTROLLER_KEY_TYPE::RIGHT, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_UP, CONTROLLER_KEY_TYPE::UP, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_DPAD_DOWN, CONTROLLER_KEY_TYPE::DOWN, i);
 
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_RIGHT_SHOULDER, CONTROLLER_KEY_TYPE::R, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_LEFT_SHOULDER, CONTROLLER_KEY_TYPE::L, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_RIGHT_SHOULDER, CONTROLLER_KEY_TYPE::R, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_LEFT_SHOULDER, CONTROLLER_KEY_TYPE::L, i);
 
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_LEFT_THUMB, CONTROLLER_KEY_TYPE::LEFT_STICK_PUSH, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_RIGHT_THUMB, CONTROLLER_KEY_TYPE::RIGHT_STICK_PUSH, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_LEFT_THUMB, CONTROLLER_KEY_TYPE::LEFT_STICK_PUSH, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_RIGHT_THUMB, CONTROLLER_KEY_TYPE::RIGHT_STICK_PUSH, i);
 
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_START, CONTROLLER_KEY_TYPE::START, i);
-		//	SetNowKey_Controller(buttons & XINPUT_GAMEPAD_BACK, CONTROLLER_KEY_TYPE::BACK, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_START, CONTROLLER_KEY_TYPE::START, i);
+			SetNowKey_Controller(buttons & XINPUT_GAMEPAD_BACK, CONTROLLER_KEY_TYPE::BACK, i);
 
-		//	// RT LT 取得
-		//	mshNowLeftTrigger[i] = state.Gamepad.bLeftTrigger;
-		//	mshNowRightTrigger[i] = state.Gamepad.bRightTrigger;
-		//	SetNowKey_Controller(mshNowLeftTrigger[i] > 0, CONTROLLER_KEY_TYPE::LT, i);
-		//	SetNowKey_Controller(mshNowRightTrigger[i] > 0, CONTROLLER_KEY_TYPE::RT, i);
+			// RT LT 取得
+			mshNowLeftTrigger[i] = state.Gamepad.bLeftTrigger;
+			mshNowRightTrigger[i] = state.Gamepad.bRightTrigger;
+			SetNowKey_Controller(mshNowLeftTrigger[i] > 0, CONTROLLER_KEY_TYPE::LT, i);
+			SetNowKey_Controller(mshNowRightTrigger[i] > 0, CONTROLLER_KEY_TYPE::RT, i);
 
-		//	// スティック取得
-		//	mshNowLeftStickX[i] = state.Gamepad.sThumbLX;
-		//	mshNowLeftStickY[i] = state.Gamepad.sThumbLY;
+			// スティック取得
+			mshNowLeftStickX[i] = state.Gamepad.sThumbLX;
+			mshNowLeftStickY[i] = state.Gamepad.sThumbLY;
 
-		//	mshNowRightStickX[i] = state.Gamepad.sThumbRX;
-		//	mshNowRightStickY[i] = state.Gamepad.sThumbRY;
+			mshNowRightStickX[i] = state.Gamepad.sThumbRX;
+			mshNowRightStickY[i] = state.Gamepad.sThumbRY;
 
-		//	SetNowKey_Controller(mshNowLeftStickX[i] > 0, CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, i);
-		//	SetNowKey_Controller(mshNowLeftStickX[i] < 0, CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, i);
+			SetNowKey_Controller(mshNowLeftStickX[i] > 0, CONTROLLER_KEY_TYPE::LEFT_STICK_RIGHT, i);
+			SetNowKey_Controller(mshNowLeftStickX[i] < 0, CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, i);
 
-		//	SetNowKey_Controller(mshNowLeftStickY[i] < 0, CONTROLLER_KEY_TYPE::LEFT_STICK_UP, i);
-		//	SetNowKey_Controller(mshNowLeftStickY[i] > 0, CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, i);
+			SetNowKey_Controller(mshNowLeftStickY[i] < 0, CONTROLLER_KEY_TYPE::LEFT_STICK_UP, i);
+			SetNowKey_Controller(mshNowLeftStickY[i] > 0, CONTROLLER_KEY_TYPE::LEFT_STICK_DOWN, i);
 
-		//	SetNowKey_Controller(mshNowRightStickX[i] > 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_RIGHT, i);
-		//	SetNowKey_Controller(mshNowRightStickX[i] < 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_LEFT, i);
+			SetNowKey_Controller(mshNowRightStickX[i] > 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_RIGHT, i);
+			SetNowKey_Controller(mshNowRightStickX[i] < 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_LEFT, i);
 
-		//	SetNowKey_Controller(mshNowRightStickY[i] < 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_UP, i);
-		//	SetNowKey_Controller(mshNowRightStickY[i] > 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_DOWN, i);
-		//}
+			SetNowKey_Controller(mshNowRightStickY[i] < 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_UP, i);
+			SetNowKey_Controller(mshNowRightStickY[i] > 0, CONTROLLER_KEY_TYPE::RIGHT_STICK_DOWN, i);
+		}
 	}
 
 
@@ -194,114 +198,115 @@ void KeyState::SetKey()
 	//【マウス】
 	{
 
-		//// カーソル
-		//POINT cursorPos;
-		//if (GetCursorPos(&cursorPos))
-		//{
-		//	bool startPosFlag = false;
+		// カーソル
+		POINT cursorPos;
+		if (GetCursorPos(&cursorPos))
+		{
+			bool startPosFlag = false;
 
-		//	if (mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntX() == cursorPos.x &&
-		//		mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntY() == cursorPos.y)
-		//	{
-		//		startPosFlag = true;
-		//	}
-		//	else
-		//	{
-		//		VECTOR_2D moveVecs[2] = { VECTOR_2D::Zero(), VECTOR_2D::Zero() };
-		//		moveVecs[0] = mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV] - mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
-		//		moveVecs[1].X = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntX() - (float)cursorPos.x;
-		//		moveVecs[1].Y = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntY() - (float)cursorPos.y;
+			if (mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntX() == cursorPos.x &&
+				mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntY() == cursorPos.y)
+			{
+				startPosFlag = true;
+			}
+			else
+			{
+				Vector2 moveVecs[2] = { Vector2::Zero(), Vector2::Zero() };
+				moveVecs[0] = mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV] - mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
+				moveVecs[1].x = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntX() - (float)cursorPos.x;
+				moveVecs[1].y = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].IntY() - (float)cursorPos.y;
 
-		//		if ((moveVecs[0].IntX() > 0) != (moveVecs[1].IntX() > 0) ||
-		//			(moveVecs[0].IntY() > 0) != (moveVecs[1].IntY() > 0))
-		//		{
-		//			startPosFlag = true;
-		//		}
-		//		else if ((moveVecs[0].IntX() > moveVecs[0].IntY()) != (moveVecs[1].IntX() > moveVecs[1].IntY()))
-		//		{
-		//			startPosFlag = true;
-		//		}
+				if ((moveVecs[0].IntX() > 0) != (moveVecs[1].IntX() > 0) ||
+					(moveVecs[0].IntY() > 0) != (moveVecs[1].IntY() > 0))
+				{
+					startPosFlag = true;
+				}
+				else if ((moveVecs[0].IntX() > moveVecs[0].IntY()) != (moveVecs[1].IntX() > moveVecs[1].IntY()))
+				{
+					startPosFlag = true;
+				}
 
-		//	}
+			}
 
-		//	mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV] = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
-		//	mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].Y = (float)cursorPos.y;
-		//	mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].X = (float)cursorPos.x;
+			mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV] = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
+			mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].x = (float)cursorPos.y;
+			mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW].y = (float)cursorPos.x;
 
-		//	if (startPosFlag)
-		//	{
-		//		mstCursorPos[(int)CURSOR_POSITION_TYPE::START] = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
-		//	}
+			if (startPosFlag)
+			{
+				mstCursorPos[(int)CURSOR_POSITION_TYPE::START] = mstCursorPos[(int)CURSOR_POSITION_TYPE::NOW];
+			}
 
-		//	if (cursorPos.x > mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntX())
-		//	{
-		//		SetMouseFlag(true, MOUSE_TYPE::MOVE_RIGHT);
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
-		//	}
-		//	else if (cursorPos.x < mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntX())
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
-		//		SetMouseFlag(true, MOUSE_TYPE::MOVE_LEFT);
-		//	}
-		//	else
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
-		//	}
+			if (cursorPos.x > mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntX())
+			{
+				SetMouseFlag(true, MOUSE_TYPE::MOVE_RIGHT);
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
+			}
+			else if (cursorPos.x < mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntX())
+			{
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
+				SetMouseFlag(true, MOUSE_TYPE::MOVE_LEFT);
+			}
+			else
+			{
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
+			}
 
-		//	if (cursorPos.y > mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntY())
-		//	{
-		//		SetMouseFlag(true, MOUSE_TYPE::MOVE_FRONT);
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
-		//	}
-		//	else if (cursorPos.y < mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntY())
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
-		//		SetMouseFlag(true, MOUSE_TYPE::MOVE_BACK);
-		//	}
-		//	else
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
-		//		SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
-		//	}
-		//}
-		//else
-		//{
-		//	SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
-		//	SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
-		//	SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
-		//	SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
-		//}
+			if (cursorPos.y > mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntY())
+			{
+				SetMouseFlag(true, MOUSE_TYPE::MOVE_FRONT);
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
+			}
+			else if (cursorPos.y < mstCursorPos[(int)CURSOR_POSITION_TYPE::PREV].IntY())
+			{
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
+				SetMouseFlag(true, MOUSE_TYPE::MOVE_BACK);
+			}
+			else
+			{
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
+				SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
+			}
+		}
+		else
+		{
+			SetMouseFlag(false, MOUSE_TYPE::MOVE_RIGHT);
+			SetMouseFlag(false, MOUSE_TYPE::MOVE_LEFT);
+			SetMouseFlag(false, MOUSE_TYPE::MOVE_FRONT);
+			SetMouseFlag(false, MOUSE_TYPE::MOVE_BACK);
+		}
 
-		////マウスホイール
-		//if (WM_MOUSEWHEEL == mdxsMsg->message)
-		//{
-		//	mshWheelVolume = GET_WHEEL_DELTA_WPARAM(mdxsMsg->wParam);
+		//マウスホイール
+		if ((mbMsgSetFlag) && (WM_MOUSEWHEEL == mdxsMsg.message))
+		{
+			mbMsgSetFlag = false;
+			mshWheelVolume = GET_WHEEL_DELTA_WPARAM(mdxsMsg.wParam);
 
 
 
-		//	if (mshWheelVolume == 0)
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
-		//		SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
-		//	}
-		//	else if (mshWheelVolume > 0)
-		//	{
-		//		SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
-		//		SetMouseFlag(true, MOUSE_TYPE::WHEEL_BACK);
-		//	}
-		//	else
-		//	{
-		//		SetMouseFlag(true, MOUSE_TYPE::WHEEL_FRONT);
-		//		SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
-		//	}
-		//}
-		//else
-		//{
-		//	mshWheelVolume = 0;
-		//	SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
-		//	SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
-		//}
+			if (mshWheelVolume == 0)
+			{
+				SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
+				SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
+			}
+			else if (mshWheelVolume > 0)
+			{
+				SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
+				SetMouseFlag(true, MOUSE_TYPE::WHEEL_BACK);
+			}
+			else
+			{
+				SetMouseFlag(true, MOUSE_TYPE::WHEEL_FRONT);
+				SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
+			}
+		}
+		else
+		{
+			mshWheelVolume = 0;
+			SetMouseFlag(false, MOUSE_TYPE::WHEEL_FRONT);
+			SetMouseFlag(false, MOUSE_TYPE::WHEEL_BACK);
+		}
 	}
 }
 

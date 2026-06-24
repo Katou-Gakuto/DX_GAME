@@ -1,6 +1,9 @@
 #include <string>
 
-#include "ObjectBases.h"
+#include "ObjectBase.h"
+#include "ObjectBase_Attack.h"
+#include "ObjectBase_Building.h"
+#include "ObjectBase_Character.h"
 #include "ObjectManager.h"
 
 // コンストラクタ
@@ -11,6 +14,7 @@ ObjectManager::ObjectManager()
 , mpAttackBase(nullptr)
 , mpUIBase(nullptr)
 , munSetID(0)
+, munObjectCount(0)
 {
 }
 
@@ -26,6 +30,7 @@ ObjectManager::~ObjectManager()
 void ObjectManager::Initilize()
 {
 	munSetID = 0;
+	munObjectCount = 0;
 }
 
 // 終了
@@ -113,6 +118,7 @@ void ObjectManager::ObjectDraw()
 int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 {
 	munSetID += 1;
+	munObjectCount += 1;
 
 	bool setFlag = true;
 
@@ -203,6 +209,8 @@ int ObjectManager::Add(ObjectBase* object, OBJECT_TYPE typeNumber)
 // リストからオブジェクトを除外する
 void ObjectManager::Delete(unsigned int id, OBJECT_TYPE typeNumber)
 {
+	munObjectCount -= 1;
+
 	if (mpObjectBase == nullptr)
 	{
 		return;
@@ -469,6 +477,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByTag_vector(std::string tag, OBJEC
 
 	std::vector<ObjectBase*> result;
 	result.clear();
+	result.reserve(munObjectCount);
 
 	if (checkObject == nullptr)
 	{
@@ -564,6 +573,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByType_vector(OBJECT_TYPE typeNumbe
 
 	std::vector<ObjectBase*> result;
 	result.clear();
+	result.reserve(munObjectCount);
 
 	if (checkObject == nullptr)
 	{
@@ -734,6 +744,7 @@ std::vector<ObjectBase*> ObjectManager::FindsByTeam_vector(int team, OBJECT_TYPE
 
 	std::vector<ObjectBase*> result;
 	result.clear();
+	result.reserve(munObjectCount);
 
 	if (checkObject == nullptr)
 	{

@@ -31,9 +31,6 @@
     <Filter Include="ヘッダー ファイル\State\UI">
       <UniqueIdentifier>{afbf50bc-e609-4330-87f3-899bd0c9c96a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Singleton">
-      <UniqueIdentifier>{1961dabb-d2e0-4c19-8878-305c1b8c07c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Object">
       <UniqueIdentifier>{863acca6-3a6d-4214-9a06-3fae25fc7989}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     </Filter>
     <Filter Include="ソース ファイル\Object\UI">
       <UniqueIdentifier>{276f5acd-a107-49bf-b69e-899144ec311c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Singleton">
-      <UniqueIdentifier>{18461140-b680-435e-8105-1bc53d10dcd5}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\State">
       <UniqueIdentifier>{a97ef6f8-0b60-4203-ab4d-523537395e2b}</UniqueIdentifier>
@@ -140,6 +134,18 @@
     </Filter>
     <Filter Include="ソース ファイル\Debug\Imgui\backends">
       <UniqueIdentifier>{d4b78ff0-c44c-4c00-906b-7d6519d00260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Singleton">
+      <UniqueIdentifier>{998dd680-7ddb-4ba8-a196-73e1b8759047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Singleton\Resource">
+      <UniqueIdentifier>{d64e17b3-5fa3-43ab-8fa6-3d3305f3b896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Singleton">
+      <UniqueIdentifier>{49b5294d-816d-4df9-a31e-98454296653b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Singleton\Resource">
+      <UniqueIdentifier>{1039a049-2a3b-4e46-a451-2da6c60d16c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -218,60 +224,6 @@
     <ClCompile Include="Source\Object\UI\UI_Title.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Singleton\AttackManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\CameraManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\CollisionManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\DataManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\EndManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\FadeManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\GameManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\ImguiManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\KeyState.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\LoadingManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\MapManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\Master.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\ObjectManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\ResourceManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\SceneManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\StopManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\TargetManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\TimeManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
     <ClCompile Include="Source\State\FSM.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
@@ -338,23 +290,14 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Singleton\TelopManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Struct\Coin.cpp">
       <Filter>ソース ファイル\Struct</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\DotWeenManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\StateDotWeen.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\Character\EnemyCommonProcessing.cpp">
       <Filter>ソース ファイル\State\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\DrawManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\UtilFileLoading.cpp">
       <Filter>ソース ファイル\Util</Filter>
@@ -377,17 +320,101 @@
     <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp">
       <Filter>ソース ファイル\Object\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Singleton\StageDataManager.cpp">
+    <ClCompile Include="Source\Object\UI\UI_GameClear.cpp">
+      <Filter>ソース ファイル\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\AnimationStateManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\AttackManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\CameraManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\CollisionManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\DataManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\DotWeenManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\DrawManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\EndManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\FadeManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\GameManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ImguiManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\KeyState.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\KeyStateInitialize_DxLib.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\LoadingManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\MapManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\Master.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ObjectManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\SceneManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\SoundManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\UI\UI_GameClear.cpp">
-      <Filter>ソース ファイル\Object\UI</Filter>
+    <ClCompile Include="Source\Singleton\StageDataManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\StopManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\TargetManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\TelopManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\ThreadManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\TimeManager.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\Resource3DModel.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceEffect.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceGraph.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceManager.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceMovie.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceSound.cpp">
+      <Filter>ソース ファイル\Singleton\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -487,60 +514,6 @@
     <ClInclude Include="Source\Object\UI\UI_Title.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Singleton\AttackManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\CameraManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\CollisionManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\DataManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\EndManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\FadeManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\GameManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\ImguiManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\KeyState.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\LoadingManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\MapManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\Master.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\ObjectManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\ResourceManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\SceneManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\StopManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\TargetManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\TimeManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Source\State\FSM.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
@@ -622,9 +595,6 @@
     <ClInclude Include="XML_Excel\XmlArrange.h">
       <Filter>ヘッダー ファイル\XML</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Singleton\TelopManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\TelopData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -646,9 +616,6 @@
     <ClInclude Include="Source\Struct\Coin.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Singleton\DotWeenManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\DotWeenData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -663,9 +630,6 @@
     </ClInclude>
     <ClInclude Include="Source\State\Character\EnemyCommonProcessing.h">
       <Filter>ヘッダー ファイル\State\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\DrawManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Source\Struct\MiniMapData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
@@ -697,20 +661,104 @@
     <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h">
       <Filter>ヘッダー ファイル\Object\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Singleton\StageDataManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\SoundManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Object\UI\UI_GameClear.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Struct\TimeData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Singleton\AnimationStateManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\AttackManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\CameraManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\CollisionManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\DataManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\DotWeenManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\DrawManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\EndManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\FadeManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\GameManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ImguiManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\KeyState.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\LoadingManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\MapManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\Master.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ObjectManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\SceneManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\SoundManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\StageDataManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\StopManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TargetManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TelopManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Singleton\ThreadManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\TimeManager.h">
+      <Filter>ヘッダー ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\Resource3DModel.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceBase.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceEffect.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceGraph.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceManager.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceMovie.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceSound.h">
+      <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

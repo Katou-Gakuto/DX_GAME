@@ -25,7 +25,7 @@ public:
 	{
 	}
 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-	virtual void OnExit(std::vector<DOT_WEEN_DATA>* voidData, DOT_WEEN_TYPE newState) override
+	virtual void OnExit(std::vector<DOT_WEEN_DATA>* voidData, DOT_WEEN_TYPE nextState) override
 	{
 	}
 

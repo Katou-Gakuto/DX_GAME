@@ -453,6 +453,9 @@
     <ClCompile Include="Source\Struct\MapData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
+    <ClCompile Include="Source\State\Character\StateMoveCharacter.cpp">
+      <Filter>ソース ファイル\State\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -859,6 +862,9 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\MapData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\State\Character\StateMoveCharacter.h">
+      <Filter>ヘッダー ファイル\State\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

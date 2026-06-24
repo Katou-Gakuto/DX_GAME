@@ -10,6 +10,8 @@ class KeyState;
 class SceneManager;
 class TargetManager;
 
+// TODO: UIでやる
+
 /*------------------*/
 /*     【共通】     */
 /*------------------*/
@@ -75,7 +77,7 @@ public:
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
@@ -108,7 +110,7 @@ public:
 	/*この状態に入った時の処理*/
 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER newState) override;
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
 	/*ステート変更確認*/
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;

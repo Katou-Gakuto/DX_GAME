@@ -200,7 +200,7 @@ void ResourceManager::ShadowMapInit()
 
 // int ResourceManager::GetGraphHandle(std::string fileName)
 // {
-// 	return mpGraph->GetGraphHandle(fileName);
+// 	return mpGraph->GetGraphResource()->GetResourceHandle((fileName);
 // }
 
 // void ResourceManager::ReduceGraphHandle(int handle)

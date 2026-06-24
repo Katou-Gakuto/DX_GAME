@@ -61,7 +61,7 @@ public:
 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-	void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+	void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
 	/*XV*/
 	void Update(UIBase* ui) override;

@@ -13,6 +13,7 @@ class CharacterBase;
 class IStateCharacter : public StateBase<STATE_TYPE_CHARACTER, CharacterBase>
 {
 protected:
+	STATE_TYPE_CHARACTER meMyStateType;
 	// // 共通キャラクターステート
 	// enum COMMON_CHARACTER_STATE
 	// {
@@ -33,8 +34,9 @@ protected:
 	// // INPROGRESS: ステート条件金曜過ぎたら変更
 
 public:
-	IStateCharacter(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias, STATE_TYPE_CHARACTER stateNumber)
+	IStateCharacter(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias, STATE_TYPE_CHARACTER stateNumber, STATE_TYPE_CHARACTER stateType)
 	: StateBase(stateChangeCriterias, stateNumber)
+	, meMyStateType(stateType)
 	{
 	}
 	virtual ~IStateCharacter() = default;
@@ -44,13 +46,7 @@ public:
 	/// <summary>終了</summary>
 	virtual void Finalize(CharacterBase* character) {}
 
-	// /*この状態に入った時の処理*/
-	// virtual void OnEnter(CharacterBase* character) = 0;
-	// /*この状態を出る時の処理*/
-	// virtual void OnExit(CharacterBase* character) = 0;
-
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) = 0;
+	
 	/*更新*/
 	virtual void Update(CharacterBase* character) = 0;
 	/*最終更新*/
@@ -59,6 +55,7 @@ public:
 	/*描画*/
 	virtual void Draw(CharacterBase* character) = 0;
 
-	/*死亡*/
-	virtual void Death(CharacterBase* character) = 0;
+	/// <summary>ステートナンバーずらしても使える固定ステート種類取得</summary>
+	/// <returns>固定ステート種類</returns>
+	STATE_TYPE_CHARACTER GetMyStateType() { return meMyStateType; }
 };

@@ -107,21 +107,21 @@ void MapManager::Initilize()
         // 背景
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::BACK_GROUND] =
             Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Green.png"),
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Green.png"),
                 Vector2_Int(0, 0),
                 setUISize
             );
         // 枠
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME] =
             Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
                 Vector2_Int(0, 0),
                 setUISize
             );
         //// 枠レーダ
         //mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME_RADAR] =
         //    Master::mpResourceManager->GetDrawGraphData(
-        //        Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapRadar.png"),
+        //        Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MiniMapRadar.png"),
         //        Vector2_Int(0, 0),
         //        setUISize
         //    );
@@ -134,7 +134,7 @@ void MapManager::Initilize()
             //mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MASK] =
             //    Master::mpResourceManager->GetDrawGraphData(
             //        //LoadMask((ResourceManager::msResourceFile + "2D/MiniMapMask.png").c_str()),
-            //        //Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MiniMapMask.png"),
+            //        //Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MiniMapMask.png"),
             //        ,
             //        Vector2_Int(0, 0)/**/,
             //        setUISize//*/
@@ -171,7 +171,7 @@ void MapManager::Initilize()
         // 範囲外キャラ
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER] =
             Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(),
                 Vector2_Int(mstMiniMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMiniMapDrawDistance.y/*タイポじゃない*/, true),
                     mstMiniMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMiniMapDrawDistance.y, true))
@@ -179,7 +179,7 @@ void MapManager::Initilize()
         // 範囲内キャラ
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER] =
             Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(),
                 setCharacterSize
             );
@@ -187,7 +187,7 @@ void MapManager::Initilize()
         // プレイヤー
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::PLAYER] =
             Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(static_cast<int>(mstMiniMapCenterPos.x), static_cast<int>(mstMiniMapCenterPos.y)),
                 setCharacterSize
             );

@@ -21,7 +21,7 @@ ModelMap::~ModelMap()
 // ƒ‚ƒfƒ‹‰Šú‰»
 void ModelMap::ModelInitilize()
 {
-    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Floor.png");
+    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Floor.png");
 }
 
 // ƒ‚ƒfƒ‹I—¹

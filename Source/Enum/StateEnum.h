@@ -3,7 +3,6 @@
 // ステート種類 キャラクター
 enum class STATE_TYPE_CHARACTER
 {
-
     // StateEnemy
 	IDLE_ENEMY_STATE = 0,
 	MOVE_ENEMY_STATE,
@@ -27,6 +26,9 @@ enum class STATE_TYPE_CHARACTER
 	GUARD_PLAYER_STATE,	// ガード
 	FALL_DOWN_PLAYER_STATE,	// 倒れる
 	JUMP_ATTACK_PLAYER_STATE,	// ジャンプ攻撃
+
+	// 自由枠最小
+	STATE_FREE_BORDER
 };
 
 // ステート種類 UI

@@ -222,7 +222,7 @@ public:
     ~ConfigSelectState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
@@ -252,7 +252,7 @@ public:
     ~MinimapConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
@@ -277,7 +277,7 @@ public:
     ~SoundConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;
@@ -302,7 +302,7 @@ public:
     ~CameraConfigState() = default;
 
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     void Update(UIBase* ui) override;
     void Decision(UIBase* ui) override;

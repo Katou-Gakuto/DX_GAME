@@ -2,6 +2,7 @@
 
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
+#include "StateEnum.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
@@ -134,4 +135,10 @@ Vector2 UtilChange::ChangeVector_XZ(VECTOR src)
 Vector2 UtilChange::ChangeVector_YZ(VECTOR src)
 {
 	return Vector2(src.y, src.z);
+}
+
+/// <summary>ステートフリー枠に変換</summary>
+STATE_TYPE_CHARACTER UtilChange::ChangeStateFreeBorder(int plusNumber)
+{
+	return static_cast<STATE_TYPE_CHARACTER>(plusNumber + static_cast<int>(STATE_TYPE_CHARACTER::STATE_FREE_BORDER));
 }

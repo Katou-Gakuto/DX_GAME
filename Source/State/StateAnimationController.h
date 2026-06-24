@@ -44,7 +44,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -63,7 +63,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -82,7 +82,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -104,7 +104,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -126,7 +126,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -148,7 +148,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -167,7 +167,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
@@ -186,7 +186,7 @@
 // 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE newState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
 // 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;

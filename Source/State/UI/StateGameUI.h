@@ -138,7 +138,7 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
     void Update(UIBase* ui) override;
@@ -184,7 +184,7 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
     void Update(UIBase* ui) override;
@@ -213,7 +213,7 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
     void Update(UIBase* ui) override;
@@ -248,7 +248,7 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
     void Update(UIBase* ui) override;
@@ -278,7 +278,7 @@ public:
     /// <summary>この状態に入った時の処理</summary>
     void OnEnter(UIBase* ui, STATE_TYPE_UI preState) override;
     /// <summary>この状態を出る時の処理</summary>
-    void OnExit(UIBase* ui, STATE_TYPE_UI newState) override;
+    void OnExit(UIBase* ui, STATE_TYPE_UI nextState) override;
 
     /// <summary>更新</summary>
     void Update(UIBase* ui) override;

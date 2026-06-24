@@ -8,6 +8,7 @@ struct Vector2;
 
 enum class CHARACTER_TYPE;
 enum class SCENE;
+enum class STATE_TYPE_CHARACTER;
 
 namespace UtilChange
 {
@@ -27,4 +28,7 @@ namespace UtilChange
 	Vector2 ChangeVector_XZ(VECTOR src);
 	/// <summary>ベクトルをベクトル2に変換(yz)</summary>
 	Vector2 ChangeVector_YZ(VECTOR src);
+
+	/// <summary>ステートフリー枠に変換</summary>
+	STATE_TYPE_CHARACTER ChangeStateFreeBorder(int plusNumber);
 }

@@ -39,9 +39,3 @@ void FSMCharacter::Draw(CharacterBase* character)
 {
 	mmStateMap[mCurrentState]->Draw(character);
 }
-
-// €–S
-void FSMCharacter::Death(CharacterBase* character)
-{
-	mmStateMap[mCurrentState]->Death(character);
-}

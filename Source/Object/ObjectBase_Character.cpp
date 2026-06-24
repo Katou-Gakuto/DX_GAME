@@ -43,7 +43,9 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mpModelController(nullptr)
 , mpAnimation(nullptr)
 , mpAttack(nullptr)
-, mfGravity()
+, mbGroundFlag(true)
+, mvVelocity(UtilCalc::VZero)
+, mvUpVec(UtilCalc::VZero)
 {
 	mmCharacterAttackDatas.clear();
 	mstStateDrawData.clear();
@@ -307,11 +309,17 @@ void CharacterBase::Damage(int damage)
 // 定型行動処理
 void CharacterBase::TemplateActionProcess()
 {
-	/*アングルから前と右の移動量を取得*/
-    float denominator = std::fabs(mvMoveDir.x) + std::fabs(mvMoveDir.z);
-	VECTOR frontVec = VGet(mvMoveDir.x / denominator, 0.0f, mvMoveDir.z / denominator);
+	/*アングルから移動量を取得*/
+	VECTOR worldUp = VGet(0.0f, 1.0f, 0.0f);
+	VECTOR frontVec = VNorm(mvMoveDir);
 
-	VECTOR rightVec = VGet(frontVec.z, 0.0f, -frontVec.x);
+	if (std::fabs(frontVec.y) > 0.999f)
+	{
+		worldUp = VGet(1.0f, 0.0f, 0.0f);
+	}
+
+	VECTOR rightVec = VNorm(VCross(worldUp, frontVec));
+	mvUpVec    = VNorm(VCross(frontVec, rightVec));
 
 	/**********************************/
 
@@ -321,15 +329,15 @@ void CharacterBase::TemplateActionProcess()
 		bool moveFlag = false;
 		
 		// 走る
-		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::DASH))
+		if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::DASH))
 		{
 			mvVec = VAdd(mvVec, frontVec);
 			moveFlag = true;
 		}
 		// 前後
-		else if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
+		else if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
 		{
-			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_ACTION))
+			if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::FRONT_ACTION))
 			{
 				mvVec = VAdd(mvVec, frontVec);
 			}
@@ -341,9 +349,9 @@ void CharacterBase::TemplateActionProcess()
 		}
 
 		// 左右
-		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::LEFT_OR_RIGHT_ACTION))
+		if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::LEFT_OR_RIGHT_ACTION))
 		{
-			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::RIGHT_ACTION))
+			if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::RIGHT_ACTION))
 			{
 				mvVec = VAdd(mvVec, rightVec);
 			}
@@ -355,21 +363,26 @@ void CharacterBase::TemplateActionProcess()
 		}
 
 		// 上下
-		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_OR_DOWN_ACTION))
+		if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::UP_OR_DOWN_ACTION))
 		{
-			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_ACTION))
+			if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::UP_ACTION))
 			{
-				mvVec.y += 1.0f;
+				mvVec = VAdd(mvVec, upVec);
 			}
 			else
 			{
-				mvVec.y -= 1.0f;
+				mvVec = VSub(mvVec, upVec);
 			}
 			moveFlag = true;
 		}
 
+		if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::JUMP))
+		{
+			mvVelocity = VScale(upVec, JUMP_POWER * mstStatus.jumpForceMagnification);
+		}
 
-		if (moveFlag)
+
+		if (moveFlag)// ゼロか確かめた方がいい
 		{
 			mvVec = VNorm(mvVec);
 
@@ -378,7 +391,7 @@ void CharacterBase::TemplateActionProcess()
 			SetAnimation(ANIMATION_TYPE::WALK);
 		}
 
-		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::HP_ZERO))
+		if (munActionflags.GetFlag_BitShift(CHECK_ACTION_FLAG::HP_ZERO))
 		{
 			DeathProcess();
 		}
@@ -388,26 +401,34 @@ void CharacterBase::TemplateActionProcess()
 }
 
 // 移動処理
-void CharacterBase::MoveProcess()
+VECTOR CharacterBase::MoveProcess(VECTOR* position)
 {
-	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed()));
-	mfGravity -= MAP_GRAVITY;
-	mvPosition.y += mfGravity;
-	if (0.0f > mvPosition.y)
+	VECTOR velocity = mvVelocity;
+	VECTOR* velocityPointer = &velocity;
+	if (position == nullptr)
 	{
-		mfGravity = 0.0f;
-		mvPosition.y = 0.0f;
+		position = &mvPosition;
+		velocityPointer = &mvVelocity;
 	}
+
+	*position = VAdd(*position, VScale(mvVec, (float)mstStatus.GetNowSpeed()));
+	// 重力
+	if (!mbGroundFlag)
+	{
+		*velocityPointer = VSub(*velocityPointer, VScale(mvUpVec, CHARACTER_GRAVITY));
+	}
+	*position = VAdd(*position, *velocityPointer);
+	// TODO:マップに移動
+	// if (0.0f > mvPosition.y)
+	// {
+	// 	mfGravity = 0.0f;
+	// 	mvPosition.y = 0.0f;
+	// }
 }
 
 // 死亡処理
 void CharacterBase::DeathProcess()
 {
-	if (mpFsm != nullptr)
-	{
-		mpFsm->Death(this);
-	}
-
 	SetDeleteFlag(true);
 }
 

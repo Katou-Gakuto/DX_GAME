@@ -30,34 +30,37 @@ class FSMCharacter;
 // 行動フラグ
 enum class ACTION_FLAG
 {
-    // MAX 0b0000'0000'0000'0000'0000'0000'0000'0000
+    // MAX                  0b0000'0000'0000'0000'0000'0000'0000'0000
 
     /*上下移動*/
-    //UP_OR_DOWN_ACTION =   0b00'000'000'001u,
+    //UP_OR_DOWN_ACTION =   0b000'000'000'001u,
     /*上移動*/
-    UP_ACTION =             0b00'000'000'011u,
+    UP_ACTION =             0b000'000'000'011u,
     /*下移動*/
-    DOWN_ACTION =           0b00'000'000'101u,
+    DOWN_ACTION =           0b000'000'000'101u,
 
     /*右左移動*/
-    //LEFT_OR_RIGHT_ACTION= 0b00'000'001'000u,
+    //LEFT_OR_RIGHT_ACTION= 0b000'000'001'000u,
     /*右移動*/
-    RIGHT_ACTION =          0b00'000'011'000u,
+    RIGHT_ACTION =          0b000'000'011'000u,
     /*左移動*/
-    LEFT_ACTION =           0b00'000'101'000u,
+    LEFT_ACTION =           0b000'000'101'000u,
 
     /*前後移動*/
-    //FRONT_OR_BACK_ACTION= 0b00'001'000'000u,
+    //FRONT_OR_BACK_ACTION= 0b000'001'000'000u,
     /*前移動*/
-    FRONT_ACTION =          0b00'011'000'000u,
+    FRONT_ACTION =          0b000'011'000'000u,
     /*後ろ移動*/
-    BACK_ACTION =           0b00'101'000'000u,
+    BACK_ACTION =           0b000'101'000'000u,
 
     /*HPが0以下*/
-    HP_ZERO =               0b01'000'000'000u,
+    HP_ZERO =               0b001'000'000'000u,
 
     /*ダッシュ*/
-    DASH =                  0b10'000'000'000u,
+    DASH =                  0b010'000'000'000u,
+
+    /*ジャンプ*/
+    JUMP =                  0b100'000'000'000u,
 };
 
 // 確認用行動フラグ
@@ -90,7 +93,10 @@ enum class CHECK_ACTION_FLAG
     HP_ZERO,
 
     /*ダッシュ*/
-    DASH
+    DASH,
+
+    /*ジャンプ*/
+    JUMP,
 };
 
 /*------------------------------------------*/
@@ -104,6 +110,14 @@ public:
     {
         INVINCIBLE = ObjectBase::OBJECT_BIT_FLAG_NUBER::OBJECT_BIT_MAX,
         CHARACTER_OBJECT_BIT_MAX
+    };
+
+    // 摩擦種類
+    enum FRICTION_TYPE
+    {
+        GROUND = 0,
+        SKY,
+        MAX
     };
 
 protected:
@@ -146,11 +160,26 @@ protected:
     // ステート用描画情報
     std::vector<DRAW_DATA> mstStateDrawData;
 
-	// 重力
-	static constexpr float MAP_GRAVITY = 0.147f;
+	// 重力 // TODO: マップで掛ける
+	static constexpr float CHARACTER_GRAVITY = 0.147f;
 
-    // 重量
-    float mfGravity;
+    // 摩擦
+    static constexpr float CHARACTER_FRICTION[FRICTION_TYPE::MAX] = 
+    {
+        0.02f,
+        0.15f
+    };
+
+    // ジャンプ力
+    static constexpr float JUMP_POWER = 1.0f;
+    
+    // 地面フラグ
+    bool mbGroundFlag;
+
+    // 運動速度
+    VECTOR mvVelocity;
+    // 上方向ベクトル保存用
+    VECTOR mvUpVec;
 
 public:
     CharacterBase(bool nextSceneDeleteFlag, STATUS status);
@@ -190,6 +219,9 @@ public:
     /*ダメージ*/
     virtual void Damage(int damage);
 
+    /// <summary>移動処理(移動位置確認用にも使う)</summary>
+    virtual VECTOR MoveProcess(VECTOR* position = nullptr);
+
 protected:
     /*キャラクター初期化*/
     virtual void CharacterInitilize() = 0;
@@ -212,11 +244,11 @@ protected:
     /*定型行動処理*/
     void TemplateActionProcess();
 
-    /*移動処理*/
-    virtual void MoveProcess();
-
     /*死亡処理*/
     virtual void DeathProcess();
+
+    /*提携アニメーション処理*/
+    void TemplateAnimationProcess();
 
 public:
 
@@ -311,6 +343,9 @@ public:
     inline void SetFrontMove() { munActionflags.SetXorBit(ACTION_FLAG::FRONT_ACTION); }
     /*後ろ移動設定*/
     inline void SetBackMove() { munActionflags.SetXorBit(ACTION_FLAG::BACK_ACTION); }
+
+    /*ジャンプ設定*/
+    inline void SetJump() { munActionflags.SetXorBit(ACTION_FLAG::JUMP); }
 
     /*HPが0以下のフラグを設定*/
     inline void SetHPZero() { munActionflags.SetOrBit(ACTION_FLAG::HP_ZERO); }

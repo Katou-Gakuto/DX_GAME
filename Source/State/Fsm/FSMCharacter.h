@@ -21,7 +21,4 @@ public:
 
 	/*•`‰æ*/
 	void Draw(CharacterBase* character);
-
-	/*Ž€–S*/
-	void Death(CharacterBase* character);
 };

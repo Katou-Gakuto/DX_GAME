@@ -58,7 +58,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateIdleAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateIdleAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -84,7 +84,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -111,7 +111,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateAttackInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateAttackInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -156,7 +156,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateAttackAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateAttackAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -200,7 +200,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateAttackOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateAttackOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -245,7 +245,7 @@
 // }
 
 // // この状態を出る時の処理
-// void State2DMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void State2DMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -277,7 +277,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateFadeOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateFadeOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 
@@ -309,7 +309,7 @@
 // }
 
 // // この状態を出る時の処理
-// void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE newState)
+// void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_TYPE nextState)
 // {
 // }
 

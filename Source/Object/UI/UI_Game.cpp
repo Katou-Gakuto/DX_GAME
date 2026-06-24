@@ -40,22 +40,22 @@ void UI_Game::UIInitilize()
     //         drawData.transFlag = TRUE;
     //         // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
     //         // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-    //         // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_A.png");
+    //         // drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_A.png");
     //         // setDrawDatas.push_back(drawData);
             
     //         // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
     //         // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-    //         // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_B.png");
+    //         // drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_B.png");
     //         // setDrawDatas.push_back(drawData);
             
     //         // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
     //         // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-    //         // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_X.png");
+    //         // drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_X.png");
     //         // setDrawDatas.push_back(drawData);
             
     //         // drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.8f, 0.1f));
     //         // drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-    //         // drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_Y.png");
+    //         // drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_Y.png");
     //         // setDrawDatas.push_back(drawData);
             
     //         /*{// 操作キー描画情報
@@ -63,28 +63,28 @@ void UI_Game::UIInitilize()
     //             {
     //                 drawData.pos = displaySize.RightDown_Ratio(Vector2(0.26f, 0.1f));
     //                 drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 0.4f, displaySize.Left_RatioWidth(0.1f) * 0.4f);
-    //                 drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_R.png");
+    //                 drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_R.png");
     //                 setDrawDatas.push_back(drawData);
 
     //                 drawData.pos = displaySize.RightDown_Ratio(Vector2(0.31f, 0.1f));
     //                 drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 0.4f, displaySize.Left_RatioWidth(0.1f) * 0.4f);
-    //                 drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_L.png");
+    //                 drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_L.png");
     //                 setDrawDatas.push_back(drawData);
     //             }
 
     //             drawData.pos = displaySize.RightDown_Ratio(Vector2(0.135f, 0.175f));
     //             drawData.size = Vector2_Int(displaySize.Left_RatioWidth(0.1f) * 1.5f, displaySize.Left_RatioWidth(0.1f) * 1.5f);
-    //             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Enter.png");
+    //             drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Enter.png");
     //             setDrawDatas.push_back(drawData);
 
     //             drawData.pos = displaySize.RightDown_Ratio(Vector2(0.21f, 0.1f));
     //             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.105f, 0.07f));
-    //             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_WASD.png");
+    //             drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_WASD.png");
     //             setDrawDatas.push_back(drawData);
 
     //             drawData.pos = displaySize.RightDown_Ratio(Vector2(0.21f, 0.18f));
     //             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.105f, 0.07f));
-    //             drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Button_Arrow.png");
+    //             drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Button_Arrow.png");
     //             setDrawDatas.push_back(drawData);
     //         }*/
 
@@ -101,22 +101,22 @@ void UI_Game::UIInitilize()
 
     //         //     // 戻る
     //         //     drawData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
-    //         //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
+    //         //     drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Back.png");
     //         //     setDrawDatas.push_back(drawData);
                 
     //         //     // コンフィグ
     //         //     drawData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
-    //         //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+    //         //     drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Config.png");
     //         //     setDrawDatas.push_back(drawData);
                 
     //         //     // ステータス
     //         //     drawData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
-    //         //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
+    //         //     drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Status.png");
     //         //     setDrawDatas.push_back(drawData);
                 
     //         //     // ゲーム終了
     //         //     drawData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
-    //         //     drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+    //         //     drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
     //         //     setDrawDatas.push_back(drawData);
     //         // }
     //     }
@@ -143,7 +143,7 @@ void UI_Game::UIInitilize()
     //    drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
     //    drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.0f, 0.1f));
     //    drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-    //    drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/White.png");
+    //    drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/White.png");
     //    drawData.transFlag = TRUE;
     //    setDrawDatas.push_back(drawData);
 
@@ -160,7 +160,7 @@ void UI_Game::UIInitilize()
     //        drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
     //        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.15f));
     //        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.2f, 0.1f));
-    //        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TownString_" + std::to_string(stringNumber) + ".png");
+    //        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TownString_" + std::to_string(stringNumber) + ".png");
     //        drawData.transFlag = TRUE;
     //        setDrawDatas.push_back(drawData);
     //        break;
@@ -174,7 +174,7 @@ void UI_Game::UIInitilize()
     //        drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
     //        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.3f, 0.15f));
     //        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.1f));
-    //        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/DungeonString_" + std::to_string(stringNumber) + ".png");
+    //        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/DungeonString_" + std::to_string(stringNumber) + ".png");
     //        drawData.transFlag = TRUE;
     //        setDrawDatas.push_back(drawData);
     //        break;
@@ -190,7 +190,7 @@ void UI_Game::UIInitilize()
     //        drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
     //        drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
     //        drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
-    //        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
+    //        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
     //        drawData.transFlag = TRUE;
     //        setDrawDatas.push_back(drawData);
     //        break;
@@ -212,7 +212,7 @@ void UI_Game::UIInitilize()
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
         drawData.size = displaySize.LeftUp_FloatRatio(0.8f);
-        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
+        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 

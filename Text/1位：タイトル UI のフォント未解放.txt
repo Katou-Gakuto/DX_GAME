@@ -5,8 +5,8 @@
 
 問題内容： タイトル用 11 ステートが登録されるたびに基底 ctor でフォント 3 つ＋画像 2 つを取得。ProcessOnExit は空で、フォント用 DeleteFontToHandle が一切ない。
 
-	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphHandle(...);
-	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphHandle(...);
+	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((...);
+	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((...);
 	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
 	mnSaveDataDrawFontHandle_PlayerName = CreateFontToHandle(NULL, 22, 8);
 	mnSaveDataDrawFontHandle_Other = CreateFontToHandle(NULL, 18, 8);

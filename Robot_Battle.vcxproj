@@ -88,6 +88,7 @@
     <ClCompile Include="Source\State\Character\StateCharacter_Robot.cpp" />
     <ClCompile Include="Source\State\Character\StateEnemy.cpp" />
     <ClCompile Include="Source\State\Character\StateMapEnemy.cpp" />
+    <ClCompile Include="Source\State\Character\StateMoveCharacter.cpp" />
     <ClCompile Include="Source\State\Character\StatePlayer.cpp" />
     <ClCompile Include="Source\State\Fsm\FSMAnimation.cpp" />
     <ClCompile Include="Source\State\Fsm\FSMCamera.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Source\State\Character\StateCharacter_Robot.h" />
     <ClInclude Include="Source\State\Character\StateEnemy.h" />
     <ClInclude Include="Source\State\Character\StateMapEnemy.h" />
+    <ClInclude Include="Source\State\Character\StateMoveCharacter.h" />
     <ClInclude Include="Source\State\Character\StatePlayer.h" />
     <ClInclude Include="Source\State\Fsm\FSM.h" />
     <ClInclude Include="Source\State\Fsm\FSMAnimation.h" />

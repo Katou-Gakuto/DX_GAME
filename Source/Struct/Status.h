@@ -19,6 +19,7 @@ public:
 
 	int baseAttckPower;	// 攻撃力
 	int baseSpeed;	// 速度
+	float jumpForceMagnification = 1.0f;	// ジャンプ力倍率
 	CHARACTER_TYPE characterType;	// キャラクター種類
 
 	STATUS operator *(float number) const

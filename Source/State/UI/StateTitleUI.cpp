@@ -35,8 +35,8 @@ TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 , mnPreSelectNumber(-1)
 {
 	// セーブデータ背景画像ハンドル
-	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataBase.png");
-	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
+	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleDataBase.png");
+	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
 	
 	// セーブデータ文字列描画時設定ハンドル(セーブデータ)
 	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
@@ -254,7 +254,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 
 	// プレイヤー画像描画
 	{
-		drawGraphData.handle = ui->GetGraphHandles()[playerGraphNumber];
+		drawGraphData.handle = ui->GetGraphResource()->GetResourceHandle(s()[playerGraphNumber];
 		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.05f, 0.1f));
 		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.8f));
 

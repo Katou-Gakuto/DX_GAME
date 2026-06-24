@@ -52,17 +52,17 @@ PlayerProcess::PlayerProcess()
 	// 	drawData.drawGraphData.transFlag = TRUE;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
 	// }
 }
 
@@ -312,14 +312,14 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 
 	// L画像設定
 	{
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(lGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((lGraphString);
 		mstLKeyDraw = drawData;
 	}
 
 	// R画像設定
 	{
         drawData.drawGraphData.pos.x += drawData.drawGraphData.size.x;
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(rGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((rGraphString);
 		mstRKeyDraw = drawData;
 	}
 
@@ -374,17 +374,17 @@ void IdlePlayerState::OnEnter(CharacterBase* character)
 			drawData.drawGraphData.transFlag = TRUE;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
 		}
 
 		character->SetStateDrawData(drawDatas);

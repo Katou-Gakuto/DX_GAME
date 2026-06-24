@@ -127,17 +127,17 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 			drawData.drawGraphData.transFlag = TRUE;
 
 			drawDatas[ENEMY_DRAW_TYPE::HP_FRAME] = drawData;
-			drawDatas[ENEMY_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+			drawDatas[ENEMY_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 			drawDatas[ENEMY_DRAW_TYPE::HP_LEFT] = drawData;
-			drawDatas[ENEMY_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
+			drawDatas[ENEMY_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 			drawDatas[ENEMY_DRAW_TYPE::HP_RIGHT] = drawData;
-			drawDatas[ENEMY_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
+			drawDatas[ENEMY_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
 		}
 
         // ŠO˜g
@@ -150,7 +150,7 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 			drawData.drawGraphData.transFlag = TRUE;
 
 			//drawDatas[ENEMY_DRAW_TYPE::FRAME] = drawData;
-			//drawDatas[ENEMY_DRAW_TYPE::FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
+			//drawDatas[ENEMY_DRAW_TYPE::FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
         }
 
 		enemy->SetStateDrawData(drawDatas);

@@ -108,7 +108,7 @@ ConfigUIProcess::ConfigUIProcess()
     // mstDrawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
     // mstDrawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
     // mstDrawData.drawGraphData.size = displaySize.LeftUp_FloatRatio(0.8f);
-    // mstDrawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
+    // mstDrawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
     // mstDrawData.drawGraphData.transFlag = TRUE;
     // Master::mpDrawManager->AddDrawData(&mstDrawData);
 }
@@ -288,7 +288,7 @@ void ConfigUIProcess::SetConfigSlider(STATE_TYPE_UI configType)
     // ミニマップ
     case STATE_TYPE_UI::MINIMAP_CONFIG_STATE:
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
@@ -304,7 +304,7 @@ void ConfigUIProcess::SetConfigSlider(STATE_TYPE_UI configType)
     // サウンド
     case STATE_TYPE_UI::SOUND_CONFIG_STATE:
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetInt(Master::mpDataManager->GetSeVolumePointer(), 255, 0);
@@ -320,7 +320,7 @@ void ConfigUIProcess::SetConfigSlider(STATE_TYPE_UI configType)
     // カメラ
     case STATE_TYPE_UI::CAMERA_CONFIG_STATE:
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetInt(&Master::mpDataManager->GetScreenSizePointer()->x, 0, 0);
@@ -358,10 +358,10 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
     //     {
     //         mstDrawData.push_back(mstDrawData[0]);
     //     }
-    //     mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
-    //     mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
-    //     mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
-    //     mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+    //     mstDrawData[0].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
+    //     mstDrawData[1].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
+    //     mstDrawData[2].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+    //     mstDrawData[3].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
     // }
 
     {
@@ -397,7 +397,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         /*
         // 戻る
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
@@ -409,7 +409,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         
         // ミニマップ
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetFloat(Master::mpDataManager->GetMiniMapSensedRangePointer(), 0.0f, 0.0f);
@@ -426,7 +426,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         
         // サウンド
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetInt(Master::mpDataManager->GetSeVolumePointer(), 0, 0);
@@ -443,7 +443,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         
         // カメラ
         {
-            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+            //drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             drawData.drawGraphData.handle = -1;
             setConfigVariable.drawData = drawData;
             setConfigVariable.SetInt(&Master::mpDataManager->GetScreenSizePointer()->x, 0, 0);
@@ -484,7 +484,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         // mstDrawData[i + 0].drawGraphData.transFlag = TRUE;
         // mstDrawData[i + 0].drawGraphData.turnFlag.x = 0;
         // mstDrawData[i + 0].drawGraphData.turnFlag.y = 0;
-        // mstDrawData[i + 0].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png");
+        // mstDrawData[i + 0].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISliderLeft.png");
 
         // mstDrawData[i + 1].drawFlag = false;
         // mstDrawData[i + 1].drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -496,7 +496,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         // mstDrawData[i + 1].drawGraphData.transFlag = TRUE;
         // mstDrawData[i + 1].drawGraphData.turnFlag.x = 0;
         // mstDrawData[i + 1].drawGraphData.turnFlag.y = 0;
-        // mstDrawData[i + 1].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png");
+        // mstDrawData[i + 1].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISliderRight.png");
 
         
         // mstDrawData[i + 2].drawFlag = false;
@@ -507,7 +507,7 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
         // mstDrawData[i + 2].drawGraphData.transFlag = TRUE;
         // mstDrawData[i + 2].drawGraphData.turnFlag.x = 0;
         // mstDrawData[i + 2].drawGraphData.turnFlag.y = 0;
-        // mstDrawData[i + 2].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
+        // mstDrawData[i + 2].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISliderButton.png");
     }
 
     // 背景作成
@@ -526,25 +526,25 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 
         // 戻る
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIReturn.png");
             mstDrawData.push_back(drawData);
         }
 
         // ミニマップ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             mstDrawData.push_back(drawData);
         }
 
         // サウンド
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             mstDrawData.push_back(drawData);
         }
 
         // カメラ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             mstDrawData.push_back(drawData);
         }
     }
@@ -765,7 +765,7 @@ MinimapConfigState::MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<ST
 
         // ミニマップ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUIMiniMap.png");
             mstDrawData.push_back(drawData);
         }
     }
@@ -858,7 +858,7 @@ SoundConfigState::SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 
         // サウンド
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUISound.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUISound.png");
             mstDrawData.push_back(drawData);
         }
     }
@@ -951,7 +951,7 @@ CameraConfigState::CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 
         // カメラ
         {
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/ConfigUICamera.png");
             mstDrawData.push_back(drawData);
         }
     }

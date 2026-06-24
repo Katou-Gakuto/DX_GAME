@@ -416,6 +416,9 @@
     <ClCompile Include="Source\Singleton\ResourceSingleton\ResourceSound.cpp">
       <Filter>ソース ファイル\Singleton\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Struct\MapData.cpp">
+      <Filter>ソース ファイル\Struct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -759,6 +762,18 @@
     </ClInclude>
     <ClInclude Include="Source\Singleton\ResourceSingleton\ResourceSound.h">
       <Filter>ヘッダー ファイル\Singleton\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\MapData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Struct\StateData.h">
+      <Filter>ヘッダー ファイル\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\KeyStateEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enum\StateEnum.h">
+      <Filter>ヘッダー ファイル\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

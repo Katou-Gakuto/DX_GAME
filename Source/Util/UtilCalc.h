@@ -1,14 +1,19 @@
 #pragma once
+#include <iostream>
+#include <limits>
 #include "DxLib.h"
 
 namespace UtilCalc
 {
+	/*int最大値*/
+	constexpr int IntMax = (std::numeric_limits<int>::max)();
+
 	/*ゼロ*/
-	const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
+	inline const VECTOR VZero = VGet(0.0f, 0.0f, 0.0f);
 	/*イチ*/
-	const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
+	inline const VECTOR VOne = VGet(1.0f, 1.0f, 1.0f);
 	/*xのみ1*/
-	const VECTOR VXOne = VGet(1.0f, 0.0f, 0.0f);
+	inline const VECTOR VXOne = VGet(1.0f, 0.0f, 0.0f);
 	/*三分の一*/
 	constexpr float One_Third = 0.3333333f;
 	/*3,14*/

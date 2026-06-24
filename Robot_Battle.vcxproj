@@ -99,6 +99,7 @@
     <ClCompile Include="Source\Struct\CameraData.cpp" />
     <ClCompile Include="Source\Struct\Coin.cpp" />
     <ClCompile Include="Source\Struct\CollisionData.cpp" />
+    <ClCompile Include="Source\Struct\MapData.cpp" />
     <ClCompile Include="Source\Struct\ResourceData.cpp" />
     <ClCompile Include="Source\Struct\GameDatas.cpp" />
     <ClCompile Include="Source\Struct\TargetData.cpp" />
@@ -129,8 +130,10 @@
     <ClInclude Include="Source\Enum\GameDataEnum.h" />
     <ClInclude Include="Source\Enum\GenericEnum.h" />
     <ClInclude Include="Source\Enum\ImguiEnum.h" />
+    <ClInclude Include="Source\Enum\KeyStateEnum.h" />
     <ClInclude Include="Source\Enum\ResourceEnum.h" />
     <ClInclude Include="Source\Enum\SceneEnum.h" />
+    <ClInclude Include="Source\Enum\StateEnum.h" />
     <ClInclude Include="Source\Enum\TelopEnum.h" />
     <ClInclude Include="Source\Model\ModelBase.h" />
     <ClInclude Include="Source\Model\ModelEffect.h" />
@@ -211,8 +214,10 @@
     <ClInclude Include="Source\Struct\FileLoadingData.h" />
     <ClInclude Include="Source\Struct\GameDatas.h" />
     <ClInclude Include="Source\Struct\ImguiData.h" />
+    <ClInclude Include="Source\Struct\MapData.h" />
     <ClInclude Include="Source\Struct\MiniMapData.h" />
     <ClInclude Include="Source\Struct\ResourceData.h" />
+    <ClInclude Include="Source\Struct\StateData.h" />
     <ClInclude Include="Source\Struct\Status.h" />
     <ClInclude Include="Source\Struct\TargetData.h" />
     <ClInclude Include="Source\Struct\TelopData.h" />

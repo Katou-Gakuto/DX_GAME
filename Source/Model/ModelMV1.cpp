@@ -6,6 +6,7 @@
 #include "ModelMV1.h"
 #include "ModelsControllerBase.h"
 #include "ResourceManager.h"
+#include "Resource3DModel.h"
 #include "UtilCalc.h"
 
 ModelMV1::ModelMV1()
@@ -27,7 +28,7 @@ void ModelMV1::ModelFinalize()
 {
     if (mnModelHandle != -1)
     {
-        Master::mpResourceManager->ReduceModelHandle(mnModelHandle);
+        Master::mpResourceManager->Get3DModelResource()->ReduceResourceHandle(mnModelHandle);
     }
 }
 
@@ -116,8 +117,8 @@ void ModelMV1::SetModelHandle(const char* filePath)
 {
     if (mnModelHandle != -1)
     {
-        Master::mpResourceManager->ReduceModelHandle(mnModelHandle);
+        Master::mpResourceManager->Get3DModelResource()->ReduceResourceHandle(mnModelHandle);
     }
 
-    mnModelHandle = Master::mpResourceManager->GetModelHandle(filePath);
+    mnModelHandle = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(filePath);
 }

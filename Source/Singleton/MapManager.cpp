@@ -21,13 +21,18 @@
 
 #include "CameraManager.h"
 #include "DataManager.h"
+#include "DrawManager.h"
+#include "DrawManager.h"
 #include "EndManager.h"
 #include "GameManager.h"
 #include "ImguiManager.h"
 #include "MapManager.h"
 #include "ModelMap.h"
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
+#include "ResourceMovie.h"
+#include "Resource3DModel.h"
 #include "StopManager.h"
 #include "TargetManager.h"
 #include "UtilCalc.h"
@@ -65,9 +70,9 @@ static float testSize = 150.0f;
 // 初期化
 void MapManager::Initilize()
 {
-    mnMapBackHandle = Master::mpResourceManager->GetModelHandle(ResourceManager::msResourceFile + "3D/Sky/SkySphere.mv1");
+    mnMapBackHandle = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(ResourceManager::msResourceFile + "3D/Sky/SkySphere.mv1");
     MV1SetScale(mnMapBackHandle, VScale(UtilCalc::VOne, 170.0f));
-    mnMapBackResourceHandle = Master::mpResourceManager->GetMovieHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
+    mnMapBackResourceHandle = Master::mpResourceManager->GetMovieResource()->GetResourceHandle(ResourceManager::msResourceFile + "Movie/TitleBack_1.mp4");
     MV1SetMaterialDrawBlendMode(mnMapBackHandle, 0, DX_BLENDMODE_ALPHA);
     MV1SetMaterialDrawBlendMode(mnMapBackHandle, 1, DX_BLENDMODE_ALPHA);
     MV1SetMaterialDrawBlendParam(mnMapBackHandle, 0, 200);
@@ -106,15 +111,15 @@ void MapManager::Initilize()
         Vector2_Int setUISize = mstMiniMapSize.GetVecInt();
         // 背景
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::BACK_GROUND] =
-            Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/Green.png"),
+            Master::mpDrawManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Green.png"),
                 Vector2_Int(0, 0),
                 setUISize
             );
         // 枠
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME] =
-            Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
+            Master::mpDrawManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MiniMapWindow.png"),
                 Vector2_Int(0, 0),
                 setUISize
             );
@@ -170,24 +175,24 @@ void MapManager::Initilize()
             mstMiniMapCenterPos.Up_RatioHeight(mstMiniMapDrawDistance.y));
         // 範囲外キャラ
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER] =
-            Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+            Master::mpDrawManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(),
                 Vector2_Int(mstMiniMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMiniMapDrawDistance.y/*タイポじゃない*/, true),
                     mstMiniMapCenterPos.Left_SeparateRatioWidth(1.0f, mstMiniMapDrawDistance.y, true))
             );
         // 範囲内キャラ
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER] =
-            Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+            Master::mpDrawManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(),
                 setCharacterSize
             );
 
         // プレイヤー
         mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::PLAYER] =
-            Master::mpResourceManager->GetDrawGraphData(
-                Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/RobotSphere.png"),
+            Master::mpDrawManager->GetDrawGraphData(
+                Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png"),
                 Vector2_Int(static_cast<int>(mstMiniMapCenterPos.x), static_cast<int>(mstMiniMapCenterPos.y)),
                 setCharacterSize
             );
@@ -269,7 +274,7 @@ void MapManager::Finalize()
 
     for (int i = 0; i < MINI_MAP_DRAW_GRAPH_TYPE::MAX; i++)
     {
-        Master::mpResourceManager->ReduceGraphHandle(mstMiniMapDrawGraphData[i].handle);
+        Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mstMiniMapDrawGraphData[i].handle);
     }
 
     if (mnDrawMiniMapScreenHandle != -1)
@@ -281,8 +286,8 @@ void MapManager::Finalize()
     Release();
 
     // マップ背景削除
-    Master::mpResourceManager->ReduceModelHandle(mnMapBackHandle);
-    Master::mpResourceManager->ReduceMovie(mnMapBackResourceHandle);
+    Master::mpResourceManager->Get3DModelResource()->ReduceResourceHandle(mnMapBackHandle);
+    Master::mpResourceManager->GetMovieResource()->ReduceResourceHandle(mnMapBackResourceHandle);
 }
 
 // データ解放
@@ -500,8 +505,8 @@ void MapManager::Draw()
     {
         SetUseLighting(FALSE);
         MV1SetPosition(mnMapBackHandle, backGroundDrawPlayer->GetPos());
-        Master::mpResourceManager->MovieLoop(mnMapBackResourceHandle);
-        Master::mpResourceManager->DrawModelHandle(mnMapBackHandle);
+        Master::mpResourceManager->GetMovieResource()->MovieLoop(mnMapBackResourceHandle);
+        Master::mpDrawManager->DrawModelHandle(mnMapBackHandle);
         SetUseLighting(TRUE);
     }
 
@@ -654,32 +659,32 @@ void MapManager::DrawMiniMap()
         printfDx("\n");*/
 
         // ミニマップ背景
-        Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::BACK_GROUND]);
+        Master::mpDrawManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::BACK_GROUND]);
         //Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME_RADAR]);
     
         // ミニマップ内キャラクター描画
         for (int i = 0; i < allMiniMapDrawData.minMapWithinRangePos.size(); i++)
         {
             mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER].pos = mstMiniMapSize.LeftUp_Ratio(allMiniMapDrawData.minMapWithinRangePos[i].vectorData) - (mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER].size * 0.5f) + mstMiniMapOutsideFrameSizeHalf;
-            Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER]);
+            Master::mpDrawManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_WITHIN_CHARACTER]);
         }
 
         // プレイヤー描画
-        Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::PLAYER]);
+        Master::mpDrawManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::PLAYER]);
         
         // マスク画面を削除します
         DeleteMaskScreen() ;
 
         
         // ミニマップ枠
-        Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME]);
+        Master::mpDrawManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::FRAME]);
 
 
         // ミニマップ外キャラクター描画
         for (int i = 0; i < allMiniMapDrawData.minMapOutsideRangeDir.size(); i++)
         {
             mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER].pos = mstMiniMapSize.LeftUp_Ratio(allMiniMapDrawData.minMapOutsideRangeDir[i].vectorData) - (mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER].size * 0.5f) + mstMiniMapOutsideFrameSizeHalf;
-            Master::mpResourceManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER]);
+            Master::mpDrawManager->DrawData_Graph(mstMiniMapDrawGraphData[MINI_MAP_DRAW_GRAPH_TYPE::MINI_MAP_OUTSIDE_CHARACTER]);
         }
 
         // 描画先戻す

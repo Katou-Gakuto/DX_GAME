@@ -19,7 +19,7 @@
 
 #include "DataManager.h"
 #include "EndManager.h"
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
 #include "UtilCalc.h"
 #include "UtilChange.h"
 

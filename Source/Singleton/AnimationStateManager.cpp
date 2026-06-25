@@ -68,12 +68,12 @@ int AnimationStateManager::AnimationInfoEntry(ANIMATION_STATE_INFO animationStat
 // アニメーション情報削除
 void AnimationStateManager::DeleteAnimationStateInfo(int key)
 {
-	auto& animationStateInfoIt = mstAnimationStateInfos.find(key);
+	auto animationStateInfoIt = mstAnimationStateInfos.find(key);
 	if (animationStateInfoIt == mstAnimationStateInfos.end())
 	{
 		return;
 	}
 
-	delete mstAnimationStateInfos[key].AnimationState;
+	delete animationStateInfoIt->second.AnimationState;
 	mstAnimationStateInfos.erase(animationStateInfoIt);
 }

@@ -14,6 +14,7 @@
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ObjectManager.h"
+#include "ResourceEffect.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StopManager.h"
@@ -195,7 +196,7 @@ void GameManager::Draw()
 void GameManager::OnDeactivate()
 {
     // エフェクト
-    Master::mpResourceManager->StopAllEfect();
+    Master::mpResourceManager->GetEffectResource()->StopAllEfect();
 
     // 時間
     Master::mpTimeManager->OnEnterBackground();
@@ -205,7 +206,7 @@ void GameManager::OnDeactivate()
 void GameManager::OnActivate()
 {
     // エフェクト
-    Master::mpResourceManager->PlayAllEfect();
+    Master::mpResourceManager->GetEffectResource()->PlayAllEfect();
 
     // 時間
     Master::mpTimeManager->OnReturnForeground();

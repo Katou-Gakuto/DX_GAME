@@ -17,14 +17,14 @@ public:
 
 private:
     /// <summary>リソース本体作成</summary>
-    int CreateResource(const std::string& fileName, void* plusData = nullptr) override;
+    int CreateResource(const std::string& fileName, int* plusData = nullptr) override;
     /// <summary>リソース複製</summary>
-    int ResourceDuplication(const std::string& fileName, void* plusData = nullptr) override;
+    int ResourceDuplication(const std::string& fileName, int* plusData = nullptr) override;
     /// <summary>リソース削除</summary>
     void ResourceDelete(const std::vector<int>& handles) override;
 };
 
-class ResourceDivGraph : public ResourceBase<DIV_GRAPH_DATA, std::string, DIV_GRAPH_DATA*>
+class ResourceDivGraph : public ResourceBase<DIV_GRAPH_DATA, std::string, DIV_GRAPH_DATA>
 {
 public:
 	ResourceDivGraph();

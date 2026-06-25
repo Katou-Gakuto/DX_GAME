@@ -1,7 +1,7 @@
 #include <map>
 
 #include "CameraManager.h"
-#include "FSMCamera.h"
+#include "FSM.h"
 #include "UtilFactorys.h"
 
 CameraManager::CameraManager()

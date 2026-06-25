@@ -20,6 +20,9 @@
 #include "ModelMV1.h"
 #include "ModelPolygonIndexed.h"
 #include "ObjectBases.h"
+#include "ResourceEffect.h"
+#include "ResourceManager.h"
+#include "Resource3DModel.h"
 #include "SceneManager.h"
 #include "StateAnimation.h"
 #include "StateAnimationController.h"
@@ -283,7 +286,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 		case MODEL_TYPE::MV1_MODEL_MOVE:
 		case MODEL_TYPE::MV1_MODEL_ONLY:
 			// アニメション読み込み
-			animationData.number = Master::mpResourceManager->GetModelHandle(loadAnimationData[i].animationPath);
+			animationData.number = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(loadAnimationData[i].animationPath);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
 
@@ -293,7 +296,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 
 		case MODEL_TYPE::EFFECT:
 			// エフェクトリソース取得
-			animationData.number = Master::mpResourceManager->GetEffectResource(loadAnimationData[i].animationPath, loadAnimationData[i].size);
+			animationData.number = Master::mpResourceManager->GetEffectResource()->GetResourceHandle(loadAnimationData[i].animationPath, &loadAnimationData[i].size);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
 

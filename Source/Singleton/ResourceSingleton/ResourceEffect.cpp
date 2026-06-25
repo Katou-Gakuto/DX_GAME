@@ -238,13 +238,19 @@ void ResourceEffect::EffectDrawFlagReset()
 }
 
 // リソース本体作成
-int ResourceEffect::CreateResource(const std::string& fileName, float plusData)
+int ResourceEffect::CreateResource(const std::string& fileName, float* plusData)
 {
-	return LoadEffekseerEffect(fileName.c_str(), plusData);
+	if (plusData == nullptr)
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+		return -1;
+	}
+
+	return LoadEffekseerEffect(fileName.c_str(), *plusData);
 }
 
 // リソース複製
-int ResourceEffect::ResourceDuplication(const std::string& fileName, float plusData)
+int ResourceEffect::ResourceDuplication(const std::string& fileName, float* plusData)
 {
 	SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE);
 	return 0;

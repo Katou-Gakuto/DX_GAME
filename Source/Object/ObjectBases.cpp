@@ -15,6 +15,9 @@
 #include "ModelsControllerBase.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
+#include "ResourceGraph.h"
+#include "ResourceManager.h"
+#include "ResourceMovie.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "StopManager.h"
@@ -171,7 +174,7 @@ void CharacterBase::Finalize()
 
 	for (int i = 0; i < mstStateDrawData.size(); i++)
 	{
-		Master::mpResourceManager->ReduceGraphHandle(mstStateDrawData[i].drawGraphData.handle);
+		Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mstStateDrawData[i].drawGraphData.handle);
 	}
 }
 
@@ -688,7 +691,7 @@ void UIBase::Finalize()
 	{
 		for (int i = 0; i < mnGraphCount; i++)
 		{
-			mpResourceManager->ReduceGraphHandle(mnGraphHandles[i]);
+			mpResourceManager->GetGraphResource()->ReduceResourceHandle(mnGraphHandles[i]);
 		}
 		free(mnGraphHandles);
 	}
@@ -698,7 +701,7 @@ void UIBase::Finalize()
 		// ìÆâÊçÌèú
 		for (int i = 0; i < mnMovieCount; i++)
 		{
-			mpResourceManager->ReduceGraphHandle(mnMovieHandles[i]);
+			mpResourceManager->GetMovieResource()->ReduceResourceHandle(mnMovieHandles[i]);
 		}
 		free(mnMovieHandles);
 	}
@@ -887,7 +890,7 @@ void UIBase::SetHandleCount(int count, int *handleCount, int**handle)
 		{
 			if ((*handle)[i] != -1)
 			{
-				Master::mpResourceManager->ReduceGraphHandle((*handle)[i]);
+				Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle((*handle)[i]);
 			}
 		}
 

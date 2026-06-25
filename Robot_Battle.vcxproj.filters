@@ -147,6 +147,9 @@
     <Filter Include="ソース ファイル\Singleton\Resource">
       <UniqueIdentifier>{1039a049-2a3b-4e46-a451-2da6c60d16c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\TemplateTypeRestriction">
+      <UniqueIdentifier>{267447a0-458f-424e-8a52-1a69b7bb73b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Animation\AnimationBase.cpp">
@@ -270,9 +273,6 @@
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
     <ClCompile Include="Source\Struct\TargetData.cpp">
-      <Filter>ソース ファイル\Struct</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Struct\TileData.cpp">
       <Filter>ソース ファイル\Struct</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\UtilCalc.cpp">
@@ -580,9 +580,6 @@
     <ClInclude Include="Source\Struct\TargetData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Struct\TileData.h">
-      <Filter>ヘッダー ファイル\Struct</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Struct\Vector2.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
     </ClInclude>
@@ -774,6 +771,9 @@
     </ClInclude>
     <ClInclude Include="Source\Enum\StateEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TemplateTypeRestriction\TemplateType_Equal.h">
+      <Filter>ヘッダー ファイル\TemplateTypeRestriction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

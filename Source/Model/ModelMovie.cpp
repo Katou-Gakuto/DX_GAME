@@ -10,6 +10,7 @@
 #include "ModelMovie.h"
 #include "ModelsControllerBase.h"
 #include "ResourceManager.h"
+#include "ResourceMovie.h"
 #include "StopManager.h"
 #include "UtilCalc.h"
 
@@ -53,7 +54,7 @@ void ModelMovie::ModelFinalize()
     {
         if (drawData.handle != -1)
         {
-            Master::mpResourceManager->ReduceMovie(drawData.handle);
+            Master::mpResourceManager->GetMovieResource()->ReduceResourceHandle(drawData.handle);
         }
     }
     mstDrawDatas.clear();
@@ -94,7 +95,7 @@ void ModelMovie::PositionUpdate()
         }
 
         // “®‰æƒ‹[ƒvÄ¶
-        Master::mpResourceManager->MovieLoop(mstDrawDatas[i].handle);
+        Master::mpResourceManager->GetMovieResource()->MovieLoop(mstDrawDatas[i].handle);
     }
 }
 

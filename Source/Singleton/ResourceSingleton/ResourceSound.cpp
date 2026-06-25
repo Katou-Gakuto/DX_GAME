@@ -94,13 +94,13 @@ void ResourceSoundBase::Finalize()
 }
 
 // リソース本体作成
-int ResourceSoundBase::CreateResource(const std::string& fileName, void* plusData)
+int ResourceSoundBase::CreateResource(const std::string& fileName, int* plusData)
 {
 	return LoadSoundMem(fileName.c_str());
 }
 
 // リソース複製
-int ResourceSoundBase::ResourceDuplication(const std::string& fileName, void* plusData)
+int ResourceSoundBase::ResourceDuplication(const std::string& fileName, int* plusData)
 {
 	SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE);
 

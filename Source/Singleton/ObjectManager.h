@@ -3,10 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "ObjectBase.h"
-#include "ObjectBase_Attack.h"
-#include "ObjectBase_Building.h"
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
 
 enum class SCENE;
 

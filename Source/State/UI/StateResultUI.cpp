@@ -13,6 +13,7 @@
 #include "EndManager.h"
 #include "GameManager.h"
 #include "ImguiManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateResultUI.h"
@@ -236,10 +237,10 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
                     continue;
                 }
                 drawData.drawGraphData.pos.y = mstNumberDrawData[i].drawGraphData.pos.y;
-                drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ChangeArrow.png");
+                drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/ChangeArrow.png");
                 mstDrawDatas.push_back(drawData);
             }
-            mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
+            mstNumberDrawData[i].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Numbers.png");
             //Master::mpDrawManager->AddDrawData(&mstNumberDrawData[i]);
         }
     }
@@ -258,7 +259,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // ステータス
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/ResultStatus.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/ResultStatus.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.0625f, 0.15625f));
             drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.1859375f, 0.7125f));
             drawData.drawGraphData.graphPos = Vector2_Int(340, 975);
@@ -269,7 +270,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         // 選択肢
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND_SIZE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Result2.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Result2.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.75f));
             drawData.drawGraphData.size = displaySize.LeftUp_Ratio(Vector2(0.22f, 0.075f));
             drawData.drawGraphData.graphPos = Vector2_Int(4640, 4975);
@@ -281,7 +282,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
         {
             drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.drawGraphData.transFlag = FALSE;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/RobotSphere.png");
             drawData.drawGraphData.pos = displaySize.LeftUp_Ratio(Vector2(0.68125f, 0.15f));
             int graphSize = displaySize.Left_RatioWidth(0.23125f);
             drawData.drawGraphData.size = Vector2_Int(graphSize, graphSize);
@@ -522,7 +523,7 @@ void StartResultUIState::DrawNumber()
 void StartResultUIState::NumberDataDraw(DRAW_DATA numberDrawData, int number)
 {
     // 一桁目描画
-    Master::mpResourceManager->DrawData_Graph(numberDrawData.drawGraphData);
+    Master::mpDrawManager->DrawData_Graph(numberDrawData.drawGraphData);
 
     // 2桁以上なら
     while (number >= 10)
@@ -533,6 +534,6 @@ void StartResultUIState::NumberDataDraw(DRAW_DATA numberDrawData, int number)
 
         numberDrawData.drawGraphData.graphPos = mstNumberDrawGraphPos[number % 10];
         numberDrawData.drawGraphData.pos.x -= numberDrawData.drawGraphData.size.x;
-        Master::mpResourceManager->DrawData_Graph(numberDrawData.drawGraphData);
+        Master::mpDrawManager->DrawData_Graph(numberDrawData.drawGraphData);
     }
 }

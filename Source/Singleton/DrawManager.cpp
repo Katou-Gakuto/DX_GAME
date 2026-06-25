@@ -6,6 +6,7 @@
 #include "Master.h"
 
 #include "DrawManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 
 /*--------*/
@@ -128,7 +129,7 @@ void DrawManager::DeleteDrawData_ID(int id)
                 switch (it->drawManagerDrawType)
                 {
                 case DRAW_MANAGER_DRAW_TYPE::GRAPH:
-                    Master::mpResourceManager->ReduceGraphHandle(it->drawGraphData.handle);
+                    Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(it->drawGraphData.handle);
                     break;
                 }
 
@@ -153,7 +154,7 @@ void DrawManager::DeleteDrawData()
             switch (drawData.drawManagerDrawType)
             {
             case DRAW_MANAGER_DRAW_TYPE::GRAPH:
-                Master::mpResourceManager->ReduceGraphHandle(drawData.drawGraphData.handle);
+                Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(drawData.drawGraphData.handle);
                 break;
             }
         }
@@ -178,7 +179,7 @@ void DrawManager::DrawData_Draw(DRAW_DATA *drawData, bool absoluteDrawFlag)
     case DRAW_MANAGER_DRAW_TYPE::GRAPH:
         SetDrawBlendMode(drawData->drawConfigData.blendMode, drawData->drawConfigData.blendParameter);
 
-        Master::mpResourceManager->DrawData_Graph(drawData->drawGraphData);
+		DrawData_Graph(drawData->drawGraphData);
 
         SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
         break;

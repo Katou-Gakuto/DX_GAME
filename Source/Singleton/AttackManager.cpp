@@ -10,7 +10,7 @@
 #include "Attack_RobotSpceial.h"
 #include "Attack_Shot.h"
 #include "GameManager.h"
-#include "ObjectBase_Attack.h"
+#include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "TimeManager.h"
 #include "UtilCalc.h"

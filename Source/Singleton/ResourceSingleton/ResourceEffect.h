@@ -42,9 +42,9 @@ public:
 protected:
 
     /// <summary>リソース本体作成</summary>
-    int CreateResource(const std::string& fileName, float plusData) override;
+    int CreateResource(const std::string& fileName, float* plusData) override;
     /// <summary>リソース複製</summary>
-    int ResourceDuplication(const std::string& fileName, float plusData) override;
+    int ResourceDuplication(const std::string& fileName, float* plusData) override;
     /// <summary>リソース削除</summary>
     void ResourceDelete(const std::vector<int>& handles) override;
 };

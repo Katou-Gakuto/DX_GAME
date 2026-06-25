@@ -4,6 +4,7 @@
 #include "Master.h"
 
 #include "CameraManager.h"
+#include "DrawManager.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "TelopManager.h"
@@ -78,7 +79,7 @@ void TelopManager::DrawTelop_Position3D(TELOP_DATA& telopData)
     // ‰æ‘œ•`‰æ
     for (int i = 0; i < 0; i++)
     {
-        Master::mpResourceManager->DrawData_Graph(telopData.drawGraphData);
+        Master::mpDrawManager->DrawData_Graph(telopData.drawGraphData);
 
         //SetDrawScreen(DX_SCREEN_BACK);
         //// 3DƒJƒƒ‰İ’è

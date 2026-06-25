@@ -66,6 +66,7 @@ private:
 	/*----------*/
 	/*【取得】*/
 	/*----------*/
+public:
 	/// <summary>シャドウマップ描画フラグ</summary>
 	inline bool GetShadowMapDrawFlag() const { return mbDrawShadowMapFlag; }
 
@@ -94,7 +95,7 @@ public:
 	ResourceGraph* GetGraphResource() { return mpGraphResource; }
 	/// <summary>分割画像リソース取得</summary>
 	ResourceDivGraph* GetDivGraphResource() { return mpDivGraphResource; }
-	// int GetGraphHandle(std::string fileName);
+	// int GetGraphResource()->GetResourceHandle(std::string fileName);
 	// void ReduceGraphHandle(int handle);
 	// void GetDivGraphHandle(std::string fileName, DIV_GRAPH_DATA* graphData);
 	// void ReduceDivGraphHandle(int number);

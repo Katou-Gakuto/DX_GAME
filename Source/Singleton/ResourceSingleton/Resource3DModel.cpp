@@ -29,13 +29,13 @@ void Resource3DModel::Finalize()
 }
 
 // リソース本体作成
-int Resource3DModel::CreateResource(const std::string& fileName, void* plusData)
+int Resource3DModel::CreateResource(const std::string& fileName, int* plusData)
 {
 	return MV1LoadModel(fileName.c_str());
 }
 
 // リソース複製
-int Resource3DModel::ResourceDuplication(const std::string& fileName, void* plusData)
+int Resource3DModel::ResourceDuplication(const std::string& fileName, int* plusData)
 {
 	SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE);
 

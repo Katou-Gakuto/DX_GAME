@@ -7,9 +7,7 @@
 #include "CollisionManager.h"
 #include "GameManager.h"
 #include "MapManager.h"
-#include "ObjectBase_Building.h"
-#include "ObjectBase_Character.h"
-#include "ObjectBase_Attack.h"
+#include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "StopManager.h"
 

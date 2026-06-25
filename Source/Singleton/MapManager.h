@@ -16,7 +16,7 @@ class MapManager
 {
 private:
 	// マップ情報
-	std::vector<std::vector<std::vector<TileData>>> mstMapData;
+	/*std::vector<*/std::vector<std::vector<TileData>>/*>*/ mstMapData;
 
 	// 生成情報
 
@@ -53,7 +53,7 @@ public:
 	void SetMapData(std::vector<std::vector<TileData>> mapData);
 
 	/*マップ情報取得*/
-	inline std::vector<std::vector<std::vector<TileData>>> GetMapData() const { return mstMapData; }
+	inline /*std::vector<*/std::vector<std::vector<TileData>>/*>*/ GetMapData() const { return mstMapData; }
 
 	/*マップ当たり判定*/
 	void MapCollision();

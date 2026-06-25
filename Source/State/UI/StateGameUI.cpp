@@ -18,6 +18,7 @@
 #include "MapManager.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "StateGameUI.h"
@@ -253,36 +254,36 @@ PauseGameUIState::PauseGameUIState()
         // 戻る
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::RETURN_GAME] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_BackPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_BackPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
         }
 
         // コンフィグ
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::CONFIG_SET] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_ConfigPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_ConfigPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_CONFIG_SET] = drawData;
         }
         
         // ステータス
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::STATUS_DRAW] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_StatusPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_StatusPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_STATUS_DRAW] = drawData;
         }
         
         // ゲーム終了
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::GAME_END] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEndPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEndPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_GAME_END] = drawData;
         }
     }

@@ -97,13 +97,13 @@ void ResourceMovie::MovieLoop(int handle)
 
 
 // リソース本体作成
-int ResourceMovie::CreateResource(const std::string& fileName, void* plusData)
+int ResourceMovie::CreateResource(const std::string& fileName, int* plusData)
 {
 	return LoadGraph(fileName.c_str());
 }
 
 // リソース複製
-int ResourceMovie::ResourceDuplication(const std::string& fileName, void* plusData)
+int ResourceMovie::ResourceDuplication(const std::string& fileName, int* plusData)
 {
 	SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE);
 

@@ -9,7 +9,7 @@
 #include "EndManager.h"
 #endif
 
-template<typename HANDLE_TYPE, typename QUOTE_SOURCE = std::string, typename PLUS_DATA = void*, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
+template<typename HANDLE_TYPE, typename QUOTE_SOURCE = std::string, typename PLUS_DATA = int/*voidだと引数でエラー起こすから*/, typename = typename std::enable_if<std::is_convertible<HANDLE_TYPE, int>::value && TemplateType_Equal<HANDLE_TYPE>::value>::type>
 class ResourceBase
 {
 #ifdef _DEBUG
@@ -41,7 +41,7 @@ public:
     virtual void Finalize() = 0;
 
     /// <summary>リソースハンドル取得</summary>
-	virtual HANDLE_TYPE GetResourceHandle(QUOTE_SOURCE fileName, PLUS_DATA plusData)
+	virtual HANDLE_TYPE GetResourceHandle(QUOTE_SOURCE fileName, PLUS_DATA* plusData = nullptr)
     {
         if (mclHandleContainer.CheckFileName(fileName))
         {
@@ -63,7 +63,7 @@ public:
 
 protected:
     /// <summary>リソース生成</summary>
-    virtual HANDLE_TYPE ResourceGeneration(QUOTE_SOURCE fileName, PLUS_DATA plusData)
+    virtual HANDLE_TYPE ResourceGeneration(QUOTE_SOURCE fileName, PLUS_DATA* plusData)
     {
         SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::GENERATION_RESOURCE);
         mclHandleContainer.RegisterHandle(CreateResource(fileName, plusData), false);
@@ -82,9 +82,9 @@ protected:
     }
 
     /// <summary>リソース本体作成</summary>
-    virtual HANDLE_TYPE CreateResource(const QUOTE_SOURCE& fileName, PLUS_DATA plusData) = 0;
+    virtual HANDLE_TYPE CreateResource(const QUOTE_SOURCE& fileName, PLUS_DATA* plusData) = 0;
     /// <summary>リソース複製</summary>
-    virtual HANDLE_TYPE ResourceDuplication(const QUOTE_SOURCE& fileName, PLUS_DATA plusData) = 0;
+    virtual HANDLE_TYPE ResourceDuplication(const QUOTE_SOURCE& fileName, PLUS_DATA* plusData) = 0;
     /// <summary>リソース削除</summary>
     virtual void ResourceDelete(const std::vector<HANDLE_TYPE>& handles) = 0;
 

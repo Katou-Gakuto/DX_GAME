@@ -2,7 +2,7 @@
 #include "DotWeenData.h"
 
 #include "DotWeenManager.h"
-#include "FSMDotWeen.h"
+#include "FSM.h"
 
 // コンストラクタ
 DotWeenManager::DotWeenManager()

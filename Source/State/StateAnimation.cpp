@@ -13,7 +13,9 @@
 #include "AnimationBase.h"
 #include "ModelBase.h"
 #include "ModelsControllerBase.h"
+#include "ResourceEffect.h"
 #include "ResourceManager.h"
+#include "Resource3DModel.h"
 #include "StateAnimation.h"
 #include "StateBase.h"
 #include "UtilCalc.h"
@@ -240,7 +242,7 @@ void StateMVOneOnlyAnimation::Finalize(AnimationBase* animation, AnimationDatas*
         if (animationData.second.number!= (-1))
         {
             deleteAnimationType.push_back(animationData.first);
-            Master::mpResourceManager->ReduceModelHandle(animationData.second.number);
+            Master::mpResourceManager->Get3DModelResource()->ReduceResourceHandle(animationData.second.number);
         }
     }
 
@@ -362,7 +364,7 @@ void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *n
         return;
     }
 
-    *mnEffectHandle = Master::mpResourceManager->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
+    *mnEffectHandle = Master::mpResourceManager->GetEffectResource()->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
 }
 
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
@@ -373,7 +375,7 @@ void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *no
         return;
     }
 
-    Master::mpResourceManager->DeletePlayEffectHandle(*mnEffectHandle);
+    Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(*mnEffectHandle);
     *mnEffectHandle = -1;
 }
 
@@ -386,7 +388,7 @@ void StateEffectAnimation::Finalize(AnimationBase* animation, AnimationDatas* an
 
     if (mpModelBase->GetHandle() != -1)
     {
-        Master::mpResourceManager->DeletePlayEffectHandle(mpModelBase->GetHandle());
+        Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(mpModelBase->GetHandle());
     }
 
     for (auto& animationData : animationDatas->animDatas)
@@ -394,7 +396,7 @@ void StateEffectAnimation::Finalize(AnimationBase* animation, AnimationDatas* an
         if (animationData.second.number != (-1))
         {
             deleteAnimationType.push_back(animationData.first);
-             Master::mpResourceManager->ReduceEffectDataHandle(animationData.second.number);
+             Master::mpResourceManager->GetEffectResource()->ReduceResourceHandle(animationData.second.number);
         }
     }
 

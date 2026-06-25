@@ -47,13 +47,13 @@ void ResourceGraph::Finalize()
 	}
 }
 // リソース本体作成
-int ResourceGraph::CreateResource(const std::string& fileName, void* plusData)
+int ResourceGraph::CreateResource(const std::string& fileName, int* plusData)
 {
 	return LoadGraph(fileName.c_str());
 }
 
 // リソース複製
-int ResourceGraph::ResourceDuplication(const std::string& fileName, void* plusData)
+int ResourceGraph::ResourceDuplication(const std::string& fileName, int* plusData)
 {
 	SetHandleFlag(RESOURCE_BASE_HANDLE_FLAG_SETTING_TYPE::DUPLICATION_RESOURCE);
 
@@ -254,6 +254,12 @@ void ResourceDivGraph::Finalize()
 // リソース本体作成
 DIV_GRAPH_DATA ResourceDivGraph::CreateResource(const std::string& fileName, DIV_GRAPH_DATA* plusData)
 {	
+	if (plusData == nullptr)
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);
+		return DIV_GRAPH_DATA();
+	}
+
 	if (LoadDivGraph(fileName.c_str(), plusData->allNum, plusData->xNum, plusData->yNum, plusData->xSize, plusData->ySize, plusData->handle) == -1)
 	{
 		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::RESOURCE_FLAG);

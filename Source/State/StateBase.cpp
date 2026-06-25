@@ -8,6 +8,7 @@
 #include "GameManager.h"
 #include "ModelBase.h"
 #include "ResourceManager.h"
+#include "ResourceSound.h"
 #include "SceneManager.h"
 #include "StateBase.h"
 #include "TargetManager.h"
@@ -60,7 +61,7 @@ void IStateCamera::CommonSetCamera(CameraData cameraData, int& preThreeDFlag)
 /*カメラポジション設置*/
 void IStateCamera::SetCameraPos(VECTOR cameraPos, VECTOR cameraLookPos)
 {
-	Master::mpResourceManager->Set3DListenerPosition(cameraPos, cameraLookPos);
+	Master::mpResourceManager->Get3DSoundResource()->Set3DListenerPosition(cameraPos, cameraLookPos);
 
 	// カメラ位置を反映する
 	SetCameraPositionAndTarget_UpVecY(cameraPos, cameraLookPos);

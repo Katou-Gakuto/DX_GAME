@@ -106,9 +106,6 @@
     <Filter Include="ソース ファイル\Animation">
       <UniqueIdentifier>{43c643ca-9012-4392-b9d8-0bb854e00d8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Container">
-      <UniqueIdentifier>{ad492e9b-2663-406d-a02c-7c63f68c1a7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Container">
       <UniqueIdentifier>{4a99fcc0-cd43-4b07-bc06-8ff800f93506}</UniqueIdentifier>
     </Filter>
@@ -263,16 +260,10 @@
     <ClCompile Include="Source\Object\UI\UI_Title.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\State\FSM.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
     <ClCompile Include="Source\State\StateAnimation.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\StateAnimationController.cpp">
-      <Filter>ソース ファイル\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\State\StateBase.cpp">
       <Filter>ソース ファイル\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\State\StateCamera.cpp">
@@ -336,9 +327,6 @@
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\ObjectManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\ResourceManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\SceneManager.cpp">
@@ -412,9 +400,6 @@
     </ClCompile>
     <ClCompile Include="Source\Object\UI\UI_GameClear.cpp">
       <Filter>ソース ファイル\Object\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Singleton\AnimationStateManager.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Source\Singleton\AttackManager.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -575,6 +560,9 @@
     <ClCompile Include="Source\State\Fsm\FSMUI.cpp">
       <Filter>ソース ファイル\State\Fsm</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Util\UtilStateConditionFunction.cpp">
+      <Filter>ソース ファイル\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation\AnimationBase.h">
@@ -673,16 +661,10 @@
     <ClInclude Include="Source\Object\UI\UI_Title.h">
       <Filter>ヘッダー ファイル\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\State\FSM.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
     <ClInclude Include="Source\State\StateAnimation.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
     <ClInclude Include="Source\State\StateAnimationController.h">
-      <Filter>ヘッダー ファイル\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\State\StateBase.h">
       <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
     <ClInclude Include="Source\State\StateCamera.h">
@@ -746,9 +728,6 @@
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton\ObjectManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\ResourceManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton\SceneManager.h">
@@ -873,9 +852,6 @@
     </ClInclude>
     <ClInclude Include="Source\Struct\TimeData.h">
       <Filter>ヘッダー ファイル\Struct</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Singleton\AnimationStateManager.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton\AttackManager.h">
       <Filter>ヘッダー ファイル\Singleton</Filter>
@@ -1071,6 +1047,9 @@
     </ClInclude>
     <ClInclude Include="Source\Enum\StateEnum.h">
       <Filter>ヘッダー ファイル\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\UtilStateConditionFunction.h">
+      <Filter>ヘッダー ファイル\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

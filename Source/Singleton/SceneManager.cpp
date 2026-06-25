@@ -2,6 +2,7 @@
 
 #include "DrawManager.h"
 #include "FadeManager.h"
+#include "FSMScene.h"
 #include "GameManager.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"

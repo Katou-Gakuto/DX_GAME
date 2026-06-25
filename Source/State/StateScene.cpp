@@ -18,7 +18,7 @@
 #include "GameManager.h"
 #include "MapManager.h"
 #include "ModelsControllerBase.h"
-#include "ObjectBase_UI.h"
+#include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StageDataManager.h"
 #include "StateSceneBase.h"

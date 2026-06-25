@@ -5,7 +5,7 @@
 #include "DrawData.h"
 #include "Vector2.h"
 
-#include "ObjectBase_UI.h"
+#include "ObjectBases.h"
 #include "StateUIBase.h"
 
 class MapManager;

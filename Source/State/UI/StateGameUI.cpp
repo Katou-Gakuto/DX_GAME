@@ -16,7 +16,7 @@
 #include "GameManager.h"
 #include "KeyState.h"
 #include "MapManager.h
-#include "ObjectBase_UI.h"
+#include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"

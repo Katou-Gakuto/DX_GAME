@@ -2,7 +2,7 @@
 
 #include "FSM.h"
 #include "FSMCharacter.h"
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
 #include "StateCharacterBase.h"
 
 /*------------------------------*/

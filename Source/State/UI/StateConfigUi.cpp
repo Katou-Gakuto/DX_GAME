@@ -7,14 +7,14 @@
 
 #include "DataManager.h"
 #include "DrawManager.h"
-#include "fsrm.h"
+#include "FSMUI.h"
 #include "KeyState.h"
 #include "MapManager.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "TargetManager.h"
-#include "ObjectBase_UI.h"
+#include "ObjectBases.h"
 
 #include "ImguiManager.h"
 bool imguiSetFlag_Config = true;

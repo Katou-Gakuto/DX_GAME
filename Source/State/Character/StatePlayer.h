@@ -4,7 +4,7 @@
 #include "StateEnum.h"
 #include "DrawData.h"
 
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
 #include "StateCharacterBase.h"
 
 class CameraManager;

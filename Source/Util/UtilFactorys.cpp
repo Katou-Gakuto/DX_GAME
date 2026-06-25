@@ -11,6 +11,7 @@
 #include "Master.h"
 
 #include "CameraManager.h"
+#include "FSMAnimation.h"
 #include "FSM.h"
 #include "GameManager.h"
 #include "ModelBase.h"

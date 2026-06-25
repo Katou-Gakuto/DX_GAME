@@ -49,7 +49,6 @@
     <ClCompile Include="Source\Object\UI\UI_Result.cpp" />
     <ClCompile Include="Source\Object\UI\UI_StageStart.cpp" />
     <ClCompile Include="Source\Object\UI\UI_Title.cpp" />
-    <ClCompile Include="Source\Singleton\AnimationStateManager.cpp" />
     <ClCompile Include="Source\Singleton\AttackManager.cpp" />
     <ClCompile Include="Source\Singleton\CameraManager.cpp" />
     <ClCompile Include="Source\Singleton\CollisionManager.cpp" />
@@ -113,6 +112,7 @@
     <ClCompile Include="Source\Util\UtilChange.cpp" />
     <ClCompile Include="Source\Util\UtilFactorys.cpp" />
     <ClCompile Include="Source\Util\UtilFileLoading.cpp" />
+    <ClCompile Include="Source\Util\UtilStateConditionFunction.cpp" />
     <ClCompile Include="XML_Excel\XmlArrange.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +161,6 @@
     <ClInclude Include="Source\Object\UI\UI_Result.h" />
     <ClInclude Include="Source\Object\UI\UI_StageStart.h" />
     <ClInclude Include="Source\Object\UI\UI_Title.h" />
-    <ClInclude Include="Source\Singleton\AnimationStateManager.h" />
     <ClInclude Include="Source\Singleton\AttackManager.h" />
     <ClInclude Include="Source\Singleton\CameraManager.h" />
     <ClInclude Include="Source\Singleton\CollisionManager.h" />
@@ -245,6 +244,7 @@
     <ClInclude Include="Source\Util\UtilChange.h" />
     <ClInclude Include="Source\Util\UtilFactorys.h" />
     <ClInclude Include="Source\Util\UtilFileLoading.h" />
+    <ClInclude Include="Source\Util\UtilStateConditionFunction.h" />
     <ClInclude Include="XML_Excel\XmlArrange.h" />
   </ItemGroup>
   <ItemGroup>

@@ -84,7 +84,7 @@ public:
 
 		mPreState = mCurrentState;
 		mCurrentState = id;
-		if ((subscript)-1 != id)
+		if ((subscript)-1 != mPreState)
 		{
 			mmStateMap[mPreState]->OnExit(StateData, mCurrentState);
 		}

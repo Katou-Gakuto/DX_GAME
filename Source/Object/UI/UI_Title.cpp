@@ -8,7 +8,7 @@
 
 #include "Master.h"
 
-#include "FSM.h"
+#include "FSMUI.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "ResourceMovie.h"

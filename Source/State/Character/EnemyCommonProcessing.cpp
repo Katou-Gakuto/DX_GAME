@@ -11,7 +11,7 @@
 #include "ObjectBases.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"
-#include "ObjectBase_Character.h"
+#include "ObjectBases.h"
 #include "StopManager.h"
 
 EnemyCommonProcessing::EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType)

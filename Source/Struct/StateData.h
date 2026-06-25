@@ -27,4 +27,5 @@ struct STATE_ANEMATION_DATA
     AnimationBase* StateAnimation;
     OneAnimationData* StateOneAnimationData;
     AnimationDatas* StateAnimationDatas;
+    int nextState;
 };

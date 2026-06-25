@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 
-#include "StateBase.h"
+#include "SceneEnum.h"
 
-enum class SCENE;
+#include "StateBase.h"
 
 class MapManager;
 class SceneManager;

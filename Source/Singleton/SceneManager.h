@@ -2,7 +2,7 @@
 
 #include "SceneEnum.h"
 
-#include "FSM.h"
+#include "FSMScene.h"
 #include "StateScene.h"
 
 class SceneManager

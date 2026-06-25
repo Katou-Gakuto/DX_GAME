@@ -5,7 +5,7 @@
 #include "CameraManager.h"
 #include "GameManager.h"
 #include "KeyState.h"
-#include "ObjectBase_UI.h"
+#include "ObjectBases.h"
 #include "StateCameraBase.h"
 #include "StateCamera.h"
 #include "StopManager.h"

@@ -43,7 +43,7 @@ public:
 	void SetCameraMode(int cameraID);
 
 	/*カメラデータ取得*/
-	inline CameraData GetCameraData(int id = -1)
+	inline CameraData& GetCameraData(int id = -1)
 	{
 		if (id != -1)
 		{
@@ -53,7 +53,8 @@ public:
 		{
 			return mmCameraDatas[mnNowID];
 		}
-		return CameraData();
+		CameraData nullCameraData;
+		return nullCameraData;
 	}
 
 	/*カメラデータ設定*/

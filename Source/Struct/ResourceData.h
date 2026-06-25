@@ -1,15 +1,23 @@
 #pragma once
+#include <string>
 
 #include "ResourceEnum.h"
 #include "Vector2.h"
 
 #include "DxLib.h"
 
+#include "UtilCalc.h"
+
 // DIV画像データ
 struct DIV_GRAPH_DATA
 {
 public:
-	int* handle;
+	int Id = -1;
+	static int IdCount;
+
+	std::string fileName;
+
+	int* handle = nullptr;
 
 	int allNum;
 	
@@ -19,32 +27,87 @@ public:
 	int xSize;
 	int ySize;
 
-	int number;
-	int count;
-
 	DIV_GRAPH_DATA()
+	: allNum(0)
+	, xNum(0)
+	, yNum(0)
+	, xSize(0)
+	, ySize(0)
 	{
+		Id = IdCount;
+		AddId();
+
 		handle = nullptr;
-		allNum = 0;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
 	}
 
 	/*初期化用(ハンドルの配列と全画像の枚数のみ設定)*/
 	DIV_GRAPH_DATA(int allNumber)
+	: allNum(allNumber)
+	, xNum(0)
+	, yNum(0)
+	, xSize(0)
+	, ySize(0)
 	{
-		handle = (int *)malloc(sizeof(int) * allNumber);
-		allNum = allNumber;
-		xNum = 0;
-		yNum = 0;
-		xSize = 0;
-		ySize = 0;
-		number = -1;
-		count = 0;
+		if (-1 == allNumber)
+		{
+			Id = 0;
+			handle = nullptr;
+			return;
+		}
+
+		Id = IdCount;
+		AddId();
+		
+		if (0 < allNumber)
+		{
+			handle = (int *)malloc(sizeof(int) * allNumber);
+		}
+		else
+		{
+			handle = nullptr;
+		}
+	}
+	
+	void HandleDelete()
+	{
+		if (handle != nullptr)
+		{
+			free(handle);
+			handle = nullptr;
+		}
+	}
+
+	operator int() const
+    {
+		if (handle == nullptr)
+		{
+			return -1;
+		}
+
+		return Id;
+    }
+
+	bool operator==(const DIV_GRAPH_DATA& rhs) const
+	{
+		return Id == rhs.Id;
+	}
+
+	bool operator!=(const DIV_GRAPH_DATA& rhs) const
+	{
+		return Id != rhs.Id;
+	}
+
+private:
+	void AddId()
+	{
+		if (UtilCalc::IntMax != IdCount)
+		{
+			IdCount += 1;
+		}
+		else
+		{
+			IdCount = 0;
+		}
 	}
 };
 

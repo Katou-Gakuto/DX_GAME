@@ -6,6 +6,8 @@
 #include "AnimationEnum.h"
 #include "DotWeenData.h"
 
+class IStateAnimation;
+
 // TODO: あとでデータマネージャーに移動
 /*----------*/
 /*【読み込み用アニメーションデータ】
@@ -63,4 +65,30 @@ struct OneAnimationData
 struct AnimationDatas
 {
     std::map<ANIMATION_TYPE, OneAnimationData> animDatas;
+};
+
+/*----------*/
+/*【アニメーションステート生成情報】
+/*----------*/
+struct ANIMATION_STATE_INFO
+{
+    int MyKey;    // 自身のキーを返す
+    ANIMATION_TYPE AnimationType;   // アニメーションの種類
+
+    IStateAnimation* AnimationState;    // アニメーションステート
+
+    int ReferenceNumber;    // 参照数
+
+    // アニメーション変更条件をenumclass化したものを保持
+    //std::vector<>
+
+    bool operator== (ANIMATION_STATE_INFO& src)
+    {
+        if (this->AnimationType == src.AnimationType)
+        {
+            return true;
+        }
+
+        return false;
+    }
 };

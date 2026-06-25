@@ -5,6 +5,7 @@
 #include "TelopData.h"
 #include "TimeData.h"
 
+// テロップここでやる(ステータスや文字)
 class TelopManager
 {
 private:

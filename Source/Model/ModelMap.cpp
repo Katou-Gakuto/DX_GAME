@@ -6,7 +6,10 @@
 
 #include "DataManager.h"
 #include "ModelMap.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
+#include "ResourceMovie.h"
+#include "Resource3DModel.h"
 
 
 ModelMap::ModelMap()
@@ -21,7 +24,7 @@ ModelMap::~ModelMap()
 // ƒ‚ƒfƒ‹‰Šú‰»
 void ModelMap::ModelInitilize()
 {
-    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/Floor.png");
+    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Floor.png");
 }
 
 // ƒ‚ƒfƒ‹I—¹
@@ -71,7 +74,7 @@ void ModelMap::LoadMapData(std::vector<std::vector<TileData>>& mapData, VECTOR m
             switch (mapData[z][x].tileType)
             {
                 case TileType::Ground:
-                    setTileModel.modelHandle = Master::mpResourceManager->GetModelHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
+                    setTileModel.modelHandle = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(Master::mpDataManager->GetMapResourceFileName(DataManager::MAP_RESOURCE_FILE_NUMBWER::GRTOUND));
                     setTileModel.tileModelType = TILE_MODEL_TYPE::HANDLE;
 
                     MV1SetTextureGraphHandle(setTileModel.modelHandle, 0, mnGroundModelGraphHandle, FALSE);
@@ -104,7 +107,7 @@ void ModelMap::ReleaseMapModel()
             switch (mstTileModelDatas[z][x].tileModelType)
             {
                 case  TILE_MODEL_TYPE::HANDLE:
-                    Master::mpResourceManager->ReduceModelHandle(mstTileModelDatas[z][x].modelHandle);
+                    Master::mpResourceManager->Get3DModelResource()->ReduceResourceHandle(mstTileModelDatas[z][x].modelHandle);
                     mstTileModelDatas[z][x].modelHandle = -1;
                 break;
                 
@@ -113,12 +116,12 @@ void ModelMap::ReleaseMapModel()
                     {
                         if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::GRAPH))
                         {
-                            Master::mpResourceManager->ReduceGraphHandle(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
+                            Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
                             mstTileModelDatas[z][x].modelVertex[i].textureHandle = -1;
                         }
                         else if (mstTileModelDatas[z][x].modelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::MOVIE))
                         {
-                            Master::mpResourceManager->ReduceMovie(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
+                            Master::mpResourceManager->GetMovieResource()->ReduceResourceHandle(mstTileModelDatas[z][x].modelVertex[i].textureHandle);
                             mstTileModelDatas[z][x].modelVertex[i].textureHandle = -1;
                         }
                     }

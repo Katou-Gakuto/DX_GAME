@@ -7,6 +7,8 @@
 #include "DataManager.h"
 #include "DrawManager.h"
 #include "GameManager.h"
+#include "ResourceGraph.h"
+#include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StageDataManager.h"
 #include "TimeManager.h"
@@ -42,7 +44,7 @@ void UI_StageStart::UIInitilize()
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.0f, 0.1f));
         drawData.size = displaySize.LeftUp_Ratio(Vector2(1.0f, 0.2f));
-        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/White.png");
+        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/White.png");
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 
@@ -59,7 +61,7 @@ void UI_StageStart::UIInitilize()
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.15f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.2f, 0.1f));
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TownString_" + std::to_string(stringNumber) + ".png");
+            drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/TownString_" + std::to_string(stringNumber) + ".png");
             drawData.transFlag = TRUE;
             setDrawDatas.push_back(drawData);
             break;
@@ -73,7 +75,7 @@ void UI_StageStart::UIInitilize()
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.3f, 0.15f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.4f, 0.1f));
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/DungeonString_" + std::to_string(stringNumber) + ".png");
+            drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/DungeonString_" + std::to_string(stringNumber) + ".png");
             drawData.transFlag = TRUE;
             setDrawDatas.push_back(drawData);
             break;
@@ -87,7 +89,7 @@ void UI_StageStart::UIInitilize()
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
+            drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/BattleString_" + std::to_string(stringNumber) + ".png");
             drawData.transFlag = TRUE;
             setDrawDatas.push_back(drawData);
             break;
@@ -96,7 +98,7 @@ void UI_StageStart::UIInitilize()
             drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
             drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.325f, 0.15f));
             drawData.size = displaySize.LeftUp_Ratio(Vector2(0.35f, 0.1f));
-            drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/WaveString_" + std::to_string(Master::mpDataManager->GetWaveNumber() + 1) + ".png");
+            drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/WaveString_" + std::to_string(Master::mpDataManager->GetWaveNumber() + 1) + ".png");
             drawData.transFlag = TRUE;
             setDrawDatas.push_back(drawData);
             break;

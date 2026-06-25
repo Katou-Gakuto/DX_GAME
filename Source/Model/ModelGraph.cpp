@@ -9,6 +9,7 @@
 #include "ModelBase.h"
 #include "ModelGraph.h"
 #include "ModelsControllerBase.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
 #include "UtilCalc.h"
@@ -55,7 +56,7 @@ void ModelGraph::ModelFinalize()
     {
         if (drawData.handle != -1)
         {
-            Master::mpResourceManager->ReduceGraphHandle(drawData.handle);
+            Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(drawData.handle);
         }
     }
     mstDrawDatas.clear();

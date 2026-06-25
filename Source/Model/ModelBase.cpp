@@ -2,7 +2,7 @@
 
 #include "ModelBase.h"
 #include "ModelsControllerBase.h"
-#include "ResourceManager.h"
+#include "DrawManager.h"
 #include "UtilCalc.h"
 
 ModelBase::ModelBase()
@@ -44,7 +44,7 @@ void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexDat
         //     modelVertexData[i].textureHandle,
         //     modelVertexData[i].transFlag
         // );
-        Master::mpResourceManager->DrawIndexed(modelVertexData[i].vertex.data(), (int)modelVertexData[i].vertex.size(),
+        Master::mpDrawManager->DrawIndexed(modelVertexData[i].vertex.data(), (int)modelVertexData[i].vertex.size(),
                                               &modelVertexData[i].index[0].v1,   (int)modelVertexData[i].index.size(),
             modelVertexData[i].textureHandle,
             modelVertexData[i].transFlag);
@@ -56,18 +56,18 @@ void ModelBase::ModelDraw_Handle(const int handle)
 {
     if (handle != -1)
     {
-        Master::mpResourceManager->DrawModelHandle(handle);
+        Master::mpDrawManager->DrawModelHandle(handle);
     }
 }
 
 // ƒ‚ƒfƒ‹•`‰æ(‰æ‘œ)
 void ModelBase::ModelDraw_Graph(const DRAW_GRAPH_DATA drawData)
 {
-    Master::mpResourceManager->DrawData_Graph(drawData);
+    Master::mpDrawManager->DrawData_Graph(drawData);
 }
 
 // ƒ‚ƒfƒ‹•`‰æ(“®‰æ)
 void ModelBase::ModelDraw_Movie(const DRAW_GRAPH_DATA drawData)
 {
-    Master::mpResourceManager->DrawData_Graph(drawData);
+    Master::mpDrawManager->DrawData_Graph(drawData);
 }

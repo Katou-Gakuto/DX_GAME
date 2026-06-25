@@ -11,7 +11,7 @@
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
 #include "GameDatas.h"
-#include "TileData.h"
+#include "MapData.h"
 
 #include "DxLib.h"
 
@@ -701,7 +701,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		std::vector<OneData> resultData;
 		resultData.clear();
 
-		std::list<int> setData = mmGetFilePosNumbers[sceneName];
+		std::vector<int> setData = mmGetFilePosNumbers[sceneName];
 
 		resultData.reserve(setData.size() - 1);
 		for (int checkNumber : setData)
@@ -712,7 +712,7 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		return resultData;
 	}
 
-	std::list <std::string> baseFileNames;
+	std::vector<std::string> baseFileNames;
 	baseFileNames.clear();
 
 	// ベースファイルにいくつこのシーンの情報があるかを調べる
@@ -739,11 +739,11 @@ std::vector<ONE_DATA> DataManager::GetSceneData(SCENE sceneName)
 		// 処理の正しさを後で調べる
 		
 		// データ場所記録用
-		std::list<int> setGetFilePosNumbers;
+		std::vector<int> setGetFilePosNumbers;
 		setGetFilePosNumbers.clear();
 
 		// プレイ中データの何処にファイルネームデータあるかを取得する
-		std::list<int> fileNameDataPos;
+		std::vector<int> fileNameDataPos;
 		fileNameDataPos.clear();
 		for (int i = 0; i < mstPlayPlayerData.oneDatas.size(); i++)
 		{

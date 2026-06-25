@@ -13,10 +13,13 @@
 #include "Master.h"
 
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "FadeManager.h"
 #include "FSMUI.h"
 #include "GameManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
+#include "ResourceMovie.h"
 #include "SceneManager.h"
 #include "StateTitleUI.h"
 #include "UtilChange.h"
@@ -35,8 +38,8 @@ TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
 , mnPreSelectNumber(-1)
 {
 	// セーブデータ背景画像ハンドル
-	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleDataBase.png");
-	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
+	mnSaveDataDrawBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/TitleDataBase.png");
+	mnSaveDataDrawDelectBackHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/TitleDataSelectBase.png");
 	
 	// セーブデータ文字列描画時設定ハンドル(セーブデータ)
 	mnSaveDataDrawFontHandle_SaveData = CreateFontToHandle(NULL, 20, 8);
@@ -64,12 +67,12 @@ void TitleUIStateProcess::StateProcessFinalize()
 
 	if (mnSaveDataDrawBackHandle != -1)
 	{
-		Master::mpResourceManager->ReduceGraphHandle(mnSaveDataDrawBackHandle);
+		Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mnSaveDataDrawBackHandle);
 	}
 
 	if (mnSaveDataDrawDelectBackHandle != -1)
 	{
-		Master::mpResourceManager->ReduceGraphHandle(mnSaveDataDrawDelectBackHandle);
+		Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mnSaveDataDrawDelectBackHandle);
 	}
 }
 
@@ -149,7 +152,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 
 	if (ui->GetMovieHandleCount() >= 1)
 	{
-		Master::mpResourceManager->MovieLoop(ui->GetMovieHandles()[0]);
+		Master::mpResourceManager->GetMovieResource()->MovieLoop(ui->GetMovieHandles()[0]);
 	}
 
 	// HACK: 他のUIでも使えるようにする
@@ -243,13 +246,13 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 		drawGraphData.pos = drawPos;
 		drawGraphData.size = drawSize.GetVecInt();
 
-		resourceMnaager->DrawData_Graph(drawGraphData);
+		Master::mpDrawManager->DrawData_Graph(drawGraphData);
 		
 		drawGraphData.handle = mnSaveDataDrawBackHandle;
 		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.0f, -0.21f));
 		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.209f));
 
-		resourceMnaager->DrawData_Graph(drawGraphData);
+		Master::mpDrawManager->DrawData_Graph(drawGraphData);
 	}
 
 	// プレイヤー画像描画
@@ -258,7 +261,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.05f, 0.1f));
 		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.8f));
 
-		resourceMnaager->DrawData_Graph(drawGraphData);
+		Master::mpDrawManager->DrawData_Graph(drawGraphData);
 	}
 
 	// プレイヤー情報描画
@@ -323,7 +326,7 @@ void StartTitleUIState::OnExit(UIBase* ui)
 {
 	if (ui->GetMovieHandleCount() >= 1)
 	{
-		Master::mpResourceManager->PlayMovie(ui->GetMovieHandles()[0]);
+		Master::mpResourceManager->GetMovieResource()->PlayMovie(ui->GetMovieHandles()[0]);
 	}
 }
 

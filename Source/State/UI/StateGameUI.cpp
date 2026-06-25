@@ -18,6 +18,7 @@
 #include "MapManager.h
 #include "ObjectBase_UI.h"
 #include "ObjectManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StateConfigUi.h"
 #include "StateGameUI.h"
@@ -28,28 +29,28 @@
 #include "UtilStateConditionFunction.h"
 
 /*--------------------------------*/
-/*     【ゲームUIステート】     */
+/*     �y�Q�[��UI�X�e�[�g�z     */
 /*--------------------------------*/
 
 /*----------*/
-/*【ゲームUI共通処理用】
+/*�y�Q�[��UI���ʏ����p�z
 /*----------*/
 GameUIProcess::GameUIProcess()
 : mnPreSelectNumber(0)
 , mpMapManager(Master::mpGameManager->GetMapManager())
 , mpTargetManager(Master::mpGameManager->GetTargetManager())
 {
-//     // 画面サイズ取得
+//     // ��ʃT�C�Y�擾
 //     COORDINATE_X_Y_INT set = XYGet_Int(0, 0);
 //     int colorBit = 0;
 //     GetScreenState(&set.x, &set.y, &colorBit);
 //     /*
-//     msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // 左上
-//     msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // 右下*/
+//     msMapUpperLeft = XYGet((set.x / 10) * 0.2, set.y / 24); // ����
+//     msMapLowerRight = XYGet((set.x / 10) * 1.67, set.y / 4);  // �E��*/
 // //    /*
-//     msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // 左上
-//     msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // 右下*/
-//     msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // 一辺
+//     msMapUpperLeft = XYGet((set.x / 10) * 8.33 , set.y / 24); // ����
+//     msMapLowerRight = XYGet((set.x / 10) *  9.8, set.y / 4);  // �E��*/
+//     msMapSide = XYGet((msMapLowerRight.x - msMapUpperLeft.x), (msMapLowerRight.y - msMapUpperLeft.y));  // ���
 //     mnMapFrameDreadth = 5;
 //     msMapMiddle = XYGet((msMapSide.x / 2) + mnMapFrameDreadth, (msMapSide.y / 2) + mnMapFrameDreadth);
 
@@ -57,27 +58,27 @@ GameUIProcess::GameUIProcess()
 //     mnDrawMiniMapScreenHandle = MakeScreen();
 }
 
-// メニューキーを押したか返す
+// ���j���[�L�[����������Ԃ�
 bool GameUIProcess::IsMenuKeyPressed()
 {
-    // TODO: キー仮設定
+    // TODO: �L�[���ݒ�
     return Master::mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::X);
 }
 
-// メニューの背景描画
+// ���j���[�̔w�i�`��
 void GameUIProcess::DrawMenuBackground(UIBase* ui)
 {
-    // // TODO: 画像ハンドルに変更
+    // // TODO: �摜�n���h���ɕύX
     // DisplaySize displaySize = ResourceManager::mstDisplaySize;
     // Vector2_Int leftUp = displaySize.LeftUp_FloatRatio(0.1f);
     // Vector2_Int rightDown = displaySize.RightDown_FloatRatio(0.1f);
     // DrawBox(leftUp.x, leftUp.y, rightDown.x, rightDown.y, GetColor(255, 255, 255), TRUE);
 
     // Vector2_Int stringDrawPos = displaySize.LeftUp_Ratio(Vector2(0.5f, 0.11f));
-    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "メニュー", GetColor(0, 0, 0));
+    // DrawString(stringDrawPos.x - 50, stringDrawPos.y, "���j���[", GetColor(0, 0, 0));
 }
 
-// ミニマップポジションに変換する
+// �~�j�}�b�v�|�W�V�����ɕϊ�����
 VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 {
     VECTOR minMapPos;
@@ -87,7 +88,7 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 }
 
 // /*------------------------*/
-// /*【ゲーム開始UIステート】*/
+// /*�y�Q�[���J�nUI�X�e�[�g�z*/
 // /*------------------------*/
 // StartGameUIState::StartGameUIState()
 // : GameUIProcess()
@@ -98,7 +99,7 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     mStateNumber = (int)GAME_UI_STATE::START_GAME_UI_STAE;
 // }
 
-// // この状態に入った時の処理
+// // ���̏�Ԃɓ��������̏���
 // void StartGameUIState::OnEnter(UIBase* ui)
 // {
 //     mbFadeInFlag = false;
@@ -109,12 +110,12 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 // }
 
-// // この状態を出る時の処理
+// // ���̏�Ԃ�o�鎞�̏���
 // void StartGameUIState::OnExit(UIBase* ui)
 // {
 // }
 
-// // 更新
+// // �X�V
 // int StartGameUIState::Update(UIBase* ui)
 // {
 //     if (IsMenuKeyPressed())
@@ -152,25 +153,25 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     return mStateNumber;
 // }
 
-// // 決定
+// // ����
 // int StartGameUIState::Decision(UIBase* ui)
 // {
 //     return mStateNumber;
 // }
 
-// // 描画
+// // �`��
 // void StartGameUIState::Draw(UIBase* ui)
 // {
 // }
 
-// // 終了
+// // �I��
 // int StartGameUIState::Close(UIBase* ui)
 // {
 //     return mStateNumber;
 // }
 
 /*----------------------*/
-/*【通常ゲームUIステート】*/
+/*�y�ʏ�Q�[��UI�X�e�[�g�z*/
 /*----------------------*/
 NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
@@ -178,10 +179,10 @@ NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
-    //printfDx("テロップ：通常ゲームUI\n");
+    //printfDx("�e���b�v�F�ʏ�Q�[��UI\n");
     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -193,14 +194,14 @@ void NormalGameUIState::OnEnter(UIBase* ui)
     ui->Decision();
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void NormalGameUIState::OnExit(UIBase* ui)
 {
     ui->SetSelectNumber(GAME_UI_SELECT_NUKMBER::STOP_GAME);
     ui->Decision();
 }
 
-// 更新
+// �X�V
 STATE_TYPE_UI NormalGameUIState::Update(UIBase* ui)
 {
     if (UtilStateConditionFunction::IsMenuKeyPressed(ui))
@@ -211,25 +212,25 @@ STATE_TYPE_UI NormalGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// 決定
+// ����
 STATE_TYPE_UI NormalGameUIState::Decision(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
-// 描画
+// �`��
 void NormalGameUIState::Draw(UIBase* ui)
 {
 }
 
-// 終了
+// �I��
 STATE_TYPE_UI NormalGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
 
 /*----------------------*/
-/*【ポーズUIステート】*/
+/*�y�|�[�YUI�X�e�[�g�z*/
 /*----------------------*/
 PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::PAUSE_GAME_UI_STATE)
@@ -241,7 +242,7 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
     Vector2_Int menuLeftUpPos = displaySize.LeftUp_Ratio(Vector2(0.15625f, 0.2125f));
     Vector2_Int menuRightDown = displaySize.LeftUp_Ratio(Vector2(0.53125f, 0.5375f));
-    // 共通描画情報設定
+    // ���ʕ`����ݒ�
     {
         drawData.drawFlag = false;
         drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -252,39 +253,39 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     }
 
     {
-        // 戻る
+        // �߂�
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuLeftUpPos.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Back.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Back.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::RETURN_GAME] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_BackPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_BackPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_RETURN_GAME] = drawData;
         }
 
-        // コンフィグ
+        // �R���t�B�O
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuLeftUpPos.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Config.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Config.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::CONFIG_SET] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_ConfigPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_ConfigPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_CONFIG_SET] = drawData;
         }
         
-        // ステータス
+        // �X�e�[�^�X
         {
             drawData.drawGraphData.pos = Vector2_Int(menuLeftUpPos.x, menuRightDown.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_Status.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_Status.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::STATUS_DRAW] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_StatusPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_StatusPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_STATUS_DRAW] = drawData;
         }
         
-        // ゲーム終了
+        // �Q�[���I��
         {
             drawData.drawGraphData.pos = Vector2_Int(menuRightDown.x, menuRightDown.y);
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEnd.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::GAME_END] = drawData;
-            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/MenuString_GameEndPush.png");
+            drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/MenuString_GameEndPush.png");
             mstMenuStringDrawData[MENU_STRING_TYPE::PUSH_GAME_END] = drawData;
         }
     }
@@ -323,10 +324,10 @@ PauseGameUIState::PauseGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     }
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void PauseGameUIState::OnEnter(UIBase* ui)
 {
-    //printfDx("テロップ：ポーズUI\n");
+    //printfDx("�e���b�v�F�|�[�YUI\n");
 
     ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
 
@@ -346,7 +347,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     {
         mstMenuStringDrawData[i].drawFlag = true;
     }
-    // セーブテスト
+    // �Z�[�u�e�X�g
     //Master::mpDataManager->Save(Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER));
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
@@ -355,7 +356,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
     // }
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void PauseGameUIState::OnExit(UIBase* ui)
 {
     mnPreSelectNumber = ui->GetSelectNumber();
@@ -366,7 +367,7 @@ void PauseGameUIState::OnExit(UIBase* ui)
     }
 }
 
-// 更新
+// �X�V
 STATE_TYPE_UI PauseGameUIState::Update(UIBase* ui)
 {
     if (UtilStateConditionFunction::IsMenuKeyPressed(ui))
@@ -395,7 +396,7 @@ STATE_TYPE_UI PauseGameUIState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// 決定
+// ����
 STATE_TYPE_UI PauseGameUIState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
@@ -417,7 +418,7 @@ STATE_TYPE_UI PauseGameUIState::Decision(UIBase* ui)
     return mStateNumber;
 }
 
-// 描画
+// �`��
 void PauseGameUIState::Draw(UIBase* ui)
 {
     clsDx();
@@ -426,14 +427,14 @@ void PauseGameUIState::Draw(UIBase* ui)
     DrawMenuBackground(ui);
 }
 
-// 終了
+// �I��
 STATE_TYPE_UI PauseGameUIState::Close(UIBase* ui)
 {
     return mStateNumber;
 }
 
 /*------------------------------*/
-/*【プレイヤー情報表示ステート】*/
+/*�y�v���C���[���\���X�e�[�g�z*/
 /*------------------------------*/
 DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE)
@@ -441,17 +442,17 @@ DrawPlayerDataState::DrawPlayerDataState(std::vector<STATE_CHANGE_CRITERIA_DATA<
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void DrawPlayerDataState::OnEnter(UIBase* ui)
 {
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void DrawPlayerDataState::OnExit(UIBase* ui)
 {
 }
 
-// 更新
+// �X�V
 STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -466,25 +467,25 @@ STATE_TYPE_UI DrawPlayerDataState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// 決定
+// ����
 STATE_TYPE_UI DrawPlayerDataState::Decision(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
-// 描画
+// �`��
 void DrawPlayerDataState::Draw(UIBase* ui)
 {
 }
 
-// 終了
+// �I��
 STATE_TYPE_UI DrawPlayerDataState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*--------------------*/
-/*【設定変更ステート】*/
+/*�y�ݒ�ύX�X�e�[�g�z*/
 /*--------------------*/
 ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::CONFIG_CHANGE_UI_STATE)
@@ -492,7 +493,7 @@ ConfigChangeState::ConfigChangeState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void ConfigChangeState::OnEnter(UIBase* ui)
 {
     ui->SetSelectNumber(mnPreSelectNumber);
@@ -500,12 +501,12 @@ void ConfigChangeState::OnEnter(UIBase* ui)
     ui->SetSelectBoundaryValue(1);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void ConfigChangeState::OnExit(UIBase* ui)
 {
 }
 
-// 更新
+// �X�V
 STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
 {
     if (IsMenuKeyPressed())
@@ -522,7 +523,7 @@ STATE_TYPE_UI ConfigChangeState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// 決定
+// ����
 STATE_TYPE_UI ConfigChangeState::Decision(UIBase* ui)
 {
     switch (ui->GetSelectNumber())
@@ -537,19 +538,19 @@ STATE_TYPE_UI ConfigChangeState::Decision(UIBase* ui)
     return mStateNumber;
 }
 
-// 描画
+// �`��
 void ConfigChangeState::Draw(UIBase* ui)
 {
 }
 
-// 終了
+// �I��
 STATE_TYPE_UI ConfigChangeState::Close(UIBase* ui)
 {
     return STATE_TYPE_UI::PAUSE_GAME_UI_STATE;
 }
 
 /*----------------------*/
-/*【ゲーム終了ステート】*/
+/*�y�Q�[���I���X�e�[�g�z*/
 /*----------------------*/
 GameEndState::GameEndState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::GAME_END_UI_STATE)
@@ -558,24 +559,24 @@ GameEndState::GameEndState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI,
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void GameEndState::OnEnter(UIBase* ui)
 {
     mbReturnFlag = false;
 
     printfDx("TEST\n");
 
-    // 確認UI
-    UI_Check<GameEndState>* uiCheck = new UI_Check<GameEndState>(nullptr, nullptr, &GameEndState::GameEnd, &GameEndState::StateReturn, this, this, "終了しますか?");
+    // �m�FUI
+    UI_Check<GameEndState>* uiCheck = new UI_Check<GameEndState>(nullptr, nullptr, &GameEndState::GameEnd, &GameEndState::StateReturn, this, this, "�I�����܂���?");
     uiCheck->Initilize();
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void GameEndState::OnExit(UIBase* ui)
 {
 }
 
-// 更新
+// �X�V
 STATE_TYPE_UI GameEndState::Update(UIBase* ui)
 {
     if (mbReturnFlag)
@@ -586,30 +587,30 @@ STATE_TYPE_UI GameEndState::Update(UIBase* ui)
     return mStateNumber;
 }
 
-// 決定
+// ����
 STATE_TYPE_UI GameEndState::Decision(UIBase* ui)
 {
     return mStateNumber;
 }
 
-// 描画
+// �`��
 void GameEndState::Draw(UIBase* ui)
 {
 }
 
-// ステートを戻る
+// �X�e�[�g��߂�
 void GameEndState::StateReturn(void *null)
 {
     mbReturnFlag = true;
 }
 
-// 終了する
+// �I������
 void GameEndState::GameEnd(void *null)
 {
     Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::WITHIN_EXPECTATION_FLAG);
 }
 
-// 終了
+// �I��
 STATE_TYPE_UI GameEndState::Close(UIBase* ui)
 {
     return mStateNumber;

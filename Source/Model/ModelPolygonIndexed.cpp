@@ -4,7 +4,9 @@
 
 #include "ModelBase.h"
 #include "ModelPolygonIndexed.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
+#include "ResourceMovie.h"
 
 ModelPolygonIndexed::ModelPolygonIndexed()
 {
@@ -26,11 +28,11 @@ void ModelPolygonIndexed::ModelFinalize()
     {
         if (mstModelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::GRAPH))
         {
-            Master::mpResourceManager->ReduceGraphHandle(mstModelVertex[i].textureHandle);
+            Master::mpResourceManager->GetGraphResource()->ReduceResourceHandle(mstModelVertex[i].textureHandle);
         }
         else if (mstModelVertex[i].textureType.GetFlag_BitShift(TEXTURE_TYPE::MOVIE))
         {
-            Master::mpResourceManager->ReduceMovie(mstModelVertex[i].textureHandle);
+            Master::mpResourceManager->GetMovieResource()->ReduceResourceHandle(mstModelVertex[i].textureHandle);
         }
     }
 }

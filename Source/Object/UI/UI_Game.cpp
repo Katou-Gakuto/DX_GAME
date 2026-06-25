@@ -8,6 +8,8 @@
 
 #include "FSM.h"
 #include "GameManager.h"
+#include "ResourceEffect.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateGameUI.h"
@@ -212,7 +214,7 @@ void UI_Game::UIInitilize()
         drawData.drawType = DRAW_GRAPH_TYPE::SIZE;
         drawData.pos = displaySize.LeftUp_Ratio(Vector2(0.1f, 0.1f));
         drawData.size = displaySize.LeftUp_FloatRatio(0.8f);
-        drawData.handle = Master::mpResourceManager->GetGraphHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
+        drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/TitleSelectBase.png");
         drawData.transFlag = TRUE;
         setDrawDatas.push_back(drawData);
 
@@ -274,12 +276,12 @@ void UI_Game::DecisionProcess()
         if (mnSelectNumber == -1)
         {
             SetUINumber();
-            mpResourceManager->StopAllEfect();
+            mpResourceManager->GetEffectResource()->StopAllEfect();
         }
         else if (mnSelectNumber == -2)
         {
             DeleteUINumber();
-            mpResourceManager->PlayAllEfect();
+            mpResourceManager->GetEffectResource()->PlayAllEfect();
         }
 
         return;

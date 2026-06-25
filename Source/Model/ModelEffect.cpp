@@ -5,6 +5,7 @@
 #include "ModelBase.h"
 #include "ModelEffect.h"
 #include "ModelsControllerBase.h"
+#include "ResourceEffect.h"
 #include "ResourceManager.h"
 #include "UtilCalc.h"
 
@@ -52,7 +53,7 @@ void ModelEffect::PositionUpdate()
         mvDrawPosition = VAdd(mvDrawPosition, VSub(mpModelsController->GetModelPosition(), mvPreModelControllerPos));
         mvPreModelControllerPos = mpModelsController->GetModelPosition();
         
-        Master::mpResourceManager->DrawEffect(mnEffectHandle, mvDrawPosition, mvDrawAngle, mvDrawSize);
+       Master::mpResourceManager->GetEffectResource()->DrawEffect(mnEffectHandle, mvDrawPosition, mvDrawAngle, mvDrawSize);
     }
 }
 

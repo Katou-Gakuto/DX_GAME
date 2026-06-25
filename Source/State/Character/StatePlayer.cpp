@@ -16,6 +16,7 @@
 #include "SceneManager.h"
 #include "StatePlayer.h"
 #include "StopManager.h"
+#include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "TargetManager.h"
 #include "TimeManager.h"
@@ -24,11 +25,11 @@
 #include "UtilStateConditionFunction.h"
 
 /*------------------*/
-/*     【共通】     */
+/*     �y���ʁz     */
 /*------------------*/
 
 /*------------------------*/
-/*【プレイヤー共通処理用】*/
+/*�y�v���C���[���ʏ����p�z*/
 /*------------------------*/
 int PlayerProcess::mnTargetNumber = -1;
 PlayerProcess::PlayerProcess()
@@ -52,21 +53,21 @@ PlayerProcess::PlayerProcess()
 	// 	drawData.drawGraphData.transFlag = TRUE;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
 
 	// 	drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
+	// 	mstPlayerDataDraw[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
 	// }
 }
 
-// 移動共通処理
+// �ړ����ʏ���
 void PlayerProcess::SetPlayerMove(CharacterBase* character)
 {
 	if (mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::W))
@@ -97,7 +98,7 @@ void PlayerProcess::SetPlayerMove(CharacterBase* character)
 	 //}
 }
 
-// 移動キーを押していれば「true」
+// �ړ��L�[������Ă���΁utrue�v
 bool PlayerProcess::GetPlayerMoveFlag()
 {
 	return mpKeyState->GetNowWordKeyFlags_Board() & (((unsigned long long)1 << (int)KEY_BOARD_WORD::W) |
@@ -106,37 +107,37 @@ bool PlayerProcess::GetPlayerMoveFlag()
 													 ((unsigned long long)1 << (int)KEY_BOARD_WORD::D));
 }
 
-// 攻撃キーを押していれば「true」
+// �U���L�[������Ă���΁utrue�v
 bool PlayerProcess::GetPlayerNormalAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::L);
 }
 
-// 特殊攻撃キーを押していれば「true」
+// ����U���L�[������Ă���΁utrue�v
 bool PlayerProcess::GetPlayerSpceialAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::R);
 }
 
-// ジャンプ攻撃キーを押していれば「true」
+// �W�����v�U���L�[������Ă���΁utrue�v
 bool PlayerProcess::GetPlayerJumpAttackFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::RT);
 }
 
-// ターゲット変更キーを押していれば「true」
+// �^�[�Q�b�g�ύX�L�[������Ă���΁utrue�v
 bool PlayerProcess::GetTargetChangeFlag()
 {
 	return mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::Y);
 }
 
-// カメラに合わせて移動方向を設定
+// �J�����ɍ��킹�Ĉړ�������ݒ�
 void PlayerProcess::SetMoveDir_Camera(CharacterBase* character)
 {
 	character->SetMoveDir(mpCameraManager->GetCameraData().GetDirection());
 }
 
-// ターゲット変更
+// �^�[�Q�b�g�ύX
 void PlayerProcess::TargetChange()
 {
 	mnTargetNumber += 1;
@@ -147,7 +148,7 @@ void PlayerProcess::TargetChange()
 	}
 }
 
-// ターゲットにカメラを向ける
+// �^�[�Q�b�g�ɃJ�����������
 void PlayerProcess::SetTargetCamera(CharacterBase* character)
 {
 	if (Master::mpGameManager->GetTargetManager()->GetTargets(TARGET_TYPE::ENEMY).size() <= mnTargetNumber)
@@ -168,7 +169,7 @@ void PlayerProcess::SetTargetCamera(CharacterBase* character)
 	mpCameraManager->SetCameraData(cameraData);
 }
 
-// ターゲットアリのカメラ処理
+// �^�[�Q�b�g�A���̃J��������
 void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 {
 	if (GetTargetChangeFlag())
@@ -184,7 +185,7 @@ void PlayerProcess::TargetCameraProcess(CharacterBase* character)
 	SetMoveDir_Camera(character);
 }
 
-// HP描画情報設定
+// HP�`����ݒ�
 void PlayerProcess::HpDrawInfoSetup(CharacterBase* character)
 {
 	std::vector<DRAW_DATA> drawDatas = character->GetStateDrawData();
@@ -208,14 +209,14 @@ void PlayerProcess::HpDrawInfoSetup(CharacterBase* character)
 	character->SetStateDrawData(drawDatas);
 }
 
-// 描画
+// �`��
 void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 {
-	// // HACK: 仮実装
+	// // HACK: ������
 	// if ((UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE) ||
 	// 	(UtilChange::SceneState(Master::mpGameManager->GetSceneManager()->GetNowScene()) == SCENE::BATTLE_LOOP))
 	// {
-	// 	// HACK: これを更新のモデル描画前に移動させる
+	// 	// HACK: �����X�V�̃��f���`��O�Ɉړ�������
 	// 	Vector2_Int frameSize = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_FRAME_SIZE);
 	// 	Vector2_Int leftUp = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_LEFT_UP);
 	// 	Vector2_Int rightDown = ResourceManager::mstDisplaySize.LeftUp_Ratio(HP_RIGHT_DOWN);
@@ -270,19 +271,19 @@ void PlayerProcess::PlayerProcessDraw(CharacterBase* character)
 	Master::mpGameManager->GetMapManager()->DrawMiniMap();
 }
 
-// 死亡
+// ���S
 void PlayerProcess::PlayerDeath(CharacterBase* character)
 {
 	Master::mpGameManager->GetTargetManager()->Delete(character, TARGET_TYPE::PLAYER);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_OVER);
 }
 
-// LRキー描画情報設定
+// LR�L�[�`����ݒ�
 void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 {
 	std::string lGraphString;
 	std::string rGraphString;
-	// 画像ファイル取得
+	// �摜�t�@�C���擾
 	switch (keyStatusNumber)
 	{
 	case PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID:
@@ -299,7 +300,7 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 	DRAW_DATA drawData = DRAW_DATA();
 	DisplaySize displaySize = ResourceManager::mstDisplaySize;
 	
-	// 共通描画設定
+	// ���ʕ`��ݒ�
 	{
         drawData.drawFlag = false;
         drawData.drawManagerDrawType = DRAW_MANAGER_DRAW_TYPE::GRAPH;
@@ -310,16 +311,16 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
         drawData.drawGraphData.transFlag = TRUE;
 	}
 
-	// L画像設定
+	// L�摜�ݒ�
 	{
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((lGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(lGraphString);
 		mstLKeyDraw = drawData;
 	}
 
-	// R画像設定
+	// R�摜�ݒ�
 	{
         drawData.drawGraphData.pos.x += drawData.drawGraphData.size.x;
-		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((rGraphString);
+		drawData.drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(rGraphString);
 		mstRKeyDraw = drawData;
 	}
 
@@ -327,14 +328,14 @@ void PlayerProcess::L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE keyStatusNumber)
 	Master::mpDrawManager->AddDrawData(&mstRKeyDraw);
 }
 
-// プレイヤー共通処理 この状態に入った時
+// �v���C���[���ʏ��� ���̏�Ԃɓ�������
 void PlayerProcess::PlayerProcessOnEnter(CharacterBase* character)
 {
 	mstLKeyDraw.drawFlag = true;
 	mstRKeyDraw.drawFlag = true;
 }
 
-// プレイヤー共通処理 この状態に出る時
+// �v���C���[���ʏ��� ���̏�Ԃɏo�鎞
 void PlayerProcess::PlayerProcessOnExit(CharacterBase* character)
 {
 	mstLKeyDraw.drawFlag = false;
@@ -342,11 +343,11 @@ void PlayerProcess::PlayerProcessOnExit(CharacterBase* character)
 }
 
 /*--------------------------*/
-/*     【基本ステート】     */
+/*     �y��{�X�e�[�g�z     */
 /*--------------------------*/
 
 /*--------------------------*/
-/*【Idleプレイヤーステート】*/
+/*�yIdle�v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 IdlePlayerState::IdlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -354,7 +355,7 @@ IdlePlayerState::IdlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TY
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void IdlePlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -374,17 +375,17 @@ void IdlePlayerState::OnEnter(CharacterBase* character)
 			drawData.drawGraphData.transFlag = TRUE;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBack.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_FRAME].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBack.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::RECT_EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBar.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_LEFT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBar.png");
 
 			drawData.drawGraphData.drawType = DRAW_GRAPH_TYPE::EXTEND;
 
 			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT] = drawData;
-			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle((ResourceManager::msResourceFile + "2D/HpBarRed.png");
+			drawDatas[PLAYER_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
 		}
 
 		character->SetStateDrawData(drawDatas);
@@ -393,13 +394,13 @@ void IdlePlayerState::OnEnter(CharacterBase* character)
 	}
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void IdlePlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER IdlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::ShouldTransitionToMove(character))
@@ -410,7 +411,7 @@ STATE_TYPE_CHARACTER IdlePlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void IdlePlayerState::Update(CharacterBase* character)
 {
 	if (GetTargetChangeFlag())
@@ -439,26 +440,26 @@ void IdlePlayerState::Update(CharacterBase* character)
 #endif
 }
 
-// 最終更新
+// �ŏI�X�V
 void IdlePlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void IdlePlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void IdlePlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【移動プレイヤーステート】*/
+/*�y�ړ��v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 MovePlayerState::MovePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -466,19 +467,19 @@ MovePlayerState::MovePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TY
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void MovePlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void MovePlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER MovePlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::ShouldTransitionToIdle(character))
@@ -489,7 +490,7 @@ STATE_TYPE_CHARACTER MovePlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void MovePlayerState::Update(CharacterBase* character)
 {
 	TargetCameraProcess(character);
@@ -497,26 +498,26 @@ void MovePlayerState::Update(CharacterBase* character)
 	SetPlayerMove(character);
 }
 
-// 最終更新
+// �ŏI�X�V
 void MovePlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void MovePlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void MovePlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【ノーマル攻撃プレイヤーステート】*/
+/*�y�m�[�}���U���v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 NormalAttackPlayerState::NormalAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -525,7 +526,7 @@ NormalAttackPlayerState::NormalAttackPlayerState(std::vector<STATE_CHANGE_CRITER
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -533,13 +534,13 @@ void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void NormalAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER NormalAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
@@ -555,31 +556,31 @@ STATE_TYPE_CHARACTER NormalAttackPlayerState::StateCheck(CharacterBase* characte
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void NormalAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void NormalAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void NormalAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void NormalAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*------------------------------------*/
-/*【スペシャル攻撃プレイヤーステート】*/
+/*�y�X�y�V�����U���v���C���[�X�e�[�g�z*/
 /*------------------------------------*/
 SpceialAttackPlayerState::SpceialAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -588,7 +589,7 @@ SpceialAttackPlayerState::SpceialAttackPlayerState(std::vector<STATE_CHANGE_CRIT
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_INVALID);
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -599,13 +600,13 @@ void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::SPCEIAL_ATTACK_IN);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void SpceialAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER SpceialAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
@@ -621,31 +622,31 @@ STATE_TYPE_CHARACTER SpceialAttackPlayerState::StateCheck(CharacterBase* charact
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void SpceialAttackPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void SpceialAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void SpceialAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void SpceialAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【怯みプレイヤーステート】*/
+/*�y���݃v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 FlinchPlayerState::FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -653,20 +654,20 @@ FlinchPlayerState::FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void FlinchPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::FLINCH);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void FlinchPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER FlinchPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::FLINCH))
@@ -677,31 +678,31 @@ STATE_TYPE_CHARACTER FlinchPlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void FlinchPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void FlinchPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void FlinchPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void FlinchPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【避けプレイヤーステート】*/
+/*�y����v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 AvoidPlayerState::AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -709,20 +710,20 @@ AvoidPlayerState::AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void AvoidPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::AVOID);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void AvoidPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER AvoidPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::AVOID))
@@ -733,31 +734,31 @@ STATE_TYPE_CHARACTER AvoidPlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void AvoidPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void AvoidPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void AvoidPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void AvoidPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【ガードプレイヤーステート】*/
+/*�y�K�[�h�v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 GuardPlayerState::GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -765,20 +766,20 @@ GuardPlayerState::GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void GuardPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::GUARD);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void GuardPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER GuardPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::GUARD))
@@ -789,31 +790,31 @@ STATE_TYPE_CHARACTER GuardPlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void GuardPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void GuardPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void GuardPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void GuardPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*--------------------------*/
-/*【倒れプレイヤーステート】*/
+/*�y�|��v���C���[�X�e�[�g�z*/
 /*--------------------------*/
 FallDownPlayerState::FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -821,20 +822,20 @@ FallDownPlayerState::FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void FallDownPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	//character->SetAnimation(ANIMATION_TYPE::DOWN);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void FallDownPlayerState::OnExit(CharacterBase* character)
 {
 	//PlayerProcessOnExit(character);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER FallDownPlayerState::StateCheck(CharacterBase* character)
 {
 	//if (!character->CheckAnimationType(ANIMATION_TYPE::DOWN))
@@ -845,31 +846,31 @@ STATE_TYPE_CHARACTER FallDownPlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void FallDownPlayerState::Update(CharacterBase* character)
 {
 }
 
-// 最終更新
+// �ŏI�X�V
 void FallDownPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void FallDownPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void FallDownPlayerState::Death(CharacterBase* character)
 {
 	//PlayerDeath(character);
 }
 
 /*--------------------------------*/
-/*【ジャンプ攻撃プレイヤーステート】*/
+/*�y�W�����v�U���v���C���[�X�e�[�g�z*/
 /*--------------------------------*/
 JumpAttackPlayerState::JumpAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : PlayerProcess()
@@ -878,7 +879,7 @@ JumpAttackPlayerState::JumpAttackPlayerState(std::vector<STATE_CHANGE_CRITERIA_D
 {
 }
 
-// この状態に入った時の処理
+// ���̏�Ԃɓ��������̏���
 void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
@@ -886,14 +887,14 @@ void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetAnimation(ANIMATION_TYPE::JUMP_ATTACK_IN);
 }
 
-// この状態を出る時の処理
+// ���̏�Ԃ�o�鎞�̏���
 void JumpAttackPlayerState::OnExit(CharacterBase* character)
 {
 	PlayerProcessOnExit(character);
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER JumpAttackPlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
@@ -909,10 +910,10 @@ STATE_TYPE_CHARACTER JumpAttackPlayerState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// 更新
+// �X�V
 void JumpAttackPlayerState::Update(CharacterBase* character)
 {
-	// 攻撃方向下向かせる
+	// �U����������������
 	VECTOR position = character ->GetPos();
 	CameraData cameraData = Master::mpGameManager->GetCameraManager()->GetCameraData();
 	cameraData.angle.y = -UtilCalc::VDegChange(UtilCalc::VMoveVecToAngle(VSub(position, VAdd(position, UtilCalc::VAngleToVec(character->GetAngle()))), UtilCalc::VZero, UtilCalc::PiTwo)).y + UtilCalc::RadPi;
@@ -933,30 +934,30 @@ void JumpAttackPlayerState::Update(CharacterBase* character)
 
 }
 
-// 最終更新
+// �ŏI�X�V
 void JumpAttackPlayerState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// 描画
+// �`��
 void JumpAttackPlayerState::Draw(CharacterBase* character)
 {
 	PlayerProcessDraw(character);
 }
 
-// 死亡
+// ���S
 void JumpAttackPlayerState::Death(CharacterBase* character)
 {
 	PlayerDeath(character);
 }
 
 /*----------------------------*/
-/*     【バトルステート】     */
+/*     �y�o�g���X�e�[�g�z     */
 /*----------------------------*/
 
 /*--------------------------------*/
-/*【Idleバトルプレイヤーステート】*/
+/*�yIdle�o�g���v���C���[�X�e�[�g�z*/
 /*--------------------------------*/
 IdleBattlePlayerState::IdleBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : IdlePlayerState(stateChangeCriterias)
@@ -964,7 +965,7 @@ IdleBattlePlayerState::IdleBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_D
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER IdleBattlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::ShouldTransitionToNormalAttack(character))
@@ -991,7 +992,7 @@ STATE_TYPE_CHARACTER IdleBattlePlayerState::StateCheck(CharacterBase* character)
 }
 
 /*--------------------------------*/
-/*【移動バトルプレイヤーステート】*/
+/*�y�ړ��o�g���v���C���[�X�e�[�g�z*/
 /*--------------------------------*/
 MoveBattlePlayerState::MoveBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
 : MovePlayerState(stateChangeCriterias)
@@ -999,7 +1000,7 @@ MoveBattlePlayerState::MoveBattlePlayerState(std::vector<STATE_CHANGE_CRITERIA_D
 	L_R_KeyDrawDataSetUp(PLAYER_DRAW_KEY_TYPE::PLAYER_DRAW_KEY_VALID);
 }
 
-// ステート変更確認
+// �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER MoveBattlePlayerState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::ShouldTransitionToNormalAttack(character))

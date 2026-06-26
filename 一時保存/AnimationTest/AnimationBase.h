@@ -27,7 +27,7 @@ private:
 
 public:
     AnimationBase();
-    virtual ~AnimationBase() = default;
+    ~AnimationBase() = default;
 
     /// <summary>‰Šú‰»</summary>
     virtual void Initilize();

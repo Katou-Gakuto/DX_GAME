@@ -11,14 +11,12 @@ public:
     ~ModelMV1();
 
 protected:
-    /*継承モデル初期化*/
-    virtual void ModelInitilize() override;
     /*継承モデル終了*/
     virtual void ModelFinalize() override;
 
 public:
     /*ポジション更新*/
-    void PositionUpdate() override;
+    void ModelUpdate() override;
 
     /*モデル描画*/
     virtual void ModelDraw() override;

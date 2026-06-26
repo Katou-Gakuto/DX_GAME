@@ -22,13 +22,13 @@
 // 	StateAnimationControllerProcess();
 
 // 	/*終了時間設定*/
-// 	void SetEndTime(AnimationBase* animation, ANIMATION_TYPE state, int addEndTime);
+// 	void SetEndTime(AnimationBase* animation, ANIMATION_MOVE_TYPE state, int addEndTime);
 
 // 	/*終了時間確認(一定時間経っていれば「true」を返す)*/
 // 	bool ChackEndTime();
 
 // 	/*変更確認*/
-// 	ANIMATION_TYPE ChangeCheck(AnimationBase* animation, ANIMATION_TYPE nextState);
+// 	ANIMATION_MOVE_TYPE ChangeCheck(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState);
 // };
 
 // /*----------*/
@@ -38,16 +38,16 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -57,16 +57,16 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -76,19 +76,19 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>同分類の種類かを確認する</summary>
-// 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
+// 	virtual bool CheckSameType(ANIMATION_MOVE_TYPE animationType) override;
 // };
 
 // /*----------*/
@@ -98,19 +98,19 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>同分類の種類かを確認する</summary>
-// 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
+// 	virtual bool CheckSameType(ANIMATION_MOVE_TYPE animationType) override;
 // };
 
 // /*----------*/
@@ -120,19 +120,19 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>同分類の種類かを確認する</summary>
-// 	virtual bool CheckSameType(ANIMATION_TYPE animationType) override;
+// 	virtual bool CheckSameType(ANIMATION_MOVE_TYPE animationType) override;
 // };
 
 // /*----------*/
@@ -142,16 +142,16 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	State2DMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	State2DMoveAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------------------------------------------------*/
@@ -161,16 +161,16 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateFadeOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateFadeOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------------------------------------------------*/
@@ -180,16 +180,16 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateFadeInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateFadeInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 	
 // 	/// <summary>この状態に入った時の処理</summary>
-// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_TYPE oldState) override;
+// 	virtual void OnEnter(AnimationBase* modelsController, ANIMATION_MOVE_TYPE oldState) override;
 
 // 	/// <summary>この状態を出る時の処理</summary>
-// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual void OnExit(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*--------------------*/
@@ -203,10 +203,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackEndAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackEndAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -216,10 +216,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackOutStopAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackOutStopAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------------------------------------------------------------通常攻撃------------------------------------------------------------------*/
@@ -230,10 +230,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateNormalAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateNormalAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -243,10 +243,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateNormalAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateNormalAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 // /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -259,10 +259,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateSpceialAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateSpceialAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -272,10 +272,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateSpceialAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateSpceialAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -285,10 +285,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateSpceialAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateSpceialAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 // /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -301,10 +301,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateJumpAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateJumpAttackInAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -314,10 +314,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateJumpAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateJumpAttackAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 
 // /*----------*/
@@ -327,10 +327,10 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateJumpAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateJumpAttackOutAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
 // 	/// <summary>ステート変更確認</summary>
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* modelsController, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* modelsController, ANIMATION_MOVE_TYPE nextState) override;
 // };
 // /*------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -342,7 +342,7 @@
 // {
 // public:
 // 	// FIXME: コンストラクタでステート変更条件を渡せます
-// 	StateAttackIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_TYPE, void>> stateChangeCriterias);
+// 	StateAttackIdleAnimationController(std::vector<STATE_CHANGE_CRITERIA_DATA<ANIMATION_MOVE_TYPE, void>> stateChangeCriterias);
 
-// 	virtual ANIMATION_TYPE CheckState(AnimationBase* animation, ANIMATION_TYPE nextState) override;
+// 	virtual ANIMATION_MOVE_TYPE CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState) override;
 // };

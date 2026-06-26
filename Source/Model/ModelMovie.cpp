@@ -8,7 +8,7 @@
 #include "ImguiManager.h"
 #include "ModelGraph.h"
 #include "ModelMovie.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ResourceManager.h"
 #include "ResourceMovie.h"
 #include "StopManager.h"
@@ -24,24 +24,24 @@ ModelMovie::~ModelMovie()
 {
 }
 
-// ムービー初期化
-void ModelMovie::ModelInitilize()
-{
-	IMGUI_FLOAT_DATA imguiFloatData;
-	imguiFloatData.AddVariable(&mvPosition.x);
-	imguiFloatData.AddVariable(&mvPosition.y);
-	imguiFloatData.AddVariable(&mvSize.x);
-	imguiFloatData.AddVariable(&mvSize.y);
-	imguiFloatData.SetLabel("MOVIE_");
-	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
-	imguiFloatData.SetMin(-100.0f);
-	imguiFloatData.SetMax(100.0f);
-	imguiFloatData.SetSpeed(0.01f);
+// // ムービー初期化
+// void ModelMovie::ModelInitilize()
+// {
+// 	IMGUI_FLOAT_DATA imguiFloatData;
+// 	imguiFloatData.AddVariable(&mvPosition.x);
+// 	imguiFloatData.AddVariable(&mvPosition.y);
+// 	imguiFloatData.AddVariable(&mvSize.x);
+// 	imguiFloatData.AddVariable(&mvSize.y);
+// 	imguiFloatData.SetLabel("MOVIE_");
+// 	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+// 	imguiFloatData.SetMin(-100.0f);
+// 	imguiFloatData.SetMax(100.0f);
+// 	imguiFloatData.SetSpeed(0.01f);
 
-#ifdef _DEBUG
-    msDebugName = Master::mpImguiManager->SetFloatImgui(imguiFloatData);
-#endif
-}
+// #ifdef _DEBUG
+//     msDebugName = Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+// #endif
+// }
 
 // 終了
 void ModelMovie::ModelFinalize()
@@ -61,7 +61,7 @@ void ModelMovie::ModelFinalize()
 }
 
 // ポジション更新
-void ModelMovie::PositionUpdate()
+void ModelMovie::ModelUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;

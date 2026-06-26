@@ -4,7 +4,7 @@
 
 #include "ModelBase.h"
 #include "ModelEffect.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ResourceEffect.h"
 #include "ResourceManager.h"
 #include "UtilCalc.h"
@@ -19,18 +19,13 @@ ModelEffect::~ModelEffect()
 {
 }
 
-// 継承モデル初期化
-void ModelEffect::ModelInitilize()
-{
-}
-
 // 継承モデル終了
 void ModelEffect::ModelFinalize()
 {
 }
 
 // ゲーム中初期化
-void ModelEffect::GameInit()
+void ModelEffect::ModelGameInit()
 {
     mvDrawSize = mpModelsController->GetModelSize();
     mvDrawSize = VGet(mvDrawSize.x * mvSize.x, mvDrawSize.y * mvSize.y, mvDrawSize.z * mvSize.z);
@@ -46,7 +41,7 @@ void ModelEffect::GameInit()
 }
 
 // ポジション更新
-void ModelEffect::PositionUpdate()
+void ModelEffect::ModelUpdate()
 {
     if (mnEffectHandle != -1)
     {

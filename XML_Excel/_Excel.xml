@@ -3009,13 +3009,13 @@ int変数設定
    </explanations>
    </member>
    <member className="ModelEffect">
-   <functionName>PositionUpdate</functionName>
+   <functionName>ModelUpdate</functionName>
    <explanations>
 ポジション更新
    </explanations>
    </member>
    <member className="ModelEffect">
-   <functionName>GameInit</functionName>
+   <functionName>ModelGameInit</functionName>
    <explanations>
 ゲーム中初期化
    </explanations>
@@ -4222,7 +4222,7 @@ UIモデル描画フラグ設定
    <variable0>追加するモデル</variable0>
    </member>
    <member className="ModelsControllerBase">
-   <functionName>GameInit</functionName>
+   <functionName>ModelGameInit</functionName>
    <explanations>
 ゲーム中初期化
    </explanations>
@@ -4294,13 +4294,13 @@ UIモデル描画フラグ設定
    </explanations>
    </member>
    <member className="ModelBase">
-   <functionName>PositionUpdate</functionName>
+   <functionName>ModelUpdate</functionName>
    <explanations>
 ポジション更新
    </explanations>
    </member>
    <member className="ModelBase">
-   <functionName>GameInit</functionName>
+   <functionName>ModelGameInit</functionName>
    <explanations>
 ゲーム初期化
    </explanations>

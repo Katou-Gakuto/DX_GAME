@@ -531,7 +531,7 @@ void NormalAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
-	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
+	character->SetAnimation(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -597,7 +597,7 @@ void SpceialAttackPlayerState::OnEnter(CharacterBase* character)
 	character->SetMoveDir(UtilCalc::VAngleToVec(character->GetAngle()));
 
 	character->StartAttck(ATTACK_METHOD_TYPE::SPCEIAL);
-	character->SetAnimation(ANIMATION_TYPE::SPCEIAL_ATTACK_IN);
+	character->SetAnimation(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_IN);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -658,7 +658,7 @@ FlinchPlayerState::FlinchPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 void FlinchPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
-	//character->SetAnimation(ANIMATION_TYPE::FLINCH);
+	//character->SetAnimation(ANIMATION_MOVE_TYPE::FLINCH);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -670,7 +670,7 @@ void FlinchPlayerState::OnExit(CharacterBase* character)
 // �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER FlinchPlayerState::StateCheck(CharacterBase* character)
 {
-	//if (!character->CheckAnimationType(ANIMATION_TYPE::FLINCH))
+	//if (!character->CheckAnimationType(ANIMATION_MOVE_TYPE::FLINCH))
 	{
 		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
@@ -714,7 +714,7 @@ AvoidPlayerState::AvoidPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 void AvoidPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
-	//character->SetAnimation(ANIMATION_TYPE::AVOID);
+	//character->SetAnimation(ANIMATION_MOVE_TYPE::AVOID);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -726,7 +726,7 @@ void AvoidPlayerState::OnExit(CharacterBase* character)
 // �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER AvoidPlayerState::StateCheck(CharacterBase* character)
 {
-	//if (!character->CheckAnimationType(ANIMATION_TYPE::AVOID))
+	//if (!character->CheckAnimationType(ANIMATION_MOVE_TYPE::AVOID))
 	{
 		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
@@ -770,7 +770,7 @@ GuardPlayerState::GuardPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 void GuardPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
-	//character->SetAnimation(ANIMATION_TYPE::GUARD);
+	//character->SetAnimation(ANIMATION_MOVE_TYPE::GUARD);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -782,7 +782,7 @@ void GuardPlayerState::OnExit(CharacterBase* character)
 // �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER GuardPlayerState::StateCheck(CharacterBase* character)
 {
-	//if (!character->CheckAnimationType(ANIMATION_TYPE::GUARD))
+	//if (!character->CheckAnimationType(ANIMATION_MOVE_TYPE::GUARD))
 	{
 		return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
@@ -826,7 +826,7 @@ FallDownPlayerState::FallDownPlayerState(std::vector<STATE_CHANGE_CRITERIA_DATA<
 void FallDownPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
-	//character->SetAnimation(ANIMATION_TYPE::DOWN);
+	//character->SetAnimation(ANIMATION_MOVE_TYPE::DOWN);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -838,7 +838,7 @@ void FallDownPlayerState::OnExit(CharacterBase* character)
 // �X�e�[�g�ύX�m�F
 STATE_TYPE_CHARACTER FallDownPlayerState::StateCheck(CharacterBase* character)
 {
-	//if (!character->CheckAnimationType(ANIMATION_TYPE::DOWN))
+	//if (!character->CheckAnimationType(ANIMATION_MOVE_TYPE::DOWN))
 	{
 		//return STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE;
 	}
@@ -884,7 +884,7 @@ void JumpAttackPlayerState::OnEnter(CharacterBase* character)
 {
 	PlayerProcessOnEnter(character);
 	character->StartAttck(ATTACK_METHOD_TYPE::JUMP);
-	character->SetAnimation(ANIMATION_TYPE::JUMP_ATTACK_IN);
+	character->SetAnimation(ANIMATION_MOVE_TYPE::JUMP_ATTACK_IN);
 }
 
 // ���̏�Ԃ�o�鎞�̏���
@@ -922,11 +922,11 @@ void JumpAttackPlayerState::Update(CharacterBase* character)
 
 	SetPlayerMove(character);
 
-    if (character->CheckAnimationType(ANIMATION_TYPE::ATTACK_IN))
+    if (character->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK_IN))
 	{
 		character->SetUpMove();
 	}
-	else if (character->CheckAnimationType(ANIMATION_TYPE::ATTACK_OUT))
+	else if (character->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK_OUT))
     {
 		character->SetDownMove();
     }

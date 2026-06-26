@@ -35,7 +35,7 @@ protected:
 
 public:
     ResourceBase() = default;
-    virtual ~ResourceBase() = default;
+    ~ResourceBase() = default;
 
     /// <summary>èIóπ</summary>
     virtual void Finalize() = 0;

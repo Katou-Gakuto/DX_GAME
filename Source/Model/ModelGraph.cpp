@@ -8,7 +8,7 @@
 #include "ImguiManager.h"
 #include "ModelBase.h"
 #include "ModelGraph.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"
 #include "StopManager.h"
@@ -28,24 +28,24 @@ ModelGraph::~ModelGraph()
 {
 }
 
-// グラフィック初期化
-void ModelGraph::ModelInitilize()
-{
-	IMGUI_FLOAT_DATA imguiFloatData;
-	imguiFloatData.AddVariable(&mvPosition.x);
-	imguiFloatData.AddVariable(&mvPosition.y);
-	imguiFloatData.AddVariable(&mvSize.x);
-	imguiFloatData.AddVariable(&mvSize.y);
-	imguiFloatData.SetLabel("GRAPH_");
-	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
-	imguiFloatData.SetMin(-100.0f);
-	imguiFloatData.SetMax(100.0f);
-    imguiFloatData.SetStep(0.1f);
-	imguiFloatData.SetSpeed(0.01f);
-    imguiFloatData.SetStepFast(0.1f);
+// // グラフィック初期化
+// void ModelGraph::ModelInitilize()
+// {
+// 	IMGUI_FLOAT_DATA imguiFloatData;
+// 	imguiFloatData.AddVariable(&mvPosition.x);
+// 	imguiFloatData.AddVariable(&mvPosition.y);
+// 	imguiFloatData.AddVariable(&mvSize.x);
+// 	imguiFloatData.AddVariable(&mvSize.y);
+// 	imguiFloatData.SetLabel("GRAPH_");
+// 	imguiFloatData.SetImguiType(IMGUI_TYPE::DRAG4);
+// 	imguiFloatData.SetMin(-100.0f);
+// 	imguiFloatData.SetMax(100.0f);
+//     imguiFloatData.SetStep(0.1f);
+// 	imguiFloatData.SetSpeed(0.01f);
+//     imguiFloatData.SetStepFast(0.1f);
 
-	Master::mpImguiManager->SetFloatImgui(imguiFloatData);
-}
+// 	Master::mpImguiManager->SetFloatImgui(imguiFloatData);
+// }
 
 // グラフィック終了
 void ModelGraph::ModelFinalize()
@@ -63,7 +63,7 @@ void ModelGraph::ModelFinalize()
 }
 
 // ポジション更新
-void ModelGraph::PositionUpdate()
+void ModelGraph::ModelUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;

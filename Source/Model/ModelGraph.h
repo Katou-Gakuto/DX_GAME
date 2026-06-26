@@ -28,14 +28,12 @@ public:
     ~ModelGraph();
 
 protected:
-    /*継承モデル初期化*/
-    virtual void ModelInitilize() override;
     /*継承モデル終了*/
     virtual void ModelFinalize() override;
 
 public:
     /*ポジション更新*/
-    virtual void PositionUpdate() override;
+    virtual void ModelUpdate() override;
 
     /*画像描画*/
     virtual void ModelDraw() override;

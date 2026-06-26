@@ -39,7 +39,7 @@ public:
 	, meMyStateType(stateType)
 	{
 	}
-	virtual ~IStateCharacter() = default;
+	~IStateCharacter() = default;
 
 	/// <summary>‰Šú‰»</summary>
 	virtual void Initilize(CharacterBase* character) {}

@@ -332,7 +332,7 @@ AttackEnemyState::AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 void AttackEnemyState::OnEnter(CharacterBase* character)
 {
 	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
-	character->SetAnimation(ANIMATION_TYPE::NORMAL_ATTACK_IN);
+	character->SetAnimation(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN);
 }
 
 // この状態を出る時の処理

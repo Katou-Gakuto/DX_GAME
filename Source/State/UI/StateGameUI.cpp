@@ -105,9 +105,9 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     mbFadeInFlag = false;
 //     mnElapsedTime = Master::mpTimeManager->GetGameTime() + SUBTITLE_TIME;
     
-//     ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+//     ui->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
 
-//     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+//     ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
 // }
 
 // // ���̏�Ԃ�o�鎞�̏���
@@ -128,15 +128,15 @@ VECTOR GameUIProcess::PosToMiniMapPos(VECTOR pos)
 //     }
 
 //     if (!mbFadeInFlag &&
-//         !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//         !ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_MOVE_TYPE::FADE_IN))
 //     {
-//         ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+//         ui->GetAnimation(MODEL_CONTROLLER_INDEX)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
 //     }
-//     else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//     else if (ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_MOVE_TYPE::FADE_IN))
 //     {
 //         mbFadeInFlag = true;
 //     }
-//     else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_TYPE::FADE_IN))
+//     else if (!ui->GetAnimation(MODEL_CONTROLLER_INDEX)->GetFsm()->CheckNowStateSameType(ANIMATION_MOVE_TYPE::FADE_IN))
 //     {
 //         if (mbMenuFlag)
 //         {
@@ -183,7 +183,7 @@ NormalGameUIState::NormalGameUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 void NormalGameUIState::OnEnter(UIBase* ui)
 {
     //printfDx("�e���b�v�F�ʏ�Q�[��UI\n");
-    ui->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+    ui->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
 
     // for (int i = 0; i < ui->GetModelCount(); i++)
     // {
@@ -329,7 +329,7 @@ void PauseGameUIState::OnEnter(UIBase* ui)
 {
     //printfDx("�e���b�v�F�|�[�YUI\n");
 
-    ui->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+    ui->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
 
     ui->SetSelectMaxNumber(GAME_UI_SELECT_NUKMBER::PAUSE_SELECT_MAX);
     ui->SetSelectBoundaryValue(2);

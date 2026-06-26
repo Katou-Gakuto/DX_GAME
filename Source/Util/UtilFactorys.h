@@ -10,7 +10,7 @@
 #include "AttackData.h"
 #include "UtilCalc.h"
 
-enum class MODEL_TYPE;
+enum class ANIMATION_TYPE;
 
 class CameraManager;
 class CharacterBase;
@@ -83,7 +83,7 @@ enum class CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD
 	JUMP_ATTACK,
 };
 // キャラクター攻撃情報作成ナンバーモデル種類
-enum class CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE
+enum class CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE
 {
 	HUMAN = 0,
 	ROBOT,
@@ -114,7 +114,7 @@ namespace UtilFactorys
 	std::vector<LoadAnimationData> LoadAnimationDataFactory(AnimationBase* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER nmber);
 
 	/// <summary>キャラクタ攻撃情報作成</summary>
-	CharacterAttackData CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType);
+	CharacterAttackData CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType);
 
 	// TODO: 作る
 	/// <summary>全アニメーションとモデル設定</summary>
@@ -136,10 +136,10 @@ namespace UtilFactorys
 	/// <param name="type">モデル種類</param>
 	/// <param name="modelPath">モデルファイル座標</param>
 	/// <returns>モデルベース</returns>
-	ModelBase* ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne, std::vector<DRAW_GRAPH_DATA>* drawData = nullptr);
+	ModelBase* ModelFactory(ANIMATION_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne, std::vector<DRAW_GRAPH_DATA>* drawData = nullptr);
 
 	/// <summary>攻撃データ作成</summary>
-	std::map<ATTACK_METHOD_TYPE, AttackData> AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber);
+	std::map<ATTACK_METHOD_TYPE, AttackData> AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber);
 
 	/// <summary>モデル位置設定</summary>
 	void SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size);

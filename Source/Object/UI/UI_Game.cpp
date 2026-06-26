@@ -124,7 +124,7 @@ void UI_Game::UIInitilize()
     //     }
         
     //     // モデル追加
-    //     AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+    //     AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
 
     //     DrawConfigData drawConfigData;
     //     drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
@@ -199,7 +199,7 @@ void UI_Game::UIInitilize()
     //    }
 
     //    // モデル追加
-    //    AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+    //    AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
 
     //    // アニメーション設定
     //    AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)GAME_UI_STATE::START_GAME_UI_STAE });
@@ -219,7 +219,7 @@ void UI_Game::UIInitilize()
         setDrawDatas.push_back(drawData);
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
 
         if (i != (testNumber - 1))
         {

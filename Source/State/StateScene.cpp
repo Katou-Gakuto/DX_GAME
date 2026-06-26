@@ -17,7 +17,7 @@
 #include "FSMUI.h"
 #include "GameManager.h"
 #include "MapManager.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ObjectBases.h"
 #include "SceneManager.h"
 #include "StageDataManager.h"
@@ -45,8 +45,8 @@
 void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber)
 {
 	// モデル設定
-	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
-	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
 	 {
 	 	AnimationBase* characterAnimation = character->GetAnimation();
@@ -186,7 +186,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	// モデルとアニメション設定
 	CharacterModelSetting(player, ANIMATION_FACTORY_NUMBER::TOWN);
 	// // モデル設定
-	// player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	// player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// // アニメション設定
 	// {
 	// 	AnimationBase* playerAnimation = player->GetAnimation();
@@ -232,7 +232,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 			}
 			break;
 		// // モデル設定
-		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 		// // アニメション設定
 		// {
 		// 	AnimationBase* enemyAnimation = enemy->GetAnimation();
@@ -477,11 +477,11 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	{
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
-		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		playerAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
 
-		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		player->Initilize();
 		player->SetPos(VGet(10.0f, 0.0f, 10.0f));
 		player->SetAngle(VGet(0.0f, 0.0f, 0.0f));
@@ -509,11 +509,11 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	{// 敵
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
-		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
 		{
 			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = CharacterAttackData();
-			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+			// enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 			
 		 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	 		// 読み込み用アニメーションデータ設定
@@ -521,7 +521,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 
 			//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
 		}
-		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(20, 20, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(20, 20, 1, 0, 10, 10, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3000.0f, 0.0f, 3000.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::ENEMY));
@@ -541,11 +541,11 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 	{// ボス
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
-		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
 		//{
 		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = CharacterAttackData();
-		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+		//	enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].modelData.push_back(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 		//	
 		// 	//std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	 //		// 読み込み用アニメーションデータ設定
@@ -554,7 +554,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		//	//enemyAttackData[ATTACK_METHOD_TYPE::NORMAL].animationFSM = UtilFactorys::FSMAnimationFactory(nullptr, ANIMATION_FACTORY_NUMBER::ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData);
 		//}
 
-		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(40, 40, 1, 0, 12, 12, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(40, 40, 1, 0, 12, 12, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
 		enemy->GetModelsController()->SetModelSize(VGet(2.0f, 2.0f, 2.0f));
@@ -716,11 +716,11 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 	{
 		// HACK: 仮テキトウ実装
 		std::map<ATTACK_METHOD_TYPE, CharacterAttackData> playerAttackData;
-		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-		playerAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+		playerAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
 
-		std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas = UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT);
+		std::map<ATTACK_METHOD_TYPE, AttackData> attackDatas = UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT);
 		attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackPower = Master::mpDataManager->GetPlayPlayerData().status.GetNowAttckPower() * 2;
 
 		player = new Character_Shot(true, Master::mpDataManager->GetPlayPlayerData().status, SHOT_TYPE::DEFAULT, playerAttackData, attackDatas);
@@ -755,11 +755,11 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 		for (int i = 0; i < enemyData.size(); i++) {
 			// HACK: 仮テキトウ実装
 			std::map<ATTACK_METHOD_TYPE, CharacterAttackData> enemyAttackData;
-			enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-			enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
-			enemyAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT);
+			enemyAttackData[ATTACK_METHOD_TYPE::NORMAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+			enemyAttackData[ATTACK_METHOD_TYPE::SPCEIAL] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
+			enemyAttackData[ATTACK_METHOD_TYPE::JUMP] = UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT);
 
-			Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
+			Character_Shot* enemy = new Character_Shot(true, enemyData[i].status, SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 			enemy->Initilize();
 			enemy->SetPos(enemyData[i].position);
 			enemy->SetAngle(enemyData[i].angle);

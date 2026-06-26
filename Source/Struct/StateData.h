@@ -24,8 +24,11 @@ struct STATE_CHANGE_CRITERIA_DATA
 
 struct STATE_ANEMATION_DATA
 {
-    AnimationBase* StateAnimation;
-    OneAnimationData* StateOneAnimationData;
-    AnimationDatas* StateAnimationDatas;
-    int nextState;
+    // AnimationBase* StateAnimation;
+    // OneAnimationData* StateOneAnimationData;
+    // AnimationDatas* StateAnimationDatas;
+    // int nextState;
+    // アニメーション情報
+    // 前のアニメーション情報
+    int nextState;// FSMで設定
 };

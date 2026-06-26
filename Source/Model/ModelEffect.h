@@ -2,7 +2,7 @@
 #include <string>
 
 #include "ModelBase.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 
 class ModelEffect : public ModelBase
 {
@@ -23,17 +23,15 @@ protected:
 public:
     ModelEffect();
     ~ModelEffect();
-
-    /// <summary>継承モデル初期化</summary>
-	virtual void ModelInitilize() override;
+    
     /// <summary>継承モデル終了</summary>
 	virtual void ModelFinalize() override;
 
     /// <summary>ゲーム中初期化</summary>
-    virtual void GameInit() override;
+    virtual void ModelGameInit() override;
     
     /// <summary>ポジション更新</summary>
-    virtual void PositionUpdate() override;
+    virtual void ModelUpdate() override;
 
 	/// <summary>モデル描画</summary>
 	virtual void ModelDraw() override;

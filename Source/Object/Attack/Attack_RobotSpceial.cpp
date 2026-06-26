@@ -41,9 +41,9 @@ void Attack_RobotSpceial::AttackFinalize()
 void Attack_RobotSpceial::AttackUpdate()
 {
 	mvPosition = mpAttackCharacter->GetPos();
-    if (!mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK_IN) &&
-        !mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK_OUT) &&
-        mpAttackCharacter->CheckAnimationType(ANIMATION_TYPE::ATTACK))
+    if (!mpAttackCharacter->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK_IN) &&
+        !mpAttackCharacter->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK_OUT) &&
+        mpAttackCharacter->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK))
     {
         mpAttackCharacter->SetMoveActionFlag(ACTION_FLAG::DASH);
     }

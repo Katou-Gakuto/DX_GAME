@@ -26,7 +26,7 @@ public:
 	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
-	virtual ~IStateCamera() = default;
+	~IStateCamera() = default;
 
 	// /*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	// virtual void OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag) = 0;

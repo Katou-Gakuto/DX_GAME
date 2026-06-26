@@ -2,7 +2,7 @@
 #include <map>
 #include <vector>
 
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 
 #include "FSMAnimation.h"
 
@@ -19,7 +19,7 @@ private:
     std::vector<AnimationDatas*> mstAnimationDatas;
 
     // アニメーション時間
-    std::map<ANIMATION_TYPE, int> mmAnimationTime;
+    std::map<ANIMATION_MOVE_TYPE, int> mmAnimationTime;
 
 public:
     AnimationBase();
@@ -41,7 +41,7 @@ public:
     inline void AddAnimationData(AnimationDatas* animationData) { mstAnimationDatas.push_back(animationData); }
 
     /// <summary>アニメション種類探索</summary>
-    inline bool SearchAnimationType(ANIMATION_TYPE animationType) { return (mmAnimationTime.find(animationType) != mmAnimationTime.end()); }
+    inline bool SearchAnimationType(ANIMATION_MOVE_TYPE animationType) { return (mmAnimationTime.find(animationType) != mmAnimationTime.end()); }
 
     /*----------*/
     /*【設定・取得】
@@ -63,14 +63,14 @@ public:
     inline void SetAnimationDatas(const std::vector<AnimationDatas*>& animationDatas) { mstAnimationDatas = animationDatas; }
 
     // /// <summary>アニメーション種類取得</summary>
-    // inline ANIMATION_TYPE GetAnimationType() { if(mpFsm!=nullptr){return mpFsm->GetCurrentState();} return ANIMATION_TYPE::NONE; }
+    // inline ANIMATION_MOVE_TYPE GetAnimationType() { if(mpFsm!=nullptr){return mpFsm->GetCurrentState();} return ANIMATION_MOVE_TYPE::NONE; }
     // /// <summary>アニメーション種類設定</summary>
-    // inline void SetAnimationType(ANIMATION_TYPE animationType) { if(mpFsm!=nullptr){mpFsm->SetNextState(animationType);} }
+    // inline void SetAnimationType(ANIMATION_MOVE_TYPE animationType) { if(mpFsm!=nullptr){mpFsm->SetNextState(animationType);} }
 
     // /// <summary>アニメーション時間取得</summary>
-    // inline int GetAnimationTime(ANIMATION_TYPE animationType) { return mmAnimationTime[animationType]; }
+    // inline int GetAnimationTime(ANIMATION_MOVE_TYPE animationType) { return mmAnimationTime[animationType]; }
     // /// <summary>アニメーション時間設定</summary>
-    // inline void SetAnimationTime(ANIMATION_TYPE animationType, int time) { mmAnimationTime[animationType] = time; }
+    // inline void SetAnimationTime(ANIMATION_MOVE_TYPE animationType, int time) { mmAnimationTime[animationType] = time; }
     // /// <summary>全アニメーション時間設定</summary>
-    // inline void SetAllAnimationTime(std::map<ANIMATION_TYPE, int> animationTime) { mmAnimationTime = animationTime; }
+    // inline void SetAllAnimationTime(std::map<ANIMATION_MOVE_TYPE, int> animationTime) { mmAnimationTime = animationTime; }
 };

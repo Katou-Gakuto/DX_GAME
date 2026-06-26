@@ -7,7 +7,7 @@
 
 #include "ModelBase.h"
 
-class ModelsControllerBase
+class ModelsController : public ModelBase
 {
 private:
     // モデルリスト
@@ -29,9 +29,6 @@ public:
     ModelsControllerBase();
     ~ModelsControllerBase();
 
-    /// <summary>初期化</summary>
-    void Initilize();
-
     /// <summary>シーン最終初期化</summary>
     void SceneLastInitilize();
 
@@ -39,7 +36,7 @@ public:
     void Finalize();
 
     /// <summary>ゲーム中初期化</summary>
-    void GameInit(VECTOR pos, VECTOR angle, VECTOR size);
+    void ModelGameInit(VECTOR pos, VECTOR angle, VECTOR size);
 
     /// <summary>モデル追加</summary>
     /// <param name="model">追加するモデル</param>

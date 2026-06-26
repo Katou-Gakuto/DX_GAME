@@ -29,7 +29,7 @@ public:
 	{
 	}
 
-	~StateBase() = default;
+	virtual ~StateBase() = default;
 
 	/// <summary>初期化</summary>
 	virtual void Initilize(stateData* onData) = 0;
@@ -60,8 +60,6 @@ public:
 				return stateChangeCriteriaData.ChangeNumber;
 			}
 		}
-
-		return mStateNumber;
 	}
 
 	/// <summary>ステート設定</summary>

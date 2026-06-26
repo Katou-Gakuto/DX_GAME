@@ -158,16 +158,16 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 	// モデルの数分設定する
 	for (int i = 0; i < loadAnimationData.size(); i++)
 	{
-		std::map<MODEL_TYPE, IStateAnimation*> setStateMap;
+		std::map<ANIMATION_TYPE, IStateAnimation*> setStateMap;
 
 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 		{
 			// TODO: テンプレートでswitch分の中身簡単にできる気がする
-			MODEL_TYPE setModelType = animationDatas[i]->animDatas[loadAnimationData[i][j].animationType].modelType;
+			ANIMATION_TYPE setModelType = animationDatas[i]->animDatas[loadAnimationData[i][j].animationType].modelType;
 			// アニメションステート生成
 			switch (setModelType)
 			{
-			case MODEL_TYPE::NONE:
+			case ANIMATION_TYPE::NONE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateNoneAnimation* statenoneAnimation = new StateNoneAnimation();
@@ -176,7 +176,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::MV1_MODEL:
+			case ANIMATION_TYPE::MV1_MODEL:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: 外部から固定するフレームの名前を取得できるようにする
@@ -186,7 +186,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::MV1_MODEL_MOVE:
+			case ANIMATION_TYPE::MV1_MODEL_MOVE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					// HACK: 仮設定
@@ -196,7 +196,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::MV1_MODEL_ONLY:
+			case ANIMATION_TYPE::MV1_MODEL_ONLY:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateMVOneOnlyAnimation* stateMVOneOnlyAnimation = new StateMVOneOnlyAnimation(modelBases[i]->GetHandle());
@@ -205,7 +205,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::EFFECT:
+			case ANIMATION_TYPE::EFFECT:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateEffectAnimation* stateEffectAnimation = new StateEffectAnimation(modelBases[i]->GetHandlePointer());
@@ -214,7 +214,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::GRAPH:
+			case ANIMATION_TYPE::GRAPH:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateGraphAnimation* stateGraphAnimation = new StateGraphAnimation();
@@ -223,7 +223,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::MOVIE:
+			case ANIMATION_TYPE::MOVIE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateMovieAnimation* stateMovieAnimation = new StateMovieAnimation();
@@ -232,7 +232,7 @@ FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMAT
 				}
 				break;
 
-			case MODEL_TYPE::FADE:
+			case ANIMATION_TYPE::FADE:
 				if (setStateMap.find(setModelType) == setStateMap.end())
 				{
 					StateFadeGraphAnimation* stateFadeGraphAnimation = new StateFadeGraphAnimation();
@@ -265,7 +265,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 	{
 		switch (loadAnimationData[i].modelType)
 		{
-		case MODEL_TYPE::NONE:
+		case ANIMATION_TYPE::NONE:
 			animationData.number = -1;
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
@@ -274,7 +274,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 
-		case MODEL_TYPE::MV1_MODEL:
+		case ANIMATION_TYPE::MV1_MODEL:
 			// アニメション添え字設定
 			animationData.number = loadAnimationData[i].animationIndex;
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
@@ -284,8 +284,8 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 
-		case MODEL_TYPE::MV1_MODEL_MOVE:
-		case MODEL_TYPE::MV1_MODEL_ONLY:
+		case ANIMATION_TYPE::MV1_MODEL_MOVE:
+		case ANIMATION_TYPE::MV1_MODEL_ONLY:
 			// アニメション読み込み
 			animationData.number = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(loadAnimationData[i].animationPath);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
@@ -295,7 +295,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 			break;
 
-		case MODEL_TYPE::EFFECT:
+		case ANIMATION_TYPE::EFFECT:
 			// エフェクトリソース取得
 			animationData.number = Master::mpResourceManager->GetEffectResource()->GetResourceHandle(loadAnimationData[i].animationPath, &loadAnimationData[i].size);
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
@@ -305,8 +305,8 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;		
 			break;
 
-		case MODEL_TYPE::GRAPH:
-		case MODEL_TYPE::MOVIE:
+		case ANIMATION_TYPE::GRAPH:
+		case ANIMATION_TYPE::MOVIE:
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
 
@@ -314,7 +314,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;	
 			break;
 
-		case MODEL_TYPE::FADE:
+		case ANIMATION_TYPE::FADE:
 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 			animationData.modelType = loadAnimationData[i].modelType;
 
@@ -344,32 +344,32 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
-			loadAnimaData.modelType = MODEL_TYPE::MV1_MODEL;
+			loadAnimaData.modelType = ANIMATION_TYPE::MV1_MODEL;
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		loadAnimationData[0].animationLoopFlag = true;
-		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::WALK;
 		loadAnimationData[1].animationLoopFlag = true;
-		loadAnimationData[2].animationType = ANIMATION_TYPE::JUMP_IN;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::JUMP_IN;
 		loadAnimationData[2].animationLoopFlag = false;
-		loadAnimationData[3].animationType = ANIMATION_TYPE::JUMP;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::JUMP;
 		loadAnimationData[3].animationLoopFlag = false;
-		loadAnimationData[4].animationType = ANIMATION_TYPE::JUMP_OUT;
+		loadAnimationData[4].animationType = ANIMATION_MOVE_TYPE::JUMP_OUT;
 		loadAnimationData[4].animationLoopFlag = false;
-		loadAnimationData[5].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[5].animationType = ANIMATION_MOVE_TYPE::ATTACK;
 		loadAnimationData[5].animationLoopFlag = false;
 
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_IN, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_OUT, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1156);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::WALK, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_IN, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 1156);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -379,68 +379,68 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 		{
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
-			loadAnimaData.modelType = MODEL_TYPE::MV1_MODEL_ONLY;
+			loadAnimaData.modelType = ANIMATION_TYPE::MV1_MODEL_ONLY;
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		loadAnimationData[0].animationLoopFlag = true;
 		loadAnimationData[0].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1";
 
-		loadAnimationData[1].animationType = ANIMATION_TYPE::WALK;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::WALK;
 		loadAnimationData[1].animationLoopFlag = true;
 		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_open_Walk_Loop.mv1";
 
-		loadAnimationData[2].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_IN;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_IN;
 		loadAnimationData[2].animationLoopFlag = false;
 		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_open_GoToRoll.mv1";
 
-		loadAnimationData[3].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK;
 		loadAnimationData[3].animationLoopFlag = false;
 		loadAnimationData[3].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
-		loadAnimationData[3].modelType = MODEL_TYPE::MV1_MODEL_MOVE;
+		loadAnimationData[3].modelType = ANIMATION_TYPE::MV1_MODEL_MOVE;
 
-		loadAnimationData[4].animationType = ANIMATION_TYPE::SPCEIAL_ATTACK_OUT;
+		loadAnimationData[4].animationType = ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_OUT;
 		loadAnimationData[4].animationLoopFlag = false;
 		loadAnimationData[4].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
-		loadAnimationData[5].animationType = ANIMATION_TYPE::NORMAL_ATTACK_IN;
+		loadAnimationData[5].animationType = ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN;
 		loadAnimationData[5].animationLoopFlag = false;
 		loadAnimationData[5].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_close.mv1";
 
-		loadAnimationData[6].animationType = ANIMATION_TYPE::NORMAL_ATTACK_OUT;
+		loadAnimationData[6].animationType = ANIMATION_MOVE_TYPE::NORMAL_ATTACK_OUT;
 		loadAnimationData[6].animationLoopFlag = false;
 		loadAnimationData[6].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_closed_StopRoll.mv1";
 
-		loadAnimationData[7].animationType = ANIMATION_TYPE::JUMP_ATTACK_IN;
+		loadAnimationData[7].animationType = ANIMATION_MOVE_TYPE::JUMP_ATTACK_IN;
 		loadAnimationData[7].animationLoopFlag = false;
 		loadAnimationData[7].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_close.mv1";
 
-		loadAnimationData[8].animationType = ANIMATION_TYPE::JUMP_ATTACK;
+		loadAnimationData[8].animationType = ANIMATION_MOVE_TYPE::JUMP_ATTACK;
 		loadAnimationData[8].animationLoopFlag = false;
 		loadAnimationData[8].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
 
-		loadAnimationData[9].animationType = ANIMATION_TYPE::JUMP_ATTACK_OUT;
+		loadAnimationData[9].animationType = ANIMATION_MOVE_TYPE::JUMP_ATTACK_OUT;
 		loadAnimationData[9].animationLoopFlag = false;
 		loadAnimationData[9].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_cloed_Roll_Loop.mv1";
 
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::WALK, 0);
-			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN,  2040/*(60 / 0.5) * 17*/);
-			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
-			// animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_IN, 2040);
-			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK, 2040);
-			animation->SetAnimationTime(ANIMATION_TYPE::SPCEIAL_ATTACK_OUT, 1632);
-			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::WALK, 0);
+			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN,  2040/*(60 / 0.5) * 17*/);
+			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*回転数*/);
+			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_IN, 2040);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK, 2040);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_OUT, 1632);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK, 1088/*(48 / 0.5) * 17*/);
-			animation->SetAnimationTime(ANIMATION_TYPE::JUMP_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_ATTACK_IN, 1088/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_ATTACK, 1088/*(48 / 0.5) * 17*/);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -451,28 +451,28 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.modelType = ANIMATION_TYPE::NONE;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
-		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
-		loadAnimationData[1].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
+		loadAnimationData[1].modelType = ANIMATION_TYPE::EFFECT;
 		loadAnimationData[1].animationPath = ResourceManager::msResourceFile + "Effect/Laser.efkefc";
 		
-		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::ATTACK;
 		
-		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::ATTACK_OUT;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 2088);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 3650);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN, 2088);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 3650);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_OUT, 0);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -483,28 +483,28 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.modelType = ANIMATION_TYPE::NONE;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
-		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
 		
-		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::ATTACK;
 		
-		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
-		loadAnimationData[3].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::ATTACK_OUT;
+		loadAnimationData[3].modelType = ANIMATION_TYPE::EFFECT;
 		loadAnimationData[3].size = 50.0f;
 		loadAnimationData[3].animationPath = ResourceManager::msResourceFile + "Effect/StairBroken.efkefc";
 		
 		if (animation != nullptr)
 		{
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 1088);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 1632);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 17 * 50);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN, 1088);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 1632);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_OUT, 17 * 50);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -515,29 +515,29 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData = LoadAnimationData();
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::NONE;
+			loadAnimaData.modelType = ANIMATION_TYPE::NONE;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		// HACK: データマネージャーから取得できるようにする
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
-		loadAnimationData[1].animationType = ANIMATION_TYPE::ATTACK_IN;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
 		
-		loadAnimationData[2].animationType = ANIMATION_TYPE::ATTACK;
-		loadAnimationData[2].modelType = MODEL_TYPE::EFFECT;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::ATTACK;
+		loadAnimationData[2].modelType = ANIMATION_TYPE::EFFECT;
 		loadAnimationData[2].size = 10.0f;
 		loadAnimationData[2].animationPath = ResourceManager::msResourceFile + "Effect/drill.efkefc";
 		
-		loadAnimationData[3].animationType = ANIMATION_TYPE::ATTACK_OUT;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::ATTACK_OUT;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_IN, 2024);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK, 2040);
-			animation->SetAnimationTime(ANIMATION_TYPE::ATTACK_OUT, 1632);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN, 2024);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 2040);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_OUT, 1632);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -548,23 +548,23 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::GRAPH;
+			loadAnimaData.modelType = ANIMATION_TYPE::GRAPH;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
-		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
-		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
-		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::FADE_OUT;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::FADE_IN;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_IN, 0);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -575,23 +575,23 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::MOVIE;
+			loadAnimaData.modelType = ANIMATION_TYPE::MOVIE;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
-		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
-		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
-		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::FADE_OUT;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::FADE_IN;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_IN, 0);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -602,29 +602,29 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 			LoadAnimationData loadAnimaData;
 			loadAnimaData.animationIndex = i;
 			loadAnimaData.animationLoopFlag = false;
-			loadAnimaData.modelType = MODEL_TYPE::GRAPH;
+			loadAnimaData.modelType = ANIMATION_TYPE::GRAPH;
 			loadAnimaData.animationPath = "";
 			loadAnimationData.push_back(loadAnimaData);
 		}
 		
-		loadAnimationData[0].animationType = ANIMATION_TYPE::IDLE;
-		loadAnimationData[1].animationType = ANIMATION_TYPE::DISPLAY_MOVE;
-		loadAnimationData[2].animationType = ANIMATION_TYPE::FADE_OUT;
+		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
+		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::DISPLAY_MOVE;
+		loadAnimationData[2].animationType = ANIMATION_MOVE_TYPE::FADE_OUT;
 		loadAnimationData[2].blendMode = DX_BLENDMODE_ALPHA;
 		loadAnimationData[2].blendParameter = 11;
-		loadAnimationData[2].modelType = MODEL_TYPE::FADE;
-		loadAnimationData[3].animationType = ANIMATION_TYPE::FADE_IN;
+		loadAnimationData[2].modelType = ANIMATION_TYPE::FADE;
+		loadAnimationData[3].animationType = ANIMATION_MOVE_TYPE::FADE_IN;
 		loadAnimationData[3].blendMode = DX_BLENDMODE_ALPHA;
 		loadAnimationData[3].blendParameter = -11;
-		loadAnimationData[3].modelType = MODEL_TYPE::FADE;
+		loadAnimationData[3].modelType = ANIMATION_TYPE::FADE;
 		
 		if (animation != nullptr)
 		{
 			// TODO: データマネージャーから取得できる形式にしたい アニメションが終わったら次に行くのも追加したい
-			animation->SetAnimationTime(ANIMATION_TYPE::IDLE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::DISPLAY_MOVE, 0);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_OUT, 25 * 17);
-			animation->SetAnimationTime(ANIMATION_TYPE::FADE_IN, 25 * 17);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 25 * 17);
+			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_IN, 25 * 17);
 			animation->AddAnimationData(UtilFactorys::AnimationDataFactory(loadAnimationData));
 		}
 		break;
@@ -634,7 +634,7 @@ std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationB
 }
 
 // キャラクタ攻撃情報作成
-CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE factoryNumberModelType)
+CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType)
 {
 	// 初期化
 	CharacterAttackData characterAttackData;
@@ -655,14 +655,14 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 	switch (factoryNumberAttackMethod)
 	{
 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
-		modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
+		modelController->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
 		break;
 	
 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
 		switch (factoryNumberModelType)
 		{
-		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
-			modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
+			modelController->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::EFFECT, "", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 			break;
 		}
 		break;
@@ -670,8 +670,8 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK:
 		switch (factoryNumberModelType)
 		{
-		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
-			modelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
+		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
+			modelController->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::EFFECT, "", VGet(0.0f, 1.0f, 3.0f), UtilCalc::VZero, VScale(UtilCalc::VOne, 100.0f)));
 			break;
 		}
 		break;
@@ -691,7 +691,7 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
 		switch (factoryNumberModelType)
 		{
-		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
 		 	// 読み込み用アニメーションデータ設定
 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL));
 			// アニメーション有限状態マシン設定
@@ -703,7 +703,7 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK:
 		switch (factoryNumberModelType)
 		{
-		case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
 		 	// 読み込み用アニメーションデータ設定
 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK));
 			// アニメーション有限状態マシン設定
@@ -888,11 +888,11 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 }
 
 // モデル作成
-ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size, std::vector<DRAW_GRAPH_DATA>* drawData)
+ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size, std::vector<DRAW_GRAPH_DATA>* drawData)
 {
 	switch (type)
 	{
-	case MODEL_TYPE::POLYGON_INDEXED:
+	case ANIMATION_TYPE::POLYGON_INDEXED:
 	{
 		ModelPolygonIndexed* model = new ModelPolygonIndexed();
 		model->Initilize();
@@ -900,8 +900,8 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		return model;
 	}
 
-	case MODEL_TYPE::MV1_MODEL:
-	case MODEL_TYPE::MV1_MODEL_ONLY:
+	case ANIMATION_TYPE::MV1_MODEL:
+	case ANIMATION_TYPE::MV1_MODEL_ONLY:
 	{
 		ModelMV1* model = new ModelMV1();
 		model->Initilize();
@@ -910,7 +910,7 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		return model;
 	}
 
-	case MODEL_TYPE::EFFECT:
+	case ANIMATION_TYPE::EFFECT:
 	{
 		ModelEffect* model = new ModelEffect();
 		model->Initilize();
@@ -918,7 +918,7 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		return model;
 	}
 
-	case MODEL_TYPE::GRAPH:
+	case ANIMATION_TYPE::GRAPH:
 	{
 		ModelGraph* model = new ModelGraph();
 		model->Initilize();
@@ -927,7 +927,7 @@ ModelBase* UtilFactorys::ModelFactory(MODEL_TYPE type, std::string modelPath, VE
 		return model;
 	}
 
-	case MODEL_TYPE::MOVIE:
+	case ANIMATION_TYPE::MOVIE:
 	{
 		ModelMovie* model = new ModelMovie();
 		model->Initilize();
@@ -949,14 +949,14 @@ void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR an
 }
 
 // 攻撃データ作成
-std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber)
+std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber)
 {
 	std::map<ATTACK_METHOD_TYPE, AttackData>  attackDatas;
 	AttackData setData = AttackData();
 
 	switch (modelTypeFactoryNumber)
 	{
-	case CHARACTER_ATTACK_DATA_FACTORY__MODEL_TYPE::ROBOT:
+	case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
 		attackDatas[ATTACK_METHOD_TYPE::NORMAL].attackCharacter = nullptr;
 		attackDatas[ATTACK_METHOD_TYPE::SPCEIAL].attackCharacter = nullptr;
 		attackDatas[ATTACK_METHOD_TYPE::JUMP].attackCharacter = nullptr;
@@ -985,8 +985,8 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 }
 /*
 	// モデル設定
-	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
-	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
+	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
 	 {
 	 	AnimationBase* characterAnimation = character->GetAnimation();

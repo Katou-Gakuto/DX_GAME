@@ -42,7 +42,7 @@ bool UtilStateConditionFunction::IsAttackAnimationFinished(CharacterBase* charac
 {
     // 推測: ATTACKアニメーションタイプでない場合、攻撃終了とみなす
     // 根拠: StatePlayer.cppのStateCheckメソッドで使用されている
-    return !character->CheckAnimationType(ANIMATION_TYPE::ATTACK);
+    return !character->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK);
 }
 
 /// <summary>攻撃アニメーション終了時、移動キーが押されているか判定</summary>

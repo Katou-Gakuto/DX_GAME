@@ -16,11 +16,6 @@ ModelPolygonIndexed::~ModelPolygonIndexed()
 {
 }
 
-// ƒ‚ƒfƒ‹‰Šú‰»
-void ModelPolygonIndexed::ModelInitilize()
-{
-}
-
 // ƒ‚ƒfƒ‹I—¹
 void ModelPolygonIndexed::ModelFinalize()
 {

@@ -17,8 +17,6 @@ public:
     ~ModelPolygonIndexed();
 
 protected:
-	/*Œp³ƒ‚ƒfƒ‹‰Šú‰»*/
-	virtual void ModelInitilize() override;
 	/*Œp³ƒ‚ƒfƒ‹I—¹*/
 	virtual void ModelFinalize() override;
 

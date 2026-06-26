@@ -17,7 +17,7 @@ public:
 	: StateBase(stateChangeCriterias, stateNumber)
 	{
 	}
-	virtual ~IStateUI() = default;
+	~IStateUI() = default;
 
 	/// <summary>‰Šú‰»</summary>
 	virtual void Initilize(UIBase* ui){}

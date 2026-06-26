@@ -18,11 +18,6 @@ ModelMV1::~ModelMV1()
 {
 }
 
-// モデル初期化
-void ModelMV1::ModelInitilize()
-{
-}
-
 // モデル終了
 void ModelMV1::ModelFinalize()
 {
@@ -33,7 +28,7 @@ void ModelMV1::ModelFinalize()
 }
 
 // ポジション更新
-void ModelMV1::PositionUpdate()
+void ModelMV1::ModelUpdate()
 {
     VECTOR size     = mvSize;
     VECTOR angle    = mvAngle;

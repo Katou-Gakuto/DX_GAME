@@ -26,7 +26,7 @@
     <ClCompile Include="Imgui\imgui_draw.cpp" />
     <ClCompile Include="Imgui\imgui_tables.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Animation\AnimationBase.cpp" />
+    <ClCompile Include="Source\Animation\Animation.cpp" />
     <ClCompile Include="Source\DebugLogs\DebugLog.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Model\ModelBase.cpp" />
@@ -36,7 +36,7 @@
     <ClCompile Include="Source\Model\ModelMovie.cpp" />
     <ClCompile Include="Source\Model\ModelMV1.cpp" />
     <ClCompile Include="Source\Model\ModelPolygonIndexed.cpp" />
-    <ClCompile Include="Source\Model\ModelsController\ModelsControllerBase.cpp" />
+    <ClCompile Include="Source\Model\ModelsController.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_RobotJump.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_RobotSpceial.cpp" />
     <ClCompile Include="Source\Object\Attack\Attack_Shot.cpp" />
@@ -124,7 +124,7 @@
     <ClInclude Include="Imgui\imstb_rectpack.h" />
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
-    <ClInclude Include="Source\Animation\AnimationBase.h" />
+    <ClInclude Include="Source\Animation\Animation.h" />
     <ClInclude Include="Source\Container\HandleContainer.h" />
     <ClInclude Include="Source\DebugLogs\DebugLog.h" />
     <ClInclude Include="Source\Enum\AnimationEnum.h" />
@@ -147,7 +147,7 @@
     <ClInclude Include="Source\Model\ModelMovie.h" />
     <ClInclude Include="Source\Model\ModelMV1.h" />
     <ClInclude Include="Source\Model\ModelPolygonIndexed.h" />
-    <ClInclude Include="Source\Model\ModelsController\ModelsControllerBase.h" />
+    <ClInclude Include="Source\Model\ModelsController.h" />
     <ClInclude Include="Source\Object\Attack\Attack_RobotJump.h" />
     <ClInclude Include="Source\Object\Attack\Attack_RobotSpceial.h" />
     <ClInclude Include="Source\Object\Attack\Attack_Shot.h" />
@@ -366,14 +366,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -385,13 +385,13 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Model\ModelsController;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Imgui;$(SolutionDir)Imgui\backends;$(SolutionDir)プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Source;$(SolutionDir)Source\Animation;$(SolutionDir)Source\Container;$(SolutionDir)Source\Enum;$(SolutionDir)Source\Model;$(SolutionDir)Source\Object;$(SolutionDir)Source\Object\Attack;$(SolutionDir)Source\Object\Building;$(SolutionDir)Source\Object\Character;$(SolutionDir)Source\Object\UI;$(SolutionDir)Source\Singleton;$(SolutionDir)Source\Singleton\ResourceSingleton;$(SolutionDir)Source\State;$(SolutionDir)Source\State\Character;$(SolutionDir)Source\State\Fsm;$(SolutionDir)Source\State\StateBase;$(SolutionDir)Source\State\UI;$(SolutionDir)Source\Struct;$(SolutionDir)Source\TemplateTypeRestriction;$(SolutionDir)Source\Util;$(SolutionDir)XML_Excel</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

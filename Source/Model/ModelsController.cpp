@@ -17,11 +17,6 @@ ModelsControllerBase::~ModelsControllerBase()
 {
 }
 
-// 初期化
-void ModelsControllerBase::Initilize()
-{
-}
-
 // シーン最終初期化
 void ModelsControllerBase::SceneLastInitilize()
 {
@@ -40,13 +35,13 @@ void ModelsControllerBase::Finalize()
 }
 
 // ゲーム中初期化
-void ModelsControllerBase::GameInit(VECTOR pos, VECTOR angle, VECTOR size)
+void ModelsControllerBase::ModelGameInit(VECTOR pos, VECTOR angle, VECTOR size)
 {
     ModelsPositionSetting(pos, VGet(angle.x, angle.y - DX_PI_F, angle.z), size);
 
     for (int i = 0; i < mpModelList.size(); i++)
     {
-        mpModelList[i]->GameInit();
+        mpModelList[i]->ModelGameInit();
     }
 }
 
@@ -70,7 +65,7 @@ void ModelsControllerBase::UpdateModels()
 {
     for (int i = 0; i < mpModelList.size(); i++)
     {
-        mpModelList[i]->PositionUpdate();
+        mpModelList[i]->ModelUpdate();
     }
 }
 

@@ -50,7 +50,7 @@ void UI_Title::UIInitilize()
         setDrawDatas.push_back(drawData);
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::MOVIE);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});
     }
@@ -67,7 +67,7 @@ void UI_Title::UIInitilize()
             drawData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/TitleString.png");
             setDrawDatas.push_back(drawData);
             // モデル追加
-            AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+            AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
             // アニメーション設定
             AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::START_TITLE_UI_STATE, (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
             
@@ -122,7 +122,7 @@ void UI_Title::UIInitilize()
         }
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
         setDrawDatas.clear();
@@ -136,7 +136,7 @@ void UI_Title::UIInitilize()
         setDrawDatas.push_back(drawData);
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
         setDrawDatas.clear();
@@ -174,7 +174,7 @@ void UI_Title::UIInitilize()
     }
 
 	// // モデル設定
-    // mpUIModelController->AddModel(UtilFactorys::ModelFactory(MODEL_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &setDrawDatas));
+    // mpUIModelController->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MOVIE, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &setDrawDatas));
 	// // アニメション設定
 	//  {
 	//  	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;

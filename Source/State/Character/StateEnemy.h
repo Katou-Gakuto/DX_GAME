@@ -101,9 +101,6 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
-
 	/*更新*/
 	void Update(CharacterBase* character) override;
 
@@ -112,9 +109,6 @@ public:
 
 	/*描画*/
 	void Draw(CharacterBase* character) override;
-
-	/*死亡*/
-	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
@@ -134,9 +128,6 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
-
 	/*更新*/
 	void Update(CharacterBase* character) override;
 
@@ -145,9 +136,6 @@ public:
 
 	/*描画*/
 	void Draw(CharacterBase* character) override;
-
-	/*死亡*/
-	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
@@ -174,9 +162,6 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
-
 	/*更新*/
 	void Update(CharacterBase* character) override;
 
@@ -185,9 +170,6 @@ public:
 
 	/*描画*/
 	void Draw(CharacterBase* character) override;
-
-	/*死亡*/
-	void Death(CharacterBase* character) override;
 };
 
 /*----------*/
@@ -207,9 +189,6 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
-
 	/*更新*/
 	void Update(CharacterBase* character) override;
 
@@ -218,9 +197,6 @@ public:
 
 	/*描画*/
 	void Draw(CharacterBase* character) override;
-
-	/*死亡*/
-	void Death(CharacterBase* character) override;
 };
 
 /*------------------------*/
@@ -244,9 +220,6 @@ public:
 	/*この状態を出る時の処理*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	/*ステート変更確認*/
-	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
-
 	/*更新*/
 	virtual void Update(CharacterBase* character) override;
 
@@ -255,9 +228,6 @@ public:
 
 	/*描画*/
 	void Draw(CharacterBase* character) override;
-
-	/*死亡*/
-	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------*/

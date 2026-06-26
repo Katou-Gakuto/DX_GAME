@@ -396,7 +396,7 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 	
 	for(int i = 0; i < ui->GetDrawModels().size(); i++)
 	{
-		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+		ui->GetAnimation(i)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
 	}
 
 	//printfDx("テロップ：選択　Enter\n");
@@ -409,7 +409,7 @@ void SelectTitleUIState::OnExit(UIBase* ui)
 
 	for(int i = 0; i < ui->GetDrawModels().size(); i++)
 	{
-		ui->GetAnimation(i)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+		ui->GetAnimation(i)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
 	}
 }
 

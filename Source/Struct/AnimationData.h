@@ -16,13 +16,13 @@ struct LoadAnimationData
 {
     std::string animationPath;  // アニメーションファイル座標
 
-    ANIMATION_TYPE animationType;   // アニメーション種類
+    ANIMATION_MOVE_TYPE animationType;   // アニメーション種類
 
     int animationIndex; // アニメーション添え字
 
     bool animationLoopFlag;  // アニメーションループフラグ
 
-    MODEL_TYPE modelType;   // モデル種類
+    ANIMATION_TYPE modelType;   // モデル種類
 
     int blendMode;      // ブレンドモード（画像用）
     int blendParameter; // ブレンドパラメーター（画像用)
@@ -33,17 +33,16 @@ struct LoadAnimationData
 /*----------*/
 /*【アニメーション一つ分の情報】
 /*----------*/
-
 struct OneAnimationData
 {
     /*-------------------------------------------------- 3Dモデルアニメーション情報 --------------------------------------------------*/
-    ANIMATION_TYPE preAnimationType = ANIMATION_TYPE::NONE;    // 一つ前のアニメーション種類
+    ANIMATION_MOVE_TYPE preAnimationType = ANIMATION_MOVE_TYPE::NONE;    // 一つ前のアニメーション種類
 
     int number = 0;   // モデルナンバー
 
     bool loopFlag = false;  // ループフラグ
 
-    MODEL_TYPE modelType = MODEL_TYPE::NONE;    // モデル種類
+    ANIMATION_TYPE modelType = ANIMATION_TYPE::NONE;    // モデル種類
 
     float animationCount = 0.0f;   // アニメーションカウント
 
@@ -59,36 +58,36 @@ struct OneAnimationData
     DOT_WEEN_DATA dotWeenData;  // DotWeen情報
 };
 
-/*----------*/
-/*【アニメーションの情報】
-/*----------*/
-struct AnimationDatas
-{
-    std::map<ANIMATION_TYPE, OneAnimationData> animDatas;
-};
+// /*----------*/
+// /*【アニメーションの情報】
+// /*----------*/
+// struct AnimationDatas
+// {
+//     std::map<ANIMATION_MOVE_TYPE, OneAnimationData> animDatas;
+// };
 
-/*----------*/
-/*【アニメーションステート生成情報】
-/*----------*/
-struct ANIMATION_STATE_INFO
-{
-    int MyKey;    // 自身のキーを返す
-    ANIMATION_TYPE AnimationType;   // アニメーションの種類
+// /*----------*/
+// /*【アニメーションステート生成情報】
+// /*----------*/
+// struct ANIMATION_STATE_INFO
+// {
+//     int MyKey;    // 自身のキーを返す
+//     ANIMATION_MOVE_TYPE AnimationType;   // アニメーションの種類
 
-    IStateAnimation* AnimationState;    // アニメーションステート
+//     IStateAnimation* AnimationState;    // アニメーションステート
 
-    int ReferenceNumber;    // 参照数
+//     int ReferenceNumber;    // 参照数
 
-    // アニメーション変更条件をenumclass化したものを保持
-    //std::vector<>
+//     // アニメーション変更条件をenumclass化したものを保持
+//     //std::vector<>
 
-    bool operator== (ANIMATION_STATE_INFO& src)
-    {
-        if (this->AnimationType == src.AnimationType)
-        {
-            return true;
-        }
+//     bool operator== (ANIMATION_STATE_INFO& src)
+//     {
+//         if (this->AnimationType == src.AnimationType)
+//         {
+//             return true;
+//         }
 
-        return false;
-    }
-};
+//         return false;
+//     }
+// };

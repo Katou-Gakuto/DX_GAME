@@ -6,7 +6,7 @@
 
 #include "Master.h"
 
-#include "AnimationBase.h"
+#include "Animation.h"
 #include "AttackManager.h"
 #include "DataManager.h"
 #include "DrawManager.h"
@@ -14,7 +14,7 @@
 #include "FSMCharacter.h"
 #include "FSMUI.h"
 #include "GameManager.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "ResourceGraph.h"
@@ -403,7 +403,7 @@ void CharacterBase::TemplateActionProcess()
 
 			mvAngle = UtilCalc::VMoveVecToAngle(mvVec, mvAngle);
 
-			SetAnimation(ANIMATION_TYPE::WALK);
+			SetAnimation(ANIMATION_MOVE_TYPE::WALK);
 		}
 
 		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::HP_ZERO))
@@ -455,7 +455,7 @@ void CharacterBase::SetFSM(FSMCharacter* fsm)
 }
 
 // アニメーション設定
-void CharacterBase::SetAnimation(ANIMATION_TYPE animationType)
+void CharacterBase::SetAnimation(ANIMATION_MOVE_TYPE animationType)
 {
 	mpAnimation->SetAnimationType(animationType);
 }
@@ -875,7 +875,7 @@ void UIBase::SetMovieCount(int count)
 	SetHandleCount(count, &mnMovieCount, &mnMovieHandles);
 }
 // アニメーション設定
-void UIBase::SetAnimationType(ANIMATION_TYPE aniamtionType)
+void UIBase::SetAnimationType(ANIMATION_MOVE_TYPE aniamtionType)
 {
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{
@@ -932,7 +932,7 @@ void UIBase::DeleteUINumber()
 }
 
 // モデル追加
-void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType)
+void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, ANIMATION_TYPE modelType)
 {
 	if (mstUIDrawModels.size() <= mnUIModelControllerCount)
 	{

@@ -105,12 +105,12 @@ void UI_StageStart::UIInitilize()
         }
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::GRAPH);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
 
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { });
     }
-	GetAnimation(0)->SetAnimationType(ANIMATION_TYPE::FADE_OUT);
+	GetAnimation(0)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
 }
 
 // UIシーン最終初期化
@@ -207,7 +207,7 @@ void UI_StageStart::UIDraw()
 // 選択決定時処理
 void UI_StageStart::DecisionProcess()
 {
-	GetAnimation(0)->SetAnimationType(ANIMATION_TYPE::FADE_IN);
+	GetAnimation(0)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
 	mbFadeInFlag = true;
 }
 

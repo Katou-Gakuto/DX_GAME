@@ -43,7 +43,7 @@ public:
 
 protected:
     /*ƒ‚ƒfƒ‹‰Šú‰»*/
-    void ModelInitilize() override;
+    void ModelInitilize();
     /*ƒ‚ƒfƒ‹I—¹*/
     void ModelFinalize() override;
 

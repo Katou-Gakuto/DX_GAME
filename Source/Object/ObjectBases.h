@@ -14,15 +14,16 @@
 
 #include "DxLib.h"
 
-#include "AnimationBase.h"
+#include "Animation.h"
 #include "KeyState.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
 
 enum class ATTACK_METHOD_TYPE;
 enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER;
-enum class MODEL_TYPE;
+enum class ANIMATION_TYPE;
+enum class ANIMATION_MOVE_TYPE;
 enum class SCENE;
 
 class AttackBase;
@@ -331,7 +332,7 @@ protected:
     FSMCharacter* mpFsm;
 
     // モデルベース
-    ModelsControllerBase* mpModelController;
+    ModelBase* mpModelBase;
 
     // アニメションベース
     AnimationBase* mpAnimation;
@@ -442,14 +443,14 @@ public:
     inline VECTOR GetAngle() const { return mvAngle; }
 
     /*サイズ取得*/
-    inline VECTOR GetSize() const { return mpModelController->GetModelSize(); }
+    inline VECTOR GetSize() const { return mpModelBase->GetSize(); }
 
     /*平均サイズ取得*/
-    inline float GetAverageSize() const { return (mpModelController->GetModelSize().x + mpModelController->GetModelSize().y + mpModelController->GetModelSize().z) / 3.0f; }
+    inline float GetAverageSize() const { return (mpModelBase->GetSize().x + mpModelBase->GetSize().y + mpModelBase->GetSize().z) / 3.0f; }
 
     /// <summary>モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
-    inline ModelsControllerBase* GetModelsController() { return mpModelController; }
+    inline ModelBase* GetModel() { return mpModelBase; }
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
@@ -458,7 +459,7 @@ public:
     
     /// <summary>攻撃用モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
-    inline ModelsControllerBase* GetAttackModelsController(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
+    inline ModelBase* GetAttackModel(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
 
     /// <summary>攻撃用アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
@@ -479,7 +480,7 @@ public:
     void SetFSM(FSMCharacter* fsm);
 
     /// <summary>アニメーション設定</summary>
-    void SetAnimation(ANIMATION_TYPE animationType);
+    void SetAnimation(ANIMATION_MOVE_TYPE animationType);
 
     /*ポジション設定*/
     inline void SetPos(const VECTOR& pos) { mvPosition = pos; }
@@ -618,7 +619,7 @@ protected:
     //fsm
 
     // モデルベース
-    ModelsControllerBase* mpModelController;
+    ModelBase* mpModelBase;
 
     // アニメションベース
     AnimationBase* mpAnimation;
@@ -691,7 +692,7 @@ public:
     inline void SetAttackPower(int power) { mnPower = power; }
 
     /// <summary>モデルコントローラー設定</summary>
-    inline void SetModelController(ModelsControllerBase* modelsController) { mpModelController = modelsController; }
+    inline void SetModelController(ModelBase* model) { mpModelBase = model; }
 
     /// <summary>アニメション設定</summary>
     inline void SetAnimation(AnimationBase* animation) { mpAnimation = animation; }
@@ -715,7 +716,7 @@ public:
     inline int GetAttackPower()const { return mnPower; }
 
     /// <summary>モデルコントローラー取得</summary>
-    inline ModelsControllerBase* GetModelsController() { return mpModelController; }
+    inline ModelBase* GetModel() { return mpModelBase; }
 
     /// <summary>アニメーション取得</summary>
     inline AnimationBase* GetAnimation() { return mpAnimation; }
@@ -774,7 +775,7 @@ enum class SELECT_NUMBER_FLAG_ENUM
 struct UIDrawModel// TODO: 一旦UIを表示させた後にこれに置き換える
 {
     // モデル
-    ModelsControllerBase* mpUIModelController;
+    ModelBase* mpUIModelController;
 
     // アニメション
     AnimationBase* mpAnimation;
@@ -910,7 +911,7 @@ public:
     void SetUIPositionData(int state, std::vector<std::map<int, VECTOR>> uiPositionData) { mmUIPositionData[state]= uiPositionData; }
 
     /// <summary>アニメーション設定</summary>
-    void SetAnimationType(ANIMATION_TYPE aniamtionType);
+    void SetAnimationType(ANIMATION_MOVE_TYPE aniamtionType);
 
     /// <summary>選択ナンバー変更種類設定</summary>
     inline void SetSelectNumberChangeType(SELECT_NUMBER_FLAG_ENUM type) {mstSelectNumberFlag.SetNumber(type, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE);}
@@ -958,7 +959,7 @@ public:
 
     /// <summary>モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
-    inline ModelsControllerBase* GetModelsController(int index) { return mstUIDrawModels[index].mpUIModelController; }
+    inline ModelBase* GetModel(int index) { return mstUIDrawModels[index].mpUIModelController; }
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
@@ -999,7 +1000,7 @@ protected:
     void DeleteUINumber();
 
     /*モデル追加*/
-    void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, MODEL_TYPE modelType);
+    void AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, ANIMATION_TYPE modelType);
     /*アニメーション設定*/
     void AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber);
 

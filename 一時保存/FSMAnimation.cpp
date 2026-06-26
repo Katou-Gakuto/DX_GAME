@@ -89,7 +89,7 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationDatas*>
 // }
 
 // // 次のステートが現在のステートと違うならステート変更処理をする
-// void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType)
+// void FSMAnimation::ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_MOVE_TYPE oldAnimationType)
 // {
 // 	AnimationDatas* animationDatas = animation->GetAnimationDatas()[animationStateIndex];
 
@@ -101,7 +101,7 @@ void FSMAnimation::Update(AnimationBase* animation, std::vector<AnimationDatas*>
 // }
 
 // // 現在のステート取得
-// IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType)
+// IStateAnimation* FSMAnimation::GetAnimationState(int index, AnimationBase* animation, ANIMATION_MOVE_TYPE animationType)
 // {
 // 	return mmAnimationStates[index][animation->GetAnimationDatas()[index]->animDatas[animationType].modelType];
 // }

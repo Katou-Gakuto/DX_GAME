@@ -12,7 +12,7 @@
 
 #include "AnimationBase.h"
 #include "ModelBase.h"
-#include "ModelsControllerBase.h"
+#include "ModelBase.h"
 #include "ResourceEffect.h"
 #include "ResourceManager.h"
 #include "Resource3DModel.h"

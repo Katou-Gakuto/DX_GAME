@@ -62,7 +62,7 @@ void UI_Result::UIInitilize()
         setDrawDatas[0].size = ResourceManager::mstDisplaySize.LeftUp_Ratio(TestSize[i]);
 
         // モデル追加
-        AddModelData(setDrawDatas, MODEL_TYPE::MOVIE);
+        AddModelData(setDrawDatas, ANIMATION_TYPE::MOVIE);
 
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE, {});

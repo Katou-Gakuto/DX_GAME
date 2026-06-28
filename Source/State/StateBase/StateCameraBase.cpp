@@ -33,6 +33,7 @@ void IStateCamera::CommonSetCamera(CameraData *cameraData)
 
 			// カメラ位置を反映する
 			SetCameraPos(cameraData->position, cameraData->targetPosition);
+			mnPreThreeDFlag = 1;
 		}
 		else
 		{
@@ -45,6 +46,7 @@ void IStateCamera::CommonSetCamera(CameraData *cameraData)
 			// Zバファに書き込む準備
 			SetUseZBufferFlag(FALSE);
 			SetWriteZBufferFlag(FALSE);
+			mnPreThreeDFlag = 0;
 		}
 	}
 	else if (cameraData->threeDFlag)

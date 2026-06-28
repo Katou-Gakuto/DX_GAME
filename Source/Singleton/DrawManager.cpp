@@ -223,6 +223,19 @@ void DrawManager::DrawModelHandle(int modelHandle)
 	MV1DrawModel(modelHandle);
 }
 
+
+// ƒ‚ƒfƒ‹•`‰æ(’¸“_)
+void DrawManager::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData)
+{
+    for (int i = 0; i < modelVertexData.size(); i++)
+    {
+		DrawIndexed(modelVertexData[i].vertex.data(), (int)modelVertexData[i].vertex.size(),
+                    &modelVertexData[i].index[0].v1,   (int)modelVertexData[i].index.size(),
+            		modelVertexData[i].textureHandle,
+            		modelVertexData[i].transFlag);
+    }
+}
+
 // ’¸“_î•ñ‚É‚æ‚é•`‰æ
 void DrawManager::DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag)
 {

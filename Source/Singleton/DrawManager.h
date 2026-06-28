@@ -72,6 +72,9 @@ public:
     
 	/// <summary>ƒ‚ƒfƒ‹•`‰æ</summary>
 	void DrawModelHandle(int modelHandle);
+    
+    /// <summary>ƒ‚ƒfƒ‹•`‰æ(’¸“_)</summary>
+    void ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData);
 	/// <summary>’¸“_î•ñ‚É‚æ‚é•`‰æ</summary>
 	void DrawIndexed(const VERTEX3D* VertexArray, int VertexNum, const unsigned short* IndexArray, int PolygonNum, int GrHandle, int TransFlag);
 	/// <summary>‰æ‘œ•`‰æ</summary>

@@ -79,14 +79,18 @@ public:
 	}
 
 	/*実行中状態をセットする*/
-	virtual void SetCurrentState(const subscript id, stateData* StateData)
+	virtual void SetCurrentState(const subscript id, stateData* StateData, stateData* preStateData = nullptr)
 	{
 
 		mPreState = mCurrentState;
 		mCurrentState = id;
 		if ((subscript)-1 != mPreState)
 		{
-			mmStateMap[mPreState]->OnExit(StateData, mCurrentState);
+			if (preStateData == nullptr)
+			{
+				preStateData = StateData;
+			}
+			mmStateMap[mPreState]->OnExit(preStateData, mCurrentState);
 		}
 		mmStateMap[mCurrentState]->OnEnter(StateData, mPreState);
 	}

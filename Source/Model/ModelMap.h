@@ -40,6 +40,9 @@ private:
 public:
     ModelMap();
     ~ModelMap();
+    
+    /// <summary>‰Šú‰»</summary>
+    void Initilize();
 
 protected:
     /*ƒ‚ƒfƒ‹‰Šú‰»*/

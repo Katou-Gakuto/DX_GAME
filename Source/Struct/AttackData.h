@@ -4,7 +4,7 @@
 
 class AnimationBase;
 class CharacterBase;
-class ModelsControllerBase;
+class ModelBase;
 
 // 攻撃情報設定用情報
 struct AttackData
@@ -23,7 +23,7 @@ struct AttackData
 // キャラクター攻撃情報
 struct CharacterAttackData
 {
-    ModelsControllerBase* modelController;  // モデルベース
+    ModelBase* modelBase;  // モデルベース
 
     AnimationBase* animation;   // アニメションベース
 

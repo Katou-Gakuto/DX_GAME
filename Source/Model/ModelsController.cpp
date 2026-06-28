@@ -2,29 +2,29 @@
 
 #include "FSM.h"
 #include "ModelBase.h"
-#include "ModelsControllerBase.h"
+#include "ModelsController.h"
 
-ModelsControllerBase::ModelsControllerBase()
+ModelsController::ModelsController()
 : mvModelPosition{0.0f, 0.0f, 0.0f}
 , mvModelAngle{0.0f, 0.0f, 0.0f}
-,mvModelSize{1.0f, 1.0f, 1.0f}
+, mvModelSize{1.0f, 1.0f, 1.0f}
 , mbModelDrawFlag(true)
 {
     mpModelList.clear();
 }
 
-ModelsControllerBase::~ModelsControllerBase()
+ModelsController::~ModelsController()
 {
 }
 
 // シーン最終初期化
-void ModelsControllerBase::SceneLastInitilize()
+void ModelsController::SceneLastInitilize()
 {
     UpdateModels();
 }
 
 // 終了
-void ModelsControllerBase::Finalize()
+void ModelsController::Finalize()
 {
     for (int i = 0; i < mpModelList.size(); i++)
     {
@@ -35,25 +35,25 @@ void ModelsControllerBase::Finalize()
 }
 
 // ゲーム中初期化
-void ModelsControllerBase::ModelGameInit(VECTOR pos, VECTOR angle, VECTOR size)
+void ModelsController::ModelGameInit(VECTOR pos, VECTOR angle, VECTOR size)
 {
     ModelsPositionSetting(pos, VGet(angle.x, angle.y - DX_PI_F, angle.z), size);
 
     for (int i = 0; i < mpModelList.size(); i++)
     {
-        mpModelList[i]->ModelGameInit();
+        mpModelList[i]->ModelGameInit(mvModelPosition, mvModelAngle, mvModelSize);
     }
 }
 
 // モデル追加
-void ModelsControllerBase::AddModel(ModelBase* model)
+void ModelsController::AddModel(ModelBase* model)
 {
     mpModelList.push_back(model);
-    model->SetModelsController(this);
+    //model->SetModelsController(this);
 }
 
 // モデル位置設定
-void ModelsControllerBase::ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size)
+void ModelsController::ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size)
 {
     mvModelPosition = position;
     mvModelAngle = VGet(angle.x, angle.y - DX_PI_F, angle.z);
@@ -61,16 +61,16 @@ void ModelsControllerBase::ModelsPositionSetting(VECTOR position, VECTOR angle, 
 }
 
 // モデル更新
-void ModelsControllerBase::UpdateModels()
+void ModelsController::UpdateModels()
 {
     for (int i = 0; i < mpModelList.size(); i++)
     {
-        mpModelList[i]->ModelUpdate();
+        mpModelList[i]->Update(mvModelPosition, mvModelAngle);
     }
 }
 
 // モデル描画
-void ModelsControllerBase::DrawModels()
+void ModelsController::DrawModels()
 {
     if (!mbModelDrawFlag)
     {

@@ -11,6 +11,13 @@ class UIBase;
 /*------------------------------*/
 
 namespace UtilStateConditionFunction {
+	/*キー状態のテンプレ*/
+	template<KEY_BOARD_WORD Key>
+	/// <summary>キーが押し始めたか判定</summary>
+	/// <param name="character">キャラクター</param>
+	/// <returns>テンプレートで指定したキーが押され始めたなら「true」</returns>
+	bool KeyDownStateCondition_KeyBoardWorad(CharacterBase* character);
+
 	/* プレイヤー状態遷移条件 */
 
 	/// <summary>移動キーが押されているか判定</summary>

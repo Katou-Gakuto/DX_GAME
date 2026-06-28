@@ -1,7 +1,12 @@
+#include <vector>
+
+#include "DrawData.h"
+
 #include "DxLib.h"
 
 #include "Master.h"
 
+#include "DrawManager.h"
 #include "ModelBase.h"
 #include "ModelPolygonIndexed.h"
 #include "ResourceGraph.h"
@@ -40,5 +45,5 @@ void ModelPolygonIndexed::ModelDraw()
         return;
     }
     
-    ModelDraw_Indexed(mstModelVertex);
+    Master::mpDrawManager->ModelDraw_Indexed(mstModelVertex);
 }

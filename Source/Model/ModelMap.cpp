@@ -1,10 +1,13 @@
 #include <string>
 
+#include "DrawData.h"
+
 #include "DxLib.h"
 
 #include "Master.h"
 
 #include "DataManager.h"
+#include "DrawManager.h"
 #include "ModelMap.h"
 #include "ResourceGraph.h"
 #include "ResourceManager.h"
@@ -21,10 +24,15 @@ ModelMap::~ModelMap()
 {
 }
 
+// ‰Šú‰»
+void ModelMap::Initilize()
+{
+    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Floor.png");
+}
+
 // ƒ‚ƒfƒ‹‰Šú‰»
 void ModelMap::ModelInitilize()
 {
-    mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Floor.png");
 }
 
 // ƒ‚ƒfƒ‹I—¹
@@ -48,11 +56,11 @@ void ModelMap::ModelDraw()
             switch (mstTileModelDatas[z][x].tileModelType)
             {
                 case TILE_MODEL_TYPE::HANDLE:
-                    ModelDraw_Handle(mstTileModelDatas[z][x].modelHandle);
+                    Master::mpDrawManager->DrawModelHandle(mstTileModelDatas[z][x].modelHandle);
                 break;
 
                 case TILE_MODEL_TYPE::INDEXED:
-                    ModelDraw_Indexed(mstTileModelDatas[z][x].modelVertex);
+                    Master::mpDrawManager->ModelDraw_Indexed(mstTileModelDatas[z][x].modelVertex);
                 break;
             }
         }

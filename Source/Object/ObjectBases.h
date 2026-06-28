@@ -459,7 +459,7 @@ public:
     
     /// <summary>攻撃用モデルコントローラー取得</summary>
     /// <returns>モデルコントローラー</returns>
-    inline ModelBase* GetAttackModel(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelController; }
+    inline ModelBase* GetAttackModel(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelBase; }
 
     /// <summary>攻撃用アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
@@ -490,6 +490,9 @@ public:
     inline void SetVec(const VECTOR& vec) { mvVec = vec; }
     /*方向設定*/
     inline void SetAngle(const VECTOR& angle) { mvAngle = angle; }
+
+    /// <summary>モデル設定</summary>
+    inline void SetModel(ModelBase* model) { mpModelBase = model; }
     
     /// <summary>ステート用描画情報設定</summary>
     inline void SetStateDrawData(std::vector<DRAW_DATA> drawDatas) { mstStateDrawData = drawDatas; }
@@ -691,8 +694,8 @@ public:
     /*攻撃力設定*/
     inline void SetAttackPower(int power) { mnPower = power; }
 
-    /// <summary>モデルコントローラー設定</summary>
-    inline void SetModelController(ModelBase* model) { mpModelBase = model; }
+    /// <summary>モデル設定</summary>
+    inline void SetModel(ModelBase* model) { mpModelBase = model; }
 
     /// <summary>アニメション設定</summary>
     inline void SetAnimation(AnimationBase* animation) { mpAnimation = animation; }

@@ -88,12 +88,13 @@ void CameraManager::SetCameraMode(int cameraID)
 	{
 		mbNotSetCameraFlag = false;
 
-		int preThreeDFlag = -1;
-		if (mnNowID != -1)
-		{
-			preThreeDFlag = (mmCameraDatas[mnNowID].threeDFlag ? 1 : 0);
-		}
+		// int preThreeDFlag = -1;
+		// if (mnNowID != -1)
+		// {
+		// 	preThreeDFlag = (mmCameraDatas[mnNowID].threeDFlag ? 1 : 0);
+		// }
+		int preID = mnNowID;
 		mnNowID = cameraID;
-		mpFsm->SetCurrentState(this, preThreeDFlag);
+		mpFsm->SetCurrentState(mmCameraDatas[mnNowID].cameraMode, &mmCameraDatas[mnNowID], &mmCameraDatas[preID]);
 	}
 }

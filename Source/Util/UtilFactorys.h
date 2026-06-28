@@ -12,8 +12,10 @@
 
 enum class ANIMATION_TYPE;
 
+class Animation;
 class CameraManager;
 class CharacterBase;
+class FSMAnimation;
 class FSMCamera;
 class FSMCharacter;
 class FSMScene;
@@ -102,7 +104,7 @@ namespace UtilFactorys
 	/// <param name="animationData">アニメーション情報</param>
 	/// <param name="modelBases">モデル</param>
 	/// <returns>有限状態マシン</returns>
-	FSMAnimation* FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
+	FSMAnimation* FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
 
 	/// <summary>アニメーションデータ作成</summary>
 	/// <param name="type">モデル種類</param>

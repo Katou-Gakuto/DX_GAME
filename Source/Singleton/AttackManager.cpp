@@ -5,6 +5,7 @@
 
 #include "Master.h"
 
+#include "Animation.h"
 #include "AttackManager.h"
 #include "Attack_RobotJump.h"
 #include "Attack_RobotSpceial.h"
@@ -81,9 +82,9 @@ AttackBase* AttackManager::StartAttack(int attackDataNumber, ATTACK_METHOD_TYPE 
 				attack->SetAttackNumber(attackDataNumber);
 
 				// モデル設定
-				attack->SetModelController(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModelsController(attackMethodType));
+				attack->SetModel(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackModel(attackMethodType));
 				attack->SetAnimation(mstAttackDatas[attackDataNumber].attackCharacter->GetAttackAnimation(attackMethodType));
-				attack->GetModelsController()->ModelGameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
+				attack->GetModel()->ModelGameInit(mstAttackDatas[attackDataNumber].attackCharacter->GetPos(), mstAttackDatas[attackDataNumber].attackCharacter->GetAngle(), mstAttackDatas[attackDataNumber].attackCharacter->GetSize());
 				attack->GetAnimation()->Initilize();
 
 				// FIXME: なぜかヌルポインターが出た　作って試していた時に出たけど最近は出てない作ってない物がある想定で作られた結果だと予測される

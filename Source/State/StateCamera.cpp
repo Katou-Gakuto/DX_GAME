@@ -1,4 +1,4 @@
-#include "CameraData.h"
+#include "cameraData.h"
 
 #include "Master.h"
 
@@ -24,26 +24,26 @@ StateFixedCamera::StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
 void StateFixedCamera::OnEnter(CameraData* cameraData, CAMERA_MODE preMode)
 {
-	CommonSetCamera(cameraData, preThreeDFlag);
+	CommonSetCamera(cameraData);
 }
 
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
-void StateFixedCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
+void StateFixedCamera::OnExit(CameraData* cameraData, CAMERA_MODE newMode)
 {
 }
 
 // ‰Šú‰»
-void StateFixedCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
+void StateFixedCamera::Initilize(CameraData* cameraData)
 {
 }
 
 // XV
-void StateFixedCamera::Update(CameraManager* cameraManager, CameraData cameraData)
+void StateFixedCamera::Update(CameraData* cameraData)
 {
 }
 
 // •`‰æ
-void StateFixedCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
+void StateFixedCamera::Draw(CameraData* cameraData)
 {
 }
 
@@ -58,53 +58,53 @@ StateMoveCamera::StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_M
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
-void StateMoveCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
+void StateMoveCamera::OnEnter(CameraData* cameraData, CAMERA_MODE preMode)
 {
-	CommonSetCamera(cameraData, preThreeDFlag);
+	CommonSetCamera(cameraData);
 
-	cameraData.prePosition = VSub(cameraData.position, cameraData.moveDistance);
+	cameraData->prePosition = VSub(cameraData->position, cameraData->moveDistance);
 
-	cameraManager->SetCameraData(cameraData);
+	Master::mpGameManager->GetCameraManager()->SetCameraData(*cameraData);
 }
 
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
-void StateMoveCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
+void StateMoveCamera::OnExit(CameraData* cameraData, CAMERA_MODE newMode)
 {
 }
 
 // ‰Šú‰»
-void StateMoveCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
+void StateMoveCamera::Initilize(CameraData* cameraData)
 {
 }
 
 // XV
-void StateMoveCamera::Update(CameraManager* cameraManager, CameraData cameraData)
+void StateMoveCamera::Update(CameraData* cameraData)
 {
-	if (!cameraData.processFlag)
+	if (!cameraData->processFlag)
 	{
 		return;
 	}
 
-	if (UtilCalc::VDiff(cameraData.prePosition, cameraData.targetPosition) >= UtilCalc::VDiff(cameraData.position, cameraData.targetPosition))
+	if (UtilCalc::VDiff(cameraData->prePosition, cameraData->targetPosition) >= UtilCalc::VDiff(cameraData->position, cameraData->targetPosition))
 	{
-		cameraData.prePosition = cameraData.position;
-		cameraData.position = VAdd(cameraData.position, cameraData.moveDistance);
+		cameraData->prePosition = cameraData->position;
+		cameraData->position = VAdd(cameraData->position, cameraData->moveDistance);
 		
-		if (UtilCalc::VDiff(cameraData.prePosition, cameraData.targetPosition) < UtilCalc::VDiff(cameraData.position, cameraData.targetPosition))
+		if (UtilCalc::VDiff(cameraData->prePosition, cameraData->targetPosition) < UtilCalc::VDiff(cameraData->position, cameraData->targetPosition))
 		{
-			cameraData.processFlag = false;
-			cameraData.position = VSub(cameraData.position, cameraData.moveDistance);
+			cameraData->processFlag = false;
+			cameraData->position = VSub(cameraData->position, cameraData->moveDistance);
 		}
 	}
 
-	cameraManager->SetCameraData(cameraData);
+	Master::mpGameManager->GetCameraManager()->SetCameraData(*cameraData);
 }
 
 // •`‰æ
-void StateMoveCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
+void StateMoveCamera::Draw(CameraData* cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
-	SetCameraPos(cameraData.position, VAdd(cameraData.position, cameraData.plusPosition));
+	SetCameraPos(cameraData->position, VAdd(cameraData->position, cameraData->plusPosition));
 }
 
 /*----------------------------*/
@@ -117,34 +117,34 @@ StateCharacterCamera::StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DAT
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
-void StateCharacterCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
+void StateCharacterCamera::OnEnter(CameraData* cameraData, CAMERA_MODE preMode)
 {
-	CommonSetCamera(cameraData, preThreeDFlag);
+	CommonSetCamera(cameraData);
 }
 
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
-void StateCharacterCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
+void StateCharacterCamera::OnExit(CameraData* cameraData, CAMERA_MODE newMode)
 {
 }
 
 // ‰Šú‰»
-void StateCharacterCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
+void StateCharacterCamera::Initilize(CameraData* cameraData)
 {
 
 }
 
 // XV
-void StateCharacterCamera::Update(CameraManager* cameraManager, CameraData cameraData)
+void StateCharacterCamera::Update(CameraData* cameraData)
 {
 }
 
 // •`‰æ
-void StateCharacterCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
+void StateCharacterCamera::Draw(CameraData* cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
 	SetCameraPos(
-		VAdd(VAdd(VScale(UtilCalc::VSignInversion(cameraData.targetCharacter->GetVec()), cameraData.cameraDistance), cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
-		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
+		VAdd(VAdd(VScale(UtilCalc::VSignInversion(cameraData->targetCharacter->GetVec()), cameraData->cameraDistance), cameraData->targetCharacter->GetPos()), cameraData->plusPosition),
+		VAdd(cameraData->targetCharacter->GetPos(), cameraData->plusPosition)
 	);
 }
 
@@ -159,25 +159,25 @@ StatePlayerCamera::StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAME
 }
 
 // ‚±‚Ìó‘Ô‚É“ü‚Á‚½Žž‚Ìˆ—
-void StatePlayerCamera::OnEnter(CameraManager* cameraManager, CameraData cameraData, int& preThreeDFlag)
+void StatePlayerCamera::OnEnter(CameraData* cameraData, CAMERA_MODE preMode)
 {
-	CommonSetCamera(cameraData, preThreeDFlag);
+	CommonSetCamera(cameraData);
 }
 
 // ‚±‚Ìó‘Ô‚ðo‚éŽž‚Ìˆ—
-void StatePlayerCamera::OnExit(CameraManager* cameraManager, CameraData cameraData)
+void StatePlayerCamera::OnExit(CameraData* cameraData, CAMERA_MODE newMode)
 {
 }
 
 // ‰Šú‰»
-void StatePlayerCamera::Initilize(CameraManager* cameraManager, CameraData cameraData)
+void StatePlayerCamera::Initilize(CameraData* cameraData)
 {
 }
 
 // XV
-void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraData)
+void StatePlayerCamera::Update(CameraData* cameraData)
 {
-	if (!cameraData.processFlag)
+	if (!cameraData->processFlag)
 	{
 		return;
 	}
@@ -187,8 +187,8 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 		// ƒJƒƒ‰‚ÌÝ’u‚¾‚¯‚â‚é
 		if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::NODE))
 		{
-			cameraData.position = UtilCalc::VSphericalMovePos(cameraData.cameraDistance, UtilCalc::VRadChange(cameraData.angle));
-			cameraManager->SetCameraData(cameraData);
+			cameraData->position = UtilCalc::VSphericalMovePos(cameraData->cameraDistance, UtilCalc::VRadChange(cameraData->angle));
+			Master::mpGameManager->GetCameraManager()->SetCameraData(*cameraData);
 		}
 
 		return;
@@ -199,53 +199,53 @@ void StatePlayerCamera::Update(CameraManager* cameraManager, CameraData cameraDa
 	// ¶‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
-		cameraData.angle.y += CAMERA_ONE_FRAME_AMOUNT;
-		if (cameraData.angle.y >= UtilCalc::RadPi)
+		cameraData->angle.y += CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData->angle.y >= UtilCalc::RadPi)
 		{
-			cameraData.angle.y -= UtilCalc::RadPiTwo;
+			cameraData->angle.y -= UtilCalc::RadPiTwo;
 		}
 
 	}
 	// ‰E‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_RIGHT))
 	{
-		cameraData.angle.y -= CAMERA_ONE_FRAME_AMOUNT;
-		if (cameraData.angle.y <= (-UtilCalc::RadPi))
+		cameraData->angle.y -= CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData->angle.y <= (-UtilCalc::RadPi))
 		{
-			cameraData.angle.y += UtilCalc::RadPiTwo;
+			cameraData->angle.y += UtilCalc::RadPiTwo;
 		}
 	}
 
 	// ã‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_UP))
 	{
-		cameraData.angle.x += CAMERA_ONE_FRAME_AMOUNT;
-		if (cameraData.angle.x >= UP_MAX_ANGLE)
+		cameraData->angle.x += CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData->angle.x >= UP_MAX_ANGLE)
 		{
-			cameraData.angle.x = UP_MAX_ANGLE;
+			cameraData->angle.x = UP_MAX_ANGLE;
 		}
 	}
 	// ‰º‰ñ“]
 	if (keyState->GetWordKey_Board(KEY_BOARD_WORD::ARROW_DOWN))
 	{
-		cameraData.angle.x -= CAMERA_ONE_FRAME_AMOUNT;
-		if (cameraData.angle.x <= DOWN_MAX_ANGLE)
+		cameraData->angle.x -= CAMERA_ONE_FRAME_AMOUNT;
+		if (cameraData->angle.x <= DOWN_MAX_ANGLE)
 		{
-			cameraData.angle.x = DOWN_MAX_ANGLE;
+			cameraData->angle.x = DOWN_MAX_ANGLE;
 		}
 	}
 
-	cameraData.position = UtilCalc::VSphericalMovePos(cameraData.cameraDistance, UtilCalc::VRadChange(cameraData.angle));
+	cameraData->position = UtilCalc::VSphericalMovePos(cameraData->cameraDistance, UtilCalc::VRadChange(cameraData->angle));
 
-	cameraManager->SetCameraData(cameraData);
+	Master::mpGameManager->GetCameraManager()->SetCameraData(*cameraData);
 }
 
 // •`‰æ
-void StatePlayerCamera::Draw(CameraManager* cameraManager, CameraData cameraData)
+void StatePlayerCamera::Draw(CameraData* cameraData)
 {
 	// ƒJƒƒ‰ˆÊ’u‚ð”½‰f‚·‚é
 	SetCameraPos(
-		VAdd(VAdd(cameraData.position, cameraData.targetCharacter->GetPos()), cameraData.plusPosition),
-		VAdd(cameraData.targetCharacter->GetPos(), cameraData.plusPosition)
+		VAdd(VAdd(cameraData->position, cameraData->targetCharacter->GetPos()), cameraData->plusPosition),
+		VAdd(cameraData->targetCharacter->GetPos(), cameraData->plusPosition)
 	);
 }

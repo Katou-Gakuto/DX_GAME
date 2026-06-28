@@ -5,6 +5,7 @@
 
 #include "Master.h"
 
+#include "DrawManager.h"
 #include "ImguiManager.h"
 #include "ModelBase.h"
 #include "ModelGraph.h"
@@ -69,13 +70,13 @@ void ModelGraph::ModelUpdate()
     VECTOR angle    = mvAngle;
     VECTOR position = mvPosition;
 
-    // モデルコントローラーを反映する   
-    if (mpModelsController != nullptr)
-    {
-        size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
-        angle    = VAdd(mvAngle,    mpModelsController->GetModelAngle());
-        position = VAdd(mvPosition, mpModelsController->GetModelPosition());
-    }
+    // // モデルコントローラーを反映する   
+    // if (mpModelsController != nullptr)
+    // {
+    //     size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
+    //     angle    = VAdd(mvAngle,    mpModelsController->GetModelAngle());
+    //     position = VAdd(mvPosition, mpModelsController->GetModelPosition());
+    // }
 
     SetDrawData(position, angle, size);
 }
@@ -111,7 +112,7 @@ void ModelGraph::ModelDraw()
         Master::mpImguiManager->AddDrawImgui(imguiIntData);
 #endif
 
-        ModelDraw_Graph(mstDrawDatas[i]);
+        Master::mpDrawManager->DrawData_Graph(mstDrawDatas[i]);
     }
 
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);

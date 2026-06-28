@@ -12,7 +12,7 @@ public:
 	FSMScene();
 
 	/*実行中状態をセットする*/
-	void SetCurrentState(SCENE id, SceneManager* sceneManager) override;
+	void SetCurrentState(SCENE id, SceneManager* sceneManager, SceneManager* preSceneManager = nullptr) override;
 
 	/*更新*/
 	void Update(SceneManager* sceneManager);

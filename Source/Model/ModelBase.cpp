@@ -13,7 +13,7 @@ ModelBase::ModelBase()
 : mpAnimation(nullptr)
 , mvPosition(UtilCalc::VZero)
 , mvAngle(UtilCalc::VZero)
-, mvSize(UtilCalc::VZero)
+, mvSize(UtilCalc::VOne)
 , mbDrawFlag(true)
 {
 }

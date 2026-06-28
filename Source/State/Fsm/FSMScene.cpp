@@ -20,7 +20,7 @@ FSMScene::FSMScene()
 }
 
 // 実行中状態をセットする
-void FSMScene::SetCurrentState(SCENE id, SceneManager* sceneManager)
+void FSMScene::SetCurrentState(SCENE id, SceneManager* sceneManager, SceneManager* preSceneManager)
 {
 	mPreState = mCurrentState;
 	mCurrentState = id;

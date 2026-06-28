@@ -5,6 +5,7 @@
 
 #include "Master.h"
 
+#include "DrawManager.h"
 #include "ImguiManager.h"
 #include "ModelGraph.h"
 #include "ModelMovie.h"
@@ -68,12 +69,12 @@ void ModelMovie::ModelUpdate()
     VECTOR position = mvPosition;
 
     // モデルコントローラーを反映する   
-    if (mpModelsController != nullptr)
-    {
-        size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
-        angle    = VAdd(mvAngle,    mpModelsController->GetModelAngle());
-        position = VAdd(mvPosition, mpModelsController->GetModelPosition());
-    }
+    // if (mpModelsController != nullptr)
+    // {
+    //     size     = UtilCalc::VMultiply(mvSize,     mpModelsController->GetModelSize());
+    //     angle    = VAdd(mvAngle,    mpModelsController->GetModelAngle());
+    //     position = VAdd(mvPosition, mpModelsController->GetModelPosition());
+    // }
 
     SetDrawData(position, angle, size);
 
@@ -109,6 +110,6 @@ void ModelMovie::ModelDraw()
     
     for (int i = 0; i < mstDrawDatas.size(); i++)
     {
-        ModelDraw_Movie(mstDrawDatas[i]);
+        Master::mpDrawManager->DrawData_Graph(mstDrawDatas[i]);
     }
 }

@@ -26,8 +26,8 @@ private:
     bool mbModelDrawFlag;
 
 public:
-    ModelsControllerBase();
-    ~ModelsControllerBase();
+    ModelsController();
+    ~ModelsController();
 
     /// <summary>ƒV[ƒ“ÅI‰Šú‰»</summary>
     void SceneLastInitilize();

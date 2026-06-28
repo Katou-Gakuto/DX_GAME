@@ -43,7 +43,7 @@ void SceneManager::NextScene()
 {
 	Master::mpTimeManager->SetNewSceneTimeFlag(true);
 
-	mpFSMScene->GetStateMap()[UtilChange::SceneState(mePreScene)]->OnExit(this);
+	mpFSMScene->GetStateMap()[UtilChange::SceneState(mePreScene)]->OnExit(this, UtilChange::SceneState(meNextScene));
 	Master::mpGameManager->GetObjectManager()->DeleteSetScene(mePreScene);
 
 	// •`‰æî•ñíœ

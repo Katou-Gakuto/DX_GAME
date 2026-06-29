@@ -81,7 +81,6 @@ public:
 	/*実行中状態をセットする*/
 	virtual void SetCurrentState(const subscript id, stateData* StateData, stateData* preStateData = nullptr)
 	{
-
 		mPreState = mCurrentState;
 		mCurrentState = id;
 		if ((subscript)-1 != mPreState)

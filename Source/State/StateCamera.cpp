@@ -15,8 +15,8 @@
 /*--------------------*/
 /*【固定視点ステート】*/
 /*--------------------*/
-StateFixedCamera::StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-: IStateCamera(stateChangeCriterias, CAMERA_MODE::FIXED)
+StateFixedCamera::StateFixedCamera()
+: IStateCamera({}, CAMERA_MODE::FIXED)
 {
 	mStateNumber = CAMERA_MODE::FIXED;
 }
@@ -51,8 +51,8 @@ void StateFixedCamera::Draw(CameraData* cameraData)
 /*--------------------*/
 /*【移動視点ステート】*/
 /*--------------------*/
-StateMoveCamera::StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-: IStateCamera(stateChangeCriterias, CAMERA_MODE::MOVE)
+StateMoveCamera::StateMoveCamera()
+: IStateCamera({}, CAMERA_MODE::MOVE)
 {
 	mStateNumber = CAMERA_MODE::MOVE;
 }
@@ -110,8 +110,8 @@ void StateMoveCamera::Draw(CameraData* cameraData)
 /*----------------------------*/
 /*【キャラクター視点ステート】*/
 /*----------------------------*/
-StateCharacterCamera::StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-: IStateCamera(stateChangeCriterias, CAMERA_MODE::CHARACTER)
+StateCharacterCamera::StateCharacterCamera()
+: IStateCamera({}, CAMERA_MODE::CHARACTER)
 {
 	mStateNumber = CAMERA_MODE::CHARACTER;
 }
@@ -152,8 +152,8 @@ void StateCharacterCamera::Draw(CameraData* cameraData)
 /*--------------------------*/
 /*【プレイヤー視点ステート】*/
 /*--------------------------*/
-StatePlayerCamera::StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias)
-: IStateCamera(stateChangeCriterias, CAMERA_MODE::PLAYER)
+StatePlayerCamera::StatePlayerCamera()
+: IStateCamera({}, CAMERA_MODE::PLAYER)
 {
 	mStateNumber = CAMERA_MODE::PLAYER;
 }

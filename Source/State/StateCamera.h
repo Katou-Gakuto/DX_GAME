@@ -10,7 +10,7 @@ class StateFixedCamera : public IStateCamera
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StateFixedCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias);
+	StateFixedCamera();
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
@@ -34,7 +34,7 @@ class StateMoveCamera : public IStateCamera
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StateMoveCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias);
+	StateMoveCamera();
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
@@ -58,7 +58,7 @@ class StateCharacterCamera : public IStateCamera
 {
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StateCharacterCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias);
+	StateCharacterCamera();
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;
@@ -88,7 +88,7 @@ private:
 
 public:
 	// FIXME: コンストラクタでステート変更条件を渡せます
-	StatePlayerCamera(std::vector<STATE_CHANGE_CRITERIA_DATA<CAMERA_MODE, CameraData>> stateChangeCriterias);
+	StatePlayerCamera();
 
 	/*この状態に入った時の処理*/
 	void OnEnter(CameraData* cameraData, CAMERA_MODE preMode) override;

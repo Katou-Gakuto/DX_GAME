@@ -1,0 +1,16 @@
+#pragma once
+
+enum NUMBERS_ENUM
+{
+	ZERO = 0,
+	ONE,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	NUMBERS_ENUM_MAX,
+};

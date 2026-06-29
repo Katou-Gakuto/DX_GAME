@@ -201,6 +201,13 @@ void StateMVOneAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 /*アニメーションムーブ種類が同類なら「true」を返す*/
 bool StateMVOneAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::MV1_MODEL:
+        return true;
+    }
+
+    return false;
 }
 
 /*--------------------------------*/
@@ -247,6 +254,14 @@ void StateMVOneOnlyAnimation::AnimationAttach(STATE_ANEMATION_DATA* stateAnimati
 /*アニメーションムーブ種類が同類なら「true」を返す*/
 bool StateMVOneOnlyAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::MV1_MODEL_MOVE:
+    case ANIMATION_TYPE::MV1_MODEL_ONLY:
+        return true;
+    }
+
+    return false;
 }
 
 /*----------------------*/
@@ -298,6 +313,14 @@ void StateMVOneOperationAnimation::Update(STATE_ANEMATION_DATA* stateAnimationDa
 /*アニメーションムーブ種類が同類なら「true」を返す*/
 bool StateMVOneOperationAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::MV1_MODEL_MOVE:
+    case ANIMATION_TYPE::MV1_MODEL_ONLY:
+        return true;
+    }
+
+    return false;
 }
 
 /*--------------------*/
@@ -349,6 +372,12 @@ void StateEffectAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 /*アニメーションムーブ種類が同類なら「true」を返す*/
 bool StateEffectAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::EFFECT:
+        return true;
+    }
+
     return false;
 }
 
@@ -380,6 +409,12 @@ void StateGraphAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 
 bool StateGraphAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::GRAPH:
+        return true;
+    }
+
     return false;
 }
 
@@ -410,6 +445,13 @@ void StateMovieAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 
 bool StateMovieAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::MOVIE:
+        return true;
+    }
+
+    return false;
 }
 
 /*----------------------*/
@@ -478,6 +520,13 @@ void StateFadeGraphAnimation::FadeProcess(STATE_ANEMATION_DATA* stateAnimationDa
 /*アニメーションムーブ種類が同類なら「true」を返す*/
 bool StateFadeGraphAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::FADE:
+        return true;
+    }
+
+    return false;
 }
 
 /*-------------------*/
@@ -508,6 +557,12 @@ void StateDOTweenAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 // アニメーションムーブ種類が同類なら「true」を返す
 bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
+    switch (animationMoveType)
+    {
+    case ANIMATION_TYPE::DOT_WEEN:
+        return true;
+    }
+
     return false;
 }
 

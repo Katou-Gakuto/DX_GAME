@@ -1,8 +1,10 @@
 #pragma once
 
-// アニメーションムーブ種類
-enum class ANIMATION_MOVE_TYPE
+// アニメーション種類
+enum class ANIMATION_TYPE
 {
+    // アニメーションがどう動くかを定義する
+
     NONE = 0,   // 無し
     START,      // 開始
     END,        // 終了
@@ -36,10 +38,11 @@ enum class ANIMATION_MOVE_TYPE
     FADE_IN,    // フェードイン
 };
 
-// アニメーション種類
-enum class ANIMATION_TYPE
+// アニメーションモデル種類
+enum class MODEL_TYPE // TODO: モデル種類ではなくアニメーション処理種類にする
 {
     NONE = 0,   // 無し
+    // TODO: IDLE作る
     MV1_MODEL,  // MV1モデル
     MV1_MODEL_MOVE, // MV1モデル モデル操作
     MV1_MODEL_ONLY, // MV1モデルのみ　アニメーション無しモデル
@@ -52,5 +55,5 @@ enum class ANIMATION_TYPE
 
     FADE,   // フェード
 
-    DOT_WEEN,
+    TOD_WEEN,
 };

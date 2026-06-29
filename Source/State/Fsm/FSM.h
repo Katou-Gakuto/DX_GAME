@@ -15,7 +15,7 @@ enum class SCENE;
 
 struct DOT_WEEN_DATA;
 
-class AnimationBase;
+class Animation;
 class CameraManager;
 class CharacterBase;
 class SceneManager;

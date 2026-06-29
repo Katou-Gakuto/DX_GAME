@@ -30,13 +30,18 @@ void ModelMap::Initilize()
     mnGroundModelGraphHandle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/Floor.png");
 }
 
-// モデル初期化
-void ModelMap::ModelInitilize()
+// 継承モデル ゲーム初期化
+void ModelMap::ModelGameInit()
 {
 }
 
 // モデル終了
 void ModelMap::ModelFinalize()
+{
+}
+
+// 継承モデル 更新
+void ModelMap::ModelUpdate()
 {
 }
 

@@ -15,6 +15,7 @@ enum class END_FLAG_NUMBER
 	FILE_FLAG,	// ファイルフラグ
 	NO_DATA_FLAG,// データ無しフラグ
 	STATE_NULL_FUNCTION_FLAG,	// ステート関数ヌルポインタフラグ
+	ANIMATION_MISSING_FLAG,	// アニメーション不足フラグ
 
 	MAX_COUNT	// 最大値計測用
 };

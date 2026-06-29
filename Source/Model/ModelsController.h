@@ -33,7 +33,7 @@ public:
     void SceneLastInitilize();
 
     /// <summary>終了</summary>
-    void Finalize();
+    void ModelFinalize() override;
 
     /// <summary>ゲーム中初期化</summary>
     void ModelGameInit(VECTOR pos, VECTOR angle, VECTOR size);
@@ -43,7 +43,6 @@ public:
     void AddModel(ModelBase* model);
 
     /// <summary>モデル位置設定</summary>
-    /// <param name="useSetting">設定を使うかどうか</param>
     /// <param name="position">ポジション</param>
     /// <param name="angle">角度</param>
     /// <param name="size">大きさ</param>
@@ -51,12 +50,9 @@ public:
     void ModelsPositionSetting(VECTOR position, VECTOR angle) { ModelsPositionSetting(position, angle, mvModelSize); }
     void ModelsPositionSetting(VECTOR position){ ModelsPositionSetting(position, mvModelAngle, mvModelSize); }
     void ModelsPositionSetting(){ ModelsPositionSetting(mvModelPosition, mvModelAngle, mvModelSize); }
-
-    /// <summary>モデル更新</summary>
-    void UpdateModels();
     
-    /// <summary>モデル描画</summary>
-    void DrawModels();
+	/// <summary>描画</summary>
+	void ModelDraw() override;
 
     /*----------*/
     /*【取得・設定】
@@ -86,4 +82,13 @@ public:
 
     /// <summary>UIモデル描画フラグ設定</summary>
     inline void SetModelDrawFlag(bool flag) { mbModelDrawFlag = flag; }
+
+	/// <summary>モデル描画情報の設定</summary>
+	void SetDrawConfigData(DrawConfigData drawConfigData) override;
+
+protected:
+	/*継承モデル ゲーム初期化*/
+	void ModelGameInit() override;
+	/*継承モデル 更新*/
+	void ModelUpdate() override;
 };

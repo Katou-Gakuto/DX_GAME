@@ -230,10 +230,7 @@ void UI_Game::UIInitilize()
         DrawConfigData drawConfigData;
         drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
         drawConfigData.blendParameter = 0;
-        for (int i = 0; i < mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList().size(); i++)
-        {
-            mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList()[i]->SetDrawConfigData(drawConfigData);
-        }
+        mstUIDrawModels[mnUIModelControllerCount].mpUIModel->SetDrawConfigData(drawConfigData);
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, {});
     }
@@ -291,10 +288,10 @@ void UI_Game::DecisionProcess()
 }
 
 // 削除処理
-void UI_Game::CloceProcess()
+void UI_Game::CloseProcess()
 {
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }

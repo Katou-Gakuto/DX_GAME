@@ -3,6 +3,7 @@
 
 #include "GenericEnum.h"
 #include "DrawData.h"
+#include "StateData.h"
 #include "Status.h"
 
 #include "ObjectBases.h"
@@ -55,7 +56,7 @@ private:
 	std::vector<DRAW_DATA> mstDrawDatas;
 
 public:
-	StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, void>> stateChangeCriterias);
+	StartResultUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias);
 	~StartResultUIState() = default;
 
 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/

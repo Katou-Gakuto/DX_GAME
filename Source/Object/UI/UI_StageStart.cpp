@@ -110,7 +110,7 @@ void UI_StageStart::UIInitilize()
         // アニメーション設定
         AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { });
     }
-	GetAnimation(0)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
+	GetAnimation(0)->NextAnimationMoveSetting(ANIMATION_MOVE_TYPE::FADE_OUT);
 }
 
 // UIシーン最終初期化
@@ -189,7 +189,7 @@ void UI_StageStart::UIUpdate()
 	}
 	else if (mstSurvivalTime < Master::mpTimeManager->GetElapsedTime())
 	{
-		CloceProcess();
+		CloseProcess();
 	}
 
 }
@@ -207,12 +207,12 @@ void UI_StageStart::UIDraw()
 // 選択決定時処理
 void UI_StageStart::DecisionProcess()
 {
-	GetAnimation(0)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
+	GetAnimation(0)->NextAnimationMoveSetting(ANIMATION_MOVE_TYPE::FADE_IN);
 	mbFadeInFlag = true;
 }
 
 // 削除処理
-void UI_StageStart::CloceProcess()
+void UI_StageStart::CloseProcess()
 {
 	SetDeleteFlag(true);
 	Master::mpGameManager->GetCameraManager()->SetCameraMode(Master::mpGameManager->GetSceneManager()->GetSceneCameraID());

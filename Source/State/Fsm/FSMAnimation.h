@@ -25,6 +25,9 @@ public:
 	/// <summary>更新</summary>
 	void Update(STATE_ANEMATION_DATA* stateAnimationData);
 
+	/// <summary>次のアニメーションムーブ設定</summary>
+	void SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType);
+
 	/// <summary>現在のステートと同じ種類かを確認する</summary>
 	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSimilarAnimationType(animationType); }
 };
@@ -56,9 +59,9 @@ public:
 // 	}
 
 //     /// <summary>初期化</summary>
-//     void Initilize(AnimationBase* animation);
+//     void Initilize(Animation* animation);
 // 	/// <summary>終了</summary>
-// 	void Finalize(AnimationBase* animation);
+// 	void Finalize(Animation* animation);
 
 // 	// /*アニメーション状態達のサイズを増やす*/
 // 	// void IncreaseAnimationStateSize(int size);
@@ -67,7 +70,7 @@ public:
 // 	// void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
 // 	/// <summary>更新</summary>
-// 	void Update(AnimationBase* animation, std::vector<AnimationDatas*> animationDatas);
+// 	void Update(Animation* animation, std::vector<AnimationDatas*> animationDatas);
 
 // 	/// <summary>次のステート設定</summary>
 // 	// TODO: 構造体でアニメーションを設定出来るように変更する
@@ -78,11 +81,11 @@ public:
 	
 // // private:
 // // 	/*新しいステートを設定する*/
-// // 	void NewStateSetting(int animationIndex, AnimationBase* animation, MODEL_TYPE oldModelType);
+// // 	void NewStateSetting(int animationIndex, Animation* animation, MODEL_TYPE oldModelType);
 
 // // 	/*次のステートが現在のステートと違うならステート変更処理をする*/
-// // 	void ChangeState(int animationStateIndex, AnimationBase* animation, ANIMATION_TYPE oldAnimationType);
+// // 	void ChangeState(int animationStateIndex, Animation* animation, ANIMATION_TYPE oldAnimationType);
 
 // // 	/*現在のステート取得*/
-// // 	IStateAnimation* GetAnimationState(int index, AnimationBase* animation, ANIMATION_TYPE animationType);
+// // 	IStateAnimation* GetAnimationState(int index, Animation* animation, ANIMATION_TYPE animationType);
 // };

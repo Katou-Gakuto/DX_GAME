@@ -69,7 +69,7 @@ void UI_Title::UIInitilize()
             // モデル追加
             AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
             // アニメーション設定
-            AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::START_TITLE_UI_STATE, (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+            AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)STATE_TYPE_UI::START_TITLE_UI_STATE, (int)STATE_TYPE_UI::SELECT_TITLE_UI_STATE });
             
             setDrawDatas.clear();
         }
@@ -124,7 +124,7 @@ void UI_Title::UIInitilize()
         // モデル追加
         AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
         // アニメーション設定
-        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE, { (int)STATE_TYPE_UI::SELECT_TITLE_UI_STATE });
         setDrawDatas.clear();
     }
 
@@ -138,7 +138,7 @@ void UI_Title::UIInitilize()
         // モデル追加
         AddModelData(setDrawDatas, ANIMATION_TYPE::GRAPH);
         // アニメーション設定
-        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE });
+        AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE, { (int)STATE_TYPE_UI::SELECT_TITLE_UI_STATE });
         setDrawDatas.clear();
 
         setUIPosData.resize(mstUIDrawModels.size()/*mpUIModelController->GetModelList().size()*/);   // モデル数分確保
@@ -152,18 +152,18 @@ void UI_Title::UIInitilize()
         setUIPosData[mstUIDrawModels.size() - 1][3] = VGet(0.37f, 0.196f, 0.0f);
         std::vector<std::map<int, VECTOR>> nullUIPosData;
         nullUIPosData.clear();
-        for (int i = 0; i < (int)TITLE_UI_STATE::MAX; i++)
+        for (int i = 0; i < UI_Title::TITLE_STATE_MAX; i++)
         {
-            switch ((TITLE_UI_STATE)i)
+            switch (static_cast<STATE_TYPE_UI>(i + static_cast<int>(STATE_TYPE_UI::START_TITLE_UI_STATE)))
             {
-            case TITLE_UI_STATE::SELECT_TITLE_UI_STATE:
-            case TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE:
-            case TITLE_UI_STATE::SETTING_TITLE_UI_STATE:
-            case TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE:
-            case TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE:
-            case TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE:
-            case TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE:
-            case TITLE_UI_STATE::VOLUME_TITLE_UI_STATE:
+            case STATE_TYPE_UI::SELECT_TITLE_UI_STATE:
+            case STATE_TYPE_UI::DATA_SELECT_TITLE_UI_STATE:
+            case STATE_TYPE_UI::SETTING_TITLE_UI_STATE:
+            case STATE_TYPE_UI::CHARACTER_SELECT_TITLE_UI_STATE:
+            case STATE_TYPE_UI::PLAYER_NAME_TITLE_UI_STATE:
+            case STATE_TYPE_UI::INPUT_CHECK_TITLE_UI_STATE:
+            case STATE_TYPE_UI::SCREEN_SIZE_TITLE_UI_STATE:
+            case STATE_TYPE_UI::VOLUME_TITLE_UI_STATE:
                 mmUIPositionData[i] = setUIPosData;
                 break;
             default:
@@ -247,10 +247,10 @@ void UI_Title::DecisionProcess()
 }
 
 // 削除処理
-void UI_Title::CloceProcess()
+void UI_Title::CloseProcess()
 {
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }

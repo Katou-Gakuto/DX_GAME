@@ -562,16 +562,16 @@ ConfigSelectState::ConfigSelectState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
     }
 }
 
-void ConfigSelectState::OnEnter(UIBase* ui)
+void ConfigSelectState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
     ConfigOnEnter(ui);
 
-    ui->SetSelectMaxNumber(CONFIG_UI_STATE::CONFIG_UI_STATE_MAX);
+    ui->SetSelectMaxNumber(CONFIG_UI_STATE_MAX);
     ui->SetSelectNumber(mnPreSelectNumber);
     ui->SetSelectBoundaryValue(1);
  
-    int preStateNumber = ui->GetFsm()->GetCurrentState();
-    if (preStateNumber < mStateNumber)
+    int preStateNumber = (int)preState;
+    if ((preStateNumber < (int)STATE_TYPE_UI::SELECT_CONFIG_STATE) || ((int)STATE_TYPE_UI::CAMERA_CONFIG_STATE < preStateNumber))
     {
         mnPreConfigExceptStateNumber = preStateNumber;
         ui->SetSelectNumber(0);
@@ -579,7 +579,7 @@ void ConfigSelectState::OnEnter(UIBase* ui)
 
     AllConfigDrawSetting(ui, true);
 
-    for (int i = 0; i < CONFIG_UI_STATE::CONFIG_UI_STATE_MAX; i++)
+    for (int i = 0; i < CONFIG_UI_STATE_MAX; i++)
     {
         if (i == ui->GetSelectNumber())
         {
@@ -598,7 +598,7 @@ void ConfigSelectState::OnEnter(UIBase* ui)
     }
 }
 
-void ConfigSelectState::OnExit(UIBase* ui)
+void ConfigSelectState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
     for (int i = 0; i < mstAllConfigVariables.size(); i++)
     {
@@ -611,7 +611,7 @@ void ConfigSelectState::OnExit(UIBase* ui)
     ConfigOnExit(ui);
 }
 
-STATE_TYPE_UI ConfigSelectState::Update(UIBase* ui)
+void ConfigSelectState::Update(UIBase* ui)
 {
     ui->LeftRightSelectProcess();
 
@@ -620,6 +620,7 @@ STATE_TYPE_UI ConfigSelectState::Update(UIBase* ui)
 
     ui->DefaultDecision();
     ui->DefaultClose();
+    
     if (ui->CheckDown_Frame())
     {
         ui->Decision();
@@ -644,18 +645,17 @@ STATE_TYPE_UI ConfigSelectState::Update(UIBase* ui)
     //     mstDrawData[j].drawGraphData.size = displaySize.LeftUp_SeparateRatio(Vector2(pos_Config.x + (size_Config.x * /*centerPos_Config*/mstConfigVariables[i].rate), pos_Config.y + (posMove_Config * i)) + CONFIG_POSS[CONFIG_POS_TYPE::LEFT_UP], buttonSize_Config, true);
     //     j++;
     // }
-
-    return mStateNumber;
 }
 
-STATE_TYPE_UI ConfigSelectState::Decision(UIBase* ui)
+void ConfigSelectState::Decision(UIBase* ui)
 {
-    switch (ui->GetSelectNumber())
-    {
-    case CONFIG_UI_STATE::SELECT_CONFIG_STATE:
-        return mnPreConfigExceptStateNumber;
-    }
-    return GetConfigStateNumber(ui->GetSelectNumber());
+    // ここ外部に
+    // switch (ui->GetSelectNumber())
+    // {
+    // case CONFIG_UI_STATE::SELECT_CONFIG_STATE:
+    //     return mnPreConfigExceptStateNumber;
+    // }
+    // return GetConfigStateNumber(ui->GetSelectNumber());
 }
 
 void ConfigSelectState::Draw(UIBase* ui)
@@ -665,9 +665,8 @@ void ConfigSelectState::Draw(UIBase* ui)
     printfDx("%d", ui->GetSelectNumber());
 }
 
-STATE_TYPE_UI ConfigSelectState::Close(UIBase* ui)
+void ConfigSelectState::Close(UIBase* ui)
 {
-    return mnPreConfigExceptStateNumber;
 }
 
 // 全コンフィグ描画設定
@@ -738,8 +737,7 @@ MinimapConfigState::MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<ST
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::MINIMAP_CONFIG_STATE)
 , ConfigUIProcess()
 {
-    mStateNumber = CONFIG_UI_STATE::MINIMAP_CONFIG_STATE;
-    SetConfigSlider(CONFIG_UI_STATE::MINIMAP_CONFIG_STATE);
+    SetConfigSlider(STATE_TYPE_UI::MINIMAP_CONFIG_STATE);
     
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
     
@@ -783,7 +781,7 @@ MinimapConfigState::MinimapConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<ST
     }
 }
 
-void MinimapConfigState::OnEnter(UIBase* ui)
+void MinimapConfigState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
     ConfigOnEnter(ui);
 
@@ -792,24 +790,21 @@ void MinimapConfigState::OnEnter(UIBase* ui)
     ui->SetSelectNumber(mnPreSelectNumber);
 }
 
-void MinimapConfigState::OnExit(UIBase* ui)
+void MinimapConfigState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
     ConfigOnExit(ui);
 }
 
-STATE_TYPE_UI MinimapConfigState::Update(UIBase* ui)
+void MinimapConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
 
     ui->DefaultSelectProcess();
     ui->DefaultClose();
-
-    return mStateNumber;
 }
 
-STATE_TYPE_UI MinimapConfigState::Decision(UIBase* ui)
+void MinimapConfigState::Decision(UIBase* ui)
 {
-    return mStateNumber;
 }
 
 void MinimapConfigState::Draw(UIBase* ui)
@@ -818,9 +813,10 @@ void MinimapConfigState::Draw(UIBase* ui)
     printfDx("ミニマップ");
 }
 
-STATE_TYPE_UI MinimapConfigState::Close(UIBase* ui)
+void MinimapConfigState::Close(UIBase* ui)
 {
-    return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
+    // ここ条件
+    // return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
 
 /*----------------------*/
@@ -830,8 +826,7 @@ SoundConfigState::SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::SOUND_CONFIG_STATE)
 , ConfigUIProcess()
 {
-    mStateNumber = (int)CONFIG_UI_STATE::SOUND_CONFIG_STATE;
-    SetConfigSlider(CONFIG_UI_STATE::SOUND_CONFIG_STATE);
+    SetConfigSlider(STATE_TYPE_UI::SOUND_CONFIG_STATE);
 
     
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
@@ -876,7 +871,7 @@ SoundConfigState::SoundConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
     }
 }
 
-void SoundConfigState::OnEnter(UIBase* ui)
+void SoundConfigState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
     ConfigOnEnter(ui);
 
@@ -885,24 +880,21 @@ void SoundConfigState::OnEnter(UIBase* ui)
     ui->SetSelectNumber(mnPreSelectNumber);
 }
 
-void SoundConfigState::OnExit(UIBase* ui)
+void SoundConfigState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
     ConfigOnExit(ui);
 }
 
-STATE_TYPE_UI SoundConfigState::Update(UIBase* ui)
+void SoundConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
 
     ui->DefaultSelectProcess();
     ui->DefaultClose();
-
-    return mStateNumber;
 }
 
-STATE_TYPE_UI SoundConfigState::Decision(UIBase* ui)
+void SoundConfigState::Decision(UIBase* ui)
 {
-    return mStateNumber;
 }
 
 void SoundConfigState::Draw(UIBase* ui)
@@ -911,9 +903,10 @@ void SoundConfigState::Draw(UIBase* ui)
     printfDx("サウンド");
 }
 
-STATE_TYPE_UI SoundConfigState::Close(UIBase* ui)
+void SoundConfigState::Close(UIBase* ui)
 {
-    return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
+    // ここ外部条件
+    // return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }
 
 /*----------------------*/
@@ -923,8 +916,7 @@ CameraConfigState::CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::CAMERA_CONFIG_STATE)
 , ConfigUIProcess()
 {
-    mStateNumber = (int)CONFIG_UI_STATE::CAMERA_CONFIG_STATE;
-    SetConfigSlider(CONFIG_UI_STATE::CAMERA_CONFIG_STATE);
+    SetConfigSlider(STATE_TYPE_UI::CAMERA_CONFIG_STATE);
 
     
     DisplaySize displaySize = ResourceManager::mstDisplaySize;
@@ -969,7 +961,7 @@ CameraConfigState::CameraConfigState(std::vector<STATE_CHANGE_CRITERIA_DATA<STAT
     }
 }
 
-void CameraConfigState::OnEnter(UIBase* ui)
+void CameraConfigState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
     ConfigOnEnter(ui);
 
@@ -978,24 +970,21 @@ void CameraConfigState::OnEnter(UIBase* ui)
     ui->SetSelectNumber(mnPreSelectNumber);
 }
 
-void CameraConfigState::OnExit(UIBase* ui)
+void CameraConfigState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
     ConfigOnExit(ui);
 }
 
-STATE_TYPE_UI CameraConfigState::Update(UIBase* ui)
+void CameraConfigState::Update(UIBase* ui)
 {
     ConfigDrawSetting(ui);
     
     ui->DefaultSelectProcess();
     ui->DefaultClose();
-    
-    return mStateNumber;
 }
 
-STATE_TYPE_UI CameraConfigState::Decision(UIBase* ui)
+void CameraConfigState::Decision(UIBase* ui)
 {
-    return mStateNumber;
 }
 
 void CameraConfigState::Draw(UIBase* ui)
@@ -1004,7 +993,8 @@ void CameraConfigState::Draw(UIBase* ui)
     printfDx("カメラ");
 }
 
-STATE_TYPE_UI CameraConfigState::Close(UIBase* ui)
+void CameraConfigState::Close(UIBase* ui)
 {
-    return GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
+    // ここ外部条件
+    // GetConfigStateNumber(CONFIG_UI_STATE::SELECT_CONFIG_STATE);
 }

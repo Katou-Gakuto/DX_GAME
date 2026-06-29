@@ -2,6 +2,7 @@
 
 #include "Master.h"
 
+#include "DrawManager.h"
 #include "ModelBase.h"
 #include "ModelMV1.h"
 #include "ResourceManager.h"
@@ -33,18 +34,18 @@ void ModelMV1::ModelUpdate()
     VECTOR angle    = mvAngle;
     VECTOR position = mvPosition;
 
-    // モデルコントローラーを反映する
-    if (mpModelsController != nullptr)
-    {
-        size     = UtilCalc::VMultiply(size,     mpModelsController->GetModelSize());
-        angle    = VAdd(angle,    mpModelsController->GetModelAngle());
-        position = VAdd(position, mpModelsController->GetModelPosition());
+    // // モデルコントローラーを反映する
+    // if (mpModelsController != nullptr)
+    // {
+    //     size     = UtilCalc::VMultiply(size,     mpModelsController->GetModelSize());
+    //     angle    = VAdd(angle,    mpModelsController->GetModelAngle());
+    //     position = VAdd(position, mpModelsController->GetModelPosition());
 
         // 回転の中心を上にする
         {
             // HACK: 回転後回し
             // X回転
-            VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
+            VECTOR anglePos = UtilCalc::VSphericalMovePos(mvSize.y * 80.0f, VGet(angle.x + (UtilCalc::Pi * 1.5f), -angle.y, angle.z));
             position = VAdd(position, VGet(anglePos.x, anglePos.y, anglePos.z));
             
             //VECTOR anglePos = UtilCalc::VSphericalMovePos(mpModelsController->GetModelSize().y * TEST_FLOAT[0], VGet((angle.x * TEST_FLOAT[1] * TEST_FLOAT[3]) + (UtilCalc::Pi * TEST_FLOAT[2]), -angle.y, angle.z));
@@ -86,8 +87,8 @@ void ModelMV1::ModelUpdate()
         }
 
         // 高さの修正
-        position.y += mpModelsController->GetModelSize().y * 80.0f;
-    }
+        position.y += mvSize.y * 80.0f;
+    //}
 
     // 位置・角度・サイズ設定
     MV1SetScale(       mnModelHandle, size);
@@ -103,7 +104,7 @@ void ModelMV1::ModelDraw()
         return;
     }
     
-    ModelDraw_Handle(mnModelHandle);
+    Master::mpDrawManager->DrawModelHandle(mnModelHandle);
 }
 
 // モデルハンドル設定

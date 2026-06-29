@@ -82,6 +82,15 @@ Animation* ModelBase::MyAnimationSetting(Animation* animtion)
     }
     return mpAnimation; 
 }
+
+// モデル位置設定
+void ModelBase::ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size)
+{
+    mvPosition = position;
+    mvAngle = VGet(angle.x, angle.y, angle.z);
+    mvSize = size;
+}
+
 // // モデル描画(頂点)
 // void ModelBase::ModelDraw_Indexed(const std::vector<IndexedData>& modelVertexData)
 // {

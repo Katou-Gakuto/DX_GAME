@@ -4,6 +4,7 @@
 #include "GameDataEnum.h"
 #include "ResourceData.h"
 #include "GameDatas.h"
+#include "StateData.h"
 #include "Vector2.h"
 
 #include "Master.h"
@@ -17,6 +18,7 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "StateResultUI.h"
+#include "StateUIBase.h"
 
 /*--------------------------------*/
 /*     【リザルトUIステート】     */
@@ -323,7 +325,7 @@ Vector2 TestSize[TEST_NUMBER] = {Vector2(1.0f, 1.0f),
 }
 
 // この状態に入った時の処理
-void StartResultUIState::OnEnter(UIBase* ui)
+void StartResultUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
     //for (int i  = RESULT_DRAW_NUMBER_TYPE::HP - 1; i < RESULT_DRAW_NUMBER_TYPE::HP; i++)
     //{
@@ -458,20 +460,18 @@ void StartResultUIState::OnEnter(UIBase* ui)
 }
 
 // この状態を出る時の処理
-void StartResultUIState::OnExit(UIBase* ui)
+void StartResultUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 }
 
 // 更新
-STATE_TYPE_UI StartResultUIState::Update(UIBase* ui)
+void StartResultUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI StartResultUIState::Decision(UIBase* ui)
+void StartResultUIState::Decision(UIBase* ui)
 {
     /*// UNDONE: 元に戻す
     // シーン移動
@@ -484,9 +484,6 @@ STATE_TYPE_UI StartResultUIState::Decision(UIBase* ui)
     // HACK: 仮実装
     // シーン移動
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
-
-
-    return mStateNumber;
 }
 
 // 描画

@@ -1,9 +1,18 @@
+#include<string>
+
+#include "AnimationData.h"
+#include "ResourceData.h"
 #include "StateData.h"
 
 #include "DxLib.h"
 
+#include "Master.h"
+
+#include "Animation.h"
+#include "ModelBase.h"
+#include "ResourceEffect.h"
+#include "ResourceManager.h"
 #include "StateAnimation.h"
-#include "StateAnimationBase.h"
 #include "UtilCalc.h"
 
 /*----------------------------*/
@@ -13,7 +22,7 @@ State3DAnimationProcess::State3DAnimationProcess()
 : mfAnimBlendRate(0.0f)
 , mfAnimBlendSpeed(0.1f)
 , mfAnimationSpeed(0.5f)
-, meAnimationType(ANIMATION_MOVE_TYPE::IDLE)
+, mstMyAniationData()
 {
     mstPreAnimationData.animationCount = 0.0f;
     mstPreAnimationData.animationHandle = -1;
@@ -27,27 +36,28 @@ void State3DAnimationProcess::AnimationDetach(STATE_ANEMATION_DATA* stateAnimati
         MV1DetachAnim(mnModelHandle, mstPreAnimationData.animationHandle);
         mstPreAnimationData.animationHandle = -1;
     }
-    // 現在のステートと次のステートを紐づけて前のステートとして扱う
-    animationDatas->animDatas[animation->GetAnimationType()].preAnimationType = meAnimationType;
+    // このステートを前のステートとして設定
+    stateAnimationData->preAnimationData = &mstMyAniationData;
+    //animationDatas->animDatas[animation->GetAnimationType()].preAnimationType = meAnimationType;
 }
 
 // アニメーションをアタッチ
 void State3DAnimationProcess::AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData->number);
-    nowAnimationData->animationCount = 0.0f;
+    // このステートを現在のステートとして設定
+    stateAnimationData->nowAnimationData = &mstMyAniationData;
+    stateAnimationData->nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, stateAnimationData->nowAnimationData->number);
+    stateAnimationData->nowAnimationData->animationCount = 0.0f;
 }
 
 // 一つ前のアニメーション情報を設定する
 void State3DAnimationProcess::PreAnimationDataSetting(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    if (nowAnimationData->preAnimationType != ANIMATION_MOVE_TYPE::NONE)
+    if (stateAnimationData->nowAnimationData->preAnimationType != ANIMATION_MOVE_TYPE::NONE)
     {
-        meAnimationType = animation->GetAnimationType();
-
-        mstPreAnimationData.animationHandle = animationDatas->animDatas[nowAnimationData->preAnimationType].animationHandle;
-        mstPreAnimationData.animationCount = animationDatas->animDatas[nowAnimationData->preAnimationType].animationCount;
-        mstPreAnimationData.loopFlag = animationDatas->animDatas[nowAnimationData->preAnimationType].loopFlag;
+        mstPreAnimationData.animationHandle = stateAnimationData->nowAnimationData->animationHandle;
+        mstPreAnimationData.animationCount = stateAnimationData->nowAnimationData->animationCount;
+        mstPreAnimationData.loopFlag = stateAnimationData->nowAnimationData->loopFlag;
 
         mfAnimBlendRate = ((mstPreAnimationData.animationHandle == -1) ? 1.0f : 0.0f);
     }
@@ -57,10 +67,10 @@ void State3DAnimationProcess::PreAnimationDataSetting(STATE_ANEMATION_DATA* stat
 void State3DAnimationProcess::Init(STATE_ANEMATION_DATA* stateAnimationData)
 {
     // アタッチ
-    AnimationAttach(animation, nowAnimationData, animationDatas);
+    AnimationAttach(stateAnimationData);
 
     // 前のアニメーション情報を設定
-    PreAnimationDataSetting(animation, nowAnimationData, animationDatas);
+    PreAnimationDataSetting(stateAnimationData);
 }
 
 // アニメーション更新
@@ -72,10 +82,10 @@ void State3DAnimationProcess::UpdateAnimation(STATE_ANEMATION_DATA* stateAnimati
         UpdateBlend();
 
         // 現在のアニメーション時間を進める
-        AdvanceAnimationTime(nowAnimationData->animationHandle, &nowAnimationData->animationCount, nowAnimationData->loopFlag, mfAnimBlendRate, true);
+        AdvanceAnimationTime(stateAnimationData->nowAnimationData->animationHandle, &stateAnimationData->nowAnimationData->animationCount, stateAnimationData->nowAnimationData->loopFlag, mfAnimBlendRate);
 
         // 前のアニメーション時間を進める
-        AdvanceAnimationTime(mstPreAnimationData.animationHandle, &mstPreAnimationData.animationCount, mstPreAnimationData.loopFlag, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate, true);
+        AdvanceAnimationTime(mstPreAnimationData.animationHandle, &mstPreAnimationData.animationCount, mstPreAnimationData.loopFlag, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
     }
 }
 
@@ -115,7 +125,7 @@ void State3DAnimationProcess::AdvanceAnimationTime(int animationHandle, float* a
             }
             else
             {
-                if (testFlag)
+                if (true/* TODO:テスト段階*/)
                 {
                     *animationCount = animTotalTime;
                 }
@@ -150,7 +160,7 @@ bool StateNoneAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveT
 /*------------------------*/
 /*【MV1モデルアニメーション】*/
 /*------------------------*/
-StateMVOneAnimation::StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
+StateMVOneAnimation::StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, std::string fileName)
 : IStateAnimation(stateChangeCriterias)
 , State3DAnimationProcess()
 {
@@ -167,13 +177,13 @@ StateMVOneAnimation::StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<
 // この状態に入った時の処理
 void StateMVOneAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
-    Init(animation, nowAnimationData, animationDatas);
+    Init(stateAnimationData);
 }
 
 // この状態を出る時の処理
 void StateMVOneAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
-    AnimationDetach(animation, animationDatas);
+    AnimationDetach(stateAnimationData);
 }
 
 // 終了
@@ -185,7 +195,7 @@ void StateMVOneAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 void StateMVOneAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
     // アニメーション更新
-    UpdateAnimation(nowAnimationData);
+    UpdateAnimation(stateAnimationData);
 }
 
 /*アニメーションムーブ種類が同類なら「true」を返す*/
@@ -206,13 +216,13 @@ StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITER
 // この状態に入った時の処理
 void StateMVOneOnlyAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
-    Init(animation, nowAnimationData, animationDatas);
+    Init(stateAnimationData);
 }
 
 // この状態を出る時の処理
 void StateMVOneOnlyAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
-    AnimationDetach(animation, animationDatas);
+    AnimationDetach(stateAnimationData);
 }
 
 // 終了
@@ -224,14 +234,14 @@ void StateMVOneOnlyAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 void StateMVOneOnlyAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
     // アニメーション更新
-    UpdateAnimation(nowAnimationData);
+    UpdateAnimation(stateAnimationData);
 }
 
 /*アニメーションをアタッチ*/
 void StateMVOneOnlyAnimation::AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, nowAnimationData->number, FALSE);
-    nowAnimationData->animationCount = 0.0f;
+    stateAnimationData->nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, stateAnimationData->nowAnimationData->number, FALSE);
+    stateAnimationData->nowAnimationData->animationCount = 0.0f;
 }
 
 /*アニメーションムーブ種類が同類なら「true」を返す*/
@@ -256,7 +266,7 @@ StateMVOneOperationAnimation::StateMVOneOperationAnimation(std::vector<STATE_CHA
 // この状態に入った時の処理
 void StateMVOneOperationAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
-    Init(animation, nowAnimationData, animationDatas);
+    Init(stateAnimationData);
 
     mvMove  = UtilCalc::VZero;
     mvAngle = UtilCalc::VZero;
@@ -266,11 +276,11 @@ void StateMVOneOperationAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationD
 // この状態を出る時の処理
 void StateMVOneOperationAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
-    AnimationDetach(animation, animationDatas);
+    AnimationDetach(stateAnimationData);
 
-    mpModelBase->SetPosition( VSub(mpModelBase->GetPosition(), mvMove));
-    mpModelBase->SetAngle(    VSub(mpModelBase->GetAngle(),    mvAngle));
-    mpModelBase->SetSize(     VSub(mpModelBase->GetSize(),     mvSize));
+    stateAnimationData->animation->GetModel()->SetPosition( VSub(stateAnimationData->animation->GetModel()->GetPosition(), mvMove));
+    stateAnimationData->animation->GetModel()->SetAngle(    VSub(stateAnimationData->animation->GetModel()->GetAngle(),    mvAngle));
+    stateAnimationData->animation->GetModel()->SetSize(     VSub(stateAnimationData->animation->GetModel()->GetSize(),     mvSize));
 }
 
 // 更新
@@ -280,9 +290,9 @@ void StateMVOneOperationAnimation::Update(STATE_ANEMATION_DATA* stateAnimationDa
     mvAngle = VAdd(mvAngle, mvChangeAngle);
     mvSize  = VAdd(mvSize,  mvChangeSize);
 
-    mpModelBase->SetPosition( VAdd(mpModelBase->GetPosition(), mvChangeMove));
-    mpModelBase->SetAngle(    VAdd(mpModelBase->GetAngle(),    mvChangeAngle));
-    mpModelBase->SetSize(     VAdd(mpModelBase->GetSize(),     mvChangeSize));
+    stateAnimationData->animation->GetModel()->SetPosition( VAdd(stateAnimationData->animation->GetModel()->GetPosition(), mvChangeMove));
+    stateAnimationData->animation->GetModel()->SetAngle(    VAdd(stateAnimationData->animation->GetModel()->GetAngle(),    mvChangeAngle));
+    stateAnimationData->animation->GetModel()->SetSize(     VAdd(stateAnimationData->animation->GetModel()->GetSize(),     mvChangeSize));
 }
 
 /*アニメーションムーブ種類が同類なら「true」を返す*/
@@ -295,40 +305,41 @@ bool StateMVOneOperationAnimation::CheckSimilarAnimationType(ANIMATION_TYPE anim
 /*--------------------*/
 StateEffectAnimation::StateEffectAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
+, mnEffectHandle()
 {
 }
 
 // この状態に入った時の処理
 void StateEffectAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
-    if (!mpModelBase->GetDrawFlag())
+    if (!stateAnimationData->animation->GetModel()->GetDrawFlag())
     {
         return;
     }
 
-    *mnEffectHandle = Master::mpResourceManager->GetEffectResource()->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
+    mnEffectHandle = Master::mpResourceManager->GetEffectResource()->GetEffectHandle(stateAnimationData->nowAnimationData->number, mnEffectHandle);
 }
 // この状態を出る時の処理
 void StateEffectAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
-    if (*mnEffectHandle == -1)
+    if (mnEffectHandle == -1)
     {
         return;
     }
 
-    Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(*mnEffectHandle);
-    *mnEffectHandle = -1;
+    Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(mnEffectHandle);
+    mnEffectHandle = -1;
 }
 // 終了
 void StateEffectAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    if (*mnEffectHandle == -1)
+    if (mnEffectHandle == -1)
     {
         return;
     }
 
-    Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(*mnEffectHandle);
-    *mnEffectHandle = -1;
+    Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(mnEffectHandle);
+    mnEffectHandle = -1;
 }
 // 更新(何もしない)
 void StateEffectAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
@@ -412,12 +423,12 @@ StateFadeGraphAnimation::StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITER
 // この状態に入った時の処理
 void StateFadeGraphAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
-    DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
+    DrawConfigData drawConfigData = stateAnimationData->animation->GetModel()->GetDrawConfigData();
 
     if (drawConfigData.blendMode != DX_BLENDMODE_ALPHA)
     {
         drawConfigData.blendMode = DX_BLENDMODE_ALPHA;
-        if (nowAnimationData->blendParameter > 0)
+        if (stateAnimationData->nowAnimationData->blendParameter > 0)
         {
             drawConfigData.blendParameter = 0;
         }
@@ -425,7 +436,7 @@ void StateFadeGraphAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, 
         {
             drawConfigData.blendParameter = 255;
         }
-        mpModelBase->SetDrawConfigData(drawConfigData);
+        stateAnimationData->animation->GetModel()->SetDrawConfigData(drawConfigData);
     }
 }
 // この状態を出る時の処理
@@ -439,15 +450,15 @@ void StateFadeGraphAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 // 更新(何もしない)
 void StateFadeGraphAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    FadeProcess(nowAnimationData);
+    FadeProcess(stateAnimationData);
 }
 
 /*フェード処理*/
 void StateFadeGraphAnimation::FadeProcess(STATE_ANEMATION_DATA* stateAnimationData)
 {
     // 描画情報を取得し変更する
-    DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
-    drawConfigData.blendParameter += nowAnimationData->blendParameter;
+    DrawConfigData drawConfigData = stateAnimationData->animation->GetModel()->GetDrawConfigData();
+    drawConfigData.blendParameter += stateAnimationData->nowAnimationData->blendParameter;
 
 
     // 描画情報が範囲外なら修正する
@@ -461,7 +472,7 @@ void StateFadeGraphAnimation::FadeProcess(STATE_ANEMATION_DATA* stateAnimationDa
     }
 
     // 変更した描画情報を設定
-    mpModelBase->SetDrawConfigData(drawConfigData); 
+    stateAnimationData->animation->GetModel()->SetDrawConfigData(drawConfigData); 
 }
 
 /*アニメーションムーブ種類が同類なら「true」を返す*/
@@ -513,14 +524,14 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 
 // #include "Master.h"
 
-// #include "AnimationBase.h"
+// #include "Animation.h"
 // #include "ModelBase.h"
 // #include "ModelsControllerBase.h"
 // #include "ResourceEffect.h"
 // #include "ResourceManager.h"
 // #include "Resource3DModel.h"
 // #include "StateAnimation.h"
-// #include "StateAnimationBase.h"
+// #include "StateAnimation.h"
 // #include "UtilCalc.h"
 
 // /*----------*/
@@ -540,7 +551,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // アニメーションをデタッチ
-// void StateAnimationProcess::AnimationDetach(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateAnimationProcess::AnimationDetach(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     if (mstPreAnimationData.animationHandle != (-1))
 //     {
@@ -553,14 +564,14 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // アニメーションをアタッチ
-// void StateAnimationProcess::AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
+// void StateAnimationProcess::AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData->number);
 //     nowAnimationData->animationCount = 0.0f;
 // }
 
 // // 一つ前のアニメーション情報を設定する
-// void StateAnimationProcess::PreAnimationDataSetting(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
+// void StateAnimationProcess::PreAnimationDataSetting(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     if (nowAnimationData->preAnimationType != ANIMATION_MOVE_TYPE::NONE)
 //     {
@@ -575,7 +586,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // 初期化
-// void StateAnimationProcess::Init(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
+// void StateAnimationProcess::Init(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     // アタッチ
 //     AnimationAttach(animation, nowAnimationData, animationDatas);
@@ -675,24 +686,24 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateMVOneAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateMVOneAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
 // }
 
 // // この状態を出る時の処理
-// void StateMVOneAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateMVOneAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
 // }
 
 // // 終了
-// void StateMVOneAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateMVOneAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
 // // 更新
-// void StateMVOneAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateMVOneAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     // アニメーション更新
 //     UpdateAnimation(nowAnimationData);
@@ -722,19 +733,19 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateMVOneOnlyAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateMVOneOnlyAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
 // }
 
 // // この状態を出る時の処理
-// void StateMVOneOnlyAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateMVOneOnlyAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
 // }
 
 // // 終了
-// void StateMVOneOnlyAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateMVOneOnlyAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     std::vector<ANIMATION_MOVE_TYPE> deleteAnimationType;
 //     deleteAnimationType.clear();
@@ -762,7 +773,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // 更新
-// void StateMVOneOnlyAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateMVOneOnlyAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     // アニメーション更新
 //     UpdateAnimation(nowAnimationData);
@@ -782,7 +793,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // アニメーションをアタッチ
-// void StateMVOneOnlyAnimation::AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
+// void StateMVOneOnlyAnimation::AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, nowAnimationData->number, FALSE);
 //     nowAnimationData->animationCount = 0.0f;
@@ -804,7 +815,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateMVOneOperationAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateMVOneOperationAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
 
@@ -814,7 +825,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態を出る時の処理
-// void StateMVOneOperationAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateMVOneOperationAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
 
@@ -824,7 +835,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // 更新
-// void StateMVOneOperationAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateMVOneOperationAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     mvMove  = VAdd(mvMove,  mvChangeMove);
 //     mvAngle = VAdd(mvAngle, mvChangeAngle);
@@ -860,7 +871,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateEffectAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateEffectAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     if (!mpModelBase->GetDrawFlag())
 //     {
@@ -871,7 +882,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態を出る時の処理
-// void StateEffectAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateEffectAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     if (*mnEffectHandle == -1)
 //     {
@@ -883,7 +894,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // 終了
-// void StateEffectAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateEffectAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     std::vector<ANIMATION_MOVE_TYPE> deleteAnimationType;
 //     deleteAnimationType.clear();
@@ -916,7 +927,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // 更新
-// void StateEffectAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateEffectAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
@@ -936,22 +947,22 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateGraphAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateGraphAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 // }
 
 // // この状態を出る時の処理
-// void StateGraphAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateGraphAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
 // // 終了
-// void StateGraphAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateGraphAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
 // // 更新
-// void StateGraphAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateGraphAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
@@ -971,22 +982,22 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateMovieAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateMovieAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 // }
 
 // // この状態を出る時の処理
-// void StateMovieAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateMovieAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
 // // 終了
-// void StateMovieAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateMovieAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
 // // 更新
-// void StateMovieAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateMovieAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
@@ -1007,7 +1018,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateFadeGraphAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateFadeGraphAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
 
@@ -1027,17 +1038,17 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態を出る時の処理
-// void StateFadeGraphAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateFadeGraphAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
 // // 終了
-// void StateFadeGraphAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateFadeGraphAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
 // // 更新
-// void StateFadeGraphAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateFadeGraphAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     FadeProcess(nowAnimationData);
 // }
@@ -1080,23 +1091,23 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // // この状態に入った時の処理
-// void StateDOTweenAnimation::OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
+// void StateDOTweenAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     // 数字設定
 // }
 
 // // この状態を出る時の処理
-// void StateDOTweenAnimation::OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
+// void StateDOTweenAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
 // // 終了
-// void StateDOTweenAnimation::Finalize(AnimationBase* animation, AnimationDatas* animationDatas)
+// void StateDOTweenAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
 // // 更新
-// void StateDOTweenAnimation::Update(AnimationBase* animation, OneAnimationData *nowAnimationData)
+// void StateDOTweenAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 

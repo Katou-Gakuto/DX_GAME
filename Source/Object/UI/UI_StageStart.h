@@ -43,5 +43,5 @@ private:
     void DecisionProcess() override;
     
     /*íœˆ—*/
-    void CloceProcess() override;
+    void CloseProcess() override;
 };

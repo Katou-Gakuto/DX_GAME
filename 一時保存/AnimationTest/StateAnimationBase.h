@@ -12,7 +12,7 @@ enum class CAMERA_MODE;
 enum class DOT_WEEN_TYPE;
 enum class SCENE;
 
-class AnimationBase;
+class Animation;
 
 /*----------*/
 /*【アニメーションステートベース】

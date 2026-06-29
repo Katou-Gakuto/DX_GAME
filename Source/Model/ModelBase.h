@@ -59,6 +59,8 @@ public:
 	Animation* GetAnimation() { return mpAnimation; }
 	/*ポジション取得*/
 	inline VECTOR GetPosition() const { return mvPosition; }
+	/*ポジション取得*/
+	inline VECTOR* GetPositionPointer() { return &mvPosition; }
 	/*角度取得*/
 	inline VECTOR GetAngle() const { return mvAngle; }
 	/*サイズ取得*/
@@ -82,6 +84,15 @@ public:
 
 	/// <summary>描画フラグ設定</summary>
 	inline void SetDrawFlag(bool drawFlag) { mbDrawFlag = drawFlag; }
+
+	/// <summary>モデル位置設定</summary>
+    /// <param name="position">ポジション</param>
+    /// <param name="angle">角度</param>
+    /// <param name="size">大きさ</param>
+    void ModelsPositionSetting(VECTOR position, VECTOR angle, VECTOR size);
+    void ModelsPositionSetting(VECTOR position, VECTOR angle) { ModelsPositionSetting(position, angle, mvSize); }
+    void ModelsPositionSetting(VECTOR position){ ModelsPositionSetting(position, mvAngle, mvSize); }
+    void ModelsPositionSetting(){ ModelsPositionSetting(mvPosition, mvAngle, mvSize); }
 
 	/*----------------*/
 	/*【継承モデル用】*/

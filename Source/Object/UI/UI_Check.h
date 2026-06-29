@@ -121,7 +121,7 @@ private:
         {
             DefaultDecision();
         }
-        DefaultCloce();
+        DefaultClose();
         printfDx("%d 確認\n", mnSelectNumber);
     }
     /*UI最終更新*/
@@ -167,11 +167,11 @@ private:
             break;
         }
 
-        CloceProcess();
+        CloseProcess();
     }
 
     /*削除*/
-    void CloceProcess() override
+    void CloseProcess() override
     {
         (mpNoFunctionPointer->*mfnNoExecuteMemberFunction)(mpNoArgument);
         SetDeleteFlag(true);

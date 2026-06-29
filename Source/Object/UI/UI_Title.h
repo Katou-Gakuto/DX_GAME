@@ -4,6 +4,9 @@
 class UI_Title : public UIBase
 {
 private:
+    // タイトルのステート最大数
+    static constexpr int TITLE_STATE_MAX = (static_cast<int>(STATE_TYPE_UI::VOLUME_TITLE_UI_STATE) - static_cast<int>(STATE_TYPE_UI::START_TITLE_UI_STATE)) + 1/*0の分増やす*/;
+
     // ラインサイズ
     float mnLineAeraSize;
     // ライン数
@@ -31,5 +34,5 @@ private:
     void DecisionProcess() override;
 
     /*終了処理*/
-    void CloceProcess() override;
+    void CloseProcess() override;
 };

@@ -66,7 +66,7 @@ public:
 // enum class DOT_WEEN_TYPE;
 // enum class SCENE;
 
-// class AnimationBase;
+// class Animation;
 
 // /*----------*/
 // /*【アニメーションステートベース】
@@ -110,9 +110,9 @@ public:
 // 	}
 
 // 	// /// <summary>この状態に入った時の処理</summary>
-// 	// virtual void OnEnter(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
+// 	// virtual void OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
 // 	// /// <summary>この状態を出る時の処理</summary>
-// 	// virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) = 0;
+// 	// virtual void OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) = 0;
 	
 // 	/// <summary>初期化</summary>
 // 	virtual void Initilize(STATE_ANEMATION_DATA* stateAnimationData){}

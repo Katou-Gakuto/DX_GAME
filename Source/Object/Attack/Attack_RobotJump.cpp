@@ -73,7 +73,7 @@ void Attack_RobotJump::AttackDraw()
 // “–‚½‚è”»’è
 void Attack_RobotJump::HitCheck(CollisionData& collisionData)
 {
-	if (!mpAttackCharacter->CheckAnimationType(ANIMATION_MOVE_TYPE::ATTACK_OUT))
+	if (!mpAttackCharacter->CheckAnimationMoveType(ANIMATION_MOVE_TYPE::ATTACK_OUT))
 	{
 		return;
 	}

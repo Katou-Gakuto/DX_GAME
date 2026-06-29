@@ -73,7 +73,7 @@ protected:
     /*メニューキーを押したか返す*/
     bool IsMenuKeyPressed();
 
-    // TODO: 後々モデルコントローラーで表示が理想
+    // TODO: 後々モデルで表示が理想
 
     /*メニューの背景描画*/
     void DrawMenuBackground(UIBase* ui);

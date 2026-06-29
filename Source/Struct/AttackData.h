@@ -2,7 +2,7 @@
 
 #include "AttackEnum.h"
 
-class AnimationBase;
+class Animation;
 class CharacterBase;
 class ModelBase;
 
@@ -25,7 +25,7 @@ struct CharacterAttackData
 {
     ModelBase* modelBase;  // モデルベース
 
-    AnimationBase* animation;   // アニメションベース
+    // Animation* animation;   // アニメションベース
 
     int attackDataNumber;	// 攻撃情報ナンバー
 };

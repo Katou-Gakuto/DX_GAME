@@ -3,7 +3,7 @@ struct OneAnimationData;
 struct AnimationDatas;
 struct CameraData;
 
-class AnimationBase;
+class Animation;
 class CameraManager;
 
 // ステート変更条件情報
@@ -24,11 +24,12 @@ struct STATE_CHANGE_CRITERIA_DATA
 
 struct STATE_ANEMATION_DATA
 {
-    // AnimationBase* StateAnimation;
+    // Animation* StateAnimation;
     // OneAnimationData* StateOneAnimationData;
     // AnimationDatas* StateAnimationDatas;
     // int nextState;
-    // アニメーション情報
-    // 前のアニメーション情報
-    int nextState;// FSMで設定
+    Animation* animation;   // アニメーションクラス
+    OneAnimationData* nowAnimationData; // アニメーション情報
+    OneAnimationData* preAnimationData; // 前のアニメーション情報
+    int nextState;  // FSMで設定
 };

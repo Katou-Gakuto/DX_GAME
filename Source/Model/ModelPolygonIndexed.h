@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "BitFlag.h"
-#include "DrawData.h
+#include "DrawData.h"
 
 #include "DxLib.h"
 

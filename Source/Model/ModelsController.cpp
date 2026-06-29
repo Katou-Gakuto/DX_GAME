@@ -20,11 +20,11 @@ ModelsController::~ModelsController()
 // シーン最終初期化
 void ModelsController::SceneLastInitilize()
 {
-    UpdateModels();
+    ModelUpdate();
 }
 
-// 終了
-void ModelsController::Finalize()
+// モデル終了
+void ModelsController::ModelFinalize()
 {
     for (int i = 0; i < mpModelList.size(); i++)
     {
@@ -60,17 +60,8 @@ void ModelsController::ModelsPositionSetting(VECTOR position, VECTOR angle, VECT
     mvModelSize = size;
 }
 
-// モデル更新
-void ModelsController::UpdateModels()
-{
-    for (int i = 0; i < mpModelList.size(); i++)
-    {
-        mpModelList[i]->Update(mvModelPosition, mvModelAngle);
-    }
-}
-
-// モデル描画
-void ModelsController::DrawModels()
+// 描画
+void ModelsController::ModelDraw()
 {
     if (!mbModelDrawFlag)
     {
@@ -81,4 +72,28 @@ void ModelsController::DrawModels()
 	{
 		mpModelList[i]->ModelDraw();
 	}
+}
+
+// モデル描画情報の設定
+void ModelsController::SetDrawConfigData(DrawConfigData drawConfigData)
+{
+    for (int i = 0; mpModelList.size(); i++)
+    {
+        mpModelList[i]->SetDrawConfigData(drawConfigData);
+    }
+}
+
+// 継承モデル ゲーム初期化
+void ModelsController::ModelGameInit()
+{
+    ModelGameInit(mvModelPosition, mvModelAngle, mvModelSize);
+}
+
+// 継承モデル 更新
+void ModelsController::ModelUpdate()
+{
+    for (int i = 0; i < mpModelList.size(); i++)
+    {
+        mpModelList[i]->Update(mvModelPosition, mvModelAngle);
+    }
 }

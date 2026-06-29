@@ -45,11 +45,11 @@
 void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATION_FACTORY_NUMBER animationFactoryNumber)
 {
 	// モデル設定
-	character->GetModel()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
+	character->SetModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
 	 {
-	 	AnimationBase* characterAnimation = character->GetAnimation();
+	 	Animation* characterAnimation = character->GetAnimation();
 	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	 	// 読み込み用アニメーションデータ設定
 	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
@@ -82,14 +82,14 @@ StartScene::StartScene()
 	mbStartFlag = false;
 }
 
-void StartScene::OnEnter(SceneManager* sceneManager)
+void StartScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	Master::mpEndManager->SetEndFlag(mbStartFlag, END_FLAG_NUMBER::START_SCENE_FLAG);
 	mbStartFlag = true;
 	sceneManager->SetNextScene(SCENE::TITLE);
 }
 
-void StartScene::OnExit(SceneManager* sceneManager)
+void StartScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 }
 
@@ -103,7 +103,7 @@ TitleScene::TitleScene()
 {
 }
 
-void TitleScene::OnEnter(SceneManager* sceneManager)
+void TitleScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// マップ処理
 	if (mpMapManager == nullptr)
@@ -131,7 +131,7 @@ void TitleScene::OnEnter(SceneManager* sceneManager)
 	// HACK: ウェーブ制じゃなくしたら消す
 	Master::mpDataManager->InitWave();
 }
-void TitleScene::OnExit(SceneManager* sceneManager)
+void TitleScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 	// カメラ削除
 	Master::mpGameManager->GetCameraManager()->DeleteCameraData(mnSceneCameraID);
@@ -148,7 +148,7 @@ TownScene::TownScene()
 {
 }
 
-void TownScene::OnEnter(SceneManager* sceneManager)
+void TownScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// マップ処理
 	if (mpMapManager == nullptr)
@@ -189,7 +189,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	// player->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// // アニメション設定
 	// {
-	// 	AnimationBase* playerAnimation = player->GetAnimation();
+	// 	Animation* playerAnimation = player->GetAnimation();
 	// 	std::vector<std::vector<LoadAnimationData>> setPlayerLoadAnimationData;
 	// 	// 読み込み用アニメーションデータ設定
 	// 	setPlayerLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(playerAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
@@ -235,7 +235,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 		// enemy->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 		// // アニメション設定
 		// {
-		// 	AnimationBase* enemyAnimation = enemy->GetAnimation();
+		// 	Animation* enemyAnimation = enemy->GetAnimation();
 		// 	std::vector<std::vector<LoadAnimationData>> setEnemyLoadAnimationData;
 		// 	// 読み込み用アニメーションデータ設定
 		// 	setEnemyLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(enemyAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN));
@@ -265,7 +265,7 @@ void TownScene::OnEnter(SceneManager* sceneManager)
 	}
 }
 
-void TownScene::OnExit(SceneManager* sceneManager)
+void TownScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
@@ -292,7 +292,7 @@ DungeonScene::DungeonScene()
 {
 }
 
-void DungeonScene::OnEnter(SceneManager* sceneManager)
+void DungeonScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// マップ処理
 	if (mpMapManager == nullptr)
@@ -417,7 +417,7 @@ void DungeonScene::OnEnter(SceneManager* sceneManager)
 		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 }
-void DungeonScene::OnExit(SceneManager* sceneManager)
+void DungeonScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
@@ -444,7 +444,7 @@ BattleScene::BattleScene()
 {
 }
 
-void BattleScene::OnEnter(SceneManager* sceneManager)
+void BattleScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// マップ処理
 	if (mpMapManager == nullptr)
@@ -557,7 +557,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		Character_Shot* enemy = new Character_Shot(true, STATUS::SetStatus(40, 40, 1, 0, 12, 12, CHARACTER_TYPE::ROBOT), SHOT_TYPE::DEFAULT, enemyAttackData, UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE::SHOT));
 		enemy->Initilize();
 		enemy->SetPos(VGet(3500.0f, 0.0f, 3500.0f));
-		enemy->GetModelsController()->SetModelSize(VGet(2.0f, 2.0f, 2.0f));
+		enemy->GetModel()->SetSize(VGet(2.0f, 2.0f, 2.0f));
 		enemy->SetFSM(UtilFactorys::FSMCharacterFactory(enemy, CHARACTER_FACTORY_NUMBER::BOSS_ENEMY));
 		// モデルとアニメション設定
 		CharacterModelSetting(enemy, ANIMATION_FACTORY_NUMBER::BATTLE);
@@ -572,7 +572,7 @@ void BattleScene::OnEnter(SceneManager* sceneManager)
 		gameUI->SetFsm(UtilFactorys::FSMUIFactory(gameUI, UI_FACTORY_NUMBER::TOWN));
 	}
 }
-void BattleScene::OnExit(SceneManager* sceneManager)
+void BattleScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
@@ -600,7 +600,7 @@ ResultScene::ResultScene()
 {
 }
 
-void ResultScene::OnEnter(SceneManager* sceneManager)
+void ResultScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	UI_Result* result = new UI_Result();
 	result->Initilize();
@@ -619,7 +619,7 @@ void ResultScene::OnEnter(SceneManager* sceneManager)
 	}
 }
 
-void ResultScene::OnExit(SceneManager* sceneManager)
+void ResultScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 }
 
@@ -628,12 +628,12 @@ void ResultScene::OnExit(SceneManager* sceneManager)
 /*【ゲームオーバーシーンステート】*/
 /*--------------------------------*/
 GameOverScene::GameOverScene()
-: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, void>>{}, SCENE::GAME_OVER)
+: IStateScene(std::vector<STATE_CHANGE_CRITERIA_DATA<SCENE, SceneManager>>{}, SCENE::GAME_OVER)
 , SceneStateProcess()
 {
 }
 
-void GameOverScene::OnEnter(SceneManager* sceneManager)
+void GameOverScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// TODO: ゲームオーバー用のUI作成
 	// UI_Result* result = new UI_Result();
@@ -643,7 +643,7 @@ void GameOverScene::OnEnter(SceneManager* sceneManager)
 	sceneManager->SetNextScene(SCENE::TITLE);
 }
 
-void GameOverScene::OnExit(SceneManager* sceneManager)
+void GameOverScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 }
 
@@ -657,7 +657,7 @@ GameLoopScene::GameLoopScene()
 	mStateNumber = SCENE::GAME_LOOP;
 }
 
-void GameLoopScene::OnEnter(SceneManager* sceneManager)
+void GameLoopScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	if (UtilStateConditionFunction::ShouldEndGame(sceneManager))
 	{
@@ -670,7 +670,7 @@ void GameLoopScene::OnEnter(SceneManager* sceneManager)
 	sceneManager->SetNextScene(SCENE::BATTLE_LOOP);
 }
 
-void GameLoopScene::OnExit(SceneManager* sceneManager)
+void GameLoopScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 }
 
@@ -683,7 +683,7 @@ BattleLoopScene::BattleLoopScene()
 {
 }
 
-void BattleLoopScene::OnEnter(SceneManager* sceneManager)
+void BattleLoopScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	// マップ処理
 	if (mpMapManager == nullptr)
@@ -727,7 +727,7 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 		player->Initilize();
 		player->SetPos(Master::mpDataManager->GetPlayPlayerData().position);
 		player->SetAngle(Master::mpDataManager->GetPlayPlayerData().angle);
-		player->GetModelsController()->SetModelSize(Master::mpDataManager->GetPlayPlayerData().size);
+		player->GetModel()->SetSize(Master::mpDataManager->GetPlayPlayerData().size);
 	}
 		break;
 	}
@@ -780,7 +780,7 @@ void BattleLoopScene::OnEnter(SceneManager* sceneManager)
 	}
 }
 
-void BattleLoopScene::OnExit(SceneManager* sceneManager)
+void BattleLoopScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 	// 前居たマップを記録
 	PLAYER_DATA playerData = Master::mpDataManager->GetPlayPlayerData();
@@ -807,11 +807,11 @@ GameClearScene::GameClearScene()
 {
 }
 
-void GameClearScene::OnEnter(SceneManager* sceneManager)
+void GameClearScene::OnEnter(SceneManager* sceneManager, SCENE preScene)
 {
 	UI_GameClear* uiGameCler = new UI_GameClear();
 }
 
-void GameClearScene::OnExit(SceneManager* sceneManager)
+void GameClearScene::OnExit(SceneManager* sceneManager, SCENE newState)
 {
 }

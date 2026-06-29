@@ -21,7 +21,7 @@
 // }
 
 // // 終了時間設定
-// void StateAnimationControllerProcess::SetEndTime(AnimationBase* animation, ANIMATION_MOVE_TYPE state, int addEndTime)
+// void StateAnimationControllerProcess::SetEndTime(Animation* animation, ANIMATION_MOVE_TYPE state, int addEndTime)
 // {
 //     mstEndTime = Master::mpTimeManager->GetGameElapsedTime() + animation->GetAnimationTime(state) + addEndTime;
 // }
@@ -32,7 +32,7 @@
 //     return mstEndTime < Master::mpTimeManager->GetGameElapsedTime();
 // }
 // // 変更確認
-// ANIMATION_MOVE_TYPE StateAnimationControllerProcess::ChangeCheck(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAnimationControllerProcess::ChangeCheck(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if ((nextState == ANIMATION_MOVE_TYPE::ATTACK_IN) && !animation->SearchAnimationType(nextState))
 //     {
@@ -53,17 +53,17 @@
 // }
 
 // // この状態に入った時の処理
-// void StateIdleAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateIdleAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 // }
 
 // // この状態を出る時の処理
-// void StateIdleAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateIdleAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateIdleAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     return ChangeCheck(animation, nextState);
 // }
@@ -79,17 +79,17 @@
 // }
 
 // // この状態に入った時の処理
-// void StateMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateMoveAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 // }
 
 // // この状態を出る時の処理
-// void StateMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateMoveAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateMoveAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateMoveAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     return ChangeCheck(animation, nextState);
 // }
@@ -105,18 +105,18 @@
 // }
 
 // // この状態に入った時の処理
-// void StateAttackInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateAttackInAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void StateAttackInAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateAttackInAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackInAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -150,18 +150,18 @@
 // }
 
 // // この状態に入った時の処理
-// void StateAttackAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateAttackAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void StateAttackAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateAttackAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -194,18 +194,18 @@
 // }
 
 // // この状態に入った時の処理
-// void StateAttackOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateAttackOutAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void StateAttackOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateAttackOutAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackOutAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -239,18 +239,18 @@
 // }
 
 // // この状態に入った時の処理
-// void State2DMoveAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void State2DMoveAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void State2DMoveAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void State2DMoveAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE State2DMoveAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE State2DMoveAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -271,18 +271,18 @@
 // }
 
 // // この状態に入った時の処理
-// void StateFadeOutAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateFadeOutAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void StateFadeOutAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateFadeOutAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateFadeOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateFadeOutAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime() || (nextState == ANIMATION_MOVE_TYPE::FADE_IN))
 //     {
@@ -303,18 +303,18 @@
 // }
 
 // // この状態に入った時の処理
-// void StateFadeInAnimationController::OnEnter(AnimationBase* animation, ANIMATION_MOVE_TYPE oldState)
+// void StateFadeInAnimationController::OnEnter(Animation* animation, ANIMATION_MOVE_TYPE oldState)
 // {
 //     SetEndTime(animation, mStateNumber, mnAddEndTime);
 // }
 
 // // この状態を出る時の処理
-// void StateFadeInAnimationController::OnExit(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// void StateFadeInAnimationController::OnExit(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateFadeInAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateFadeInAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime() || (nextState == ANIMATION_MOVE_TYPE::FADE_OUT))
 //     {
@@ -337,7 +337,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackEndAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackEndAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -356,7 +356,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackOutStopAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackOutStopAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     return mStateNumber;
 // }
@@ -372,7 +372,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateNormalAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateNormalAttackInAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -393,7 +393,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateNormalAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateNormalAttackOutAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -417,7 +417,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateSpceialAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateSpceialAttackInAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -437,7 +437,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateSpceialAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateSpceialAttackAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -457,7 +457,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateSpceialAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateSpceialAttackOutAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -481,7 +481,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateJumpAttackInAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateJumpAttackInAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -500,7 +500,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateJumpAttackAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateJumpAttackAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -520,7 +520,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateJumpAttackOutAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateJumpAttackOutAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {
@@ -540,7 +540,7 @@
 // }
 
 // // ステート変更確認
-// ANIMATION_MOVE_TYPE StateAttackIdleAnimationController::CheckState(AnimationBase* animation, ANIMATION_MOVE_TYPE nextState)
+// ANIMATION_MOVE_TYPE StateAttackIdleAnimationController::CheckState(Animation* animation, ANIMATION_MOVE_TYPE nextState)
 // {
 //     if (ChackEndTime())
 //     {

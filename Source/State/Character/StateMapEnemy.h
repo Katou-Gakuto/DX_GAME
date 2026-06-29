@@ -1,117 +1,117 @@
-#pragma once
+// #pragma once
 
-#include "StateEnum.h"
+// #include "StateEnum.h"
 
-#include "EnemyCommonProcessing.h"
-#include "ObjectBases.h"
-#include "StateCharacterBase.h"
+// #include "EnemyCommonProcessing.h"
+// #include "ObjectBases.h"
+// #include "StateCharacterBase.h"
 
-class KeyState;
-class SceneManager;
-class TargetManager;
+// class KeyState;
+// class SceneManager;
+// class TargetManager;
 
-// TODO: UIでやる
+// // TODO: UIでやる
 
-/*------------------*/
-/*     【共通】     */
-/*------------------*/
+// /*------------------*/
+// /*     【共通】     */
+// /*------------------*/
 
-/*--------------------------*/
-/*【マップエネミーステート】*/
-/*--------------------------*/
+// /*--------------------------*/
+// /*【マップエネミーステート】*/
+// /*--------------------------*/
 
-// enum class MAP_ENEMY_STATE
+// // enum class MAP_ENEMY_STATE
+// // {
+// // 	IDLE_MAP_ENEMY_STATE = 0,
+// // 	TELOP_MAP_ENEMY_STATE,
+// // };
+
+// /*----------------------------*/
+// /*【マップエネミー共通処理用】*/
+// /*----------------------------*/
+// class MapEnemyProcess : public EnemyCommonProcessing
 // {
-// 	IDLE_MAP_ENEMY_STATE = 0,
-// 	TELOP_MAP_ENEMY_STATE,
+// protected:
+// 	// キーステート
+// 	KeyState* mpKeyState;
+
+// 	// シーンマネージャー
+// 	SceneManager* mpSceneManager;
+
+// 	// ターゲットマネージャー
+// 	TargetManager* mpTargetManager;
+
+// 	// マップシーン
+// 	SCENE meMapScene;
+
+// protected:
+// 	MapEnemyProcess(SCENE mapScene);
+// 	~MapEnemyProcess() = default;
+
+// 	/*一定範囲内にプレイヤーターゲットがいるなら「true」*/
+// 	bool PlayerTargetCheck(CharacterBase* character, float range);
+
+// 	/*死亡*/
+// 	void MapEnemyDeath(CharacterBase* character);
+
+// 	/*マップシーンに移動開始する*/
+// 	void SetMapScene(CharacterBase* character);
 // };
 
-/*----------------------------*/
-/*【マップエネミー共通処理用】*/
-/*----------------------------*/
-class MapEnemyProcess : public EnemyCommonProcessing
-{
-protected:
-	// キーステート
-	KeyState* mpKeyState;
+// /*--------------------------*/
+// /*     【基本ステート】     */
+// /*--------------------------*/
 
-	// シーンマネージャー
-	SceneManager* mpSceneManager;
+// /*----------------------------*/
+// /*【Idleマップエネミーテート】*/
+// /*----------------------------*/
+// class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
+// {
+// public:
+// 	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+// 	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
+// 	~IdleMapEnemyState() = default;
 
-	// ターゲットマネージャー
-	TargetManager* mpTargetManager;
+// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-	// マップシーン
-	SCENE meMapScene;
+// 	/*この状態に入った時の処理*/
+// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+// 	/*この状態を出る時の処理*/
+// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-protected:
-	MapEnemyProcess(SCENE mapScene);
-	~MapEnemyProcess() = default;
+// 	/*更新*/
+// 	void Update(CharacterBase* character) override;
 
-	/*一定範囲内にプレイヤーターゲットがいるなら「true」*/
-	bool PlayerTargetCheck(CharacterBase* character, float range);
+// 	/*最終更新*/
+// 	void LastUpdate(CharacterBase* character) override;
 
-	/*死亡*/
-	void MapEnemyDeath(CharacterBase* character);
+// 	/*描画*/
+// 	void Draw(CharacterBase* character) override;
+// };
 
-	/*マップシーンに移動開始する*/
-	void SetMapScene(CharacterBase* character);
-};
+// /*--------------------------------*/
+// /*【テロップマップエネミーテート】*/
+// /*--------------------------------*/
+// class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
+// {
+// public:
+// 	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
+// 	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
+// 	~TelopMapEnemyState() = default;
 
-/*--------------------------*/
-/*     【基本ステート】     */
-/*--------------------------*/
+// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-/*----------------------------*/
-/*【Idleマップエネミーテート】*/
-/*----------------------------*/
-class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
-{
-public:
-	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
-	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-	~IdleMapEnemyState() = default;
+// 	/*この状態に入った時の処理*/
+// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+// 	/*この状態を出る時の処理*/
+// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 
-	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+// 	/*更新*/
+// 	void Update(CharacterBase* character) override;
 
-	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+// 	/*最終更新*/
+// 	void LastUpdate(CharacterBase* character) override;
 
-	/*更新*/
-	void Update(CharacterBase* character) override;
-
-	/*最終更新*/
-	void LastUpdate(CharacterBase* character) override;
-
-	/*描画*/
-	void Draw(CharacterBase* character) override;
-};
-
-/*--------------------------------*/
-/*【テロップマップエネミーテート】*/
-/*--------------------------------*/
-class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
-{
-public:
-	// FIXME: 呼び出し側で遷移条件を渡す場合は stateChangeCriterias を渡す
-	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-	~TelopMapEnemyState() = default;
-
-	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
-
-	/*この状態に入った時の処理*/
-	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-	/*この状態を出る時の処理*/
-	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
-
-	/*更新*/
-	void Update(CharacterBase* character) override;
-
-	/*最終更新*/
-	void LastUpdate(CharacterBase* character) override;
-
-	/*描画*/
-	void Draw(CharacterBase* character) override;
-};
+// 	/*描画*/
+// 	void Draw(CharacterBase* character) override;
+// };

@@ -1,4 +1,5 @@
 #pragma once
+#include "AnimationEnum.h"
 #include "StateData.h"
 
 class FSMAnimation;
@@ -42,6 +43,9 @@ public:
 
     /// <summary>モデル取得</summary>
     inline ModelBase* GetModel() { return mpModel; }
+
+	/// <summary>次のアニメーションムーブ設定</summary>
+	void NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType);
 };
 // #include <map>
 // #include <vector>
@@ -50,7 +54,7 @@ public:
 
 // #include "FSMAnimation.h"
 
-// class AnimationBase
+// class Animation
 // {
 // private:
 //     // モデルコントローラー
@@ -66,8 +70,8 @@ public:
 //     std::map<ANIMATION_TYPE, int> mmAnimationTime;
 
 // public:
-//     AnimationBase();
-//     ~AnimationBase() = default;
+//     Animation();
+//     ~Animation() = default;
 
 //     /// <summary>初期化</summary>
 //     void Initilize();

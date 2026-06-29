@@ -30,6 +30,7 @@ class AttackBase;
 class FSMAnimation;
 class FSMCharacter;
 class FSMUI;
+class ModelsController;
 
 class ObjectBase;
 #ifdef _DEBUG
@@ -334,9 +335,6 @@ protected:
     // モデルベース
     ModelBase* mpModelBase;
 
-    // アニメションベース
-    AnimationBase* mpAnimation;
-
     // 行動フラグ
     BIT_FLAG<unsigned int> munActionflags;
 
@@ -383,6 +381,10 @@ public:
     /// <summary>指定アニメーション中であるかを取得</summary>
     /// <returns>指定のアニメーションなら「true」を返す</returns>
     bool CheckAnimationType(ANIMATION_TYPE animationType);
+
+    /// <summary>指定アニメーションムーブ中であるかを取得</summary>
+    /// <returns>指定のアニメーションムーブなら「true」を返す</returns>
+    bool CheckAnimationMoveType(ANIMATION_MOVE_TYPE animationType);
 
     /*ダメージ*/
     virtual void Damage(int damage);
@@ -448,22 +450,21 @@ public:
     /*平均サイズ取得*/
     inline float GetAverageSize() const { return (mpModelBase->GetSize().x + mpModelBase->GetSize().y + mpModelBase->GetSize().z) / 3.0f; }
 
-    /// <summary>モデルコントローラー取得</summary>
-    /// <returns>モデルコントローラー</returns>
+    /// <summary>モデル取得</summary>
+    /// <returns>モデル</returns>
     inline ModelBase* GetModel() { return mpModelBase; }
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
-    inline AnimationBase* GetAnimation() { return  mpAnimation; }
-
+    inline Animation* GetAnimation() { if (mpModelBase == nullptr) { return nullptr; } return  mpModelBase->GetAnimation(); }
     
-    /// <summary>攻撃用モデルコントローラー取得</summary>
-    /// <returns>モデルコントローラー</returns>
+    /// <summary>攻撃用モデル取得</summary>
+    /// <returns>モデル</returns>
     inline ModelBase* GetAttackModel(ATTACK_METHOD_TYPE attackMethodType) { return mmCharacterAttackDatas[attackMethodType].modelBase; }
 
     /// <summary>攻撃用アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
-    inline AnimationBase* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { return  mmCharacterAttackDatas[attackMethodType].animation; }
+    inline Animation* GetAttackAnimation(ATTACK_METHOD_TYPE attackMethodType) { if (mmCharacterAttackDatas[attackMethodType].modelBase == nullptr) { return nullptr; } return mmCharacterAttackDatas[attackMethodType].modelBase->GetAnimation(); }
 
     /// <summary>キャラクターがした攻撃取得</summary>
     /// <returns>攻撃オブジェクト</returns>
@@ -619,13 +620,8 @@ protected:
     // 向き
     VECTOR mvAngle;
 
-    //fsm
-
     // モデルベース
     ModelBase* mpModelBase;
-
-    // アニメションベース
-    AnimationBase* mpAnimation;
 
     // 攻撃ナンバー
     int mnAttackNumber;
@@ -698,7 +694,7 @@ public:
     inline void SetModel(ModelBase* model) { mpModelBase = model; }
 
     /// <summary>アニメション設定</summary>
-    inline void SetAnimation(AnimationBase* animation) { mpAnimation = animation; }
+    inline void SetAnimation(Animation* animation) { mpModelBase->MyAnimationSetting(animation); }
 
     /*--------*/
     /*【取得】*/
@@ -718,11 +714,11 @@ public:
     /*パワー取得*/
     inline int GetAttackPower()const { return mnPower; }
 
-    /// <summary>モデルコントローラー取得</summary>
+    /// <summary>モデル取得</summary>
     inline ModelBase* GetModel() { return mpModelBase; }
 
     /// <summary>アニメーション取得</summary>
-    inline AnimationBase* GetAnimation() { return mpAnimation; }
+    inline Animation* GetAnimation() { if (mpModelBase == nullptr) { return nullptr; } return mpModelBase->GetAnimation(); }
 };
 
 /*----------------------------------------------*/
@@ -778,10 +774,7 @@ enum class SELECT_NUMBER_FLAG_ENUM
 struct UIDrawModel// TODO: 一旦UIを表示させた後にこれに置き換える
 {
     // モデル
-    ModelBase* mpUIModelController;
-
-    // アニメション
-    AnimationBase* mpAnimation;
+    ModelBase* mpUIModel;
 
     // 描画するステート
     std::vector<int> mnDrawNumber;
@@ -811,6 +804,9 @@ private:
 
     // 選択ナンバー関連フラグ
     BIT_FLAG<unsigned short> mstSelectNumberFlag;
+
+    // 設定用モデルコントローラー
+    ModelsController* mpModelsController;
 
 protected:
     // キー状態
@@ -856,7 +852,7 @@ protected:
     // UI描画モデルたち
     std::vector<UIDrawModel> mstUIDrawModels;
 
-    // モデルコントローラーの数
+    // モデルの数
     int mnUIModelControllerCount;
 
     
@@ -960,14 +956,18 @@ public:
     /// <summary>モデル数取得</summary>
     inline int GetModelCount() { return static_cast<int>(mstUIDrawModels.size()); }
 
-    /// <summary>モデルコントローラー取得</summary>
-    /// <returns>モデルコントローラー</returns>
-    inline ModelBase* GetModel(int index) { return mstUIDrawModels[index].mpUIModelController; }
+    /// <summary>モデル取得</summary>
+    /// <returns>モデル</returns>
+    inline ModelBase* GetModel(int index) { return mstUIDrawModels[index].mpUIModel; }
 
     /// <summary>アニメションベース取得</summary>
     /// <returns>アニメションベース</returns>
-    inline AnimationBase* GetAnimation(int index) {
-        return  mstUIDrawModels[index].mpAnimation;
+    inline Animation* GetAnimation(int index) {
+        if (mstUIDrawModels[index].mpUIModel == nullptr)
+        {
+            return nullptr;
+        }
+        return  mstUIDrawModels[index].mpUIModel->GetAnimation();
     }
 
     /// <summary>UI座標情報設定</summary>
@@ -1069,9 +1069,9 @@ public:
     virtual void DecisionProcess() = 0;
 
     /*デフォルト終了確認処理*/
-    void DefaultCloce();
+    void DefaultClose();
     /*デフォルト終了処理*/
-    virtual void CloceProcess();
+    virtual void CloseProcess();
 
     /*上が押されていて、なおかつ前回の選択変更から一定フレーム経っているなら「true」を返す*/
     bool CheckUp_Frame();

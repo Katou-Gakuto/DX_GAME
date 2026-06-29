@@ -45,10 +45,13 @@ public:
     void Initilize();
 
 protected:
-    /*モデル初期化*/
-    void ModelInitilize();
+    /*継承モデル ゲーム初期化*/
+    void ModelGameInit() override;
     /*モデル終了*/
     void ModelFinalize() override;
+    
+	/*継承モデル 更新*/
+	void ModelUpdate() override;
 
 public:
     /*モデル描画*/

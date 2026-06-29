@@ -15,6 +15,7 @@
 #include "FSMUI.h"
 #include "GameManager.h"
 #include "ModelBase.h"
+#include "ModelsController.h"
 #include "ObjectBases.h"
 #include "ObjectManager.h"
 #include "ResourceGraph.h"
@@ -69,8 +70,7 @@ CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
 , mstStatus(status)
 , munActionflags(BIT_FLAG<unsigned int>())
 , mpFsm(nullptr)
-, mpModelController(nullptr)
-, mpAnimation(nullptr)
+, mpModelBase(nullptr)
 , mpAttack(nullptr)
 {
 	mmCharacterAttackDatas.clear();
@@ -84,22 +84,22 @@ CharacterBase::~CharacterBase()
 // 初期化
 void CharacterBase::Initilize()
 {
-	// モデルコントローラー初期化
-	mpModelController = new ModelsControllerBase();
-	mpModelController->Initilize();
+	// // モデル初期化
+	// mpModelBase = new ModelBase();
+	// mpModelBase->Initilize();
 
-	// アニメーション初期化
-	mpAnimation = new AnimationBase();
-	mpAnimation->Initilize();
-	mpAnimation->SetModelsController(mpModelController);
+	// // アニメーション初期化
+	// mpAnimation = new Animation();
+	// mpAnimation->Initilize();
+	// mpAnimation->SetModelsController(mpModelBase);
 
-	// 攻撃初期化
-	for (auto attackData : mmCharacterAttackDatas)
-	{
-		attackData.second.animation->Initilize();
+	// // 攻撃初期化
+	// for (auto attackData : mmCharacterAttackDatas)
+	// {
+	// 	attackData.second.animation->Initilize();
 
-		attackData.second.modelController->Initilize();
-	}
+	// 	attackData.second.->Initilize();
+	// }
 
 	CharacterInitilize();
 }
@@ -108,20 +108,20 @@ void CharacterBase::Initilize()
 void CharacterBase::SceneLastInitilize()
 {
 	// モデル位置・角度設定
-	mpModelController->ModelsPositionSetting(mvPosition, mvAngle);
+	// mpModelBase->ModelGameInit(mvPosition, mvAngle, );
 
-	// アニメーション最終初期化
-	mpAnimation->SceneLastInitilize();
+	// // アニメーション最終初期化
+	// mpAnimation->SceneLastInitilize();
 
-	// モデルコントローラー最終初期化
-	mpModelController->SceneLastInitilize();
+	// モデル最終初期化
+	mpModelBase->SceneLastInitilize();
 
 	// 攻撃最終初期化
 	for (auto attackData : mmCharacterAttackDatas)
 	{
-		attackData.second.animation->SceneLastInitilize();
+		// attackData.second.animation->SceneLastInitilize();
 
-		attackData.second.modelController->SceneLastInitilize();
+		attackData.second.modelBase->SceneLastInitilize();
 	}
 
 	CharacterSceneLastInitilize();
@@ -132,26 +132,16 @@ void CharacterBase::Finalize()
 {
 	CharacterFinalize();
 
-	// モデルコントローラー終了
-	mpModelController->Finalize();
-	delete mpModelController;
-	mpModelController = nullptr;
-
-	// アニメーション終了
-	mpAnimation->Finalize();
-	delete mpAnimation;// この中でエラー　余計に消してるかも
-	mpAnimation = nullptr;
+	// モデル終了
+	mpModelBase->Finalize();
+	delete mpModelBase;
+	mpModelBase = nullptr;
 
 	for (auto& attackDatas : mmCharacterAttackDatas)
 	{
-		// FIXME: エラーをはくときがある
-		attackDatas.second.animation->Finalize();
-		delete attackDatas.second.animation;
-		attackDatas.second.animation = nullptr;
-
-		attackDatas.second.modelController->Finalize();
-		delete attackDatas.second.modelController;
-		attackDatas.second.modelController = nullptr;
+		attackDatas.second.modelBase->Finalize();
+		delete attackDatas.second.modelBase;
+		attackDatas.second.modelBase = nullptr;
 	}
 	mmCharacterAttackDatas.clear();
 
@@ -211,14 +201,8 @@ void CharacterBase::LastUpdate()
 	}
 	MoveProcess();
 
-	// モデル位置・角度更新
-	mpModelController->ModelsPositionSetting(mvPosition, mvAngle);
-
-	// アニメーション更新
-	mpAnimation->Update();
-	
-	// モデルに反映
-	mpModelController->UpdateModels();
+	// 更新
+	mpModelBase->Update(mvPosition, mvAngle);
 }
 
 // 描画
@@ -231,7 +215,7 @@ void CharacterBase::Draw()
 	}
 	
 	// モデル描画
-	mpModelController->DrawModels();
+	mpModelBase->ModelDraw();
 
 
 
@@ -308,9 +292,21 @@ void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 // 指定アニメーション中であるかを取得
 bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 {
-	if (mpAnimation != nullptr)
+	if ((mpModelBase != nullptr) && (mpModelBase->GetAnimation() != nullptr))
 	{
-		return mpAnimation->GetFsm()->CheckNowStateSameType(animationType);
+		return mpModelBase->GetAnimation()->GetFsm()->CheckNowStateSameType(animationType);
+	}
+
+	return false;
+}
+
+// 指定アニメーションムーブ中であるかを取得
+bool CharacterBase::CheckAnimationMoveType(ANIMATION_MOVE_TYPE animationType)
+{
+	if ((mpModelBase != nullptr) && (mpModelBase->GetAnimation() != nullptr))
+	{
+		// static_cast<int>(animationType)改善した方がいいアニメーションデータと比較がいいと思う
+		return mpModelBase->GetAnimation()->GetFsm()->GetCurrentState() == static_cast<int>(animationType);
 	}
 
 	return false;
@@ -424,11 +420,6 @@ void CharacterBase::MoveProcess()
 // 死亡処理
 void CharacterBase::DeathProcess()
 {
-	if (mpFsm != nullptr)
-	{
-		mpFsm->Death(this);
-	}
-
 	SetDeleteFlag(true);
 }
 
@@ -457,7 +448,11 @@ void CharacterBase::SetFSM(FSMCharacter* fsm)
 // アニメーション設定
 void CharacterBase::SetAnimation(ANIMATION_MOVE_TYPE animationType)
 {
-	mpAnimation->SetAnimationType(animationType);
+	if ((mpModelBase != nullptr) &&
+		(mpModelBase->GetAnimation() != nullptr))
+	{
+		mpModelBase->GetAnimation()->NextAnimationMoveSetting(animationType);
+	}
 }
 
 /*------------------------------------------*/
@@ -532,8 +527,7 @@ AttackBase::AttackBase()
 //, mnAttackRecoilTime(0)
 , mstAttackTime(TIME_DATA())
 , mvMoveDir(UtilCalc::VZero)
-, mpModelController(nullptr)
-, mpAnimation(nullptr)
+, mpModelBase(nullptr)
 , mvAngle(UtilCalc::VZero)
 {
 	mnHiObjID.clear();
@@ -546,6 +540,11 @@ AttackBase::~AttackBase()
 // 初期化
 void AttackBase::Initilize()
 {
+	// if (mpModelBase != nullptr)
+	// {
+	// 	mpModelBase->ModelGameInit(mvPosition, mvAngle,);
+	// }
+
 	AttackInitilize();
 }
 
@@ -583,17 +582,12 @@ void AttackBase::LastUpdate()
 
 	AttackLastUpdate();
 
-	if (mpModelController != nullptr)
+	if (mpModelBase != nullptr)
 	{
+
 		// モデル位置・角度更新
 		mvAngle = UtilCalc::VMoveVecToAngle(mvMoveDir, mvAngle);
-		mpModelController->ModelsPositionSetting(mvPosition, mvAngle);
-
-		// アニメーション更新
-		mpAnimation->Update();
-
-		// モデルに反映
-		mpModelController->UpdateModels();
+		mpModelBase->Update(mvPosition, mvAngle);
 	}
 }
 
@@ -602,10 +596,10 @@ void AttackBase::Draw()
 {	
 	AttackDraw();
 
-	if (mpModelController != nullptr)
+	if (mpModelBase != nullptr)
 	{
 		// モデル描画
-		mpModelController->DrawModels();
+		mpModelBase->ModelDraw();
 	}
 }
 
@@ -615,6 +609,7 @@ void AttackBase::Draw()
 
 UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, bool decreaseFlag)
 : ObjectBase(OBJECT_TYPE::UI_BASE, true, nextSceneDeleteFlag)
+, mpModelsController(nullptr)
 , mpKeyState(nullptr)
 , mpResourceManager(nullptr)
 , mnSelectNumber(0)
@@ -710,15 +705,10 @@ void UIBase::Finalize()
 
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{	
-		// モデルコントローラー終了
-		mstUIDrawModels[i].mpUIModelController->Finalize();
-		delete mstUIDrawModels[i].mpUIModelController;
-		mstUIDrawModels[i].mpUIModelController = nullptr;
-
-		// アニメーション終了
-		mstUIDrawModels[i].mpAnimation->Finalize();
-		delete mstUIDrawModels[i].mpAnimation;
-		mstUIDrawModels[i].mpAnimation = nullptr;
+		// モデル終了
+		mstUIDrawModels[i].mpUIModel->Finalize();
+		delete mstUIDrawModels[i].mpUIModel;
+		mstUIDrawModels[i].mpUIModel = nullptr;
 	}
 	mstUIDrawModels.clear();
 
@@ -757,14 +747,8 @@ void UIBase::LastUpdate()
 
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{	
-		// モデル位置・角度更新
-		mstUIDrawModels[i].mpUIModelController->ModelsPositionSetting();
-
-		// アニメーション更新
-		mstUIDrawModels[i].mpAnimation->Update();
-		
-		// モデルに反映
-		mstUIDrawModels[i].mpUIModelController->UpdateModels();
+		// 更新
+		mstUIDrawModels[i].mpUIModel->Update(mstUIDrawModels[i].mpUIModel->GetPosition(), mstUIDrawModels[i].mpUIModel->GetAngle());
 	}
 
 	mstSelectNumberFlag.Init(SELECT_NUMBER_FLAG_ENUM::INIT_BIT);
@@ -779,7 +763,7 @@ void UIBase::Draw()
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{
 		// モデル描画
-		mstUIDrawModels[i].mpUIModelController->DrawModels();
+		mstUIDrawModels[i].mpUIModel->ModelDraw();
 	}
 
 	if (mpFsm != nullptr)
@@ -879,7 +863,11 @@ void UIBase::SetAnimationType(ANIMATION_MOVE_TYPE aniamtionType)
 {
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{
-		mstUIDrawModels[i].mpAnimation->SetAnimationType(aniamtionType);
+		if ((mstUIDrawModels[i].mpUIModel != nullptr) &&
+			(mstUIDrawModels[i].mpUIModel->GetAnimation() != nullptr))
+		{
+			mstUIDrawModels[i].mpUIModel->GetAnimation()->NextAnimationMoveSetting(aniamtionType);
+		}
 	}
 }
 
@@ -934,36 +922,27 @@ void UIBase::DeleteUINumber()
 // モデル追加
 void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, ANIMATION_TYPE modelType)
 {
-	if (mstUIDrawModels.size() <= mnUIModelControllerCount)
-	{
-		UIDrawModel uiDrawModel = UIDrawModel();
+    if (mpModelsController == nullptr)
+    {
+        mpModelsController = new ModelsController();
+    }
 
-		uiDrawModel.mpUIModelController = new ModelsControllerBase();
-		uiDrawModel.mpUIModelController->Initilize();
-
-		uiDrawModel.mpAnimation = new AnimationBase();
-		uiDrawModel.mpAnimation->Initilize();
-		uiDrawModel.mpAnimation->SetModelsController(uiDrawModel.mpUIModelController);
-
-		uiDrawModel.mnDrawNumber.clear();
-		
-		mstUIDrawModels.push_back(uiDrawModel);
-	}
-
-    mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
+    mpModelsController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
 }
 
 // アニメーション設定
 void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber)
 {
+    UIDrawModel uiDrawModel = UIDrawModel();
+
 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	for (int i = 0; i < mstUIDrawModels[mnUIModelControllerCount].mpUIModelController->GetModelList().size(); i++)
+	for (int i = 0; i < mpModelsController->GetModelList().size(); i++)
 	{
 		// 読み込み用アニメーションデータ設定
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ladoAnimationDataFactorynumber));
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpModelsController->GetModelList()[i]->GetAnimation(), ladoAnimationDataFactorynumber));
 	}
 	// アニメーション有限状態マシン設定
-	mstUIDrawModels[mnUIModelControllerCount].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+	//mstUIDrawModels[mnUIModelControllerCount].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
 
 	// 描画するステート設定
 	if (drawNumber.size() == 0)
@@ -971,13 +950,18 @@ void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDa
 		// TODO: 全ステートのステートで追加するから後でちょうどいい数字を変数で取得できるようにする
 		for (int i = 0; i < 10; i++)
 		{
-			mstUIDrawModels[mnUIModelControllerCount].mnDrawNumber.push_back(i);
+			uiDrawModel.mnDrawNumber.push_back(i);
 		}
 	}
 	else
 	{
-		mstUIDrawModels[mnUIModelControllerCount].mnDrawNumber = drawNumber;
+		uiDrawModel.mnDrawNumber = drawNumber;
 	}
+
+    // mstUIDrawModelsの末尾にmpModelsControllerを追加
+    uiDrawModel.mpUIModel = mpModelsController;
+    mstUIDrawModels.push_back(uiDrawModel);
+	mpModelsController = nullptr;
 
 	// アニメーション数を加算する
 	mnUIModelControllerCount++;
@@ -1258,7 +1242,7 @@ void UIBase::DefaultDecision()
 }
 
 // デフォルト終了確認処理
-void UIBase::DefaultCloce()
+void UIBase::DefaultClose()
 {
 	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ここ修正すべき
 		// ||
@@ -1266,17 +1250,17 @@ void UIBase::DefaultCloce()
 		// (mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z)))
 		)
 	{
-		CloceProcess();
+		CloseProcess();
 	}
 }
 
 // デフォルト終了処理
-void UIBase::CloceProcess()
+void UIBase::CloseProcess()
 {
 	SetDeleteFlag(true);
 	if (mpFsm != nullptr)
 	{
-		mpFsm->Cloce(this);
+		mpFsm->Close(this);
 	}
 }
 

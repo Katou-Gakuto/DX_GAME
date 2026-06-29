@@ -1,5 +1,9 @@
 #pragma once
+#include<string> 
+
+#include "AnimationData.h"
 #include "StateData.h"
+#include "StateAnimation.h"
 #include "StateAnimationBase.h"
 #include "UtilCalc.h"
 
@@ -18,8 +22,15 @@ protected:
     };
 
 protected:
+
+    // モデルハンドル
+    int mnModelHandle;
+    
     // 一つ前のアニメーション情報
     MVOneAnimationData mstPreAnimationData;
+
+    // 個のステートのアニメーションデータ
+    OneAnimationData mstMyAniationData;
 
     // ブレンド率
     float mfAnimBlendRate;
@@ -36,6 +47,9 @@ protected:
 public:
     State3DAnimationProcess();
     ~State3DAnimationProcess() = default;
+
+    /// <summary>このステートのアニメーションデータ設定</summary>
+    void SetMyAniamtionData(const OneAnimationData& oneAnimationData) { mstMyAniationData = oneAnimationData; }
 
 protected:
     /*アニメーションをデタッチ*/
@@ -92,7 +106,7 @@ private:
 class StateMVOneAnimation : public IStateAnimation, public State3DAnimationProcess
 {
 public:
-    StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
+    StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, std::string fileName);
     ~StateMVOneAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -185,6 +199,9 @@ protected:
 /*--------------------*/
 class StateEffectAnimation : public IStateAnimation
 {
+private:
+    int mnEffectHandle;
+
 public:
     StateEffectAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateEffectAnimation() = default;
@@ -303,9 +320,9 @@ private:
 // #include "AnimationEnum.h"
 // #include "AnimationData.h"
 
-// #include "AnimationBase.h"
+// #include "Animation.h"
 // #include "ModelBase.h"
-// #include "StateAnimationBase.h"
+// #include "StateAnimation.h"
 // #include "UtilCalc.h"
 // // TODO: 3Dアニメーションと2Dアニメーションで分ける ステート設定時ナンバー設定
 
@@ -350,16 +367,16 @@ private:
 
 // protected:
 //     /*アニメーションをデタッチ*/
-//     virtual void AnimationDetach(AnimationBase* animation, AnimationDatas* animationDatas);
+//     virtual void AnimationDetach(Animation* animation, AnimationDatas* animationDatas);
 
 //     /*アニメーションをアタッチ*/
-//     virtual void AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
+//     virtual void AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
 //     /*一つ前のアニメーション情報を設定する*/
-//     virtual void PreAnimationDataSetting(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
+//     virtual void PreAnimationDataSetting(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
 //     /*アニメーション初期化*/
-//     virtual void Init(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
+//     virtual void Init(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
 //     /*アニメーション更新*/
 //     void UpdateAnimation(OneAnimationData *nowAnimationData);
@@ -388,16 +405,16 @@ private:
 //     /// <summary>この状態を出る時の処理(何もしない)</summary>
 //     /// <param name="animationData">アニメーション情報</param>
 //     /// <param name="nextState">次のアニメーション種類</param>
-//     //virtual void OnExit(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType) override {}
+//     //virtual void OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType) override {}
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override {}
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override {}
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override {}
 
 //     /// <summary>更新(何もしない)</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override {}
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override {}
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/
@@ -426,12 +443,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/
@@ -458,12 +475,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // protected:
 
@@ -471,7 +488,7 @@ private:
 //     virtual bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 
 //     /*アニメーションをアタッチ*/
-//     virtual void AnimationAttach(AnimationBase* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas) override;
+//     virtual void AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas) override;
 // };
 
 
@@ -514,7 +531,7 @@ private:
 //     /// <summary>更新</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 
 // protected:
@@ -546,12 +563,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新(何もしない)</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/
@@ -580,12 +597,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新(何もしない)</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/
@@ -614,12 +631,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新(何もしない)</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/
@@ -647,11 +664,11 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 //     /// <summary>更新(何もしない)</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 
@@ -682,12 +699,12 @@ private:
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
     
 //     /// <summary>終了</summary>
-//     virtual void Finalize(AnimationBase* animation, AnimationDatas* animationDatas) override;
+//     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
 //     /// <summary>更新</summary>
 //     /// <param name="animation">アニメーション</param>
 //     /// <param name="animationDatas">アニメーション情報</param>
-//     virtual void Update(AnimationBase* animation, OneAnimationData *nowAnimationData) override;
+//     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 //     /*モデル種類が同類なら「true」を返す*/

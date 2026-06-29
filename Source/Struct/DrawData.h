@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+#include "BitFlag.h"
 #include "ResourceData.h"
 
 enum class DRAW_MANAGER_DRAW_TYPE

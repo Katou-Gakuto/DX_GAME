@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+#include "StateEnum.h"
 #include "Status.h"
 
 #include "ObjectBases.h"

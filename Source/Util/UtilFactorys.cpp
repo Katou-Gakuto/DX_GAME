@@ -42,7 +42,7 @@
 #include "UtilFactorys.h"
 
 // アニメション有限状態マシン作成
-FSMAnimation* UtilFactorys::FSMAnimationFactory(AnimationBase* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
+FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
 {
 	// FSM生成
 	FSMAnimation* fsm = new FSMAnimation();
@@ -332,7 +332,7 @@ AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData
 }
 
 /*読み込み用アニメーションデータ作成*/
-std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(AnimationBase* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER number)
+std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(Animation* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER number)
 {
 	std::vector<LoadAnimationData> loadAnimationData;
 	loadAnimationData.clear();
@@ -640,10 +640,10 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 	CharacterAttackData characterAttackData;
 	characterAttackData.attackDataNumber = -1;
 	characterAttackData.modelController = new ModelsControllerBase();
-	characterAttackData.animation = new AnimationBase();
+	characterAttackData.animation = new Animation();
 	// 変数にポインタを渡し見やすくする
     ModelsControllerBase* modelController = characterAttackData.modelController;
-    AnimationBase* animation = characterAttackData.animation;
+    Animation* animation = characterAttackData.animation;
 	// モデル初期化
 	modelController->Initilize();
 	// アニメーション初期化
@@ -989,7 +989,7 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
 	 {
-	 	AnimationBase* characterAnimation = character->GetAnimation();
+	 	Animation* characterAnimation = character->GetAnimation();
 	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	 	// 読み込み用アニメーションデータ設定
 	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));

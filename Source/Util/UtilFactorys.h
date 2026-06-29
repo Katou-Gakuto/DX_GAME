@@ -113,14 +113,14 @@ namespace UtilFactorys
 	
 	/// <summary>読み込み用アニメーションデータ作成</summary>
 	/// <param name="animation">アニメーション</param>
-	std::vector<LoadAnimationData> LoadAnimationDataFactory(AnimationBase* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER nmber);
+	std::vector<LoadAnimationData> LoadAnimationDataFactory(Animation* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER nmber);
 
 	/// <summary>キャラクタ攻撃情報作成</summary>
 	CharacterAttackData CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType);
 
 	// TODO: 作る
 	/// <summary>全アニメーションとモデル設定</summary>
-	//void SettingAnimationAndModelFactory(AnimationBase* animation, ModelsControllerBase* modelsController, std::string filePath, objectType, characterType, moveType);
+	//void SettingAnimationAndModelFactory(Animation* animation, ModelsControllerBase* modelsController, std::string filePath, objectType, characterType, moveType);
 
 	/*カメラ有限状態マシン作成*/
 	FSMCamera* FSMCameraFactory();

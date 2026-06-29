@@ -4,6 +4,7 @@
 
 #include "CharacterEnum.h"
 #include "SceneEnum.h"
+#include "StateEnum.h"
 #include "ResourceData.h"
 #include "Status.h"
 #include "Vector2.h"
@@ -33,8 +34,8 @@
 /*----------*/
 /*【タイトルUIステート共通処理用】
 /*----------*/
-TitleUIStateProcess::TitleUIStateProcess(TITLE_UI_STATE preUiState)
-: mePreUiState(preUiState)
+TitleUIStateProcess::TitleUIStateProcess(STATE_TYPE_UI preUiState)
+: mePreviousSteptate(preUiState)
 , mnPreSelectNumber(-1)
 {
 	// セーブデータ背景画像ハンドル
@@ -158,7 +159,7 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 	// HACK: 他のUIでも使えるようにする
 	if (mnPreSelectNumber != ui->GetSelectNumber())
 	{
-		std::vector<std::map<int, VECTOR>> uiPositionData = ui->GetUIPositionData(ui->GetFsm()->GetCurrentState());
+		std::vector<std::map<int, VECTOR>> uiPositionData = ui->GetUIPositionData((int)ui->GetFsm()->GetCurrentState());
 		for (int i = 0; i < uiPositionData.size(); i++)
 		{
 			if (uiPositionData[i].find(ui->GetSelectNumber()) != uiPositionData[i].end())
@@ -166,14 +167,14 @@ void TitleUIStateProcess::ProcessUpadate(UIBase* ui)
 				// TODO: ファクトリーでやる
 				DOT_WEEN_DATA dotWeenData;
 				dotWeenData.DotWeenType = DOT_WEEN_TYPE::OUT_BOUNCE;
-				dotWeenData.ChangeData = &ui->GetModelsController(i)->GetModelPositionPointer()->x;
+				dotWeenData.ChangeData = &ui->GetModel(i)->GetPositionPointer()->x;
 				dotWeenData.DotWeenTotalTime = 5.0f;
 				dotWeenData.DotWeenElapsedTime = 0.0f;
 				dotWeenData.EndData = uiPositionData[i][ui->GetSelectNumber()].x;
 				dotWeenData.StartData = *dotWeenData.ChangeData;
 				Master::mpGameManager->GetDotWeenManager()->SetDotWeen(dotWeenData);
 
-				dotWeenData.ChangeData = &ui->GetModelsController(i)->GetModelPositionPointer()->y;
+				dotWeenData.ChangeData = &ui->GetModel(i)->GetPositionPointer()->y;
 				dotWeenData.EndData = uiPositionData[i][ui->GetSelectNumber()].y;
 				dotWeenData.StartData = *dotWeenData.ChangeData;
 				Master::mpGameManager->GetDotWeenManager()->SetDotWeen(dotWeenData);
@@ -257,7 +258,7 @@ void TitleUIStateProcess::DrawSaveData(UIBase* ui, int displayPos, int playerGra
 
 	// プレイヤー画像描画
 	{
-		drawGraphData.handle = ui->GetGraphResource()->GetResourceHandle(s()[playerGraphNumber];
+		drawGraphData.handle = ui->GetGraphHandles()[playerGraphNumber];
 		drawGraphData.pos = drawPos + drawSize.LeftUp_Ratio(Vector2(0.05f, 0.1f));
 		drawGraphData.size = drawSize.LeftUp_Ratio(Vector2(0.2f, 0.8f));
 
@@ -304,9 +305,8 @@ void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize,
 
 StartTitleUIState::StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::START_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::START_TITLE_UI_STATE;
 }
 
 // 終了
@@ -316,13 +316,13 @@ void StartTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void StartTitleUIState::OnEnter(UIBase* ui)
+void StartTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	//printfDx("テロップ：開始　Enter\n");
 }
 
 // この状態を出る時の処理
-void StartTitleUIState::OnExit(UIBase* ui)
+void StartTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	if (ui->GetMovieHandleCount() >= 1)
 	{
@@ -331,20 +331,16 @@ void StartTitleUIState::OnExit(UIBase* ui)
 }
 
 // 更新
-STATE_TYPE_UI StartTitleUIState::Update(UIBase* ui)
+void StartTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI StartTitleUIState::Decision(UIBase* ui)
+void StartTitleUIState::Decision(UIBase* ui)
 {
 	Master::mpDataManager->SetPlayPlayer(0);
 	Master::mpGameManager->GetSceneManager()->SetNextScene(SCENE::GAME_LOOP);
-
-	return mStateNumber;
 	//return (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
 }
 
@@ -366,9 +362,8 @@ void StartTitleUIState::Draw(UIBase* ui)
 
 SelectTitleUIState::SelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::START_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::START_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::SELECT_TITLE_UI_STATE;
 }
 
 // 終了
@@ -378,7 +373,7 @@ void SelectTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void SelectTitleUIState::OnEnter(UIBase* ui)
+void SelectTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
@@ -396,73 +391,72 @@ void SelectTitleUIState::OnEnter(UIBase* ui)
 	
 	for(int i = 0; i < ui->GetDrawModels().size(); i++)
 	{
-		ui->GetAnimation(i)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_OUT);
+		ui->GetAnimation(i)->NextAnimationMoveSetting(ANIMATION_MOVE_TYPE::FADE_OUT);
 	}
 
 	//printfDx("テロップ：選択　Enter\n");
 }
 
 // この状態を出る時の処理
-void SelectTitleUIState::OnExit(UIBase* ui)
+void SelectTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 
 	for(int i = 0; i < ui->GetDrawModels().size(); i++)
 	{
-		ui->GetAnimation(i)->SetAnimationType(ANIMATION_MOVE_TYPE::FADE_IN);
+		ui->GetAnimation(i)->NextAnimationMoveSetting(ANIMATION_MOVE_TYPE::FADE_IN);
 	}
 }
 
 // 更新
-STATE_TYPE_UI SelectTitleUIState::Update(UIBase* ui)
+void SelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->LeftRightSelectProcess();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI SelectTitleUIState::Decision(UIBase* ui)
+void SelectTitleUIState::Decision(UIBase* ui)
 {
-	/*/
-	switch (ui->GetSelectNumber())
-	{
-	case 0:
-	case 1:
-	case 2:
-	case 3:
-		return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
-	}
-	/*/
-	switch (ui->GetSelectNumber())
-	{
-	case 0:
-		break;
-		return (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
-									
-	case 1:							
-		return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
-		
-	case 2:
-		break;
-		return (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
-		
-	case 3:
-		break;
-		return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
-	}//*/
+	// /*/
+	// switch (ui->GetSelectNumber())
+	// {
+	// case 0:
+	// case 1:
+	// case 2:
+	// case 3:
+	// 	return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
+	// }
+	// /*/
 
-	return mStateNumber;
+	// ここ外部条件
+	// switch (ui->GetSelectNumber())
+	// {
+	// case 0:
+	// 	break;
+	// 	return (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
+									
+	// case 1:							
+	// 	return (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
+		
+	// case 2:
+	// 	break;
+	// 	return (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
+		
+	// case 3:
+	// 	break;
+	// 	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
+	// }//*/
+
+	// return mStateNumber;
 }
 
 // 戻る
-STATE_TYPE_UI SelectTitleUIState::Close(UIBase* ui)
+void SelectTitleUIState::Close(UIBase* ui)
 {
-	return mStateNumber;
 }
 
 // 描画
@@ -482,9 +476,8 @@ void SelectTitleUIState::Draw(UIBase* ui)
 
 NewDataCheckTitleUIState::NewDataCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SELECT_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::NEW_DATA_CHECK_TITLE_UI_STATE;
 }
 
 // 終了
@@ -494,7 +487,7 @@ void NewDataCheckTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
+void NewDataCheckTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
@@ -502,32 +495,32 @@ void NewDataCheckTitleUIState::OnEnter(UIBase* ui)
 }
 
 // この状態を出る時の処理
-void NewDataCheckTitleUIState::OnExit(UIBase* ui)
+void NewDataCheckTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI NewDataCheckTitleUIState::Update(UIBase* ui)
+void NewDataCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI NewDataCheckTitleUIState::Decision(UIBase* ui)
+void NewDataCheckTitleUIState::Decision(UIBase* ui)
 {
-	return TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
+	// ここ外部条件
+	//return TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
 // 戻る
-STATE_TYPE_UI NewDataCheckTitleUIState::Close(UIBase* ui)
+void NewDataCheckTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -544,10 +537,9 @@ void NewDataCheckTitleUIState::Draw(UIBase* ui)
 
 DataSelectTitleUIState::DataSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SELECT_TITLE_UI_STATE)
 , mnDrawDataPos(0)
 {
-	mStateNumber = (int)TITLE_UI_STATE::DATA_SELECT_TITLE_UI_STATE;
 }
 
 // 終了
@@ -557,7 +549,7 @@ void DataSelectTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void DataSelectTitleUIState::OnEnter(UIBase* ui)
+void DataSelectTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
@@ -570,13 +562,13 @@ void DataSelectTitleUIState::OnEnter(UIBase* ui)
 }
 
 // この状態を出る時の処理
-void DataSelectTitleUIState::OnExit(UIBase* ui)
+void DataSelectTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI DataSelectTitleUIState::Update(UIBase* ui)
+void DataSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->DefaultClose();
@@ -591,21 +583,19 @@ STATE_TYPE_UI DataSelectTitleUIState::Update(UIBase* ui)
 	{
 		mnDrawDataPos = ui->GetSelectNumber() + 2;
 	}
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI DataSelectTitleUIState::Decision(UIBase* ui)
+void DataSelectTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
-	return mStateNumber;
 }
 
 // 戻る
-STATE_TYPE_UI DataSelectTitleUIState::Close(UIBase* ui)
+void DataSelectTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -627,9 +617,8 @@ void DataSelectTitleUIState::Draw(UIBase* ui)
 
 TutorialTitleUIState::TutorialTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SELECT_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::TUTORIAL_TITLE_UI_STATE;
 }
 
 // 終了
@@ -639,40 +628,38 @@ void TutorialTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void TutorialTitleUIState::OnEnter(UIBase* ui)
+void TutorialTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void TutorialTitleUIState::OnExit(UIBase* ui)
+void TutorialTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI TutorialTitleUIState::Update(UIBase* ui)
+void TutorialTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI TutorialTitleUIState::Decision(UIBase* ui)
+void TutorialTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
-	return mStateNumber;
 }
 
 // 戻る
-STATE_TYPE_UI TutorialTitleUIState::Close(UIBase* ui)
+void TutorialTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -689,9 +676,8 @@ void TutorialTitleUIState::Draw(UIBase* ui)
 
 SettingTitleUIState::SettingTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SELECT_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
 // 終了
@@ -701,7 +687,7 @@ void SettingTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void SettingTitleUIState::OnEnter(UIBase* ui)
+void SettingTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
@@ -710,41 +696,41 @@ void SettingTitleUIState::OnEnter(UIBase* ui)
 }
 
 // この状態を出る時の処理
-void SettingTitleUIState::OnExit(UIBase* ui)
+void SettingTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI SettingTitleUIState::Update(UIBase* ui)
+void SettingTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultSelectProcess();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI SettingTitleUIState::Decision(UIBase* ui)
+void SettingTitleUIState::Decision(UIBase* ui)
 {
-	switch (ui->GetSelectNumber())
-	{
-	case 0:
-		return (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
+	// ここ外部条件
+	// switch (ui->GetSelectNumber())
+	// {
+	// case 0:
+	// 	return (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
 
-	case 1:
-		return (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
-	}
+	// case 1:
+	// 	return (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
+	// }
 
-	return mStateNumber;
+	// return mStateNumber;
 }
 
 // 戻る
-STATE_TYPE_UI SettingTitleUIState::Close(UIBase* ui)
+void SettingTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+//	return GetPreUiState();
 }
 
 // 描画
@@ -761,9 +747,8 @@ void SettingTitleUIState::Draw(UIBase* ui)
 
 CharacterSelectTitleUIState::CharacterSelectTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SELECT_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE;
 }
 
 // 終了
@@ -773,39 +758,39 @@ void CharacterSelectTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void CharacterSelectTitleUIState::OnEnter(UIBase* ui)
+void CharacterSelectTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void CharacterSelectTitleUIState::OnExit(UIBase* ui)
+void CharacterSelectTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI CharacterSelectTitleUIState::Update(UIBase* ui)
+void CharacterSelectTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI CharacterSelectTitleUIState::Decision(UIBase* ui)
+void CharacterSelectTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
+	// ここ外部条件
+	//return TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
 // 戻る
-STATE_TYPE_UI CharacterSelectTitleUIState::Close(UIBase* ui)
+void CharacterSelectTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -822,9 +807,8 @@ void CharacterSelectTitleUIState::Draw(UIBase* ui)
 
 PlayerNameTitleUIState::PlayerNameTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::CHARACTER_SELECT_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::CHARACTER_SELECT_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE;
 }
 
 // 終了
@@ -834,39 +818,39 @@ void PlayerNameTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void PlayerNameTitleUIState::OnEnter(UIBase* ui)
+void PlayerNameTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void PlayerNameTitleUIState::OnExit(UIBase* ui)
+void PlayerNameTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI PlayerNameTitleUIState::Update(UIBase* ui)
+void PlayerNameTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI PlayerNameTitleUIState::Decision(UIBase* ui)
+void PlayerNameTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
+	// ここ外部条件
+	//return (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
 }
 
 // 戻る
-STATE_TYPE_UI PlayerNameTitleUIState::Close(UIBase* ui)
+void PlayerNameTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -883,9 +867,8 @@ void PlayerNameTitleUIState::Draw(UIBase* ui)
 
 InputCheckTitleUIState::InputCheckTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::PLAYER_NAME_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::PLAYER_NAME_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::INPUT_CHECK_TITLE_UI_STATE;
 }
 
 // 終了
@@ -895,40 +878,36 @@ void InputCheckTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void InputCheckTitleUIState::OnEnter(UIBase* ui)
+void InputCheckTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void InputCheckTitleUIState::OnExit(UIBase* ui)
+void InputCheckTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI InputCheckTitleUIState::Update(UIBase* ui)
+void InputCheckTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI InputCheckTitleUIState::Decision(UIBase* ui)
+void InputCheckTitleUIState::Decision(UIBase* ui)
 {
 	StartGame(ui);
-	return mStateNumber;
 }
 
 // 戻る
-STATE_TYPE_UI InputCheckTitleUIState::Close(UIBase* ui)
+void InputCheckTitleUIState::Close(UIBase* ui)
 {
-	return mStateNumber;
 }
 
 // 描画
@@ -945,9 +924,8 @@ void InputCheckTitleUIState::Draw(UIBase* ui)
 
 ScreenSizeTitleUIState::ScreenSizeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SETTING_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::SCREEN_SIZE_TITLE_UI_STATE;
 }
 
 // 終了
@@ -957,39 +935,39 @@ void ScreenSizeTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void ScreenSizeTitleUIState::OnEnter(UIBase* ui)
+void ScreenSizeTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void ScreenSizeTitleUIState::OnExit(UIBase* ui)
+void ScreenSizeTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI ScreenSizeTitleUIState::Update(UIBase* ui)
+void ScreenSizeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI ScreenSizeTitleUIState::Decision(UIBase* ui)
+void ScreenSizeTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
+	// ここ外部条件
+	//return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
 // 戻る
-STATE_TYPE_UI ScreenSizeTitleUIState::Close(UIBase* ui)
+void ScreenSizeTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画
@@ -1006,9 +984,8 @@ void ScreenSizeTitleUIState::Draw(UIBase* ui)
 
 VolumeTitleUIState::VolumeTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
 : IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
-, TitleUIStateProcess(TITLE_UI_STATE::SETTING_TITLE_UI_STATE)
+, TitleUIStateProcess(STATE_TYPE_UI::SETTING_TITLE_UI_STATE)
 {
-	mStateNumber = (int)TITLE_UI_STATE::VOLUME_TITLE_UI_STATE;
 }
 
 // 終了
@@ -1018,39 +995,39 @@ void VolumeTitleUIState::Finalize()
 }
 
 // この状態に入った時の処理
-void VolumeTitleUIState::OnEnter(UIBase* ui)
+void VolumeTitleUIState::OnEnter(UIBase* ui, STATE_TYPE_UI preState)
 {
 	ProcessOnEnter(ui);
 
 }
 
 // この状態を出る時の処理
-void VolumeTitleUIState::OnExit(UIBase* ui)
+void VolumeTitleUIState::OnExit(UIBase* ui, STATE_TYPE_UI newState)
 {
 	ProcessOnExit(ui);
 }
 
 // 更新
-STATE_TYPE_UI VolumeTitleUIState::Update(UIBase* ui)
+void VolumeTitleUIState::Update(UIBase* ui)
 {
 	ui->DefaultDecision();
 	ui->DefaultClose();
 
 	ProcessUpadate(ui);
-
-	return mStateNumber;
 }
 
 // 決定
-STATE_TYPE_UI VolumeTitleUIState::Decision(UIBase* ui)
+void VolumeTitleUIState::Decision(UIBase* ui)
 {
-	return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
+	// ここ外部条件
+	//return (int)TITLE_UI_STATE::SETTING_TITLE_UI_STATE;
 }
 
 // 戻る
-STATE_TYPE_UI VolumeTitleUIState::Close(UIBase* ui)
+void VolumeTitleUIState::Close(UIBase* ui)
 {
-	return GetPreUiState();
+	// ここ外部条件
+	//return GetPreUiState();
 }
 
 // 描画

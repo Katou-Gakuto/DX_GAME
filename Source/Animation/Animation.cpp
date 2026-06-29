@@ -20,6 +20,7 @@ void Animation::Initilize(ModelBase* model)
 // シーン最終初期化
 void Animation::SceneLastInitilize()
 {
+    mstStateData.animation = this;
     mpFsm->StateInitilize(&mstStateData);
 }
 
@@ -35,11 +36,18 @@ void Animation::Update()
     mpFsm->Update(&mstStateData);
 }
 
-// #include "AnimationBase.h"
+// 次のアニメーションムーブ設定
+void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
+{
+    mpFsm->SetNextAnimationMove(animatioMoveType);
+}
+
+
+// #include "Animation.h"
 
 // #include "FSMAnimation.h"
 
-// AnimationBase::AnimationBase()
+// Animation::Animation()
 // : mpModelsController(nullptr)
 // {
 //     mmAnimationTime.clear();
@@ -49,7 +57,7 @@ void Animation::Update()
 // }
 
 // // 初期化
-// void AnimationBase::Initilize()
+// void Animation::Initilize()
 // {
 //     if (mpFsm != nullptr)
 //     {
@@ -58,13 +66,13 @@ void Animation::Update()
 // }
 
 // // シーン最終初期化
-// void AnimationBase::SceneLastInitilize()
+// void Animation::SceneLastInitilize()
 // {
 //     Update();
 // }
 
 // // 終了
-// void AnimationBase::Finalize()
+// void Animation::Finalize()
 // {
 //     if (mpFsm != nullptr)
 //     {
@@ -77,7 +85,7 @@ void Animation::Update()
 // }
 
 // // アニメーション更新テスト
-// void AnimationBase::Update()
+// void Animation::Update()
 // {
 //     if (mpFsm != nullptr)
 //     {

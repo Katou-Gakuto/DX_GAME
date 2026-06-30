@@ -12,14 +12,17 @@ public:
 
 protected:
     /*継承モデル終了*/
-    virtual void ModelFinalize() override;
+    void ModelFinalize() override;
+
+	/*継承モデル ゲーム初期化*/
+	void ModelGameInit() override;
 
 public:
     /*ポジション更新*/
     void ModelUpdate() override;
 
     /*モデル描画*/
-    virtual void ModelDraw() override;
+    void ModelDraw() override;
 
     /*モデルハンドル設定*/
     inline void SetModelHandle(int handle) { mnModelHandle = handle; }

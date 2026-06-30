@@ -4,7 +4,10 @@
 #include <vector>
 
 #include "AnimationEnum.h"
+#include"KeyStateEnum.h" 
+#include "StateEnum.h"
 #include "AnimationData.h"
+#include "StateData.h"
 
 #include "DxLib.h"
 
@@ -43,6 +46,7 @@
 #include "TargetManager.h"
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
+#include "UtilStateConditionFunction.h"
 
 // // アニメション有限状態マシン作成
 // FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
@@ -841,49 +845,171 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 
 	switch (number)
 	{
+		/*----------------*/
+		/*【タイトルUI】*/
+		/*----------------*/
 	case UI_FACTORY_NUMBER::TITLE:
-		fsmUI->RegisterState(new StartTitleUIState());
-		fsmUI->RegisterState(new SelectTitleUIState());
-
-		fsmUI->RegisterState(new NewDataCheckTitleUIState());
-		fsmUI->RegisterState(new DataSelectTitleUIState());
-		fsmUI->RegisterState(new TutorialTitleUIState());
-		fsmUI->RegisterState(new SettingTitleUIState());
+	{
+		fsmUI->RegisterState(new StartTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+		}));
+		// 選択ステート
+		fsmUI->RegisterState(new SelectTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NEW_DATA_CHECK_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase, 
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<0>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::DATA_SELECT_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<1>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::TUTORIAL_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<2>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SETTING_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<3>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::START_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>),
+		}));
 		
-		fsmUI->RegisterState(new CharacterSelectTitleUIState());
-		fsmUI->RegisterState(new PlayerNameTitleUIState());
-		fsmUI->RegisterState(new InputCheckTitleUIState());
+		// セレクトに戻る条件
+		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoSelectCriteria = STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>);
 		
-		fsmUI->RegisterState(new ScreenSizeTitleUIState());
-		fsmUI->RegisterState(new VolumeTitleUIState());
+		// 選択したステート
+		fsmUI->RegisterState(new NewDataCheckTitleUIState({
+    		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::CHARACTER_SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+			backspaceKey_GoSelectCriteria,
+		}));
+		fsmUI->RegisterState(new DataSelectTitleUIState({
+			backspaceKey_GoSelectCriteria,
+		}));
+		fsmUI->RegisterState(new TutorialTitleUIState({
+			backspaceKey_GoSelectCriteria,
+		}));
+		fsmUI->RegisterState(new SettingTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SCREEN_SIZE_TITLE_UI_STATE,UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<0>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::VOLUME_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<1>
+				>),
+			backspaceKey_GoSelectCriteria,
+		}));
 
-		fsmUI->SetCurrentState((int)TITLE_UI_STATE::START_TITLE_UI_STATE, ui);
+		// 一つ前のステートに戻る条件
+		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoBackStateCriteria = STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NEW_DATA_CHECK_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>);
+		
+		// データ作成関係
+		fsmUI->RegisterState(new CharacterSelectTitleUIState({
+				STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::PLAYER_NAME_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+				backspaceKey_GoBackStateCriteria,
+		}));
+		backspaceKey_GoBackStateCriteria.ChangeNumber = STATE_TYPE_UI::CHARACTER_SELECT_TITLE_UI_STATE;
+		fsmUI->RegisterState(new PlayerNameTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::INPUT_CHECK_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+			backspaceKey_GoBackStateCriteria,
+		}));
+		backspaceKey_GoBackStateCriteria.ChangeNumber = STATE_TYPE_UI::PLAYER_NAME_TITLE_UI_STATE;
+		fsmUI->RegisterState(new InputCheckTitleUIState({
+			backspaceKey_GoBackStateCriteria,
+		}));
+
+		// 設定関係
+		backspaceKey_GoBackStateCriteria.ChangeNumber = STATE_TYPE_UI::SETTING_TITLE_UI_STATE;
+		fsmUI->RegisterState(new ScreenSizeTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SETTING_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+			backspaceKey_GoBackStateCriteria,
+		}));
+		backspaceKey_GoBackStateCriteria.ChangeNumber = STATE_TYPE_UI::SETTING_TITLE_UI_STATE;
+		fsmUI->RegisterState(new VolumeTitleUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SETTING_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
+			backspaceKey_GoBackStateCriteria,
+		}));
+
+		fsmUI->SetCurrentState(STATE_TYPE_UI::START_TITLE_UI_STATE, ui);
+	}
 		break;
 
+		/*--------------*/
+		/*【ゲームUI】*/
+		/*--------------*/
 	case UI_FACTORY_NUMBER::TOWN:
 	case UI_FACTORY_NUMBER::DUNGEON:
 	case UI_FACTORY_NUMBER::BATTLE:
-		//fsmUI->RegisterState(new StartGameUIState());
-		fsmUI->RegisterState(new NormalGameUIState());
-		fsmUI->RegisterState(new PauseGameUIState());
-		fsmUI->RegisterState(new DrawPlayerDataState());
-		fsmUI->RegisterState(new ConfigChangeState());
-		fsmUI->RegisterState(new GameEndState());
 
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SELECT_CONFIG_STATE, new ConfigSelectState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::MINIMAP_CONFIG_STATE, new MinimapConfigState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::SOUND_CONFIG_STATE, new SoundConfigState());
-		fsmUI->RegisterState((int)GAME_UI_STATE::MAX + CONFIG_UI_STATE::CAMERA_CONFIG_STATE, new CameraConfigState());
+		fsmUI->RegisterState(new NormalGameUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::PAUSE_GAME_UI_STATE, UtilStateConditionFunction::IsMenuKeyPressed),
+		}));
+
+		fsmUI->RegisterState(new PauseGameUIState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, UtilStateConditionFunction::IsMenuKeyPressed),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase, 
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<GAME_UI_SELECT_NUKMBER::UI_CLOSE>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::DRAW_PLAYER_DATA_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<GAME_UI_SELECT_NUKMBER::UI_DRAW_PLAYER_DATA>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SELECT_CONFIG_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<GAME_UI_SELECT_NUKMBER::UI_CONFIG_CHANGE>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::GAME_END_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<GAME_UI_SELECT_NUKMBER::UI_GAME_END>
+				>),
+		}));
+
+		// ポーズへ戻る条件
+		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoPauseCriteria(STATE_TYPE_UI::PAUSE_GAME_UI_STATE,
+			UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>
+		);
+
+		fsmUI->RegisterState(new DrawPlayerDataState({backspaceKey_GoPauseCriteria,}));
+		//fsmUI->RegisterState(new ConfigChangeState({pauseBackCriteria,}));
+		fsmUI->RegisterState(new GameEndState({
+			// GameEndStateは遷移条件なし
+		}));
+
+		// コンフィグ
+		fsmUI->RegisterState(new ConfigSelectState({
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::MINIMAP_CONFIG_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<0>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SOUND_CONFIG_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+					UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+					UtilStateConditionFunction::IsSelectedNumber<1>
+				>),
+			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::CAMERA_CONFIG_STATE, UtilStateConditionFunction::AndFunc<UIBase,
+				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
+				UtilStateConditionFunction::IsSelectedNumber<2>
+				>),
+			backspaceKey_GoPauseCriteria,
+		}));
+
+		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoConfigSelectCriteria(STATE_TYPE_UI::SELECT_CONFIG_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>);
+		fsmUI->RegisterState(new MinimapConfigState({backspaceKey_GoConfigSelectCriteria,}));
+		fsmUI->RegisterState(new SoundConfigState({backspaceKey_GoConfigSelectCriteria,}));
+		fsmUI->RegisterState(new CameraConfigState({backspaceKey_GoConfigSelectCriteria,}));
 		
 
 		//fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
-		fsmUI->SetCurrentState((int)GAME_UI_STATE::NORMAL_GAME_UI_STATE, ui);
+		fsmUI->SetCurrentState(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, ui);
 		break;
 
+		/*----------------*/
+		/*【リザルトUI】*/
+		/*----------------*/
 	case UI_FACTORY_NUMBER::RESULT:
-		fsmUI->RegisterState(new StartResultUIState());
+		fsmUI->RegisterState(new StartResultUIState({}));
 
-		fsmUI->SetCurrentState((int)RESULT_UI_STATE::START_RESULT_UI_STATE, ui);
+		fsmUI->SetCurrentState(STATE_TYPE_UI::START_RESULT_UI_STATE, ui);
 		break;
 	}
 
@@ -899,7 +1025,6 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	case ANIMATION_TYPE::POLYGON_INDEXED:
 	{
 		ModelPolygonIndexed* model = new ModelPolygonIndexed();
-		model->Initilize();
 		SetModelPosition(model, position, angle, size);
 		return model;
 	}
@@ -908,7 +1033,6 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	case ANIMATION_TYPE::MV1_MODEL_ONLY:
 	{
 		ModelMV1* model = new ModelMV1();
-		model->Initilize();
 		model->SetModelHandle(modelPath.c_str());
 		SetModelPosition(model, position, angle, size);
 		return model;
@@ -917,7 +1041,6 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	case ANIMATION_TYPE::EFFECT:
 	{
 		ModelEffect* model = new ModelEffect();
-		model->Initilize();
 		SetModelPosition(model, position, angle, size);
 		return model;
 	}
@@ -925,7 +1048,6 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	case ANIMATION_TYPE::GRAPH:
 	{
 		ModelGraph* model = new ModelGraph();
-		model->Initilize();
 		SetModelPosition(model, position, angle, size);
 		model->SetDrawDatas(*drawData);
 		return model;
@@ -934,7 +1056,6 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	case ANIMATION_TYPE::MOVIE:
 	{
 		ModelMovie* model = new ModelMovie();
-		model->Initilize();
 		SetModelPosition(model, position, angle, size);
 		model->SetDrawDatas(*drawData);
 		return model;

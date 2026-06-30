@@ -27,6 +27,11 @@ void ModelMV1::ModelFinalize()
     }
 }
 
+// 継承モデル ゲーム初期化
+void ModelMV1::ModelGameInit()
+{
+}
+
 // ポジション更新
 void ModelMV1::ModelUpdate()
 {

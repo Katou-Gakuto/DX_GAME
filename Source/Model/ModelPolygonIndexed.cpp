@@ -37,6 +37,16 @@ void ModelPolygonIndexed::ModelFinalize()
     }
 }
 
+// 継承モデル ゲーム初期化
+void ModelPolygonIndexed::ModelGameInit()
+{
+}
+
+// 継承モデル 更新
+void ModelPolygonIndexed::ModelUpdate()
+{
+}
+
 // モデル描画
 void ModelPolygonIndexed::ModelDraw()
 {

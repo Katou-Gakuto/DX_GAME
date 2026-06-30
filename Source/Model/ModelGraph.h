@@ -31,6 +31,9 @@ protected:
     /*継承モデル終了*/
     virtual void ModelFinalize() override;
 
+	/*継承モデル ゲーム初期化*/
+	void ModelGameInit() override;
+
 public:
     /*ポジション更新*/
     virtual void ModelUpdate() override;

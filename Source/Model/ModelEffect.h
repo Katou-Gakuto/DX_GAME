@@ -25,16 +25,16 @@ public:
     ~ModelEffect();
     
     /// <summary>継承モデル終了</summary>
-	virtual void ModelFinalize() override;
+	void ModelFinalize() override;
 
     /// <summary>ゲーム中初期化</summary>
-    virtual void ModelGameInit() override;
+    void ModelGameInit() override;
     
     /// <summary>ポジション更新</summary>
-    virtual void ModelUpdate() override;
+    void ModelUpdate() override;
 
 	/// <summary>モデル描画</summary>
-	virtual void ModelDraw() override;
+	void ModelDraw() override;
 
     /// <summary>エフェクトハンドルポインター取得</summary>
     int *GetHandlePointer() override { return &mnEffectHandle; }

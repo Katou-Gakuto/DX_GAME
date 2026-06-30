@@ -61,6 +61,11 @@ void ModelMovie::ModelFinalize()
     mstDrawDatas.clear();
 }
 
+// 継承モデル ゲーム初期化
+void ModelMovie::ModelGameInit()
+{
+}
+
 // ポジション更新
 void ModelMovie::ModelUpdate()
 {

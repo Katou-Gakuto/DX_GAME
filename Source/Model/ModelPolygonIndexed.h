@@ -19,11 +19,16 @@ public:
 
 protected:
 	/*継承モデル終了*/
-	virtual void ModelFinalize() override;
+	void ModelFinalize() override;
+
+	/*継承モデル ゲーム初期化*/
+	void ModelGameInit() override;
+	/*継承モデル 更新*/
+	void ModelUpdate() override;
 
 public:
 	/*モデル描画*/
-	virtual void ModelDraw() override;
+	void ModelDraw() override;
     
     /*モデルデータ追加*/
     inline void AddModelData(const IndexedData& data) { mstModelVertex.push_back(data); }

@@ -63,6 +63,11 @@ void ModelGraph::ModelFinalize()
     mstDrawDatas.clear();
 }
 
+// 継承モデル ゲーム初期化
+void ModelGraph::ModelGameInit()
+{
+}
+
 // ポジション更新
 void ModelGraph::ModelUpdate()
 {

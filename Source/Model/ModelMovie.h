@@ -18,10 +18,13 @@ public:
 
 public:
     /*継承モデル終了*/
-    virtual void ModelFinalize() override;
+    void ModelFinalize() override;
+
+	/*継承モデル ゲーム初期化*/
+	void ModelGameInit() override;
     /*ポジション更新*/
-    virtual void ModelUpdate() override;
+    void ModelUpdate() override;
 
     /*動画描画*/
-    virtual void ModelDraw() override;
+    void ModelDraw() override;
 };

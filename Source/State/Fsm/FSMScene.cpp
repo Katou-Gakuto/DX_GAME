@@ -40,11 +40,11 @@ void FSMScene::Update(SceneManager* sceneManager)
 	}
 }
 
-// // 次のシーンへ移動する
-// void FSMScene::NextScene(SceneManager* sceneManager)
-// {
-// 	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager);
-// }
+ // 次のシーンへ移動する
+ void FSMScene::NextScene(SceneManager* sceneManager)
+ {
+ 	mmStateMap[UtilChange::SceneState(mCurrentState)]->OnEnter(sceneManager, UtilChange::SceneState(mPreState));
+ }
 
 // カメラID取得
 int FSMScene::GetSceneCameraID()

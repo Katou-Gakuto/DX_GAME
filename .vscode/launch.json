@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Robot_Battle",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\x64\\Debug\\Robot_Battle.exe",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Robot_Battle x64 Debug",
+            "console": "internalConsole"
+        }
+    ]
+}

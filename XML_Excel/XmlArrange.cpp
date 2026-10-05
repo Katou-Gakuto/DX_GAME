@@ -9,11 +9,23 @@
 
 #include "XmlArrange.h"
 
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+// ============================================================
+// filesystem のVisual Studio旧版・新版対応
+// ============================================================
 
-#include <experimental/filesystem>
+#if defined(_MSC_VER) && _MSC_VER < 1914
 
-namespace fs = std::experimental::filesystem;
+    // 古いVisual Studio
+    #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+    #include <experimental/filesystem>
+    namespace fs = std::experimental::filesystem;
+
+#else
+
+    // 新しいVisual Studio
+    #include <filesystem>
+    namespace fs = std::filesystem;
+#endif
 
 // デバック用文字表示
 void DebugDraw(std::string str)
@@ -45,7 +57,20 @@ void XmlArrange::Arrange()
 
     // プロジェクト名取得
     projectName = FileRxtension_Search(folderPath, ".vcxproj.filters");
-    projectName = projectName.substr(0, projectName.size() - 16);
+
+    if (projectName.empty())
+    {
+        return;
+    }
+
+    const std::string filterExtension = ".vcxproj.filters";
+
+    if (projectName.size() <= filterExtension.size())
+    {
+        return;
+    }
+
+    projectName = projectName.substr(0, projectName.size() - filterExtension.size());
 
     int max = 10;
     for (int count = 0; count < max; count++)
@@ -508,4 +533,6 @@ std::string XmlArrange::GetXmlFileDir()
     return fullPath; // フォルダ区切りが見つからない場合
 }
 
-#undef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#if defined(_MSC_VER) && _MSC_VER < 1914
+    #undef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#endif

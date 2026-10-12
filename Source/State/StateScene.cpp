@@ -48,14 +48,14 @@ void SceneStateProcess::CharacterModelSetting(CharacterBase* character, ANIMATIO
 	character->SetModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, ResourceManager::msResourceFile + "3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
-	 {
-	 	Animation* characterAnimation = character->GetAnimation();
-	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	 	// 読み込み用アニメーションデータ設定
-	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
-	 	// アニメーション有限状態マシン設定
-	 	characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
-	 }
+	{
+		Animation* characterAnimation = character->GetAnimation();
+		std::vector<LoadAnimationData> setcharacterLoadAnimationData;
+		// 読み込み用アニメーションデータ設定
+		setcharacterLoadAnimationData = UtilFactorys::LoadAnimationDataFactory(LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT);
+		// アニメーション有限状態マシン設定
+		characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, setcharacterLoadAnimationData));
+	}
 }
 
 // プレイヤーポジションデータ設定

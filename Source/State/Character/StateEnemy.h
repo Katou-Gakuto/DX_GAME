@@ -1,284 +1,294 @@
-// #pragma once
+#pragma once
 
-// #include "StateEnum.h"
-// #include "TimeData.h"
+#include "StateEnum.h"
+#include "TimeData.h"
 
-// #include "EnemyCommonProcessing.h"
-// #include "ObjectBases.h"
-// #include "StateCharacterBase.h"
+#include "EnemyCommonProcessing.h"
+#include "ObjectBases.h"
+#include "StateCharacterBase.h"
 
-// class TargetManager;
+class TargetManager;
 
-// // TODO: ˆÚ“®‚·‚éƒV[ƒ“‚ğ¶¬æ“¾
+// TODO: ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ğ¶ï¿½ï¿½ï¿½ï¿½æ“¾
 
-// /*------------------*/
-// /*     y‹¤’Êz     */
-// /*------------------*/
+/*------------------*/
+/*     ï¿½yï¿½ï¿½ï¿½Êz     */
+/*------------------*/
 
-// /*--------------------*/
-// /*yƒGƒlƒ~[ƒXƒe[ƒgz*/
-// /*--------------------*/
+/*--------------------*/
+/*ï¿½yï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+/*--------------------*/
 
-// // enum class ENEMY_STATE
-// // {
-// // 	IDLE_ENEMY_STATE = 0,
-// // 	MOVE_ENEMY_STATE,
-// // 	ATTACK_IN_ENEMY_STATE,
-// // 	ATTACK_ENEMY_STATE,
-// // 	RIGHT_AVOID_ENEMY_STATE,
-// // 	LEFT_AVOID_ENEMY_STATE,
-// // 	ESCAPE_ENEMY_STATE,
-// // };
-
-// /*----------*/
-// /*yƒGƒlƒ~[ƒRƒ}ƒ“ƒhƒiƒ“ƒo[z
-// /*----------*/
-// enum class ENEMY_COMMAND_NUMBER
+// enum class ENEMY_STATE
 // {
-// 	NONE = -1,
-// 	SHORT_RANGE = 0,
-// 	MEDIUM_RANGE,
-// 	LONG_RANGE,
+// 	IDLE_ENEMY_STATE = 0,
+// 	MOVE_ENEMY_STATE,
+// 	ATTACK_IN_ENEMY_STATE,
+// 	ATTACK_ENEMY_STATE,
+// 	RIGHT_AVOID_ENEMY_STATE,
+// 	LEFT_AVOID_ENEMY_STATE,
+// 	ESCAPE_ENEMY_STATE,
 // };
 
-// // “¦‚°ŠÔ
-// const int ESCAPE_TIME = 17 * 100;
+/*----------*/
+/*ï¿½yï¿½Gï¿½lï¿½~ï¿½[ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½z
+/*----------*/
+enum class ENEMY_COMMAND_NUMBER
+{
+	NONE = -1,
+	SHORT_RANGE = 0,
+	MEDIUM_RANGE,
+	LONG_RANGE,
+};
 
-// /*----------------------*/
-// /*yƒGƒlƒ~[‹¤’Êˆ——pz*/
-// /*----------------------*/
-// class EnemyProcess : public EnemyCommonProcessing
-// {
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const int ESCAPE_TIME = 17 * 100;
 
-// protected:
-// 	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
-// 	TargetManager* mpTargetManager;
+/*----------------------*/
+/*ï¿½yï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½pï¿½z*/
+/*----------------------*/
+class EnemyProcess : public EnemyCommonProcessing
+{
 
-// protected:
-// 	EnemyProcess();
-// 	~EnemyProcess() = default;
+protected:
+	// ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+	TargetManager* mpTargetManager;
 
-// 	/*ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒ^ƒXİ’è*/
-// 	void SetPlayerStatus();
+protected:
+	EnemyProcess();
+	~EnemyProcess() = default;
 
-// 	/*ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev*/
-// 	bool PlayerTargetCheck(CharacterBase* character, float range);
+	/*ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½İ’ï¿½*/
+	void SetPlayerStatus();
 
-// 	/*ƒvƒŒƒCƒ„[•ûŒü‚ğŒü‚¢‚ÄˆÚ“®‚·‚é*/
-// 	void PlayerTargetMove(CharacterBase* character);
+	/*ï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½v*/
+	bool PlayerTargetCheck(CharacterBase* character, float range);
 
-// 	/*ƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚Ì•ûŒü‚ÉŒü‚­*/
-// 	void PlayerTargetAngle(CharacterBase* character);
+	/*ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½*/
+	void PlayerTargetMove(CharacterBase* character);
 
-// 	/*€–Sˆ—*/
-// 	virtual void EnemyDeath(CharacterBase* character);
+	/*ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Ì•ï¿½ï¿½ï¿½ï¿½ÉŒï¿½ï¿½ï¿½*/
+	void PlayerTargetAngle(CharacterBase* character);
 
-// 	/*ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒRƒ}ƒ“ƒh‚ğ•Ô‚·*/
-// 	virtual ENEMY_COMMAND_NUMBER GetPlayerDistance_Command(CharacterBase* character);
+	/*ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½*/
+	virtual void EnemyDeath(CharacterBase* character);
 
-// 	/*’èŒ^‚ÌŸ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é*/
-// 	STATE_TYPE_CHARACTER TemplateNextState(CharacterBase* character, STATE_TYPE_CHARACTER myState);
-// };
+	/*ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌˆÊ’uï¿½É‚ï¿½ï¿½ï¿½ÄƒRï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½Ô‚ï¿½*/
+	virtual ENEMY_COMMAND_NUMBER GetPlayerDistance_Command(CharacterBase* character);
 
-// /*--------------------------*/
-// /*     yŠî–{ƒXƒe[ƒgz     */
-// /*--------------------------*/
+	/*ï¿½ï¿½^ï¿½Ìï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½*/
+	STATE_TYPE_CHARACTER TemplateNextState(CharacterBase* character, STATE_TYPE_CHARACTER myState);
+};
 
-// /*----------------------*/
-// /*yIdleƒGƒlƒ~[ƒe[ƒgz*/
-// /*----------------------*/
-// class IdleEnemyState : public IStateCharacter, public EnemyProcess
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	IdleEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~IdleEnemyState() = default;
+/*--------------------------*/
+/*     ï¿½yï¿½ï¿½{ï¿½Xï¿½eï¿½[ï¿½gï¿½z     */
+/*--------------------------*/
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+/*----------------------*/
+/*ï¿½yIdleï¿½Gï¿½lï¿½~ï¿½[ï¿½eï¿½[ï¿½gï¿½z*/
+/*----------------------*/
+class IdleEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	IdleEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~IdleEnemyState() = default;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
 
-// /*----------*/
-// /*yˆÚ“®ƒGƒlƒ~[ƒXƒe[ƒgz
-// /*----------*/
-// class MoveEnemyState : public IStateCharacter, public EnemyProcess
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	MoveEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~MoveEnemyState() = default;
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+/*----------*/
+/*ï¿½yï¿½Ú“ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z
+/*----------*/
+class MoveEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	MoveEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~MoveEnemyState() = default;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
 
-// /*----------*/
-// /*yUŒ‚“ü‚èƒGƒlƒ~[ƒXƒe[ƒgz
-// /*----------*/
-// class AttackInEnemyState : public IStateCharacter, public EnemyProcess
-// {
-// private:
-// 	// ¶‰ñ”ğƒtƒ‰ƒO
-// 	bool mbLeftMoveFlag;
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
 
-// 	// ‘O‰ñUŒ‚ŠÔ
-// 	TIME_DATA mstPreAttackTime;
+/*----------*/
+/*ï¿½yï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z
+/*----------*/
+class AttackInEnemyState : public IStateCharacter, public EnemyProcess
+{
+private:
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
+	bool mbLeftMoveFlag;
 
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	AttackInEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~AttackInEnemyState() = default;
+	// ï¿½Oï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TIME_DATA mstPreAttackTime;
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	AttackInEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~AttackInEnemyState() = default;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
 
-// /*----------*/
-// /*yUŒ‚ƒGƒlƒ~[ƒXƒe[ƒgz
-// /*----------*/
-// class AttackEnemyState : public IStateCharacter, public EnemyProcess
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~AttackEnemyState() = default;
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+/*----------*/
+/*ï¿½yï¿½Uï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z
+/*----------*/
+class AttackEnemyState : public IStateCharacter, public EnemyProcess
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~AttackEnemyState() = default;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
 
-// /*------------------------*/
-// /*y“¦‚°ƒGƒlƒ~[ƒXƒe[ƒgz*/
-// /*------------------------*/
-// class EscapeEnemyState : public IStateCharacter, public EnemyProcess
-// {
-// protected:
-// 	// “¦‚°ŠÔ
-// 	TIME_DATA mstEscapeTime;
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
 
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	EscapeEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~EscapeEnemyState() = default;
+/*------------------------*/
+/*ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+/*------------------------*/
+class EscapeEnemyState : public IStateCharacter, public EnemyProcess
+{
+protected:
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TIME_DATA mstEscapeTime;
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	EscapeEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~EscapeEnemyState() = default;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*XV*/
-// 	virtual void Update(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½Xï¿½V*/
+	virtual void Update(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
 
-// /*--------------------------*/
-// /*     y”h¶ƒXƒe[ƒgz     */
-// /*--------------------------*/
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
 
-// /*--------------------------*/
-// /*y¶‰ñ”ğƒGƒlƒ~[ƒXƒe[ƒgz*/
-// /*--------------------------*/
-// class LeftAvoidEnemyState : public EscapeEnemyState
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	LeftAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~LeftAvoidEnemyState() = default;
+/*--------------------------*/
+/*     ï¿½yï¿½hï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½z     */
+/*--------------------------*/
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+/*--------------------------*/
+/*ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+/*--------------------------*/
+class LeftAvoidEnemyState : public EscapeEnemyState
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	LeftAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~LeftAvoidEnemyState() = default;
 
-// 	/*XV*/
-// 	virtual void Update(CharacterBase* character) override;
-// };
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
-// /*--------------------------*/
-// /*y‰E‰ñ”ğƒGƒlƒ~[ƒXƒe[ƒgz*/
-// /*--------------------------*/
-// class RightAvoidEnemyState : public EscapeEnemyState
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚¹‚Ü‚·
-// 	RightAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~RightAvoidEnemyState() = default;
+	/*ï¿½Xï¿½V*/
+	virtual void Update(CharacterBase* character) override;
+};
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+/*--------------------------*/
+/*ï¿½yï¿½Eï¿½ï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+/*--------------------------*/
+class RightAvoidEnemyState : public EscapeEnemyState
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+	RightAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~RightAvoidEnemyState() = default;
 
-// 	/*XV*/
-// 	virtual void Update(CharacterBase* character) override;
-// };
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	virtual void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
 
-// /*
-// ’Ç‰Á—\’èƒXƒe[ƒg
-// ÅŒã‚É‘Ò‹@‚µ‚Ä‚¢‚½êŠ‚É–ß‚é
-// Œ©¸‚Á‚½‚½‚ßü‚è‚ğŒ©‰ñ‚·
-// ƒvƒŒƒCƒ„[‚Ì‰¹‚ª‹ß‚­‚©‚ç•·‚±‚¦‚½‚Ì‚ÅŒx‰ú‚·‚é
-// ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚½‚Ì‚Å’Ç‚¢‚©‚¯‚é
-// ƒvƒŒƒCƒ„[‚ªáŠQ•¨‚ÅŒ©‚¦‚È‚­‚È‚Á‚½‚ª‚»‚ê‚Ü‚ÅŒ©‚¦‚½ˆÊ’u‚Ü‚ÅˆÚ“®
-// ’áHP‚È‚Ì‚ÅŒ©‚¦‚éˆÊ’u‚É‚¢‚é–¡•û‚©‚ç‹——£‚ğ‚Æ‚Á‚½‚çƒvƒŒƒCƒ„[‚Ì‹”F‚É‚©‚©‚í‚ç‚¸–¡•û‚Ì‚Ù‚¤‚ÉˆÚ“®‚·‚é
-// –¡•û‚ÉƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ‹³‚¦‚ç‚ê‚½‚Ì‚Å‚Â‚¢‚Ä‚¢‚­
-// –¡•û‚ÉƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ‹³‚¦‚ç‚ê‚½‚Ì‚Åo—ˆ‚»‚¤‚È‚çæ‰ñ‚è‚·‚é
-// ‰“‹——£UŒ‚‚È‚½‚ßis•ûŒü‚ğŒü‚«‚È‚ª‚ç–¡•û‚ÌŒã‚ë(‹ßÚUŒ‚‚Ì)‚É‚Â‚­
-// ‘Ò‹@êŠ‚ğŒ©¸‚Á‚½‚Ì‚ÅŒ»İ’n‚ğ‘Ò‹@êŠ‚É‚·‚é
-// ©—R‚És“®‚·‚é
-// */
+	/*ï¿½Xï¿½V*/
+	virtual void Update(CharacterBase* character) override;
+};
+
+/*
+ï¿½Ç‰ï¿½ï¿½\ï¿½ï¿½Xï¿½eï¿½[ï¿½g
+ï¿½ÅŒï¿½É‘Ò‹@ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½êŠï¿½É–ß‚ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì‰ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ï¿½ç•·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅŒxï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½Ì‚Å’Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½Qï¿½ï¿½ï¿½ÅŒï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ÅŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½Ü‚ÅˆÚ“ï¿½
+ï¿½ï¿½HPï¿½È‚Ì‚ÅŒï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½É‚ï¿½ï¿½é–¡ï¿½ï¿½ï¿½ï¿½ï¿½ç‹—ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½ï¿½Fï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¸ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ù‚ï¿½ï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌˆÊ’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Ì‚Å‚Â‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌˆÊ’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Ì‚Åoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½è‚·ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½È‚ï¿½ï¿½ßiï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ç–¡ï¿½ï¿½ï¿½ÌŒï¿½ï¿½(ï¿½ßÚUï¿½ï¿½ï¿½ï¿½)ï¿½É‚Â‚ï¿½
+ï¿½Ò‹@ï¿½êŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅŒï¿½ï¿½İ’nï¿½ï¿½Ò‹@ï¿½êŠï¿½É‚ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Rï¿½Ésï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+*/

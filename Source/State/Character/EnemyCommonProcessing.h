@@ -1,67 +1,68 @@
-// #pragma once
-// #include "DrawData.h"
-// #include "ResourceData.h"
+#pragma once
+#include "DrawData.h"
+#include "ResourceData.h"
 
-// class CharacterBase;
+class CharacterBase;
 
-// enum class STATE_ENEMY_TYPE
-// {
-//     NONE = -1,
-//     MAP_ENEMY = 0,
-//     BATTLE_ENEMY,
+enum class STATE_ENEMY_TYPE
+{
+    NONE = -1,
+    MAP_ENEMY = 0,
+    BATTLE_ENEMY,
 
-//     MAX
-// };
+    MAX
+};
 
-// class EnemyCommonProcessing
-// {
-// private:
-//     //enum ENEMY_DATA_DRAW_TYPE
-//     //{
-//     //    FRAME = 0,
-//     //    BASE,
-//     //    ENEMY_DATA_MAX
-//     //};
+class EnemyCommonProcessing
+{
+private:
+    //enum ENEMY_DATA_DRAW_TYPE
+    //{
+    //    FRAME = 0,
+    //    BASE,
+    //    ENEMY_DATA_MAX
+    //};
     
-// 	enum ENEMY_DRAW_TYPE
-// 	{
-//         //RAME,
+	enum ENEMY_DRAW_TYPE
+	{
+        //RAME,
 
-// 		HP_FRAME,
-// 		HP_RIGHT,
-// 		HP_LEFT,
+		HP_FRAME,
+		HP_RIGHT,
+		HP_LEFT,
 
-// 		ENEMY_DRAW_MAX
-// 	};
+		ENEMY_DRAW_MAX
+	};
 
-//     // ƒGƒlƒ~[ƒXƒe[ƒgí—Ş
-//     STATE_ENEMY_TYPE meEnemyType;
+    // ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½
+    STATE_ENEMY_TYPE meEnemyType;
 
-//     // TODO: •`‰æƒ}ƒl[ƒWƒƒ[ì‚è‚»‚±‚Éî•ñ“n‚µƒnƒ“ƒhƒ‹‚ğİ’è‚·‚é@‚»‚ê‚ÌQÆ‚ğØ‚é‚±‚Æ‚Åíœ‚µ‚½‚±‚Æ‚É‚·‚és
-//     // •`‰æ—pƒXƒNƒŠ[ƒ“ƒnƒ“ƒhƒ‹
-//     int mnScreenHandle;
+    // TODO: ï¿½`ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½è‚»ï¿½ï¿½ï¿½Éï¿½ï¿½nï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ÌQï¿½Æ‚ï¿½Ø‚é‚±ï¿½Æ‚Åíœï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½s
+    // ï¿½`ï¿½ï¿½pï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
+    int mnScreenHandle;
 
-//     const DisplaySize SCREEN_SIZES[(int)STATE_ENEMY_TYPE::MAX] = //{ {Vector2(70.0f, 40.0f), 0 }, {Vector2(70.0f, 80.0f), 0,}};
-//                                                                  { {Vector2(70.0f, 40.0f), 0 }, {Vector2(110.0f, 30.0f), 0,}};
+    const DisplaySize SCREEN_SIZES[(int)STATE_ENEMY_TYPE::MAX] = //{ {Vector2(70.0f, 40.0f), 0 }, {Vector2(70.0f, 80.0f), 0,}};
+                                                                 { {Vector2(70.0f, 40.0f), 0 }, {Vector2(110.0f, 30.0f), 0,}};
 
-// 	const Vector2_Int HP_FRAME_SIZE = Vector2_Int(5, 3);
-// 	Vector2_Int mstHpLeftUp = Vector2_Int(0 + HP_FRAME_SIZE.x, 0 + HP_FRAME_SIZE.y);
-// 	Vector2_Int mstHpRightDown = Vector2_Int(100 + HP_FRAME_SIZE.x, 20 + HP_FRAME_SIZE.y);
+	const Vector2_Int HP_FRAME_SIZE = Vector2_Int(5, 3);
+	Vector2_Int mstHpLeftUp = Vector2_Int(0 + HP_FRAME_SIZE.x, 0 + HP_FRAME_SIZE.y);
+	Vector2_Int mstHpRightDown = Vector2_Int(100 + HP_FRAME_SIZE.x, 20 + HP_FRAME_SIZE.y);
 
-// 	const Vector2_Int HP_GRAPH_SIZE = Vector2_Int(2151, 83);
+	const Vector2_Int HP_GRAPH_SIZE = Vector2_Int(2151, 83);
 
-// protected:
-//     EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType);
+protected:
+    EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType);
+    ~EnemyCommonProcessing();
 
-//     /*íœˆ—*/
-//     void EnemyCommonProcessingData_Delete();
+    /*ï¿½íœï¿½ï¿½ï¿½ï¿½*/
+    void EnemyCommonProcessingData_Delete();
 
-//     /*ƒGƒlƒ~[î•ñ•`‰æ*/
-//     void EnemyDataDraw(CharacterBase *enemy);
+    /*ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½`ï¿½ï¿½*/
+    void EnemyDataDraw(CharacterBase *enemy);
 
-//     /*ƒGƒlƒ~[‰æ‘œƒf[ƒ^‰Šú‰»*/
-//     void EnemyGraphDataInitialize(CharacterBase *enemy);
+    /*ï¿½Gï¿½lï¿½~ï¿½[ï¿½æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+    void EnemyGraphDataInitialize(CharacterBase *enemy);
 
-//     /*HP•`‰æî•ñİ’è*/
-//     void HpDrawInfoSetup(CharacterBase *enemy);
-// };
+    /*HPï¿½`ï¿½ï¿½ï¿½ï¿½İ’ï¿½*/
+    void HpDrawInfoSetup(CharacterBase *enemy);
+};

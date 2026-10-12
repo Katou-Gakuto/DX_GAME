@@ -8,27 +8,30 @@
 class FSMAnimation : public FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>
 {
 public:
+	using FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>::RegisterState;
+
 	FSMAnimation();
 
-    // ‰Šúİ’è‚ğŒÀ’è‚·‚é‚½‚ß‚ÉŒÄ‚Ño‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+    // ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½é‚½ï¿½ß‚ÉŒÄ‚Ñoï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
     void RegisterState(IStateAnimation* state) override
 	{
-		// g—p‚µ‚½‚çƒGƒ‰[‚ğo‚³‚¹‚é‚æ‚¤‚É‚·‚é
-		assert(false && " : ‚±‚ÌŠÖ”‚ÍƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg‚Åg‚¤‚È");
+		// ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+		assert(false && " : ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ÍƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½Ågï¿½ï¿½ï¿½ï¿½");
 	}
 
-	/// <summary>‰Šú‰»</summary>
+	/// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
     void Initilize(STATE_ANEMATION_DATA* stateAnimationData);
-	/// <summary>I—¹</summary>
+	void StateInitilize(STATE_ANEMATION_DATA* stateAnimationData) override;
+	/// <summary>ï¿½Iï¿½ï¿½</summary>
 	void Finalize(STATE_ANEMATION_DATA* stateAnimationData);
 	
-	/// <summary>XV</summary>
+	/// <summary>ï¿½Xï¿½V</summary>
 	void Update(STATE_ANEMATION_DATA* stateAnimationData);
 
-	/// <summary>Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuİ’è</summary>
+	/// <summary>ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½İ’ï¿½</summary>
 	void SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType);
 
-	/// <summary>Œ»İ‚ÌƒXƒe[ƒg‚Æ“¯‚¶í—Ş‚©‚ğŠm”F‚·‚é</summary>
+	/// <summary>ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æ“ï¿½ï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½ï¿½</summary>
 	bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSimilarAnimationType(animationType); }
 };
 // #include <cassert>
@@ -39,53 +42,53 @@ public:
 // #include "FSM.h"
 // #include "StateAnimation.h"
 
-// // TODO: 1‚Â‚Ìƒ‚ƒfƒ‹‚É‘Î‚µ‚Ä•¡”‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğŒã‚©‚ç“K—p‚Å‚«‚é‚æ‚¤‚É‚·‚é
+// // TODO: 1ï¿½Â‚Ìƒï¿½ï¿½fï¿½ï¿½ï¿½É‘Î‚ï¿½ï¿½Ä•ï¿½ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã‚©ï¿½ï¿½Kï¿½pï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 // /*----------*/
-// /*yƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“z
+// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½z
 // /*----------*/
 // class FSMAnimation : public FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>
 // {
 // private:
-// 	// // ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg’B
+// 	// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½B
 // 	// std::vector<std::map<MODEL_TYPE, IStateAnimation*>> mmAnimationStates;
 // public:
 // 	FSMAnimation();
 
-//     // ‰Šúİ’è‚ğŒÀ’è‚·‚é‚½‚ß‚ÉŒÄ‚Ño‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+//     // ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½é‚½ï¿½ß‚ÉŒÄ‚Ñoï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 //     void RegisterState(IStateAnimation* state) override
 // 	{
-// 		assert(false && " : ŒÄ‚Ño‚·‚È");
-// 		// HACK: ‚±‚ê‚ÅƒGƒ‰[‚ªo‚È‚¯‚ê‚Î‚±‚Ì’†‚Åg—p‚µ‚½‚çƒGƒ‰[‚ğo‚³‚¹‚é‚æ‚¤‚É‚·‚é
+// 		assert(false && " : ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½");
+// 		// HACK: ï¿½ï¿½ï¿½ï¿½ÅƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½È‚ï¿½ï¿½ï¿½Î‚ï¿½ï¿½Ì’ï¿½ï¿½Ågï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 // 	}
 
-//     /// <summary>‰Šú‰»</summary>
+//     /// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
 //     void Initilize(Animation* animation);
-// 	/// <summary>I—¹</summary>
+// 	/// <summary>ï¿½Iï¿½ï¿½</summary>
 // 	void Finalize(Animation* animation);
 
-// 	// /*ƒAƒjƒ[ƒVƒ‡ƒ“ó‘Ô’B‚ÌƒTƒCƒY‚ğ‘‚â‚·*/
+// 	// /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô’Bï¿½ÌƒTï¿½Cï¿½Yï¿½ğ‘‚â‚·*/
 // 	// void IncreaseAnimationStateSize(int size);
 
-// 	// /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgî•ñİ’è</summary>
+// 	// /// <summary>ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½İ’ï¿½</summary>
 // 	// void SetAnimationStateDatas(int animationStateIndex, std::map<MODEL_TYPE, IStateAnimation*> animationStateMap);
 
-// 	/// <summary>XV</summary>
+// 	/// <summary>ï¿½Xï¿½V</summary>
 // 	void Update(Animation* animation, std::vector<AnimationDatas*> animationDatas);
 
-// 	/// <summary>Ÿ‚ÌƒXƒe[ƒgİ’è</summary>
-// 	// TODO: \‘¢‘Ì‚ÅƒAƒjƒ[ƒVƒ‡ƒ“‚ğİ’èo—ˆ‚é‚æ‚¤‚É•ÏX‚·‚é
+// 	/// <summary>ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½İ’ï¿½</summary>
+// 	// TODO: ï¿½\ï¿½ï¿½ï¿½Ì‚ÅƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½oï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É•ÏXï¿½ï¿½ï¿½ï¿½
 // 	//inline void SetNextState(ANIMATION_TYPE animationType) { mnNextState = animationType; }
 
-// 	/// <summary>Œ»İ‚ÌƒXƒe[ƒg‚Æ“¯‚¶í—Ş‚©‚ğŠm”F‚·‚é</summary>
+// 	/// <summary>ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æ“ï¿½ï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½ï¿½</summary>
 // 	//bool CheckNowStateSameType(ANIMATION_TYPE animationType) { return mmStateMap[mCurrentState]->CheckSameType(animationType); }
 	
 // // private:
-// // 	/*V‚µ‚¢ƒXƒe[ƒg‚ğİ’è‚·‚é*/
+// // 	/*ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½İ’è‚·ï¿½ï¿½*/
 // // 	void NewStateSetting(int animationIndex, Animation* animation, MODEL_TYPE oldModelType);
 
-// // 	/*Ÿ‚ÌƒXƒe[ƒg‚ªŒ»İ‚ÌƒXƒe[ƒg‚Æˆá‚¤‚È‚çƒXƒe[ƒg•ÏXˆ—‚ğ‚·‚é*/
+// // 	/*ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æˆá‚¤ï¿½È‚ï¿½Xï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 // // 	void ChangeState(int animationStateIndex, Animation* animation, ANIMATION_TYPE oldAnimationType);
 
-// // 	/*Œ»İ‚ÌƒXƒe[ƒgæ“¾*/
+// // 	/*ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½æ“¾*/
 // // 	IStateAnimation* GetAnimationState(int index, Animation* animation, ANIMATION_TYPE animationType);
 // };

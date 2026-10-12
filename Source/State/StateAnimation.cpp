@@ -16,10 +16,23 @@
 #include "UtilCalc.h"
 
 /*----------------------------*/
-/*y3DƒAƒjƒ[ƒVƒ‡ƒ“‹¤’Êˆ—z*/
+/*ï¿½y3Dï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½z*/
 /*----------------------------*/
 State3DAnimationProcess::State3DAnimationProcess()
-: mfAnimBlendRate(0.0f)
+: mnModelHandle(-1)
+, mfAnimBlendRate(0.0f)
+, mfAnimBlendSpeed(0.1f)
+, mfAnimationSpeed(0.5f)
+, mstMyAniationData()
+{
+    mstPreAnimationData.animationCount = 0.0f;
+    mstPreAnimationData.animationHandle = -1;
+    mstPreAnimationData.loopFlag = false;
+}
+
+State3DAnimationProcess::State3DAnimationProcess(int modelHandle)
+: mnModelHandle(modelHandle)
+, mfAnimBlendRate(0.0f)
 , mfAnimBlendSpeed(0.1f)
 , mfAnimationSpeed(0.5f)
 , mstMyAniationData()
@@ -31,26 +44,36 @@ State3DAnimationProcess::State3DAnimationProcess()
 
 void State3DAnimationProcess::AnimationDetach(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    if (mstPreAnimationData.animationHandle != (-1))
+    const int currentAnimationHandle = stateAnimationData->nowAnimationData == nullptr
+        ? -1
+        : stateAnimationData->nowAnimationData->animationHandle;
+    if (currentAnimationHandle != -1)
+    {
+        MV1DetachAnim(mnModelHandle, currentAnimationHandle);
+        stateAnimationData->nowAnimationData->animationHandle = -1;
+    }
+
+    if (mstPreAnimationData.animationHandle != -1 &&
+        mstPreAnimationData.animationHandle != currentAnimationHandle)
     {
         MV1DetachAnim(mnModelHandle, mstPreAnimationData.animationHandle);
-        mstPreAnimationData.animationHandle = -1;
     }
-    // ‚±‚ÌƒXƒe[ƒg‚ğ‘O‚ÌƒXƒe[ƒg‚Æ‚µ‚Äİ’è
+    mstPreAnimationData.animationHandle = -1;
+    // ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½Oï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½Æ‚ï¿½ï¿½Äİ’ï¿½
     stateAnimationData->preAnimationData = &mstMyAniationData;
     //animationDatas->animDatas[animation->GetAnimationType()].preAnimationType = meAnimationType;
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`
 void State3DAnimationProcess::AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    // ‚±‚ÌƒXƒe[ƒg‚ğŒ»İ‚ÌƒXƒe[ƒg‚Æ‚µ‚Äİ’è
+    // ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æ‚ï¿½ï¿½Äİ’ï¿½
     stateAnimationData->nowAnimationData = &mstMyAniationData;
     stateAnimationData->nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, stateAnimationData->nowAnimationData->number);
     stateAnimationData->nowAnimationData->animationCount = 0.0f;
 }
 
-// ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è‚·‚é
+// ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½
 void State3DAnimationProcess::PreAnimationDataSetting(STATE_ANEMATION_DATA* stateAnimationData)
 {
     if (stateAnimationData->nowAnimationData->preAnimationType != ANIMATION_MOVE_TYPE::NONE)
@@ -63,36 +86,36 @@ void State3DAnimationProcess::PreAnimationDataSetting(STATE_ANEMATION_DATA* stat
     }
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void State3DAnimationProcess::Init(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    // ƒAƒ^ƒbƒ`
+    // ï¿½Aï¿½^ï¿½bï¿½`
     AnimationAttach(stateAnimationData);
 
-    // ‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è
+    // ï¿½Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
     PreAnimationDataSetting(stateAnimationData);
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“XV
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
 void State3DAnimationProcess::UpdateAnimation(STATE_ANEMATION_DATA* stateAnimationData)
 {
     if (mnModelHandle != -1) {
 
-        // ƒuƒŒƒ“ƒh—¦XV
+        // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Xï¿½V
         UpdateBlend();
 
-        // Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é
+        // ï¿½ï¿½ï¿½İ‚ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
         AdvanceAnimationTime(stateAnimationData->nowAnimationData->animationHandle, &stateAnimationData->nowAnimationData->animationCount, stateAnimationData->nowAnimationData->loopFlag, mfAnimBlendRate);
 
-        // ‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é
+        // ï¿½Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
         AdvanceAnimationTime(mstPreAnimationData.animationHandle, &mstPreAnimationData.animationCount, mstPreAnimationData.loopFlag, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate);
     }
 }
 
-// ƒuƒŒƒ“ƒhXV
+// ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½Xï¿½V
 void State3DAnimationProcess::UpdateBlend()
 {
-    // ƒuƒŒƒ“ƒh—¦‚ğ‰ÁZ‚µ‚Ä‚¢‚­
+    // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
     if (mfAnimBlendRate < ANIMATION_BLEND_RATE_MAX)
     {
         mfAnimBlendRate += mfAnimBlendSpeed;
@@ -104,19 +127,19 @@ void State3DAnimationProcess::UpdateBlend()
     }
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
 void State3DAnimationProcess::AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate)
 {
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ˆ—
+    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if (animationHandle != -1)
     {
-        // ‘Ä¶ŠÔ‚ğæ“¾
+        // ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ“¾
         float animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, animationHandle);
 
-        // Ä¶ŠÔ‚ği‚ß‚é
+        // ï¿½Äï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
         *animationCount += mfAnimationSpeed;
 
-        // ƒ‹[ƒv‚³‚¹‚é
+        // ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (*animationCount >= animTotalTime)
         {
             if (loopFlag)
@@ -125,7 +148,7 @@ void State3DAnimationProcess::AdvanceAnimationTime(int animationHandle, float* a
             }
             else
             {
-                if (true/* TODO:ƒeƒXƒg’iŠK*/)
+                if (true/* TODO:ï¿½eï¿½Xï¿½gï¿½iï¿½K*/)
                 {
                     *animationCount = animTotalTime;
                 }
@@ -136,69 +159,72 @@ void State3DAnimationProcess::AdvanceAnimationTime(int animationHandle, float* a
             }
         }
 
-        // ƒ‚ƒfƒ‹‚É”½‰f
+        // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½É”ï¿½ï¿½f
         MV1SetAttachAnimTime(mnModelHandle, animationHandle, *animationCount);
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“”½‰f—¦‚ğİ’è
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½İ’ï¿½
         MV1SetAttachAnimBlendRate(mnModelHandle, animationHandle, animBlendRate);
     }
 }
 
 /*----------*/
-/*yƒAƒjƒ[ƒVƒ‡ƒ“–³‚µz*/
+/*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*----------*/
 StateNoneAnimation::StateNoneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
 {}
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool StateNoneAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     return false;
 }
 
 /*------------------------*/
-/*yMV1ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*------------------------*/
-StateMVOneAnimation::StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, std::string fileName)
+StateMVOneAnimation::StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, std::string fileName)
 : IStateAnimation(stateChangeCriterias)
-, State3DAnimationProcess()
+, State3DAnimationProcess(modelHandle)
 {
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€ŒÅ’è
+    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å’ï¿½
     {
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÅˆÚ“®‚ğ‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ì”Ô†‚ğŒŸõ‚·‚é
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÅˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ì”Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         int moveAnimFrameIndex = MV1SearchFrame(mnModelHandle, fileName.c_str());
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÅˆÚ“®‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚ğ–³Œø‚É‚·‚é
-        MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÅˆÚ“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ğ–³Œï¿½ï¿½É‚ï¿½ï¿½ï¿½
+        if (moveAnimFrameIndex >= 0)
+        {
+            MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
+        }
     }
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
     Init(stateAnimationData);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
     AnimationDetach(stateAnimationData);
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateMVOneAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
 
-// XV
+// ï¿½Xï¿½V
 void StateMVOneAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    // ƒAƒjƒ[ƒVƒ‡ƒ“XV
+    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
     UpdateAnimation(stateAnimationData);
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
 bool StateMVOneAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -211,47 +237,48 @@ bool StateMVOneAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMove
 }
 
 /*--------------------------------*/
-/*yMV1ƒ‚ƒfƒ‹ ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µƒ‚ƒfƒ‹z*/
+/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½z*/
 /*--------------------------------*/
 
-StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
+StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle)
 : IStateAnimation(stateChangeCriterias)
-, State3DAnimationProcess()
+, State3DAnimationProcess(modelHandle)
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneOnlyAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
     Init(stateAnimationData);
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneOnlyAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
     AnimationDetach(stateAnimationData);
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateMVOneOnlyAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
 
-// XV
+// ï¿½Xï¿½V
 void StateMVOneOnlyAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    // ƒAƒjƒ[ƒVƒ‡ƒ“XV
+    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
     UpdateAnimation(stateAnimationData);
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`*/
 void StateMVOneOnlyAnimation::AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData)
 {
+    stateAnimationData->nowAnimationData = &mstMyAniationData;
     stateAnimationData->nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, stateAnimationData->nowAnimationData->number, FALSE);
     stateAnimationData->nowAnimationData->animationCount = 0.0f;
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
 bool StateMVOneOnlyAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -265,10 +292,10 @@ bool StateMVOneOnlyAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animation
 }
 
 /*----------------------*/
-/*yMV1ƒ‚ƒfƒ‹ ƒ‚ƒfƒ‹‘€ìz*/
+/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*----------------------*/
-StateMVOneOperationAnimation::StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, VECTOR changeVec, VECTOR changeAngle, VECTOR changeSize)
-: StateMVOneOnlyAnimation(stateChangeCriterias)
+StateMVOneOperationAnimation::StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, VECTOR changeVec, VECTOR changeAngle, VECTOR changeSize, int modelHandle)
+: StateMVOneOnlyAnimation(stateChangeCriterias, modelHandle)
 , mvChangeMove(changeVec)
 , mvMove(UtilCalc::VZero)
 , mvChangeAngle(changeAngle)
@@ -278,7 +305,7 @@ StateMVOneOperationAnimation::StateMVOneOperationAnimation(std::vector<STATE_CHA
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneOperationAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
     Init(stateAnimationData);
@@ -288,7 +315,7 @@ void StateMVOneOperationAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationD
     mvSize  = UtilCalc::VZero;
 }
 
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateMVOneOperationAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
     AnimationDetach(stateAnimationData);
@@ -298,7 +325,7 @@ void StateMVOneOperationAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationDa
     stateAnimationData->animation->GetModel()->SetSize(     VSub(stateAnimationData->animation->GetModel()->GetSize(),     mvSize));
 }
 
-// XV
+// ï¿½Xï¿½V
 void StateMVOneOperationAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
     mvMove  = VAdd(mvMove,  mvChangeMove);
@@ -310,7 +337,7 @@ void StateMVOneOperationAnimation::Update(STATE_ANEMATION_DATA* stateAnimationDa
     stateAnimationData->animation->GetModel()->SetSize(     VAdd(stateAnimationData->animation->GetModel()->GetSize(),     mvChangeSize));
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
 bool StateMVOneOperationAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -324,7 +351,7 @@ bool StateMVOneOperationAnimation::CheckSimilarAnimationType(ANIMATION_TYPE anim
 }
 
 /*--------------------*/
-/*yƒGƒtƒFƒNƒgƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*--------------------*/
 StateEffectAnimation::StateEffectAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
@@ -332,7 +359,7 @@ StateEffectAnimation::StateEffectAnimation(std::vector<STATE_CHANGE_CRITERIA_DAT
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateEffectAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
     if (!stateAnimationData->animation->GetModel()->GetDrawFlag())
@@ -342,7 +369,7 @@ void StateEffectAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int
 
     mnEffectHandle = Master::mpResourceManager->GetEffectResource()->GetEffectHandle(stateAnimationData->nowAnimationData->number, mnEffectHandle);
 }
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateEffectAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
     if (mnEffectHandle == -1)
@@ -353,7 +380,7 @@ void StateEffectAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int 
     Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(mnEffectHandle);
     mnEffectHandle = -1;
 }
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateEffectAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
     if (mnEffectHandle == -1)
@@ -364,12 +391,12 @@ void StateEffectAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
     Master::mpResourceManager->GetEffectResource()->DeletePlayEffectHandle(mnEffectHandle);
     mnEffectHandle = -1;
 }
-// XV(‰½‚à‚µ‚È‚¢)
+// ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 void StateEffectAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
 bool StateEffectAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -382,7 +409,7 @@ bool StateEffectAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMov
 }
 
 /*--------------*/
-/*y‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*--------------*/
 StateGraphAnimation::StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
@@ -390,19 +417,19 @@ StateGraphAnimation::StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<
 }
 
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateGraphAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
 }
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateGraphAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
 }
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateGraphAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
-// XV(‰½‚à‚µ‚È‚¢)
+// ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 void StateGraphAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
@@ -419,26 +446,26 @@ bool StateGraphAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMove
 }
 
 /*--------------*/
-/*y“®‰æƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*--------------*/
 StateMovieAnimation::StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateMovieAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
 }
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateMovieAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
 }
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateMovieAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
-// XV(‰½‚à‚µ‚È‚¢)
+// ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 void StateMovieAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
@@ -455,14 +482,14 @@ bool StateMovieAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMove
 }
 
 /*----------------------*/
-/*yƒtƒF[ƒh‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yï¿½tï¿½Fï¿½[ï¿½hï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*----------------------*/
 StateFadeGraphAnimation::StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateFadeGraphAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
     DrawConfigData drawConfigData = stateAnimationData->animation->GetModel()->GetDrawConfigData();
@@ -481,29 +508,29 @@ void StateFadeGraphAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, 
         stateAnimationData->animation->GetModel()->SetDrawConfigData(drawConfigData);
     }
 }
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateFadeGraphAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
 }
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateFadeGraphAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
-// XV(‰½‚à‚µ‚È‚¢)
+// ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 void StateFadeGraphAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
     FadeProcess(stateAnimationData);
 }
 
-/*ƒtƒF[ƒhˆ—*/
+/*ï¿½tï¿½Fï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½*/
 void StateFadeGraphAnimation::FadeProcess(STATE_ANEMATION_DATA* stateAnimationData)
 {
-    // •`‰æî•ñ‚ğæ“¾‚µ•ÏX‚·‚é
+    // ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
     DrawConfigData drawConfigData = stateAnimationData->animation->GetModel()->GetDrawConfigData();
     drawConfigData.blendParameter += stateAnimationData->nowAnimationData->blendParameter;
 
 
-    // •`‰æî•ñ‚ª”ÍˆÍŠO‚È‚çC³‚·‚é
+    // ï¿½`ï¿½ï¿½ï¿½ñ‚ª”ÍˆÍŠOï¿½È‚ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     if (drawConfigData.blendParameter > 255)
     {
         drawConfigData.blendParameter = 255;  
@@ -513,11 +540,11 @@ void StateFadeGraphAnimation::FadeProcess(STATE_ANEMATION_DATA* stateAnimationDa
         drawConfigData.blendParameter = 0;    
     }
 
-    // •ÏX‚µ‚½•`‰æî•ñ‚ğİ’è
+    // ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
     stateAnimationData->animation->GetModel()->SetDrawConfigData(drawConfigData); 
 }
 
-/*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
+/*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
 bool StateFadeGraphAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -530,31 +557,31 @@ bool StateFadeGraphAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animation
 }
 
 /*-------------------*/
-/*yDOTweenƒAƒjƒ[ƒVƒ‡ƒ“z*/
+/*ï¿½yDOTweenï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*-------------------*/
 StateDOTweenAnimation::StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 : IStateAnimation(stateChangeCriterias)
 {
 }
 
-// ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 void StateDOTweenAnimation::OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState)
 {
 }
-// ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 void StateDOTweenAnimation::OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState)
 {
 }
-// I—¹
+// ï¿½Iï¿½ï¿½
 void StateDOTweenAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
-// XV(‰½‚à‚µ‚È‚¢)
+// ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 void StateDOTweenAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType)
 {
     switch (animationMoveType)
@@ -590,7 +617,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // #include "UtilCalc.h"
 
 // /*----------*/
-// /*yƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg‹¤’Êˆ—z
+// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 
 // StateAnimationProcess::StateAnimationProcess(int modelHandle)
@@ -605,7 +632,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mstPreAnimationData.loopFlag = false;
 // }
 
-// // ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒfƒ^ƒbƒ`
+// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½^ï¿½bï¿½`
 // void StateAnimationProcess::AnimationDetach(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     if (mstPreAnimationData.animationHandle != (-1))
@@ -614,18 +641,18 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //         mstPreAnimationData.animationHandle = -1;
 //     }
 
-//     // Œ»İ‚ÌƒXƒe[ƒg‚ÆŸ‚ÌƒXƒe[ƒg‚ğ•R‚Ã‚¯‚Ä‘O‚ÌƒXƒe[ƒg‚Æ‚µ‚Äˆµ‚¤
+//     // ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½Rï¿½Ã‚ï¿½ï¿½Ä‘Oï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½Æ‚ï¿½ï¿½Äˆï¿½ï¿½ï¿½
 //     animationDatas->animDatas[animation->GetAnimationType()].preAnimationType = meAnimationType;
 // }
 
-// // ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`
+// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`
 // void StateAnimationProcess::AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, nowAnimationData->number);
 //     nowAnimationData->animationCount = 0.0f;
 // }
 
-// // ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è‚·‚é
+// // ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½
 // void StateAnimationProcess::PreAnimationDataSetting(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     if (nowAnimationData->preAnimationType != ANIMATION_MOVE_TYPE::NONE)
@@ -640,35 +667,35 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     }
 // }
 
-// // ‰Šú‰»
+// // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // void StateAnimationProcess::Init(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
-//     // ƒAƒ^ƒbƒ`
+//     // ï¿½Aï¿½^ï¿½bï¿½`
 //     AnimationAttach(animation, nowAnimationData, animationDatas);
 
-//     // ‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è
+//     // ï¿½Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 //     PreAnimationDataSetting(animation, nowAnimationData, animationDatas);
 // }
 
-// // ƒAƒjƒ[ƒVƒ‡ƒ“XV
+// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
 // void StateAnimationProcess::UpdateAnimation(OneAnimationData *nowAnimationData)
 // {
 //     if (mnModelHandle != -1) {
 
-//         // ƒuƒŒƒ“ƒh—¦XV
+//         // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Xï¿½V
 //         UpdateBlend();
 
-//         // Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é
+//         // ï¿½ï¿½ï¿½İ‚ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
 //         AdvanceAnimationTime(nowAnimationData->animationHandle, &nowAnimationData->animationCount, nowAnimationData->loopFlag, mfAnimBlendRate, true);
 
-//         // ‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é
+//         // ï¿½Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
 //         AdvanceAnimationTime(mstPreAnimationData.animationHandle, &mstPreAnimationData.animationCount, mstPreAnimationData.loopFlag, ANIMATION_BLEND_RATE_MAX - mfAnimBlendRate, true);
 //     }
 // }
 
 // void StateAnimationProcess::UpdateBlend()
 // {
-//     // ƒuƒŒƒ“ƒh—¦‚ğ‰ÁZ‚µ‚Ä‚¢‚­
+//     // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 //     if (mfAnimBlendRate < ANIMATION_BLEND_RATE_MAX)
 //     {
 //         mfAnimBlendRate += mfAnimBlendSpeed;
@@ -680,19 +707,19 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     }
 // }
 
-// /*ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é*/
+// /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½*/
 // void StateAnimationProcess::AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate, bool testFlag)
 // {
-//     // ƒAƒjƒ[ƒVƒ‡ƒ“ˆ—
+//     // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //     if (animationHandle != -1)
 //     {
-//         // ‘Ä¶ŠÔ‚ğæ“¾
+//         // ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ“¾
 //         float animTotalTime = MV1GetAttachAnimTotalTime(mnModelHandle, animationHandle);
 
-//         // Ä¶ŠÔ‚ği‚ß‚é
+//         // ï¿½Äï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½
 //         *animationCount += mfAnimationSpeed;
 
-//         // ƒ‹[ƒv‚³‚¹‚é
+//         // ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //         if (*animationCount >= animTotalTime)
 //         {
 //             if (loopFlag)
@@ -712,59 +739,59 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //             }
 //         }
 
-//         // ƒ‚ƒfƒ‹‚É”½‰f
+//         // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½É”ï¿½ï¿½f
 //         MV1SetAttachAnimTime(mnModelHandle, animationHandle, *animationCount);
 
-//         // ƒAƒjƒ[ƒVƒ‡ƒ“”½‰f—¦‚ğİ’è
+//         // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½İ’ï¿½
 //         MV1SetAttachAnimBlendRate(mnModelHandle, animationHandle, animBlendRate);
 //     }
 // }
 
 // /*----------*/
-// /*yMV1ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“z
+// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 
 // StateMVOneAnimation::StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::MV1_MODEL, stateChangeCriterias)
 // , StateAnimationProcess(modelHandle)
 // {
-//     // ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€ŒÅ’è
+//     // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å’ï¿½
 //     {
-//         // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÅˆÚ“®‚ğ‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ì”Ô†‚ğŒŸõ‚·‚é
+//         // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÅˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ì”Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //         int moveAnimFrameIndex = MV1SearchFrame(mnModelHandle, fileName.c_str());
 
-//         // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÅˆÚ“®‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚ğ–³Œø‚É‚·‚é
+//         // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÅˆÚ“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ğ–³Œï¿½ï¿½É‚ï¿½ï¿½ï¿½
 //         MV1SetFrameUserLocalMatrix(mnModelHandle, moveAnimFrameIndex, MV1GetFrameLocalMatrix(mnModelHandle, moveAnimFrameIndex));
 //     }
 
 //     mStateNumber = ANIMATION_TYPE::MV1_MODEL;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateMVOneAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateMVOneAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
-//     // ƒAƒjƒ[ƒVƒ‡ƒ“XV
+//     // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
 //     UpdateAnimation(nowAnimationData);
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateMVOneAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     switch (modelType)
@@ -778,7 +805,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 
 
 // /*----------*/
-// /*yMV1ƒ‚ƒfƒ‹@ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µƒ‚ƒfƒ‹z
+// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½@ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½z
 // /*----------*/
 // StateMVOneOnlyAnimation::StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::MV1_MODEL_ONLY, stateChangeCriterias)
@@ -787,19 +814,19 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::MV1_MODEL_ONLY;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneOnlyAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneOnlyAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateMVOneOnlyAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     std::vector<ANIMATION_MOVE_TYPE> deleteAnimationType;
@@ -827,14 +854,14 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     }
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateMVOneOnlyAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
-//     // ƒAƒjƒ[ƒVƒ‡ƒ“XV
+//     // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
 //     UpdateAnimation(nowAnimationData);
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateMVOneOnlyAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     switch (modelType)
@@ -847,7 +874,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     return false;
 // }
 
-// // ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`
+// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`
 // void StateMVOneOnlyAnimation::AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas)
 // {
 //     nowAnimationData->animationHandle = MV1AttachAnim(mnModelHandle, 0, nowAnimationData->number, FALSE);
@@ -855,7 +882,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // /*----------*/
-// /*yMV1ƒ‚ƒfƒ‹ ƒ‚ƒfƒ‹‘€ìz
+// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 // : StateMVOneOperationAnimation::StateMVOneOperationAnimation(int modelHandle, VECTOR changeVec, VECTOR changeAngle, VECTOR changeSize, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : StateMVOneOnlyAnimation(modelHandle, stateChangeCriterias)
@@ -869,7 +896,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::MV1_MODEL_MOVE;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneOperationAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     Init(animation, nowAnimationData, animationDatas);
@@ -879,7 +906,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mvSize  = UtilCalc::VZero;
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateMVOneOperationAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     AnimationDetach(animation, animationDatas);
@@ -889,7 +916,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mpModelBase->SetSize(     VSub(mpModelBase->GetSize(),     mvSize));
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateMVOneOperationAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     mvMove  = VAdd(mvMove,  mvChangeMove);
@@ -901,7 +928,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mpModelBase->SetSize(     VAdd(mpModelBase->GetSize(),     mvChangeSize));
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateMVOneOperationAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     switch (modelType)
@@ -915,7 +942,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 // }
 
 // /*----------*/
-// /*yƒGƒtƒFƒNƒgƒAƒjƒ[ƒVƒ‡ƒ“z
+// /*ï¿½yï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 
 // StateEffectAnimation::StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
@@ -925,7 +952,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::EFFECT;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateEffectAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     if (!mpModelBase->GetDrawFlag())
@@ -936,7 +963,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     *mnEffectHandle = Master::mpResourceManager->GetEffectResource()->GetEffectHandle(nowAnimationData->number, *mnEffectHandle);
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateEffectAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 //     if (*mnEffectHandle == -1)
@@ -948,7 +975,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     *mnEffectHandle = -1;
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateEffectAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 //     std::vector<ANIMATION_MOVE_TYPE> deleteAnimationType;
@@ -981,19 +1008,19 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     }
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateEffectAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateEffectAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     return false;
 // }
 
 // /*----------*/
-// /*y‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z
+// /*ï¿½yï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 // StateGraphAnimation::StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::GRAPH, stateChangeCriterias)
@@ -1001,34 +1028,34 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::GRAPH;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateGraphAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateGraphAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateGraphAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateGraphAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateGraphAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     return false;
 // }
 
 // /*----------*/
-// /*y“®‰æƒAƒjƒ[ƒVƒ‡ƒ“z
+// /*ï¿½yï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
 // /*----------*/
 // StateMovieAnimation::StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::MOVIE, stateChangeCriterias)
@@ -1036,27 +1063,27 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::MOVIE;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateMovieAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateMovieAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateMovieAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateMovieAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateMovieAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     return false;
@@ -1064,7 +1091,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 
 
 // /*------------------------------*/
-// /*yƒtƒF[ƒh‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
+// /*ï¿½yï¿½tï¿½Fï¿½[ï¿½hï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 // /*------------------------------*/
 // StateFadeGraphAnimation::StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::FADE, stateChangeCriterias)
@@ -1072,7 +1099,7 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::FADE;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateFadeGraphAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
 //     DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
@@ -1092,31 +1119,31 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     }
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateFadeGraphAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateFadeGraphAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateFadeGraphAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 //     FadeProcess(nowAnimationData);
 // }
 
-// // ƒtƒF[ƒhˆ—
+// // ï¿½tï¿½Fï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½
 // void StateFadeGraphAnimation::FadeProcess(OneAnimationData *nowAnimationData)
 // {
-//     // •`‰æî•ñ‚ğæ“¾‚µ•ÏX‚·‚é
+//     // ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
 //     DrawConfigData drawConfigData = mpModelBase->GetDrawConfigData();
 //     drawConfigData.blendParameter += nowAnimationData->blendParameter;
 
 
-//     // •`‰æî•ñ‚ª”ÍˆÍŠO‚È‚çC³‚·‚é
+//     // ï¿½`ï¿½ï¿½ï¿½ñ‚ª”ÍˆÍŠOï¿½È‚ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //     if (drawConfigData.blendParameter > 255)
 //     {
 //         drawConfigData.blendParameter = 255;  
@@ -1126,18 +1153,18 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //         drawConfigData.blendParameter = 0;    
 //     }
 
-//     // •ÏX‚µ‚½•`‰æî•ñ‚ğİ’è
+//     // ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 //     mpModelBase->SetDrawConfigData(drawConfigData); 
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateFadeGraphAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     return false;
 // }
 
 // /*----------*/
-// /*yDOTweenƒAƒjƒ[ƒVƒ‡ƒ“z*/
+// /*ï¿½yDOTweenï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
 // /*----------*/
 // StateDOTweenAnimation::StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
 // : IStateAnimation(ANIMATION_TYPE::TOD_WEEN, stateChangeCriterias)
@@ -1145,28 +1172,28 @@ bool StateDOTweenAnimation::CheckSimilarAnimationType(ANIMATION_TYPE animationMo
 //     mStateNumber = ANIMATION_TYPE::TOD_WEEN;
 // }
 
-// // ‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 // void StateDOTweenAnimation::OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType)
 // {
-//     // ”šİ’è
+//     // ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 // }
 
-// // ‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—
+// // ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½
 // void StateDOTweenAnimation::OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType)
 // {
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void StateDOTweenAnimation::Finalize(Animation* animation, AnimationDatas* animationDatas)
 // {
 // }
 
-// // XV
+// // ï¿½Xï¿½V
 // void StateDOTweenAnimation::Update(Animation* animation, OneAnimationData *nowAnimationData)
 // {
 // }
 
-// // ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·
+// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 // bool StateDOTweenAnimation::CheckSimilarModelType(ANIMATION_TYPE modelType)
 // {
 //     return false;

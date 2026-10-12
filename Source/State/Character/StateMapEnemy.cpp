@@ -1,202 +1,202 @@
-// #include "GameDataEnum.h"
-// #include "StateEnum.h"
-// #include "GameDatas.h"
+#include "GameDataEnum.h"
+#include "StateEnum.h"
+#include "GameDatas.h"
 
-// #include "Master.h"
+#include "Master.h"
 
-// #include "DataManager.h"
-// #include "EnemyCommonProcessing.h"
-// #include "GameManager.h"
-// #include "KeyState.h"
-// #include "StateMapEnemy.h"
-// #include "SceneManager.h"
-// #include "TargetManager.h"
-// #include "UtilCalc.h"
-// #include "UtilChange.h"
+#include "DataManager.h"
+#include "EnemyCommonProcessing.h"
+#include "GameManager.h"
+#include "KeyState.h"
+#include "StateMapEnemy.h"
+#include "SceneManager.h"
+#include "TargetManager.h"
+#include "UtilCalc.h"
+#include "UtilChange.h"
 
-// /*------------------*/
-// /*     【共通】     */
-// /*------------------*/
+/*------------------*/
+/*     ・ｽy・ｽ・ｽ・ｽﾊ】     */
+/*------------------*/
 
-// /*----------------------------*/
-// /*【マップエネミー共通処理用】*/
-// /*----------------------------*/
-// MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
-// : EnemyCommonProcessing(STATE_ENEMY_TYPE::MAP_ENEMY)
-// , mpKeyState(Master::mpKeyState)
-// , mpSceneManager(Master::mpGameManager->GetSceneManager())
-// , mpTargetManager(Master::mpGameManager->GetTargetManager())
-// , meMapScene(mapScene)
-// {
-// }
+/*----------------------------*/
+/*・ｽy・ｽ}・ｽb・ｽv・ｽG・ｽl・ｽ~・ｽ[・ｽ・ｽ・ｽﾊ擾ｿｽ・ｽ・ｽ・ｽp・ｽz*/
+/*----------------------------*/
+MapEnemyProcess::MapEnemyProcess(SCENE mapScene)
+: EnemyCommonProcessing(STATE_ENEMY_TYPE::MAP_ENEMY)
+, mpKeyState(Master::mpKeyState)
+, mpSceneManager(Master::mpGameManager->GetSceneManager())
+, mpTargetManager(Master::mpGameManager->GetTargetManager())
+, meMapScene(mapScene)
+{
+}
 
-// // 一定範囲内にプレイヤーターゲットがいるなら「true」
-// bool MapEnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
-// {
-//     return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
-// }
+// ・ｽ・ｽ・ｽﾍ囲難ｿｽ・ｽﾉプ・ｽ・ｽ・ｽC・ｽ・ｽ・ｽ[・ｽ^・ｽ[・ｽQ・ｽb・ｽg・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽutrue・ｽv
+bool MapEnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
+{
+    return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
+}
 
-// // 死亡
-// void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
-// {
-//     mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
-//     if ((UtilChange::SceneState(mpSceneManager->GetNowScene()) != SCENE::TOWN) && (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0))
-//     {
-//         mpSceneManager->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
-//     }
-// }
+// ・ｽ・ｽ・ｽS
+void MapEnemyProcess::MapEnemyDeath(CharacterBase* character)
+{
+    mpTargetManager->Delete(character, TARGET_TYPE::ENEMY);
+    if ((UtilChange::SceneState(mpSceneManager->GetNowScene()) != SCENE::TOWN) && (mpTargetManager->GetTargets(TARGET_TYPE::ENEMY).size() <= 0))
+    {
+        mpSceneManager->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
+    }
+}
 
-// // マップシーン移動開始する
-// void MapEnemyProcess::SetMapScene(CharacterBase* character)
-// {
-//     mpSceneManager->SetNextScene(meMapScene);
+// ・ｽ}・ｽb・ｽv・ｽV・ｽ[・ｽ・ｽ・ｽﾚ難ｿｽ・ｽJ・ｽn・ｽ・ｽ・ｽ・ｽ
+void MapEnemyProcess::SetMapScene(CharacterBase* character)
+{
+    mpSceneManager->SetNextScene(meMapScene);
 
-//     // 削除情報に設定
-//     DELETE_CHARACTER_DATA deleteCharacterData;
-//     deleteCharacterData.sceneType = mpSceneManager->GetNowScene();
-//     deleteCharacterData.characterID = character->GetID();
-//     if (UtilChange::SceneState(mpSceneManager->GetNowScene()) == SCENE::DUNGEON)
-//     {
-//         Master::mpDataManager->SetDungeonDeleteCharacterID(deleteCharacterData);
-//     }
-//     else
-//     {
-//         Master::mpDataManager->SetTownDeleteCharacterID(deleteCharacterData);
-//     }
-// }
+    // ・ｽ尞懶ｿｽ・ｽ・ｽﾉ設抵ｿｽ
+    DELETE_CHARACTER_DATA deleteCharacterData;
+    deleteCharacterData.sceneType = mpSceneManager->GetNowScene();
+    deleteCharacterData.characterID = character->GetID();
+    if (UtilChange::SceneState(mpSceneManager->GetNowScene()) == SCENE::DUNGEON)
+    {
+        Master::mpDataManager->SetDungeonDeleteCharacterID(deleteCharacterData);
+    }
+    else
+    {
+        Master::mpDataManager->SetTownDeleteCharacterID(deleteCharacterData);
+    }
+}
 
-// /*--------------------------*/
-// /*     【基本ステート】     */ 
-// /*--------------------------*/
+/*--------------------------*/
+/*     ・ｽy・ｽ・ｽ{・ｽX・ｽe・ｽ[・ｽg・ｽz     */
+/*--------------------------*/
 
-// /*----------------------------*/
-// /*【Idleマップエネミーテート】*/
-// /*----------------------------*/
-// IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
-// : IStateCharacter(MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, stateChangeCriterias)
-// , MapEnemyProcess(mapScene)
-// {
-// }
+/*----------------------------*/
+/*・ｽyIdle・ｽ}・ｽb・ｽv・ｽG・ｽl・ｽ~・ｽ[・ｽe・ｽ[・ｽg・ｽz*/
+/*----------------------------*/
+IdleMapEnemyState::IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
+: IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE, STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE)
+, MapEnemyProcess(mapScene)
+{
+}
 
-// // この状態に入った時の処理
-// void IdleMapEnemyState::OnEnter(CharacterBase* character)
-// {
-// 	EnemyGraphDataInitialize(character);
-//     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
-//     {
-//     case SCENE::TOWN:
-//         //printfDx("テロップ：ダンジョンへ行けないです\n");
-//         break;
+// ・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+void IdleMapEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
+{
+	EnemyGraphDataInitialize(character);
+    switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
+    {
+    case SCENE::TOWN:
+        //printfDx("・ｽe・ｽ・ｽ・ｽb・ｽv・ｽF・ｽ_・ｽ・ｽ・ｽW・ｽ・ｽ・ｽ・ｽ・ｽﾖ行・ｽ・ｽ・ｽﾈゑｿｽ・ｽﾅゑｿｽ\n");
+        break;
 
-//     case SCENE::DUNGEON:
-//         //printfDx("テロップ：バトルへ行けないです\n");
-//         break;
-//     }
-// }
+    case SCENE::DUNGEON:
+        //printfDx("・ｽe・ｽ・ｽ・ｽb・ｽv・ｽF・ｽo・ｽg・ｽ・ｽ・ｽﾖ行・ｽ・ｽ・ｽﾈゑｿｽ・ｽﾅゑｿｽ\n");
+        break;
+    }
+}
 
-// // この状態を出る時の処理
-// void IdleMapEnemyState::OnExit(CharacterBase* character)
-// {
-// }
+// ・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+void IdleMapEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
+{
+}
 
-// // ステート変更確認
-// STATE_TYPE_CHARACTER IdleMapEnemyState::StateCheck(CharacterBase* character)
-// {
-//     if (PlayerTargetCheck(character, 300.0f))
-//     {
-//         return STATE_TYPE_CHARACTER::TELOP_MAP_ENEMY_STATE;
-//     }
+// ・ｽX・ｽe・ｽ[・ｽg・ｽﾏ更・ｽm・ｽF
+STATE_TYPE_CHARACTER IdleMapEnemyState::StateCheck(CharacterBase* character)
+{
+    if (PlayerTargetCheck(character, 300.0f))
+    {
+        return STATE_TYPE_CHARACTER::TELOP_MAP_ENEMY_STATE;
+    }
 
-//     return mStateNumber;
-// }
+    return mStateNumber;
+}
 
-// // 更新
-// void IdleMapEnemyState::Update(CharacterBase* character)
-// {
-// }
+// ・ｽX・ｽV
+void IdleMapEnemyState::Update(CharacterBase* character)
+{
+}
 
-// // 最終更新
-// void IdleMapEnemyState::LastUpdate(CharacterBase* character)
-// {
-// 	HpDrawInfoSetup(character);
-// }
+// ・ｽﾅ終・ｽX・ｽV
+void IdleMapEnemyState::LastUpdate(CharacterBase* character)
+{
+	HpDrawInfoSetup(character);
+}
 
-// // 描画
-// void IdleMapEnemyState::Draw(CharacterBase* character)
-// {
-//     EnemyDataDraw(character);
-// }
+// ・ｽ`・ｽ・ｽ
+void IdleMapEnemyState::Draw(CharacterBase* character)
+{
+    EnemyDataDraw(character);
+}
 
-// // 死亡
-// void IdleMapEnemyState::Death(CharacterBase* character)
-// {
-//     MapEnemyDeath(character);
-// }
+// ・ｽ・ｽ・ｽS
+void IdleMapEnemyState::Death(CharacterBase* character)
+{
+    MapEnemyDeath(character);
+}
 
-// /*--------------------------------*/
-// /*【テロップマップエネミーテート】*/
-// /*--------------------------------*/
-// TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias)
-// : IStateCharacter(MAP_ENEMY_STATE::TELOP_MAP_ENEMY_STATE, stateChangeCriterias)
-// , MapEnemyProcess(mapScene)
-// {
-// }
+/*--------------------------------*/
+/*・ｽy・ｽe・ｽ・ｽ・ｽb・ｽv・ｽ}・ｽb・ｽv・ｽG・ｽl・ｽ~・ｽ[・ｽe・ｽ[・ｽg・ｽz*/
+/*--------------------------------*/
+TelopMapEnemyState::TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
+: IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::TELOP_MAP_ENEMY_STATE, STATE_TYPE_CHARACTER::TELOP_MAP_ENEMY_STATE)
+, MapEnemyProcess(mapScene)
+{
+}
 
-// // この状態に入った時の処理
-// void TelopMapEnemyState::OnEnter(CharacterBase* character)
-// {
-//     switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
-//     {
-//     case SCENE::TOWN:
-//         //printfDx("テロップ：ダンジョンへ行くにはEnterキーを押してください\n");
-//         break;
+// ・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+void TelopMapEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
+{
+    switch (UtilChange::SceneState(mpSceneManager->GetNowScene()))
+    {
+    case SCENE::TOWN:
+        //printfDx("・ｽe・ｽ・ｽ・ｽb・ｽv・ｽF・ｽ_・ｽ・ｽ・ｽW・ｽ・ｽ・ｽ・ｽ・ｽﾖ行・ｽ・ｽ・ｽﾉゑｿｽEnter・ｽL・ｽ[・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾄゑｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ\n");
+        break;
 
-//     case SCENE::DUNGEON:
-//         //printfDx("テロップ：バトルへ行くにはEnterキーを押してください\n");
-//         break;
-//     }
-// }
+    case SCENE::DUNGEON:
+        //printfDx("・ｽe・ｽ・ｽ・ｽb・ｽv・ｽF・ｽo・ｽg・ｽ・ｽ・ｽﾖ行・ｽ・ｽ・ｽﾉゑｿｽEnter・ｽL・ｽ[・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾄゑｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ\n");
+        break;
+    }
+}
 
-// // この状態を出る時の処理
-// void TelopMapEnemyState::OnExit(CharacterBase* character)
-// {
-// }
+// ・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+void TelopMapEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
+{
+}
 
-// // ステート変更確認
-// STATE_TYPE_CHARACTER TelopMapEnemyState::StateCheck(CharacterBase* character)
-// {
-//     if (!PlayerTargetCheck(character,300.0f))
-//     {
-//         return STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE;
-//     }
+// ・ｽX・ｽe・ｽ[・ｽg・ｽﾏ更・ｽm・ｽF
+STATE_TYPE_CHARACTER TelopMapEnemyState::StateCheck(CharacterBase* character)
+{
+    if (!PlayerTargetCheck(character,300.0f))
+    {
+        return STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE;
+    }
 
-//     return mStateNumber;
-// }
+    return mStateNumber;
+}
 
-// // 更新
-// void TelopMapEnemyState::Update(CharacterBase* character)
-// {
-//     if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
-//     {
-//         SetMapScene(character);
-//         clsDx();
-//     }
-// }
+// ・ｽX・ｽV
+void TelopMapEnemyState::Update(CharacterBase* character)
+{
+    if (mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER))
+    {
+        SetMapScene(character);
+        clsDx();
+    }
+}
 
-// // 最終更新
-// void TelopMapEnemyState::LastUpdate(CharacterBase* character)
-// {
-// 	HpDrawInfoSetup(character);
-// }
+// ・ｽﾅ終・ｽX・ｽV
+void TelopMapEnemyState::LastUpdate(CharacterBase* character)
+{
+	HpDrawInfoSetup(character);
+}
 
-// // 描画
-// void TelopMapEnemyState::Draw(CharacterBase* character)
-// {
-//     EnemyDataDraw(character);
-// }
+// ・ｽ`・ｽ・ｽ
+void TelopMapEnemyState::Draw(CharacterBase* character)
+{
+    EnemyDataDraw(character);
+}
 
-// // 死亡
-// void TelopMapEnemyState::Death(CharacterBase* character)
-// {
-//     MapEnemyDeath(character);
-// }
+// ・ｽ・ｽ・ｽS
+void TelopMapEnemyState::Death(CharacterBase* character)
+{
+    MapEnemyDeath(character);
+}

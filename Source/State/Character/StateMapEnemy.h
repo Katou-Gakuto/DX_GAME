@@ -1,117 +1,121 @@
-// #pragma once
+#pragma once
 
-// #include "StateEnum.h"
+#include "StateEnum.h"
 
-// #include "EnemyCommonProcessing.h"
-// #include "ObjectBases.h"
-// #include "StateCharacterBase.h"
+#include "EnemyCommonProcessing.h"
+#include "ObjectBases.h"
+#include "StateCharacterBase.h"
 
-// class KeyState;
-// class SceneManager;
-// class TargetManager;
+class KeyState;
+class SceneManager;
+class TargetManager;
 
-// // TODO: UI‚Å‚â‚é
+// TODO: UIï¿½Å‚ï¿½ï¿½
 
-// /*------------------*/
-// /*     y‹¤’Êz     */
-// /*------------------*/
+/*------------------*/
+/*     ï¿½yï¿½ï¿½ï¿½Êz     */
+/*------------------*/
 
-// /*--------------------------*/
-// /*yƒ}ƒbƒvƒGƒlƒ~[ƒXƒe[ƒgz*/
-// /*--------------------------*/
+/*--------------------------*/
+/*ï¿½yï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+/*--------------------------*/
 
-// // enum class MAP_ENEMY_STATE
-// // {
-// // 	IDLE_MAP_ENEMY_STATE = 0,
-// // 	TELOP_MAP_ENEMY_STATE,
-// // };
-
-// /*----------------------------*/
-// /*yƒ}ƒbƒvƒGƒlƒ~[‹¤’Êˆ——pz*/
-// /*----------------------------*/
-// class MapEnemyProcess : public EnemyCommonProcessing
+// enum class MAP_ENEMY_STATE
 // {
-// protected:
-// 	// ƒL[ƒXƒe[ƒg
-// 	KeyState* mpKeyState;
-
-// 	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
-// 	SceneManager* mpSceneManager;
-
-// 	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
-// 	TargetManager* mpTargetManager;
-
-// 	// ƒ}ƒbƒvƒV[ƒ“
-// 	SCENE meMapScene;
-
-// protected:
-// 	MapEnemyProcess(SCENE mapScene);
-// 	~MapEnemyProcess() = default;
-
-// 	/*ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev*/
-// 	bool PlayerTargetCheck(CharacterBase* character, float range);
-
-// 	/*€–S*/
-// 	void MapEnemyDeath(CharacterBase* character);
-
-// 	/*ƒ}ƒbƒvƒV[ƒ“‚ÉˆÚ“®ŠJn‚·‚é*/
-// 	void SetMapScene(CharacterBase* character);
+// 	IDLE_MAP_ENEMY_STATE = 0,
+// 	TELOP_MAP_ENEMY_STATE,
 // };
 
-// /*--------------------------*/
-// /*     yŠî–{ƒXƒe[ƒgz     */
-// /*--------------------------*/
+/*----------------------------*/
+/*ï¿½yï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½pï¿½z*/
+/*----------------------------*/
+class MapEnemyProcess : public EnemyCommonProcessing
+{
+protected:
+	// ï¿½Lï¿½[ï¿½Xï¿½eï¿½[ï¿½g
+	KeyState* mpKeyState;
 
-// /*----------------------------*/
-// /*yIdleƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
-// /*----------------------------*/
-// class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚·ê‡‚Í stateChangeCriterias ‚ğ“n‚·
-// 	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~IdleMapEnemyState() = default;
+	// ï¿½Vï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+	SceneManager* mpSceneManager;
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+	// ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+	TargetManager* mpTargetManager;
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	// ï¿½}ï¿½bï¿½vï¿½Vï¿½[ï¿½ï¿½
+	SCENE meMapScene;
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+protected:
+	MapEnemyProcess(SCENE mapScene);
+	~MapEnemyProcess() = default;
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½v*/
+	bool PlayerTargetCheck(CharacterBase* character, float range);
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½ï¿½ï¿½S*/
+	void MapEnemyDeath(CharacterBase* character);
 
-// /*--------------------------------*/
-// /*yƒeƒƒbƒvƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
-// /*--------------------------------*/
-// class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
-// {
-// public:
-// 	// FIXME: ŒÄ‚Ño‚µ‘¤‚Å‘JˆÚğŒ‚ğ“n‚·ê‡‚Í stateChangeCriterias ‚ğ“n‚·
-// 	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, void>> stateChangeCriterias);
-// 	~TelopMapEnemyState() = default;
+	/*ï¿½}ï¿½bï¿½vï¿½Vï¿½[ï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½*/
+	void SetMapScene(CharacterBase* character);
+};
 
-// 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+/*--------------------------*/
+/*     ï¿½yï¿½ï¿½{ï¿½Xï¿½eï¿½[ï¿½gï¿½z     */
+/*--------------------------*/
 
-// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
-// 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
-// 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+/*----------------------------*/
+/*ï¿½yIdleï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½eï¿½[ï¿½gï¿½z*/
+/*----------------------------*/
+class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ê‡ï¿½ï¿½ stateChangeCriterias ï¿½ï¿½nï¿½ï¿½
+	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~IdleMapEnemyState() = default;
 
-// 	/*XV*/
-// 	void Update(CharacterBase* character) override;
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-// 	/*ÅIXV*/
-// 	void LastUpdate(CharacterBase* character) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-// 	/*•`‰æ*/
-// 	void Draw(CharacterBase* character) override;
-// };
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
+
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};
+
+/*--------------------------------*/
+/*ï¿½yï¿½eï¿½ï¿½ï¿½bï¿½vï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½eï¿½[ï¿½gï¿½z*/
+/*--------------------------------*/
+class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
+{
+public:
+	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ê‡ï¿½ï¿½ stateChangeCriterias ï¿½ï¿½nï¿½ï¿½
+	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
+	~TelopMapEnemyState() = default;
+
+	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
+
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
+	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
+	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
+
+	/*ï¿½Xï¿½V*/
+	void Update(CharacterBase* character) override;
+
+	/*ï¿½ÅIï¿½Xï¿½V*/
+	void LastUpdate(CharacterBase* character) override;
+
+	/*ï¿½`ï¿½ï¿½*/
+	void Draw(CharacterBase* character) override;
+	void Death(CharacterBase* character) override;
+};

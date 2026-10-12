@@ -11,35 +11,51 @@ Animation::Animation()
 {
 }
 
-// ‰Šú‰»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Animation::Initilize(ModelBase* model)
 {
     mpModel = model;
 }
 
-// ƒV[ƒ“ÅI‰Šú‰»
+// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Animation::SceneLastInitilize()
 {
+    if (mpFsm == nullptr)
+    {
+        return;
+    }
+
     mstStateData.animation = this;
     mpFsm->StateInitilize(&mstStateData);
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void Animation::Finalize()
 {
-    mpFsm->Finalize(&mstStateData);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Finalize(&mstStateData);
+        delete mpFsm;
+        mpFsm = nullptr;
+    }
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“XV
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
 void Animation::Update()
 {
-    mpFsm->Update(&mstStateData);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Update(&mstStateData);
+    }
 }
 
-// Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuİ’è
+// ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½İ’ï¿½
 void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 {
-    mpFsm->SetNextAnimationMove(animatioMoveType);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->SetNextAnimationMove(animatioMoveType);
+    }
 }
 
 
@@ -56,7 +72,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     mpFsm = nullptr;
 // }
 
-// // ‰Šú‰»
+// // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // void Animation::Initilize()
 // {
 //     if (mpFsm != nullptr)
@@ -65,13 +81,13 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     }
 // }
 
-// // ƒV[ƒ“ÅI‰Šú‰»
+// // ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // void Animation::SceneLastInitilize()
 // {
 //     Update();
 // }
 
-// // I—¹
+// // ï¿½Iï¿½ï¿½
 // void Animation::Finalize()
 // {
 //     if (mpFsm != nullptr)
@@ -84,7 +100,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     mstAnimationDatas.clear();
 // }
 
-// // ƒAƒjƒ[ƒVƒ‡ƒ“XVƒeƒXƒg
+// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Vï¿½eï¿½Xï¿½g
 // void Animation::Update()
 // {
 //     if (mpFsm != nullptr)

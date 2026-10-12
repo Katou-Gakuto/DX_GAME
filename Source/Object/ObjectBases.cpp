@@ -28,9 +28,9 @@
 #include "UtilFactorys.h"
 
 /*------------------------------------------*/
-/*          yƒIƒuƒWƒFƒNƒgƒx[ƒXz          */
+/*          ï¿½yï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½xï¿½[ï¿½Xï¿½z          */
 /*------------------------------------------*/
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 ObjectBase::ObjectBase(OBJECT_TYPE objectType, bool isActiveFlag, bool nextSceneDeleteFlag)
 : mnTag("")
 , mnTeam(0)
@@ -51,13 +51,13 @@ ObjectBase::ObjectBase(OBJECT_TYPE objectType, bool isActiveFlag, bool nextScene
 	meObjectScene = (SCENE)Master::mpGameManager->GetSceneManager()->GetFSMScene()->GetCurrentState();
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ï¿½fï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 ObjectBase::~ObjectBase()
 {
 }
 
 /*------------------------------------------*/
-/*          yƒLƒƒƒ‰ƒNƒ^[ƒx[ƒXz          */
+/*          ï¿½yï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½xï¿½[ï¿½Xï¿½z          */
 /*------------------------------------------*/
 
 CharacterBase::CharacterBase(bool nextSceneDeleteFlag, STATUS status)
@@ -81,19 +81,19 @@ CharacterBase::~CharacterBase()
 {
 }
 
-// ‰Šú‰»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CharacterBase::Initilize()
 {
-	// // ƒ‚ƒfƒ‹‰Šú‰»
+	// // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// mpModelBase = new ModelBase();
 	// mpModelBase->Initilize();
 
-	// // ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»
+	// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// mpAnimation = new Animation();
 	// mpAnimation->Initilize();
 	// mpAnimation->SetModelsController(mpModelBase);
 
-	// // UŒ‚‰Šú‰»
+	// // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// for (auto attackData : mmCharacterAttackDatas)
 	// {
 	// 	attackData.second.animation->Initilize();
@@ -104,19 +104,19 @@ void CharacterBase::Initilize()
 	CharacterInitilize();
 }
 
-// ƒV[ƒ“ÅI‰Šú‰»
+// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CharacterBase::SceneLastInitilize()
 {
-	// ƒ‚ƒfƒ‹ˆÊ’uEŠp“xİ’è
+	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ê’uï¿½Eï¿½pï¿½xï¿½İ’ï¿½
 	// mpModelBase->ModelGameInit(mvPosition, mvAngle, );
 
-	// // ƒAƒjƒ[ƒVƒ‡ƒ“ÅI‰Šú‰»
+	// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// mpAnimation->SceneLastInitilize();
 
-	// ƒ‚ƒfƒ‹ÅI‰Šú‰»
+	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	mpModelBase->SceneLastInitilize();
 
-	// UŒ‚ÅI‰Šú‰»
+	// ï¿½Uï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (auto attackData : mmCharacterAttackDatas)
 	{
 		// attackData.second.animation->SceneLastInitilize();
@@ -127,12 +127,12 @@ void CharacterBase::SceneLastInitilize()
 	CharacterSceneLastInitilize();
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void CharacterBase::Finalize()
 {
 	CharacterFinalize();
 
-	// ƒ‚ƒfƒ‹I—¹
+	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Iï¿½ï¿½
 	mpModelBase->Finalize();
 	delete mpModelBase;
 	mpModelBase = nullptr;
@@ -170,7 +170,7 @@ void CharacterBase::Finalize()
 	}
 }
 
-// XV
+// ï¿½Xï¿½V
 void CharacterBase::Update()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -186,7 +186,7 @@ void CharacterBase::Update()
 	ActionProcess();
 }
 
-// ÅIXV
+// ï¿½ÅIï¿½Xï¿½V
 void CharacterBase::LastUpdate()
 {
 	 if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -201,11 +201,11 @@ void CharacterBase::LastUpdate()
 	}
 	MoveProcess();
 
-	// XV
+	// ï¿½Xï¿½V
 	mpModelBase->Update(mvPosition, mvAngle);
 }
 
-// •`‰æ
+// ï¿½`ï¿½ï¿½
 void CharacterBase::Draw()
 {
 	CharacterDraw();
@@ -214,12 +214,12 @@ void CharacterBase::Draw()
 		mpFsm->Draw(this);
 	}
 	
-	// ƒ‚ƒfƒ‹•`‰æ
+	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½`ï¿½ï¿½
 	mpModelBase->ModelDraw();
 
 
 
-	// ƒ‚ƒfƒ‹‚Í•`‰æ‚µ‚½‚¢‚½‚ß‚»‚êˆÈŠO‚ğ–³Œø‰»‚·‚é
+	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Í•`ï¿½æ‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ÈŠOï¿½ğ–³Œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT_UI_DRAW))
 	{
 		return;
@@ -232,10 +232,10 @@ void CharacterBase::Draw()
 }
 
 /*----------------------*/
-/*     y“Æ©ˆ—z     */
+/*     ï¿½yï¿½Æï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z     */
 /*----------------------*/
 
-// UŒ‚ŠJn
+// ï¿½Uï¿½ï¿½ï¿½Jï¿½n
 void CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
@@ -262,7 +262,7 @@ void CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 	//return nullptr;
 }
 
-// UŒ‚ƒŠƒZƒbƒg
+// ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
 void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
@@ -289,7 +289,7 @@ void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 	// }
 }
 
-// w’èƒAƒjƒ[ƒVƒ‡ƒ“’†‚Å‚ ‚é‚©‚ğæ“¾
+// ï¿½wï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½æ“¾
 bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 {
 	if ((mpModelBase != nullptr) && (mpModelBase->GetAnimation() != nullptr))
@@ -300,19 +300,19 @@ bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 	return false;
 }
 
-// w’èƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒu’†‚Å‚ ‚é‚©‚ğæ“¾
+// ï¿½wï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½ï¿½Å‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½æ“¾
 bool CharacterBase::CheckAnimationMoveType(ANIMATION_MOVE_TYPE animationType)
 {
 	if ((mpModelBase != nullptr) && (mpModelBase->GetAnimation() != nullptr))
 	{
-		// static_cast<int>(animationType)‰ü‘P‚µ‚½•û‚ª‚¢‚¢ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Æ”äŠr‚ª‚¢‚¢‚Æv‚¤
+		// static_cast<int>(animationType)ï¿½ï¿½ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Æ”ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ævï¿½ï¿½
 		return mpModelBase->GetAnimation()->GetFsm()->GetCurrentState() == static_cast<int>(animationType);
 	}
 
 	return false;
 }
 
-// ƒ_ƒ[ƒW
+// ï¿½_ï¿½ï¿½ï¿½[ï¿½W
 void CharacterBase::Damage(int damage)
 {
 	//printfDx("Hit\n");
@@ -328,10 +328,10 @@ void CharacterBase::Damage(int damage)
 	}
 }
 
-// ’èŒ^s“®ˆ—
+// ï¿½ï¿½^ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CharacterBase::TemplateActionProcess()
 {
-	/*ƒAƒ“ƒOƒ‹‚©‚ç‘O‚Æ‰E‚ÌˆÚ“®—Ê‚ğæ“¾*/
+	/*ï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Æ‰Eï¿½ÌˆÚ“ï¿½ï¿½Ê‚ï¿½ï¿½æ“¾*/
     float denominator = std::fabs(mvMoveDir.x) + std::fabs(mvMoveDir.z);
 	VECTOR frontVec = VGet(mvMoveDir.x / denominator, 0.0f, mvMoveDir.z / denominator);
 
@@ -344,13 +344,13 @@ void CharacterBase::TemplateActionProcess()
 	{
 		bool moveFlag = false;
 		
-		// ‘–‚é
+		// ï¿½ï¿½ï¿½ï¿½
 		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::DASH))
 		{
 			mvVec = VAdd(mvVec, frontVec);
 			moveFlag = true;
 		}
-		// ‘OŒã
+		// ï¿½Oï¿½ï¿½
 		else if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_OR_BACK_ACTION))
 		{
 			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::FRONT_ACTION))
@@ -364,7 +364,7 @@ void CharacterBase::TemplateActionProcess()
 			moveFlag = true;
 		}
 
-		// ¶‰E
+		// ï¿½ï¿½ï¿½E
 		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::LEFT_OR_RIGHT_ACTION))
 		{
 			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::RIGHT_ACTION))
@@ -378,7 +378,7 @@ void CharacterBase::TemplateActionProcess()
 			moveFlag = true;
 		}
 
-		// ã‰º
+		// ï¿½ã‰º
 		if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_OR_DOWN_ACTION))
 		{
 			if (munActionflags.GetFlag_BitShift((int)CHECK_ACTION_FLAG::UP_ACTION))
@@ -411,13 +411,13 @@ void CharacterBase::TemplateActionProcess()
 	}
 }
 
-// ˆÚ“®ˆ—
+// ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
 void CharacterBase::MoveProcess()
 {
 	mvPosition = VAdd(mvPosition, VScale(mvVec, (float)mstStatus.GetNowSpeed()));
 }
 
-// €–Sˆ—
+// ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½
 void CharacterBase::DeathProcess()
 {
 	SetDeleteFlag(true);
@@ -425,10 +425,10 @@ void CharacterBase::DeathProcess()
 
 
 /*--------*/
-/*yæ“¾z*/
+/*ï¿½yï¿½æ“¾ï¿½z*/
 /*--------*/
 
-// ƒLƒƒƒ‰ƒNƒ^[‚ª‚µ‚½UŒ‚æ“¾
+// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½æ“¾
 AttackBase* CharacterBase::GetAttack()
 {
 	return mpAttack;
@@ -436,16 +436,16 @@ AttackBase* CharacterBase::GetAttack()
 
 
 /*--------*/
-/*yİ’èz*/
+/*ï¿½yï¿½İ’ï¿½z*/
 /*--------*/
 
-// fsmİ’è
+// fsmï¿½İ’ï¿½
 void CharacterBase::SetFSM(FSMCharacter* fsm)
 {
 	mpFsm = fsm;
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 void CharacterBase::SetAnimation(ANIMATION_MOVE_TYPE animationType)
 {
 	if ((mpModelBase != nullptr) &&
@@ -456,7 +456,7 @@ void CharacterBase::SetAnimation(ANIMATION_MOVE_TYPE animationType)
 }
 
 /*------------------------------------------*/
-/*          yƒrƒ‹ƒfƒBƒ“ƒOƒx[ƒXz          */
+/*          ï¿½yï¿½rï¿½ï¿½ï¿½fï¿½Bï¿½ï¿½ï¿½Oï¿½xï¿½[ï¿½Xï¿½z          */
 /*------------------------------------------*/
 
 BuildingBase::BuildingBase(bool nextSceneDeleteFlag)
@@ -468,25 +468,25 @@ BuildingBase::~BuildingBase()
 {
 }
 
-// ‰Šú‰»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void BuildingBase::Initilize()
 {
 	BuildingInitilize();
 }
 
-// ƒV[ƒ“ÅI‰Šú‰»
+// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void BuildingBase::SceneLastInitilize()
 {
 	BuildingSceneLastInitilize();
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void BuildingBase::Finalize()
 {
 	BuildingFinalize();
 }
 
-// XV
+// ï¿½Xï¿½V
 void BuildingBase::Update()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -497,7 +497,7 @@ void BuildingBase::Update()
 	BuildingUpdate();
 }
 
-// ÅIXV
+// ï¿½ÅIï¿½Xï¿½V
 void BuildingBase::LastUpdate()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -508,14 +508,14 @@ void BuildingBase::LastUpdate()
 	BuildingLastUpdate();
 }
 
-// •`‰æ
+// ï¿½`ï¿½ï¿½
 void BuildingBase::Draw()
 {
 	BuildingDraw();
 }
 
 /*--------------------------------------*/
-/*          yƒAƒ^ƒbƒNƒx[ƒXz          */
+/*          ï¿½yï¿½Aï¿½^ï¿½bï¿½Nï¿½xï¿½[ï¿½Xï¿½z          */
 /*--------------------------------------*/
 
 AttackBase::AttackBase()
@@ -537,7 +537,7 @@ AttackBase::~AttackBase()
 {
 }
 
-// ‰Šú‰»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void AttackBase::Initilize()
 {
 	// if (mpModelBase != nullptr)
@@ -548,19 +548,19 @@ void AttackBase::Initilize()
 	AttackInitilize();
 }
 
-// ƒV[ƒ“ÅI‰Šú‰»
+// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void AttackBase::SceneLastInitilize()
 {
 	AttackSceneLastInitilize();
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void AttackBase::Finalize()
 {
 	AttackFinalize();
 }
 
-// XV
+// ï¿½Xï¿½V
 void AttackBase::Update()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -572,7 +572,7 @@ void AttackBase::Update()
 }
 
 
-// ÅIXV
+// ï¿½ÅIï¿½Xï¿½V
 void AttackBase::LastUpdate()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT))
@@ -585,26 +585,26 @@ void AttackBase::LastUpdate()
 	if (mpModelBase != nullptr)
 	{
 
-		// ƒ‚ƒfƒ‹ˆÊ’uEŠp“xXV
+		// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ê’uï¿½Eï¿½pï¿½xï¿½Xï¿½V
 		mvAngle = UtilCalc::VMoveVecToAngle(mvMoveDir, mvAngle);
 		mpModelBase->Update(mvPosition, mvAngle);
 	}
 }
 
-// •`‰æ
+// ï¿½`ï¿½ï¿½
 void AttackBase::Draw()
 {	
 	AttackDraw();
 
 	if (mpModelBase != nullptr)
 	{
-		// ƒ‚ƒfƒ‹•`‰æ
+		// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½`ï¿½ï¿½
 		mpModelBase->ModelDraw();
 	}
 }
 
 /*--------------------------------*/
-/*          yUIƒx[ƒXz          */
+/*          ï¿½yUIï¿½xï¿½[ï¿½Xï¿½z          */
 /*--------------------------------*/
 
 UIBase::UIBase(bool nextSceneDeleteFlag, int maxMenuSelect, bool timeStopFlag, bool decreaseFlag)
@@ -647,7 +647,7 @@ UIBase::~UIBase()
 {
 }
 
-// ‰Šú‰»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::Initilize()
 {
 	mstSelectNumberFlag.SetNumber(SELECT_NUMBER_FLAG_ENUM::CHANGE_NORMAL, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_ZONE, SELECT_NUMBER_FLAG_ENUM::CHANGE_BIT_MOVING_DISTANCE);
@@ -664,13 +664,13 @@ void UIBase::Initilize()
 	UIInitilize();
 }
 
-// ƒV[ƒ“ÅI‰Šú‰»
+// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::SceneLastInitilize()
 {
 	UISceneLastInitilize();
 }
 
-// I—¹
+// ï¿½Iï¿½ï¿½
 void UIBase::Finalize()
 {
 	if (mbDeleteDecreaseFlag) {
@@ -683,7 +683,7 @@ void UIBase::Finalize()
 		delete mpFsm;
 	}
 
-	// ‰æ‘œíœ
+	// ï¿½æ‘œï¿½íœ
 	if (mnGraphCount != 0)
 	{
 		for (int i = 0; i < mnGraphCount; i++)
@@ -695,7 +695,7 @@ void UIBase::Finalize()
 
 	if (mnMovieCount != 0)
 	{
-		// “®‰æíœ
+		// ï¿½ï¿½ï¿½ï¿½íœ
 		for (int i = 0; i < mnMovieCount; i++)
 		{
 			mpResourceManager->GetMovieResource()->ReduceResourceHandle(mnMovieHandles[i]);
@@ -705,7 +705,7 @@ void UIBase::Finalize()
 
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{	
-		// ƒ‚ƒfƒ‹I—¹
+		// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Iï¿½ï¿½
 		mstUIDrawModels[i].mpUIModel->Finalize();
 		delete mstUIDrawModels[i].mpUIModel;
 		mstUIDrawModels[i].mpUIModel = nullptr;
@@ -715,7 +715,7 @@ void UIBase::Finalize()
 	UIFinalize();
 }
 
-// XV
+// ï¿½Xï¿½V
 void UIBase::Update()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
@@ -733,7 +733,7 @@ void UIBase::Update()
 	}
 }
 
-// ÅIXV
+// ï¿½ÅIï¿½Xï¿½V
 void UIBase::LastUpdate()
 {
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::UI_MODEL))
@@ -747,14 +747,14 @@ void UIBase::LastUpdate()
 
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{	
-		// XV
+		// ï¿½Xï¿½V
 		mstUIDrawModels[i].mpUIModel->Update(mstUIDrawModels[i].mpUIModel->GetPosition(), mstUIDrawModels[i].mpUIModel->GetAngle());
 	}
 
 	mstSelectNumberFlag.Init(SELECT_NUMBER_FLAG_ENUM::INIT_BIT);
 }
 
-// •`‰æ
+// ï¿½`ï¿½ï¿½
 void UIBase::Draw()
 {
 	UIDraw();
@@ -762,7 +762,7 @@ void UIBase::Draw()
 
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
 	{
-		// ƒ‚ƒfƒ‹•`‰æ
+		// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½`ï¿½ï¿½
 		mstUIDrawModels[i].mpUIModel->ModelDraw();
 	}
 
@@ -774,20 +774,20 @@ void UIBase::Draw()
 
 
 /*----------------------*/
-/*     y“Æ©ˆ—z     */
+/*     ï¿½yï¿½Æï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z     */
 /*----------------------*/
 
 /*--------*/
-/*yİ’èz*/
+/*ï¿½yï¿½İ’ï¿½z*/
 /*--------*/
 
-// fsmİ’è
+// fsmï¿½İ’ï¿½
 void UIBase::SetFsm(FSMUI* fsm)
 {
 	mpFsm = fsm;
 }
 
-// ‰æ‘œƒnƒ“ƒhƒ‹İ’è
+// ï¿½æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½İ’ï¿½
 void UIBase::SetGraphHandle(int index, int handle)
 {
 	if (index < mnGraphCount)
@@ -796,7 +796,7 @@ void UIBase::SetGraphHandle(int index, int handle)
 	}
 }
 
-// ‰æ‘œƒnƒ“ƒhƒ‹”•ÏX
+// ï¿½æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ÏX
 void UIBase::SetGraphCount(int count)
 {
 	// if (mnGraphHandles != nullptr)
@@ -823,7 +823,7 @@ void UIBase::SetGraphCount(int count)
 	SetHandleCount(count, &mnGraphCount, &mnGraphHandles);
 }
 
-// “®‰æƒnƒ“ƒhƒ‹İ’è
+// ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½İ’ï¿½
 void UIBase::SetMovieHandle(int index, int handle)
 {
 	if (index < mnMovieCount)
@@ -832,7 +832,7 @@ void UIBase::SetMovieHandle(int index, int handle)
 	}
 }
 
-// ‰æ‘œƒnƒ“ƒhƒ‹”•ÏX
+// ï¿½æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ÏX
 void UIBase::SetMovieCount(int count)
 {
 	// if (mnGraphHandles != nullptr)
@@ -858,7 +858,7 @@ void UIBase::SetMovieCount(int count)
 	// }
 	SetHandleCount(count, &mnMovieCount, &mnMovieHandles);
 }
-// ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 void UIBase::SetAnimationType(ANIMATION_MOVE_TYPE aniamtionType)
 {
 	for (int i = 0; i < mstUIDrawModels.size(); i++)
@@ -871,7 +871,7 @@ void UIBase::SetAnimationType(ANIMATION_MOVE_TYPE aniamtionType)
 	}
 }
 
-// ƒnƒ“ƒhƒ‹”•ÏX
+// ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ÏX
 void UIBase::SetHandleCount(int count, int *handleCount, int**handle)
 {
 	if (*handle != nullptr)
@@ -898,28 +898,28 @@ void UIBase::SetHandleCount(int count, int *handleCount, int**handle)
 }
 
 /*------------------------*/
-/*yŒp³ƒIƒuƒWƒFƒNƒgˆ—z*/
+/*ï¿½yï¿½pï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½z*/
 /*------------------------*/
 
-// UIƒiƒ“ƒo[İ’è
+// UIï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½İ’ï¿½
 void UIBase::SetUINumber()
 {
 	mnUINumber = Master::mpGameManager->IncreaseUINumber();
 }
 
-// UIƒiƒ“ƒo[íœ
+// UIï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½íœ
 void UIBase::DeleteUINumber()
 {
 	Master::mpGameManager->DecreaseUINumber();
 
-	// TODO: ‚±‚±‚ç•Ó‚Ìˆ—Œ©’¼‚µ
+	// TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó‚Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (!IsDeleteFlag())
 	{
 		mnUINumber = Master::mpGameManager->GetNowUINumber();
 	}
 }
 
-// ƒ‚ƒfƒ‹’Ç‰Á
+// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ç‰ï¿½
 void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, ANIMATION_TYPE modelType)
 {
     if (mpModelsController == nullptr)
@@ -930,24 +930,29 @@ void UIBase::AddModelData(std::vector<DRAW_GRAPH_DATA> drawData, ANIMATION_TYPE 
     mpModelsController->AddModel(UtilFactorys::ModelFactory(modelType, "", UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VOne, &drawData));
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
+// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<int> drawNumber)
 {
     UIDrawModel uiDrawModel = UIDrawModel();
 
-	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	for (int i = 0; i < mpModelsController->GetModelList().size(); i++)
 	{
-		// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpModelsController->GetModelList()[i]->GetAnimation(), ladoAnimationDataFactorynumber));
-	}
-	// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
-	//mstUIDrawModels[mnUIModelControllerCount].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
+		ModelBase* model = mpModelsController->GetModelList()[i];
+		Animation* animation = model->GetAnimation();
+		if (animation == nullptr)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			continue;
+		}
 
-	// •`‰æ‚·‚éƒXƒe[ƒgİ’è
+		const std::vector<LoadAnimationData> loadAnimationData = UtilFactorys::LoadAnimationDataFactory(ladoAnimationDataFactorynumber);
+		animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::UI, loadAnimationData));
+	}
+
+	// ï¿½`ï¿½æ‚·ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½İ’ï¿½
 	if (drawNumber.size() == 0)
 	{
-		// TODO: ‘SƒXƒe[ƒg‚ÌƒXƒe[ƒg‚Å’Ç‰Á‚·‚é‚©‚çŒã‚Å‚¿‚å‚¤‚Ç‚¢‚¢”š‚ğ•Ï”‚Åæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
+		// TODO: ï¿½Sï¿½Xï¿½eï¿½[ï¿½gï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½Å’Ç‰ï¿½ï¿½ï¿½ï¿½é‚©ï¿½ï¿½ï¿½Å‚ï¿½ï¿½å‚¤ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½ï¿½Åæ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 		for (int i = 0; i < 10; i++)
 		{
 			uiDrawModel.mnDrawNumber.push_back(i);
@@ -958,20 +963,20 @@ void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDa
 		uiDrawModel.mnDrawNumber = drawNumber;
 	}
 
-    // mstUIDrawModels‚Ì––”ö‚ÉmpModelsController‚ğ’Ç‰Á
+    // mstUIDrawModelsï¿½Ì–ï¿½ï¿½ï¿½ï¿½ï¿½mpModelsControllerï¿½ï¿½Ç‰ï¿½
     uiDrawModel.mpUIModel = mpModelsController;
     mstUIDrawModels.push_back(uiDrawModel);
 	mpModelsController = nullptr;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“”‚ğ‰ÁZ‚·‚é
+	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½
 	mnUIModelControllerCount++;
 }
 
 /*----------------------*/
-/*y“ü—ÍƒL[í—Ş•Êˆ—z*/
+/*ï¿½yï¿½ï¿½ï¿½ÍƒLï¿½[ï¿½ï¿½Ş•Êï¿½ï¿½ï¿½ï¿½z*/
 /*----------------------*/
 
-// ƒ}ƒEƒX‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é
+// ï¿½}ï¿½Eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::CheckMouse()
 {
 	if ((mpKeyState->GetMouseFlags() & 0x1ffu) != 0)
@@ -980,7 +985,7 @@ void UIBase::CheckMouse()
 	}
 }
 
-// ƒL[ƒ{[ƒh‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é
+// ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::CheckKeyboard()
 {
 	if (mpKeyState->GetDownWordKeyFlags_Board().Bool() || mpKeyState->GetDownSpecialKeyFlags_Board().Bool() || mpKeyState->GetDownNumpadKeyFlags_Board().Bool() ||
@@ -990,7 +995,7 @@ void UIBase::CheckKeyboard()
 	}
 }
 
-// ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é
+// ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::CheckController()
 {
 	if (mpKeyState->GetAllNowKeyFlags_Controller(false) != 0)
@@ -999,7 +1004,7 @@ void UIBase::CheckController()
 	}
 }
 
-// ƒL[ƒ{[ƒh‚©ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚çŠÖ”‚ğÀs‚³‚¹‚é
+// ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::CheckKeyboard_Controller()
 {
 	if (mpKeyState->GetDownWordKeyFlags_Board().Bool() || mpKeyState->GetDownSpecialKeyFlags_Board().Bool() || mpKeyState->GetDownNumpadKeyFlags_Board().Bool() ||
@@ -1010,7 +1015,7 @@ void UIBase::CheckKeyboard_Controller()
 	}
 }
 
-// ƒ}ƒEƒX‚ª”½‰‚µ‚½‚ÉÀs‚·‚é
+// ï¿½}ï¿½Eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½
 void UIBase::MouseProcess()
 {
 	if (mpFsm != nullptr)
@@ -1018,7 +1023,7 @@ void UIBase::MouseProcess()
 		mpFsm->Mouse(this);
 	}
 }
-// ƒL[ƒ{[ƒh‚ª”½‰‚µ‚½‚ÉÀs‚·‚é
+// ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½
 void UIBase::KeyboardProcess()
 {
 	if (mpFsm != nullptr)
@@ -1026,7 +1031,7 @@ void UIBase::KeyboardProcess()
 		mpFsm->Keyboard(this);
 	}
 }
-// ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚ÉÀs‚·‚é
+// ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½
 void UIBase::ControllerProcess()
 {
 	if (mpFsm != nullptr)
@@ -1034,7 +1039,7 @@ void UIBase::ControllerProcess()
 		mpFsm->Controller(this);
 	}
 }
-// ƒL[ƒ{[ƒh‚©ƒRƒ“ƒgƒ[ƒ‰[‚ª”½‰‚µ‚½‚ÉÀs‚·‚é
+// ï¿½Lï¿½[ï¿½{ï¿½[ï¿½hï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½
 void UIBase::Keyboard_ControllerProcess()
 {
 	if (mpFsm != nullptr)
@@ -1044,10 +1049,10 @@ void UIBase::Keyboard_ControllerProcess()
 }
 
 /*----------------*/
-/*yƒeƒ“ƒvƒŒ[ƒgz*/
+/*ï¿½yï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½z*/
 /*----------------*/
 
-// ƒfƒtƒHƒ‹ƒg‘I‘ğˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::DefaultSelectProcess()
 {
 	DefaultDecrease();
@@ -1057,7 +1062,7 @@ void UIBase::DefaultSelectProcess()
 	DefaultDecision();
 }
 
-// ƒfƒtƒHƒ‹ƒg‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::DefaultDecrease()
 {
 	if (CheckUp_Frame())
@@ -1066,7 +1071,7 @@ void UIBase::DefaultDecrease()
 	}
 }
 
-// ƒfƒtƒHƒ‹ƒg‘I‘ğƒiƒ“ƒo[‘‰Áˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::DefaultIncrease()
 {
 	if (CheckDown_Frame())
@@ -1075,7 +1080,7 @@ void UIBase::DefaultIncrease()
 	}
 }
 
-// ¶‰E‘I‘ğˆ—
+// ï¿½ï¿½ï¿½Eï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::LeftRightSelectProcess()
 {
 	if (mnSelectBoundaryValue == (-1))
@@ -1088,7 +1093,7 @@ void UIBase::LeftRightSelectProcess()
 	RightIncrease();
 }
 
-// ¶‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—
+// ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::LeftDecrease()
 {
 	if (CheckLeft_Frame())
@@ -1097,7 +1102,7 @@ void UIBase::LeftDecrease()
 	}
 }
 
-// ‰E‘I‘ğƒiƒ“ƒo[‘‰Áˆ—
+// ï¿½Eï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::RightIncrease()
 {
 	if (CheckRight_Frame())
@@ -1106,7 +1111,7 @@ void UIBase::RightIncrease()
 	}
 }
 
-// ‘I‘ğƒiƒ“ƒo[Œ¸­ˆ—
+// ï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::SelectNumberDecrease()
 {
 	--mnSelectNumber;
@@ -1142,7 +1147,7 @@ void UIBase::SelectNumberDecrease()
 	}
 }
 
-// ‘I‘ğƒiƒ“ƒo[‘‰Áˆ—
+// ï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::SelectNumberIncrease()
 {
 	++mnSelectNumber;
@@ -1174,7 +1179,7 @@ void UIBase::SelectNumberIncrease()
 	}
 }
 
-// ‘I‘ğƒiƒ“ƒo[‹«ŠE’l‚ğŒ×‚¢‚¾Œ¸­ˆ—
+// ï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½Eï¿½lï¿½ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::SelectBoundaryValueDecrease()
 {
 	if (mnSelectBoundaryValue == (-1))
@@ -1205,7 +1210,7 @@ void UIBase::SelectBoundaryValueDecrease()
 	}
 }
 
-// ‘I‘ğƒiƒ“ƒo[‹«ŠE’l‚ğŒ×‚¢‚¾‘‰Áˆ—
+// ï¿½Iï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½Eï¿½lï¿½ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::SelectBoundaryValueIncrease()
 {
 	if (mnSelectBoundaryValue == (-1))
@@ -1232,7 +1237,7 @@ void UIBase::SelectBoundaryValueIncrease()
 	}
 }
 
-// ƒfƒtƒHƒ‹ƒg‘I‘ğŒˆ’èˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½èˆï¿½ï¿½
 void UIBase::DefaultDecision()
 {
 	if (CheckDecision())
@@ -1241,10 +1246,10 @@ void UIBase::DefaultDecision()
 	}
 }
 
-// ƒfƒtƒHƒ‹ƒgI—¹Šm”Fˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½ï¿½
 void UIBase::DefaultClose()
 {
-	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ‚±‚±C³‚·‚×‚«
+	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½
 		// ||
 		// ((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) && 
 		// (mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z)))
@@ -1254,7 +1259,7 @@ void UIBase::DefaultClose()
 	}
 }
 
-// ƒfƒtƒHƒ‹ƒgI—¹ˆ—
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void UIBase::CloseProcess()
 {
 	SetDeleteFlag(true);
@@ -1264,7 +1269,7 @@ void UIBase::CloseProcess()
 	}
 }
 
-// ã‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·
+// ï¿½ã‚ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAï¿½È‚ï¿½ï¿½ï¿½ï¿½Â‘Oï¿½ï¿½Ì‘Iï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool UIBase::CheckUp_Frame()
 {
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::UP, false) ||
@@ -1279,7 +1284,7 @@ bool UIBase::CheckUp_Frame()
 	return false;
 }
 
-// ‰º‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAï¿½È‚ï¿½ï¿½ï¿½ï¿½Â‘Oï¿½ï¿½Ì‘Iï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool UIBase::CheckDown_Frame()
 {
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::DOWN, false) ||
@@ -1294,7 +1299,7 @@ bool UIBase::CheckDown_Frame()
 	return false;
 }
 
-// ‰E‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·
+// ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAï¿½È‚ï¿½ï¿½ï¿½ï¿½Â‘Oï¿½ï¿½Ì‘Iï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool UIBase::CheckRight_Frame()
 {
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::RIGHT, false) ||
@@ -1309,7 +1314,7 @@ bool UIBase::CheckRight_Frame()
 	return false;
 }
 
-// ¶‚ª‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‚È‚¨‚©‚Â‘O‰ñ‚Ì‘I‘ğ•ÏX‚©‚çˆê’èƒtƒŒ[ƒ€Œo‚Á‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAï¿½È‚ï¿½ï¿½ï¿½ï¿½Â‘Oï¿½ï¿½Ì‘Iï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool UIBase::CheckLeft_Frame()
 {
 	if (((mpKeyState->GetKeyAllController(CONTROLLER_KEY_TYPE::LEFT, false) ||
@@ -1318,20 +1323,20 @@ bool UIBase::CheckLeft_Frame()
 		(CheckFrame(0) || (mstSelectChangeFrame == mpTimeManager->GetFrame() + mnSetChangeIntervalFrame))) ||
 		mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT, false) || mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::LEFT_STICK_LEFT, false) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::ARROW_LEFT))
 	{
-		// TODO: ˆ—‚ğ‚·‚éêŠ‚ÉˆÚ“®(‘¼‚Ì‚à)
+		// TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êŠï¿½ÉˆÚ“ï¿½(ï¿½ï¿½ï¿½Ì‚ï¿½)
 		mstSelectChangeFrame = mpTimeManager->GetFrame() + mnSetChangeIntervalFrame;
 		return true;
 	}
 	return false;
 }
 
-// A/Enter‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚È‚çutruev‚ğ•Ô‚·
+// A/Enterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½
 bool UIBase::CheckDecision()
 {
 	return (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::A, false) || mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::ENTER));
 }
 
-// ƒtƒŒ[ƒ€‚ªˆê’èŠÔŒo‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+// ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½èï¿½ÔŒoï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 bool UIBase::CheckFrame(int frameNumber)
 {
 	switch (frameNumber)
@@ -1353,16 +1358,16 @@ bool DEBUG_OBJECT_POINT_CHECK(void* p, bool check)
 {
 	if (p != nullptr)
 	{
-		// ƒ|ƒCƒ“ƒ^‚ğ®”‚É•ÏŠ·
+		// ï¿½|ï¿½Cï¿½ï¿½ï¿½^ï¿½ğ®ï¿½ï¿½É•ÏŠï¿½
 		uintptr_t addr = reinterpret_cast<uintptr_t>(p);
 
-		// ãˆÊ32ƒrƒbƒg‚ğæ‚èo‚·
+		// ï¿½ï¿½ï¿½32ï¿½rï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½
 		uint32_t upper = static_cast<uint32_t>(addr >> 32);
 
-		// 0‚©‚Ç‚¤‚©Šm”F
+		// 0ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½mï¿½F
 		if (check)
 		{
-			assert(upper != 0 && "ãˆÊ32ƒrƒbƒg‚Í0‚Å‚·\n");
+			assert(upper != 0 && "ï¿½ï¿½ï¿½32ï¿½rï¿½bï¿½gï¿½ï¿½0ï¿½Å‚ï¿½\n");
 		}
 		if (upper == 0)
 		{

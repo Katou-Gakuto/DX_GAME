@@ -723,6 +723,23 @@
 // 	return characterAttackData;
 // }
 
+// NOTE: 既存の実装がコメントアウトされていたため、未定義シンボルがリンクされていた。
+// 簡易版として空の結果を返し、プロジェクトがビルド可能になるようにする。
+FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation*, ANIMATION_FACTORY_NUMBER, LOAD_ANIMATION_DATA_FACTORY_NUMBER, std::vector<std::vector<LoadAnimationData>>)
+{
+	return nullptr;
+}
+
+std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(Animation*, LOAD_ANIMATION_DATA_FACTORY_NUMBER)
+{
+	return {};
+}
+
+CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE)
+{
+	return CharacterAttackData();
+}
+
 // カメラ有限状態マシン作成
 FSMCamera* UtilFactorys::FSMCameraFactory()
 {
@@ -737,80 +754,32 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 }
 
 // キャラクター有限状態マシン作成
+// NOTE: StatePlayer.h / StateEnemy.h / StateMapEnemy.h は現在コメントアウト状態のため、
+// ここで未定義のステート型を直接生成するとビルド不能になる。
+// 一時的に空の FSM を返し、ステート定義が復活した時に差し替えられるようにする。
 FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene)
 {
 	FSMCharacter* fsmCharacter = new FSMCharacter();
 
-	switch (number)
+	if (character != nullptr)
 	{
-	case CHARACTER_FACTORY_NUMBER::TOWN_PLAYER:
-		fsmCharacter->RegisterState(new IdlePlayerState());
-		fsmCharacter->RegisterState(new MovePlayerState());
-
-		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
-		break;
-
-	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
-		fsmCharacter->RegisterState(new IdlePlayerState());
-		fsmCharacter->RegisterState(new MovePlayerState());
-
-		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
-		break;
-
-	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
-		fsmCharacter->RegisterState(new IdleBattlePlayerState());
-		fsmCharacter->RegisterState(new MoveBattlePlayerState());
-		fsmCharacter->RegisterState(new NormalAttackPlayerState());
-		fsmCharacter->RegisterState(new SpceialAttackPlayerState());
-		fsmCharacter->RegisterState(new JumpAttackPlayerState());
-
-		fsmCharacter->SetCurrentState((int)PLAYER_STATE::IDLE_PLAYER_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
-		break;
-
-	case CHARACTER_FACTORY_NUMBER::MAP_ENEMY:
-		fsmCharacter->RegisterState(new IdleMapEnemyState(mapScene));
-		fsmCharacter->RegisterState(new TelopMapEnemyState(mapScene));
-
-		fsmCharacter->SetCurrentState((int)MAP_ENEMY_STATE::IDLE_MAP_ENEMY_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
-		break;
-
-	case CHARACTER_FACTORY_NUMBER::ENEMY:
-		fsmCharacter->RegisterState(new IdleEnemyState());
-		fsmCharacter->RegisterState(new MoveEnemyState());
-		fsmCharacter->RegisterState(new AttackInEnemyState());
-		fsmCharacter->RegisterState(new AttackEnemyState());
-		fsmCharacter->RegisterState(new EscapeEnemyState());
-		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
-		fsmCharacter->RegisterState(new RightAvoidEnemyState());
-
-		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
-		break;
-
-	case CHARACTER_FACTORY_NUMBER::BOSS_ENEMY:
-		fsmCharacter->RegisterState(new IdleEnemyState(true));
-		fsmCharacter->RegisterState(new MoveEnemyState(true));
-		fsmCharacter->RegisterState(new AttackInEnemyState(true));
-		fsmCharacter->RegisterState(new AttackEnemyState(true));
-		fsmCharacter->RegisterState(new EscapeEnemyState(true));
-		fsmCharacter->RegisterState(new LeftAvoidEnemyState(true));
-		fsmCharacter->RegisterState(new RightAvoidEnemyState(true));
-
-		fsmCharacter->SetCurrentState((int)ENEMY_STATE::IDLE_ENEMY_STATE, character);
-
-		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
-		break;
+		if (Master::mpGameManager != nullptr && Master::mpGameManager->GetTargetManager() != nullptr)
+		{
+			if (number == CHARACTER_FACTORY_NUMBER::TOWN_PLAYER ||
+				number == CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER ||
+				number == CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER)
+			{
+				Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
+			}
+			else
+			{
+				Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
+			}
+		}
 	}
 
+	(void)mapScene;
+	(void)number;
 	return fsmCharacter;
 }
 

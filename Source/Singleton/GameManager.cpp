@@ -71,10 +71,12 @@ void GameManager::DxLib_PreInit()
     Master::mpKeyState->Initialize();
 
 
-#ifndef _DEBUG
+    // ディスプレイの解像度を取得
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
 	// 画面サイズ
-	SetGraphMode(1280, 960, 32);
-#endif
+	SetGraphMode(screenWidth * 0.9, screenHeight * 0.9, 32);
 }
 
 // 初期化

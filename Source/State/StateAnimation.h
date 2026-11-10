@@ -8,40 +8,40 @@
 #include "UtilCalc.h"
 
 /*----------------------------*/
-/*ï¿½y3Dï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½z*/
+/*y3DƒAƒjƒ[ƒVƒ‡ƒ“‹¤’Êˆ—z*/
 /*----------------------------*/
 class State3DAnimationProcess
 {
 protected:
-    // ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ
     struct MVOneAnimationData
     {
-        float animationCount;   // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g
-        int animationHandle;    // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
-        bool loopFlag;          // ï¿½ï¿½ï¿½[ï¿½vï¿½tï¿½ï¿½ï¿½O
+        float animationCount;   // ?A?j???[?V?????J?E???g
+        int animationHandle;    // ?A?j???[?V?????n???h??
+        bool loopFlag;          // ???[?v?t???O
     };
 
 protected:
 
-    // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
+    // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
     int mnModelHandle;
     
-    // ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ
     MVOneAnimationData mstPreAnimationData;
 
-    // ï¿½Â‚ÌƒXï¿½eï¿½[ï¿½gï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^
+    // ŒÂ‚ÌƒXƒe[ƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
     OneAnimationData mstMyAniationData;
 
-    // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½
+    // ƒuƒŒƒ“ƒh—¦
     float mfAnimBlendRate;
 
-    // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½x
+    // ƒuƒŒƒ“ƒh‘¬“x
     float mfAnimBlendSpeed;
 
-    // ï¿½Äï¿½ï¿½ï¿½ï¿½x
+    // Ä¶‘¬“x
     float mfAnimationSpeed;
 
-    // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Å‘ï¿½
+    // ƒuƒŒƒ“ƒh—¦Å‘å
     const float ANIMATION_BLEND_RATE_MAX = 1.0f;
 
 public:
@@ -49,34 +49,34 @@ public:
     explicit State3DAnimationProcess(int modelHandle);
     ~State3DAnimationProcess() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½İ’ï¿½</summary>
+    /// <summary>‚±‚ÌƒXƒe[ƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è</summary>
     void SetMyAniamtionData(const OneAnimationData& oneAnimationData) { mstMyAniationData = oneAnimationData; }
 
 protected:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½^ï¿½bï¿½`*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒfƒ^ƒbƒ`*/
     virtual void AnimationDetach(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`*/
     virtual void AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½*/
+    /*ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è‚·‚é*/
     virtual void PreAnimationDataSetting(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»*/
     virtual void Init(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“XV*/
     void UpdateAnimation(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½Xï¿½V*/
+    /*ƒuƒŒƒ“ƒhXV*/
     void UpdateBlend();
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é*/
     void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate);
 };
 
 /*----------*/
-/*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yƒAƒjƒ[ƒVƒ‡ƒ“–³‚µz*/
 /*----------*/
 class StateNoneAnimation : public IStateAnimation
 {
@@ -84,25 +84,25 @@ public:
     StateNoneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateNoneAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—(‰½‚à‚µ‚È‚¢)</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override {}
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—(‰½‚à‚µ‚È‚¢)</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override {}
 
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override {}
 
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override {}
 
 private:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*------------------------*/
-/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yMV1ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*------------------------*/
 class StateMVOneAnimation : public IStateAnimation, public State3DAnimationProcess
 {
@@ -110,25 +110,25 @@ public:
     StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, std::string fileName);
     ~StateMVOneAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
 
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
 
-    /// <summary>ï¿½Xï¿½V</summary>
+    /// <summary>XV</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*--------------------------------*/
-/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½z*/
+/*yMV1ƒ‚ƒfƒ‹ ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µƒ‚ƒfƒ‹z*/
 /*--------------------------------*/
 class StateMVOneOnlyAnimation : public IStateAnimation, public State3DAnimationProcess
 {
@@ -136,67 +136,67 @@ public:
     StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle = -1);
     ~StateMVOneOnlyAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
 
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
 
-    /// <summary>ï¿½Xï¿½V</summary>
+    /// <summary>XV</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 protected:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`*/
     virtual void AnimationAttach(STATE_ANEMATION_DATA* stateAnimationData) override;
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*----------------------*/
-/*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yMV1ƒ‚ƒfƒ‹ ƒ‚ƒfƒ‹‘€ìz*/
 /*----------------------*/
 class StateMVOneOperationAnimation : public StateMVOneOnlyAnimation
 {
 private:
-    // ï¿½ÏXï¿½Ú“ï¿½ï¿½ï¿½
+    // •ÏXˆÚ“®—Ê
     VECTOR mvChangeMove;
-    // ï¿½Ú“ï¿½ï¿½ï¿½
+    // ˆÚ“®—Ê
     VECTOR mvMove;
 
-    // ï¿½ÏXï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+    // •ÏXƒAƒ“ƒOƒ‹—Ê
     VECTOR mvChangeAngle;
-    // ï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½
+    // ƒAƒ“ƒOƒ‹
     VECTOR mvAngle;
 
-    // ï¿½å‚«ï¿½ï¿½ï¿½ÏXï¿½ï¿½
+    // ‘å‚«‚³•ÏX—Ê
     VECTOR mvChangeSize;
-    // ï¿½å‚«ï¿½ï¿½
+    // ‘å‚«‚³
     VECTOR mvSize;
 
 public:
     StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero, int modelHandle = -1);
     ~StateMVOneOperationAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
 
-    /// <summary>ï¿½Xï¿½V</summary>
+    /// <summary>XV</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 protected:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*--------------------*/
-/*ï¿½yï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yƒGƒtƒFƒNƒgƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*--------------------*/
 class StateEffectAnimation : public IStateAnimation
 {
@@ -207,22 +207,22 @@ public:
     StateEffectAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateEffectAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*--------------*/
-/*ï¿½yï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*y‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*--------------*/
 class StateGraphAnimation : public IStateAnimation
 {
@@ -231,13 +231,13 @@ public:
     ~StateGraphAnimation() = default;
 
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
@@ -245,7 +245,7 @@ private:
 };
 
 /*--------------*/
-/*ï¿½yï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*y“®‰æƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*--------------*/
 class StateMovieAnimation : public IStateAnimation
 {
@@ -253,13 +253,13 @@ public:
     StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateMovieAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
@@ -267,7 +267,7 @@ private:
 };
 
 /*----------------------*/
-/*ï¿½yï¿½tï¿½Fï¿½[ï¿½hï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yƒtƒF[ƒh‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*----------------------*/
 class StateFadeGraphAnimation : public IStateAnimation
 {
@@ -275,25 +275,25 @@ public:
     StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateFadeGraphAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
-    /*ï¿½tï¿½Fï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½*/
+    /*ƒtƒF[ƒhˆ—*/
     void FadeProcess(STATE_ANEMATION_DATA* stateAnimationData);
 
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 
 /*-------------------*/
-/*ï¿½yDOTweenï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+/*yDOTweenƒAƒjƒ[ƒVƒ‡ƒ“z*/
 /*-------------------*/
 class StateDOTweenAnimation : public IStateAnimation
 {
@@ -301,17 +301,17 @@ public:
     StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
     ~StateDOTweenAnimation() = default;
 
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
     virtual void OnEnter(STATE_ANEMATION_DATA* stateAnimationData, int preState) override;
-    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+    /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
     virtual void OnExit(STATE_ANEMATION_DATA* stateAnimationData, int nextState) override;
-    /// <summary>ï¿½Iï¿½ï¿½</summary>
+    /// <summary>I—¹</summary>
     virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) override;
-    /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
+    /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
     virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) override;
 
 private:
-    /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+    /*ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
     virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) override;
 };
 // #pragma once
@@ -325,72 +325,72 @@ private:
 // #include "ModelBase.h"
 // #include "StateAnimation.h"
 // #include "UtilCalc.h"
-// // TODO: 3Dï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2Dï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å•ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Xï¿½eï¿½[ï¿½gï¿½İ’èï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½İ’ï¿½
+// TODO: 3DƒAƒjƒ[ƒVƒ‡ƒ“‚Æ2DƒAƒjƒ[ƒVƒ‡ƒ“‚Å•ª‚¯‚é ƒXƒe[ƒgİ’èƒiƒ“ƒo[İ’è
 
 // /*----------*/
-// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½z
+// /*yƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg‹¤’Êˆ—z
 // /*----------*/
 // class StateAnimationProcess
 // {
 // protected:
-//     // MV1ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//     // MV1ƒAƒjƒƒVƒ‡ƒ“î•ñ
 //     struct MVOneAnimationData
 //     {
-//         float animationCount;   // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g
-//         int animationHandle;    // ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
-//         bool loopFlag;          // ï¿½ï¿½ï¿½[ï¿½vï¿½tï¿½ï¿½ï¿½O
+//         float animationCount;   // ƒAƒjƒ[ƒVƒ‡ƒ“ƒJƒEƒ“ƒg
+//         int animationHandle;    // ƒAƒjƒƒVƒ‡ƒ“ƒnƒ“ƒhƒ‹
+//         bool loopFlag;          // ƒ‹[ƒvƒtƒ‰ƒO
 //     };
 
 // protected:
-//     // // ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
+//     // // ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 //     // int mnModelHandle;
     
-//     // ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//     // ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ
 //     MVOneAnimationData mstPreAnimationData;
 
-//     // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//     // ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş
 //     ANIMATION_MOVE_TYPE_TYPE meAnimationType;
 
-//     // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½
+//     // ƒuƒŒƒ“ƒh—¦
 //     float mfAnimBlendRate;
 
-//     // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½x
+//     // ƒuƒŒƒ“ƒh‘¬“x
 //     float mfAnimBlendSpeed;
 
-//     // ï¿½Äï¿½ï¿½ï¿½ï¿½x
+//     // Ä¶‘¬“x
 //     float mfAnimationSpeed;
 
-//     // ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Å‘ï¿½
+//     // ƒuƒŒƒ“ƒh—¦Å‘å
 //     const float ANIMATION_BLEND_RATE_MAX = 1.0f;
 // public:
 //     StateAnimationProcess(int handle);
 //     ~StateAnimationProcess() = default;
 
 // protected:
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½^ï¿½bï¿½`*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒfƒ^ƒbƒ`*/
 //     virtual void AnimationDetach(Animation* animation, AnimationDatas* animationDatas);
 
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`*/
 //     virtual void AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
-//     /*ï¿½ï¿½Â‘Oï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½*/
+//     /*ˆê‚Â‘O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğİ’è‚·‚é*/
 //     virtual void PreAnimationDataSetting(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»*/
 //     virtual void Init(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas);
 
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“XV*/
 //     void UpdateAnimation(OneAnimationData *nowAnimationData);
 
-//     /*ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½Xï¿½V*/
+//     /*ƒuƒŒƒ“ƒhXV*/
 //     void UpdateBlend();
 
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½iï¿½ß‚ï¿½*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔ‚ği‚ß‚é*/
 //     void AdvanceAnimationTime(int animationHandle, float* animationCount, bool loopFlag, float animBlendRate, bool testFlag);
 // };
 
 // /*----------*/
-// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*yƒAƒjƒ[ƒVƒ‡ƒ“–³‚µz
 // /*----------*/
 // class StateNoneAnimation : public IStateAnimation
 // {
@@ -398,151 +398,151 @@ private:
 //     StateNoneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateNoneAnimation() = default;
 
-//     /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     //virtual void OnEnter(STATE_ANEMATION_DATA* animationData, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE oldModelType) override {}
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override {}
-//     /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     //virtual void OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, ANIMATION_TYPE newModelType) override {}
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override {}
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override {}
 
-//     /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override {}
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override { return false; }
 
 // };
 
 
 // /*----------*/
-// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*yMV1ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“z
 // /*----------*/
 // class StateMVOneAnimation : public IStateAnimation, public StateAnimationProcess
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateMVOneAnimation(int modelHandle, std::string fileName, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateMVOneAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 // };
 
 // /*----------*/
-// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½@ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½z
+// /*yMV1ƒ‚ƒfƒ‹@ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µƒ‚ƒfƒ‹z
 // /*----------*/
 // class StateMVOneOnlyAnimation : public IStateAnimation, public StateAnimationProcess
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateMVOneOnlyAnimation(int modelHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateMVOneOnlyAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // protected:
 
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     virtual bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 
-//     /*ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`*/
+//     /*ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`*/
 //     virtual void AnimationAttach(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas) override;
 // };
 
 
 // /*----------*/
-// /*ï¿½yMV1ï¿½ï¿½ï¿½fï¿½ï¿½ ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*yMV1ƒ‚ƒfƒ‹ ƒ‚ƒfƒ‹‘€ìz
 // /*----------*/
 // class StateMVOneOperationAnimation : public StateMVOneOnlyAnimation
 // {
 // private:
-//     // ï¿½ÏXï¿½Ú“ï¿½ï¿½ï¿½
+//     // •ÏXˆÚ“®—Ê
 //     VECTOR mvChangeMove;
-//     // ï¿½Ú“ï¿½ï¿½ï¿½
+//     // ˆÚ“®—Ê
 //     VECTOR mvMove;
 
-//     // ï¿½ÏXï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+//     // •ÏXƒAƒ“ƒOƒ‹—Ê
 //     VECTOR mvChangeAngle;
-//     // ï¿½Aï¿½ï¿½ï¿½Oï¿½ï¿½
+//     // ƒAƒ“ƒOƒ‹
 //     VECTOR mvAngle;
 
     
-//     // ï¿½å‚«ï¿½ï¿½ï¿½ÏXï¿½ï¿½
+//     // ‘å‚«‚³•ÏX—Ê
 //     VECTOR mvChangeSize;
-//     // ï¿½å‚«ï¿½ï¿½
+//     // ‘å‚«‚³
 //     VECTOR mvSize;
 
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
 //     ~StateMVOneOperationAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Xï¿½V</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 
 // protected:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     virtual bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 // };
 
 
 // /*----------*/
-// /*ï¿½yï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*yƒGƒtƒFƒNƒgƒAƒjƒ[ƒVƒ‡ƒ“z
 // /*----------*/
 // class StateEffectAnimation : public IStateAnimation
 // {
@@ -550,164 +550,164 @@ private:
 //     int* mnEffectHandle;
 
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateEffectAnimation(int* effectHandle, std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateEffectAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 
 // };
 
 
 // /*----------*/
-// /*ï¿½yï¿½æ‘œï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*y‰æ‘œƒ[ƒVƒ‡ƒ“z
 // /*----------*/
 // class StateGraphAnimation : public IStateAnimation
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateGraphAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 
 // };
 
 
 // /*----------*/
-// /*ï¿½yï¿½ï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
+// /*y“®‰æƒAƒjƒ[ƒVƒ‡ƒ“z
 // /*----------*/
 // class StateMovieAnimation : public IStateAnimation
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateMovieAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateMovieAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 
 // };
 
 // /*------------------------------*/
-// /*ï¿½yï¿½tï¿½Fï¿½[ï¿½hï¿½æ‘œï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+// /*yƒtƒF[ƒh‰æ‘œƒAƒjƒ[ƒVƒ‡ƒ“z*/
 // /*------------------------------*/
 // class StateFadeGraphAnimation : public IStateAnimation
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateFadeGraphAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateFadeGraphAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
 
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
-//     /// <summary>ï¿½Xï¿½V(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½)</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV(‰½‚à‚µ‚È‚¢)</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
 
-//     /*ï¿½tï¿½Fï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½*/
+//     /*ƒtƒF[ƒhˆ—*/
 //     void FadeProcess(OneAnimationData *nowAnimationData);
 
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 // };
 
 // /*-------------------------*/
-// /*ï¿½yDOTweenï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z*/
+// /*yDOTweenƒAƒjƒ[ƒVƒ‡ƒ“z*/
 // /*-------------------------*/
 // class StateDOTweenAnimation : public IStateAnimation
 // {
 // public:
-//     // FIXME: ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ÅƒXï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ü‚ï¿½
+//     // FIXME: ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅƒXƒe[ƒg•ÏXğŒ‚ğ“n‚¹‚Ü‚·
 //     StateDOTweenAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
 //     ~StateDOTweenAnimation() = default;
 
-//    /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="preState">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//    /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="preState">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnEnter(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE preState) override;
-//   /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
-//     /// <param name="animationData">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="nextState">ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//   /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
+//     /// <param name="animationData">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
+//     /// <param name="nextState">Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
 //     virtual void OnExit(STATE_ANEMATION_DATA* animationData, ANIMATION_MOVE_TYPE_TYPE nextState) override;
     
-//     /// <summary>ï¿½Iï¿½ï¿½</summary>
+//     /// <summary>I—¹</summary>
 //     virtual void Finalize(Animation* animation, AnimationDatas* animationDatas) override;
 
-//     /// <summary>ï¿½Xï¿½V</summary>
-//     /// <param name="animation">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½</param>
-//     /// <param name="animationDatas">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+//     /// <summary>XV</summary>
+//     /// <param name="animation">ƒAƒjƒ[ƒVƒ‡ƒ“</param>
+//     /// <param name="animationDatas">ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ</param>
 //     virtual void Update(Animation* animation, OneAnimationData *nowAnimationData) override;
 
 // private:
-//     /*ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½*/
+//     /*ƒ‚ƒfƒ‹í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·*/
 //     bool CheckSimilarModelType(ANIMATION_TYPE modelType) override;
 // };

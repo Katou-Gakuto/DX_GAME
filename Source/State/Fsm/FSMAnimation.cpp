@@ -8,7 +8,7 @@ FSMAnimation::FSMAnimation()
 {
 }
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ‰Šú‰»
 void FSMAnimation::Initilize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
@@ -37,7 +37,7 @@ void FSMAnimation::StateInitilize(STATE_ANEMATION_DATA* stateAnimationData)
 	SetCurrentState(initialState->first, stateAnimationData);
 }
 
-// ï¿½Iï¿½ï¿½
+// I—¹
 void FSMAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 	auto currentState = mmStateMap.find(mCurrentState);
@@ -48,7 +48,7 @@ void FSMAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 	}
 }
 
-// ï¿½Xï¿½V
+// XV
 void FSMAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
 	if (mmStateMap.find(mCurrentState) == mmStateMap.end() ||
@@ -66,7 +66,7 @@ void FSMAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 }
 
 
-// ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½İ’ï¿½
+// Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuİ’è
 void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 {
 	for (auto& state : mmStateMap)
@@ -91,26 +91,26 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // #include "StateAnimation.h"
 
 // /*----------*/
-// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½z
+// /*yƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“z
 // /*----------*/
 // FSMAnimation::FSMAnimation()
 // : FSMBase()
 // {
 // }
 
-// // // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// // ‰Šú‰»
 // // void FSMAnimation::Initilize(Animation* animation)
 // // {
 // // 	mCurrentState = 0;
 
-// // 	// ï¿½Vï¿½ï¿½ï¿½ï¿½Stateï¿½ÌŠJï¿½nï¿½ï¿½ï¿½ï¿½
+// 	// V‚µ‚¢State‚ÌŠJnˆ—
 // // 	for (int i = 0; i < mmAnimationStates.size(); i++)
 // // 	{
 // // 		NewStateSetting(i, animation, ANIMATION_TYPE::NONE);
 // // 	}
 // // }
 
-// // ï¿½Iï¿½ï¿½
+// I—¹
 // void FSMAnimation::Finalize(Animation* animation)
 // {
 // 	// for (int i = 0; i < mmAnimationStates.size(); i++)
@@ -124,22 +124,22 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // 	// mmAnimationStates.clear();
 // }
 
-// // // ï¿½Tï¿½uï¿½ï¿½Ôƒ}ï¿½bï¿½vï¿½ÌƒTï¿½Cï¿½Yï¿½ğ‘‚â‚·
+// // ƒTƒuó‘Ôƒ}ƒbƒv‚ÌƒTƒCƒY‚ğ‘‚â‚·
 // // void FSMAnimation::IncreaseAnimationStateSize(int size)
 // // {
 // // 	mmAnimationStates.resize(size);
 // // }
 
-// // // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½İ’ï¿½
+// // ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgî•ñİ’è
 // // void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<ANIMATION_TYPE, IStateAnimation*> animationStateMap)
 // // {
 // // 	mmAnimationStates[animationStateIndex] = animationStateMap;
 // // }
 
-// // ï¿½Xï¿½V
+// XV
 // void FSMAnimation::Update(Animation* animation, std::vector<AnimationDatas*> animationDatas)
 // {
-// 	// TODO: ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‹lï¿½ß‚Ä‚ï¿½ï¿½ï¿½
+// 	// TODO: ƒAƒjƒ[ƒVƒ‡ƒ“‚à‚¤‚¿‚å‚Á‚Æ‹l‚ß‚Ä‚©‚ç
 // 	STATE_ANEMATION_DATA stateAnimationData;
 // 	stateAnimationData.StateAnimation = animation;
 // 	//stateAnimationData.StateOneAnimationData = ;
@@ -148,43 +148,43 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // 	CheckChangeState(&stateAnimationData);
 
 
-// 	// TODO: ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‹lï¿½ß‚Ä‚ï¿½ï¿½ï¿½
-// 	// ï¿½ÏXï¿½ï¿½ï¿½ï¿½
+// 	// TODO: ƒAƒjƒ[ƒVƒ‡ƒ“‚à‚¤‚¿‚å‚Á‚Æ‹l‚ß‚Ä‚©‚ç
+// 	// •ÏXˆ—
 // 	for (int i = 0; i < mmAnimationStates.size(); i++)
 // 	{
-// 		// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½æ“¾
+// 		// ƒ‚ƒfƒ‹æ“¾
 // //		ModelBase* model = animation->GetModelsController()->GetModelList()[i];
 
-// 		// ï¿½Xï¿½eï¿½[ï¿½gï¿½ÏX
+// 		// ƒXƒe[ƒg•ÏX
 // 		if (mCurrentState != oldAnimationState)
 // 		{
 // 			ChangeState(i, animation, oldAnimationState);
 // 		}
 
-// 		// ï¿½Xï¿½V
+// 		// XV
 // 		GetAnimationState(i, animation, mCurrentState)->Update(animation, &animationDatas[i]->animDatas[mCurrentState]);
 // 	}
 // }
 
-// // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½İ’è‚·ï¿½ï¿½
+// V‚µ‚¢ƒXƒe[ƒg‚ğİ’è‚·‚é
 // void FSMAnimation::NewStateSetting(int animationIndex, Animation* animation, ANIMATION_TYPE oldModelType)
 // {
 // 	GetAnimationState(animationIndex, animation, mCurrentState)->OnEnter(animation, &animation->GetAnimationDatas()[animationIndex]->animDatas[mCurrentState], animation->GetAnimationDatas()[animationIndex], oldModelType);
 // }
 
-// // ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Æˆá‚¤ï¿½È‚ï¿½Xï¿½eï¿½[ï¿½gï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Ÿ‚ÌƒXƒe[ƒg‚ªŒ»İ‚ÌƒXƒe[ƒg‚Æˆá‚¤‚È‚çƒXƒe[ƒg•ÏXˆ—‚ğ‚·‚é
 // void FSMAnimation::ChangeState(int animationStateIndex, Animation* animation, ANIMATION_MOVE_TYPE oldAnimationType)
 // {
 // 	AnimationDatas* animationDatas = animation->GetAnimationDatas()[animationStateIndex];
 
-// 	// ï¿½ï¿½ï¿½İ‚ï¿½Stateï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// Œ»İ‚ÌStateI—¹ˆ—
 // 	GetAnimationState(animationStateIndex, animation, oldAnimationType)->OnExit(animation, &animationDatas->animDatas[oldAnimationType], animationDatas, animationDatas->animDatas[mCurrentState].modelType);
 
-// 	// ï¿½Vï¿½ï¿½ï¿½ï¿½Stateï¿½İ’ï¿½
+// 	// V‚µ‚¢Stateİ’è
 // 	NewStateSetting(animationStateIndex, animation, animationDatas->animDatas[oldAnimationType].modelType);
 // }
 
-// // ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½æ“¾
+// Œ»İ‚ÌƒXƒe[ƒgæ“¾
 // IStateAnimation* FSMAnimation::GetAnimationState(int index, Animation* animation, ANIMATION_MOVE_TYPE animationType)
 // {
 // 	return mmAnimationStates[index][animation->GetAnimationDatas()[index]->animDatas[animationType].modelType];

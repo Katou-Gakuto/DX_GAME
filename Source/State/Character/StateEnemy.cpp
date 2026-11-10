@@ -14,11 +14,11 @@
 #include "UtilStateConditionFunction.h"
 
 /*------------------*/
-/*     ã€ï¿½Eé€šã€E    */
+// /*     y‹¤’Êz     */
 /*------------------*/
 
 /*----------------------*/
-/*ã€ã‚¨ãƒãƒŸãƒ¼å…±é€šï¿½EçEï¿½ï¿½ã€E/
+// /*yƒGƒlƒ~[‹¤’Êˆ——pz*/
 /*----------------------*/
 EnemyProcess::EnemyProcess()
 : EnemyCommonProcessing(STATE_ENEMY_TYPE::BATTLE_ENEMY)
@@ -26,28 +26,28 @@ EnemyProcess::EnemyProcess()
 {
 }
 
-// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒEï¿½Eã‚¿ã‚¹è¨­å®E
+// ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒ^ƒXİ’è
 void EnemyProcess::SetPlayerStatus()
 {
-	// ã‚¹ãƒEï¿½Eã‚¿ã‚¹å–å¾E
+// 	// ƒXƒe[ƒ^ƒXæ“¾
 	STATUS playerStatus = Master::mpDataManager->GetPlayPlayerData().status;
 
-	// ã‚¹ãƒEï¿½Eã‚¿ã‚¹ã‚’å¤‰æ›´
+// 	// ƒXƒe[ƒ^ƒX‚ğ•ÏX
 	CharacterBase* playerObject = Master::mpGameManager->GetTargetManager()->GetTarget(TARGET_TYPE::PLAYER);
 	STATUS playerObjectStatus = *playerObject->GetStatus();
 	playerStatus.hp = playerObjectStatus.hp;
 
-	// ã‚¹ãƒEï¿½Eã‚¿ã‚¹ã‚’ãƒ‡ãƒ¼ã‚¿ã«è¨­å®E
+// 	// ƒXƒe[ƒ^ƒX‚ğƒf[ƒ^‚Éİ’è
 	Master::mpDataManager->SetPlayPlayerStatus(playerStatus);
 }
 
-// ä¸€å®šç¯Eï¿½ï¿½å†Eï¿½ï¿½ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒEï¿½ï¿½ãŒã„ã‚‹ãªã‚‰ã€Œtrueã€E
+// ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev
 bool EnemyProcess::PlayerTargetCheck(CharacterBase* character, float range)
 {
     return UtilCalc::SphereCollision(character->GetPos(), range, mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), 180.0f);
 }
 
-// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ–¹å‘ã‚’å‘ã„ã¦ç§»å‹•ã™ã‚E
+// ƒvƒŒƒCƒ„[•ûŒü‚ğŒü‚¢‚ÄˆÚ“®‚·‚ßE
 void EnemyProcess::PlayerTargetMove(CharacterBase* character)
 {
 	PlayerTargetAngle(character);
@@ -55,22 +55,22 @@ void EnemyProcess::PlayerTargetMove(CharacterBase* character)
 	character->SetFrontMove();
 }
 
-// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ãƒ¼ã‚²ãƒEï¿½ï¿½ã®æ–¹ã«å‘ã
+// ƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚Ì•û‚ÉŒü‚­
 void EnemyProcess::PlayerTargetAngle(CharacterBase* character)
 {
 	character->SetMoveDir(VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos()));
 }
 
-// æ­»äº¡
+// €–S
 void EnemyProcess::EnemyDeath(CharacterBase* character)
 {
 	Master::mpDataManager->AddAcquisitionExp(character->GetStatus()->exp);
 
 	//if (mbBossFlag)
 	{
-		// TODO: ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒªã‚¶ãƒ«ãƒˆã«ç§»å‹E
-		// HACK: ãƒœã‚¹ãƒ•ãƒ©ã‚°ã§ã‚Eï¿½ï¿½ã¦ãEï¿½ï¿½ãŒæ­»äº¡ã‚¹ãƒEï¿½Eãƒˆä½œï¿½Eã—ã¦ãã“ã§ã‚Eï¿½ï¿½ã€€ãƒœã‚¹ã‹ã©ãEï¿½ï¿½ã®åˆ¤æ–­ã‚‚ãã“ã§ã‚Eï¿½ï¿½
-		// // ã‚¨ãƒãƒŸãƒ¼åˆæœŸåŒE
+		// TODO: ƒ_ƒ“ƒWƒ‡ƒ“ƒŠƒUƒ‹ƒg‚ÉˆÚ™¤E
+// 		// HACK: ƒ{ƒXƒtƒ‰ƒO‚Å‚â‚Á‚Ä‚¢‚½‚ª€–SƒXƒe[ƒgì¬‚µ‚Ä‚»‚±‚Å‚â‚é@ƒ{ƒX‚©‚Ç‚¤‚©‚Ì”»’f‚à‚»‚±‚Å‚â‚é
+		// // ƒGƒlƒ~[‰Šú–æE
 		// mpTargetManager->TargetInit(TARGET_TYPE::ENEMY);
 		// Master::mpGameManager->GetSceneManager()->SetNextScene(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
 		// Master::mpDataManager->DeleteEnemyData(Master::mpDataManager->GetPlayPlayerData().sceneData[DATA_SCENE::TOWN].sceneType);
@@ -86,7 +86,7 @@ void EnemyProcess::EnemyDeath(CharacterBase* character)
 	}
 }
 
-// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã«ã‚ˆã£ã¦æ•°å­—ã‚’è¿”ã™
+// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚É‚æ‚Á‚Ä”š‚ğ•Ô‚·
 ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* character)
 {
 	CharacterBase* player = mpTargetManager->GetTarget(TARGET_TYPE::PLAYER);
@@ -99,7 +99,7 @@ ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* char
 	{
 		return ENEMY_COMMAND_NUMBER::MEDIUM_RANGE;
 	}
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	//else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 3000.0f)
 	else if (UtilCalc::VDiff(player->GetPos(), character->GetPos()) < 4000.0f)
 	{
@@ -110,7 +110,7 @@ ENEMY_COMMAND_NUMBER EnemyProcess::GetPlayerDistance_Command(CharacterBase* char
 	return ENEMY_COMMAND_NUMBER::NONE;
 }
 
-// å®šå‹ã®æ¬¡ã®ã‚¹ãƒEï¿½Eãƒˆã‚’å–å¾—ã™ã‚E
+// ’èŒ^‚ÌŸ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é
 STATE_TYPE_CHARACTER EnemyProcess::TemplateNextState(CharacterBase* character, STATE_TYPE_CHARACTER myState)
 {
 	switch (GetPlayerDistance_Command(character))
@@ -131,11 +131,11 @@ STATE_TYPE_CHARACTER EnemyProcess::TemplateNextState(CharacterBase* character, S
 
 
 /*--------------------------*/
-/*     ã€åŸºæœ¬ã‚¹ãƒEï¿½Eãƒˆã€E    */
+/*     yŠî–{ƒXƒ`E?EƒgAE    */
 /*--------------------------*/
 
 /*----------------------*/
-/*ã€Idleã‚¨ãƒãƒŸãƒ¼ãƒEï¿½Eãƒˆã€E/
+/*yIdleƒGƒlƒ~[ƒ`E?EƒgAE/
 /*----------------------*/
 IdleEnemyState::IdleEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::IDLE_ENEMY_STATE, STATE_TYPE_CHARACTER::IDLE_ENEMY_STATE)
@@ -143,50 +143,50 @@ IdleEnemyState::IdleEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void IdleEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 	EnemyGraphDataInitialize(character);
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚ğo‚é‚Ìˆ?E
 void IdleEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
 {
 }
 
-// ã‚¹ãƒEï¿½Eãƒˆå¤‰æ›´ç¢ºèªE
+// ƒXƒe[ƒg•ÏXŠm”F
 STATE_TYPE_CHARACTER IdleEnemyState::StateCheck(CharacterBase* character)
 {
 	return TemplateNextState(character, mStateNumber);
 }
 
-// æ›´æ–°
+// XV
 void IdleEnemyState::Update(CharacterBase* character)
 {
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// æœ€çµ‚æ›´æ–°
+// ÅIXV
 void IdleEnemyState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// æç”»
+// •`‰æ
 void IdleEnemyState::Draw(CharacterBase* character)
 {
     EnemyDataDraw(character);
 }
 
-// æ­»äº¡
+// €–S
 void IdleEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }
 
 /*----------*/
-/*ã€ç§»å‹•ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E
+/*yˆÚ“®ƒGƒlƒ~[ƒXƒ`E?EƒgAE
 /*----------*/
 MoveEnemyState::MoveEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::MOVE_ENEMY_STATE, STATE_TYPE_CHARACTER::MOVE_ENEMY_STATE)
@@ -194,50 +194,50 @@ MoveEnemyState::MoveEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void MoveEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚ğo‚é‚Ìˆ?E
 void MoveEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
 {
 }
 
-// ã‚¹ãƒEï¿½Eãƒˆå¤‰æ›´ç¢ºèªE
+// ƒXƒe[ƒg•ÏXŠm”F
 STATE_TYPE_CHARACTER MoveEnemyState::StateCheck(CharacterBase* character)
 {
 	return TemplateNextState(character, mStateNumber);
 }
 
-// æ›´æ–°
+// XV
 void MoveEnemyState::Update(CharacterBase* character)
 {
 	PlayerTargetMove(character);
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// æœ€çµ‚æ›´æ–°
+// ÅIXV
 void MoveEnemyState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// æç”»
+// •`‰æ
 void MoveEnemyState::Draw(CharacterBase* character)
 {
     EnemyDataDraw(character);
 }
 
-// æ­»äº¡
+// €–S
 void MoveEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }
 
 /*----------------------------*/
-/*ã€æ”»æ’Eï¿½Eã‚Šã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E/
+/*yU?E?E‚èƒGƒlƒ~[ƒXƒ`E?EƒgAE/
 /*----------------------------*/
 AttackInEnemyState::AttackInEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::ATTACK_IN_ENEMY_STATE, STATE_TYPE_CHARACTER::ATTACK_IN_ENEMY_STATE)
@@ -247,22 +247,22 @@ AttackInEnemyState::AttackInEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<ST
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void AttackInEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚ğo‚é‚Ìˆ?E
 void AttackInEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
 {
 }
 
-// ã‚¹ãƒEï¿½Eãƒˆå¤‰æ›´ç¢ºèªE
+// ƒXƒe[ƒg•ÏXŠm”F
 STATE_TYPE_CHARACTER AttackInEnemyState::StateCheck(CharacterBase* character)
 {
-	// æ³¨æ„E ã“ï¿½Eæ¡ä»¶ã¯Stateå›ºæœ‰ï¿½Eãƒ¡ãƒ³ãƒå¤‰æ•°(mstPreAttackTime, mbLeftMoveFlag)ã«ä¾å­˜ã—ã¦ãEï¿½ï¿½ãŸã‚
-	//       å®Œï¿½Eã«å¤–éƒ¨é–¢æ•°åŒ–ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚Stateå´ã§æ¡ä»¶ã‚’ä¿æŒã™ã‚‹å¿Eï¿½ï¿½ãŒã‚ã‚Šã¾ã™ã€E
-	//       æ¨æ¸¬: æ™‚é–“çµŒéã¨HPã«åŸºã¥ãEï¿½ï¿½æ¡ä»¶åˆ¤å®E
+// 	// ’ˆÓ: ‚±‚ÌğŒ‚ÍStateŒÅ—L‚Ìƒƒ“ƒo•Ï”(mstPreAttackTime, mbLeftMoveFlag)‚ÉˆË‘¶‚µ‚Ä‚¢‚é‚½‚ß
+// 	//       Š®‘S‚ÉŠO•”ŠÖ”‰»‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñBState‘¤‚ÅğŒ‚ğ•Û‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+// 	//       „‘ª: ŠÔŒo‰ß‚ÆHP‚ÉŠî‚Ã‚¢‚½ğŒ”»’è
 	if (Master::mpTimeManager->GetGameElapsedTime() <= (mstPreAttackTime + (ESCAPE_TIME * 5)))
 	{
 		if (character->GetStatus()->hp < (int)((float)character->GetStatus()->maxHp * 0.5f))
@@ -283,7 +283,7 @@ STATE_TYPE_CHARACTER AttackInEnemyState::StateCheck(CharacterBase* character)
 		}
 	}
 
-	// å¤–éƒ¨é–¢æ•°ã‚’ä½¿ç”¨: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹è§’ã‚’å‘ã„ã¦ãEï¿½ï¿½ã‹åˆ¤å®E
+// 	// ŠO•”ŠÖ”‚ğg—p: ƒvƒŒƒCƒ„[‚Ì•ûŠp‚ğŒü‚¢‚Ä‚¢‚é‚©”»’è
 	if (UtilStateConditionFunction::IsFacingPlayer(character))
 	{
 		mstPreAttackTime = Master::mpTimeManager->GetGameElapsedTime();
@@ -293,34 +293,34 @@ STATE_TYPE_CHARACTER AttackInEnemyState::StateCheck(CharacterBase* character)
 	return TemplateNextState(character, mStateNumber);
 }
 
-// æ›´æ–°
+// XV
 void AttackInEnemyState::Update(CharacterBase* character)
 {
 	PlayerTargetMove(character);
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// æœ€çµ‚æ›´æ–°
+// ÅIXV
 void AttackInEnemyState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// æç”»
+// •`‰æ
 void AttackInEnemyState::Draw(CharacterBase* character)
 {
     EnemyDataDraw(character);
 }
 
-// æ­»äº¡
+// €–S
 void AttackInEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }
 
 /*----------*/
-/*ã€æ”»æ’Eï¿½ï¿½ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E
+/*yU?E??ƒlƒ~[ƒXƒ`E?EƒgAE
 /*----------*/
 AttackEnemyState::AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::ATTACK_ENEMY_STATE, STATE_TYPE_CHARACTER::ATTACK_ENEMY_STATE)
@@ -328,19 +328,19 @@ AttackEnemyState::AttackEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void AttackEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 	character->StartAttck(ATTACK_METHOD_TYPE::NORMAL);
 	character->SetAnimation(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN);
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚ğo‚é‚Ìˆ?E
 void AttackEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
 {
 }
 
-// ã‚¹ãƒEï¿½Eãƒˆå¤‰æ›´ç¢ºèªE
+// ƒXƒe[ƒg•ÏXŠm”F
 STATE_TYPE_CHARACTER AttackEnemyState::StateCheck(CharacterBase* character)
 {
 	if (UtilStateConditionFunction::IsAttackAnimationFinished(character))
@@ -351,33 +351,33 @@ STATE_TYPE_CHARACTER AttackEnemyState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// æ›´æ–°
+// XV
 void AttackEnemyState::Update(CharacterBase* character)
 {
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// æœ€çµ‚æ›´æ–°
+// ÅIXV
 void AttackEnemyState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// æç”»
+// •`‰æ
 void AttackEnemyState::Draw(CharacterBase* character)
 {
     EnemyDataDraw(character);
 }
 
-// æ­»äº¡
+// €–S
 void AttackEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }
 
 /*------------------------*/
-/*ã€é€Eï¿½ï¿½ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E/
+/*y‘—E??ƒGƒlƒ~[ƒXƒ`E?EƒgAE/
 /*------------------------*/
 EscapeEnemyState::EscapeEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : IStateCharacter(stateChangeCriterias, STATE_TYPE_CHARACTER::ESCAPE_ENEMY_STATE, STATE_TYPE_CHARACTER::ESCAPE_ENEMY_STATE)
@@ -386,7 +386,7 @@ EscapeEnemyState::EscapeEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_
 {
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void EscapeEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 	VECTOR setVec = VSub(mpTargetManager->GetTarget(TARGET_TYPE::PLAYER).target->GetPos(), character->GetPos());
@@ -395,17 +395,17 @@ void EscapeEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER pr
 	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã‚’å‡ºã‚‹æ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚ğo‚é‚Ìˆ?E
 void EscapeEnemyState::OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState)
 {
 }
 
-// ã‚¹ãƒEï¿½Eãƒˆå¤‰æ›´ç¢ºèªE
+// ƒXƒe[ƒg•ÏXŠm”F
 STATE_TYPE_CHARACTER EscapeEnemyState::StateCheck(CharacterBase* character)
 {
-	// æ³¨æ„E ã“ï¿½Eæ¡ä»¶ã¯Stateå›ºæœ‰ï¿½Eãƒ¡ãƒ³ãƒå¤‰æ•°(mstEscapeTime)ã«ä¾å­˜ã—ã¦ãEï¿½ï¿½ãŸã‚
-	//       å®Œï¿½Eã«å¤–éƒ¨é–¢æ•°åŒ–ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚Stateå´ã§æ¡ä»¶ã‚’ä¿æŒã™ã‚‹å¿Eï¿½ï¿½ãŒã‚ã‚Šã¾ã™ã€E
-	//       æ¨æ¸¬: é€Eï¿½ï¿½æ™‚é–“çµŒéã«åŸºã¥ãEï¿½ï¿½æ¡ä»¶åˆ¤å®E
+// 	// ’ˆÓ: ‚±‚ÌğŒ‚ÍStateŒÅ—L‚Ìƒƒ“ƒo•Ï”(mstEscapeTime)‚ÉˆË‘¶‚µ‚Ä‚¢‚é‚½‚ß
+// 	//       Š®‘S‚ÉŠO•”ŠÖ”‰»‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñBState‘¤‚ÅğŒ‚ğ•Û‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+// 	//       „‘ª: “¦‚°ŠÔŒo‰ß‚ÉŠî‚Ã‚¢‚½ğŒ”»’è
 	if (Master::mpTimeManager->GetGameElapsedTime() > mstEscapeTime)
 	{
 		return TemplateNextState(character, mStateNumber);
@@ -414,38 +414,38 @@ STATE_TYPE_CHARACTER EscapeEnemyState::StateCheck(CharacterBase* character)
 	return mStateNumber;
 }
 
-// æ›´æ–°
+// XV
 void EscapeEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
-// æœ€çµ‚æ›´æ–°
+// ÅIXV
 void EscapeEnemyState::LastUpdate(CharacterBase* character)
 {
 	HpDrawInfoSetup(character);
 }
 
-// æç”»
+// •`‰æ
 void EscapeEnemyState::Draw(CharacterBase* character)
 {
     EnemyDataDraw(character);
 }
 
-// æ­»äº¡
+// €–S
 void EscapeEnemyState::Death(CharacterBase* character)
 {
 	EnemyDeath(character);
 }
 
 /*--------------------------*/
-/*     ã€æ´¾ç”Ÿã‚¹ãƒEï¿½Eãƒˆã€E    */
+/*     y”h¶ƒXƒ`E?EƒgAE    */
 /*--------------------------*/
 
 /*--------------------------*/
-/*ã€å·¦å›é¿ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E/
+/*y¶‰ñ”ğƒGƒlƒ~[ƒXƒ`E?EƒgAE/
 /*--------------------------*/
 LeftAvoidEnemyState::LeftAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : EscapeEnemyState(stateChangeCriterias)
@@ -453,24 +453,24 @@ LeftAvoidEnemyState::LeftAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<
 	mStateNumber = STATE_TYPE_CHARACTER::LEFT_AVOID_ENEMY_STATE;
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void LeftAvoidEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 	PlayerTargetAngle(character);
 	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
-// æ›´æ–°
+// XV
 void LeftAvoidEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
 	character->SetLeftMove();
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }
 
 /*--------------------------*/
-/*ã€å³å›é¿ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒEï¿½Eãƒˆã€E/
+/*y‰E‰ñ”ğƒGƒlƒ~[ƒXƒ`E?EƒgAE/
 /*--------------------------*/
 RightAvoidEnemyState::RightAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias)
 : EscapeEnemyState(stateChangeCriterias)
@@ -478,18 +478,18 @@ RightAvoidEnemyState::RightAvoidEnemyState(std::vector<STATE_CHANGE_CRITERIA_DAT
 	mStateNumber = STATE_TYPE_CHARACTER::RIGHT_AVOID_ENEMY_STATE;
 }
 
-// ã“ï¿½EçŠ¶æ…‹ã«å…¥ã£ãŸæ™‚ã®å‡¦çE
+// ‚±?Eó‘Ô‚É“ü‚Á‚½‚Ìˆ?E
 void RightAvoidEnemyState::OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState)
 {
 	PlayerTargetAngle(character);
 	mstEscapeTime = Master::mpTimeManager->GetGameElapsedTime() + ESCAPE_TIME;
 }
 
-// æ›´æ–°
+// XV
 void RightAvoidEnemyState::Update(CharacterBase* character)
 {
 	character->SetFrontMove();
 	character->SetRightMove();
-	// UNDONE: ã‚‚ã¨ã«æˆ»ãE
+	// UNDONE: ‚à‚Æ‚É–ß‚ŸE
 	character->SetPos(VGet(character->GetPos().x, 0.0f, character->GetPos().z));
 }

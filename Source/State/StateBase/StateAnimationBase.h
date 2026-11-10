@@ -9,7 +9,7 @@
 class IStateAnimation : public StateBase<int, STATE_ANEMATION_DATA>
 {
 protected:
-	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ
 
 public:
 	IStateAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias)
@@ -18,12 +18,12 @@ public:
 	}
 	virtual ~IStateAnimation() = default;
 
-	/// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
+	/// <summary>‰Šú‰»</summary>
 	virtual void Initilize(STATE_ANEMATION_DATA* stateAnimationData){}
-	/// <summary>ï¿½Iï¿½ï¿½</summary>
+	/// <summary>I—¹</summary>
 	virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) = 0;
 
-	/// <summary>ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½</summary>
+	/// <summary>Ÿ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é</summary>
 	int GetNextState(STATE_ANEMATION_DATA* stateAnimationData) override
 	{
 		for (auto& stateChangeCriteriaData : mfpStateChangeCriterias)
@@ -32,7 +32,7 @@ public:
 			if (stateChangeCriteriaData.ChangeFlag == nullptr)
 			{
 				Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::STATE_NULL_FUNCTION_FLAG);
-				DEBUG::SaveText("ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½İ’ï¿½", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
+				DEBUG::SaveText("ƒXƒe[ƒg–¢İ’è", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
 				return mStateNumber;
 			}
 #endif
@@ -45,12 +45,12 @@ public:
 		return stateAnimationData->nextState;
 	}
 
-	/// <summary>ï¿½Xï¿½V</summary>
+	/// <summary>XV</summary>
 	virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) = 0;
 
-	/// <summary>ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½</summary>
-	/// <param name="animationMoveType">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
-	/// <returns>ï¿½ï¿½ï¿½Ş‚ï¿½</returns>
+	/// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·</summary>
+	/// <param name="animationMoveType">ƒAƒjƒ[ƒVƒ‡ƒ“í—Ş</param>
+	/// <returns>“¯—Ş‚©</returns>
 	virtual bool CheckSimilarAnimationType(ANIMATION_TYPE animationMoveType) = 0;
 };
 
@@ -70,14 +70,14 @@ public:
 // class Animation;
 
 // /*----------*/
-// /*ï¿½yï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½xï¿½[ï¿½Xï¿½z
+// /*yƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgƒx[ƒXz
 // /*----------*/
 // class IStateAnimation : public StateBase<int, STATE_ANEMATION_DATA>
 // {
 // protected:
-// 	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½İ’ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[
+// 	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgİ’èî•ñƒiƒ“ƒo[
 // 	int mnAnimationStateSettingInfoNumber;
-// // 	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½xï¿½[ï¿½X
+// 	// ƒ‚ƒfƒ‹ƒx[ƒX
 // // 	ModelBase* mpModelBase;
 
 
@@ -88,7 +88,7 @@ public:
 // 	}
 // 	~IStateAnimation() = default;
 
-// 	/// <summary>ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½</summary>
+// 	/// <summary>Ÿ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚é</summary>
 // 	int GetNextState(STATE_ANEMATION_DATA* stateAnimationData) override
 // 	{
 // 		for (auto& stateChangeCriteriaData : mfpStateChangeCriterias)
@@ -97,7 +97,7 @@ public:
 // 			if (stateChangeCriteriaData.ChangeFlag == nullptr)
 // 			{
 // 				Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::STATE_NULL_FUNCTION_FLAG);
-// 				DEBUG::SaveText("ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½İ’ï¿½", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
+// DEBUG::SaveText("ƒXƒe[ƒg–¢İ’è", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
 // 				return mStateNumber;
 // 			}
 // #endif
@@ -110,30 +110,30 @@ public:
 // 		return stateAnimationData->nextState;
 // 	}
 
-// 	// /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½</summary>
+// 	// /// <summary>‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—</summary>
 // 	// virtual void OnEnter(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE oldModelType) = 0;
-// 	// /// <summary>ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½</summary>
+// 	// /// <summary>‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—</summary>
 // 	// virtual void OnExit(Animation* animation, OneAnimationData *nowAnimationData, AnimationDatas* animationDatas, MODEL_TYPE newModelType) = 0;
 	
-// 	/// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
+// 	/// <summary>‰Šú‰»</summary>
 // 	virtual void Initilize(STATE_ANEMATION_DATA* stateAnimationData){}
-// 	/// <summary>ï¿½Iï¿½ï¿½</summary>
+// 	/// <summary>I—¹</summary>
 // 	virtual void Finalize(STATE_ANEMATION_DATA* stateAnimationData) = 0;
 
-// 	/// <summary>ï¿½Xï¿½V</summary>
+// 	/// <summary>XV</summary>
 // 	virtual void Update(STATE_ANEMATION_DATA* stateAnimationData) = 0;
 
-// 	/// <summary>ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½Ş‚ï¿½ï¿½ï¿½ï¿½Ş‚È‚ï¿½utrueï¿½vï¿½ï¿½Ô‚ï¿½</summary>
-// 	/// <param name="animationMoveType">ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½ï¿½</param>
-// 	/// <returns>ï¿½ï¿½ï¿½Ş‚ï¿½</returns>
+// 	/// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş‚ª“¯—Ş‚È‚çutruev‚ğ•Ô‚·</summary>
+// 	/// <param name="animationMoveType">ƒAƒjƒ[ƒVƒ‡ƒ“ƒ€[ƒuí—Ş</param>
+// 	/// <returns>“¯—Ş‚©</returns>
 // 	virtual bool CheckSimilarAnimationMoveType(ANIMATION_MOVE_TYPE animationMoveType) = 0;
 
-// 	// /// <summary>ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½İ’ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½æ“¾</summary>
+// 	// /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgİ’èî•ñƒiƒ“ƒo[æ“¾</summary>
 // 	// int GetAnimationStateSettingInfoNumber() { return mnAnimationStateSettingInfoNumber; }
-// 	// /// <summary>ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½İ’ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½İ’ï¿½</summary>
+// 	// /// <summary>ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒgİ’èî•ñƒiƒ“ƒo[İ’è</summary>
 // 	// void SetAnimationStateSettingInfoNumber(int infoNumber) { mnAnimationStateSettingInfoNumber = infoNumber; }
 
-// 	// /// <summary>ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½İ’ï¿½</summary>
-// 	// /// <param name="modelBase">ï¿½ï¿½ï¿½fï¿½ï¿½</param>
+// 	// /// <summary>ƒ‚ƒfƒ‹İ’è</summary>
+// 	// /// <param name="modelBase">ƒ‚ƒfƒ‹</param>
 // 	// void SetModelBase(ModelBase* modelBase);
 // };

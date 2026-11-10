@@ -3173,48 +3173,48 @@ DotWenn情報設定
    <member className="UtilFactorys">
    <functionName>SetModelPosition</functionName>
    <explanations>
-・ｽ・ｽ・ｽf・ｽ・ｽ・ｽﾊ置・ｽﾝ抵ｿｽ
+モデル位置設定
    </explanations>
    </member>
    <member className="UtilFactorys">
    <functionName>AttackDataFactory</functionName>
    <explanations>
-・ｽU・ｽ・ｽ・ｽf・ｽ[・ｽ^・ｽ・ｬ
+攻撃データ作成
    </explanations>
    </member>
    <member className="UtilFactorys">
    <functionName>ModelFactory</functionName>
    <explanations>
-・ｽ・ｽ・ｽf・ｽ・ｽ・ｽ・ｬ
+モデル作成
    </explanations>
    <returnExplanation>
-・ｽ・ｽ・ｽf・ｽ・ｽ・ｽx・ｽ[・ｽX
+モデルベース
    </returnExplanation>
-   <variable0>・ｽ・ｽ・ｽf・ｽ・ｽ・ｽ・ｽ・ｽ</variable0>
-   <variable1>・ｽ・ｽ・ｽf・ｽ・ｽ・ｽt・ｽ@・ｽC・ｽ・ｽ・ｽ・ｽ・ｽW</variable1>
+   <variable0>モデル種類</variable0>
+   <variable1>モデルファイル座標</variable1>
    </member>
    <member className="UtilFactorys">
    <functionName>FSMCameraFactory</functionName>
    <explanations>
-・ｽS・ｽA・ｽj・ｽ・ｽ・ｽ[・ｽV・ｽ・ｽ・ｽ・ｽ・ｽﾆ・ｿｽ・ｽf・ｽ・ｽ・ｽﾝ抵ｿｽ
+全アニメーションとモデル設定
    </explanations>
    </member>
    <member className="UtilFactorys">
    <functionName>CharacterAttackDataFactory</functionName>
    <explanations>
-・ｽL・ｽ・ｽ・ｽ・ｽ・ｽN・ｽ^・ｽU・ｽ・ｽ・ｽ・ｽ・ｽ・ｬ
+?L?????N?^?U??????
    </explanations>
    </member>
    <member className="UtilFactorys">
    <functionName>LoadAnimationDataFactory</functionName>
    <explanations>
-隱ｭ縺ｿ霎ｼ縺ｿ逕ｨ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繝・・繧ｿ繧剃ｽ懈・
+読み込み用アニメーションデータを作成
    </explanations>
    </member>
    <member className="UtilFactorys">
    <functionName>FSMAnimationFactory</functionName>
    <explanations>
-繝｢繝・Ν縺ｮ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ譛蛾剞迥ｶ諷九・繧ｷ繝ｳ繧剃ｽ懈・
+モデルのアニメーション有限状態マシンを作成
    </explanations>
    </member>
    <member className="GameEndState">
@@ -3485,217 +3485,217 @@ int変数設定
    <member className="StateDOTweenAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateDOTweenAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateDOTweenAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateDOTweenAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateFadeGraphAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateFadeGraphAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateFadeGraphAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateFadeGraphAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateMovieAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateMovieAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateMovieAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateMovieAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateGraphAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateGraphAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateGraphAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateGraphAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateEffectAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateEffectAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateEffectAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateEffectAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateMVOneOperationAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV
+更新
    </explanations>
    </member>
    <member className="StateMVOneOperationAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateMVOneOperationAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateMVOneOnlyAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV
+更新
    </explanations>
    </member>
    <member className="StateMVOneOnlyAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateMVOneOnlyAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateMVOneOnlyAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV
+更新
    </explanations>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ
+この状態を出る時の処理
    </explanations>
    </member>
    <member className="StateMVOneAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ
+この状態に入った時の処理
    </explanations>
    </member>
    <member className="StateNoneAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+更新(何もしない)
    </explanations>
    </member>
    <member className="StateNoneAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="StateNoneAnimation">
    <functionName>OnExit</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔゑｿｽ・ｽo・ｽ骼橸ｿｽﾌ擾ｿｽ・ｽ・ｽ(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+この状態を出る時の処理(何もしない)
    </explanations>
    </member>
    <member className="StateNoneAnimation">
    <functionName>OnEnter</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌ擾ｿｽﾔに難ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾌ擾ｿｽ・ｽ・ｽ(・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ)
+この状態に入った時の処理(何もしない)
    </explanations>
    </member>
    <member className="State3DAnimationProcess">
    <functionName>SetMyAniamtionData</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌス・ｽe・ｽ[・ｽg・ｽﾌア・ｽj・ｽ・ｽ・ｽ[・ｽV・ｽ・ｽ・ｽ・ｽ・ｽf・ｽ[・ｽ^・ｽﾝ抵ｿｽ
+このステートのアニメーションデータ設定
    </explanations>
    </member>
    <member className="SceneManager">
@@ -4872,22 +4872,22 @@ float同士がの誤差範囲内なら「true」を返す
    <member className="IStateCharacter">
    <functionName>GetMyStateType</functionName>
    <explanations>
-・ｽX・ｽe・ｽ[・ｽg・ｽi・ｽ・ｽ・ｽo・ｽ[・ｽ・ｽ・ｽ轤ｵ・ｽﾄゑｿｽ・ｽg・ｽ・ｽ・ｽ・ｽﾅ抵ｿｽX・ｽe・ｽ[・ｽg・ｽ・ｽﾞ取得
+ステートナンバーずらしても使える固定ステート種類取得
    </explanations>
    <returnExplanation>
-・ｽﾅ抵ｿｽX・ｽe・ｽ[・ｽg・ｽ・ｽ・ｽ
+固定ステート種類
    </returnExplanation>
    </member>
    <member className="IStateCharacter">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="IStateCharacter">
    <functionName>Initilize</functionName>
    <explanations>
-・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
+初期化
    </explanations>
    </member>
    <member className="IStateCamera">
@@ -4899,65 +4899,65 @@ float同士がの誤差範囲内なら「true」を返す
    <member className="FSMAnimation">
    <functionName>CheckNowStateSameType</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾝのス・ｽe・ｽ[・ｽg・ｽﾆ難ｿｽ・ｽ・ｽ・ｽ・ｽﾞゑｿｽ・ｽ・ｽ・ｽm・ｽF・ｽ・ｽ・ｽ・ｽ
+現在のステートと同じ種類かを確認する
    </explanations>
    </member>
    <member className="FSMAnimation">
    <functionName>SetNextAnimationMove</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌア・ｽj・ｽ・ｽ・ｽ[・ｽV・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ[・ｽu・ｽﾝ抵ｿｽ
+次のアニメーションムーブ設定
    </explanations>
    </member>
    <member className="FSMAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV
+更新
    </explanations>
    </member>
    <member className="FSMAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="FSMAnimation">
    <functionName>Initilize</functionName>
    <explanations>
-・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
+初期化
    </explanations>
    </member>
    <member className="IStateAnimation">
    <functionName>CheckSimilarAnimationType</functionName>
    <explanations>
-・ｽA・ｽj・ｽ・ｽ・ｽ[・ｽV・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾞゑｿｽ・ｽ・ｽ・ｽﾞなゑｿｽutrue・ｽv・ｽ・ｽﾔゑｿｽ
+アニメーション種類が同類なら「true」を返す
    </explanations>
    <returnExplanation>
-・ｽ・ｽ・ｽﾞゑｿｽ
+同類か
    </returnExplanation>
-   <variable0>・ｽA・ｽj・ｽ・ｽ・ｽ[・ｽV・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ</variable0>
+   <variable0>アニメーション種類</variable0>
    </member>
    <member className="IStateAnimation">
    <functionName>Update</functionName>
    <explanations>
-・ｽX・ｽV
+更新
    </explanations>
    </member>
    <member className="IStateAnimation">
    <functionName>GetNextState</functionName>
    <explanations>
-・ｽ・ｽ・ｽﾌス・ｽe・ｽ[・ｽg・ｽ・ｽ・ｽ謫ｾ・ｽ・ｽ・ｽ・ｽ
+次のステートを取得する
    </explanations>
    </member>
    <member className="IStateAnimation">
    <functionName>Finalize</functionName>
    <explanations>
-・ｽI・ｽ・ｽ
+終了
    </explanations>
    </member>
    <member className="IStateAnimation">
    <functionName>Initilize</functionName>
    <explanations>
-・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
+初期化
    </explanations>
    </member>
    <member className="Animation">

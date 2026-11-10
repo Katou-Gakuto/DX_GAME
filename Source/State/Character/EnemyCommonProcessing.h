@@ -34,11 +34,11 @@ private:
 		ENEMY_DRAW_MAX
 	};
 
-    // ï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½
+//     // ƒGƒlƒ~[ƒXƒe[ƒgŽí—Þ
     STATE_ENEMY_TYPE meEnemyType;
 
-    // TODO: ï¿½`ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½è‚»ï¿½ï¿½ï¿½Éï¿½ï¿½nï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½Ý’è‚·ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ÌŽQï¿½Æ‚ï¿½Ø‚é‚±ï¿½Æ‚Åíœï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½s
-    // ï¿½`ï¿½ï¿½pï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
+//     // TODO: •`‰æƒ}ƒl[ƒWƒƒ[ì‚è‚»‚±‚Éî•ñ“n‚µƒnƒ“ƒhƒ‹‚ðÝ’è‚·‚é@‚»‚ê‚ÌŽQÆ‚ðØ‚é‚±‚Æ‚Åíœ‚µ‚½‚±‚Æ‚É‚·‚és
+//     // •`‰æ—pƒXƒNƒŠ[ƒ“ƒnƒ“ƒhƒ‹
     int mnScreenHandle;
 
     const DisplaySize SCREEN_SIZES[(int)STATE_ENEMY_TYPE::MAX] = //{ {Vector2(70.0f, 40.0f), 0 }, {Vector2(70.0f, 80.0f), 0,}};
@@ -54,15 +54,15 @@ protected:
     EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType);
     ~EnemyCommonProcessing();
 
-    /*ï¿½íœï¿½ï¿½ï¿½ï¿½*/
+//     /*íœˆ—*/
     void EnemyCommonProcessingData_Delete();
 
-    /*ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½`ï¿½ï¿½*/
+//     /*ƒGƒlƒ~[î•ñ•`‰æ*/
     void EnemyDataDraw(CharacterBase *enemy);
 
-    /*ï¿½Gï¿½lï¿½~ï¿½[ï¿½æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+//     /*ƒGƒlƒ~[‰æ‘œƒf[ƒ^‰Šú‰»*/
     void EnemyGraphDataInitialize(CharacterBase *enemy);
 
-    /*HPï¿½`ï¿½ï¿½ï¿½ï¿½Ý’ï¿½*/
+//     /*HP•`‰æî•ñÝ’è*/
     void HpDrawInfoSetup(CharacterBase *enemy);
 };

@@ -10,14 +10,14 @@ class KeyState;
 class SceneManager;
 class TargetManager;
 
-// TODO: UIï¿½Å‚ï¿½ï¿½
+// TODO: UI‚Å‚â‚é
 
 /*------------------*/
-/*     ï¿½yï¿½ï¿½ï¿½Êz     */
+// /*     y‹¤’Êz     */
 /*------------------*/
 
 /*--------------------------*/
-/*ï¿½yï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½z*/
+// /*yƒ}ƒbƒvƒGƒlƒ~[ƒXƒe[ƒgz*/
 /*--------------------------*/
 
 // enum class MAP_ENEMY_STATE
@@ -27,95 +27,95 @@ class TargetManager;
 // };
 
 /*----------------------------*/
-/*ï¿½yï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½ï¿½pï¿½z*/
+// /*yƒ}ƒbƒvƒGƒlƒ~[‹¤’Êˆ——pz*/
 /*----------------------------*/
 class MapEnemyProcess : public EnemyCommonProcessing
 {
 protected:
-	// ï¿½Lï¿½[ï¿½Xï¿½eï¿½[ï¿½g
+// 	// ƒL[ƒXƒe[ƒg
 	KeyState* mpKeyState;
 
-	// ï¿½Vï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+// 	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
 	SceneManager* mpSceneManager;
 
-	// ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+// 	// ƒ^[ƒQƒbƒgƒ}ƒl[ƒWƒƒ[
 	TargetManager* mpTargetManager;
 
-	// ï¿½}ï¿½bï¿½vï¿½Vï¿½[ï¿½ï¿½
+// 	// ƒ}ƒbƒvƒV[ƒ“
 	SCENE meMapScene;
 
 protected:
 	MapEnemyProcess(SCENE mapScene);
 	~MapEnemyProcess() = default;
 
-	/*ï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½utrueï¿½v*/
+// 	/*ˆê’è”ÍˆÍ“à‚ÉƒvƒŒƒCƒ„[ƒ^[ƒQƒbƒg‚ª‚¢‚é‚È‚çutruev*/
 	bool PlayerTargetCheck(CharacterBase* character, float range);
 
-	/*ï¿½ï¿½ï¿½S*/
+// 	/*€–S*/
 	void MapEnemyDeath(CharacterBase* character);
 
-	/*ï¿½}ï¿½bï¿½vï¿½Vï¿½[ï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½*/
+// 	/*ƒ}ƒbƒvƒV[ƒ“‚ÉˆÚ“®ŠJn‚·‚é*/
 	void SetMapScene(CharacterBase* character);
 };
 
 /*--------------------------*/
-/*     ï¿½yï¿½ï¿½{ï¿½Xï¿½eï¿½[ï¿½gï¿½z     */
+// /*     yŠî–{ƒXƒe[ƒgz     */
 /*--------------------------*/
 
 /*----------------------------*/
-/*ï¿½yIdleï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½eï¿½[ï¿½gï¿½z*/
+// /*yIdleƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
 /*----------------------------*/
 class IdleMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ê‡ï¿½ï¿½ stateChangeCriterias ï¿½ï¿½nï¿½ï¿½
+	// FIXME: ??„‘o??????J???????n?????? stateChangeCriterias ??n??
 	IdleMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
 	~IdleMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-	/*ï¿½Xï¿½V*/
+// 	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*ï¿½ÅIï¿½Xï¿½V*/
+// 	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*ï¿½`ï¿½ï¿½*/
+// 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 	void Death(CharacterBase* character) override;
 };
 
 /*--------------------------------*/
-/*ï¿½yï¿½eï¿½ï¿½ï¿½bï¿½vï¿½}ï¿½bï¿½vï¿½Gï¿½lï¿½~ï¿½[ï¿½eï¿½[ï¿½gï¿½z*/
+// /*yƒeƒƒbƒvƒ}ƒbƒvƒGƒlƒ~[ƒe[ƒgz*/
 /*--------------------------------*/
 class TelopMapEnemyState : public IStateCharacter, public MapEnemyProcess
 {
 public:
-	// FIXME: ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Å‘Jï¿½Úï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ê‡ï¿½ï¿½ stateChangeCriterias ï¿½ï¿½nï¿½ï¿½
+	// FIXME: ??„‘o??????J???????n?????? stateChangeCriterias ??n??
 	TelopMapEnemyState(SCENE mapScene, std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias = {});
 	~TelopMapEnemyState() = default;
 
 	void Finalize(CharacterBase* character) override { EnemyCommonProcessingData_Delete();}
 
-	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½*/
+// 	/*‚±‚Ìó‘Ô‚É“ü‚Á‚½‚Ìˆ—*/
 	void OnEnter(CharacterBase* character, STATE_TYPE_CHARACTER preState) override;
-	/*ï¿½ï¿½ï¿½Ìï¿½Ô‚ï¿½ï¿½oï¿½éï¿½Ìï¿½ï¿½ï¿½*/
+// 	/*‚±‚Ìó‘Ô‚ğo‚é‚Ìˆ—*/
 	void OnExit(CharacterBase* character, STATE_TYPE_CHARACTER nextState) override;
 	STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) override;
 
-	/*ï¿½Xï¿½V*/
+// 	/*XV*/
 	void Update(CharacterBase* character) override;
 
-	/*ï¿½ÅIï¿½Xï¿½V*/
+// 	/*ÅIXV*/
 	void LastUpdate(CharacterBase* character) override;
 
-	/*ï¿½`ï¿½ï¿½*/
+// 	/*•`‰æ*/
 	void Draw(CharacterBase* character) override;
 	void Death(CharacterBase* character) override;
 };

@@ -167,14 +167,14 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 }
 }
 
-// // ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬
+// // ƒAƒjƒƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“ì¬
 // FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
 // {
-// 	// FSMï¿½ï¿½ï¿½ï¿½
+// 	// FSM¶¬
 // 	FSMAnimation* fsm = new FSMAnimation();
 	
-// 	// HACK: ï¿½êï¿½Iï¿½ï¿½nullï¿½Å‚Í‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½
-// 	// ï¿½Kï¿½vï¿½Ïï¿½ï¿½æ“¾
+// 	// HACK: ˆê“I‚Énull‚Å‚Í‚¶‚¢‚Ä‚é
+// 	// •K—v•Ï”æ“¾
 // 	std::vector<AnimationDatas*> animationDatas;
 // 	std::vector<ModelBase*> modelBases;
 // 	animationDatas.clear();
@@ -184,7 +184,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		animationDatas = animation->GetAnimationDatas();
 // 		modelBases = animation->GetModelsController()->GetModelList();
 		
-// 		// ï¿½Tï¿½Cï¿½Yï¿½İ’ï¿½
+// 		// ƒTƒCƒYİ’è
 // 		fsm->IncreaseAnimationStateSize((int)animationDatas.size());
 // 	}
 // 	else
@@ -239,7 +239,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 
 // 			StateNormalAttackInAnimationController* stateNormalAttackInAnimationController = new StateNormalAttackInAnimationController();
 // 			fsm->RegisterState(stateNormalAttackInAnimationController);
-// 			stateNormalAttackInAnimationController->SetAddEndTime(1000);// TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½Ï‚ï¿½ï¿½ï¿½
+// 			stateNormalAttackInAnimationController->SetAddEndTime(1000);// TODO: ‰½‚©‚µŒ`‚ğ•Ï‚¦‚é
 // 			fsm->RegisterState(new StateNormalAttackOutAnimationController());
 // 			break;
 // 		}
@@ -281,16 +281,16 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		break;
 // 	}
 
-// 	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½
+// 	// ƒ‚ƒfƒ‹‚Ì”•ªİ’è‚·‚é
 // 	for (int i = 0; i < loadAnimationData.size(); i++)
 // 	{
 // 		std::map<ANIMATION_TYPE, IStateAnimation*> setStateMap;
 
 // 		for (int j = 0; j < loadAnimationData[i].size(); j++)
 // 		{
-// 			// TODO: ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½switchï¿½ï¿½ï¿½Ì’ï¿½ï¿½gï¿½È’Pï¿½É‚Å‚ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒeƒ“ƒvƒŒ[ƒg‚Åswitch•ª‚Ì’†gŠÈ’P‚É‚Å‚«‚é‹C‚ª‚·‚é
 // 			ANIMATION_TYPE setModelType = animationDatas[i]->animDatas[loadAnimationData[i][j].animationType].modelType;
-// 			// ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½
+// 			// ƒAƒjƒƒVƒ‡ƒ“ƒXƒe[ƒg¶¬
 // 			switch (setModelType)
 // 			{
 // 			case ANIMATION_TYPE::NONE:
@@ -305,7 +305,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			case ANIMATION_TYPE::MV1_MODEL:
 // 				if (setStateMap.find(setModelType) == setStateMap.end())
 // 				{
-// 					// HACK: ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å’è‚·ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 					// HACK: ŠO•”‚©‚çŒÅ’è‚·‚éƒtƒŒ[ƒ€‚Ì–¼‘O‚ğæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 					StateMVOneAnimation* stateMVOneAnimation = new StateMVOneAnimation(modelBases[i]->GetHandle(), "root");
 // 					stateMVOneAnimation->SetModelBase(modelBases[i]);
 // 					setStateMap[setModelType] = stateMVOneAnimation;
@@ -315,7 +315,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			case ANIMATION_TYPE::MV1_MODEL_MOVE:
 // 				if (setStateMap.find(setModelType) == setStateMap.end())
 // 				{
-// 					// HACK: ï¿½ï¿½ï¿½İ’ï¿½
+// 					// HACK: ‰¼İ’è
 // 					StateMVOneOperationAnimation* stateMVOneOperationAnimation = new StateMVOneOperationAnimation(modelBases[i]->GetHandle(), VGet(00.0f, 00.0f, 00.0f), VGet(10.0f, 0.0f, 0.0f), VGet(0.0f, 0.0f, 0.0f));
 // 					stateMVOneOperationAnimation->SetModelBase(modelBases[i]);
 // 					setStateMap[setModelType] = stateMVOneOperationAnimation;
@@ -372,13 +372,13 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		fsm->SetAnimationStateDatas(i, setStateMap);
 // 	}
 
-// 	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// ‰Šú‰»
 // 	fsm->Initilize(animation);
 
 // 	return fsm;
 // }
 
-// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ì¬
+// // ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ì¬
 // AnimationDatas* UtilFactorys::AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData)
 // {
 // 	AnimationDatas* animationDataMap = new AnimationDatas();
@@ -396,38 +396,38 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 // 			break;
 
 // 		case ANIMATION_TYPE::MV1_MODEL:
-// 			// ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
+// 			// ƒAƒjƒƒVƒ‡ƒ““Y‚¦šİ’è
 // 			animationData.number = loadAnimationData[i].animationIndex;
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 // 			break;
 
 // 		case ANIMATION_TYPE::MV1_MODEL_MOVE:
 // 		case ANIMATION_TYPE::MV1_MODEL_ONLY:
-// 			// ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
+// 			// ƒAƒjƒƒVƒ‡ƒ““Ç‚İ‚İ
 // 			animationData.number = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(loadAnimationData[i].animationPath);
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 // 			break;
 
 // 		case ANIMATION_TYPE::EFFECT:
-// 			// ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½æ“¾
+// 			// ƒGƒtƒFƒNƒgƒŠƒ\[ƒXæ“¾
 // 			animationData.number = Master::mpResourceManager->GetEffectResource()->GetResourceHandle(loadAnimationData[i].animationPath, &loadAnimationData[i].size);
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;		
 // 			break;
 
@@ -436,7 +436,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;	
 // 			break;
 
@@ -444,11 +444,11 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			animationData.loopFlag = loadAnimationData[i].animationLoopFlag;
 // 			animationData.modelType = loadAnimationData[i].modelType;
 
-// 			// ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½İ’ï¿½
+// 			// ƒuƒŒƒ“ƒhİ’è
 // 			animationData.blendMode = loadAnimationData[i].blendMode;
 // 			animationData.blendParameter = loadAnimationData[i].blendParameter;
 
-// 			// ï¿½İ’ï¿½
+// 			// İ’è
 // 			animationDataMap->animDatas[loadAnimationData[i].animationType] = animationData;
 // 			break;
 // 		}
@@ -457,7 +457,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 	return animationDataMap;
 // }
 
-// /*ï¿½Ç‚İï¿½ï¿½İ—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ì¬*/
+// /*“Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ì¬*/
 // std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(Animation* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER number)
 // {
 // 	std::vector<LoadAnimationData> loadAnimationData;
@@ -473,7 +473,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			loadAnimaData.modelType = ANIMATION_TYPE::MV1_MODEL;
 // 			loadAnimationData.push_back(loadAnimaData);
 // 		}
-// 		// HACK: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 		// HACK: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 // 		loadAnimationData[0].animationLoopFlag = true;
 // 		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::WALK;
@@ -489,7 +489,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::WALK, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::JUMP_IN, 0);
@@ -508,7 +508,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			loadAnimaData.modelType = ANIMATION_TYPE::MV1_MODEL_ONLY;
 // 			loadAnimationData.push_back(loadAnimaData);
 // 		}
-// 		// HACK: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 		// HACK: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 // 		loadAnimationData[0].animationLoopFlag = true;
 // 		loadAnimationData[0].animationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/robotSphere@anim_Idle_Loop_S.mv1";
@@ -552,11 +552,11 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::WALK, 0);
 // 			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN,  2040/*(60 / 0.5) * 17*/);
-// 			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*ï¿½ï¿½]ï¿½ï¿½*/);
+// 			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 	20400 /*(6 / 0.5) * 17 * 1/*‰ñ“]”*/);
 // 			// animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_OUT, 1632/*(48 / 0.5) * 17*/);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_IN, 2040);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK, 2040);
@@ -581,7 +581,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			loadAnimaData.animationPath = "";
 // 			loadAnimationData.push_back(loadAnimaData);
 // 		}
-// 		// HACK: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 		// HACK: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
 // 		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
@@ -594,7 +594,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 		
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN, 2088);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 3650);
@@ -613,7 +613,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			loadAnimaData.animationPath = "";
 // 			loadAnimationData.push_back(loadAnimaData);
 // 		}
-// 		// HACK: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 		// HACK: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
 // 		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
@@ -645,7 +645,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 			loadAnimaData.animationPath = "";
 // 			loadAnimationData.push_back(loadAnimaData);
 // 		}
-// 		// HACK: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+// 		// HACK: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
 // 		loadAnimationData[0].animationType = ANIMATION_MOVE_TYPE::IDLE;
 		
 // 		loadAnimationData[1].animationType = ANIMATION_MOVE_TYPE::ATTACK_IN;
@@ -659,7 +659,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 		
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK_IN, 2024);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::ATTACK, 2040);
@@ -686,7 +686,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 		
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 0);
@@ -713,7 +713,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 		
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 0);
@@ -746,7 +746,7 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 		
 // 		if (animation != nullptr)
 // 		{
-// 			// TODO: ï¿½fï¿½[ï¿½^ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŸï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 			// TODO: ƒf[ƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾‚Å‚«‚éŒ`®‚É‚µ‚½‚¢ ƒAƒjƒƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚çŸ‚És‚­‚Ì‚à’Ç‰Á‚µ‚½‚¢
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::IDLE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, 0);
 // 			animation->SetAnimationTime(ANIMATION_MOVE_TYPE::FADE_OUT, 25 * 17);
@@ -759,25 +759,25 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 	return loadAnimationData;
 // }
 
-// // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì¬
+// // ƒLƒƒƒ‰ƒNƒ^UŒ‚î•ñì¬
 // CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType)
 // {
-// 	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// ‰Šú‰»
 // 	CharacterAttackData characterAttackData;
 // 	characterAttackData.attackDataNumber = -1;
 // 	characterAttackData.modelController = new ModelsControllerBase();
 // 	characterAttackData.animation = new Animation();
-// 	// ï¿½Ïï¿½ï¿½Éƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½â‚·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// •Ï”‚Éƒ|ƒCƒ“ƒ^‚ğ“n‚µŒ©‚â‚·‚­‚·‚é
 //     ModelsControllerBase* modelController = characterAttackData.modelController;
 //     Animation* animation = characterAttackData.animation;
-// 	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// ƒ‚ƒfƒ‹‰Šú‰»
 // 	modelController->Initilize();
-// 	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 	// ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»
 // 	animation->Initilize();
 // 	animation->SetModelsController(modelController);
 	
 
-// 	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½İ’ï¿½
+// 	// ƒ‚ƒfƒ‹İ’è
 // 	switch (factoryNumberAttackMethod)
 // 	{
 // 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
@@ -803,14 +803,14 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		break;
 // 	}
 
-// 	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
+// 	// ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
 //  	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 // 	switch (factoryNumberAttackMethod)
 // 	{
 // 	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
-// 	 	// ï¿½Ç‚İï¿½ï¿½İ—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½İ’ï¿½
+// 	 	// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
 // 	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK));
-// 	 	// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½İ’ï¿½
+// 	 	// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
 // 	 	animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK, setcharacterLoadAnimationData));
 // 		break;
 	
@@ -818,9 +818,9 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		switch (factoryNumberModelType)
 // 		{
 // 		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
-// 		 	// ï¿½Ç‚İï¿½ï¿½İ—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½İ’ï¿½
+// 		 	// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
 // 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL));
-// 			// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½İ’ï¿½
+// 			// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
 // 			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL, setcharacterLoadAnimationData));
 // 			break;
 // 		}
@@ -830,9 +830,9 @@ OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
 // 		switch (factoryNumberModelType)
 // 		{
 // 		case CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT:
-// 		 	// ï¿½Ç‚İï¿½ï¿½İ—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½İ’ï¿½
+// 		 	// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
 // 			setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK));
-// 			// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½İ’ï¿½
+// 			// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
 // 			animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK, setcharacterLoadAnimationData));
 // 			break;
 // 		}
@@ -1072,7 +1072,7 @@ CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DA
 // 	return characterAttackData;
 // }
 
-// ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬
+// ƒJƒƒ‰—LŒÀó‘Ôƒ}ƒVƒ“ì¬
 FSMCamera* UtilFactorys::FSMCameraFactory()
 {
 	FSMCamera* fsnCamera = new FSMCamera();
@@ -1085,7 +1085,7 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 	return fsnCamera;
 }
 
-// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬
+// ƒLƒƒƒ‰ƒNƒ^[—LŒÀó‘Ôƒ}ƒVƒ“ì¬
 FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene)
 {
 	FSMCharacter* fsmCharacter = new FSMCharacter();
@@ -1163,7 +1163,7 @@ FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARAC
 	return fsmCharacter;
 }
 
-// ï¿½Vï¿½[ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬
+// ƒV[ƒ“—LŒÀó‘Ôƒ}ƒVƒ“ì¬
 FSMScene* UtilFactorys::FSMSceneFactory(SceneManager* sceneManager)
 {
 	FSMScene* fsmScene = new FSMScene();
@@ -1176,7 +1176,7 @@ FSMScene* UtilFactorys::FSMSceneFactory(SceneManager* sceneManager)
 	fsmScene->RegisterState(new ResultScene());
 	fsmScene->RegisterState(new GameOverScene());
 
-	// TODO: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// TODO: ‰¼À‘•
 	fsmScene->RegisterState(new GameLoopScene());
 	fsmScene->RegisterState(new BattleLoopScene());
 
@@ -1187,23 +1187,23 @@ FSMScene* UtilFactorys::FSMSceneFactory(SceneManager* sceneManager)
 	return fsmScene;
 }
 
-// UIï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬
+// UI—LŒÀó‘Ôƒ}ƒVƒ“ì¬
 FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 {
 	FSMUI* fsmUI = new FSMUI();
 
-		/*ï¿½Eï¿½yï¿½Eï¿½^ï¿½Eï¿½Cï¿½Eï¿½gï¿½Eï¿½ï¿½Eï¿½UIï¿½Eï¿½z*/
+/* ƒ^ƒCƒgƒ‹UI */
 	switch (number)
 	{
 		/*----------------*/
-		/*ï¿½yï¿½^ï¿½Cï¿½gï¿½ï¿½UIï¿½z*/
+		/*yƒ^ƒCƒgƒ‹UIz*/
 		/*----------------*/
 	case UI_FACTORY_NUMBER::TITLE:
 	{
 		fsmUI->RegisterState(new StartTitleUIState({
 			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
 		}));
-		// ï¿½Iï¿½ï¿½Xï¿½eï¿½[ï¿½g
+		// ‘I‘ğƒXƒe[ƒg
 		fsmUI->RegisterState(new SelectTitleUIState({
 			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NEW_DATA_CHECK_TITLE_UI_STATE, UtilStateConditionFunction::AndFunc<UIBase, 
 				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
@@ -1224,10 +1224,10 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::START_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>),
 		}));
 		
-		// ï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½É–ß‚ï¿½ï¿½ï¿½
+		// ƒZƒŒƒNƒg‚É–ß‚éğŒ
 		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoSelectCriteria = STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>);
 		
-		// ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½g
+		// ‘I‘ğ‚µ‚½ƒXƒe[ƒg
 		fsmUI->RegisterState(new NewDataCheckTitleUIState({
     		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::CHARACTER_SELECT_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
 			backspaceKey_GoSelectCriteria,
@@ -1250,10 +1250,10 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 			backspaceKey_GoSelectCriteria,
 		}));
 
-		// ï¿½ï¿½Â‘Oï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½É–ß‚ï¿½ï¿½ï¿½
+		// ˆê‚Â‘O‚ÌƒXƒe[ƒg‚É–ß‚éğŒ
 		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoBackStateCriteria = STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::NEW_DATA_CHECK_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>);
 		
-		// ï¿½fï¿½[ï¿½^ï¿½ì¬ï¿½ÖŒW
+		// ƒf[ƒ^ì¬ŠÖŒW
 		fsmUI->RegisterState(new CharacterSelectTitleUIState({
 				STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::PLAYER_NAME_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
 				backspaceKey_GoBackStateCriteria,
@@ -1268,7 +1268,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 			backspaceKey_GoBackStateCriteria,
 		}));
 
-		// ï¿½İ’ï¿½ÖŒW
+		// İ’èŠÖŒW
 		backspaceKey_GoBackStateCriteria.ChangeNumber = STATE_TYPE_UI::SETTING_TITLE_UI_STATE;
 		fsmUI->RegisterState(new ScreenSizeTitleUIState({
 			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::SETTING_TITLE_UI_STATE, UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>),
@@ -1281,12 +1281,12 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		}));
 
 		fsmUI->SetCurrentState(STATE_TYPE_UI::START_TITLE_UI_STATE, ui);
-		/*ï¿½Eï¿½yï¿½Eï¿½Qï¿½Eï¿½[ï¿½Eï¿½ï¿½Eï¿½UIï¿½Eï¿½z*/
+/* ƒQ[ƒ€’†UI */
 	}
 		break;
 
 		/*--------------*/
-		/*ï¿½yï¿½Qï¿½[ï¿½ï¿½UIï¿½z*/
+		/*yƒQ[ƒ€UIz*/
 		/*--------------*/
 	case UI_FACTORY_NUMBER::TOWN:
 	case UI_FACTORY_NUMBER::DUNGEON:
@@ -1316,7 +1316,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 				>),
 		}));
 
-		// ï¿½|ï¿½[ï¿½Yï¿½Ö–ß‚ï¿½ï¿½ï¿½
+		// ƒ|[ƒY‚Ö–ß‚éğŒ
 		STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase> backspaceKey_GoPauseCriteria(STATE_TYPE_UI::PAUSE_GAME_UI_STATE,
 			UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::BACK_SPACE, UIBase>
 		);
@@ -1324,10 +1324,10 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new DrawPlayerDataState({backspaceKey_GoPauseCriteria,}));
 		//fsmUI->RegisterState(new ConfigChangeState({pauseBackCriteria,}));
 		fsmUI->RegisterState(new GameEndState({
-			// GameEndStateï¿½Í‘Jï¿½Úï¿½ï¿½ï¿½È‚ï¿½
+			// GameEndState‚Í‘JˆÚğŒ‚È‚µ
 		}));
 
-		// ï¿½Rï¿½ï¿½ï¿½tï¿½Bï¿½O
+		// ƒRƒ“ƒtƒBƒO
 		fsmUI->RegisterState(new ConfigSelectState({
 			STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>(STATE_TYPE_UI::MINIMAP_CONFIG_STATE, UtilStateConditionFunction::AndFunc<UIBase,
 				UtilStateConditionFunction::KeyDownStateCondition_KeyBoardSpecial<KEY_BOARD_SPECIAL::ENTER, UIBase>,
@@ -1350,13 +1350,13 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new CameraConfigState({backspaceKey_GoConfigSelectCriteria,}));
 		
 
-		/*ï¿½Eï¿½yï¿½Eï¿½ï¿½Eï¿½ï¿½Eï¿½Uï¿½Eï¿½ï¿½Eï¿½ï¿½Eï¿½gUIï¿½Eï¿½z*/
+/* ƒŠƒUƒ‹ƒgUI */
 		//fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
 		fsmUI->SetCurrentState(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, ui);
 		break;
 
 		/*----------------*/
-		/*ï¿½yï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½gUIï¿½z*/
+		/*yƒŠƒUƒ‹ƒgUIz*/
 		/*----------------*/
 	case UI_FACTORY_NUMBER::RESULT:
 		fsmUI->RegisterState(new StartResultUIState({}));
@@ -1368,8 +1368,8 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 	return fsmUI;
 }
 
-// INPROGRESS: ï¿½ï¿½Æ’ï¿½
-// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ì¬
+// INPROGRESS: ì‹Æ’†
+// ƒ‚ƒfƒ‹ì¬
 ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size, std::vector<DRAW_GRAPH_DATA>* drawData)
 {
 	auto initializeModel = [position, angle, size](ModelBase* model)
@@ -1434,7 +1434,7 @@ void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR an
 	model->SetSize(size);
 }
 
-// ï¿½Uï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ì¬
+// UŒ‚ƒf[ƒ^ì¬
 std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber)
 {
 	std::map<ATTACK_METHOD_TYPE, AttackData>  attackDatas;
@@ -1470,16 +1470,16 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 	return attackDatas;
 }
 /*
-	// ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½İ’ï¿½
+	// ƒ‚ƒfƒ‹İ’è
 	character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Robot/robotSphere.mv1", UtilCalc::VZero, UtilCalc::VZero, VScale(UtilCalc::VOne, 20.0f)));
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
-	// ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
+	// ƒAƒjƒƒVƒ‡ƒ“İ’è
 	 {
 		Animation* characterAnimation = character->GetAnimation();
 		std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-		// ï¿½Ç‚İï¿½ï¿½İ—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½İ’ï¿½
+		// “Ç‚İ‚İ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^İ’è
 		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
-		// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½İ’ï¿½
+		// ƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“İ’è
 		characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
 	 }
 */

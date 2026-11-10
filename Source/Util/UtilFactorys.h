@@ -26,10 +26,10 @@ class ModelsControllerBase;
 class SceneManager;
 class UIBase;
 
-// ï¿½Aï¿½jï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[
+// ƒAƒjƒƒVƒ‡ƒ“ì¬ƒiƒ“ƒo[
 enum class ANIMATION_FACTORY_NUMBER
 {
-	// TODO: ï¿½ï¿½ï¿½ÅƒVï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+	// TODO: ‰¼‚ÅƒV[ƒ“–¼‚Å‚â‚Á‚Ä‚¢‚é
 	TOWN = 0,
 	DUNGEON,
 	BATTLE,
@@ -39,7 +39,7 @@ enum class ANIMATION_FACTORY_NUMBER
 	UI
 };
 
-// ï¿½Ç‚Ýï¿½ï¿½Ý—pï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[
+// “Ç‚Ýž‚Ý—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ƒiƒ“ƒo[
 enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER
 {
 	HUMAN = 0,
@@ -56,7 +56,7 @@ enum class LOAD_ANIMATION_DATA_FACTORY_NUMBER
 	UI_FADE,
 };
 
-// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[
+// ƒLƒƒƒ‰ƒNƒ^[ì¬ƒiƒ“ƒo[
 enum class CHARACTER_FACTORY_NUMBER
 {
 	TOWN_PLAYER = 0,
@@ -68,7 +68,7 @@ enum class CHARACTER_FACTORY_NUMBER
 	BOSS_ENEMY,
 };
 
-// UIï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[
+// UIì¬ƒiƒ“ƒo[
 enum class UI_FACTORY_NUMBER
 {
 	TITLE = 0,
@@ -78,20 +78,20 @@ enum class UI_FACTORY_NUMBER
 	RESULT,
 };
 
-// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½
+// ƒLƒƒƒ‰ƒNƒ^[UŒ‚î•ñì¬ƒiƒ“ƒo[UŒ‚Ží—Þ
 enum class CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD
 {
 	SHOT_NORMAL = 0,
 	SHOT_SPCEIAL,
 	JUMP_ATTACK,
 };
-// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½
+// ƒLƒƒƒ‰ƒNƒ^[UŒ‚î•ñì¬ƒiƒ“ƒo[ƒ‚ƒfƒ‹Ží—Þ
 enum class CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE
 {
 	HUMAN = 0,
 	ROBOT,
 };
-// ï¿½ì¬ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½
+// ì¬ƒiƒ“ƒo[ƒIƒuƒWƒFƒNƒgUŒ‚Ží—Þ
 enum class ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE
 {
 	SHOT
@@ -99,40 +99,40 @@ enum class ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE
 
 namespace UtilFactorys
 {
-	/// <summary>ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ‰é™çŠ¶æ…‹ãƒžã‚·ãƒ³ã‚’ä½œæˆ</summary>
+	/// <summary>ƒ‚ƒfƒ‹‚ÌƒAƒjƒ[ƒVƒ‡ƒ“—LŒÀó‘Ôƒ}ƒVƒ“‚ðì¬</summary>
 	FSMAnimation* FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, const std::vector<LoadAnimationData>& loadAnimationData);
 
-	/// <summary>èª­ã¿è¾¼ã¿ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ</summary>
+	/// <summary>“Ç‚Ýž‚Ý—pƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ðì¬</summary>
 	std::vector<LoadAnimationData> LoadAnimationDataFactory(LOAD_ANIMATION_DATA_FACTORY_NUMBER number);
 
-	/// <summary>ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì¬</summary>
+	/// <summary>?L?????N?^?U??????</summary>
 	CharacterAttackData CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType);
 
-	// TODO: ï¿½ï¿½ï¿½
-	/// <summary>ï¿½Sï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Æƒï¿½ï¿½fï¿½ï¿½ï¿½Ý’ï¿½</summary>
+	// TODO: ì‚é
+	/// <summary>‘SƒAƒjƒ[ƒVƒ‡ƒ“‚Æƒ‚ƒfƒ‹Ý’è</summary>
 	//void SettingAnimationAndModelFactory(Animation* animation, ModelsControllerBase* modelsController, std::string filePath, objectType, characterType, moveType);
 
-	/*ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬*/
+	/*ƒJƒƒ‰—LŒÀó‘Ôƒ}ƒVƒ“ì¬*/
 	FSMCamera* FSMCameraFactory();
 
-	/*ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬*/
+	/*ƒLƒƒƒ‰ƒNƒ^[—LŒÀó‘Ôƒ}ƒVƒ“ì¬*/
 	FSMCharacter* FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene = SCENE::NONE);
 
-	/*ï¿½Vï¿½[ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬*/
+	/*ƒV[ƒ“—LŒÀó‘Ôƒ}ƒVƒ“ì¬*/
 	FSMScene* FSMSceneFactory(SceneManager* sceneManager);
 
-	/*UIï¿½Lï¿½ï¿½ï¿½ï¿½Ôƒ}ï¿½Vï¿½ï¿½ï¿½ì¬*/
+	/*UI—LŒÀó‘Ôƒ}ƒVƒ“ì¬*/
 	FSMUI* FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number);
 
-	/// <summary>ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ì¬</summary>
-	/// <param name="type">ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½</param>
-	/// <param name="modelPath">ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½W</param>
-	/// <returns>ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½xï¿½[ï¿½X</returns>
+	/// <summary>ƒ‚ƒfƒ‹ì¬</summary>
+	/// <param name="type">ƒ‚ƒfƒ‹Ží—Þ</param>
+	/// <param name="modelPath">ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹À•W</param>
+	/// <returns>ƒ‚ƒfƒ‹ƒx[ƒX</returns>
 	ModelBase* ModelFactory(ANIMATION_TYPE type, std::string modelPath, VECTOR position = UtilCalc::VZero, VECTOR angle = UtilCalc::VZero, VECTOR size = UtilCalc::VOne, std::vector<DRAW_GRAPH_DATA>* drawData = nullptr);
 
-	/// <summary>ï¿½Uï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ì¬</summary>
+	/// <summary>UŒ‚ƒf[ƒ^ì¬</summary>
 	std::map<ATTACK_METHOD_TYPE, AttackData> AttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE modelTypeFactoryNumber, ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE objectAttackTypeFactoryNumber);
 
-	/// <summary>ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ê’uï¿½Ý’ï¿½</summary>
+	/// <summary>ƒ‚ƒfƒ‹ˆÊ’uÝ’è</summary>
 	void SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size);
 }

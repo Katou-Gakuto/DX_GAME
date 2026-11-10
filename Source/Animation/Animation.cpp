@@ -11,13 +11,13 @@ Animation::Animation()
 {
 }
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ‰Šú‰»
 void Animation::Initilize(ModelBase* model)
 {
     mpModel = model;
 }
 
-// ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ƒV[ƒ“ÅI‰Šú‰»
 void Animation::SceneLastInitilize()
 {
     if (mpFsm == nullptr)
@@ -29,7 +29,7 @@ void Animation::SceneLastInitilize()
     mpFsm->StateInitilize(&mstStateData);
 }
 
-// ï¿½Iï¿½ï¿½
+// I—¹
 void Animation::Finalize()
 {
     if (mpFsm != nullptr)
@@ -40,7 +40,7 @@ void Animation::Finalize()
     }
 }
 
-// ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V
+// ?A?j???[?V?????X?V
 void Animation::Update()
 {
     if (mpFsm != nullptr)
@@ -49,7 +49,7 @@ void Animation::Update()
     }
 }
 
-// ï¿½ï¿½ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½uï¿½İ’ï¿½
+// ????A?j???[?V???????[?u???
 void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 {
     if (mpFsm != nullptr)
@@ -72,7 +72,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     mpFsm = nullptr;
 // }
 
-// // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// // ??????
 // void Animation::Initilize()
 // {
 //     if (mpFsm != nullptr)
@@ -81,13 +81,13 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     }
 // }
 
-// // ï¿½Vï¿½[ï¿½ï¿½ï¿½ÅIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// // ?V?[????I??????
 // void Animation::SceneLastInitilize()
 // {
 //     Update();
 // }
 
-// // ï¿½Iï¿½ï¿½
+// // ?I??
 // void Animation::Finalize()
 // {
 //     if (mpFsm != nullptr)
@@ -100,7 +100,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 //     mstAnimationDatas.clear();
 // }
 
-// // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Vï¿½eï¿½Xï¿½g
+// // ?A?j???[?V?????X?V?e?X?g
 // void Animation::Update()
 // {
 //     if (mpFsm != nullptr)

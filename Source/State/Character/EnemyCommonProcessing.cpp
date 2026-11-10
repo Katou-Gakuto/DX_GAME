@@ -21,7 +21,7 @@ EnemyCommonProcessing::EnemyCommonProcessing(STATE_ENEMY_TYPE enemyType)
     mnScreenHandle = MakeScreen(SCREEN_SIZES[(int)enemyType].x, SCREEN_SIZES[(int)enemyType].y, TRUE);
 }
 
-// ÔøΩÌèúÔøΩÔøΩÔøΩÔøΩ
+// çÌèúèàóù
 EnemyCommonProcessing::~EnemyCommonProcessing()
 {
     EnemyCommonProcessingData_Delete();
@@ -36,7 +36,7 @@ void EnemyCommonProcessing::EnemyCommonProcessingData_Delete()
     }
 }
 
-// ÔøΩGÔøΩlÔøΩ~ÔøΩ[ÔøΩÔøΩÔøΩ`ÔøΩÔøΩ
+// ÉGÉlÉ~Å[èÓïÒï`âÊ
 void EnemyCommonProcessing::EnemyDataDraw(CharacterBase *enemy)
 {
     if (mnScreenHandle == -1)
@@ -44,11 +44,11 @@ void EnemyCommonProcessing::EnemyDataDraw(CharacterBase *enemy)
         return;
     }
 
-    // ÔøΩ`ÔøΩÔøΩKÔøΩvÔøΩfÔøΩ[ÔøΩ^ÔøΩÊìæ
+//     // ï`âÊïKóvÉfÅ[É^éÊìæ
     VECTOR setCharacterPos = VAdd(enemy->GetPos(), VGet(0, enemy->GetSize().y * 250.0f, 0));
     DrawManager* drawManager = Master::mpDrawManager;
 
-    // ÔøΩ`ÔøΩÔøΩÔøΩÔøΩœçX
+//     // ï`âÊêÊÇïœçX
     SetDrawScreen(mnScreenHandle);
     ClearDrawScreen();
 
@@ -56,49 +56,49 @@ void EnemyCommonProcessing::EnemyDataDraw(CharacterBase *enemy)
     // {
     // case STATE_ENEMY_TYPE::MAP_ENEMY:
 
-    //     // // ÔøΩyÔøΩÔøΩ
+//     //     // // ìyë‰
     //     // DrawBoxAA(0, 0, mnScreenSizeX, 40, GetColor(255, 255, 255), TRUE);
     //     // DrawBoxAA(2, 2, mnScreenSizeX - 2, 40 - 2, GetColor(0, 0, 0), TRUE);
 
-    //     // ÔøΩÔøΩÔøΩO
+//     //     // ñºëO
     //     //DrawExtendGraph(0, 0, 100, 50, mnNameHandle, TRUE);
     //     DrawFormatString(5, 21, GetColor(255, 255, 255), "%s", "mstrName.c_str()");
 
-    //     // ÔøΩÔøΩÔøΩxÔøΩÔøΩ
+//     //     // ÉåÉxÉã
     //     DrawBox(1, 1, 65, 20, GetColor(255, 255, 255), TRUE);
     //     DrawBox(3, 3, 63, 18, GetColor(0, 0, 0), TRUE);
     //     DrawFormatString(5, 3, GetColor(255, 255, 255), "Lv.%d", enemy->GetStatus()->level);
     //     break;
 
     // case STATE_ENEMY_TYPE::BATTLE_ENEMY:
-    //     // ÔøΩ`ÔøΩÔøΩKÔøΩvÔøΩfÔøΩ[ÔøΩ^ÔøΩÊìæ
+//     //     // ï`âÊïKóvÉfÅ[É^éÊìæ
     //     VECTOR setCharacterPos = VAdd(enemy->GetPos(), VGet(0, enemy->GetSize().y * 250.0f, 0));
 
-    //     // ÔøΩ`ÔøΩÔøΩÔøΩÔøΩœçX
+//     //     // ï`âÊêÊÇïœçX
     //     SetDrawScreen(mnScreenHandle);
     //     ClearDrawScreen();
 
-    //     // // ÔøΩyÔøΩÔøΩ
+//     //     // // ìyë‰
     //     // DrawBoxAA(0, 0, mnScreenSizeX, 40, GetColor(255, 255, 255), TRUE);
     //     // DrawBoxAA(2, 2, mnScreenSizeX - 2, 40 - 2, GetColor(0, 0, 0), TRUE);
 
-    //     // ÔøΩÔøΩÔøΩO
+//     //     // ñºëO
     //     //DrawExtendGraph(0, 0, 100, 50, mnNameHandle, TRUE);
     //     DrawFormatString(5, 21, GetColor(255, 255, 255), "%s", "mstrName.c_str()");
 
-    //     // ÔøΩÔøΩÔøΩxÔøΩÔøΩ
+//     //     // ÉåÉxÉã
     //     DrawBox(1, 1, 65, 20, GetColor(255, 255, 255), TRUE);
     //     DrawBox(3, 3, 63, 18, GetColor(0, 0, 0), TRUE);
     //     DrawFormatString(5, 3, GetColor(255, 255, 255), "Lv.%d", enemy->GetStatus()->level);
 
-    //     // ÔøΩyÔøΩÔøΩ
+//     //     // ìyë‰
     //     DrawBoxAA(0, 40, SCREEN_SIZES[(int)meEnemyType].x, 80, GetColor(255, 255, 255), TRUE);
     //     DrawBoxAA(2, 42, SCREEN_SIZES[(int)meEnemyType].x - 2, 80 - 2, GetColor(0, 0, 0), TRUE);
 
-    //     // HPÔøΩÔøΩÔøΩÔøΩ
+//     //     // HPï∂éö
     //     DrawFormatString(5, 43, GetColor(255, 255, 255), "HP:%d", enemy->GetStatus()->hp);
 
-    //     // HPÔøΩoÔøΩ[
+//     //     // HPÉoÅ[
     //     DrawBox(5, 60, SCREEN_SIZES[(int)meEnemyType].x - 5, 75, GetColor(255, 255, 255), TRUE);
     //     DrawBox(8, 63, SCREEN_SIZES[(int)meEnemyType].x - 8, 72, GetColor(0, 0, 0), TRUE);
     //     DrawBox(8, 63, ((SCREEN_SIZES[(int)meEnemyType].x - 16) * (static_cast<float>(enemy->GetStatus()->hp) / static_cast<float>(enemy->GetStatus()->maxHp))) + 8, 72, GetColor(255, 0, 0), TRUE);
@@ -111,14 +111,14 @@ void EnemyCommonProcessing::EnemyDataDraw(CharacterBase *enemy)
     }
 
     SetDrawScreen(DX_SCREEN_BACK);
-    // 3DÔøΩJÔøΩÔøΩÔøΩÔøΩÔøΩ›íÔøΩ
+//     // 3DÉJÉÅÉâê›íË
     Master::mpGameManager->GetCameraManager()->Draw();
     SetDrawBlendMode(DX_BLENDMODE_PMA_ALPHA, 128);
     DrawBillboard3D(setCharacterPos, 0.5f, 0.0f, 200.0f, 0.0f, mnScreenHandle, TRUE);
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
 
-// ÔøΩGÔøΩlÔøΩ~ÔøΩ[ÔøΩÊëúÔøΩfÔøΩ[ÔøΩ^ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
+// ÉGÉlÉ~Å[âÊëúÉfÅ[É^èâä˙âª
 void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 {
 	if (enemy->GetStateDrawData().size() <= 0)
@@ -149,7 +149,7 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 			drawDatas[ENEMY_DRAW_TYPE::HP_RIGHT].drawGraphData.handle = Master::mpResourceManager->GetGraphResource()->GetResourceHandle(ResourceManager::msResourceFile + "2D/HpBarRed.png");
 		}
 
-        // ÔøΩOÔøΩg
+//         // äOòg
         {
 			DRAW_DATA drawData = DRAW_DATA();
 			drawData.drawFlag = false;
@@ -168,10 +168,10 @@ void EnemyCommonProcessing::EnemyGraphDataInitialize(CharacterBase *enemy)
 	}
 }
 
-// HPÔøΩ`ÔøΩÔøΩÔøΩÔøΩ›íÔøΩ
+// HPï`âÊèÓïÒê›íË
 void EnemyCommonProcessing::HpDrawInfoSetup(CharacterBase *enemy)
 {
-	// ÔøΩÔøΩÔøΩfÔøΩÔøΩÔøΩÕï`ÔøΩÊÇµÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩﬂÇÔøΩÔøΩÔøΩ»äOÔøΩñ≥åÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
+// 	// ÉÇÉfÉãÇÕï`âÊÇµÇΩÇ¢ÇΩÇﬂÇªÇÍà»äOÇñ≥å¯âªÇ∑ÇÈ
 	if (Master::mpStopManager->GetStopFlag(STOP_FLAG_TYPE::GAME_OBJECT_UI_DRAW))
 	{
 		return;

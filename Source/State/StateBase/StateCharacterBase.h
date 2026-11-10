@@ -8,30 +8,30 @@
 class CharacterBase;
 
 /*------------------------------*/
-/*ï¿½yï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½xï¿½[ï¿½Xï¿½z*/
+/*yƒLƒƒƒ‰ƒNƒ^[ƒXƒe[ƒgƒx[ƒXz*/
 /*------------------------------*/
 class IStateCharacter : public StateBase<STATE_TYPE_CHARACTER, CharacterBase>
 {
 protected:
 	STATE_TYPE_CHARACTER meMyStateType;
-	// // ï¿½ï¿½ï¿½ÊƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Xï¿½eï¿½[ï¿½g
+	// // ‹¤’ÊƒLƒƒƒ‰ƒNƒ^[ƒXƒe[ƒg
 	// enum COMMON_CHARACTER_STATE
 	// {
-	// 	IDEL_COMMON_CHARACTER_STATE = 0,	// ï¿½Êï¿½
-	// 	MOVE_COMMON_CHARACTER_STATE,	// ï¿½Ú“ï¿½
-	// 	FLINCH_COMMON_CHARACTER_STATE,	// ï¿½ï¿½ï¿½ï¿½
-	// 	AVOID_COMMON_CHARACTER_STATE,	// ï¿½ï¿½ï¿½
-	// 	GUARD_COMMON_CHARACTER_STATE,	// ï¿½Kï¿½[ï¿½h
-	// 	FALL_DOWN_COMMON_CHARACTER_STATE,	// ï¿½|ï¿½ï¿½ï¿½
+	// 	IDEL_COMMON_CHARACTER_STATE = 0,	// ’Êí
+	// 	MOVE_COMMON_CHARACTER_STATE,	// ˆÚ“®
+	// 	FLINCH_COMMON_CHARACTER_STATE,	// ‹¯‚Ý
+	// 	AVOID_COMMON_CHARACTER_STATE,	// ‰ñ”ð
+	// 	GUARD_COMMON_CHARACTER_STATE,	// ƒK[ƒh
+	// 	FALL_DOWN_COMMON_CHARACTER_STATE,	// “|‚ê‚é
 
-	// 	ATTACK_COMMON_CHARACTER_STATE,	// ï¿½Uï¿½ï¿½
-	// 	NORMAL_ATTACK_COMMON_CHARACTER_STATE,	// ï¿½Êï¿½Uï¿½ï¿½
-	// 	SPCEIAL_ONE_ATTACK_COMMON_CHARACTER_STATE,	// ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ 1
-	// 	SPCEIAL_TWO_ATTACK_COMMON_CHARACTER_STATE,	// ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ 1
+	// 	ATTACK_COMMON_CHARACTER_STATE,	// UŒ‚
+	// 	NORMAL_ATTACK_COMMON_CHARACTER_STATE,	// ’ÊíUŒ‚
+	// 	SPCEIAL_ONE_ATTACK_COMMON_CHARACTER_STATE,	// “ÁŽêUŒ‚ 1
+	// 	SPCEIAL_TWO_ATTACK_COMMON_CHARACTER_STATE,	// “ÁŽêUŒ‚ 1
 
-	// 	COMMON_CHARACTER_STATE_MAX	// ï¿½ï¿½ï¿½ÊƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Xï¿½eï¿½[ï¿½gï¿½Å‘å”
+	// 	COMMON_CHARACTER_STATE_MAX	// ‹¤’ÊƒLƒƒƒ‰ƒNƒ^[ƒXƒe[ƒgÅ‘å”
 	// };
-	// // INPROGRESS: ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½ÏX
+	// // INPROGRESS: ƒXƒe[ƒgðŒ‹à—j‰ß‚¬‚½‚ç•ÏX
 
 public:
 	IStateCharacter(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_CHARACTER, CharacterBase>> stateChangeCriterias, STATE_TYPE_CHARACTER stateNumber, STATE_TYPE_CHARACTER stateType)
@@ -41,18 +41,18 @@ public:
 	}
 	virtual ~IStateCharacter() = default;
 
-	/// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
+	/// <summary>‰Šú‰»</summary>
 	virtual void Initilize(CharacterBase* character) {}
-	/// <summary>ï¿½Iï¿½ï¿½</summary>
+	/// <summary>I—¹</summary>
 	virtual void Finalize(CharacterBase* character) {}
 
 	
-	/*ï¿½Xï¿½V*/
+	/*XV*/
 	virtual void Update(CharacterBase* character) = 0;
-	/*ï¿½ÅIï¿½Xï¿½V*/
+	/*ÅIXV*/
 	virtual void LastUpdate(CharacterBase* character) = 0;
 
-	/*ï¿½`ï¿½ï¿½*/
+	/*•`‰æ*/
 	virtual void Draw(CharacterBase* character) = 0;
 
 	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) { return meMyStateType; }
@@ -64,7 +64,7 @@ public:
 
 	virtual void Death(CharacterBase* character) {}
 
-	/// <summary>ï¿½Xï¿½eï¿½[ï¿½gï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ç‚µï¿½Ä‚ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½Å’ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ÞŽæ“¾</summary>
-	/// <returns>ï¿½Å’ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½</returns>
+	/// <summary>ƒXƒe[ƒgƒiƒ“ƒo[‚¸‚ç‚µ‚Ä‚àŽg‚¦‚éŒÅ’èƒXƒe[ƒgŽí—ÞŽæ“¾</summary>
+	/// <returns>ŒÅ’èƒXƒe[ƒgŽí—Þ</returns>
 	STATE_TYPE_CHARACTER GetMyStateType() { return meMyStateType; }
 };

@@ -262,7 +262,7 @@ void CharacterBase::StartAttck(ATTACK_METHOD_TYPE attackMethodType)
 	//return nullptr;
 }
 
-// 攻撃リセット
+// ?U?????Z?b?g
 void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 {
 	if (mmCharacterAttackDatas.find(attackMethodType) != mmCharacterAttackDatas.end())
@@ -551,6 +551,10 @@ void AttackBase::Initilize()
 // シーン最終初期化
 void AttackBase::SceneLastInitilize()
 {
+	if (mpModelBase != nullptr)
+	{
+		mpModelBase->SceneLastInitilize();
+	}
 	AttackSceneLastInitilize();
 }
 
@@ -667,6 +671,12 @@ void UIBase::Initilize()
 // シーン最終初期化
 void UIBase::SceneLastInitilize()
 {
+	for (int i = 0; i < mstUIDrawModels.size(); i++)
+	{	
+		// 更新
+		mstUIDrawModels[i].mpUIModel->SceneLastInitilize();
+	}
+
 	UISceneLastInitilize();
 }
 
@@ -937,7 +947,6 @@ void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDa
 
 	for (int i = 0; i < mpModelsController->GetModelList().size(); i++)
 	{
-		// 読み込み用アニメーションデータ設定
 		ModelBase* model = mpModelsController->GetModelList()[i];
 		Animation* animation = model->GetAnimation();
 		if (animation == nullptr)
@@ -950,7 +959,7 @@ void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDa
 		animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::UI, loadAnimationData));
 	}
 
-	// 描画するステート設定
+	// ?`????X?e?[?g???
 	if (drawNumber.size() == 0)
 	{
 		// TODO: 全ステートのステートで追加するから後でちょうどいい数字を変数で取得できるようにする
@@ -1250,7 +1259,7 @@ void UIBase::DefaultDecision()
 // デフォルト終了確認処理
 void UIBase::DefaultClose()
 {
-	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ここ修正すべき
+	if (mpKeyState->GetKeyDownAllController(CONTROLLER_KEY_TYPE::B, true)// TODO: ?????C???????
 		// ||
 		// ((mpKeyState->GetSpecialKeyDown_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) || mpKeyState->GetWordKeyDown_Board(KEY_BOARD_WORD::Z)) && 
 		// (mpKeyState->GetSpecialKey_Board(KEY_BOARD_SPECIAL::CTRL_LEFT_AND_RIGHT) && mpKeyState->GetWordKey_Board(KEY_BOARD_WORD::Z)))

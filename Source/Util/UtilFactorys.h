@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <vector>
 
 #include "ResourceData.h"
 
@@ -98,22 +99,11 @@ enum class ATTACK_DATA_FACTORY__OBJECT_ATTACK_TYPE
 
 namespace UtilFactorys
 {
-	// TODO: 改善する
-	// HACK: 変数名変更する
-	/// <summary>アニメーション有限状態マシン作成</summary>
-	/// <param name="animationData">アニメーション情報</param>
-	/// <param name="modelBases">モデル</param>
-	/// <returns>有限状態マシン</returns>
-	FSMAnimation* FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData);
+	/// <summary>モデルのアニメーション有限状態マシンを作成</summary>
+	FSMAnimation* FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, const std::vector<LoadAnimationData>& loadAnimationData);
 
-	/// <summary>アニメーションデータ作成</summary>
-	/// <param name="type">モデル種類</param>
-	/// <returns>アニメーションデータ</returns>
-	AnimationDatas* AnimationDataFactory(std::vector<LoadAnimationData> loadAnimationData);
-	
-	/// <summary>読み込み用アニメーションデータ作成</summary>
-	/// <param name="animation">アニメーション</param>
-	std::vector<LoadAnimationData> LoadAnimationDataFactory(Animation* animation, LOAD_ANIMATION_DATA_FACTORY_NUMBER nmber);
+	/// <summary>読み込み用アニメーションデータを作成</summary>
+	std::vector<LoadAnimationData> LoadAnimationDataFactory(LOAD_ANIMATION_DATA_FACTORY_NUMBER number);
 
 	/// <summary>キャラクタ攻撃情報作成</summary>
 	CharacterAttackData CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD factoryNumberAttackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE factoryNumberModelType);

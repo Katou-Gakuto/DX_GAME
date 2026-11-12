@@ -289,7 +289,7 @@ void CharacterBase::StopAttack(ATTACK_METHOD_TYPE attackMethodType)
 	// }
 }
 
-// 指定アニメーション中であるかを取得
+// ?w??A?j???[?V??????????????擾
 bool CharacterBase::CheckAnimationType(ANIMATION_TYPE animationType)
 {
 	if ((mpModelBase != nullptr) && (mpModelBase->GetAnimation() != nullptr))
@@ -935,14 +935,20 @@ void UIBase::AnimationSetting(LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDa
 {
     UIDrawModel uiDrawModel = UIDrawModel();
 
-	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
 	for (int i = 0; i < mpModelsController->GetModelList().size(); i++)
 	{
 		// 読み込み用アニメーションデータ設定
-		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(mpModelsController->GetModelList()[i]->GetAnimation(), ladoAnimationDataFactorynumber));
+		ModelBase* model = mpModelsController->GetModelList()[i];
+		Animation* animation = model->GetAnimation();
+		if (animation == nullptr)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			continue;
+		}
+
+		const std::vector<LoadAnimationData> loadAnimationData = UtilFactorys::LoadAnimationDataFactory(ladoAnimationDataFactorynumber);
+		animation->SetFsm(UtilFactorys::FSMAnimationFactory(animation, ANIMATION_FACTORY_NUMBER::UI, loadAnimationData));
 	}
-	// アニメーション有限状態マシン設定
-	//mstUIDrawModels[mnUIModelControllerCount].mpAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(mstUIDrawModels[mnUIModelControllerCount].mpAnimation, ANIMATION_FACTORY_NUMBER::UI, ladoAnimationDataFactorynumber, setcharacterLoadAnimationData));
 
 	// 描画するステート設定
 	if (drawNumber.size() == 0)

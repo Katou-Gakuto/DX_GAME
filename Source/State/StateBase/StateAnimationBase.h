@@ -16,6 +16,7 @@ public:
 	: StateBase(stateChangeCriterias, -1)
 	{
 	}
+	virtual ~IStateAnimation() = default;
 
 	/// <summary>初期化</summary>
 	virtual void Initilize(STATE_ANEMATION_DATA* stateAnimationData){}
@@ -76,7 +77,7 @@ public:
 // protected:
 // 	// アニメーションステート設定情報ナンバー
 // 	int mnAnimationStateSettingInfoNumber;
-// // 	// モデルベース
+// 	// モデルベース
 // // 	ModelBase* mpModelBase;
 
 
@@ -96,7 +97,7 @@ public:
 // 			if (stateChangeCriteriaData.ChangeFlag == nullptr)
 // 			{
 // 				Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::STATE_NULL_FUNCTION_FLAG);
-// 				DEBUG::SaveText("ステート未設定", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
+// DEBUG::SaveText("ステート未設定", DEBUG::DEBUG_MAP_TYPE::DEBUG_FAILURE_LOG);
 // 				return mStateNumber;
 // 			}
 // #endif

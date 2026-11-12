@@ -8,6 +8,8 @@
 class FSMAnimation : public FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>
 {
 public:
+	using FSMBase<IStateAnimation, int, STATE_ANEMATION_DATA>::RegisterState;
+
 	FSMAnimation();
 
     // ‰Šúİ’è‚ğŒÀ’è‚·‚é‚½‚ß‚ÉŒÄ‚Ño‚¹‚È‚¢‚æ‚¤‚É‚·‚é
@@ -19,6 +21,7 @@ public:
 
 	/// <summary>‰Šú‰»</summary>
     void Initilize(STATE_ANEMATION_DATA* stateAnimationData);
+	void StateInitilize(STATE_ANEMATION_DATA* stateAnimationData) override;
 	/// <summary>I—¹</summary>
 	void Finalize(STATE_ANEMATION_DATA* stateAnimationData);
 	

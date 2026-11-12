@@ -304,7 +304,7 @@ void TitleUIStateProcess::UIStringDraw(Vector2_Int pos, DisplaySize displaySize,
 /*----------------------*/
 
 StartTitleUIState::StartTitleUIState(std::vector<STATE_CHANGE_CRITERIA_DATA<STATE_TYPE_UI, UIBase>> stateChangeCriterias)
-: IStateUI(stateChangeCriterias, STATE_TYPE_UI::NORMAL_GAME_UI_STATE)
+: IStateUI(stateChangeCriterias, STATE_TYPE_UI::START_TITLE_UI_STATE)
 , TitleUIStateProcess(STATE_TYPE_UI::START_TITLE_UI_STATE)
 {
 }

@@ -20,6 +20,11 @@ void Animation::Initilize(ModelBase* model)
 // シーン最終初期化
 void Animation::SceneLastInitilize()
 {
+    if (mpFsm == nullptr)
+    {
+        return;
+    }
+
     mstStateData.animation = this;
     mpFsm->StateInitilize(&mstStateData);
 }
@@ -27,19 +32,30 @@ void Animation::SceneLastInitilize()
 // 終了
 void Animation::Finalize()
 {
-    mpFsm->Finalize(&mstStateData);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Finalize(&mstStateData);
+        delete mpFsm;
+        mpFsm = nullptr;
+    }
 }
 
 // アニメーション更新
 void Animation::Update()
 {
-    mpFsm->Update(&mstStateData);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->Update(&mstStateData);
+    }
 }
 
 // 次のアニメーションムーブ設定
 void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 {
-    mpFsm->SetNextAnimationMove(animatioMoveType);
+    if (mpFsm != nullptr)
+    {
+        mpFsm->SetNextAnimationMove(animatioMoveType);
+    }
 }
 
 
@@ -70,7 +86,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 // {
 //     Update();
 // }
-
+// 
 // // 終了
 // void Animation::Finalize()
 // {
@@ -83,7 +99,7 @@ void Animation::NextAnimationMoveSetting(ANIMATION_MOVE_TYPE animatioMoveType)
 
 //     mstAnimationDatas.clear();
 // }
-
+// 
 // // アニメーション更新テスト
 // void Animation::Update()
 // {

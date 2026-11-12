@@ -46,6 +46,7 @@ protected:
 
 public:
     State3DAnimationProcess();
+    explicit State3DAnimationProcess(int modelHandle);
     ~State3DAnimationProcess() = default;
 
     /// <summary>このステートのアニメーションデータ設定</summary>
@@ -106,7 +107,7 @@ private:
 class StateMVOneAnimation : public IStateAnimation, public State3DAnimationProcess
 {
 public:
-    StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, std::string fileName);
+    StateMVOneAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle, std::string fileName);
     ~StateMVOneAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -132,7 +133,7 @@ private:
 class StateMVOneOnlyAnimation : public IStateAnimation, public State3DAnimationProcess
 {
 public:
-    StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias);
+    StateMVOneOnlyAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, int modelHandle = -1);
     ~StateMVOneOnlyAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -177,7 +178,7 @@ private:
     VECTOR mvSize;
 
 public:
-    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero);
+    StateMVOneOperationAnimation(std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>> stateChangeCriterias, VECTOR changeVec = UtilCalc::VZero, VECTOR changeAngle = UtilCalc::VZero, VECTOR changeSize = UtilCalc::VZero, int modelHandle = -1);
     ~StateMVOneOperationAnimation() = default;
 
     /// <summary>この状態に入った時の処理</summary>
@@ -324,7 +325,7 @@ private:
 // #include "ModelBase.h"
 // #include "StateAnimation.h"
 // #include "UtilCalc.h"
-// // TODO: 3Dアニメーションと2Dアニメーションで分ける ステート設定時ナンバー設定
+// TODO: 3Dアニメーションと2Dアニメーションで分ける ステート設定時ナンバー設定
 
 // /*----------*/
 // /*【アニメーションステート共通処理】

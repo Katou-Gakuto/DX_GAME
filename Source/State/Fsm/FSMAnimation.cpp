@@ -13,14 +13,51 @@ void FSMAnimation::Initilize(STATE_ANEMATION_DATA* stateAnimationData)
 {
 }
 
+void FSMAnimation::StateInitilize(STATE_ANEMATION_DATA* stateAnimationData)
+{
+	FSMBase::StateInitilize(stateAnimationData);
+
+	if (mmStateMap.empty())
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+		return;
+	}
+
+	auto initialState = mmStateMap.find(mNextState);
+	if (initialState == mmStateMap.end())
+	{
+		initialState = mmStateMap.find(static_cast<int>(ANIMATION_MOVE_TYPE::IDLE));
+		if (initialState == mmStateMap.end())
+		{
+			initialState = mmStateMap.begin();
+		}
+	}
+
+	mNextState = initialState->first;
+	SetCurrentState(initialState->first, stateAnimationData);
+}
+
 // 終了
 void FSMAnimation::Finalize(STATE_ANEMATION_DATA* stateAnimationData)
 {
+	auto currentState = mmStateMap.find(mCurrentState);
+	if (currentState != mmStateMap.end())
+	{
+		currentState->second->OnExit(stateAnimationData, -1);
+		currentState->second->Finalize(stateAnimationData);
+	}
 }
 
 // 更新
 void FSMAnimation::Update(STATE_ANEMATION_DATA* stateAnimationData)
 {
+	if (mmStateMap.find(mCurrentState) == mmStateMap.end() ||
+		mmStateMap.find(mNextState) == mmStateMap.end())
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+		return;
+	}
+
 	stateAnimationData->nextState = mNextState;
 
 	CheckChangeState(stateAnimationData);
@@ -61,19 +98,19 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // {
 // }
 
-// // // 初期化
+// // 初期化
 // // void FSMAnimation::Initilize(Animation* animation)
 // // {
 // // 	mCurrentState = 0;
 
-// // 	// 新しいStateの開始処理
+// 	// 新しいStateの開始処理
 // // 	for (int i = 0; i < mmAnimationStates.size(); i++)
 // // 	{
 // // 		NewStateSetting(i, animation, ANIMATION_TYPE::NONE);
 // // 	}
 // // }
 
-// // 終了
+// 終了
 // void FSMAnimation::Finalize(Animation* animation)
 // {
 // 	// for (int i = 0; i < mmAnimationStates.size(); i++)
@@ -87,19 +124,19 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // 	// mmAnimationStates.clear();
 // }
 
-// // // サブ状態マップのサイズを増やす
+// // サブ状態マップのサイズを増やす
 // // void FSMAnimation::IncreaseAnimationStateSize(int size)
 // // {
 // // 	mmAnimationStates.resize(size);
 // // }
 
-// // // アニメーションステート情報設定
+// // アニメーションステート情報設定
 // // void FSMAnimation::SetAnimationStateDatas(int animationStateIndex, std::map<ANIMATION_TYPE, IStateAnimation*> animationStateMap)
 // // {
 // // 	mmAnimationStates[animationStateIndex] = animationStateMap;
 // // }
 
-// // 更新
+// 更新
 // void FSMAnimation::Update(Animation* animation, std::vector<AnimationDatas*> animationDatas)
 // {
 // 	// TODO: アニメーションもうちょっと詰めてから
@@ -129,13 +166,13 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // 	}
 // }
 
-// // 新しいステートを設定する
+// 新しいステートを設定する
 // void FSMAnimation::NewStateSetting(int animationIndex, Animation* animation, ANIMATION_TYPE oldModelType)
 // {
 // 	GetAnimationState(animationIndex, animation, mCurrentState)->OnEnter(animation, &animation->GetAnimationDatas()[animationIndex]->animDatas[mCurrentState], animation->GetAnimationDatas()[animationIndex], oldModelType);
 // }
 
-// // 次のステートが現在のステートと違うならステート変更処理をする
+// 次のステートが現在のステートと違うならステート変更処理をする
 // void FSMAnimation::ChangeState(int animationStateIndex, Animation* animation, ANIMATION_MOVE_TYPE oldAnimationType)
 // {
 // 	AnimationDatas* animationDatas = animation->GetAnimationDatas()[animationStateIndex];
@@ -147,7 +184,7 @@ void FSMAnimation::SetNextAnimationMove(ANIMATION_MOVE_TYPE animatioMoveType)
 // 	NewStateSetting(animationStateIndex, animation, animationDatas->animDatas[oldAnimationType].modelType);
 // }
 
-// // 現在のステート取得
+// 現在のステート取得
 // IStateAnimation* FSMAnimation::GetAnimationState(int index, Animation* animation, ANIMATION_MOVE_TYPE animationType)
 // {
 // 	return mmAnimationStates[index][animation->GetAnimationDatas()[index]->animDatas[animationType].modelType];

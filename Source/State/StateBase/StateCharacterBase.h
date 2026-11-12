@@ -39,7 +39,7 @@ public:
 	, meMyStateType(stateType)
 	{
 	}
-	~IStateCharacter() = default;
+	virtual ~IStateCharacter() = default;
 
 	/// <summary>初期化</summary>
 	virtual void Initilize(CharacterBase* character) {}
@@ -54,6 +54,15 @@ public:
 
 	/*描画*/
 	virtual void Draw(CharacterBase* character) = 0;
+
+	virtual STATE_TYPE_CHARACTER StateCheck(CharacterBase* character) { return meMyStateType; }
+
+	STATE_TYPE_CHARACTER GetNextState(CharacterBase* character) override
+	{
+		return StateCheck(character);
+	}
+
+	virtual void Death(CharacterBase* character) {}
 
 	/// <summary>ステートナンバーずらしても使える固定ステート種類取得</summary>
 	/// <returns>固定ステート種類</returns>

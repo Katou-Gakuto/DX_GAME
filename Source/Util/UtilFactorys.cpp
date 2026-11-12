@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -13,6 +14,7 @@
 
 #include "Master.h"
 
+#include "Animation.h"
 #include "CameraManager.h"
 #include "FSMAnimation.h"
 #include "FSMCamera.h"
@@ -47,6 +49,124 @@
 #include "UtilCalc.h"
 #include "UtilFactorys.h"
 #include "UtilStateConditionFunction.h"
+
+namespace
+{
+using AnimationCriteria = std::vector<STATE_CHANGE_CRITERIA_DATA<int, STATE_ANEMATION_DATA>>;
+
+template <typename StateType>
+class AnimationDataState : public StateType
+{
+private:
+	OneAnimationData mAnimationData;
+
+public:
+	AnimationDataState(const AnimationCriteria& criteria, const OneAnimationData& animationData)
+		: StateType(criteria)
+		, mAnimationData(animationData)
+	{
+	}
+
+	void OnEnter(STATE_ANEMATION_DATA* stateData, int previousState) override
+	{
+		stateData->nowAnimationData = &mAnimationData;
+		StateType::OnEnter(stateData, previousState);
+	}
+};
+
+class MV1ExternalAnimationState : public StateMVOneOnlyAnimation
+{
+private:
+	OneAnimationData mAnimationData;
+
+public:
+	MV1ExternalAnimationState(const AnimationCriteria& criteria, int modelHandle, const OneAnimationData& animationData)
+		: StateMVOneOnlyAnimation(criteria, modelHandle)
+		, mAnimationData(animationData)
+	{
+		SetMyAniamtionData(mAnimationData);
+	}
+
+	void OnEnter(STATE_ANEMATION_DATA* stateData, int previousState) override
+	{
+		stateData->nowAnimationData = &mAnimationData;
+		StateMVOneOnlyAnimation::OnEnter(stateData, previousState);
+	}
+};
+
+class MV1OperationAnimationState : public StateMVOneOperationAnimation
+{
+private:
+	OneAnimationData mAnimationData;
+
+public:
+	MV1OperationAnimationState(const AnimationCriteria& criteria, int modelHandle, const OneAnimationData& animationData)
+		: StateMVOneOperationAnimation(criteria, UtilCalc::VZero, UtilCalc::VZero, UtilCalc::VZero, modelHandle)
+		, mAnimationData(animationData)
+	{
+		SetMyAniamtionData(mAnimationData);
+	}
+
+	void OnEnter(STATE_ANEMATION_DATA* stateData, int previousState) override
+	{
+		stateData->nowAnimationData = &mAnimationData;
+		StateMVOneOperationAnimation::OnEnter(stateData, previousState);
+	}
+};
+
+bool IsAnimationMoveAllowed(ANIMATION_FACTORY_NUMBER factoryNumber, ANIMATION_MOVE_TYPE moveType)
+{
+	switch (factoryNumber)
+	{
+	case ANIMATION_FACTORY_NUMBER::TOWN:
+	case ANIMATION_FACTORY_NUMBER::DUNGEON:
+		return moveType == ANIMATION_MOVE_TYPE::IDLE || moveType == ANIMATION_MOVE_TYPE::WALK;
+	case ANIMATION_FACTORY_NUMBER::BATTLE:
+		return moveType != ANIMATION_MOVE_TYPE::DISPLAY_MOVE &&
+			moveType != ANIMATION_MOVE_TYPE::FADE_IN &&
+			moveType != ANIMATION_MOVE_TYPE::FADE_OUT;
+	case ANIMATION_FACTORY_NUMBER::SHOT_ATTACK:
+		return moveType == ANIMATION_MOVE_TYPE::IDLE ||
+			moveType == ANIMATION_MOVE_TYPE::ATTACK_IN ||
+			moveType == ANIMATION_MOVE_TYPE::ATTACK ||
+			moveType == ANIMATION_MOVE_TYPE::ATTACK_OUT;
+	case ANIMATION_FACTORY_NUMBER::UI:
+		return moveType == ANIMATION_MOVE_TYPE::IDLE ||
+			moveType == ANIMATION_MOVE_TYPE::DISPLAY_MOVE ||
+			moveType == ANIMATION_MOVE_TYPE::FADE_IN ||
+			moveType == ANIMATION_MOVE_TYPE::FADE_OUT;
+	}
+	return false;
+}
+
+OneAnimationData CreateOneAnimationData(const LoadAnimationData& source)
+{
+	OneAnimationData result{};
+	result.number = source.animationIndex;
+	result.loopFlag = source.animationLoopFlag;
+	result.modelType = source.modelType;
+	result.blendMode = source.blendMode;
+	result.blendParameter = source.blendParameter;
+
+	switch (source.modelType)
+	{
+	case ANIMATION_TYPE::MV1_MODEL_ONLY:
+	case ANIMATION_TYPE::MV1_MODEL_MOVE:
+		result.number = Master::mpResourceManager->Get3DModelResource()->GetResourceHandle(source.animationPath);
+		break;
+	case ANIMATION_TYPE::EFFECT:
+	{
+		float effectSize = source.size;
+		result.number = Master::mpResourceManager->GetEffectResource()->GetResourceHandle(source.animationPath, &effectSize);
+		break;
+	}
+	default:
+		break;
+	}
+
+	return result;
+}
+}
 
 // // アニメション有限状態マシン作成
 // FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER ladoAnimationDataFactorynumber, std::vector<std::vector<LoadAnimationData>> loadAnimationData)
@@ -720,24 +840,234 @@
 // 		break;
 // 	}
 
-// 	return characterAttackData;
-// }
-
-// NOTE: 既存の実装がコメントアウトされていたため、未定義シンボルがリンクされていた。
-// 簡易版として空の結果を返し、プロジェクトがビルド可能になるようにする。
-FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation*, ANIMATION_FACTORY_NUMBER, LOAD_ANIMATION_DATA_FACTORY_NUMBER, std::vector<std::vector<LoadAnimationData>>)
+std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(LOAD_ANIMATION_DATA_FACTORY_NUMBER number)
 {
-	return nullptr;
+	std::vector<LoadAnimationData> animationData;
+	auto add = [&animationData](ANIMATION_MOVE_TYPE moveType, ANIMATION_TYPE modelType, int index, bool loop, const std::string& path = std::string(), float size = 1.0f, int blendMode = 0, int blendParameter = 0)
+	{
+		LoadAnimationData data{};
+		data.animationType = moveType;
+		data.modelType = modelType;
+		data.animationIndex = index;
+		data.animationLoopFlag = loop;
+		data.animationPath = path;
+		data.size = size;
+		data.blendMode = blendMode;
+		data.blendParameter = blendParameter;
+		animationData.push_back(data);
+	};
+
+	const std::string robotAnimationPath = ResourceManager::msResourceFile + "3D/Robot/Animation/";
+	switch (number)
+	{
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::HUMAN:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::MV1_MODEL, 0, true);
+		add(ANIMATION_MOVE_TYPE::WALK, ANIMATION_TYPE::MV1_MODEL, 1, true);
+		add(ANIMATION_MOVE_TYPE::JUMP_IN, ANIMATION_TYPE::MV1_MODEL, 2, false);
+		add(ANIMATION_MOVE_TYPE::JUMP, ANIMATION_TYPE::MV1_MODEL, 3, false);
+		add(ANIMATION_MOVE_TYPE::JUMP_OUT, ANIMATION_TYPE::MV1_MODEL, 4, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK, ANIMATION_TYPE::MV1_MODEL, 5, false);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, true, robotAnimationPath + "robotSphere@anim_Idle_Loop_S.mv1");
+		add(ANIMATION_MOVE_TYPE::WALK, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, true, robotAnimationPath + "robotSphere@anim_open_Walk_Loop.mv1");
+		add(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_IN, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, false, robotAnimationPath + "robotSphere@anim_open_GoToRoll.mv1");
+		add(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK, ANIMATION_TYPE::MV1_MODEL_MOVE, 0, false, robotAnimationPath + "robotSphere@anim_cloed_Roll_Loop.mv1");
+		add(ANIMATION_MOVE_TYPE::SPCEIAL_ATTACK_OUT, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, false, robotAnimationPath + "robotSphere@anim_closed_StopRoll.mv1");
+		add(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_IN, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, false, robotAnimationPath + "robotSphere@anim_close.mv1");
+		add(ANIMATION_MOVE_TYPE::NORMAL_ATTACK_OUT, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, false, robotAnimationPath + "robotSphere@anim_closed_StopRoll.mv1");
+		add(ANIMATION_MOVE_TYPE::JUMP_ATTACK_IN, ANIMATION_TYPE::MV1_MODEL_ONLY, 0, false, robotAnimationPath + "robotSphere@anim_close.mv1");
+		add(ANIMATION_MOVE_TYPE::JUMP_ATTACK, ANIMATION_TYPE::MV1_MODEL_MOVE, 0, false, robotAnimationPath + "robotSphere@anim_cloed_Roll_Loop.mv1");
+		add(ANIMATION_MOVE_TYPE::JUMP_ATTACK_OUT, ANIMATION_TYPE::MV1_MODEL_MOVE, 0, false, robotAnimationPath + "robotSphere@anim_cloed_Roll_Loop.mv1");
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK_IN, ANIMATION_TYPE::EFFECT, -1, false, ResourceManager::msResourceFile + "Effect/Laser.efkefc");
+		add(ANIMATION_MOVE_TYPE::ATTACK, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK_OUT, ANIMATION_TYPE::NONE, -1, false);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK_IN, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK, ANIMATION_TYPE::EFFECT, -1, false, ResourceManager::msResourceFile + "Effect/drill.efkefc", 10.0f);
+		add(ANIMATION_MOVE_TYPE::ATTACK_OUT, ANIMATION_TYPE::NONE, -1, false);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK_IN, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK, ANIMATION_TYPE::NONE, -1, false);
+		add(ANIMATION_MOVE_TYPE::ATTACK_OUT, ANIMATION_TYPE::EFFECT, -1, false, ResourceManager::msResourceFile + "Effect/StairBroken.efkefc", 50.0f);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::GRAPH, -1, false);
+		add(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, ANIMATION_TYPE::GRAPH, -1, false);
+		add(ANIMATION_MOVE_TYPE::FADE_OUT, ANIMATION_TYPE::GRAPH, -1, false);
+		add(ANIMATION_MOVE_TYPE::FADE_IN, ANIMATION_TYPE::GRAPH, -1, false);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_BASE_MOVIE:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::MOVIE, -1, false);
+		add(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, ANIMATION_TYPE::MOVIE, -1, false);
+		add(ANIMATION_MOVE_TYPE::FADE_OUT, ANIMATION_TYPE::MOVIE, -1, false);
+		add(ANIMATION_MOVE_TYPE::FADE_IN, ANIMATION_TYPE::MOVIE, -1, false);
+		break;
+
+	case LOAD_ANIMATION_DATA_FACTORY_NUMBER::UI_FADE:
+		add(ANIMATION_MOVE_TYPE::IDLE, ANIMATION_TYPE::GRAPH, -1, false);
+		add(ANIMATION_MOVE_TYPE::DISPLAY_MOVE, ANIMATION_TYPE::GRAPH, -1, false);
+		add(ANIMATION_MOVE_TYPE::FADE_OUT, ANIMATION_TYPE::FADE, -1, false, std::string(), 1.0f, DX_BLENDMODE_ALPHA, 11);
+		add(ANIMATION_MOVE_TYPE::FADE_IN, ANIMATION_TYPE::FADE, -1, false, std::string(), 1.0f, DX_BLENDMODE_ALPHA, -11);
+		break;
+	}
+
+	return animationData;
 }
 
-std::vector<LoadAnimationData> UtilFactorys::LoadAnimationDataFactory(Animation*, LOAD_ANIMATION_DATA_FACTORY_NUMBER)
+FSMAnimation* UtilFactorys::FSMAnimationFactory(Animation* animation, ANIMATION_FACTORY_NUMBER animationFactoryNumber, const std::vector<LoadAnimationData>& loadAnimationData)
 {
-	return {};
+	if (animation == nullptr || animation->GetModel() == nullptr || loadAnimationData.empty())
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+		return nullptr;
+	}
+
+	FSMAnimation* fsm = new FSMAnimation();
+	const AnimationCriteria criteria;
+	const int modelHandle = animation->GetModel()->GetHandle();
+	std::set<int> registeredStates;
+
+	for (const LoadAnimationData& source : loadAnimationData)
+	{
+		if (!IsAnimationMoveAllowed(animationFactoryNumber, source.animationType))
+		{
+			continue;
+		}
+
+		const int stateNumber = static_cast<int>(source.animationType);
+		if (registeredStates.find(stateNumber) != registeredStates.end())
+		{
+			continue;
+		}
+
+		const OneAnimationData stateData = CreateOneAnimationData(source);
+		if ((source.modelType == ANIMATION_TYPE::MV1_MODEL ||
+			source.modelType == ANIMATION_TYPE::MV1_MODEL_ONLY ||
+			source.modelType == ANIMATION_TYPE::MV1_MODEL_MOVE) &&
+			(modelHandle < 0 || stateData.number < 0))
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			continue;
+		}
+		if (source.modelType == ANIMATION_TYPE::EFFECT && stateData.number < 0)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			continue;
+		}
+
+		IStateAnimation* state = nullptr;
+		switch (source.modelType)
+		{
+		case ANIMATION_TYPE::NONE:
+			state = new StateNoneAnimation(criteria);
+			break;
+		case ANIMATION_TYPE::MV1_MODEL:
+		{
+			StateMVOneAnimation* modelState = new StateMVOneAnimation(criteria, modelHandle, "root");
+			modelState->SetMyAniamtionData(stateData);
+			state = modelState;
+			break;
+		}
+		case ANIMATION_TYPE::MV1_MODEL_ONLY:
+			state = new MV1ExternalAnimationState(criteria, modelHandle, stateData);
+			break;
+		case ANIMATION_TYPE::MV1_MODEL_MOVE:
+			state = new MV1OperationAnimationState(criteria, modelHandle, stateData);
+			break;
+		case ANIMATION_TYPE::EFFECT:
+			state = new AnimationDataState<StateEffectAnimation>(criteria, stateData);
+			break;
+		case ANIMATION_TYPE::GRAPH:
+		case ANIMATION_TYPE::POLYGON_INDEXED:
+			state = new AnimationDataState<StateGraphAnimation>(criteria, stateData);
+			break;
+		case ANIMATION_TYPE::MOVIE:
+			state = new AnimationDataState<StateMovieAnimation>(criteria, stateData);
+			break;
+		case ANIMATION_TYPE::FADE:
+			state = new AnimationDataState<StateFadeGraphAnimation>(criteria, stateData);
+			break;
+		case ANIMATION_TYPE::DOT_WEEN:
+			state = new AnimationDataState<StateDOTweenAnimation>(criteria, stateData);
+			break;
+		}
+
+		if (state != nullptr)
+		{
+			registeredStates.insert(stateNumber);
+			fsm->RegisterState(stateNumber, state);
+		}
+	}
+
+	if (registeredStates.empty())
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+	}
+
+	return fsm;
 }
 
-CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE)
+CharacterAttackData UtilFactorys::CharacterAttackDataFactory(CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD attackMethod, CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE modelType)
 {
-	return CharacterAttackData();
+	CharacterAttackData result{};
+	result.attackDataNumber = -1;
+	result.modelBase = nullptr;
+
+	LOAD_ANIMATION_DATA_FACTORY_NUMBER loadNumber = LOAD_ANIMATION_DATA_FACTORY_NUMBER::SHOT_ATTACK;
+	VECTOR position = UtilCalc::VZero;
+	VECTOR size = VScale(UtilCalc::VOne, 100.0f);
+
+	switch (attackMethod)
+	{
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_NORMAL:
+		position = VGet(0.0f, 1.0f, 3.0f);
+		break;
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::SHOT_SPCEIAL:
+		if (modelType != CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			return result;
+		}
+		loadNumber = LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT_SPCEIAL;
+		size = VScale(UtilCalc::VOne, 20.0f);
+		break;
+	case CHARACTER_ATTACK_DATA_FACTORY__ATTACK_METHOD::JUMP_ATTACK:
+		if (modelType != CHARACTER_ATTACK_DATA_FACTORY__ANIMATION_TYPE::ROBOT)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			return result;
+		}
+		loadNumber = LOAD_ANIMATION_DATA_FACTORY_NUMBER::JUMP_ROBOT_ATTACK;
+		break;
+	default:
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+		return result;
+	}
+
+	result.modelBase = ModelFactory(ANIMATION_TYPE::EFFECT, std::string(), position, UtilCalc::VZero, size);
+	if (result.modelBase == nullptr || result.modelBase->GetAnimation() == nullptr)
+	{
+		Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+		return result;
+	}
+
+	const std::vector<LoadAnimationData> loadAnimationData = LoadAnimationDataFactory(loadNumber);
+	result.modelBase->GetAnimation()->SetFsm(FSMAnimationFactory(result.modelBase->GetAnimation(), ANIMATION_FACTORY_NUMBER::SHOT_ATTACK, loadAnimationData));
+	return result;
 }
 
 // カメラ有限状態マシン作成
@@ -754,32 +1084,80 @@ FSMCamera* UtilFactorys::FSMCameraFactory()
 }
 
 // キャラクター有限状態マシン作成
-// NOTE: StatePlayer.h / StateEnemy.h / StateMapEnemy.h は現在コメントアウト状態のため、
-// ここで未定義のステート型を直接生成するとビルド不能になる。
-// 一時的に空の FSM を返し、ステート定義が復活した時に差し替えられるようにする。
 FSMCharacter* UtilFactorys::FSMCharacterFactory(CharacterBase* character, CHARACTER_FACTORY_NUMBER number, SCENE mapScene)
 {
 	FSMCharacter* fsmCharacter = new FSMCharacter();
 
-	if (character != nullptr)
+	switch (number)
 	{
-		if (Master::mpGameManager != nullptr && Master::mpGameManager->GetTargetManager() != nullptr)
-		{
-			if (number == CHARACTER_FACTORY_NUMBER::TOWN_PLAYER ||
-				number == CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER ||
-				number == CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER)
-			{
-				Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
-			}
-			else
-			{
-				Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
-			}
-		}
+	case CHARACTER_FACTORY_NUMBER::TOWN_PLAYER:
+		fsmCharacter->RegisterState(new IdlePlayerState());
+		fsmCharacter->RegisterState(new MovePlayerState());
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::DUNGEON_PLAYER:
+		fsmCharacter->RegisterState(new IdlePlayerState());
+		fsmCharacter->RegisterState(new MovePlayerState());
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::BATTLE_PLAYER:
+		fsmCharacter->RegisterState(new IdleBattlePlayerState());
+		fsmCharacter->RegisterState(new MoveBattlePlayerState());
+		fsmCharacter->RegisterState(new NormalAttackPlayerState());
+		fsmCharacter->RegisterState(new SpceialAttackPlayerState());
+		fsmCharacter->RegisterState(new JumpAttackPlayerState());
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_PLAYER_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::PLAYER);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::MAP_ENEMY:
+		fsmCharacter->RegisterState(new IdleMapEnemyState(mapScene));
+		fsmCharacter->RegisterState(new TelopMapEnemyState(mapScene));
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_MAP_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::ENEMY:
+		fsmCharacter->RegisterState(new IdleEnemyState());
+		fsmCharacter->RegisterState(new MoveEnemyState());
+		fsmCharacter->RegisterState(new AttackInEnemyState());
+		fsmCharacter->RegisterState(new AttackEnemyState());
+		fsmCharacter->RegisterState(new EscapeEnemyState());
+		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
+		fsmCharacter->RegisterState(new RightAvoidEnemyState());
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
+		break;
+
+	case CHARACTER_FACTORY_NUMBER::BOSS_ENEMY:
+		fsmCharacter->RegisterState(new IdleEnemyState());
+		fsmCharacter->RegisterState(new MoveEnemyState());
+		fsmCharacter->RegisterState(new AttackInEnemyState());
+		fsmCharacter->RegisterState(new AttackEnemyState());
+		fsmCharacter->RegisterState(new EscapeEnemyState());
+		fsmCharacter->RegisterState(new LeftAvoidEnemyState());
+		fsmCharacter->RegisterState(new RightAvoidEnemyState());
+
+		fsmCharacter->SetCurrentState(STATE_TYPE_CHARACTER::IDLE_ENEMY_STATE, character);
+
+		Master::mpGameManager->GetTargetManager()->SetTarget(character, TARGET_TYPE::ENEMY);
+		break;
 	}
 
-	(void)mapScene;
-	(void)number;
 	return fsmCharacter;
 }
 
@@ -812,6 +1190,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 {
 	FSMUI* fsmUI = new FSMUI();
 
+/* タイトルUI */
 	switch (number)
 	{
 		/*----------------*/
@@ -900,6 +1279,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		}));
 
 		fsmUI->SetCurrentState(STATE_TYPE_UI::START_TITLE_UI_STATE, ui);
+/* ゲーム中UI */
 	}
 		break;
 
@@ -968,6 +1348,7 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 		fsmUI->RegisterState(new CameraConfigState({backspaceKey_GoConfigSelectCriteria,}));
 		
 
+/* リザルトUI */
 		//fsmUI->SetCurrentState((int)GAME_UI_STATE::START_GAME_UI_STAE, ui);
 		fsmUI->SetCurrentState(STATE_TYPE_UI::NORMAL_GAME_UI_STATE, ui);
 		break;
@@ -989,13 +1370,18 @@ FSMUI* UtilFactorys::FSMUIFactory(UIBase* ui, UI_FACTORY_NUMBER number)
 // モデル作成
 ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath, VECTOR position, VECTOR angle, VECTOR size, std::vector<DRAW_GRAPH_DATA>* drawData)
 {
+	auto initializeModel = [position, angle, size](ModelBase* model)
+	{
+		model->MyAnimationSetting(new Animation());
+		SetModelPosition(model, position, angle, size);
+		return model;
+	};
+
 	switch (type)
 	{
 	case ANIMATION_TYPE::POLYGON_INDEXED:
 	{
-		ModelPolygonIndexed* model = new ModelPolygonIndexed();
-		SetModelPosition(model, position, angle, size);
-		return model;
+		return initializeModel(new ModelPolygonIndexed());
 	}
 
 	case ANIMATION_TYPE::MV1_MODEL:
@@ -1003,38 +1389,42 @@ ModelBase* UtilFactorys::ModelFactory(ANIMATION_TYPE type, std::string modelPath
 	{
 		ModelMV1* model = new ModelMV1();
 		model->SetModelHandle(modelPath.c_str());
-		SetModelPosition(model, position, angle, size);
-		return model;
+		return initializeModel(model);
 	}
 
 	case ANIMATION_TYPE::EFFECT:
 	{
-		ModelEffect* model = new ModelEffect();
-		SetModelPosition(model, position, angle, size);
-		return model;
+		return initializeModel(new ModelEffect());
 	}
 
 	case ANIMATION_TYPE::GRAPH:
 	{
+		if (drawData == nullptr)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			return nullptr;
+		}
 		ModelGraph* model = new ModelGraph();
-		SetModelPosition(model, position, angle, size);
 		model->SetDrawDatas(*drawData);
-		return model;
+		return initializeModel(model);
 	}
 
 	case ANIMATION_TYPE::MOVIE:
 	{
+		if (drawData == nullptr)
+		{
+			Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
+			return nullptr;
+		}
 		ModelMovie* model = new ModelMovie();
-		SetModelPosition(model, position, angle, size);
 		model->SetDrawDatas(*drawData);
-		return model;
+		return initializeModel(model);
 	}
 	}
 
+	Master::mpEndManager->SetEndFlag(true, END_FLAG_NUMBER::ANIMATION_MISSING_FLAG);
 	return nullptr;
 }
-
-// モデル位置設定
 void UtilFactorys::SetModelPosition(ModelBase* model, VECTOR position, VECTOR angle, VECTOR size)
 {
 	model->SetPosition(position);
@@ -1083,11 +1473,11 @@ std::map<ATTACK_METHOD_TYPE, AttackData> UtilFactorys::AttackDataFactory(CHARACT
 	//character->GetModelsController()->AddModel(UtilFactorys::ModelFactory(ANIMATION_TYPE::MV1_MODEL, "../Resource/3D/Human/Hero.x"));
 	// アニメション設定
 	 {
-	 	Animation* characterAnimation = character->GetAnimation();
-	 	std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
-	 	// 読み込み用アニメーションデータ設定
-	 	setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
-	 	// アニメーション有限状態マシン設定
-	 	characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
+		Animation* characterAnimation = character->GetAnimation();
+		std::vector<std::vector<LoadAnimationData>> setcharacterLoadAnimationData;
+		// 読み込み用アニメーションデータ設定
+		setcharacterLoadAnimationData.push_back(UtilFactorys::LoadAnimationDataFactory(characterAnimation, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT));
+		// アニメーション有限状態マシン設定
+		characterAnimation->SetFsm(UtilFactorys::FSMAnimationFactory(characterAnimation, animationFactoryNumber, LOAD_ANIMATION_DATA_FACTORY_NUMBER::ROBOT, setcharacterLoadAnimationData));
 	 }
 */

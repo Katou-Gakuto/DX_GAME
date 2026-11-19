@@ -114,8 +114,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	Master::mpSoundManager->Initilize();
 
 	// ループ
-	while (!Master::mpEndManager->EndFlag()) {
-
+	while (!Master::mpEndManager->EndFlag())
+	{
 		// ローディング処理
 		if (Master::mpLoadingManager->GetLoadingFlag() && !Master::mpFadeManager->GetFadeFlag())
 		{

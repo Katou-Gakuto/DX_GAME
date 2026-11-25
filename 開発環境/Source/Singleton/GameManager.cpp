@@ -109,6 +109,8 @@ void GameManager::Initilize()
 // I—¹ˆ—
 void GameManager::Finailize()
 {
+    SetHookWinProc(NULL);
+
     mpDotWeenManager->Finailize();
     mpObjectManager->Finalize();
     

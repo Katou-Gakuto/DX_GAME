@@ -133,6 +133,7 @@ void ResourceManager::Finailize()
 		// mmGraphCount.clear();
 
 		delete mpGraphHandleContainer;
+		mpGraphHandleContainer = nullptr;
 
 		for (const std::pair<std::string, DIV_GRAPH_DATA>& divHandle : mmDivGraphHandle)
 		{
@@ -160,6 +161,7 @@ void ResourceManager::Finailize()
 			}
 		}
 		delete mpMovieHandleContainer;
+		mpMovieHandleContainer = nullptr;
 	}
 
 	{// サウンド
@@ -174,6 +176,7 @@ void ResourceManager::Finailize()
 			}
 		}
 		delete mpSoundHandleContainer;
+		mpSoundHandleContainer = nullptr;
 
 		for (std::pair<int, std::vector<int>> playSoundHandle : mpPlaySoundHandleContainer->GetHandleMap())
 		{
@@ -186,6 +189,7 @@ void ResourceManager::Finailize()
 			}
 		}
 		delete mpPlaySoundHandleContainer;
+		mpPlaySoundHandleContainer = nullptr;
 
 		for (std::pair<std::string, std::vector<int>> sound3DHandle : mp3DSoundHandleContainer->GetHandleMap())
 		{
@@ -198,6 +202,7 @@ void ResourceManager::Finailize()
 			}
 		}
 		delete mp3DSoundHandleContainer;
+		mp3DSoundHandleContainer = nullptr;
 
 		for (std::pair<int, std::vector<int>> playSound3DHandle : mpPlay3DSoundHandleContainer->GetHandleMap())
 		{
@@ -210,6 +215,7 @@ void ResourceManager::Finailize()
 			}
 		}
 		delete mpPlay3DSoundHandleContainer;
+		mpPlay3DSoundHandleContainer = nullptr;
 	}
 
 	{// エフェクト
@@ -1223,11 +1229,14 @@ void ResourceManager::PlayEffect(int handle, float speed)
 // 全エフェクト停止
 void ResourceManager::StopAllEfect()
 {
-	for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
+	if (mpEffectHandleContainer != nullptr)
 	{
-		for (int i = 1; i < effectHandle.second.size(); i++)
+		for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
 		{
-			StopEffect(effectHandle.second[i]);
+			for (int i = 1; i < effectHandle.second.size(); i++)
+			{
+				StopEffect(effectHandle.second[i]);
+			}
 		}
 	}
 }
@@ -1235,11 +1244,14 @@ void ResourceManager::StopAllEfect()
 // 全エフェクト再生開始
 void ResourceManager::PlayAllEfect()
 {
-	for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
+	if (mpEffectHandleContainer != nullptr)
 	{
-		for (int i = 1; i < effectHandle.second.size(); i++)
+		for (std::pair<std::string, std::vector<int>> effectHandle : mpEffectHandleContainer->GetHandleMap())
 		{
-			PlayEffect(effectHandle.second[i], 1.0f);
+			for (int i = 1; i < effectHandle.second.size(); i++)
+			{
+				PlayEffect(effectHandle.second[i], 1.0f);
+			}
 		}
 	}
 }
@@ -1279,6 +1291,7 @@ void ResourceManager::EffectFinailize()
     }
 
 	delete mpEffectHandleContainer;
+	mpEffectHandleContainer = nullptr;
     // mmEffectHandle.clear();
     // mmEffectHandle.clear();
     Effkseer_End();

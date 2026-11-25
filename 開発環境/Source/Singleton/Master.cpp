@@ -31,18 +31,32 @@ void Master::AllDelete()
 	
 	// çÌèú
 	delete mpDataManager;
+	mpDataManager = nullptr;
 	delete mpDrawManager;
+	mpDrawManager = nullptr;
 	delete mpEndManager;
+	mpEndManager = nullptr;
 	delete mpFadeManager;
+	mpFadeManager = nullptr;
 	delete mpGameManager;
+	mpGameManager = nullptr;
 	delete mpImguiManager;
+	mpImguiManager = nullptr;
 	delete mpKeyState;
+	mpKeyState = nullptr;
 	delete mpLoadingManager;
+	mpLoadingManager = nullptr;
 	delete mpResourceManager;
+	mpResourceManager = nullptr;
 	delete mpStageDataManager;
+	mpStageDataManager = nullptr;
 	delete mpStopManager;
+	mpStopManager = nullptr;
 	delete mpTelopManager;
+	mpTelopManager = nullptr;
 	delete mpTimeManager;
+	mpTimeManager = nullptr;
 
 	delete mpSoundManager;
+	mpSoundManager = nullptr;
 }

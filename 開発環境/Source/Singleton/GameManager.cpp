@@ -189,20 +189,32 @@ void GameManager::Draw()
 void GameManager::OnDeactivate()
 {
     // エフェクト
-    Master::mpResourceManager->StopAllEfect();
+    if (Master::mpResourceManager != nullptr)
+    {
+        Master::mpResourceManager->StopAllEfect();
+    }
 
     // 時間
-    Master::mpTimeManager->OnEnterBackground();
+    if (Master::mpTimeManager != nullptr)
+    {
+        Master::mpTimeManager->OnEnterBackground();
+    }
 }
 
 // 別アプリからこのアプリに移動
 void GameManager::OnActivate()
 {
     // エフェクト
-    Master::mpResourceManager->PlayAllEfect();
+    if (Master::mpResourceManager != nullptr)
+    {
+        Master::mpResourceManager->PlayAllEfect();
+    }
 
     // 時間
-    Master::mpTimeManager->OnReturnForeground();
+    if (Master::mpTimeManager != nullptr)
+    {
+        Master::mpTimeManager->OnReturnForeground();
+    }
 }
 
 /*----------*/
@@ -238,6 +250,11 @@ LRESULT WINAPI GameManagerWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPa
 #ifdef _DEBUG
     DEBUG::SaveText("GAME MAnager WndProc\n", DEBUG::DEBUG_MAP_TYPE::DEBUG_GAME_MANAGER_WND_PROC);
 #endif
+    if (Master::mpGameManager == nullptr)
+    {
+        return 0;
+    }
+
     if (Master::mpGameManager->GetUninitializedFlag())
     {
         return 0;

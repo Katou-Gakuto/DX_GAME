@@ -21,17 +21,16 @@
 /*----------------------*/
 /*【フェードマネージャー】*/
 /*----------------------*/
-
 FadeManager::FadeManager()
-    : mfFadeAlpha(255.0f)
-    , mbFadeFlag(false)
-    , mbFadeDrawFlag(true)
-    , mbFadeOutFlag(false)
-    , mbFadeInFlag(false)
-    , mfFadeSpeed(5.0f)
-    , mpDataManager(nullptr)
-    , mpTimeManager(nullptr)
-    , mfuFadeTask()
+: mfFadeAlpha(255.0f)
+, mbFadeFlag(false)
+, mbFadeDrawFlag(true)
+, mbFadeOutFlag(false)
+, mbFadeInFlag(false)
+, mfFadeSpeed(5.0f)
+, mpDataManager(nullptr)
+, mpTimeManager(nullptr)
+, mfuFadeTask()
 {
 }
 
@@ -82,14 +81,7 @@ void FadeManager::Draw()
 
     SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(fadeAlpha));
 
-    DrawBox(
-        0,
-        0,
-        displaySize.x,
-        displaySize.y,
-        GetColor(0, 0, 0),
-        TRUE
-    );
+    DrawBox(0, 0, displaySize.x, displaySize.y, GetColor(0, 0, 0), TRUE);
 
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
@@ -117,12 +109,7 @@ void FadeManager::FadeOut()
     SetFadeAlpha(0.0f);
 
     // 非同期処理開始
-    mfuFadeTask = std::async(
-        std::launch::async,
-        &FadeManager::FadeProcess,
-        this,
-        std::abs(mfFadeSpeed)
-    );
+    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, std::abs(mfFadeSpeed));
 }
 
 // フェードイン開始
@@ -148,12 +135,7 @@ void FadeManager::FadeIn()
     SetFadeAlpha(255.0f);
 
     // 非同期処理開始
-    mfuFadeTask = std::async(
-        std::launch::async,
-        &FadeManager::FadeProcess,
-        this,
-        -std::abs(mfFadeSpeed)
-    );
+    mfuFadeTask = std::async(std::launch::async, &FadeManager::FadeProcess, this, -std::abs(mfFadeSpeed));
 }
 
 // フェード処理
@@ -249,11 +231,7 @@ void FadeManager::AddFadeAlpha(float alpha)
 {
     std::lock_guard<std::mutex> lock(mMutexFadeAlpha);
 
-    mfFadeAlpha = std::clamp(
-        mfFadeAlpha + alpha,
-        0.0f,
-        255.0f
-    );
+    mfFadeAlpha = std::clamp(mfFadeAlpha + alpha, 0.0f, 255.0f);
 }
 
 // 非同期処理終了待機

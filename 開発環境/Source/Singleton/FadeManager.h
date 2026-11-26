@@ -43,21 +43,6 @@ private:
     // タイムマネージャー
     TimeManager* mpTimeManager;
 
-private:
-    /// <summary>フェード値取得</summary>
-    float GetFadeAlpha();
-
-    /// <summary>フェード値設定</summary>
-    void SetFadeAlpha(float alpha);
-
-    /// <summary>フェード値加算</summary>
-    void AddFadeAlpha(float alpha);
-
-    /// <summary>非同期処理終了待機</summary>
-    void WaitFadeTask();
-
-    /// <summary>フェード処理開始</summary>
-    bool StartFadeTask(float fadeSpeed);
 
 public:
     FadeManager();
@@ -85,26 +70,30 @@ public:
     void FadeEnd();
 
     /// <summary>フェードフラグ取得</summary>
-    inline bool GetFadeFlag()
-    {
-        return mbFadeFlag.load();
-    }
+    inline bool GetFadeFlag() { return mbFadeFlag.load(); }
 
     /// <summary>フェード率取得</summary>
-    inline float GetFadeRatio()
-    {
-        return GetFadeAlpha() * 0.003921568f;
-    }
+    inline float GetFadeRatio() { return GetFadeAlpha() * 0.003921568f; }
 
     /// <summary>フェード速度取得</summary>
-    inline float GetFadeSpeed()
-    {
-        return mfFadeSpeed;
-    }
+    inline float GetFadeSpeed() { return mfFadeSpeed; }
 
     /// <summary>フェード速度設定</summary>
-    inline void SetFadeSpeed(float speed)
-    {
-        mfFadeSpeed = speed;
-    }
+    inline void SetFadeSpeed(float speed) { mfFadeSpeed = speed; }
+
+private:
+    /// <summary>フェード値取得</summary>
+    float GetFadeAlpha();
+
+    /// <summary>フェード値設定</summary>
+    void SetFadeAlpha(float alpha);
+
+    /// <summary>フェード値加算</summary>
+    void AddFadeAlpha(float alpha);
+
+    /// <summary>非同期処理終了待機</summary>
+    void WaitFadeTask();
+
+    /// <summary>フェード処理開始</summary>
+    bool StartFadeTask(float fadeSpeed);
 };
